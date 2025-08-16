@@ -6,7 +6,7 @@ struct OniTanApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            HomeView()
                 .preferredColorScheme(colorScheme == "dark" ? .dark : (colorScheme == "light" ? .light : nil))
         }
     }

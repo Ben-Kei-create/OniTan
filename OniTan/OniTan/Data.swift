@@ -6,6 +6,20 @@ let quizData: QuizData = load("questions.json")
 // 2. Extract the questions from all stages and flatten them into a single array.
 let questions: [Question] = quizData.stages.flatMap { $0.questions }
 
+// --- Validation Function ---
+// This function is called once when the app starts.
+private func validateStageData() {
+    for stage in quizData.stages {
+        if stage.questions.count != 30 {
+            print("⚠️ WARNING: Stage \(stage.stage) has \(stage.questions.count) questions, but should have 30.")
+        }
+    }
+}
+// Run the validation.
+validateStageData()
+// --- End Validation ---
+
+
 // Generic function to load and decode a JSON file from the app bundle.
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
