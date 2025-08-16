@@ -1,0 +1,52 @@
+# Xcode
+#
+# Created by https://www.toptal.com/developers/gitignore/api/xcode,swift
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift
+
+### Xcode ###
+# Xcode
+#
+# Created by https://www.toptal.com/developers/gitignore/api/xcode
+# Edit at https://www.toptal.com/developers/gitignore?templates=xcode
+
+### Xcode ###
+## General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Build generated
+build/
+DerivedData/
+
+# Various settings
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+## Swift Package Manager
+#
+# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+# Packages/
+# *.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+.build/
+
+## User settings
+xcuserdata/
+
+## Other
+*.moved-aside
+
+### Swift ###
+# Swift
+#
+# Created by https://www.toptal.com/developers/gitignore/api/swift
+# Edit at https://www.toptal.com/developers/gitignore?templates=swift
+
+### Swift ###
+*.build
+*.xcodeproj
+.build/
+Packages/
+
+# End of https://www.toptal.com/developers/gitignore/api/xcode,swift
