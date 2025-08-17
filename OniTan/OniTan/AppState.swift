@@ -2,45 +2,77 @@ import Foundation
 import SwiftUI
 
 class AppState: ObservableObject {
+    // MARK: - Published Properties
     @Published var clearedStages: Set<Int> {
         didSet {
-            saveClearedStages() // Save whenever clearedStages changes
+            saveClearedStages()
         }
     }
-    
+
+    @Published var incorrectQuestions: Set<String> {
+        didSet {
+            saveIncorrectQuestions()
+        }
+    }
+
+    // Note: These alert properties are only used in SettingsView and could be moved there.
+    // For now, we keep them here as part of the global state.
     @Published var showingResetAlert: Bool = false
     @Published var showResetConfirmation: Bool = false
     @Published var showingCannotResetAlert: Bool = false
 
-    // Initialize from UserDefaults
+    // MARK: - Initialization
     init() {
+        // Load cleared stages
         if let data = UserDefaults.standard.data(forKey: "clearedStages"),
            let decoded = try? JSONDecoder().decode(Set<Int>.self, from: data) {
             self.clearedStages = decoded
         } else {
             self.clearedStages = []
         }
+
+        // Load incorrect questions
+        if let data = UserDefaults.standard.data(forKey: "incorrectQuestions"),
+           let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+            self.incorrectQuestions = decoded
+        } else {
+            self.incorrectQuestions = []
+        }
     }
 
-    // Save clearedStages to UserDefaults
+    // MARK: - Public Methods for Incorrect Questions
+    func addIncorrectQuestion(_ kanji: String) {
+        incorrectQuestions.insert(kanji)
+    }
+
+    func removeIncorrectQuestion(_ kanji: String) {
+        incorrectQuestions.remove(kanji)
+    }
+
+    // MARK: - Persistence
     private func saveClearedStages() {
         if let encoded = try? JSONEncoder().encode(clearedStages) {
             UserDefaults.standard.set(encoded, forKey: "clearedStages")
-            UserDefaults.standard.synchronize() // Force immediate write
-        } else {
-            // No print here
+        }
+    }
+
+    private func saveIncorrectQuestions() {
+        if let encoded = try? JSONEncoder().encode(incorrectQuestions) {
+            UserDefaults.standard.set(encoded, forKey: "incorrectQuestions")
         }
     }
     
-    // New method to aggressively reset UserDefaults
+    // MARK: - Reset
     func resetUserDefaults() {
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-            UserDefaults.standard.synchronize() // Ensure immediate write
-        }
-        // After clearing UserDefaults, reset the in-memory state
+        // Clear persistent data
+        UserDefaults.standard.removeObject(forKey: "clearedStages")
+        UserDefaults.standard.removeObject(forKey: "incorrectQuestions")
+        
+        // Reset in-memory state
         self.clearedStages = []
-        // Also reset alert states
+        self.incorrectQuestions = []
+        
+        // Reset alert states
         self.showingResetAlert = false
         self.showResetConfirmation = false
         self.showingCannotResetAlert = false

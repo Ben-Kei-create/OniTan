@@ -2,7 +2,8 @@ import SwiftUI
 
 struct MainView: View {
     // MARK: - Properties
-    let stage: Stage
+    let stage: Stage // Keep stage for normal mode
+    let isReviewMode: Bool
     
     @EnvironmentObject var appState: AppState // Access AppState
     @Environment(\.presentationMode) var presentationMode
@@ -21,146 +22,170 @@ struct MainView: View {
     @State private var buttonsDisabled = false // State to disable buttons during processing
     @State private var showExplanation = false // State for showing explanation
     
+    @State private var questions: [Question] // Now a @State property
+    @State private var goal: Int // Now a @State property
 
-    // Game constants
-    private var goal: Int { stage.questions.count }
-    private var questions: [Question] { stage.questions }
-    private var currentQuestion: Question { questions[currentQuestionIndex] }
+    // Computed property for currentQuestion
+    private var currentQuestion: Question {
+        if questions.isEmpty {
+            print("DEBUG: currentQuestion accessed when questions is empty. currentQuestionIndex: \(currentQuestionIndex)")
+        } else if currentQuestionIndex >= questions.count {
+            print("DEBUG: currentQuestion accessed with out-of-bounds index. currentQuestionIndex: \(currentQuestionIndex), questions.count: \(questions.count)")
+        }
+        return questions[currentQuestionIndex]
+    }
+
+    // Custom initializer
+    init(stage: Stage, isReviewMode: Bool = false) {
+        self.stage = stage
+        self.isReviewMode = isReviewMode
+        
+        // Initialize @State properties
+        _questions = State(initialValue: stage.questions)
+        _goal = State(initialValue: stage.questions.count)
+    }
 
     var body: some View {
         ZStack { // Use ZStack for overlaying result feedback
-            VStack(spacing: 20) {
-                // "辞める" Button - Re-implemented without toolbar
-                HStack {
-                    Button("辞める") {
-                        if appState.clearedStages.contains(stage.stage) {
-                            presentationMode.wrappedValue.dismiss()
-                        } else {
-                            showingQuitAlert = true
-                        }
-                    }
-                    .foregroundColor(.red) // Make quit button red
-                    Spacer() // Pushes the button to the leading edge
-                }
-                .padding(.horizontal) // Add horizontal padding to align with other content
-
-                if isStageCleared {
-                    // --- Stage Cleared View ---
-                    Spacer()
-                    Text("ステージ \(stage.stage) クリア！")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.green)
-                        .padding()
-                    Text("おめでとうございます！")
-                        .font(.title)
-                        .foregroundColor(.primary)
-                    Spacer()
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("ステージ選択へ戻る")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: 250, minHeight: 60)
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(30)
-                            .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 10)
-                    }
-                    Spacer()
-                } else {
-                    // --- Main Quiz View ---
-                    Text("ステージ \(stage.stage)")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.accentColor)
-                        .padding(.bottom)
-
-                    Text("進行度: \(consecutiveCorrect) / \(goal) 問") // More descriptive progress
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-
-                    Spacer()
-
-                    Text(currentQuestion.kanji)
-                        .font(.system(size: 150, weight: .heavy, design: .rounded)) // Larger, heavier font
-                        .foregroundColor(.primary)
-                        .minimumScaleFactor(0.5) // Allow text to shrink
-                        .lineLimit(1)
-                        .padding()
-                        .frame(maxWidth: .infinity, maxHeight: 200) // Fixed size for kanji
-                        .background(Color.white.opacity(0.1)) // Subtle background for kanji
-                        .cornerRadius(20)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-
-                    Spacer()
-
-                    if !showResult {
-                        VStack(spacing: 15) { // Increased spacing for buttons
-                            ForEach(currentQuestion.choices, id: \.self) { choice in
-                                Button(action: {
-                                    if hapticsEnabled {
-                                        HapticsManager.shared.impact(style: .light)
-                                    }
-                                    self.answer(selected: choice)
-                                }) {
-                                    Text(choice)
-                                        .font(.title2)
-                                        .fontWeight(.bold)
-                                        .frame(maxWidth: .infinity, minHeight: 60)
-                                        .background(Color.blue)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(15)
-                                        .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 5)
-                                }
+            // If in review mode and no questions left, show completion screen
+            if isReviewMode && questions.isEmpty {
+                ReviewCompletionView()
+            } else {
+                VStack(spacing: 20) {
+                    // "辞める" Button - Re-implemented without toolbar
+                    HStack {
+                        Button("辞める") {
+                            if isReviewMode {
+                                presentationMode.wrappedValue.dismiss()
+                            } else if appState.clearedStages.contains(stage.stage) {
+                                presentationMode.wrappedValue.dismiss()
+                            } else {
+                                showingQuitAlert = true
                             }
                         }
-                        .padding(.horizontal) // Horizontal padding for buttons
-                        .disabled(buttonsDisabled) // Apply disabled modifier here
-                    } else {
-                        // Display result message more prominently
-                        Text(isCorrect ? "○ 正解！" : "× 不正解…")
-                            .font(.system(size: 60, weight: .heavy))
-                            .foregroundColor(isCorrect ? .green : .red)
-                            .transition(.scale) // Simple animation
-                        
-                        if !isCorrect {
-                            Text("正解は「\(currentQuestion.answer)」")
-                                .font(.title2)
-                                .foregroundColor(.secondary)
-                        }
+                        .foregroundColor(.red) // Make quit button red
+                        Spacer() // Pushes the button to the leading edge
                     }
+                    .padding(.horizontal) // Add horizontal padding to align with other content
 
-                    Spacer()
-
-                    if showBackToStartButton {
-                        Button(action: resetGame) {
-                            Text("最初からやり直す")
+                    if isStageCleared {
+                        // --- Stage Cleared View (for normal stages) ---
+                        Spacer()
+                        Text("ステージ \(stage.stage) クリア！")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.green)
+                            .padding()
+                        Text("おめでとうございます！")
+                            .font(.title)
+                            .foregroundColor(.primary)
+                        Spacer()
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Text("ステージ選択へ戻る")
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .frame(maxWidth: 250, minHeight: 60)
-                                .background(Color.orange) // Different color for reset
+                                .background(Color.green)
                                 .foregroundColor(.white)
                                 .cornerRadius(30)
-                                .shadow(color: Color.orange.opacity(0.4), radius: 10, x: 0, y: 10)
+                                .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 10)
                         }
                         .padding(.bottom, 20)
+                    } else {
+                        // --- Main Quiz View ---
+                        Text(isReviewMode ? "復習モード" : "ステージ \(stage.stage)")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.accentColor)
+                            .padding(.bottom)
+
+                        Text("進行度: \(consecutiveCorrect) / \(goal) 問") // More descriptive progress
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+
+                        Spacer()
+
+                        Text(currentQuestion.kanji)
+                            .font(.system(size: 150, weight: .heavy, design: .rounded)) // Larger, heavier font
+                            .foregroundColor(.primary)
+                            .minimumScaleFactor(0.5) // Allow text to shrink
+                            .lineLimit(1)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: 200) // Fixed size for kanji
+                            .background(Color.white.opacity(0.1)) // Subtle background for kanji
+                            .cornerRadius(20)
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+
+                        Spacer()
+
+                        if !showResult {
+                            VStack(spacing: 15) { // Increased spacing for buttons
+                                ForEach(currentQuestion.choices, id: \.self) { choice in
+                                    Button(action: {
+                                        if hapticsEnabled {
+                                            HapticsManager.shared.impact(style: .light)
+                                        }
+                                        self.answer(selected: choice)
+                                    }) {
+                                        Text(choice)
+                                            .font(.title2)
+                                            .fontWeight(.bold)
+                                            .frame(maxWidth: .infinity, minHeight: 60)
+                                            .background(Color.blue)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(15)
+                                            .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 5)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal) // Horizontal padding for buttons
+                            .disabled(buttonsDisabled) // Apply disabled modifier here
+                        } else {
+                            // Display result message more prominently
+                            Text(isCorrect ? "○ 正解！" : "× 不正解…")
+                                .font(.system(size: 60, weight: .heavy))
+                                .foregroundColor(isCorrect ? .green : .red)
+                                .transition(.scale) // Simple animation
+                            
+                            if !isCorrect {
+                                Text("正解は「\(currentQuestion.answer)」")
+                                    .font(.title2)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+
+                        Spacer()
+
+                        if showBackToStartButton {
+                            Button(action: resetGame) {
+                                Text("最初からやり直す")
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .frame(maxWidth: 250, minHeight: 60)
+                                    .background(Color.orange) // Different color for reset
+                                    .foregroundColor(.white)
+                                    .cornerRadius(30)
+                                    .shadow(color: Color.orange.opacity(0.4), radius: 10, x: 0, y: 10)
+                            }
+                            .padding(.bottom, 20)
+                        }
                     }
                 }
-            }
-            .padding()
-            .navigationBarBackButtonHidden(true)
-            
-            .alert(isPresented: $showingQuitAlert) {
-                Alert(
-                    title: Text("確認"),
-                    message: Text("途中で辞めると、ステージクリアになりません。"),
-                    primaryButton: .destructive(Text("OK")) {
-                        presentationMode.wrappedValue.dismiss()
-                    },
-                    secondaryButton: .cancel(Text("キャンセル"))
-                )
+                .padding()
+                .navigationBarBackButtonHidden(true)
+                
+                .alert(isPresented: $showingQuitAlert) {
+                    Alert(
+                        title: Text("確認"),
+                        message: Text("途中で辞めると、ステージクリアになりません。"),
+                        primaryButton: .destructive(Text("OK")) {
+                            presentationMode.wrappedValue.dismiss()
+                        },
+                        secondaryButton: .cancel(Text("キャンセル"))
+                    )
+                }
             }
         }
         
@@ -168,6 +193,17 @@ struct MainView: View {
             LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
         )
+        .onChange(of: appState.incorrectQuestions) { oldQuestions, newQuestions in
+            if isReviewMode {
+                // Re-filter questions based on the updated incorrectQuestions list
+                let allQuestions = quizData.stages.flatMap { $0.questions }
+                questions = allQuestions.filter { newQuestions.contains($0.kanji) }.shuffled()
+                goal = questions.count
+
+                // If all review questions are cleared, the conditional body will handle dismissal
+                // No explicit dismiss here, as ReviewCompletionView will be shown
+            }
+        }
         // Explanation Overlay
         if showExplanation {
             ExplanationView(question: currentQuestion)
@@ -183,20 +219,17 @@ struct MainView: View {
     // MARK: - Game Logic Methods
 
     func answer(selected: String) {
-        // Detect rapid taps
-        if buttonsDisabled {
-            return
-        }
-
-        buttonsDisabled = true // Disable buttons immediately
+        if buttonsDisabled { return }
+        buttonsDisabled = true
 
         if selected == currentQuestion.answer {
-            // Correct answer
-            if soundEnabled {
-                SoundManager.shared.playSound(sound: .correct)
-            }
-            if hapticsEnabled {
-                HapticsManager.shared.play(.success)
+            // --- Correct Answer ---
+            if soundEnabled { SoundManager.shared.playSound(sound: .correct) }
+            if hapticsEnabled { HapticsManager.shared.play(.success) }
+
+            // If in review mode, remove the question from the list
+            if isReviewMode {
+                appState.removeIncorrectQuestion(currentQuestion.kanji)
             }
 
             isCorrect = true
@@ -207,29 +240,32 @@ struct MainView: View {
             
             if consecutiveCorrect >= goal {
                 isStageCleared = true
-                saveStageCleared()
+                if !isReviewMode {
+                    saveStageCleared()
+                }
+                // Dismissal will be handled by the conditional body
                 return
             }
 
-            // If correct and stage not cleared, show explanation
             if !isStageCleared {
                 showExplanation = true
-                buttonsDisabled = false // Re-enable buttons to allow tapping the explanation
+                buttonsDisabled = false
             }
         } else {
-            // Incorrect answer
-            if soundEnabled {
-                SoundManager.shared.playSound(sound: .incorrect)
-            }
-            if hapticsEnabled {
-                HapticsManager.shared.play(.error)
+            // --- Incorrect Answer ---
+            if soundEnabled { SoundManager.shared.playSound(sound: .incorrect) }
+            if hapticsEnabled { HapticsManager.shared.play(.error) }
+
+            // If in a normal stage, add the question to the review list
+            if !isReviewMode {
+                appState.addIncorrectQuestion(currentQuestion.kanji)
             }
 
             isCorrect = false
             showResult = true
             showBackToStartButton = true
             consecutiveCorrect = 0
-            buttonsDisabled = false // Re-enable buttons for "最初からやり直す"
+            buttonsDisabled = false
         }
     }
 
@@ -304,10 +340,48 @@ struct ExplanationView: View {
 
 
 
+struct ReviewCompletionView: View {
+    @Environment(\.presentationMode) var presentationMode
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Spacer()
+            Text("復習完了！")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.green)
+                .padding()
+            Text("お疲れ様でした！")
+                .font(.title)
+                .foregroundColor(.primary)
+            Spacer()
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("ホームへ戻る")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: 250, minHeight: 60)
+                    .background(Color.green)
+                    .foregroundColor(.white)
+                    .cornerRadius(30)
+                    .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 10)
+            }
+            Spacer()
+        }
+        .background(
+            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+        )
+    }
+}
+
+
+
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MainView(stage: quizData.stages[0])
+            MainView(stage: quizData.stages[0], isReviewMode: false)
         }
     }
 }
