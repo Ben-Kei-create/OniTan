@@ -33,8 +33,9 @@ struct SettingsView: View {
                 primaryButton: .destructive(Text("初期化")) {
                     // Reset action
                     clearedStages = [] // Clear all saved stages
+                    print("SettingsView: clearedStages after reset = \(clearedStages)")
                 },
-                secondaryButton: .cancel(Text("キャンセル")
+                secondaryButton: .cancel(Text("キャンセル"))
             )
         }
     }

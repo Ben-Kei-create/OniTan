@@ -16,6 +16,7 @@ struct MainView: View {
     @State private var showBackToStartButton = false
     @State private var isStageCleared = false
     @State private var showingQuitAlert = false // State for the quit confirmation dialog
+    @State private var buttonsDisabled = false // State to disable buttons during processing
 
     // Game constants
     private var goal: Int { stage.questions.count }
@@ -91,6 +92,7 @@ struct MainView: View {
                         }
                     }
                     .padding()
+                    .disabled(buttonsDisabled) // Apply disabled modifier here
                 }
 
                 if showBackToStartButton {
@@ -137,6 +139,7 @@ struct MainView: View {
     // MARK: - Game Logic Methods
 
     func answer(selected: String) {
+        buttonsDisabled = true // Disable buttons immediately
         if selected == currentQuestion.answer {
             isCorrect = true
             if !showResult { 
@@ -171,6 +174,7 @@ struct MainView: View {
             currentQuestionIndex += 1
             showResult = false
             showBackToStartButton = false
+            buttonsDisabled = false // Re-enable buttons
         } else {
             isStageCleared = true
             print("MainView: Fallback - Before insert - clearedStages: \(clearedStages), inserting stage: \(stage.stage)")
@@ -184,6 +188,7 @@ struct MainView: View {
         consecutiveCorrect = 0
         showResult = false
         showBackToStartButton = false
+        buttonsDisabled = false // Re-enable buttons
     }
 }
 
