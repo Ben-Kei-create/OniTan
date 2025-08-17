@@ -15,15 +15,11 @@ struct Question: Identifiable, Codable {
         case explain
     }
 
-    // Custom initializer for Codable to add logging
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         kanji = try container.decode(String.self, forKey: .kanji)
         choices = try container.decode([String].self, forKey: .choices)
         answer = try container.decode(String.self, forKey: .answer)
         explain = try container.decode(String.self, forKey: .explain)
-
-        // Add logging for the explain property
-        print("Question decoded: kanji='\(kanji)', explain='\(explain)'")
     }
 }

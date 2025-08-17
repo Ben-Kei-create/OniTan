@@ -35,7 +35,6 @@ let questions: [Question] = quizData.stages.flatMap { $0.questions }
 
 // Generic function to load and decode a JSON file from the app bundle.
 func load<T: Decodable>(_ filename: String) -> T {
-    print("Attempting to load file: \(filename)")
     let data: Data
 
     guard let file = Bundle.main.url(forResource: filename, withExtension: nil) else {
@@ -44,7 +43,6 @@ func load<T: Decodable>(_ filename: String) -> T {
 
     do {
         data = try Data(contentsOf: file)
-        print("Successfully loaded data from file: \(filename)")
     } catch {
         fatalError("Couldn\'t load \(filename) from main bundle:\n\(error)")
     }
@@ -52,34 +50,24 @@ func load<T: Decodable>(_ filename: String) -> T {
     do {
         let decoder = JSONDecoder()
         let decoded = try decoder.decode(T.self, from: data);
-        print("Successfully parsed \(filename) as \(T.self)")
         return decoded;
     } catch {
-        print("---" + "DETAILED PARSING ERROR for \(filename)")
-        print(error)
         fatalError("Couldn\'t parse \(filename) as \(T.self):\n\(error)")
     }
 }
 
 // New optional load function
 func loadOptional<T: Decodable>(_ filename: String) -> T? {
-    print("Attempting to optionally load file: \(filename)")
     guard let file = Bundle.main.url(forResource: filename, withExtension: nil) else {
-        print("File \(filename) not found, returning nil.")
         return nil
     }
     
     do {
         let data = try Data(contentsOf: file)
-        print("Successfully loaded data from file: \(filename)")
         let decoder = JSONDecoder()
         let decoded = try decoder.decode(T.self, from: data)
-        print("Successfully parsed \(filename) as \(T.self)")
         return decoded
     } catch {
-        print("---" + "DETAILED PARSING ERROR for \(filename)")
-        print(error)
-        print("Couldn\'t parse \(filename) as \(T.self), returning nil.")
         return nil
     }
     

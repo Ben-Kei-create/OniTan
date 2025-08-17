@@ -16,7 +16,7 @@ struct MainView: View {
     @State private var isStageCleared = false
     @State private var showingQuitAlert = false
     @State private var buttonsDisabled = false // State to disable buttons during processing
-    @State private var showExplanation = false // State for showing explanation
+    
 
     // Game constants
     private var goal: Int { stage.questions.count }
@@ -154,23 +154,12 @@ struct MainView: View {
                 )
             }
         }
-        .onAppear {
-            print("MainView body: showExplanation = \(showExplanation)") // Moved print statement here
-        }
+        
         .background(
             LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
         )
-        // Explanation Overlay
-        if showExplanation {
-            ExplanationView(question: currentQuestion)
-                .onTapGesture {
-                    print("ExplanationView: onTapGesture - setting showExplanation to false")
-                    showExplanation = false
-                    nextQuestion() // Move to next question after tap
-                }
-                .transition(.opacity) // Smooth transition
-        }
+        
     }
 
     // MARK: - Game Logic Methods
@@ -196,11 +185,11 @@ struct MainView: View {
                 return
             }
 
-            // If correct and stage not cleared, show explanation
+            // If correct and stage not cleared, move to the next question after a delay
             if !isStageCleared {
-                showExplanation = true
-                print("answer: Setting showExplanation to true")
-                buttonsDisabled = false // Re-enable buttons after explanation is shown
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    nextQuestion()
+                }
             }
         } else {
             isCorrect = false
@@ -232,7 +221,6 @@ struct MainView: View {
         showResult = false
         showBackToStartButton = false
         buttonsDisabled = false // Re-enable buttons
-        showExplanation = false // Reset explanation state
     }
     
     // 修正: ステージクリア状態を確実に保存するメソッド
@@ -249,38 +237,7 @@ struct MainView: View {
     }
 }
 
-struct ExplanationView: View {
-    let question: Question
 
-    var body: some View {
-        ZStack {
-            // Semi-transparent background to dim the quiz view
-            Color.black.opacity(0.7)
-                .edgesIgnoringSafeArea(.all)
-
-            VStack(spacing: 20) {
-                // Removed Text("正解！")
-
-                // Display explanation content
-                VStack(alignment: .leading, spacing: 10) {
-                    // Removed Text("漢字: \(question.kanji)")
-                    Text("意味: \(question.explain)") // Assuming explain contains all details
-                        .font(.body)
-                    // Add more structured Text views if question.explain is parsed
-                }
-                .padding()
-                .background(Color.white) // White background for explanation box
-                .cornerRadius(15)
-                .shadow(radius: 10)
-
-                Text("タップして次へ")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.top, 20)
-            }
-        }
-    }
-}
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
