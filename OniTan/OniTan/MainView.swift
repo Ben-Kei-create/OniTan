@@ -165,6 +165,7 @@ struct MainView: View {
             showResult = true
             showBackToStartButton = true
             consecutiveCorrect = 0
+            buttonsDisabled = false // Re-enable buttons for "最初からやり直す"
         }
     }
 
@@ -180,6 +181,7 @@ struct MainView: View {
             print("MainView: Fallback - Before insert - clearedStages: \(clearedStages), inserting stage: \(stage.stage)")
             clearedStages.insert(stage.stage)
             print("MainView: Fallback - After insert - clearedStages: \(clearedStages)")
+            // No need to re-enable buttons here, as the view will dismiss or transition.
         }
     }
 
