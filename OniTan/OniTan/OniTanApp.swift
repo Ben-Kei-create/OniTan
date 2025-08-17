@@ -2,23 +2,31 @@ import SwiftUI
 
 @main
 struct OniTanApp: App {
-    @AppStorage("colorScheme") private var colorScheme: String = "system"
-    @StateObject var appState = AppState() // Create an instance of AppState
+    @StateObject private var appState = AppState() // Create an instance of AppState
 
-    init() {
-        // Force clearedStages to be empty at app launch
-        appState.clearedStages = []
-        // Also clear UserDefaults for clearedStages and unlockedStage just in case
-        UserDefaults.standard.removeObject(forKey: "clearedStages")
-        UserDefaults.standard.removeObject(forKey: "unlockedStage")
-        UserDefaults.standard.synchronize()
-    }
+    @AppStorage("colorScheme") private var colorSchemeString: String = "system"
 
     var body: some Scene {
         WindowGroup {
             HomeView()
                 .environmentObject(appState) // Inject appState into the environment
-                .preferredColorScheme(colorScheme == "dark" ? .dark : (colorScheme == "light" ? .light : nil))
+                .preferredColorScheme(appColorScheme) // Apply reactive color scheme
+        }
+    }
+    
+    // Convert colorSchemeString to ColorScheme?
+    private var appColorScheme: ColorScheme? {
+        print("OniTanApp: appColorScheme computed. colorSchemeString: \(colorSchemeString)")
+        switch colorSchemeString {
+        case "light":
+            print("OniTanApp: Applying light color scheme.")
+            return .light
+        case "dark":
+            print("OniTanApp: Applying dark color scheme.")
+            return .dark
+        default:
+            print("OniTanApp: Applying system color scheme.")
+            return nil // Use system setting
         }
     }
 }

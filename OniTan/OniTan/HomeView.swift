@@ -42,14 +42,7 @@ struct HomeView: View {
                 message: Text("本当に進行状況を初期化しますか？\nすべてのクリア情報が失われます。"),
                 primaryButton: .destructive(Text("初期化")) {
                     // Reset action
-                    if let bundleID = Bundle.main.bundleIdentifier {
-                        UserDefaults.standard.removePersistentDomain(forName: bundleID)
-                        UserDefaults.standard.removeObject(forKey: "clearedStages")
-                        UserDefaults.standard.removeObject(forKey: "unlockedStage")
-                        UserDefaults.standard.synchronize()
-                        print("SettingsView: Entire UserDefaults domain for \(bundleID) reset. Specific keys also removed.")
-                    }
-                    appState.clearedStages = [] // Update AppState's clearedStages
+                    appState.resetUserDefaults() // Call the new reset method
                     appState.showResetConfirmation = true // Show confirmation message
                 },
                 secondaryButton: .cancel(Text("キャンセル"))
