@@ -5,36 +5,27 @@ struct MainView: View {
     // MARK: - Properties
     let stage: Stage
     
-    // AppStorage to save unlock progress
     @AppStorage("unlockedStage") var unlockedStage = 1
-    
-    // Environment property to dismiss the view
     @Environment(\.presentationMode) var presentationMode
 
     // MARK: - State Properties
     @State private var currentQuestionIndex = 0
-    @State private var consecutiveCorrect = 0 // This now tracks progress within the stage
+    @State private var consecutiveCorrect = 0
     @State private var showResult = false
     @State private var isCorrect = false
     @State private var showBackToStartButton = false
     @State private var isStageCleared = false
+    @State private var showingQuitAlert = false // State for the quit confirmation dialog
 
     // Game constants
-    private var goal: Int {
-        return stage.questions.count
-    }
-    private var questions: [Question] {
-        return stage.questions
-    }
-
-    // Computed property for the current question
-    private var currentQuestion: Question {
-        return questions[currentQuestionIndex]
-    }
+    private var goal: Int { stage.questions.count }
+    private var questions: [Question] { stage.questions }
+    private var currentQuestion: Question { questions[currentQuestionIndex] }
 
     var body: some View {
         VStack(spacing: 20) {
             if isStageCleared {
+                // --- Stage Cleared View ---
                 Spacer()
                 Text("ステージ \(stage.stage) クリア！")
                     .font(.largeTitle)
@@ -54,7 +45,7 @@ struct MainView: View {
                 }
                 Spacer()
             } else {
-                // Progress Bar
+                // --- Main Quiz View ---
                 Text("ステージ \(stage.stage)")
                     .font(.largeTitle)
                     .padding(.bottom)
@@ -64,14 +55,12 @@ struct MainView: View {
 
                 Spacer()
 
-                // Kanji Display
                 Text(currentQuestion.kanji)
                     .font(.system(size: 120, weight: .bold))
                     .padding()
 
                 Spacer()
 
-                // Result Display
                 if showResult {
                     if isCorrect {
                         Text("◯ 正解！")
@@ -86,10 +75,10 @@ struct MainView: View {
 
                 Spacer()
 
-                // Choice Buttons
                 if !showResult {
                     HStack(spacing: 20) {
-                        ForEach(currentQuestion.choices, id: \.self) { choice in
+                        ForEach(currentQuestion.choices, id: \.self) {
+                            choice in
                             Button(action: { self.answer(selected: choice) }) {
                                 Text(choice)
                                     .font(.title)
@@ -104,7 +93,6 @@ struct MainView: View {
                     .padding()
                 }
 
-                // Reset Button
                 if showBackToStartButton {
                     Button(action: resetGame) {
                         Text("最初からやり直す")
@@ -120,7 +108,26 @@ struct MainView: View {
             }
         }
         .padding()
-        .navigationBarBackButtonHidden(true) // Hide default back button to control flow
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                if !isStageCleared { // Don't show quit button on cleared screen
+                    Button("辞める") {
+                        showingQuitAlert = true
+                    }
+                }
+            }
+        }
+        .alert(isPresented: $showingQuitAlert) {
+            Alert(
+                title: Text("確認"),
+                message: Text("途中で辞めると、ステージクリアになりません。\nよろしいですか？"),
+                primaryButton: .destructive(Text("OK")) {
+                    presentationMode.wrappedValue.dismiss()
+                },
+                secondaryButton: .cancel(Text("キャンセル"))
+            )
+        }
     }
 
     // MARK: - Game Logic Methods
@@ -128,21 +135,17 @@ struct MainView: View {
     func answer(selected: String) {
         if selected == currentQuestion.answer {
             isCorrect = true
-            // Only advance if not already correct
             if !showResult { 
                 consecutiveCorrect += 1
             }
             showResult = true
             
             if consecutiveCorrect >= goal {
-                // Stage cleared
                 isStageCleared = true
-                // Unlock the next stage
                 unlockedStage = max(unlockedStage, stage.stage + 1)
                 return
             }
 
-            // Move to the next question after a delay
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 nextQuestion()
             }
@@ -150,7 +153,7 @@ struct MainView: View {
             isCorrect = false
             showResult = true
             showBackToStartButton = true
-            consecutiveCorrect = 0 // Reset progress on wrong answer
+            consecutiveCorrect = 0
         }
     }
 
@@ -160,8 +163,6 @@ struct MainView: View {
             showResult = false
             showBackToStartButton = false
         } else {
-            // This case should be handled by the stage clear logic
-            // but as a fallback, we can consider the stage cleared.
             isStageCleared = true
             unlockedStage = max(unlockedStage, stage.stage + 1)
         }
@@ -177,8 +178,9 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        // Provide a sample stage for the preview
-        MainView(stage: quizData.stages[0])
+        NavigationView {
+            MainView(stage: quizData.stages[0])
+        }
     }
 }
 
