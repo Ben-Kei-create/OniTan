@@ -13,12 +13,19 @@ struct AppStorageCodable<T: Codable>: DynamicProperty {
         self.defaultValue = wrappedValue
         
         // Try to load an existing value from UserDefaults.
-        if let data = UserDefaults.standard.data(forKey: key),
-           let decoded = try? JSONDecoder().decode(T.self, from: data) {
-            _storedValue = State(initialValue: decoded)
+        if let data = UserDefaults.standard.data(forKey: key) {
+            print("AppStorageCodable: Loading data for key '\(key)' - raw data size: \(data.count) bytes")
+            if let decoded = try? JSONDecoder().decode(T.self, from: data) {
+                _storedValue = State(initialValue: decoded)
+                print("AppStorageCodable: Successfully decoded '\(key)': \(decoded)")
+            } else {
+                _storedValue = State(initialValue: wrappedValue)
+                print("AppStorageCodable: Failed to decode '\(key)', using default: \(wrappedValue)")
+            }
         } else {
             // Otherwise, use the default value.
             _storedValue = State(initialValue: wrappedValue)
+            print("AppStorageCodable: No data found for key '\(key)', using default: \(wrappedValue)")
         }
     }
 
@@ -32,6 +39,9 @@ struct AppStorageCodable<T: Codable>: DynamicProperty {
             if let encoded = try? JSONEncoder().encode(newValue) {
                 UserDefaults.standard.set(encoded, forKey: key)
                 UserDefaults.standard.synchronize() // Force immediate write
+                print("AppStorageCodable: Saved '\(key)': \(newValue) (raw data size: \(encoded.count) bytes)")
+            } else {
+                print("AppStorageCodable: Failed to encode '\(key)': \(newValue)")
             }
         }
     }

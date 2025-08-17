@@ -5,7 +5,7 @@ struct MainView: View {
     // MARK: - Properties
     let stage: Stage
     
-    @AppStorageCodable(wrappedValue: [], "clearedStages") var clearedStages: Set<Int>
+    @EnvironmentObject var appState: AppState // Access AppState
     @Environment(\.presentationMode) var presentationMode
 
     // MARK: - State Properties
@@ -115,7 +115,7 @@ struct MainView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 if !isStageCleared { // Don't show quit button on cleared screen
                     Button("辞める") {
-                        if clearedStages.contains(stage.stage) {
+                        if appState.clearedStages.contains(stage.stage) {
                             presentationMode.wrappedValue.dismiss()
                         } else {
                             showingQuitAlert = true
@@ -139,6 +139,11 @@ struct MainView: View {
     // MARK: - Game Logic Methods
 
     func answer(selected: String) {
+        // Detect rapid taps
+        if buttonsDisabled {
+            return
+        }
+
         buttonsDisabled = true // Disable buttons immediately
         if selected == currentQuestion.answer {
             isCorrect = true
@@ -149,9 +154,7 @@ struct MainView: View {
             
             if consecutiveCorrect >= goal {
                 isStageCleared = true
-                print("MainView: Before insert - clearedStages: \(clearedStages), inserting stage: \(stage.stage)")
-                clearedStages.insert(stage.stage)
-                print("MainView: After insert - clearedStages: \(clearedStages)")
+                appState.clearedStages.insert(stage.stage)
                 return
             }
 
@@ -178,9 +181,7 @@ struct MainView: View {
             buttonsDisabled = false // Re-enable buttons
         } else {
             isStageCleared = true
-            print("MainView: Fallback - Before insert - clearedStages: \(clearedStages), inserting stage: \(stage.stage)")
-            clearedStages.insert(stage.stage)
-            print("MainView: Fallback - After insert - clearedStages: \(clearedStages)")
+            appState.clearedStages.insert(stage.stage)
             // No need to re-enable buttons here, as the view will dismiss or transition.
         }
     }
