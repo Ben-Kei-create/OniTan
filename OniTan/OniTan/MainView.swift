@@ -26,6 +26,20 @@ struct MainView: View {
     var body: some View {
         ZStack { // Use ZStack for overlaying result feedback
             VStack(spacing: 20) {
+                // "辞める" Button - Re-implemented without toolbar
+                HStack {
+                    Button("辞める") {
+                        if appState.clearedStages.contains(stage.stage) {
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
+                            showingQuitAlert = true
+                        }
+                    }
+                    .foregroundColor(.red) // Make quit button red
+                    Spacer() // Pushes the button to the leading edge
+                }
+                .padding(.horizontal) // Add horizontal padding to align with other content
+
                 if isStageCleared {
                     // --- Stage Cleared View ---
                     Spacer()
@@ -128,20 +142,7 @@ struct MainView: View {
             }
             .padding()
             .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if !isStageCleared { // Don't show quit button on cleared screen
-                        Button("辞める") {
-                            if appState.clearedStages.contains(stage.stage) {
-                                presentationMode.wrappedValue.dismiss()
-                            } else {
-                                showingQuitAlert = true
-                            }
-                        }
-                        .foregroundColor(.red) // Make quit button red
-                    }
-                }
-            }
+            
             .alert(isPresented: $showingQuitAlert) {
                 Alert(
                     title: Text("確認"),
@@ -153,6 +154,9 @@ struct MainView: View {
                 )
             }
         }
+        .onAppear {
+            print("MainView body: showExplanation = \(showExplanation)") // Moved print statement here
+        }
         .background(
             LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
@@ -161,6 +165,7 @@ struct MainView: View {
         if showExplanation {
             ExplanationView(question: currentQuestion)
                 .onTapGesture {
+                    print("ExplanationView: onTapGesture - setting showExplanation to false")
                     showExplanation = false
                     nextQuestion() // Move to next question after tap
                 }
@@ -194,6 +199,8 @@ struct MainView: View {
             // If correct and stage not cleared, show explanation
             if !isStageCleared {
                 showExplanation = true
+                print("answer: Setting showExplanation to true")
+                buttonsDisabled = false // Re-enable buttons after explanation is shown
             }
         } else {
             isCorrect = false

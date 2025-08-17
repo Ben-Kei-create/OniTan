@@ -16,16 +16,12 @@ struct OniTanApp: App {
     
     // Convert colorSchemeString to ColorScheme?
     private var appColorScheme: ColorScheme? {
-        print("OniTanApp: appColorScheme computed. colorSchemeString: \(colorSchemeString)")
         switch colorSchemeString {
         case "light":
-            print("OniTanApp: Applying light color scheme.")
             return .light
         case "dark":
-            print("OniTanApp: Applying dark color scheme.")
             return .dark
         default:
-            print("OniTanApp: Applying system color scheme.")
             return nil // Use system setting
         }
     }

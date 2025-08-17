@@ -14,11 +14,6 @@ class AppState: ObservableObject {
 
     // Initialize from UserDefaults
     init() {
-        // Force clearedStages to be empty at app launch (moved from OniTanApp)
-        UserDefaults.standard.removeObject(forKey: "clearedStages")
-        UserDefaults.standard.removeObject(forKey: "unlockedStage") // Remove old key
-        UserDefaults.standard.synchronize()
-
         if let data = UserDefaults.standard.data(forKey: "clearedStages"),
            let decoded = try? JSONDecoder().decode(Set<Int>.self, from: data) {
             self.clearedStages = decoded
