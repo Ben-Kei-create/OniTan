@@ -15,6 +15,17 @@ class AppState: ObservableObject {
         }
     }
 
+    @Published var showReviewCompletion: Bool = false {
+        didSet {
+            if showReviewCompletion {
+                // Auto-hide after 3 seconds
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    self.showReviewCompletion = false
+                }
+            }
+        }
+    }
+
     // Note: These alert properties are only used in SettingsView and could be moved there.
     // For now, we keep them here as part of the global state.
     @Published var showingResetAlert: Bool = false

@@ -29,8 +29,11 @@ struct MainView: View {
     private var currentQuestion: Question {
         if questions.isEmpty {
             print("DEBUG: currentQuestion accessed when questions is empty. currentQuestionIndex: \(currentQuestionIndex)")
+            // Return a dummy question to prevent crash, but this should not be accessed
+            return Question(kanji: "", answer: "", choices: [], explain: "")
         } else if currentQuestionIndex >= questions.count {
             print("DEBUG: currentQuestion accessed with out-of-bounds index. currentQuestionIndex: \(currentQuestionIndex), questions.count: \(questions.count)")
+            return questions[0] // Fallback to first question
         }
         return questions[currentQuestionIndex]
     }
@@ -47,9 +50,13 @@ struct MainView: View {
 
     var body: some View {
         ZStack { // Use ZStack for overlaying result feedback
-            // If in review mode and no questions left, show completion screen
-            if isReviewMode && questions.isEmpty {
-                ReviewCompletionView()
+            // If in review mode and no questions left, dismiss to home
+            if isReviewMode && (questions.isEmpty || consecutiveCorrect >= goal) {
+                Color.clear
+                    .onAppear {
+                        appState.showReviewCompletion = true
+                        presentationMode.wrappedValue.dismiss()
+                    }
             } else {
                 VStack(spacing: 20) {
                     // "辞める" Button - Re-implemented without toolbar
@@ -239,15 +246,17 @@ struct MainView: View {
             showResult = true
             
             if consecutiveCorrect >= goal {
-                isStageCleared = true
-                if !isReviewMode {
+                if isReviewMode {
+                    // For review mode, just mark as completed - ReviewCompletionView will be shown
+                    return
+                } else {
+                    isStageCleared = true
                     saveStageCleared()
+                    return
                 }
-                // Dismissal will be handled by the conditional body
-                return
             }
 
-            if !isStageCleared {
+            if !isStageCleared && consecutiveCorrect < goal {
                 showExplanation = true
                 buttonsDisabled = false
             }
@@ -340,41 +349,7 @@ struct ExplanationView: View {
 
 
 
-struct ReviewCompletionView: View {
-    @Environment(\.presentationMode) var presentationMode
 
-    var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
-            Text("復習完了！")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.green)
-                .padding()
-            Text("お疲れ様でした！")
-                .font(.title)
-                .foregroundColor(.primary)
-            Spacer()
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Text("ホームへ戻る")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: 250, minHeight: 60)
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(30)
-                    .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 10)
-            }
-            Spacer()
-        }
-        .background(
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
-        )
-    }
-}
 
 
 

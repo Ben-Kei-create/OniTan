@@ -22,4 +22,12 @@ struct Question: Identifiable, Codable {
         answer = try container.decode(String.self, forKey: .answer)
         explain = try container.decode(String.self, forKey: .explain)
     }
+    
+    // Add a regular initializer for creating dummy questions
+    init(kanji: String, answer: String, choices: [String], explain: String) {
+        self.kanji = kanji
+        self.answer = answer
+        self.choices = choices
+        self.explain = explain
+    }
 }
