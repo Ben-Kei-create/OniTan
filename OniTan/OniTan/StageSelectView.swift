@@ -1,32 +1,46 @@
 import SwiftUI
 
 struct StageSelectView: View {
-    // Persistently store the highest stage the user has unlocked. Default is 1.
-    @AppStorage("unlockedStage") var unlockedStage = 1
+    // Use the new property wrapper to store a Set of cleared stage numbers.
+    @AppStorageCodable(wrappedValue: [], "clearedStages") var clearedStages: Set<Int>
     
-    // Access the global quiz data which is loaded in Data.swift
+    // Access the global quiz data
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
 
     var body: some View {
         List(stages, id: \.stage) { stage in
-            // A stage is unlocked if its number is less than or equal to the highest unlocked stage
-            let isUnlocked = stage.stage <= unlockedStage
+            // Determine the status of the stage
+            let isCleared = clearedStages.contains(stage.stage)
+            // A stage is unlocked if it's stage 1, or if the previous stage has been cleared.
+            let isUnlocked = (stage.stage == 1) || clearedStages.contains(stage.stage - 1)
             
-            // NavigationLink to the quiz view for the selected stage
             NavigationLink(destination: MainView(stage: stage)) {
                 HStack(spacing: 15) {
-                    Image(systemName: isUnlocked ? "lock.open.fill" : "lock.fill")
-                        .foregroundColor(isUnlocked ? .green : .secondary)
-                        .font(.title)
+                    // Icon logic based on status
+                    if isCleared {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
+                            .font(.title)
+                    } else {
+                        Image(systemName: isUnlocked ? "lock.open.fill" : "lock.fill")
+                            .foregroundColor(isUnlocked ? .blue : .secondary)
+                            .font(.title)
+                    }
+                    
                     Text("ステージ \(stage.stage)")
                         .font(.title2)
                         .strikethrough(!isUnlocked, color: .secondary)
+                    
+                    Spacer()
                 }
                 .padding(.vertical, 10)
             }
-            .disabled(!isUnlocked) // Disable navigation for locked stages
+            .disabled(!isUnlocked)
         }
         .navigationTitle("ステージ選択")
+        .onAppear { // Add onAppear to print clearedStages
+            print("StageSelectView: clearedStages onAppear = \(clearedStages)")
+        }
     }
 }
 

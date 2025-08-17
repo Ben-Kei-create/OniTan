@@ -5,7 +5,7 @@ struct MainView: View {
     // MARK: - Properties
     let stage: Stage
     
-    @AppStorage("unlockedStage") var unlockedStage = 1
+    @AppStorageCodable(wrappedValue: [], "clearedStages") var clearedStages: Set<Int>
     @Environment(\.presentationMode) var presentationMode
 
     // MARK: - State Properties
@@ -113,7 +113,11 @@ struct MainView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 if !isStageCleared { // Don't show quit button on cleared screen
                     Button("辞める") {
-                        showingQuitAlert = true
+                        if clearedStages.contains(stage.stage) {
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
+                            showingQuitAlert = true
+                        }
                     }
                 }
             }
@@ -142,12 +146,16 @@ struct MainView: View {
             
             if consecutiveCorrect >= goal {
                 isStageCleared = true
-                unlockedStage = max(unlockedStage, stage.stage + 1)
+                print("MainView: Before insert - clearedStages: \(clearedStages), inserting stage: \(stage.stage)")
+                clearedStages.insert(stage.stage)
+                print("MainView: After insert - clearedStages: \(clearedStages)")
                 return
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                nextQuestion()
+                if !isStageCleared { // Only call nextQuestion if stage is not cleared
+                    nextQuestion()
+                }
             }
         } else {
             isCorrect = false
@@ -158,13 +166,16 @@ struct MainView: View {
     }
 
     func nextQuestion() {
+        guard !isStageCleared else { return } // Prevent further execution if stage is cleared
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
             showResult = false
             showBackToStartButton = false
         } else {
             isStageCleared = true
-            unlockedStage = max(unlockedStage, stage.stage + 1)
+            print("MainView: Fallback - Before insert - clearedStages: \(clearedStages), inserting stage: \(stage.stage)")
+            clearedStages.insert(stage.stage)
+            print("MainView: Fallback - After insert - clearedStages: \(clearedStages)")
         }
     }
 
