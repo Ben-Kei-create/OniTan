@@ -16,6 +16,7 @@ struct MainView: View {
     @State private var isStageCleared = false
     @State private var showingQuitAlert = false
     @State private var buttonsDisabled = false // State to disable buttons during processing
+    @State private var showExplanation = false // State for showing explanation
     
 
     // Game constants
@@ -159,6 +160,15 @@ struct MainView: View {
             LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
         )
+        // Explanation Overlay
+        if showExplanation {
+            ExplanationView(question: currentQuestion)
+                .onTapGesture {
+                    showExplanation = false
+                    nextQuestion() // Move to next question after tap
+                }
+                .transition(.opacity) // Smooth transition
+        }
         
     }
 
@@ -185,11 +195,10 @@ struct MainView: View {
                 return
             }
 
-            // If correct and stage not cleared, move to the next question after a delay
+            // If correct and stage not cleared, show explanation
             if !isStageCleared {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    nextQuestion()
-                }
+                showExplanation = true
+                buttonsDisabled = false // Re-enable buttons to allow tapping the explanation
             }
         } else {
             isCorrect = false
@@ -221,6 +230,7 @@ struct MainView: View {
         showResult = false
         showBackToStartButton = false
         buttonsDisabled = false // Re-enable buttons
+        showExplanation = false // Reset explanation state
     }
     
     // 修正: ステージクリア状態を確実に保存するメソッド
@@ -234,6 +244,37 @@ struct MainView: View {
         // DispatchQueue.main.async {
         //     appState.objectWillChange.send()
         // }
+    }
+}
+
+
+
+struct ExplanationView: View {
+    let question: Question
+
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.7)
+                .edgesIgnoringSafeArea(.all)
+
+            VStack(spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(question.explain)
+                        .font(.body)
+                        .foregroundColor(.white) // Make text white for dark background
+                }
+                .padding()
+                .background(Color.black.opacity(0.5)) // Darker background for readability
+                .cornerRadius(15)
+                .shadow(radius: 10)
+
+                Text("タップして次へ")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding(.top, 20)
+            }
+            .padding() // Padding for the whole VStack
+        }
     }
 }
 
