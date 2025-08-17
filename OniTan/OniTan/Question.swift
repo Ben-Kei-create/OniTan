@@ -3,7 +3,7 @@ import Foundation
 struct Question: Identifiable, Codable {
     let id = UUID()
     let kanji: String
-    let choices: [String]
+    var choices: [String]
     let answer: String
     let explain: String
 

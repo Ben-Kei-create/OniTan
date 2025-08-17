@@ -15,6 +15,12 @@ class AppState: ObservableObject {
         }
     }
 
+    @Published var bookmarkedQuestions: Set<String> {
+        didSet {
+            saveBookmarkedQuestions()
+        }
+    }
+
     @Published var showReviewCompletion: Bool = false {
         didSet {
             if showReviewCompletion {
@@ -49,6 +55,14 @@ class AppState: ObservableObject {
         } else {
             self.incorrectQuestions = []
         }
+
+        // Load bookmarked questions
+        if let data = UserDefaults.standard.data(forKey: "bookmarkedQuestions"),
+           let decoded = try? JSONDecoder().decode(Set<String>.self, from: data) {
+            self.bookmarkedQuestions = decoded
+        } else {
+            self.bookmarkedQuestions = []
+        }
     }
 
     // MARK: - Public Methods for Incorrect Questions
@@ -58,6 +72,19 @@ class AppState: ObservableObject {
 
     func removeIncorrectQuestion(_ kanji: String) {
         incorrectQuestions.remove(kanji)
+    }
+
+    // MARK: - Public Methods for Bookmarked Questions
+    func addBookmarkedQuestion(_ kanji: String) {
+        bookmarkedQuestions.insert(kanji)
+    }
+
+    func removeBookmarkedQuestion(_ kanji: String) {
+        bookmarkedQuestions.remove(kanji)
+    }
+
+    func isBookmarked(_ kanji: String) -> Bool {
+        return bookmarkedQuestions.contains(kanji)
     }
 
     // MARK: - Persistence
@@ -72,16 +99,24 @@ class AppState: ObservableObject {
             UserDefaults.standard.set(encoded, forKey: "incorrectQuestions")
         }
     }
+
+    private func saveBookmarkedQuestions() {
+        if let encoded = try? JSONEncoder().encode(bookmarkedQuestions) {
+            UserDefaults.standard.set(encoded, forKey: "bookmarkedQuestions")
+        }
+    }
     
     // MARK: - Reset
     func resetUserDefaults() {
         // Clear persistent data
         UserDefaults.standard.removeObject(forKey: "clearedStages")
         UserDefaults.standard.removeObject(forKey: "incorrectQuestions")
+        UserDefaults.standard.removeObject(forKey: "bookmarkedQuestions")
         
         // Reset in-memory state
         self.clearedStages = []
         self.incorrectQuestions = []
+        self.bookmarkedQuestions = []
         
         // Reset alert states
         self.showingResetAlert = false

@@ -10,6 +10,8 @@ struct MainView: View {
 
     @AppStorage("soundEnabled") private var soundEnabled: Bool = true
     @AppStorage("hapticsEnabled") private var hapticsEnabled: Bool = true
+    @AppStorage("shuffleQuestionsEnabled") private var shuffleQuestionsEnabled: Bool = false
+    @AppStorage("kanjiFont") private var kanjiFont: String = "system"
 
     // MARK: - State Properties
     @State private var currentQuestionIndex = 0
@@ -37,6 +39,20 @@ struct MainView: View {
         }
         return questions[currentQuestionIndex]
     }
+    
+    // Computed property for selected kanji font
+    private var selectedKanjiFont: Font {
+        switch kanjiFont {
+        case "hiragino":
+            return .custom("Hiragino Kaku Gothic ProN", size: 150, relativeTo: .largeTitle)
+        case "yuGothic":
+            return .custom("YuGothic-Medium", size: 150, relativeTo: .largeTitle)
+        case "mincho":
+            return .custom("Hiragino Mincho ProN", size: 150, relativeTo: .largeTitle)
+        default:
+            return .system(size: 150, weight: .heavy, design: .rounded)
+        }
+    }
 
     // Custom initializer
     init(stage: Stage, isReviewMode: Bool = false) {
@@ -50,16 +66,17 @@ struct MainView: View {
 
     var body: some View {
         ZStack { // Use ZStack for overlaying result feedback
-            // If in review mode and no questions left, dismiss to home
-            if isReviewMode && (questions.isEmpty || consecutiveCorrect >= goal) {
+                                     // If in review mode and no questions left, dismiss to home
+            if isReviewMode && questions.isEmpty {
                 Color.clear
                     .onAppear {
+                        print("DEBUG: Review mode completed - questions.isEmpty: \(questions.isEmpty)")
                         appState.showReviewCompletion = true
                         presentationMode.wrappedValue.dismiss()
                     }
             } else {
                 VStack(spacing: 20) {
-                    // "辞める" Button - Re-implemented without toolbar
+                    // "辞める" Button and Bookmark Button
                     HStack {
                         Button("辞める") {
                             if isReviewMode {
@@ -71,7 +88,23 @@ struct MainView: View {
                             }
                         }
                         .foregroundColor(.red) // Make quit button red
-                        Spacer() // Pushes the button to the leading edge
+                        
+                        Spacer() // Pushes the buttons to the edges
+                        
+                        // Bookmark button (only show in normal mode)
+                        if !isReviewMode {
+                            Button(action: {
+                                if appState.isBookmarked(currentQuestion.kanji) {
+                                    appState.removeBookmarkedQuestion(currentQuestion.kanji)
+                                } else {
+                                    appState.addBookmarkedQuestion(currentQuestion.kanji)
+                                }
+                            }) {
+                                Image(systemName: appState.isBookmarked(currentQuestion.kanji) ? "bookmark.fill" : "bookmark")
+                                    .font(.title2)
+                                    .foregroundColor(appState.isBookmarked(currentQuestion.kanji) ? .yellow : .gray)
+                            }
+                        }
                     }
                     .padding(.horizontal) // Add horizontal padding to align with other content
 
@@ -108,22 +141,25 @@ struct MainView: View {
                             .foregroundColor(.accentColor)
                             .padding(.bottom)
 
-                        Text("進行度: \(consecutiveCorrect) / \(goal) 問") // More descriptive progress
-                            .font(.headline)
-                            .foregroundColor(.secondary)
+                        if !isReviewMode {
+                            Text("進行度: \(consecutiveCorrect) / \(goal) 問") // More descriptive progress
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                        }
 
                         Spacer()
 
                         Text(currentQuestion.kanji)
-                            .font(.system(size: 150, weight: .heavy, design: .rounded)) // Larger, heavier font
+                            .font(selectedKanjiFont)
+                            .fontWeight(.bold)
                             .foregroundColor(.primary)
                             .minimumScaleFactor(0.5) // Allow text to shrink
                             .lineLimit(1)
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: 200) // Fixed size for kanji
-                            .background(Color.white.opacity(0.1)) // Subtle background for kanji
+                            .background(Color(.systemBackground).opacity(0.1)) // Adaptive background for kanji
                             .cornerRadius(20)
-                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                            .shadow(color: Color(.systemGray4).opacity(0.3), radius: 5, x: 0, y: 5)
 
                         Spacer()
 
@@ -143,7 +179,7 @@ struct MainView: View {
                                             .background(Color.blue)
                                             .foregroundColor(.white)
                                             .cornerRadius(15)
-                                            .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 5)
+                                            .shadow(color: Color.blue.opacity(0.4), radius: 8, x: 0, y: 4)
                                     }
                                 }
                             }
@@ -197,18 +233,31 @@ struct MainView: View {
         }
         
         .background(
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(.systemBlue).opacity(0.15),
+                    Color(.systemPurple).opacity(0.1),
+                    Color(.systemBackground).opacity(0.05)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .edgesIgnoringSafeArea(.all)
         )
+        .onAppear {
+            // Shuffle questions and choices if enabled
+            if shuffleQuestionsEnabled {
+                shuffleQuestionsAndChoices()
+            }
+        }
         .onChange(of: appState.incorrectQuestions) { oldQuestions, newQuestions in
             if isReviewMode {
-                // Re-filter questions based on the updated incorrectQuestions list
-                let allQuestions = quizData.stages.flatMap { $0.questions }
-                questions = allQuestions.filter { newQuestions.contains($0.kanji) }.shuffled()
-                goal = questions.count
-
-                // If all review questions are cleared, the conditional body will handle dismissal
-                // No explicit dismiss here, as ReviewCompletionView will be shown
+                updateReviewQuestions()
+            }
+        }
+        .onChange(of: appState.bookmarkedQuestions) { oldBookmarks, newBookmarks in
+            if isReviewMode {
+                updateReviewQuestions()
             }
         }
         // Explanation Overlay
@@ -236,7 +285,16 @@ struct MainView: View {
 
             // If in review mode, remove the question from the list
             if isReviewMode {
+                print("DEBUG: Review mode - removing question: \(currentQuestion.kanji)")
+                print("DEBUG: Questions count before removal: \(questions.count)")
                 appState.removeIncorrectQuestion(currentQuestion.kanji)
+                appState.removeBookmarkedQuestion(currentQuestion.kanji)
+                // Remove the current question from the questions array
+                questions.remove(at: currentQuestionIndex)
+                print("DEBUG: Questions count after removal: \(questions.count)")
+                // Reset currentQuestionIndex to 0 since we're now at the beginning of the updated array
+                currentQuestionIndex = 0
+                print("DEBUG: Current question index reset to: \(currentQuestionIndex)")
             }
 
             isCorrect = true
@@ -246,19 +304,23 @@ struct MainView: View {
             showResult = true
             
             if consecutiveCorrect >= goal {
-                if isReviewMode {
-                    // For review mode, just mark as completed - ReviewCompletionView will be shown
-                    return
-                } else {
-                    isStageCleared = true
+                isStageCleared = true
+                if !isReviewMode {
                     saveStageCleared()
-                    return
                 }
+                // Dismissal will be handled by the conditional body
+                return
             }
 
-            if !isStageCleared && consecutiveCorrect < goal {
-                showExplanation = true
-                buttonsDisabled = false
+            if !isStageCleared {
+                if isReviewMode {
+                    // For review mode, go to next question without explanation
+                    nextQuestion()
+                } else {
+                    // For normal mode, show explanation
+                    showExplanation = true
+                    buttonsDisabled = false
+                }
             }
         } else {
             // --- Incorrect Answer ---
@@ -272,9 +334,17 @@ struct MainView: View {
 
             isCorrect = false
             showResult = true
-            showBackToStartButton = true
             consecutiveCorrect = 0
-            buttonsDisabled = false
+            
+            if isReviewMode {
+                // For review mode, show back to start button immediately
+                showBackToStartButton = true
+                buttonsDisabled = false
+            } else {
+                // For normal mode, show back to start button
+                showBackToStartButton = true
+                buttonsDisabled = false
+            }
         }
     }
 
@@ -314,32 +384,59 @@ struct MainView: View {
         //     appState.objectWillChange.send()
         // }
     }
+    
+    // 問題と選択肢をシャッフルするメソッド
+    private func shuffleQuestionsAndChoices() {
+        // Shuffle the order of questions
+        questions = questions.shuffled()
+        
+        // Shuffle choices for each question
+        for i in 0..<questions.count {
+            questions[i].choices = questions[i].choices.shuffled()
+        }
+    }
+    
+    // 復習問題を更新するメソッド
+    private func updateReviewQuestions() {
+        let allQuestions = quizData.stages.flatMap { $0.questions }
+        let reviewKanji = appState.incorrectQuestions.union(appState.bookmarkedQuestions)
+        questions = allQuestions.filter { reviewKanji.contains($0.kanji) }.shuffled()
+        goal = questions.count
+
+        print("DEBUG: Review questions updated - count: \(questions.count)")
+        
+        // If all review questions are cleared, dismiss to home
+        if questions.isEmpty {
+            print("DEBUG: All review questions completed, dismissing to home")
+            appState.showReviewCompletion = true
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
 }
-
-
 
 struct ExplanationView: View {
     let question: Question
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.7)
+            Color(.systemBackground).opacity(0.9)
                 .edgesIgnoringSafeArea(.all)
 
             VStack(spacing: 20) {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(question.explain)
                         .font(.body)
-                        .foregroundColor(.white) // Make text white for dark background
+                        .foregroundColor(.primary) // Adaptive text color
                 }
                 .padding()
-                .background(Color.black.opacity(0.5)) // Darker background for readability
+                .background(Color(.systemGray6).opacity(0.8)) // Adaptive background
                 .cornerRadius(15)
-                .shadow(radius: 10)
+                .shadow(color: Color(.systemGray4).opacity(0.3), radius: 10, x: 0, y: 5)
 
                 Text("タップして次へ")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary) // Adaptive text color
                     .padding(.top, 20)
             }
             .padding() // Padding for the whole VStack

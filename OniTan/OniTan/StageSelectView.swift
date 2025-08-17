@@ -70,6 +70,6 @@ struct StageRowView: View {
             .padding(.vertical, 8) // Vertical padding for list item
         }
         .disabled(!isUnlocked) // Disable navigation for locked stages
-        .listRowBackground(isUnlocked ? Color.clear : Color.gray.opacity(0.1)) // Subtle background for locked rows
+        .listRowBackground(isUnlocked ? Color.clear : Color(.systemGray6).opacity(0.5)) // Adaptive background for locked rows
     }
 }

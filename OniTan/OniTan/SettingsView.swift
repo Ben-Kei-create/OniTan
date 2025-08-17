@@ -4,6 +4,8 @@ struct SettingsView: View {
     @AppStorage("colorScheme") private var colorScheme: String = "system"
     @AppStorage("soundEnabled") private var soundEnabled: Bool = true
     @AppStorage("hapticsEnabled") private var hapticsEnabled: Bool = true
+    @AppStorage("shuffleQuestionsEnabled") private var shuffleQuestionsEnabled: Bool = false
+    @AppStorage("kanjiFont") private var kanjiFont: String = "system"
     @EnvironmentObject var appState: AppState // Access AppState
     
     private enum ActiveAlert: Identifiable {
@@ -40,6 +42,22 @@ struct SettingsView: View {
             {
                 Toggle("効果音", isOn: $soundEnabled)
                 Toggle("バイブレーション", isOn: $hapticsEnabled)
+            }
+            
+            Section(header: Text("クイズ設定")
+                .font(.headline)
+                .foregroundColor(.accentColor)
+            ) {
+                Toggle("問題をシャッフル", isOn: $shuffleQuestionsEnabled)
+                
+                Picker("漢字フォント", selection: $kanjiFont) {
+                    Text("システム").tag("system")
+                    Text("ヒラギノ角ゴ").tag("hiragino")
+                    Text("游ゴシック").tag("yuGothic")
+                    Text("明朝体").tag("mincho")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.vertical, 5)
             }
             
             Section {

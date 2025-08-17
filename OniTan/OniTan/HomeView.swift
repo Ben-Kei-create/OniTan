@@ -7,6 +7,15 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 VStack(spacing: 30) {
+                    // Review completion message overlay
+                    if appState.showReviewCompletion {
+                        Text("復習完了！")
+                            .font(.system(size: 40, weight: .bold))
+                            .foregroundColor(.red)
+                            .transition(.scale.combined(with: .opacity))
+                            .animation(.easeInOut(duration: 0.5), value: appState.showReviewCompletion)
+                    }
+                    
                     Text("鬼単")
                         .font(.system(size: 80, weight: .bold))
                         .padding(.bottom, 40)
@@ -19,14 +28,16 @@ struct HomeView: View {
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(10)
+                            .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 3)
                     }
                     
                     // Review Mode Button
                     NavigationLink(destination: reviewDestination) {
                         HStack(spacing: 10) {
                             Text("復習モード")
-                            if !appState.incorrectQuestions.isEmpty {
-                                Text("\(appState.incorrectQuestions.count)")
+                            let totalReviewQuestions = appState.incorrectQuestions.count + appState.bookmarkedQuestions.count
+                            if totalReviewQuestions > 0 {
+                                Text("\(totalReviewQuestions)")
                                     .font(.body.bold())
                                     .padding(8)
                                     .background(Color.white.opacity(0.3))
@@ -36,29 +47,22 @@ struct HomeView: View {
                         .font(.title)
                         .padding()
                         .frame(maxWidth: 200)
-                        .background(appState.incorrectQuestions.isEmpty ? Color.gray : Color.orange)
+                        .background(appState.incorrectQuestions.count + appState.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange)
                         .foregroundColor(.white)
                         .cornerRadius(10)
+                        .shadow(color: (appState.incorrectQuestions.count + appState.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange).opacity(0.3), radius: 5, x: 0, y: 3)
                     }
-                    .disabled(appState.incorrectQuestions.isEmpty)
+                    .disabled(appState.incorrectQuestions.count + appState.bookmarkedQuestions.count == 0)
                     
                     NavigationLink(destination: SettingsView()) {
                         Text("設定")
                             .font(.title)
                             .padding()
                             .frame(maxWidth: 200)
-                            .background(Color.gray)
+                            .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(10)
-                    }
-                    
-                    // Review completion message overlay
-                    if appState.showReviewCompletion {
-                        Text("復習完了！")
-                            .font(.system(size: 40, weight: .bold))
-                            .foregroundColor(.red)
-                            .transition(.scale.combined(with: .opacity))
-                            .animation(.easeInOut(duration: 0.5), value: appState.showReviewCompletion)
+                            .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 3)
                     }
                 }
                 .navigationBarHidden(true)
@@ -68,8 +72,12 @@ struct HomeView: View {
     
     private var reviewDestination: some View {
         let incorrectKanji = appState.incorrectQuestions
+        let bookmarkedKanji = appState.bookmarkedQuestions
         let allQuestions = quizData.stages.flatMap { $0.questions }
-        let reviewQuestions = allQuestions.filter { incorrectKanji.contains($0.kanji) }
+        
+        // Combine incorrect and bookmarked questions, removing duplicates
+        let reviewKanji = incorrectKanji.union(bookmarkedKanji)
+        let reviewQuestions = allQuestions.filter { reviewKanji.contains($0.kanji) }
         
         // Shuffle the review questions
         let reviewStage = Stage(stage: 0, questions: reviewQuestions.shuffled())
