@@ -6,6 +6,7 @@ struct SettingsView: View {
     @AppStorage("hapticsEnabled") private var hapticsEnabled: Bool = true
     @AppStorage("shuffleQuestionsEnabled") private var shuffleQuestionsEnabled: Bool = false
     @AppStorage("kanjiFont") private var kanjiFont: String = "system"
+    @AppStorage("themeColor") private var themeColor: String = "classic"
     @EnvironmentObject var appState: AppState // Access AppState
     
     private enum ActiveAlert: Identifiable {
@@ -17,6 +18,22 @@ struct SettingsView: View {
     }
     
     @State private var activeAlert: ActiveAlert?
+    
+    // Computed property for selected theme color
+    private var selectedThemeColor: Color {
+        switch themeColor {
+        case "natural":
+            return .green
+        case "passion":
+            return .red
+        case "elegant":
+            return .purple
+        case "sunshine":
+            return .orange
+        default:
+            return .blue // classic
+        }
+    }
 
     var body: some View {
         Form {
@@ -57,6 +74,37 @@ struct SettingsView: View {
                     Text("明朝体").tag("mincho")
                 }
                 .pickerStyle(SegmentedPickerStyle())
+                .padding(.vertical, 5)
+            }
+            
+            Section(header: Text("テーマ設定")
+                .font(.headline)
+                .foregroundColor(.accentColor)
+            ) {
+                Picker("テーマカラー", selection: $themeColor) {
+                    Text("クラシック").tag("classic")
+                    Text("ナチュラル").tag("natural")
+                    Text("パッション").tag("passion")
+                    Text("エレガント").tag("elegant")
+                    Text("サンシャイン").tag("sunshine")
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.vertical, 5)
+                
+                // Color preview
+                HStack {
+                    Text("プレビュー")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Circle()
+                        .fill(selectedThemeColor)
+                        .frame(width: 30, height: 30)
+                        .overlay(
+                            Circle()
+                                .stroke(Color(.systemGray4), lineWidth: 1)
+                        )
+                }
                 .padding(.vertical, 5)
             }
             

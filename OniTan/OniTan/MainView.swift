@@ -12,6 +12,7 @@ struct MainView: View {
     @AppStorage("hapticsEnabled") private var hapticsEnabled: Bool = true
     @AppStorage("shuffleQuestionsEnabled") private var shuffleQuestionsEnabled: Bool = false
     @AppStorage("kanjiFont") private var kanjiFont: String = "system"
+    @AppStorage("themeColor") private var themeColor: String = "classic"
 
     // MARK: - State Properties
     @State private var currentQuestionIndex = 0
@@ -23,6 +24,13 @@ struct MainView: View {
     @State private var showingQuitAlert = false
     @State private var buttonsDisabled = false // State to disable buttons during processing
     @State private var showExplanation = false // State for showing explanation
+    
+    // Animation states for stage clear
+    @State private var showClearAnimation = false
+    @State private var clearTextScale: CGFloat = 0.1
+    @State private var clearTextOpacity: Double = 0
+    @State private var confettiOpacity: Double = 0
+    @State private var confettiRotation: Double = 0
     
     @State private var questions: [Question] // Now a @State property
     @State private var goal: Int // Now a @State property
@@ -51,6 +59,22 @@ struct MainView: View {
             return .custom("Hiragino Mincho ProN", size: 150, relativeTo: .largeTitle)
         default:
             return .system(size: 150, weight: .heavy, design: .rounded)
+        }
+    }
+    
+    // Computed property for selected theme color
+    private var selectedThemeColor: Color {
+        switch themeColor {
+        case "natural":
+            return .green
+        case "passion":
+            return .red
+        case "elegant":
+            return .purple
+        case "sunshine":
+            return .orange
+        default:
+            return .blue // classic
         }
     }
 
@@ -109,30 +133,62 @@ struct MainView: View {
                     .padding(.horizontal) // Add horizontal padding to align with other content
 
                     if isStageCleared {
-                        // --- Stage Cleared View (for normal stages) ---
-                        Spacer()
-                        Text("ステージ \(stage.stage) クリア！")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.green)
-                            .padding()
-                        Text("おめでとうございます！")
-                            .font(.title)
-                            .foregroundColor(.primary)
-                        Spacer()
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                        }) {
-                            Text("ステージ選択へ戻る")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .frame(maxWidth: 250, minHeight: 60)
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(30)
-                                .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 10)
+                        // --- Stage Cleared View with Animation (for normal stages) ---
+                        ZStack {
+                            // Confetti background
+                            ForEach(0..<20, id: \.self) { index in
+                                ConfettiPiece(index: index, opacity: confettiOpacity, rotation: confettiRotation)
+                            }
+                            
+                            VStack(spacing: 30) {
+                                Spacer()
+                                
+                                // Stage clear text with animation
+                                VStack(spacing: 15) {
+                                    Text("ステージ \(stage.stage)")
+                                        .font(.system(size: 40, weight: .bold))
+                                        .foregroundColor(.primary)
+                                        .opacity(clearTextOpacity)
+                                        .scaleEffect(clearTextScale)
+                                    
+                                    Text("クリア！")
+                                        .font(.system(size: 60, weight: .heavy))
+                                        .foregroundColor(.green)
+                                        .opacity(clearTextOpacity)
+                                        .scaleEffect(clearTextScale)
+                                        .shadow(color: .green.opacity(0.5), radius: 10, x: 0, y: 5)
+                                }
+                                .animation(.spring(response: 0.8, dampingFraction: 0.6), value: clearTextScale)
+                                .animation(.easeIn(duration: 0.5), value: clearTextOpacity)
+                                
+                                Text("おめでとうございます！")
+                                    .font(.title)
+                                    .foregroundColor(.primary)
+                                    .opacity(clearTextOpacity)
+                                    .animation(.easeIn(duration: 0.5).delay(0.3), value: clearTextOpacity)
+                                
+                                Spacer()
+                                
+                                // Return button with animation
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                }) {
+                                    Text("ステージ選択へ戻る")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .frame(maxWidth: 250, minHeight: 60)
+                                        .background(Color.green)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(30)
+                                        .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 10)
+                                }
+                                .opacity(clearTextOpacity)
+                                .scaleEffect(clearTextScale * 0.8)
+                                .animation(.spring(response: 0.8, dampingFraction: 0.6).delay(0.6), value: clearTextScale)
+                                .animation(.easeIn(duration: 0.5).delay(0.6), value: clearTextOpacity)
+                                .padding(.bottom, 20)
+                            }
                         }
-                        .padding(.bottom, 20)
                     } else {
                         // --- Main Quiz View ---
                         Text(isReviewMode ? "復習モード" : "ステージ \(stage.stage)")
@@ -176,10 +232,10 @@ struct MainView: View {
                                             .font(.title2)
                                             .fontWeight(.bold)
                                             .frame(maxWidth: .infinity, minHeight: 60)
-                                            .background(Color.blue)
+                                            .background(selectedThemeColor)
                                             .foregroundColor(.white)
                                             .cornerRadius(15)
-                                            .shadow(color: Color.blue.opacity(0.4), radius: 8, x: 0, y: 4)
+                                            .shadow(color: selectedThemeColor.opacity(0.4), radius: 8, x: 0, y: 4)
                                     }
                                 }
                             }
@@ -235,8 +291,8 @@ struct MainView: View {
         .background(
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color(.systemBlue).opacity(0.15),
-                    Color(.systemPurple).opacity(0.1),
+                    selectedThemeColor.opacity(0.15),
+                    selectedThemeColor.opacity(0.1),
                     Color(.systemBackground).opacity(0.05)
                 ]),
                 startPoint: .topLeading,
@@ -307,6 +363,8 @@ struct MainView: View {
                 isStageCleared = true
                 if !isReviewMode {
                     saveStageCleared()
+                    // Start clear animation
+                    startClearAnimation()
                 }
                 // Dismissal will be handled by the conditional body
                 return
@@ -411,6 +469,51 @@ struct MainView: View {
             appState.showReviewCompletion = true
             presentationMode.wrappedValue.dismiss()
         }
+    }
+    
+    // ステージクリアアニメーションを開始するメソッド
+    private func startClearAnimation() {
+        // Play success sound and haptics
+        if soundEnabled { SoundManager.shared.playSound(sound: .correct) }
+        if hapticsEnabled { HapticsManager.shared.play(.success) }
+        
+        // Start text animation
+        withAnimation(.spring(response: 0.8, dampingFraction: 0.6)) {
+            clearTextScale = 1.0
+            clearTextOpacity = 1.0
+        }
+        
+        // Start confetti animation
+        withAnimation(.easeIn(duration: 0.5)) {
+            confettiOpacity = 1.0
+        }
+        
+        // Rotate confetti
+        withAnimation(.linear(duration: 3.0).repeatForever(autoreverses: false)) {
+            confettiRotation = 360
+        }
+    }
+}
+
+struct ConfettiPiece: View {
+    let index: Int
+    let opacity: Double
+    let rotation: Double
+    
+    private let colors: [Color] = [.red, .blue, .green, .yellow, .orange, .purple, .pink]
+    private let shapes: [String] = ["circle.fill", "square.fill", "triangle.fill", "star.fill"]
+    
+    var body: some View {
+        Image(systemName: shapes[index % shapes.count])
+            .foregroundColor(colors[index % colors.count])
+            .font(.system(size: CGFloat.random(in: 8...15)))
+            .position(
+                x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
+                y: CGFloat.random(in: 0...UIScreen.main.bounds.height)
+            )
+            .opacity(opacity)
+            .rotationEffect(.degrees(rotation))
+            .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: opacity)
     }
 }
 

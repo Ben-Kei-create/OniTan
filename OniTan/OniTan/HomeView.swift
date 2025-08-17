@@ -2,6 +2,23 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var appState: AppState
+    @AppStorage("themeColor") private var themeColor: String = "classic"
+    
+    // Computed property for selected theme color
+    private var selectedThemeColor: Color {
+        switch themeColor {
+        case "natural":
+            return .green
+        case "passion":
+            return .red
+        case "elegant":
+            return .purple
+        case "sunshine":
+            return .orange
+        default:
+            return .blue // classic
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -25,10 +42,10 @@ struct HomeView: View {
                             .font(.title)
                             .padding()
                             .frame(maxWidth: 200)
-                            .background(Color.blue)
+                            .background(selectedThemeColor)
                             .foregroundColor(.white)
                             .cornerRadius(10)
-                            .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 3)
+                            .shadow(color: selectedThemeColor.opacity(0.3), radius: 5, x: 0, y: 3)
                     }
                     
                     // Review Mode Button
@@ -59,10 +76,10 @@ struct HomeView: View {
                             .font(.title)
                             .padding()
                             .frame(maxWidth: 200)
-                            .background(Color.blue)
+                            .background(selectedThemeColor)
                             .foregroundColor(.white)
                             .cornerRadius(10)
-                            .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 3)
+                            .shadow(color: selectedThemeColor.opacity(0.3), radius: 5, x: 0, y: 3)
                     }
                 }
                 .navigationBarHidden(true)
