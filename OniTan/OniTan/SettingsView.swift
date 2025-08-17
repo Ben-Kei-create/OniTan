@@ -23,6 +23,8 @@ struct SettingsView: View {
                 }
             }
             
+            // Commented out the Section containing the "初期化" button
+            /*
             Section {
                 Button(action: {
                     print("SettingsView: '初期化' button tapped.")
@@ -55,6 +57,7 @@ struct SettingsView: View {
                     .font(.headline)
                     .foregroundColor(.accentColor)
             }
+            */
         }
         .navigationTitle("設定")
         .navigationBarTitleDisplayMode(.inline)
