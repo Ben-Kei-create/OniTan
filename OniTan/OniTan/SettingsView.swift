@@ -2,6 +2,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("colorScheme") private var colorScheme: String = "system"
+    @AppStorage("soundEnabled") private var soundEnabled: Bool = true
+    @AppStorage("hapticsEnabled") private var hapticsEnabled: Bool = true
     @EnvironmentObject var appState: AppState // Access AppState
     
     private enum ActiveAlert: Identifiable {
@@ -30,6 +32,14 @@ struct SettingsView: View {
                 .onChange(of: colorScheme) { oldValue, newValue in
                     UserDefaults.standard.synchronize()
                 }
+            }
+            
+            Section(header: Text("サウンドと触覚")
+                .font(.headline)
+                .foregroundColor(.accentColor))
+            {
+                Toggle("効果音", isOn: $soundEnabled)
+                Toggle("バイブレーション", isOn: $hapticsEnabled)
             }
             
             Section {

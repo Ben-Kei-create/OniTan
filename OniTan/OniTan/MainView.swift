@@ -7,6 +7,9 @@ struct MainView: View {
     @EnvironmentObject var appState: AppState // Access AppState
     @Environment(\.presentationMode) var presentationMode
 
+    @AppStorage("soundEnabled") private var soundEnabled: Bool = true
+    @AppStorage("hapticsEnabled") private var hapticsEnabled: Bool = true
+
     // MARK: - State Properties
     @State private var currentQuestionIndex = 0
     @State private var consecutiveCorrect = 0
@@ -49,7 +52,7 @@ struct MainView: View {
                         .fontWeight(.bold)
                         .foregroundColor(.green)
                         .padding()
-                    Text("🎉 おめでとうございます！ 🎉")
+                    Text("おめでとうございます！")
                         .font(.title)
                         .foregroundColor(.primary)
                     Spacer()
@@ -96,7 +99,12 @@ struct MainView: View {
                     if !showResult {
                         VStack(spacing: 15) { // Increased spacing for buttons
                             ForEach(currentQuestion.choices, id: \.self) { choice in
-                                Button(action: { self.answer(selected: choice) }) {
+                                Button(action: {
+                                    if hapticsEnabled {
+                                        HapticsManager.shared.impact(style: .light)
+                                    }
+                                    self.answer(selected: choice)
+                                }) {
                                     Text(choice)
                                         .font(.title2)
                                         .fontWeight(.bold)
@@ -181,7 +189,16 @@ struct MainView: View {
         }
 
         buttonsDisabled = true // Disable buttons immediately
+
         if selected == currentQuestion.answer {
+            // Correct answer
+            if soundEnabled {
+                SoundManager.shared.playSound(sound: .correct)
+            }
+            if hapticsEnabled {
+                HapticsManager.shared.play(.success)
+            }
+
             isCorrect = true
             if !showResult {
                 consecutiveCorrect += 1
@@ -190,7 +207,6 @@ struct MainView: View {
             
             if consecutiveCorrect >= goal {
                 isStageCleared = true
-                // 修正: より確実にステージクリア状態を保存
                 saveStageCleared()
                 return
             }
@@ -201,6 +217,14 @@ struct MainView: View {
                 buttonsDisabled = false // Re-enable buttons to allow tapping the explanation
             }
         } else {
+            // Incorrect answer
+            if soundEnabled {
+                SoundManager.shared.playSound(sound: .incorrect)
+            }
+            if hapticsEnabled {
+                HapticsManager.shared.play(.error)
+            }
+
             isCorrect = false
             showResult = true
             showBackToStartButton = true
