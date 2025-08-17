@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage("colorScheme") private var colorScheme: String = "system"
     @State private var showingResetAlert = false // State for the reset confirmation dialog
+    @State private var showResetConfirmation = false // State for the reset completion message
     @AppStorageCodable(wrappedValue: [], "clearedStages") var clearedStages: Set<Int> // Access cleared stages
 
     var body: some View {
@@ -33,9 +34,19 @@ struct SettingsView: View {
                 primaryButton: .destructive(Text("初期化")) {
                     // Reset action
                     clearedStages = [] // Clear all saved stages
+                    UserDefaults.standard.removeObject(forKey: "clearedStages") // Explicitly remove the key
+                    UserDefaults.standard.synchronize() // Force immediate write
                     print("SettingsView: clearedStages after reset = \(clearedStages)")
+                    showResetConfirmation = true // Show confirmation message
                 },
                 secondaryButton: .cancel(Text("キャンセル"))
+            )
+        }
+        .alert(isPresented: $showResetConfirmation) { // New alert for confirmation
+            Alert(
+                title: Text("完了"),
+                message: Text("進行状況が初期化されました。"),
+                dismissButton: .default(Text("OK"))
             )
         }
     }
