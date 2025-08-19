@@ -3,7 +3,7 @@ import Foundation
 struct Question: Identifiable, Codable {
     let id = UUID()
     let kanji: String
-    var choices: [String]
+    var choices: [Choice]
     let answer: String
     let explain: String
 
@@ -18,7 +18,9 @@ struct Question: Identifiable, Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         kanji = try container.decode(String.self, forKey: .kanji)
-        choices = try container.decode([String].self, forKey: .choices)
+        // Decode as [String] and map to [Choice]
+        let choiceStrings = try container.decode([String].self, forKey: .choices)
+        choices = choiceStrings.map { Choice(text: $0) }
         answer = try container.decode(String.self, forKey: .answer)
         explain = try container.decode(String.self, forKey: .explain)
     }
@@ -27,7 +29,7 @@ struct Question: Identifiable, Codable {
     init(kanji: String, answer: String, choices: [String], explain: String) {
         self.kanji = kanji
         self.answer = answer
-        self.choices = choices
+        self.choices = choices.map { Choice(text: $0) }
         self.explain = explain
     }
 }

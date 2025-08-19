@@ -24,6 +24,7 @@ struct MainView: View {
     @State private var showingQuitAlert = false
     @State private var buttonsDisabled = false // State to disable buttons during processing
     @State private var showExplanation = false // State for showing explanation
+    @State private var answeredQuestion: Question?
     
     // Animation states for stage clear
     @State private var showClearAnimation = false
@@ -37,14 +38,20 @@ struct MainView: View {
 
     // Computed property for currentQuestion
     private var currentQuestion: Question {
+        print("--- currentQuestion CALLED ---")
+        print("Accessing index: \(currentQuestionIndex) in questions array with count: \(questions.count)")
         if questions.isEmpty {
-            print("DEBUG: currentQuestion accessed when questions is empty. currentQuestionIndex: \(currentQuestionIndex)")
-            // Return a dummy question to prevent crash, but this should not be accessed
+            print("DEBUG: currentQuestion accessed when questions is empty. Returning dummy question.")
             return Question(kanji: "", answer: "", choices: [], explain: "")
         } else if currentQuestionIndex >= questions.count {
-            print("DEBUG: currentQuestion accessed with out-of-bounds index. currentQuestionIndex: \(currentQuestionIndex), questions.count: \(questions.count)")
-            return questions[0] // Fallback to first question
+            print("DEBUG: currentQuestion accessed with out-of-bounds index. Resetting to 0 and returning first question.")
+            // This is a safeguard, but the issue should be fixed elsewhere.
+            DispatchQueue.main.async {
+                currentQuestionIndex = 0
+            }
+            return questions[0]
         }
+        print("Returning question: \(questions[currentQuestionIndex].kanji)")
         return questions[currentQuestionIndex]
     }
     
@@ -205,7 +212,7 @@ struct MainView: View {
 
                         Spacer()
 
-                        Text(currentQuestion.kanji)
+                        Text((showResult && isCorrect) ? (answeredQuestion?.kanji ?? currentQuestion.kanji) : currentQuestion.kanji)
                             .font(selectedKanjiFont)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
@@ -221,14 +228,14 @@ struct MainView: View {
 
                         if !showResult {
                             VStack(spacing: 15) { // Increased spacing for buttons
-                                ForEach(currentQuestion.choices, id: \.self) { choice in
+                                ForEach(currentQuestion.choices) { choice in
                                     Button(action: {
                                         if hapticsEnabled {
                                             HapticsManager.shared.impact(style: .light)
                                         }
                                         self.answer(selected: choice)
                                     }) {
-                                        Text(choice)
+                                        Text(choice.text)
                                             .font(.title2)
                                             .fontWeight(.bold)
                                             .frame(maxWidth: .infinity, minHeight: 60)
@@ -330,76 +337,85 @@ struct MainView: View {
 
     // MARK: - Game Logic Methods
 
-    func answer(selected: String) {
-        if buttonsDisabled { return }
+    func answer(selected: Choice) {
+        print("--- answer(selected:) CALLED ---")
+        print("Mode: \(isReviewMode ? "Review" : "Normal")")
+        print("Current Kanji: \(currentQuestion.kanji), Index: \(currentQuestionIndex)")
+        print("Selected: \(selected.text), Correct Answer: \(currentQuestion.answer)")
+
+        if buttonsDisabled { 
+            print("Buttons are disabled, returning.")
+            return
+        }
         buttonsDisabled = true
 
-        if selected == currentQuestion.answer {
-            // --- Correct Answer ---
+        if selected.text == currentQuestion.answer {
+            print("--- CORRECT ANSWER ---")
             if soundEnabled { SoundManager.shared.playSound(sound: .correct) }
             if hapticsEnabled { HapticsManager.shared.play(.success) }
-
-            // If in review mode, remove the question from the list
-            if isReviewMode {
-                print("DEBUG: Review mode - removing question: \(currentQuestion.kanji)")
-                print("DEBUG: Questions count before removal: \(questions.count)")
-                appState.removeIncorrectQuestion(currentQuestion.kanji)
-                appState.removeBookmarkedQuestion(currentQuestion.kanji)
-                // Remove the current question from the questions array
-                questions.remove(at: currentQuestionIndex)
-                print("DEBUG: Questions count after removal: \(questions.count)")
-                // Reset currentQuestionIndex to 0 since we're now at the beginning of the updated array
-                currentQuestionIndex = 0
-                print("DEBUG: Current question index reset to: \(currentQuestionIndex)")
-            }
-
-            isCorrect = true
-            if !showResult {
-                consecutiveCorrect += 1
-            }
-            showResult = true
             
-            if consecutiveCorrect >= goal {
-                isStageCleared = true
-                if !isReviewMode {
-                    saveStageCleared()
-                    // Start clear animation
-                    startClearAnimation()
-                }
-                // Dismissal will be handled by the conditional body
-                return
-            }
+            isCorrect = true
+            showResult = true
+            answeredQuestion = currentQuestion // Save the question that was just answered
 
-            if !isStageCleared {
-                if isReviewMode {
-                    // For review mode, go to next question without explanation
-                    nextQuestion()
-                } else {
-                    // For normal mode, show explanation
+            if isReviewMode {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    print("Review Mode: Delay finished. Updating questions.")
+                    appState.removeIncorrectQuestion(currentQuestion.kanji)
+                    appState.removeBookmarkedQuestion(currentQuestion.kanji)
+                    updateReviewQuestions() // Manually update the questions list
+                    
+                    showResult = false
+                    answeredQuestion = nil
+                    buttonsDisabled = false
+                    print("Review Mode: Ready for next question.")
+                }
+            } else {
+                if !showResult {
+                    consecutiveCorrect += 1
+                }
+                print("Normal Mode: Consecutive correct answers: \(consecutiveCorrect)")
+                
+                if consecutiveCorrect >= goal {
+                    print("Normal Mode: Stage cleared!")
+                    isStageCleared = true
+                    saveStageCleared()
+                    startClearAnimation()
+                    return
+                }
+
+                if !isStageCleared {
+                    print("Normal Mode: Showing explanation.")
                     showExplanation = true
                     buttonsDisabled = false
                 }
             }
         } else {
-            // --- Incorrect Answer ---
+            print("--- INCORRECT ANSWER ---")
             if soundEnabled { SoundManager.shared.playSound(sound: .incorrect) }
             if hapticsEnabled { HapticsManager.shared.play(.error) }
 
-            // If in a normal stage, add the question to the review list
             if !isReviewMode {
+                print("Normal Mode: Adding incorrect question to AppState.")
                 appState.addIncorrectQuestion(currentQuestion.kanji)
             }
 
             isCorrect = false
             showResult = true
             consecutiveCorrect = 0
+            answeredQuestion = currentQuestion // Save the question that was just answered
             
             if isReviewMode {
-                // For review mode, show back to start button immediately
-                showBackToStartButton = true
-                buttonsDisabled = false
+                print("Review Mode: Incorrect answer. Moving to next question after delay.")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    print("Review Mode: Hiding result, re-enabling buttons, and calling nextQuestion().")
+                    showResult = false
+                    answeredQuestion = nil
+                    buttonsDisabled = false
+                    nextQuestion()
+                }
             } else {
-                // For normal mode, show back to start button
+                print("Normal Mode: Incorrect answer. Showing 'try again' button.")
                 showBackToStartButton = true
                 buttonsDisabled = false
             }
@@ -407,18 +423,30 @@ struct MainView: View {
     }
 
     func nextQuestion() {
-        guard !isStageCleared else { return }
+        print("--- nextQuestion() CALLED ---")
+        print("Current Index: \(currentQuestionIndex), Questions Count: \(questions.count)")
+        guard !isStageCleared else { 
+            print("Stage is already cleared, returning.")
+            return
+        }
+
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
-            showResult = false
-            showBackToStartButton = false
-            buttonsDisabled = false // Re-enable buttons
+            print("Moving to next question. New Index: \(currentQuestionIndex)")
         } else {
-            isStageCleared = true
-            // 修正: フォールバック時も確実に保存
-            saveStageCleared()
-            // No need to re-enable buttons here, as the view will dismiss or transition.
+            print("Last question reached.")
+            if isReviewMode {
+                print("Review Mode: Looping back to the first question.")
+                currentQuestionIndex = 0
+            } else {
+                print("Normal Mode: Stage considered cleared.")
+                isStageCleared = true
+                saveStageCleared()
+            }
         }
+        showResult = false
+        showBackToStartButton = false
+        buttonsDisabled = false
     }
 
     func resetGame() {
@@ -456,18 +484,28 @@ struct MainView: View {
     
     // 復習問題を更新するメソッド
     private func updateReviewQuestions() {
+        print("--- updateReviewQuestions() CALLED ---")
         let allQuestions = quizData.stages.flatMap { $0.questions }
         let reviewKanji = appState.incorrectQuestions.union(appState.bookmarkedQuestions)
+        
+        print("Current review Kanji count: \(reviewKanji.count)")
         questions = allQuestions.filter { reviewKanji.contains($0.kanji) }.shuffled()
         goal = questions.count
 
-        print("DEBUG: Review questions updated - count: \(questions.count)")
+        print("Review questions updated. New count: \(questions.count)")
         
-        // If all review questions are cleared, dismiss to home
         if questions.isEmpty {
-            print("DEBUG: All review questions completed, dismissing to home")
+            print("All review questions completed, dismissing to home.")
             appState.showReviewCompletion = true
-            presentationMode.wrappedValue.dismiss()
+            // Safely dismiss
+            DispatchQueue.main.async {
+                presentationMode.wrappedValue.dismiss()
+            }
+        } else {
+            if currentQuestionIndex >= questions.count {
+                print("Index \(currentQuestionIndex) is out of bounds. Resetting to 0.")
+                currentQuestionIndex = 0
+            }
         }
     }
     
