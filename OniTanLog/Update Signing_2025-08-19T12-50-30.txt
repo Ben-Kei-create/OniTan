@@ -1,0 +1,88 @@
+
+Showing All Errors Only
+
+Update provisioning for OniTan
+2025-08-19 03:50:30 +0000 IDEProvisioningMechanic: -[IDEProvisioningMechanic repair:didFailWithError:]: 0x1474c9500 <IDEProvisioningRepair: 0x408f9ba20; repairable = <IDEProvisioningRepairInfo: 0x40b592c60; repairableName='OniTan', team='<IDEProvisioningDisambiguatableBasicTeam: 0x147bb50b0; teamID='7R927F3U4V', teamName='史明 茂木 (Personal Team)', teamType='Personal Team', username='(null)', isFreeProvisioningTeam='1'>', machineName='茂木史明のMacBook Pro', machineID='00006000-000650C10AD2801E', certificatePurpose='<DVTPortalCertificatePurpose name: development, identifier: Xcode.Portal.CertificatePurpose.Development, automaticSelector: Apple Development>', destinationRequirement='(null)', profileType='Xcode.Portal.Profile.Type.iOS.Development', bundleID='com.fumiakiMogi777.OniTan', appIDFeatures='<DVTPortalAppIDFeatures 0x17cc07c70: Features: {
+}, Containers: {
+}>', platform='<DVTPlatform:0x141e31b00:'com.apple.platform.iphoneos':<DVTFilePath:0x141e30d80:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>', instigatingErrorsDescription='Xcode couldn't find any iOS App Development provisioning profiles matching 'com.fumiakiMogi777.OniTan'.'>>, error = Error Domain=DVTServicesAccountBasedSessionErrorDomain Code=0 "Unable to log in with account 'fsmall.worldm@gmail.com'." UserInfo={NSLocalizedFailureReason=Unable to log in with account 'fsmall.worldm@gmail.com'., NSLocalizedRecoverySuggestion=The login details for account 'fsmall.worldm@gmail.com' were rejected., DVTDeveloperAccountErrorAccount=<DVTAppleIDBasedDeveloperAccount: 0x146b429a0; username='fsmall.worldm@gmail.com'>, NSUnderlyingError=0x404cf0210 {Error Domain=DVTPortalServiceErrorDomain Code=1100 "Your session has expired. Please log in." UserInfo={payload={
+    creationTimestamp = "2025-08-19T00:44:03Z";
+    httpCode = 200;
+    protocolVersion = QH65B2;
+    requestUrl = "https://developerservices2.apple.com/services/QH65B2/viewDeveloper.action";
+    responseId = "eaab0086-6431-45a7-ad8b-9e97a5fe2793";
+    resultCode = 1100;
+    resultString = "Your session has expired. Please log in.";
+    userLocale = "en_US";
+    userString = "Your session has expired. Please log in.";
+}, NSLocalizedDescription=Your session has expired. Please log in.}}}
+2025-08-19 03:50:30 +0000 IDEProvisioningMechanic: -[IDEProvisioningMechanic addRepairForRepairable:]_block_invoke: Created new repair: <IDEProvisioningRepair: 0x406f0fc50; repairable = <IDEProvisioningRepairInfo: 0x40ea65210; repairableName='OniTanTests', team='<IDEProvisioningDisambiguatableBasicTeam: 0x147bb50b0; teamID='7R927F3U4V', teamName='史明 茂木 (Personal Team)', teamType='Personal Team', username='(null)', isFreeProvisioningTeam='1'>', machineName='茂木史明のMacBook Pro', machineID='00006000-000650C10AD2801E', certificatePurpose='<DVTPortalCertificatePurpose name: development, identifier: Xcode.Portal.CertificatePurpose.Development, automaticSelector: Apple Development>', destinationRequirement='(null)', profileType='(null)', bundleID='com.fumiakiMogi777.OniTanTests', appIDFeatures='<DVTPortalAppIDFeatures 0x17cc0e1b0: Features: {
+}, Containers: {
+}>', platform='<DVTPlatform:0x141e31b00:'com.apple.platform.iphoneos':<DVTFilePath:0x141e30d80:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>', instigatingErrorsDescription='No "iOS Development" signing certificate matching team ID "7R927F3U4V" with a private key was found.'>>
+2025-08-19 03:50:30 +0000 IDEProvisioningMechanic: -[IDEProvisioningMechanic _executeNextRepairIfNeeded]_block_invoke_2: Executing repair: <IDEProvisioningRepair: 0x406f0fc50; repairable = <IDEProvisioningRepairInfo: 0x40ea65210; repairableName='OniTanTests', team='<IDEProvisioningDisambiguatableBasicTeam: 0x147bb50b0; teamID='7R927F3U4V', teamName='史明 茂木 (Personal Team)', teamType='Personal Team', username='(null)', isFreeProvisioningTeam='1'>', machineName='茂木史明のMacBook Pro', machineID='00006000-000650C10AD2801E', certificatePurpose='<DVTPortalCertificatePurpose name: development, identifier: Xcode.Portal.CertificatePurpose.Development, automaticSelector: Apple Development>', destinationRequirement='(null)', profileType='(null)', bundleID='com.fumiakiMogi777.OniTanTests', appIDFeatures='<DVTPortalAppIDFeatures 0x17cc0e1b0: Features: {
+}, Containers: {
+}>', platform='<DVTPlatform:0x141e31b00:'com.apple.platform.iphoneos':<DVTFilePath:0x141e30d80:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>', instigatingErrorsDescription='No "iOS Development" signing certificate matching team ID "7R927F3U4V" with a private key was found.'>>
+
+
+The operation couldn’t be completed. Unable to log in with account 'fsmall.worldm@gmail.com'. (The login details for account 'fsmall.worldm@gmail.com' were rejected.)
+
+Diagnose problem
+Xcode couldn't find any iOS App Development provisioning profiles matching 'com.fumiakiMogi777.OniTan'.
+
+The operation couldn’t be completed. Unable to log in with account 'fsmall.worldm@gmail.com'. (The login details for account 'fsmall.worldm@gmail.com' were rejected.)
+
+
+Update provisioning for OniTanTests
+2025-08-19 03:50:30 +0000 IDEProvisioningMechanic: -[IDEProvisioningMechanic repair:didFailWithError:]: 0x1474c9500 <IDEProvisioningRepair: 0x406f0fc50; repairable = <IDEProvisioningRepairInfo: 0x40ea65210; repairableName='OniTanTests', team='<IDEProvisioningDisambiguatableBasicTeam: 0x147bb50b0; teamID='7R927F3U4V', teamName='史明 茂木 (Personal Team)', teamType='Personal Team', username='(null)', isFreeProvisioningTeam='1'>', machineName='茂木史明のMacBook Pro', machineID='00006000-000650C10AD2801E', certificatePurpose='<DVTPortalCertificatePurpose name: development, identifier: Xcode.Portal.CertificatePurpose.Development, automaticSelector: Apple Development>', destinationRequirement='(null)', profileType='(null)', bundleID='com.fumiakiMogi777.OniTanTests', appIDFeatures='<DVTPortalAppIDFeatures 0x17cc0e1b0: Features: {
+}, Containers: {
+}>', platform='<DVTPlatform:0x141e31b00:'com.apple.platform.iphoneos':<DVTFilePath:0x141e30d80:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>', instigatingErrorsDescription='No "iOS Development" signing certificate matching team ID "7R927F3U4V" with a private key was found.'>>, error = Error Domain=DVTServicesAccountBasedSessionErrorDomain Code=0 "Unable to log in with account 'fsmall.worldm@gmail.com'." UserInfo={NSLocalizedFailureReason=Unable to log in with account 'fsmall.worldm@gmail.com'., NSLocalizedRecoverySuggestion=The login details for account 'fsmall.worldm@gmail.com' were rejected., DVTDeveloperAccountErrorAccount=<DVTAppleIDBasedDeveloperAccount: 0x146b429a0; username='fsmall.worldm@gmail.com'>, NSUnderlyingError=0x404cf0210 {Error Domain=DVTPortalServiceErrorDomain Code=1100 "Your session has expired. Please log in." UserInfo={payload={
+    creationTimestamp = "2025-08-19T00:44:03Z";
+    httpCode = 200;
+    protocolVersion = QH65B2;
+    requestUrl = "https://developerservices2.apple.com/services/QH65B2/viewDeveloper.action";
+    responseId = "eaab0086-6431-45a7-ad8b-9e97a5fe2793";
+    resultCode = 1100;
+    resultString = "Your session has expired. Please log in.";
+    userLocale = "en_US";
+    userString = "Your session has expired. Please log in.";
+}, NSLocalizedDescription=Your session has expired. Please log in.}}}
+2025-08-19 03:50:30 +0000 IDEProvisioningMechanic: -[IDEProvisioningMechanic addRepairForRepairable:]_block_invoke: Created new repair: <IDEProvisioningRepair: 0x406f5f650; repairable = <IDEProvisioningRepairInfo: 0x40b50a970; repairableName='OniTanUITests', team='<IDEProvisioningDisambiguatableBasicTeam: 0x147bb50b0; teamID='7R927F3U4V', teamName='史明 茂木 (Personal Team)', teamType='Personal Team', username='(null)', isFreeProvisioningTeam='1'>', machineName='茂木史明のMacBook Pro', machineID='00006000-000650C10AD2801E', certificatePurpose='<DVTPortalCertificatePurpose name: development, identifier: Xcode.Portal.CertificatePurpose.Development, automaticSelector: Apple Development>', destinationRequirement='(null)', profileType='Xcode.Portal.Profile.Type.iOS.Development', bundleID='com.fumiakiMogi777.OniTanUITests', appIDFeatures='<DVTPortalAppIDFeatures 0x40a0c76f0: Features: {
+}, Containers: {
+}>', platform='<DVTPlatform:0x141e31b00:'com.apple.platform.iphoneos':<DVTFilePath:0x141e30d80:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>', instigatingErrorsDescription='Xcode couldn't find any iOS App Development provisioning profiles matching 'com.fumiakiMogi777.OniTanUITests'.'>>
+2025-08-19 03:50:30 +0000 IDEProvisioningMechanic: -[IDEProvisioningMechanic _executeNextRepairIfNeeded]_block_invoke_2: Executing repair: <IDEProvisioningRepair: 0x406f5f650; repairable = <IDEProvisioningRepairInfo: 0x40b50a970; repairableName='OniTanUITests', team='<IDEProvisioningDisambiguatableBasicTeam: 0x147bb50b0; teamID='7R927F3U4V', teamName='史明 茂木 (Personal Team)', teamType='Personal Team', username='(null)', isFreeProvisioningTeam='1'>', machineName='茂木史明のMacBook Pro', machineID='00006000-000650C10AD2801E', certificatePurpose='<DVTPortalCertificatePurpose name: development, identifier: Xcode.Portal.CertificatePurpose.Development, automaticSelector: Apple Development>', destinationRequirement='(null)', profileType='Xcode.Portal.Profile.Type.iOS.Development', bundleID='com.fumiakiMogi777.OniTanUITests', appIDFeatures='<DVTPortalAppIDFeatures 0x40a0c76f0: Features: {
+}, Containers: {
+}>', platform='<DVTPlatform:0x141e31b00:'com.apple.platform.iphoneos':<DVTFilePath:0x141e30d80:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>', instigatingErrorsDescription='Xcode couldn't find any iOS App Development provisioning profiles matching 'com.fumiakiMogi777.OniTanUITests'.'>>
+2025-08-19 03:50:30 +0000 IDEProvisioningMechanic: -[IDEProvisioningMechanic repair:didFailWithError:]: 0x1474c9500 <IDEProvisioningRepair: 0x406f5f650; repairable = <IDEProvisioningRepairInfo: 0x40b50a970; repairableName='OniTanUITests', team='<IDEProvisioningDisambiguatableBasicTeam: 0x147bb50b0; teamID='7R927F3U4V', teamName='史明 茂木 (Personal Team)', teamType='Personal Team', username='(null)', isFreeProvisioningTeam='1'>', machineName='茂木史明のMacBook Pro', machineID='00006000-000650C10AD2801E', certificatePurpose='<DVTPortalCertificatePurpose name: development, identifier: Xcode.Portal.CertificatePurpose.Development, automaticSelector: Apple Development>', destinationRequirement='(null)', profileType='Xcode.Portal.Profile.Type.iOS.Development', bundleID='com.fumiakiMogi777.OniTanUITests', appIDFeatures='<DVTPortalAppIDFeatures 0x40a0c76f0: Features: {
+}, Containers: {
+}>', platform='<DVTPlatform:0x141e31b00:'com.apple.platform.iphoneos':<DVTFilePath:0x141e30d80:'/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform'>>', instigatingErrorsDescription='Xcode couldn't find any iOS App Development provisioning profiles matching 'com.fumiakiMogi777.OniTanUITests'.'>>, error = Error Domain=DVTServicesAccountBasedSessionErrorDomain Code=0 "Unable to log in with account 'fsmall.worldm@gmail.com'." UserInfo={NSLocalizedFailureReason=Unable to log in with account 'fsmall.worldm@gmail.com'., NSLocalizedRecoverySuggestion=The login details for account 'fsmall.worldm@gmail.com' were rejected., DVTDeveloperAccountErrorAccount=<DVTAppleIDBasedDeveloperAccount: 0x146b429a0; username='fsmall.worldm@gmail.com'>, NSUnderlyingError=0x404cf0210 {Error Domain=DVTPortalServiceErrorDomain Code=1100 "Your session has expired. Please log in." UserInfo={payload={
+    creationTimestamp = "2025-08-19T00:44:03Z";
+    httpCode = 200;
+    protocolVersion = QH65B2;
+    requestUrl = "https://developerservices2.apple.com/services/QH65B2/viewDeveloper.action";
+    responseId = "eaab0086-6431-45a7-ad8b-9e97a5fe2793";
+    resultCode = 1100;
+    resultString = "Your session has expired. Please log in.";
+    userLocale = "en_US";
+    userString = "Your session has expired. Please log in.";
+}, NSLocalizedDescription=Your session has expired. Please log in.}}}
+
+
+The operation couldn’t be completed. Unable to log in with account 'fsmall.worldm@gmail.com'. (The login details for account 'fsmall.worldm@gmail.com' were rejected.)
+
+Diagnose problem
+No "iOS Development" signing certificate matching team ID "7R927F3U4V" with a private key was found.
+
+The operation couldn’t be completed. Unable to log in with account 'fsmall.worldm@gmail.com'. (The login details for account 'fsmall.worldm@gmail.com' were rejected.)
+
+
+Update provisioning for OniTanUITests
+
+The operation couldn’t be completed. Unable to log in with account 'fsmall.worldm@gmail.com'. (The login details for account 'fsmall.worldm@gmail.com' were rejected.)
+
+Diagnose problem
+Xcode couldn't find any iOS App Development provisioning profiles matching 'com.fumiakiMogi777.OniTanUITests'.
+
+The operation couldn’t be completed. Unable to log in with account 'fsmall.worldm@gmail.com'. (The login details for account 'fsmall.worldm@gmail.com' were rejected.)
+
+
+
+Signing update finished    2025/08/19, 12:50    0.1 seconds

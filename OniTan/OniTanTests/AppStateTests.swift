@@ -1,4 +1,5 @@
 import Testing
+import Foundation
 @testable import OniTan // Import your app module
 
 struct AppStateTests {

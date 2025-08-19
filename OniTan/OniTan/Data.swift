@@ -4,12 +4,28 @@ import Foundation
 let quizData: QuizData = {
     var allStages: [Stage] = []
 
-    // Load each stage JSON file
-    for i in 1...3 { // Assuming stage1.json, stage2.json, stage3.json
-        let filename = "stage\(i).json"
-        // Each stageX.json directly decodes to a Stage struct
-        let loadedStage: Stage = load(filename)
-        allStages.append(loadedStage)
+    // Dynamically load all stage JSON files
+    if let urls = Bundle.main.urls(forResourcesWithExtension: "json", subdirectory: nil) {
+        print("DEBUG: Found all JSON URLs: \(urls)")
+        let stageUrls = urls.filter { $0.lastPathComponent.hasPrefix("stage") && $0.lastPathComponent.contains(".json") }
+        print("DEBUG: Filtered stage JSON URLs: \(stageUrls)")
+        
+        let sortedStageUrls = stageUrls.sorted { url1, url2 in
+            guard let stageNumber1 = Int(url1.lastPathComponent.replacingOccurrences(of: "stage", with: "").replacingOccurrences(of: ".json", with: "")),
+                  let stageNumber2 = Int(url2.lastPathComponent.replacingOccurrences(of: "stage", with: "").replacingOccurrences(of: ".json", with: "")) else {
+                print("DEBUG: Could not parse stage number from \(url1.lastPathComponent) or \(url2.lastPathComponent)")
+                return false
+            }
+            return stageNumber1 < stageNumber2
+        }
+        print("DEBUG: Sorted stage JSON URLs: \(sortedStageUrls)")
+        
+        for url in sortedStageUrls {
+            let filename = url.lastPathComponent
+            print("DEBUG: Loading stage from file: \(filename)")
+            let loadedStage: Stage = load(filename)
+            allStages.append(loadedStage)
+        }
     }
     
     // Load unused_questions.json optionally

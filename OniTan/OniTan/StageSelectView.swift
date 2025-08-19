@@ -20,6 +20,7 @@ struct StageSelectView: View {
                 StageRowView(stage: stage, isCleared: isCleared, isUnlocked: isUnlocked)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle("ステージ選択")
         .navigationBarTitleDisplayMode(.large) // Ensure large title
         .onAppear {
