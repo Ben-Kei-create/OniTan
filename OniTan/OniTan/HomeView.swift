@@ -55,8 +55,8 @@ struct HomeView: View {
                             let totalReviewQuestions = appState.incorrectQuestions.count + appState.bookmarkedQuestions.count
                             if totalReviewQuestions > 0 {
                                 Text("\(totalReviewQuestions)")
-                                    .font(.body.bold())
-                                    .padding(8)
+                                    .font(.headline.bold())
+                                    .padding(4)
                                     .background(Color.white.opacity(0.3))
                                     .clipShape(Circle())
                             }

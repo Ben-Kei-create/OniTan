@@ -16,7 +16,7 @@ struct MainView: View {
 
     // MARK: - State Properties
     @State private var currentQuestionIndex = 0
-    @State private var consecutiveCorrect = 0
+    @State private var totalCorrect = 0
     @State private var showResult = false
     @State private var isCorrect = false
     @State private var showBackToStartButton = false
@@ -205,7 +205,7 @@ struct MainView: View {
                             .padding(.bottom)
 
                         if !isReviewMode {
-                            Text("進行度: \(consecutiveCorrect) / \(goal) 問") // More descriptive progress
+                            Text("進行度: \(totalCorrect) / \(goal) 問") // More descriptive progress
                                 .font(.headline)
                                 .foregroundColor(.secondary)
                         }
@@ -371,18 +371,8 @@ struct MainView: View {
                     print("Review Mode: Ready for next question.")
                 }
             } else {
-                if !showResult {
-                    consecutiveCorrect += 1
-                }
-                print("Normal Mode: Consecutive correct answers: \(consecutiveCorrect)")
-                
-                if consecutiveCorrect >= goal {
-                    print("Normal Mode: Stage cleared!")
-                    isStageCleared = true
-                    saveStageCleared()
-                    startClearAnimation()
-                    return
-                }
+                totalCorrect += 1 // 無条件で正解数を加算
+                print("Normal Mode: Total correct answers: \(totalCorrect)")
 
                 if !isStageCleared {
                     print("Normal Mode: Showing explanation.")
@@ -402,7 +392,6 @@ struct MainView: View {
 
             isCorrect = false
             showResult = true
-            consecutiveCorrect = 0
             answeredQuestion = currentQuestion // Save the question that was just answered
             
             if isReviewMode {
@@ -451,7 +440,7 @@ struct MainView: View {
 
     func resetGame() {
         currentQuestionIndex = 0
-        consecutiveCorrect = 0
+        totalCorrect = 0
         showResult = false
         showBackToStartButton = false
         buttonsDisabled = false // Re-enable buttons
