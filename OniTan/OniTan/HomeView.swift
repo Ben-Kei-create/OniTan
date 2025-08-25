@@ -2,6 +2,8 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var progressStore: ProgressStore
+    @Environment(\.quizData) var quizData
     @AppStorage("themeColor") private var themeColor: String = "classic"
     
     // Computed property for selected theme color
@@ -52,7 +54,7 @@ struct HomeView: View {
                     NavigationLink(destination: reviewDestination) {
                         HStack(spacing: 10) {
                             Text("復習モード")
-                            let totalReviewQuestions = appState.incorrectQuestions.count + appState.bookmarkedQuestions.count
+                            let totalReviewQuestions = progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count
                             if totalReviewQuestions > 0 {
                                 Text("\(totalReviewQuestions)")
                                     .font(.headline.bold())
@@ -64,12 +66,12 @@ struct HomeView: View {
                         .font(.title)
                         .padding()
                         .frame(maxWidth: 200)
-                        .background(appState.incorrectQuestions.count + appState.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange)
+                        .background(progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        .shadow(color: (appState.incorrectQuestions.count + appState.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange).opacity(0.3), radius: 5, x: 0, y: 3)
+                        .shadow(color: (progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange).opacity(0.3), radius: 5, x: 0, y: 3)
                     }
-                    .disabled(appState.incorrectQuestions.count + appState.bookmarkedQuestions.count == 0)
+                    .disabled(progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0)
                     
                     NavigationLink(destination: SettingsView()) {
                         Text("設定")
@@ -88,8 +90,8 @@ struct HomeView: View {
     }
     
     private var reviewDestination: some View {
-        let incorrectKanji = appState.incorrectQuestions
-        let bookmarkedKanji = appState.bookmarkedQuestions
+        let incorrectKanji = progressStore.incorrectQuestions
+        let bookmarkedKanji = progressStore.bookmarkedQuestions
         let allQuestions = quizData.stages.flatMap { $0.questions }
         
         // Combine incorrect and bookmarked questions, removing duplicates
@@ -99,13 +101,14 @@ struct HomeView: View {
         // Shuffle the review questions
         let reviewStage = Stage(stage: 0, questions: reviewQuestions.shuffled())
         
-        return MainView(stage: reviewStage, isReviewMode: true)
+        return MainView(stage: reviewStage, isReviewMode: true, progressStore: progressStore, quizData: quizData)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(AppState()) // Provide AppState for preview
+            .environmentObject(AppState())
+            .environmentObject(ProgressStore())
     }
 }

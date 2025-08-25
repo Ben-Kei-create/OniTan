@@ -1,3 +1,4 @@
+
 import SwiftUI
 
 @main
@@ -5,15 +6,19 @@ struct OniTanApp: App {
     // AppDelegateを登録する
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    @StateObject private var appState = AppState() // Create an instance of AppState
+    @StateObject private var appState = AppState()
+    @StateObject private var progressStore = ProgressStore()
+    private let quizData = QuizDataLoader().load()
 
     @AppStorage("colorScheme") private var colorSchemeString: String = "system"
 
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environmentObject(appState) // Inject appState into the environment
-                .preferredColorScheme(appColorScheme) // Apply reactive color scheme
+                .environmentObject(appState)
+                .environmentObject(progressStore)
+                .environment(\.quizData, quizData)
+                .preferredColorScheme(appColorScheme)
         }
     }
     
@@ -27,5 +32,16 @@ struct OniTanApp: App {
         default:
             return nil // Use system setting
         }
+    }
+}
+
+private struct QuizDataKey: EnvironmentKey {
+    static let defaultValue: QuizData = QuizDataLoader().load()
+}
+
+extension EnvironmentValues {
+    var quizData: QuizData {
+        get { self[QuizDataKey.self] }
+        set { self[QuizDataKey.self] = newValue }
     }
 }

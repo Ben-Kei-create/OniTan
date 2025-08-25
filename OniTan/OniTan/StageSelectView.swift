@@ -1,31 +1,26 @@
+
 import SwiftUI
 
 struct StageSelectView: View {
-    @EnvironmentObject var appState: AppState // Access AppState
+    @EnvironmentObject var progressStore: ProgressStore
+    @Environment(\.quizData) var quizData
     
-    // Access the global quiz data
-    private let stages: [Stage] = {
-        let sortedStages = quizData.stages.sorted { $0.stage < $1.stage }
-        return sortedStages
-    }()
+    private var stages: [Stage] {
+        quizData.stages.sorted { $0.stage < $1.stage }
+    }
 
     var body: some View {
-        List { // Use a simple List for sections
+        List {
             ForEach(stages, id: \.stage) { stage in
-                // Determine the status of the stage
-                let isCleared = appState.clearedStages.contains(stage.stage)
-                // A stage is unlocked if it's stage 1, or if the previous stage has been cleared.
-                let isUnlocked = (stage.stage == 1) || appState.clearedStages.contains(stage.stage - 1)
+                let isCleared = progressStore.clearedStages.contains(stage.stage)
+                let isUnlocked = (stage.stage == 1) || progressStore.clearedStages.contains(stage.stage - 1)
                 
                 StageRowView(stage: stage, isCleared: isCleared, isUnlocked: isUnlocked)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle("ステージ選択")
-        .navigationBarTitleDisplayMode(.large) // Ensure large title
-        .onAppear {
-            // Removed print statement
-        }
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 
@@ -33,11 +28,12 @@ struct StageRowView: View {
     let stage: Stage
     let isCleared: Bool
     let isUnlocked: Bool
+    @EnvironmentObject var progressStore: ProgressStore
+    @Environment(\.quizData) var quizData
 
     var body: some View {
-        NavigationLink(destination: MainView(stage: stage, isReviewMode: false)) {
-            HStack(spacing: 20) { // Increased spacing
-                // Icon logic based on status
+        NavigationLink(destination: MainView(stage: stage, isReviewMode: false, progressStore: progressStore, quizData: quizData)) {
+            HStack(spacing: 20) {
                 if isCleared {
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
@@ -47,7 +43,7 @@ struct StageRowView: View {
                     Image(systemName: isUnlocked ? "lock.open.fill" : "lock.fill")
                         .resizable()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(isUnlocked ? .accentColor : .gray) // Use accentColor for unlocked
+                        .foregroundColor(isUnlocked ? .accentColor : .gray)
                 }
                 
                 VStack(alignment: .leading) {
@@ -68,9 +64,19 @@ struct StageRowView: View {
                 Image(systemName: "chevron.right")
                     .foregroundColor(.secondary)
             }
-            .padding(.vertical, 8) // Vertical padding for list item
+            .padding(.vertical, 8)
         }
-        .disabled(!isUnlocked) // Disable navigation for locked stages
-        .listRowBackground(isUnlocked ? Color.clear : Color(.systemGray6).opacity(0.5)) // Adaptive background for locked rows
+        .disabled(!isUnlocked)
+        .listRowBackground(isUnlocked ? Color.clear : Color(.systemGray6).opacity(0.5))
+    }
+}
+
+struct StageSelectView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            StageSelectView()
+        }
+        .environmentObject(ProgressStore())
+        .environment(\.quizData, QuizDataLoader().load())
     }
 }

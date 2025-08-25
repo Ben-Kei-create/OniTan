@@ -7,7 +7,8 @@ struct SettingsView: View {
     @AppStorage("shuffleQuestionsEnabled") private var shuffleQuestionsEnabled: Bool = false
     @AppStorage("kanjiFont") private var kanjiFont: String = "system"
     @AppStorage("themeColor") private var themeColor: String = "classic"
-    @EnvironmentObject var appState: AppState // Access AppState
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var progressStore: ProgressStore
     
     private enum ActiveAlert: Identifiable {
         case reset, cannotReset
@@ -110,7 +111,7 @@ struct SettingsView: View {
             
             Section {
                 Button(action: {
-                    if appState.clearedStages.isEmpty {
+                    if progressStore.clearedStages.isEmpty {
                         activeAlert = .cannotReset
                     } else {
                         activeAlert = .reset
@@ -145,7 +146,7 @@ struct SettingsView: View {
                     title: Text("確認"),
                     message: Text("本当に進行状況を初期化しますか？\nすべてのクリア情報が失われます。"),
                     primaryButton: .destructive(Text("初期化")) {
-                        appState.resetUserDefaults()
+                        appState.resetProgress()
                     },
                     secondaryButton: .cancel()
                 )
@@ -165,6 +166,7 @@ struct SettingsView: View {
                 SettingsView()
             }
             .environmentObject(AppState())
+            .environmentObject(ProgressStore())
         }
     }
 }
