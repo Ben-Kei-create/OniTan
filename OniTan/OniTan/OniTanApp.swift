@@ -2,6 +2,9 @@ import SwiftUI
 
 @main
 struct OniTanApp: App {
+    // AppDelegateを登録する
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     @StateObject private var appState = AppState() // Create an instance of AppState
 
     @AppStorage("colorScheme") private var colorSchemeString: String = "system"
