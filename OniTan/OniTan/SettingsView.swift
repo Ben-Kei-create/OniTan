@@ -40,134 +40,144 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        Form {
-            Section(header: Text("表示設定")
-                .font(.headline)
-                .foregroundColor(.accentColor)
-            ) {
-                Picker("モード", selection: $colorScheme) {
-                    Text("システム設定").tag("system")
-                    Text("ライト").tag("light")
-                    Text("ダーク").tag("dark")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.vertical, 5)
-                .onChange(of: colorScheme) { oldValue, newValue in
-                    UserDefaults.standard.synchronize()
-                }
+    Form {
+        Section(header: Text("表示設定")
+            .font(.headline)
+            .foregroundColor(.accentColor)
+        ) {
+            Picker("モード", selection: $colorScheme) {
+                Text("システム設定").tag("system")
+                Text("ライト").tag("light")
+                Text("ダーク").tag("dark")
             }
-            
-            Section(header: Text("サウンドと触覚")
-                .font(.headline)
-                .foregroundColor(.accentColor))
-            {
-                Toggle("効果音", isOn: $soundEnabled)
-                Toggle("バイブレーション", isOn: $hapticsEnabled)
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.vertical, 5)
+            .onChange(of: colorScheme) { oldValue, newValue in
+                UserDefaults.standard.synchronize()
             }
-            
-            Section(header: Text("クイズ設定")
-                .font(.headline)
-                .foregroundColor(.accentColor)
-            ) {
-                Toggle("問題をシャッフル", isOn: $shuffleQuestionsEnabled)
-                
-                Picker("漢字フォント", selection: $kanjiFont) {
-                    Text("システム").tag("system")
-                    Text("ヒラギノ角ゴ").tag("hiragino")
-                    Text("游ゴシック").tag("yuGothic")
-                    Text("明朝体").tag("mincho")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.vertical, 5)
-            }
-            
-            Section(header: Text("テーマ設定")
-                .font(.headline)
-                .foregroundColor(.accentColor)
-            ) {
-                Picker("テーマカラー", selection: $themeColor) {
-                    Text("クラシック").tag("classic")
-                    Text("ナチュラル").tag("natural")
-                    Text("パッション").tag("passion")
-                    Text("エレガント").tag("elegant")
-                    Text("サンシャイン").tag("sunshine")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.vertical, 5)
-                
-                // Color preview
-                HStack {
-                    Text("プレビュー")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Circle()
-                        .fill(selectedThemeColor)
-                        .frame(width: 30, height: 30)
-                        .overlay(
-                            Circle()
-                                .stroke(Color(.systemGray4), lineWidth: 1)
-                        )
-                }
-                .padding(.vertical, 5)
-            }
-            
-            // データ管理セクションを完全に非表示にするため、以下をコメントアウト
-            /*
-            Section {
-                Button(action: {
-                    if progressStore.clearedStages.isEmpty {
-                        activeAlert = .cannotReset
-                    } else {
-                        activeAlert = .reset
-                    }
-                }) {
-                    HStack {
-                        Spacer()
-                        Text("進行状況を初期化")
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                        Spacer()
-                    }
-                    .padding(.vertical, 10)
-                    .background(Color.red)
-                    .cornerRadius(10)
-                }
-                .listRowInsets(EdgeInsets())
-                .buttonStyle(PlainButtonStyle())
-            } header: {
-                Text("データ管理")
-                    .font(.headline)
-                    .foregroundColor(.accentColor)
-            }
-            */
         }
-        .navigationTitle("設定")
-        .navigationBarTitleDisplayMode(.inline)
-        // アラート機能も非表示にするため、以下をコメントアウト
-        /*
-        .alert(item: $activeAlert) { alertType in
-            switch alertType {
-            case .reset:
-                return Alert(
-                    title: Text("確認"),
-                    message: Text("本当に進行状況を初期化しますか？\nすべてのクリア情報が失われます。"),
-                    primaryButton: .destructive(Text("初期化")) {
-                        appState.resetProgress()
-                    },
-                    secondaryButton: .cancel()
-                )
-            case .cannotReset:
-                return Alert(
-                    title: Text("初期化できません"),
-                    message: Text("ステージをクリアしていないため、初期化できません。ステージ1をクリアしてから初期化してください"),
-                    dismissButton: .default(Text("OK"))
-                )
+        
+        Section(header: Text("サウンドと触覚")
+            .font(.headline)
+            .foregroundColor(.accentColor))
+        {
+            Toggle("効果音", isOn: $soundEnabled)
+            Toggle("バイブレーション", isOn: $hapticsEnabled)
+        }
+        
+        Section(header: Text("クイズ設定")
+            .font(.headline)
+            .foregroundColor(.accentColor)
+        ) {
+            Toggle("問題をシャッフル", isOn: $shuffleQuestionsEnabled)
+            
+            Picker("漢字フォント", selection: $kanjiFont) {
+                Text("システム").tag("system")
+                Text("ヒラギノ角ゴ").tag("hiragino")
+                Text("游ゴシック").tag("yuGothic")
+                Text("明朝体").tag("mincho")
             }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.vertical, 5)
+        }
+        
+        Section(header: Text("テーマ設定")
+            .font(.headline)
+            .foregroundColor(.accentColor)
+        ) {
+            Picker("テーマカラー", selection: $themeColor) {
+                Text("クラシック").tag("classic")
+                Text("ナチュラル").tag("natural")
+                Text("パッション").tag("passion")
+                Text("エレガント").tag("elegant")
+                Text("サンシャイン").tag("sunshine")
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.vertical, 5)
+            
+            // Color preview
+            HStack {
+                Text("プレビュー")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Spacer()
+                Circle()
+                    .fill(selectedThemeColor)
+                    .frame(width: 30, height: 30)
+                    .overlay(
+                        Circle()
+                            .stroke(Color(.systemGray4), lineWidth: 1)
+                    )
+            }
+            .padding(.vertical, 5)
+        }
+        
+        // 新しいセクションを追加
+        Section(header: Text("法的情報とサポート")
+            .font(.headline)
+            .foregroundColor(.accentColor)
+        ) {
+            Link("プライバシーポリシー", destination: URL(string: "https://ben-kei-create.github.io/oni-tan-app-info/privacy_policy.html")!)
+            Link("サポート", destination: URL(string: "https://ben-kei-create.github.io/oni-tan-app-info/support.html")!)
+            Link("利用規約", destination: URL(string: "https://ben-kei-create.github.io/oni-tan-app-info/terms_of_service.html")!)
+        }
+
+        // データ管理セクションを完全に非表示にするため、以下をコメントアウト
+        /*
+        Section {
+            Button(action: {
+                if progressStore.clearedStages.isEmpty {
+                    activeAlert = .cannotReset
+                } else {
+                    activeAlert = .reset
+                }
+            }) {
+                HStack {
+                    Spacer()
+                    Text("進行状況を初期化")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding(.vertical, 10)
+                .background(Color.red)
+                .cornerRadius(10)
+            }
+            .listRowInsets(EdgeInsets())
+            .buttonStyle(PlainButtonStyle())
+        } header: {
+            Text("データ管理")
+                .font(.headline)
+                .foregroundColor(.accentColor)
         }
         */
+    } // Formの閉じ括弧
+    .navigationTitle("設定")
+    .navigationBarTitleDisplayMode(.inline)
+    // アラート機能も非表示にするため、以下をコメントアウト
+    /*
+    .alert(item: $activeAlert) { alertType in
+        switch alertType {
+        case .reset:
+            return Alert(
+                title: Text("確認"),
+                message: Text("本当に進行状況を初期化しますか？\nすべてのクリア情報が失われます。"),
+                primaryButton: .destructive(Text("初期化")) {
+                    appState.resetProgress()
+                },
+                secondaryButton: .cancel()
+            )
+        case .cannotReset:
+            return Alert(
+                title: Text("初期化できません"),
+                message: Text("ステージをクリアしていないため、初期化できません。ステージ1をクリアしてから初期化してください"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
+    */
+}
     
     struct SettingsView_Previews: PreviewProvider {
         static var previews: some View {
