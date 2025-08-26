@@ -48,18 +48,20 @@ class MainViewModel: ObservableObject {
         self.soundManager = soundManager
         self.hapticsManager = hapticsManager
         
-        let initialQuestions = stage.questions
+        var initialQuestions = stage.questions
+        // Shuffle choices for every question by default
+        for i in 0..<initialQuestions.count {
+            initialQuestions[i].choices.shuffle()
+        }
+        
+        let shouldShuffleQuestions = UserDefaults.standard.bool(forKey: "shuffleQuestionsEnabled")
+        if shouldShuffleQuestions {
+            initialQuestions.shuffle()
+        }
+        
         self.questions = initialQuestions
         self.goal = initialQuestions.count
         self.currentQuestion = initialQuestions.first ?? Question(kanji: "エラー", answer: "", choices: [], explain: "問題がありません。")
-
-        if shuffleQuestionsEnabled {
-            self.questions.shuffle()
-            for i in 0..<self.questions.count {
-                self.questions[i].choices.shuffle()
-            }
-            self.currentQuestion = self.questions.first ?? Question(kanji: "エラー", answer: "", choices: [], explain: "問題がありません。")
-        }
     }
 
     // MARK: - Game Logic Methods
@@ -136,13 +138,16 @@ class MainViewModel: ObservableObject {
         buttonsDisabled = false
         showExplanation = false
         
+        // Shuffle choices for every question by default
+        for i in 0..<questions.count {
+            questions[i].choices.shuffle()
+        }
+        
         if shuffleQuestionsEnabled {
             questions.shuffle()
-            for i in 0..<questions.count {
-                questions[i].choices.shuffle()
-            }
         }
-        currentQuestion = questions[0]
+        
+        currentQuestion = questions.first ?? Question(kanji: "エラー", answer: "", choices: [], explain: "問題がありません。")
     }
     
     func onQuit() {
@@ -181,8 +186,6 @@ class MainViewModel: ObservableObject {
 
     private func saveStageCleared() {
         progressStore.clearedStages.insert(stage.stage)
-        print("DEBUG: saveStageCleared called with stage \(stage.stage)")
-        print("DEBUG: clearedStages after insert: \(progressStore.clearedStages)")
     }
     
     private func updateReviewQuestions() {

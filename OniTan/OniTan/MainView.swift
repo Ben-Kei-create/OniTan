@@ -122,13 +122,7 @@ struct QuizView: View {
                 
                 Spacer()
                 
-                if !viewModel.isReviewMode {
-                    Button(action: viewModel.toggleBookmark) {
-                        Image(systemName: viewModel.isBookmarked() ? "bookmark.fill" : "bookmark")
-                            .font(.title2)
-                            .foregroundColor(viewModel.isBookmarked() ? .yellow : .gray)
-                    }
-                }
+                
             }
             .padding(.horizontal)
 
