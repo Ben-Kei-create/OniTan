@@ -15,7 +15,9 @@ struct MainView: View {
         _viewModel = StateObject(wrappedValue: MainViewModel(stage: stage, 
                                                           isReviewMode: isReviewMode, 
                                                           progressStore: progressStore, 
-                                                          allQuestions: quizData.stages.flatMap { $0.questions }))
+                                                          allQuestions: quizData.stages.flatMap { $0.questions },
+                                                          soundManager: SoundManager.shared,
+                                                          hapticsManager: HapticsManager.shared))
     }
 
     // Computed property for selected kanji font
@@ -53,9 +55,7 @@ struct MainView: View {
     var body: some View {
         ZStack {
             if viewModel.isStageCleared {
-                StageClearedView(stage: viewModel.stage) {
-                    presentationMode.wrappedValue.dismiss()
-                }
+                StageClearedView(stage: viewModel.stage, onDismiss: { presentationMode.wrappedValue.dismiss() }, selectedThemeColor: selectedThemeColor, soundEnabled: $viewModel.soundEnabled, hapticsEnabled: $viewModel.hapticsEnabled)
             } else if viewModel.questions.isEmpty && viewModel.isReviewMode {
                 // Review mode finished
                 Color.clear.onAppear {
@@ -93,8 +93,12 @@ struct MainView: View {
         .overlay(
             viewModel.showExplanation ? ExplanationView(question: viewModel.currentQuestion, onDismiss: viewModel.onExplanationDismissed) : nil
         )
+        .onAppear {
+            viewModel.dismissAction = { presentationMode.wrappedValue.dismiss() }
+        }
     }
 }
+
 
 // MARK: - Subviews
 struct QuizView: View {
@@ -228,45 +232,102 @@ struct ResultView: View {
 struct StageClearedView: View {
     let stage: Stage
     let onDismiss: () -> Void
+    let selectedThemeColor: Color
+    @Binding var soundEnabled: Bool
+    @Binding var hapticsEnabled: Bool
     
     @State private var clearTextScale: CGFloat = 0.1
     @State private var clearTextOpacity: Double = 0
+    @State private var confettiOpacity: Double = 0
+    @State private var confettiRotation: Double = 0
     
     var body: some View {
-        VStack(spacing: 30) {
-            Spacer()
-            
-            VStack(spacing: 15) {
-                Text("ステージ \(stage.stage)")
-                    .font(.system(size: 40, weight: .bold))
-                Text("クリア！")
-                    .font(.system(size: 60, weight: .heavy))
-                    .foregroundColor(.green)
-            }
-            .opacity(clearTextOpacity)
-            .scaleEffect(clearTextScale)
-            
-            Text("おめでとうございます！")
-                .font(.title)
-                .opacity(clearTextOpacity)
+        ZStack {
+            // Background Gradient
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    selectedThemeColor.opacity(0.2),
+                    selectedThemeColor.opacity(0.1),
+                    Color(.systemBackground).opacity(0.05)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .edgesIgnoringSafeArea(.all)
 
-            Spacer()
-            
-            Button(action: onDismiss) {
-                Text("ステージ選択へ戻る")
-                    .font(.title2).fontWeight(.bold)
-                    .frame(maxWidth: 250, minHeight: 60)
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(30)
+            // Confetti background
+            ForEach(0..<30, id: \.self) { index in
+                ConfettiPiece(index: index, opacity: confettiOpacity, rotation: confettiRotation)
             }
-            .opacity(clearTextOpacity)
-            .padding(.bottom, 20)
+            
+            VStack(spacing: 30) {
+                Spacer()
+                
+                // Stage clear text with animation
+                VStack(spacing: 15) {
+                    Text("ステージ \(stage.stage)")
+                        .font(.system(size: 40, weight: .bold))
+                        .foregroundColor(.primary)
+                        .opacity(clearTextOpacity)
+                        .scaleEffect(clearTextScale)
+                    
+                    Text("クリア！")
+                        .font(.system(size: 80, weight: .heavy))
+                        .foregroundColor(.green)
+                        .opacity(clearTextOpacity)
+                        .scaleEffect(clearTextScale)
+                        .shadow(color: .green.opacity(0.5), radius: 10, x: 0, y: 5)
+                }
+                .animation(.spring(response: 0.8, dampingFraction: 0.6), value: clearTextScale)
+                .animation(.easeIn(duration: 0.5), value: clearTextOpacity)
+                
+                Text("おめでとうございます！")
+                    .font(.title)
+                    .foregroundColor(.primary)
+                    .opacity(clearTextOpacity)
+                    .animation(.easeIn(duration: 0.5).delay(0.3), value: clearTextOpacity)
+                
+                Spacer()
+                
+                // Return button with animation
+                Button(action: onDismiss) {
+                    Text("ステージ選択へ戻る")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: 280, minHeight: 65) // Larger button
+                        .background(selectedThemeColor) // Use theme color
+                        .foregroundColor(.white)
+                        .cornerRadius(35) // More rounded
+                        .shadow(color: selectedThemeColor.opacity(0.4), radius: 12, x: 0, y: 12) // Enhanced shadow
+                }
+                .opacity(clearTextOpacity)
+                .scaleEffect(clearTextScale * 0.9) // Slightly smaller scale for button
+                .animation(.spring(response: 0.8, dampingFraction: 0.6).delay(0.6), value: clearTextScale)
+                .animation(.easeIn(duration: 0.5).delay(0.6), value: clearTextOpacity)
+                .padding(.bottom, 40) // More padding
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure ZStack fills available space
+        .edgesIgnoringSafeArea(.all) // Ensure ZStack ignores safe area
         .onAppear {
+            // Play success sound and haptics
+            if soundEnabled { SoundManager.shared.playSound(sound: .correct, volume: 1.0) }
+            if hapticsEnabled { HapticsManager.shared.play(.success) }
+            
+            // Start text animation
             withAnimation(.spring(response: 0.8, dampingFraction: 0.6)) {
                 clearTextScale = 1.0
                 clearTextOpacity = 1.0
+            }
+            
+            // Start confetti animation
+            withAnimation(.easeIn(duration: 0.5)) {
+                confettiOpacity = 1.0
+            }
+            
+            // Rotate confetti
+            withAnimation(.linear(duration: 3.0).repeatForever(autoreverses: false)) {
+                confettiRotation = 360
             }
         }
     }
@@ -300,6 +361,28 @@ struct ExplanationView: View {
     }
 }
 
+struct ConfettiPiece: View {
+    let index: Int
+    let opacity: Double
+    let rotation: Double
+    
+    private let colors: [Color] = [.red, .blue, .green, .yellow, .orange, .purple, .pink]
+    private let shapes: [String] = ["circle.fill", "square.fill", "triangle.fill", "star.fill"]
+    
+    var body: some View {
+        Image(systemName: shapes[index % shapes.count])
+            .foregroundColor(colors[index % colors.count])
+            .font(.system(size: CGFloat.random(in: 8...15)))
+            .position(
+                x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
+                y: CGFloat.random(in: 0...UIScreen.main.bounds.height)
+            )
+            .opacity(opacity)
+            .rotationEffect(.degrees(rotation))
+            .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: opacity)
+    }
+}
+
 // MARK: - Previews
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
@@ -307,10 +390,10 @@ struct MainView_Previews: PreviewProvider {
         NavigationView {
             MainView(stage: quizData.stages[0], 
                      isReviewMode: false, 
-                     progressStore: ProgressStore(),
+                     progressStore: ProgressStore.shared,
                      quizData: quizData)
                 .environmentObject(AppState())
-                .environmentObject(ProgressStore())
+                .environmentObject(ProgressStore.shared)
                 .environment(\.quizData, quizData)
         }
     }

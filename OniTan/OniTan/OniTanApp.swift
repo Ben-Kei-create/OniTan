@@ -7,7 +7,6 @@ struct OniTanApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @StateObject private var appState = AppState()
-    @StateObject private var progressStore = ProgressStore()
     private let quizData = QuizDataLoader().load()
 
     @AppStorage("colorScheme") private var colorSchemeString: String = "system"
@@ -16,7 +15,7 @@ struct OniTanApp: App {
         WindowGroup {
             HomeView()
                 .environmentObject(appState)
-                .environmentObject(progressStore)
+                .environmentObject(ProgressStore.shared)
                 .environment(\.quizData, quizData)
                 .preferredColorScheme(appColorScheme)
         }

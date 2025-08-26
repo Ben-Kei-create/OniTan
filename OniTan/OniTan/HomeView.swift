@@ -66,10 +66,10 @@ struct HomeView: View {
                         .font(.title)
                         .padding()
                         .frame(maxWidth: 200)
-                        .background(progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange)
+                        .background(progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0 ? Color.gray : selectedThemeColor)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        .shadow(color: (progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0 ? Color.gray : Color.orange).opacity(0.3), radius: 5, x: 0, y: 3)
+                        .shadow(color: (progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0 ? Color.gray : selectedThemeColor).opacity(0.3), radius: 5, x: 0, y: 3)
                     }
                     .disabled(progressStore.incorrectQuestions.count + progressStore.bookmarkedQuestions.count == 0)
                     
@@ -109,6 +109,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .environmentObject(AppState())
-            .environmentObject(ProgressStore())
+            .environmentObject(ProgressStore.shared)
     }
 }

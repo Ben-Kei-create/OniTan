@@ -10,6 +10,7 @@ class MainViewModel: ObservableObject {
     private var allQuestions: [Question]
     private let soundManager: SoundManaging
     private let hapticsManager: HapticsManaging
+    var dismissAction: (() -> Void)? // New: Closure to dismiss the view
 
     // MARK: - Published Properties (for UI updates)
     @Published var currentQuestion: Question
@@ -25,8 +26,8 @@ class MainViewModel: ObservableObject {
     @Published var questions: [Question]
 
     // MARK: - App Settings (from UserDefaults)
-    @AppStorage("soundEnabled") private var soundEnabled: Bool = true
-    @AppStorage("hapticsEnabled") private var hapticsEnabled: Bool = true
+    @AppStorage("soundEnabled") public var soundEnabled: Bool = true
+    @AppStorage("hapticsEnabled") public var hapticsEnabled: Bool = true
     @AppStorage("shuffleQuestionsEnabled") private var shuffleQuestionsEnabled: Bool = false
 
     // MARK: - Private State
@@ -146,7 +147,7 @@ class MainViewModel: ObservableObject {
     
     func onQuit() {
         if isReviewMode || progressStore.clearedStages.contains(stage.stage) {
-            // Dismiss directly
+            dismissAction?()
         } else {
             showingQuitAlert = true
         }
@@ -180,6 +181,8 @@ class MainViewModel: ObservableObject {
 
     private func saveStageCleared() {
         progressStore.clearedStages.insert(stage.stage)
+        print("DEBUG: saveStageCleared called with stage \(stage.stage)")
+        print("DEBUG: clearedStages after insert: \(progressStore.clearedStages)")
     }
     
     private func updateReviewQuestions() {

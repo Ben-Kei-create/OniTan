@@ -10,6 +10,8 @@ struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var progressStore: ProgressStore
     
+    // リセット機能を完全に非表示にするため、以下のコードはコメントアウト
+    /*
     private enum ActiveAlert: Identifiable {
         case reset, cannotReset
 
@@ -19,6 +21,7 @@ struct SettingsView: View {
     }
     
     @State private var activeAlert: ActiveAlert?
+    */
     
     // Computed property for selected theme color
     private var selectedThemeColor: Color {
@@ -109,6 +112,8 @@ struct SettingsView: View {
                 .padding(.vertical, 5)
             }
             
+            // データ管理セクションを完全に非表示にするため、以下をコメントアウト
+            /*
             Section {
                 Button(action: {
                     if progressStore.clearedStages.isEmpty {
@@ -136,9 +141,12 @@ struct SettingsView: View {
                     .font(.headline)
                     .foregroundColor(.accentColor)
             }
+            */
         }
         .navigationTitle("設定")
         .navigationBarTitleDisplayMode(.inline)
+        // アラート機能も非表示にするため、以下をコメントアウト
+        /*
         .alert(item: $activeAlert) { alertType in
             switch alertType {
             case .reset:
@@ -158,6 +166,7 @@ struct SettingsView: View {
                 )
             }
         }
+        */
     }
     
     struct SettingsView_Previews: PreviewProvider {
@@ -166,7 +175,7 @@ struct SettingsView: View {
                 SettingsView()
             }
             .environmentObject(AppState())
-            .environmentObject(ProgressStore())
+            .environmentObject(ProgressStore.shared)
         }
     }
 }

@@ -11,4 +11,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // .portrait を返すことで、縦画面のみをサポートするようにする
         return .portrait
     }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        print("DEBUG: applicationWillTerminate called. Saving all data immediately.")
+        ProgressStore.shared.saveAllDataImmediately()
+    }
 }

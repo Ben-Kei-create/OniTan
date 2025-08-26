@@ -4,7 +4,7 @@ import SwiftUI
 
 class AppState: ObservableObject {
     // MARK: - Published Properties
-    @Published var progressStore = ProgressStore()
+    @Published var progressStore = ProgressStore.shared
 
     @Published var showReviewCompletion: Bool = false {
         didSet {
@@ -61,6 +61,7 @@ class AppState: ObservableObject {
     }
 
     func resetProgress() {
+        print("DEBUG: AppState.resetProgress() called")
         progressStore.reset()
         // Reset alert states
         self.showingResetAlert = false
