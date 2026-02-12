@@ -2,74 +2,83 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("colorScheme") private var colorScheme: String = "system"
-    @EnvironmentObject var appState: AppState // Access AppState
-    
+    @EnvironmentObject var appState: AppState
+
     var body: some View {
         Form {
-            Section(header: Text("表示設定")
-                .font(.headline) // Slightly larger header font
-                .foregroundColor(.accentColor) // Accent color for header
-            ) {
-                Picker("モード", selection: $colorScheme) {
-                    Text("システム設定").tag("system")
-                    Text("ライト").tag("light")
-                    Text("ダーク").tag("dark")
+            Section {
+                VStack(alignment: .leading, spacing: OniTheme.Spacing.sm) {
+                    Text("テーマ")
+                        .font(.subheadline.weight(.medium))
+                        .foregroundColor(.secondary)
+
+                    Picker("モード", selection: $colorScheme) {
+                        Text("システム").tag("system")
+                        Text("ライト").tag("light")
+                        Text("ダーク").tag("dark")
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.vertical, 5) // Add vertical padding to picker
-                .onChange(of: colorScheme) { oldValue, newValue in
-                    print("SettingsView: colorScheme changed from \(oldValue) to \(newValue)")
-                    UserDefaults.standard.synchronize() // Force write to UserDefaults
-                }
+                .padding(.vertical, OniTheme.Spacing.xs)
+            } header: {
+                Label("表示設定", systemImage: "paintbrush.fill")
+                    .font(.headline)
+                    .foregroundColor(.accentColor)
             }
-            
+
             Section {
                 Button(action: {
-                    print("SettingsView: '初期化' button tapped.")
                     if appState.clearedStages.isEmpty {
-                        print("SettingsView: clearedStages is empty. Setting showingCannotResetAlert to true.")
                         appState.showingCannotResetAlert = true
-                        print("SettingsView: showingCannotResetAlert is now \(appState.showingCannotResetAlert)")
                     } else {
-                        print("SettingsView: clearedStages is NOT empty. Setting showingResetAlert to true.")
                         appState.showingResetAlert = true
-                        print("SettingsView: showingResetAlert is now \(appState.showingResetAlert)")
                     }
                 }) {
                     HStack {
                         Spacer()
-                        Text("進行状況を初期化")
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
+                        HStack(spacing: OniTheme.Spacing.sm) {
+                            Image(systemName: "arrow.counterclockwise")
+                            Text("進行状況を初期化")
+                        }
+                        .font(.body.weight(.bold))
+                        .foregroundColor(.white)
                         Spacer()
                     }
-                    .padding(.vertical, 10)
-                    .background(Color.red)
-                    .cornerRadius(10)
+                    .padding(.vertical, OniTheme.Spacing.sm + 2)
+                    .background(OniTheme.Colors.danger)
+                    .cornerRadius(OniTheme.Radius.md)
                 }
                 .listRowInsets(EdgeInsets())
                 .buttonStyle(PlainButtonStyle())
             } header: {
-                Text("データ管理")
+                Label("データ管理", systemImage: "folder.fill")
+                    .font(.headline)
+                    .foregroundColor(.accentColor)
+            }
+
+            Section {
+                HStack {
+                    Text("バージョン")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text("1.0.0")
+                        .foregroundColor(.secondary)
+                }
+            } header: {
+                Label("アプリ情報", systemImage: "info.circle.fill")
                     .font(.headline)
                     .foregroundColor(.accentColor)
             }
         }
         .navigationTitle("設定")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            print("SettingsView: appState.clearedStages.isEmpty = \(appState.clearedStages.isEmpty)")
-            print("SettingsView: appState.clearedStages = \(appState.clearedStages)")
-        }
         .alert(isPresented: $appState.showingResetAlert) {
             Alert(
                 title: Text("確認"),
                 message: Text("本当に進行状況を初期化しますか？\nすべてのクリア情報が失われます。"),
                 primaryButton: .destructive(Text("初期化")) {
-                    print("SettingsView: '初期化' alert - Destructive button tapped.")
-                    appState.resetUserDefaults() // Call the new reset method
-                    appState.showResetConfirmation = true // Show confirmation message
+                    appState.resetUserDefaults()
+                    appState.showResetConfirmation = true
                 },
                 secondaryButton: .cancel(Text("キャンセル"))
             )
@@ -84,20 +93,18 @@ struct SettingsView: View {
         .alert(isPresented: $appState.showingCannotResetAlert) {
             Alert(
                 title: Text("初期化できません"),
-                message: Text("ステージをクリアしていないため、初期化できません。ステージ1をクリアしてから初期化してください"), // Added more helpful message
-                dismissButton: .default(Text("OK")) {
-                    print("SettingsView: '初期化できません' alert - OK button tapped.")
-                }
+                message: Text("ステージをクリアしていないため、初期化できません。ステージ1をクリアしてから初期化してください"),
+                dismissButton: .default(Text("OK"))
             )
         }
     }
-    
-    struct SettingsView_Previews: PreviewProvider {
-        static var previews: some View {
-            NavigationView { // Wrap in NavigationView for preview
-                SettingsView()
-            }
-            .environmentObject(AppState()) // Provide AppState for preview
+}
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            SettingsView()
         }
+        .environmentObject(AppState())
     }
 }
