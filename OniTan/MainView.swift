@@ -3,8 +3,8 @@ import SwiftUI
 struct MainView: View {
     // MARK: - Properties
     let stage: Stage
-    
-    @EnvironmentObject var appState: AppState // Access AppState
+
+    @EnvironmentObject var appState: AppState
     @Environment(\.presentationMode) var presentationMode
 
     // MARK: - State Properties
@@ -15,134 +15,31 @@ struct MainView: View {
     @State private var showBackToStartButton = false
     @State private var isStageCleared = false
     @State private var showingQuitAlert = false
-    @State private var buttonsDisabled = false // State to disable buttons during processing
-    @State private var showExplanation = false // State for showing explanation
+    @State private var buttonsDisabled = false
+    @State private var showExplanation = false
+    @State private var resultScale: CGFloat = 0.5
+    @State private var kanjiAppear = false
 
     // Game constants
     private var goal: Int { stage.questions.count }
     private var questions: [Question] { stage.questions }
     private var currentQuestion: Question { questions[currentQuestionIndex] }
+    private var progress: Double { Double(consecutiveCorrect) / Double(goal) }
 
     var body: some View {
-        ZStack { // Use ZStack for overlaying result feedback
-            VStack(spacing: 20) {
-                // "辞める" Button - Re-implemented without toolbar
-                HStack {
-                    Button("辞める") {
-                        if appState.clearedStages.contains(stage.stage) {
-                            presentationMode.wrappedValue.dismiss()
-                        } else {
-                            showingQuitAlert = true
-                        }
-                    }
-                    .foregroundColor(.red) // Make quit button red
-                    Spacer() // Pushes the button to the leading edge
-                }
-                .padding(.horizontal) // Add horizontal padding to align with other content
+        ZStack {
+            VStack(spacing: OniTheme.Spacing.md) {
+                // Top bar
+                topBar
 
                 if isStageCleared {
-                    // --- Stage Cleared View ---
-                    Spacer()
-                    Text("ステージ \(stage.stage) クリア！")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.green)
-                        .padding()
-                    Text("🎉 おめでとうございます！ 🎉")
-                        .font(.title)
-                        .foregroundColor(.primary)
-                    Spacer()
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("ステージ選択へ戻る")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: 250, minHeight: 60)
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(30)
-                            .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 10)
-                    }
-                    Spacer()
+                    stageClearedView
                 } else {
-                    // --- Main Quiz View ---
-                    Text("ステージ \(stage.stage)")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.accentColor)
-                        .padding(.bottom)
-
-                    Text("進行度: \(consecutiveCorrect) / \(goal) 問") // More descriptive progress
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-
-                    Spacer()
-
-                    Text(currentQuestion.kanji)
-                        .font(.system(size: 150, weight: .heavy, design: .rounded)) // Larger, heavier font
-                        .foregroundColor(.primary)
-                        .minimumScaleFactor(0.5) // Allow text to shrink
-                        .lineLimit(1)
-                        .padding()
-                        .frame(maxWidth: .infinity, maxHeight: 200) // Fixed size for kanji
-                        .background(Color.white.opacity(0.1)) // Subtle background for kanji
-                        .cornerRadius(20)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
-
-                    Spacer()
-
-                    if !showResult {
-                        VStack(spacing: 15) { // Increased spacing for buttons
-                            ForEach(currentQuestion.choices, id: \.self) { choice in
-                                Button(action: { self.answer(selected: choice) }) {
-                                    Text(choice)
-                                        .font(.title2)
-                                        .fontWeight(.bold)
-                                        .frame(maxWidth: .infinity, minHeight: 60)
-                                        .background(Color.blue)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(15)
-                                        .shadow(color: Color.blue.opacity(0.3), radius: 5, x: 0, y: 5)
-                                }
-                            }
-                        }
-                        .padding(.horizontal) // Horizontal padding for buttons
-                        .disabled(buttonsDisabled) // Apply disabled modifier here
-                    } else {
-                        // Display result message more prominently
-                        Text(isCorrect ? "○ 正解！" : "× 不正解…")
-                            .font(.system(size: 60, weight: .heavy))
-                            .foregroundColor(isCorrect ? .green : .red)
-                            .transition(.scale) // Simple animation
-                        
-                        if !isCorrect {
-                            Text("正解は「\(currentQuestion.answer)」")
-                                .font(.title2)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-
-                    Spacer()
-
-                    if showBackToStartButton {
-                        Button(action: resetGame) {
-                            Text("最初からやり直す")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .frame(maxWidth: 250, minHeight: 60)
-                                .background(Color.orange) // Different color for reset
-                                .foregroundColor(.white)
-                                .cornerRadius(30)
-                                .shadow(color: Color.orange.opacity(0.4), radius: 10, x: 0, y: 10)
-                        }
-                        .padding(.bottom, 20)
-                    }
+                    quizContentView
                 }
             }
             .padding()
             .navigationBarBackButtonHidden(true)
-            
             .alert(isPresented: $showingQuitAlert) {
                 Alert(
                     title: Text("確認"),
@@ -153,61 +50,253 @@ struct MainView: View {
                     secondaryButton: .cancel(Text("キャンセル"))
                 )
             }
+
+            // Explanation Overlay
+            if showExplanation {
+                ExplanationView(question: currentQuestion)
+                    .onTapGesture {
+                        showExplanation = false
+                        nextQuestion()
+                    }
+                    .transition(.opacity)
+            }
         }
-        .onAppear {
-            print("MainView body: showExplanation = \(showExplanation)") // Moved print statement here
-        }
-        .background(
-            LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
-        )
-        // Explanation Overlay
-        if showExplanation {
-            ExplanationView(question: currentQuestion)
-                .onTapGesture {
-                    print("ExplanationView: onTapGesture - setting showExplanation to false")
-                    showExplanation = false
-                    nextQuestion() // Move to next question after tap
+        .gradientBackground()
+    }
+
+    // MARK: - Top Bar
+    private var topBar: some View {
+        HStack {
+            Button(action: {
+                if appState.clearedStages.contains(stage.stage) {
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    showingQuitAlert = true
                 }
-                .transition(.opacity) // Smooth transition
+            }) {
+                HStack(spacing: OniTheme.Spacing.xs) {
+                    Image(systemName: "chevron.left")
+                    Text("辞める")
+                }
+                .font(.body.weight(.medium))
+                .foregroundColor(OniTheme.Colors.danger)
+            }
+            Spacer()
+
+            if !isStageCleared {
+                Text("\(consecutiveCorrect) / \(goal)")
+                    .font(.headline.monospacedDigit())
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding(.horizontal, OniTheme.Spacing.xs)
+    }
+
+    // MARK: - Stage Cleared View
+    private var stageClearedView: some View {
+        VStack(spacing: OniTheme.Spacing.lg) {
+            Spacer()
+
+            Image(systemName: "crown.fill")
+                .font(.system(size: 60))
+                .foregroundColor(.yellow)
+                .shadow(color: .yellow.opacity(0.4), radius: 12, x: 0, y: 4)
+
+            Text("ステージ \(stage.stage) クリア！")
+                .font(.largeTitle.weight(.bold))
+                .foregroundColor(OniTheme.Colors.success)
+
+            Text("おめでとうございます！")
+                .font(.title2)
+                .foregroundColor(.primary)
+
+            Spacer()
+
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                HStack(spacing: OniTheme.Spacing.sm) {
+                    Image(systemName: "list.bullet")
+                    Text("ステージ選択へ戻る")
+                }
+                .primaryButton(color: OniTheme.Colors.success)
+            }
+            .padding(.horizontal, OniTheme.Spacing.lg)
+
+            Spacer()
+        }
+        .transition(.scale.combined(with: .opacity))
+    }
+
+    // MARK: - Quiz Content View
+    private var quizContentView: some View {
+        VStack(spacing: OniTheme.Spacing.md) {
+            Text("ステージ \(stage.stage)")
+                .font(.title2.weight(.bold))
+                .foregroundColor(.accentColor)
+
+            // Progress Bar
+            progressBar
+
+            Spacer()
+
+            // Kanji Display
+            kanjiCard
+
+            Spacer()
+
+            if !showResult {
+                answerButtons
+            } else {
+                resultDisplay
+            }
+
+            Spacer()
+
+            if showBackToStartButton {
+                Button(action: resetGame) {
+                    HStack(spacing: OniTheme.Spacing.sm) {
+                        Image(systemName: "arrow.counterclockwise")
+                        Text("最初からやり直す")
+                    }
+                    .primaryButton(color: OniTheme.Colors.warning)
+                }
+                .padding(.horizontal, OniTheme.Spacing.lg)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+    }
+
+    // MARK: - Progress Bar
+    private var progressBar: some View {
+        VStack(spacing: OniTheme.Spacing.xs) {
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: OniTheme.Radius.sm)
+                        .fill(Color(.systemGray5))
+                        .frame(height: 8)
+
+                    RoundedRectangle(cornerRadius: OniTheme.Radius.sm)
+                        .fill(
+                            LinearGradient(
+                                colors: [OniTheme.Colors.quizBlue, OniTheme.Colors.success],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(width: geometry.size.width * progress, height: 8)
+                        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: consecutiveCorrect)
+                }
+            }
+            .frame(height: 8)
+
+            Text("進行度: \(consecutiveCorrect) / \(goal) 問")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .padding(.horizontal, OniTheme.Spacing.sm)
+    }
+
+    // MARK: - Kanji Card
+    private var kanjiCard: some View {
+        Text(currentQuestion.kanji)
+            .font(.system(size: 130, weight: .heavy, design: .rounded))
+            .foregroundColor(.primary)
+            .minimumScaleFactor(0.5)
+            .lineLimit(1)
+            .padding(OniTheme.Spacing.lg)
+            .frame(maxWidth: .infinity, maxHeight: 200)
+            .background(OniTheme.Colors.subtleBackground)
+            .cornerRadius(OniTheme.Radius.xl)
+            .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 4)
+            .scaleEffect(kanjiAppear ? 1.0 : 0.9)
+            .opacity(kanjiAppear ? 1.0 : 0.0)
+            .onAppear {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                    kanjiAppear = true
+                }
+            }
+            .onChange(of: currentQuestionIndex) { _, _ in
+                kanjiAppear = false
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                    kanjiAppear = true
+                }
+            }
+    }
+
+    // MARK: - Answer Buttons
+    private var answerButtons: some View {
+        VStack(spacing: OniTheme.Spacing.sm + 2) {
+            ForEach(currentQuestion.choices, id: \.self) { choice in
+                Button(action: { self.answer(selected: choice) }) {
+                    Text(choice)
+                        .primaryButton(color: OniTheme.Colors.quizBlue, minHeight: 54)
+                }
+            }
+        }
+        .padding(.horizontal, OniTheme.Spacing.sm)
+        .disabled(buttonsDisabled)
+        .transition(.opacity)
+    }
+
+    // MARK: - Result Display
+    private var resultDisplay: some View {
+        VStack(spacing: OniTheme.Spacing.md) {
+            Text(isCorrect ? "○ 正解！" : "× 不正解…")
+                .font(.system(size: 50, weight: .heavy, design: .rounded))
+                .foregroundColor(isCorrect ? OniTheme.Colors.success : OniTheme.Colors.danger)
+                .scaleEffect(resultScale)
+                .onAppear {
+                    resultScale = 0.5
+                    withAnimation(.spring(response: 0.35, dampingFraction: 0.5)) {
+                        resultScale = 1.0
+                    }
+                }
+
+            if !isCorrect {
+                Text("正解は「\(currentQuestion.answer)」")
+                    .font(.title3)
+                    .foregroundColor(.secondary)
+                    .transition(.opacity)
+            }
         }
     }
 
     // MARK: - Game Logic Methods
 
     func answer(selected: String) {
-        // Detect rapid taps
-        if buttonsDisabled {
-            return
-        }
+        if buttonsDisabled { return }
+        buttonsDisabled = true
 
-        buttonsDisabled = true // Disable buttons immediately
         if selected == currentQuestion.answer {
             isCorrect = true
             if !showResult {
                 consecutiveCorrect += 1
             }
             showResult = true
-            
+
             if consecutiveCorrect >= goal {
-                isStageCleared = true
-                // 修正: より確実にステージクリア状態を保存
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                    isStageCleared = true
+                }
                 saveStageCleared()
                 return
             }
 
-            // If correct and stage not cleared, show explanation
             if !isStageCleared {
-                showExplanation = true
-                print("answer: Setting showExplanation to true")
-                buttonsDisabled = false // Re-enable buttons after explanation is shown
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    showExplanation = true
+                }
+                buttonsDisabled = false
             }
         } else {
             isCorrect = false
             showResult = true
-            showBackToStartButton = true
+            withAnimation(.easeInOut(duration: 0.3)) {
+                showBackToStartButton = true
+            }
             consecutiveCorrect = 0
-            buttonsDisabled = false // Re-enable buttons for "最初からやり直す"
+            buttonsDisabled = false
         }
     }
 
@@ -217,66 +306,71 @@ struct MainView: View {
             currentQuestionIndex += 1
             showResult = false
             showBackToStartButton = false
-            buttonsDisabled = false // Re-enable buttons
+            buttonsDisabled = false
         } else {
-            isStageCleared = true
-            // 修正: フォールバック時も確実に保存
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                isStageCleared = true
+            }
             saveStageCleared()
-            // No need to re-enable buttons here, as the view will dismiss or transition.
         }
     }
 
     func resetGame() {
-        currentQuestionIndex = 0
-        consecutiveCorrect = 0
-        showResult = false
-        showBackToStartButton = false
-        buttonsDisabled = false // Re-enable buttons
-        showExplanation = false // Reset explanation state
+        withAnimation(.easeInOut(duration: 0.3)) {
+            currentQuestionIndex = 0
+            consecutiveCorrect = 0
+            showResult = false
+            showBackToStartButton = false
+            buttonsDisabled = false
+            showExplanation = false
+        }
     }
-    
-    // 修正: ステージクリア状態を確実に保存するメソッド
+
     private func saveStageCleared() {
-        // Correct way to update a Set property of an ObservableObject
-        var newClearedStages = appState.clearedStages // Get a mutable copy
-        newClearedStages.insert(stage.stage) // Mutate the copy
-        appState.clearedStages = newClearedStages // Assign the new Set to trigger didSet
-        
-        // 手動で objectWillChange を送信して確実に更新を通知
-        // DispatchQueue.main.async {
-        //     appState.objectWillChange.send()
-        // }
+        var newClearedStages = appState.clearedStages
+        newClearedStages.insert(stage.stage)
+        appState.clearedStages = newClearedStages
     }
 }
+
+// MARK: - Explanation View
 
 struct ExplanationView: View {
     let question: Question
 
     var body: some View {
         ZStack {
-            // Semi-transparent background to dim the quiz view
-            Color.black.opacity(0.7)
+            OniTheme.Colors.overlayBackground
                 .edgesIgnoringSafeArea(.all)
 
-            VStack(spacing: 20) {
-                // Removed Text("正解！")
+            VStack(spacing: OniTheme.Spacing.lg) {
+                VStack(alignment: .leading, spacing: OniTheme.Spacing.md) {
+                    HStack {
+                        Text(question.kanji)
+                            .font(.system(size: 36, weight: .bold, design: .rounded))
+                        Spacer()
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.title)
+                            .foregroundColor(OniTheme.Colors.success)
+                    }
 
-                // Display explanation content
-                VStack(alignment: .leading, spacing: 10) {
-                    // Removed Text("漢字: \(question.kanji)")
-                    Text("意味: \(question.explain)") // Assuming explain contains all details
+                    Divider()
+
+                    Text(question.explain)
                         .font(.body)
-                    // Add more structured Text views if question.explain is parsed
+                        .foregroundColor(.primary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding()
-                .background(Color.white) // White background for explanation box
-                .cornerRadius(15)
-                .shadow(radius: 10)
+                .padding(OniTheme.Spacing.lg)
+                .background(OniTheme.Colors.cardBackground)
+                .cornerRadius(OniTheme.Radius.lg)
+                .shadow(color: .black.opacity(0.15), radius: 16, x: 0, y: 8)
+                .padding(.horizontal, OniTheme.Spacing.xl)
 
                 Text("タップして次へ")
                     .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.top, 20)
+                    .foregroundColor(.white.opacity(0.8))
+                    .padding(.top, OniTheme.Spacing.sm)
             }
         }
     }
@@ -287,5 +381,6 @@ struct MainView_Previews: PreviewProvider {
         NavigationView {
             MainView(stage: quizData.stages[0])
         }
+        .environmentObject(AppState())
     }
 }
