@@ -2,10 +2,25 @@ import SwiftUI
 
 struct MainView: View {
     // MARK: - Properties
-    let stage: Stage
+    let stage: Stage?
+    let reviewMode: Bool
+    let reviewQuestions: [Question]
 
     @EnvironmentObject var appState: AppState
     @Environment(\.presentationMode) var presentationMode
+
+    // MARK: - Initializers
+    init(stage: Stage) {
+        self.stage = stage
+        self.reviewMode = false
+        self.reviewQuestions = []
+    }
+
+    init(reviewQuestions: [Question]) {
+        self.stage = nil
+        self.reviewMode = true
+        self.reviewQuestions = reviewQuestions
+    }
 
     // MARK: - State Properties
     @State private var currentQuestionIndex = 0
@@ -21,10 +36,22 @@ struct MainView: View {
     @State private var kanjiAppear = false
 
     // Game constants
-    private var goal: Int { stage.questions.count }
-    private var questions: [Question] { stage.questions }
+    private var questions: [Question] {
+        if reviewMode {
+            return reviewQuestions
+        }
+        return stage?.questions ?? []
+    }
+    private var goal: Int { questions.count }
     private var currentQuestion: Question { questions[currentQuestionIndex] }
-    private var progress: Double { Double(consecutiveCorrect) / Double(goal) }
+    private var progress: Double {
+        guard goal > 0 else { return 0 }
+        return Double(consecutiveCorrect) / Double(goal)
+    }
+    private var stageNumber: Int { stage?.stage ?? 0 }
+    private var displayTitle: String {
+        reviewMode ? "復習モード" : "ステージ \(stageNumber)"
+    }
 
     var body: some View {
         ZStack {
@@ -34,6 +61,8 @@ struct MainView: View {
 
                 if isStageCleared {
                     stageClearedView
+                } else if questions.isEmpty {
+                    emptyReviewView
                 } else {
                     quizContentView
                 }
@@ -43,7 +72,9 @@ struct MainView: View {
             .alert(isPresented: $showingQuitAlert) {
                 Alert(
                     title: Text("確認"),
-                    message: Text("途中で辞めると、ステージクリアになりません。"),
+                    message: Text(reviewMode
+                        ? "復習を中断しますか？"
+                        : "途中で辞めると、ステージクリアになりません。"),
                     primaryButton: .destructive(Text("OK")) {
                         presentationMode.wrappedValue.dismiss()
                     },
@@ -64,11 +95,27 @@ struct MainView: View {
         .gradientBackground()
     }
 
+    // MARK: - Empty Review View
+    private var emptyReviewView: some View {
+        VStack(spacing: OniTheme.Spacing.lg) {
+            Spacer()
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 60))
+                .foregroundColor(OniTheme.Colors.success)
+            Text("復習する問題はありません")
+                .font(.title2.weight(.bold))
+                .foregroundColor(.primary)
+            Spacer()
+        }
+    }
+
     // MARK: - Top Bar
     private var topBar: some View {
         HStack {
             Button(action: {
-                if appState.clearedStages.contains(stage.stage) {
+                if reviewMode {
+                    showingQuitAlert = true
+                } else if let s = stage, appState.clearedStages.contains(s.stage) {
                     presentationMode.wrappedValue.dismiss()
                 } else {
                     showingQuitAlert = true
@@ -97,16 +144,16 @@ struct MainView: View {
         VStack(spacing: OniTheme.Spacing.lg) {
             Spacer()
 
-            Image(systemName: "crown.fill")
+            Image(systemName: reviewMode ? "star.fill" : "crown.fill")
                 .font(.system(size: 60))
                 .foregroundColor(.yellow)
                 .shadow(color: .yellow.opacity(0.4), radius: 12, x: 0, y: 4)
 
-            Text("ステージ \(stage.stage) クリア！")
+            Text(reviewMode ? "復習完了！" : "ステージ \(stageNumber) クリア！")
                 .font(.largeTitle.weight(.bold))
                 .foregroundColor(OniTheme.Colors.success)
 
-            Text("おめでとうございます！")
+            Text(reviewMode ? "すべての問題に正解しました！" : "おめでとうございます！")
                 .font(.title2)
                 .foregroundColor(.primary)
 
@@ -116,8 +163,8 @@ struct MainView: View {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 HStack(spacing: OniTheme.Spacing.sm) {
-                    Image(systemName: "list.bullet")
-                    Text("ステージ選択へ戻る")
+                    Image(systemName: reviewMode ? "house.fill" : "list.bullet")
+                    Text(reviewMode ? "ホームへ戻る" : "ステージ選択へ戻る")
                 }
                 .primaryButton(color: OniTheme.Colors.success)
             }
@@ -131,9 +178,9 @@ struct MainView: View {
     // MARK: - Quiz Content View
     private var quizContentView: some View {
         VStack(spacing: OniTheme.Spacing.md) {
-            Text("ステージ \(stage.stage)")
+            Text(displayTitle)
                 .font(.title2.weight(.bold))
-                .foregroundColor(.accentColor)
+                .foregroundColor(reviewMode ? OniTheme.Colors.warning : .accentColor)
 
             // Progress Bar
             progressBar
@@ -179,7 +226,9 @@ struct MainView: View {
                     RoundedRectangle(cornerRadius: OniTheme.Radius.sm)
                         .fill(
                             LinearGradient(
-                                colors: [OniTheme.Colors.quizBlue, OniTheme.Colors.success],
+                                colors: reviewMode
+                                    ? [OniTheme.Colors.warning, OniTheme.Colors.success]
+                                    : [OniTheme.Colors.quizBlue, OniTheme.Colors.success],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -190,7 +239,9 @@ struct MainView: View {
             }
             .frame(height: 8)
 
-            Text("進行度: \(consecutiveCorrect) / \(goal) 問")
+            Text(reviewMode
+                ? "残り: \(goal - consecutiveCorrect) 問"
+                : "進行度: \(consecutiveCorrect) / \(goal) 問")
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
@@ -275,11 +326,21 @@ struct MainView: View {
             }
             showResult = true
 
+            // Record statistics
+            appState.recordAnswer(correct: true, currentStreak: consecutiveCorrect)
+
+            // In review mode, remove from wrong questions on correct answer
+            if reviewMode {
+                appState.recordCorrectReview(kanji: currentQuestion.kanji)
+            }
+
             if consecutiveCorrect >= goal {
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                     isStageCleared = true
                 }
-                saveStageCleared()
+                if !reviewMode {
+                    saveStageCleared()
+                }
                 return
             }
 
@@ -292,6 +353,15 @@ struct MainView: View {
         } else {
             isCorrect = false
             showResult = true
+
+            // Record statistics
+            appState.recordAnswer(correct: false, currentStreak: 0)
+
+            // Record wrong answer for review
+            if !reviewMode {
+                appState.recordWrongAnswer(kanji: currentQuestion.kanji)
+            }
+
             withAnimation(.easeInOut(duration: 0.3)) {
                 showBackToStartButton = true
             }
@@ -311,7 +381,9 @@ struct MainView: View {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 isStageCleared = true
             }
-            saveStageCleared()
+            if !reviewMode {
+                saveStageCleared()
+            }
         }
     }
 
@@ -327,8 +399,9 @@ struct MainView: View {
     }
 
     private func saveStageCleared() {
+        guard let s = stage else { return }
         var newClearedStages = appState.clearedStages
-        newClearedStages.insert(stage.stage)
+        newClearedStages.insert(s.stage)
         appState.clearedStages = newClearedStages
     }
 }

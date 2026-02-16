@@ -44,6 +44,23 @@ struct HomeView: View {
                         .primaryButton(color: OniTheme.Colors.quizBlue)
                     }
 
+                    // Review mode button
+                    if appState.hasWrongQuestions {
+                        NavigationLink(
+                            destination: MainView(
+                                reviewQuestions: appState.wrongQuestionsList()
+                            )
+                        ) {
+                            HStack(spacing: OniTheme.Spacing.sm) {
+                                Image(systemName: "arrow.counterclockwise.circle.fill")
+                                Text("復習")
+                                Text("(\(appState.wrongQuestions.count)問)")
+                                    .font(.caption.weight(.bold))
+                            }
+                            .primaryButton(color: OniTheme.Colors.warning)
+                        }
+                    }
+
                     NavigationLink(destination: SettingsView()) {
                         HStack(spacing: OniTheme.Spacing.sm) {
                             Image(systemName: "gearshape.fill")
