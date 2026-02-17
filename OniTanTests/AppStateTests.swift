@@ -1,108 +1,182 @@
 import XCTest
-import Foundation
-@testable import OniTan // Import your app module
+@testable import OniTan
 
 class AppStateTests: XCTestCase {
 
-    var appState: AppState!
-    let userDefaultsSuiteName = "testUserDefaults" // Use a separate suite for testing
+    // MARK: - Initialization Tests
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        // Use a separate UserDefaults suite for testing to avoid interfering with the actual app's data
-        UserDefaults.standard.removePersistentDomain(forName: userDefaultsSuiteName)
-        let testUserDefaults = UserDefaults(suiteName: userDefaultsSuiteName)!
-        
-        // Initialize AppState with the test UserDefaults
-        // Note: AppState currently uses UserDefaults.standard directly.
-        // For proper testability, AppState should ideally accept a UserDefaults instance in its initializer.
-        // For now, we'll clear standard UserDefaults and rely on its behavior.
-        // In a real project, consider refactoring AppState to be more testable.
-        
-        // Clear standard UserDefaults before each test to ensure a clean state
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-            UserDefaults.standard.synchronize()
-        }
-        
-        appState = AppState()
+    func testInitialization_emptyStore() {
+        let store = InMemoryStore()
+        let state = AppState(store: store)
+
+        XCTAssertTrue(state.clearedStages.isEmpty)
+        XCTAssertTrue(state.wrongQuestions.isEmpty)
+        XCTAssertEqual(state.totalAnswered, 0)
+        XCTAssertEqual(state.totalCorrect, 0)
+        XCTAssertEqual(state.bestStreak, 0)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        appState = nil
-        // Clean up standard UserDefaults after each test
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-            UserDefaults.standard.synchronize()
-        }
+    func testInitialization_withSavedClearedStages() {
+        let store = InMemoryStore()
+        let saved: Set<Int> = [1, 2]
+        let data = try! JSONEncoder().encode(saved)
+        store.set(data, forKey: "clearedStages")
+
+        let state = AppState(store: store)
+        XCTAssertEqual(state.clearedStages, saved)
     }
 
-    func testAppStateInitialization_emptyUserDefaults() {
-        // Given: UserDefaults is empty (cleared in setUpWithError)
-        
-        // When: AppState is initialized
-        // (already done in setUpWithError)
-        
-        // Then: clearedStages should be empty
-        XCTAssertTrue(appState.clearedStages.isEmpty, "clearedStages should be empty on initial load with empty UserDefaults")
+    func testInitialization_withSavedWrongQuestions() {
+        let store = InMemoryStore()
+        let saved: Set<String> = ["燎", "鬱"]
+        let data = try! JSONEncoder().encode(saved)
+        store.set(data, forKey: "wrongQuestions")
+
+        let state = AppState(store: store)
+        XCTAssertEqual(state.wrongQuestions, saved)
     }
-    
-    func testAppStateInitialization_withSavedData() {
-        // Given: Some data saved in UserDefaults
-        let savedStages: Set<Int> = [1, 3, 5]
-        if let encoded = try? JSONEncoder().encode(savedStages) {
-            UserDefaults.standard.set(encoded, forKey: "clearedStages")
-            UserDefaults.standard.synchronize()
-        } else {
-            XCTFail("Failed to encode savedStages for test setup.")
-        }
-        
-        // When: AppState is initialized
-        appState = AppState() // Re-initialize to load saved data
-        
-        // Then: clearedStages should contain the saved data
-        XCTAssertEqual(appState.clearedStages, savedStages, "clearedStages should load saved data from UserDefaults")
+
+    func testInitialization_withSavedStatistics() {
+        let store = InMemoryStore()
+        store.set(try! JSONEncoder().encode(50), forKey: "totalAnswered")
+        store.set(try! JSONEncoder().encode(40), forKey: "totalCorrect")
+        store.set(try! JSONEncoder().encode(15), forKey: "bestStreak")
+
+        let state = AppState(store: store)
+        XCTAssertEqual(state.totalAnswered, 50)
+        XCTAssertEqual(state.totalCorrect, 40)
+        XCTAssertEqual(state.bestStreak, 15)
     }
-    
-    func testSaveClearedStages() {
-        // Given: AppState with some cleared stages
-        let stagesToClear: Set<Int> = [2, 4]
-        appState.clearedStages = stagesToClear // This triggers didSet and saveClearedStages()
-        
-        // When: AppState is re-initialized to load from UserDefaults
-        let newAppState = AppState()
-        
-        // Then: The new AppState should have the previously saved stages
-        XCTAssertEqual(newAppState.clearedStages, stagesToClear, "clearedStages should be correctly saved and loaded")
+
+    // MARK: - Persistence Tests
+
+    func testClearedStages_persistsOnChange() {
+        let store = InMemoryStore()
+        let state = AppState(store: store)
+
+        state.clearedStages = [1, 3]
+
+        let reloaded = AppState(store: store)
+        XCTAssertEqual(reloaded.clearedStages, [1, 3])
     }
-    
-    func testResetUserDefaults() {
-        // Given: AppState with some cleared stages and alert states set
-        appState.clearedStages = [1, 2, 3]
-        appState.showingResetAlert = true
-        appState.showResetConfirmation = true
-        appState.showingCannotResetAlert = true
-        
-        // Ensure data is saved to UserDefaults
-        if let encoded = try? JSONEncoder().encode(appState.clearedStages) {
-            UserDefaults.standard.set(encoded, forKey: "clearedStages")
-            UserDefaults.standard.synchronize()
-        }
-        
-        // When: resetUserDefaults is called
-        appState.resetUserDefaults()
-        
-        // Then: clearedStages should be empty
-        XCTAssertTrue(appState.clearedStages.isEmpty, "clearedStages should be empty after reset")
-        
-        // Then: Alert states should be reset
-        XCTAssertFalse(appState.showingResetAlert, "showingResetAlert should be false after reset")
-        XCTAssertFalse(appState.showResetConfirmation, "showResetConfirmation should be false after reset")
-        XCTAssertFalse(appState.showingCannotResetAlert, "showingCannotResetAlert should be false after reset")
-        
-        // Then: UserDefaults should be cleared (verify by re-initializing AppState)
-        let reinitializedAppState = AppState()
-        XCTAssertTrue(reinitializedAppState.clearedStages.isEmpty, "UserDefaults should be cleared after reset")
+
+    func testWrongQuestions_persistsOnChange() {
+        let store = InMemoryStore()
+        let state = AppState(store: store)
+
+        state.wrongQuestions = ["燎", "蹙"]
+
+        let reloaded = AppState(store: store)
+        XCTAssertEqual(reloaded.wrongQuestions, ["燎", "蹙"])
+    }
+
+    func testStatistics_persistOnChange() {
+        let store = InMemoryStore()
+        let state = AppState(store: store)
+
+        state.totalAnswered = 10
+        state.totalCorrect = 7
+        state.bestStreak = 5
+
+        let reloaded = AppState(store: store)
+        XCTAssertEqual(reloaded.totalAnswered, 10)
+        XCTAssertEqual(reloaded.totalCorrect, 7)
+        XCTAssertEqual(reloaded.bestStreak, 5)
+    }
+
+    // MARK: - Wrong Questions Management
+
+    func testRecordWrongAnswer() {
+        let state = AppState(store: InMemoryStore())
+
+        state.recordWrongAnswer(kanji: "鬱")
+        XCTAssertTrue(state.wrongQuestions.contains("鬱"))
+        XCTAssertTrue(state.hasWrongQuestions)
+    }
+
+    func testRecordCorrectReview_removesFromWrongQuestions() {
+        let state = AppState(store: InMemoryStore())
+        state.wrongQuestions = ["鬱", "燎"]
+
+        state.recordCorrectReview(kanji: "鬱")
+        XCTAssertFalse(state.wrongQuestions.contains("鬱"))
+        XCTAssertTrue(state.wrongQuestions.contains("燎"))
+    }
+
+    func testHasWrongQuestions_falseWhenEmpty() {
+        let state = AppState(store: InMemoryStore())
+        XCTAssertFalse(state.hasWrongQuestions)
+    }
+
+    // MARK: - Statistics
+
+    func testRecordAnswer_correct() {
+        let state = AppState(store: InMemoryStore())
+        state.recordAnswer(correct: true, currentStreak: 3)
+
+        XCTAssertEqual(state.totalAnswered, 1)
+        XCTAssertEqual(state.totalCorrect, 1)
+        XCTAssertEqual(state.bestStreak, 3)
+    }
+
+    func testRecordAnswer_incorrect() {
+        let state = AppState(store: InMemoryStore())
+        state.recordAnswer(correct: false, currentStreak: 0)
+
+        XCTAssertEqual(state.totalAnswered, 1)
+        XCTAssertEqual(state.totalCorrect, 0)
+        XCTAssertEqual(state.bestStreak, 0)
+    }
+
+    func testBestStreak_onlyUpdatesWhenHigher() {
+        let state = AppState(store: InMemoryStore())
+        state.recordAnswer(correct: true, currentStreak: 10)
+        state.recordAnswer(correct: true, currentStreak: 5)
+
+        XCTAssertEqual(state.bestStreak, 10)
+    }
+
+    func testCorrectRate_noAnswers() {
+        let state = AppState(store: InMemoryStore())
+        XCTAssertEqual(state.correctRate, 0)
+    }
+
+    func testCorrectRate_withAnswers() {
+        let state = AppState(store: InMemoryStore())
+        state.totalAnswered = 10
+        state.totalCorrect = 7
+        XCTAssertEqual(state.correctRate, 0.7, accuracy: 0.001)
+    }
+
+    // MARK: - Reset
+
+    func testResetUserDefaults_clearsEverything() {
+        let store = InMemoryStore()
+        let state = AppState(store: store)
+
+        state.clearedStages = [1, 2, 3]
+        state.wrongQuestions = ["鬱", "燎"]
+        state.totalAnswered = 50
+        state.totalCorrect = 40
+        state.bestStreak = 15
+        state.showingResetAlert = true
+        state.showResetConfirmation = true
+        state.showingCannotResetAlert = true
+
+        state.resetUserDefaults()
+
+        XCTAssertTrue(state.clearedStages.isEmpty)
+        XCTAssertTrue(state.wrongQuestions.isEmpty)
+        XCTAssertEqual(state.totalAnswered, 0)
+        XCTAssertEqual(state.totalCorrect, 0)
+        XCTAssertEqual(state.bestStreak, 0)
+        XCTAssertFalse(state.showingResetAlert)
+        XCTAssertFalse(state.showResetConfirmation)
+        XCTAssertFalse(state.showingCannotResetAlert)
+
+        // Verify store is also cleared
+        let reloaded = AppState(store: store)
+        XCTAssertTrue(reloaded.clearedStages.isEmpty)
+        XCTAssertTrue(reloaded.wrongQuestions.isEmpty)
     }
 }

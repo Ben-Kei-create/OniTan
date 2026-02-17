@@ -9,8 +9,8 @@ struct StageSelectView: View {
         ScrollView {
             VStack(spacing: OniTheme.Spacing.md) {
                 ForEach(stages, id: \.stage) { stage in
-                    let isCleared = appState.clearedStages.contains(stage.stage)
-                    let isUnlocked = (stage.stage == 1) || appState.clearedStages.contains(stage.stage - 1)
+                    let isCleared = appState.isStageCleared(stage.stage)
+                    let isUnlocked = appState.isStageUnlocked(stage.stage)
 
                     if isUnlocked {
                         NavigationLink(destination: MainView(stage: stage)) {
