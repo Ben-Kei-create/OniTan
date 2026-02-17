@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Xcode user-specific files (never commit)
+**/xcuserdata/
+**/*.xcuserstate
+
+# Xcode build artifacts
+DerivedData/
+
+# SwiftPM
+.build/
