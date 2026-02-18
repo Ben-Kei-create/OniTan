@@ -1,35 +1,44 @@
 import Foundation
 
 enum SessionEngine {
-    static func makeTodaySession(
-        weakKanji: Set<String>,
-        reviewOrdered: [Question],
-        allQuestions: [Question],
-        cap: Int = 5
-    ) -> PreparedSession {
-        let safeCap = max(0, cap)
-        let reviewMatches = reviewOrdered.filter { weakKanji.contains($0.kanji) }
+    static let defaultQuestionLimit = 5
 
-        if !weakKanji.isEmpty && !reviewMatches.isEmpty {
-            let selected = uniqueByKanjiPrefix(reviewMatches, cap: safeCap)
-            return PreparedSession(action: .review, questions: selected)
+    static func prepareTodaySession(
+        weakQuestionsOrdered: [Question],
+        quizData: QuizData,
+        questionLimit: Int = defaultQuestionLimit
+    ) -> PreparedSession {
+        let limit = max(0, questionLimit)
+
+        if !weakQuestionsOrdered.isEmpty {
+            let reviewQuestions = uniqueByKanji(weakQuestionsOrdered, limit: limit)
+            return PreparedSession(action: .review, questions: reviewQuestions)
         }
 
-        let selected = uniqueByKanjiPrefix(allQuestions, cap: safeCap)
-        return PreparedSession(action: .gentle, questions: selected)
+        let gentlePool = quizData.stages
+            .sorted { $0.stage < $1.stage }
+            .flatMap(\.questions)
+        let gentleQuestions = uniqueByKanji(gentlePool, limit: limit)
+        return PreparedSession(action: .gentle, questions: gentleQuestions)
     }
 
-    private static func uniqueByKanjiPrefix(_ questions: [Question], cap: Int) -> [Question] {
-        guard cap > 0 else { return [] }
+    private static func uniqueByKanji(_ questions: [Question], limit: Int) -> [Question] {
+        guard limit > 0 else { return [] }
 
         var seen = Set<String>()
         var result: [Question] = []
-        result.reserveCapacity(min(cap, questions.count))
+        result.reserveCapacity(min(limit, questions.count))
 
         for question in questions {
-            guard seen.insert(question.kanji).inserted else { continue }
+            if seen.contains(question.kanji) {
+                continue
+            }
+            seen.insert(question.kanji)
             result.append(question)
-            if result.count == cap { break }
+
+            if result.count == limit {
+                break
+            }
         }
 
         return result

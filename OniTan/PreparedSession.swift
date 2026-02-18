@@ -1,14 +1,14 @@
 import Foundation
 
-enum TodayAction {
-    case review
-    case gentle
-}
-
+/// Today flow prepared session (pure value type)
 struct PreparedSession {
-    let action: TodayAction
+    enum Action: String {
+        case review
+        case gentle
+    }
+
+    let action: Action
     let questions: [Question]
 
-    var count: Int { questions.count }
-    var title: String { action == .review ? "Review" : "Gentle" }
+    var questionCount: Int { questions.count }
 }

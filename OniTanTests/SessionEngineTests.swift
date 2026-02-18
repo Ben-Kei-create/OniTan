@@ -2,113 +2,108 @@ import XCTest
 @testable import OniTan
 
 final class SessionEngineTests: XCTestCase {
-    func testWeakItemsPrepareReviewSession() {
-        let weakKanji: Set<String> = ["B", "D"]
-        let reviewOrdered = [q("A"), q("B"), q("C"), q("D")]
-        let allQuestions = [q("X"), q("Y"), q("Z")]
 
-        let session = SessionEngine.makeTodaySession(
-            weakKanji: weakKanji,
-            reviewOrdered: reviewOrdered,
-            allQuestions: allQuestions
+    func testPrepareTodaySession_usesReviewWhenWeakExists() {
+        let weakOrdered = [
+            makeQuestion("鬱"),
+            makeQuestion("燎"),
+            makeQuestion("鬱")
+        ]
+        let data = QuizData(stages: [Stage(stage: 1, questions: [makeQuestion("逞")])], unused_questions: nil)
+
+        let session = SessionEngine.prepareTodaySession(
+            weakQuestionsOrdered: weakOrdered,
+            quizData: data
         )
 
-        if case .review = session.action {
-            XCTAssertTrue(true)
-        } else {
-            XCTFail("Expected review session")
-        }
-        XCTAssertEqual(session.questions.map(\.kanji), ["B", "D"])
+        XCTAssertEqual(session.action, .review)
+        XCTAssertEqual(session.questions.map(\.kanji), ["鬱", "燎"])
+        XCTAssertEqual(session.questionCount, 2)
     }
 
-    func testNoWeakItemsPrepareGentleSession() {
-        let weakKanji: Set<String> = []
-        let reviewOrdered = [q("A"), q("B")]
-        let allQuestions = [q("X"), q("Y"), q("Z")]
-
-        let session = SessionEngine.makeTodaySession(
-            weakKanji: weakKanji,
-            reviewOrdered: reviewOrdered,
-            allQuestions: allQuestions
+    func testPrepareTodaySession_usesGentleWhenNoWeakQuestions() {
+        let data = QuizData(
+            stages: [
+                Stage(stage: 2, questions: [makeQuestion("燎"), makeQuestion("蹙")]),
+                Stage(stage: 1, questions: [makeQuestion("鬱"), makeQuestion("逞")])
+            ],
+            unused_questions: nil
         )
 
-        if case .gentle = session.action {
-            XCTAssertTrue(true)
-        } else {
-            XCTFail("Expected gentle session")
-        }
-        XCTAssertEqual(session.questions.map(\.kanji), ["X", "Y", "Z"])
+        let session = SessionEngine.prepareTodaySession(
+            weakQuestionsOrdered: [],
+            quizData: data
+        )
+
+        XCTAssertEqual(session.action, .gentle)
+        XCTAssertEqual(session.questions.map(\.kanji), ["鬱", "逞", "燎", "蹙"])
     }
 
-    func testCapsAtFive() {
-        let weakKanji: Set<String> = ["A", "B", "C", "D", "E", "F", "G"]
-        let reviewOrdered = [q("A"), q("B"), q("C"), q("D"), q("E"), q("F"), q("G")]
+    func testPrepareTodaySession_capsToFiveQuestions() {
+        let weakOrdered = [
+            makeQuestion("一"),
+            makeQuestion("二"),
+            makeQuestion("三"),
+            makeQuestion("四"),
+            makeQuestion("五"),
+            makeQuestion("六")
+        ]
+        let data = QuizData(stages: [], unused_questions: nil)
 
-        let session = SessionEngine.makeTodaySession(
-            weakKanji: weakKanji,
-            reviewOrdered: reviewOrdered,
-            allQuestions: []
+        let session = SessionEngine.prepareTodaySession(
+            weakQuestionsOrdered: weakOrdered,
+            quizData: data
         )
 
-        XCTAssertEqual(session.count, 5)
-        XCTAssertEqual(session.questions.map(\.kanji), ["A", "B", "C", "D", "E"])
+        XCTAssertEqual(session.questions.map(\.kanji), ["一", "二", "三", "四", "五"])
+        XCTAssertEqual(session.questionCount, 5)
     }
 
-    func testFewerThanFive() {
-        let weakKanji: Set<String> = ["A", "B", "C"]
-        let reviewOrdered = [q("A"), q("B"), q("C")]
-
-        let session = SessionEngine.makeTodaySession(
-            weakKanji: weakKanji,
-            reviewOrdered: reviewOrdered,
-            allQuestions: [q("X"), q("Y"), q("Z"), q("W"), q("V"), q("U")]
+    func testPrepareTodaySession_handlesFewerThanFiveQuestions() {
+        let data = QuizData(
+            stages: [Stage(stage: 1, questions: [makeQuestion("鬱"), makeQuestion("燎")])],
+            unused_questions: nil
         )
 
-        XCTAssertEqual(session.count, 3)
-        XCTAssertEqual(session.questions.map(\.kanji), ["A", "B", "C"])
+        let session = SessionEngine.prepareTodaySession(
+            weakQuestionsOrdered: [],
+            quizData: data
+        )
+
+        XCTAssertEqual(session.questions.map(\.kanji), ["鬱", "燎"])
+        XCTAssertEqual(session.questionCount, 2)
     }
 
-    func testNoDuplicateKanjiInSession_reviewAndGentle() {
-        let reviewSession = SessionEngine.makeTodaySession(
-            weakKanji: ["A", "B", "C"],
-            reviewOrdered: [q("A"), q("A"), q("B"), q("C"), q("C"), q("B")],
-            allQuestions: []
-        )
-        XCTAssertEqual(reviewSession.questions.map(\.kanji), ["A", "B", "C"])
-
-        let gentleSession = SessionEngine.makeTodaySession(
-            weakKanji: [],
-            reviewOrdered: [q("A"), q("B")],
-            allQuestions: [q("X"), q("X"), q("Y"), q("Y"), q("Z"), q("X")]
-        )
-        XCTAssertEqual(gentleSession.questions.map(\.kanji), ["X", "Y", "Z"])
-    }
-
-    func testDeterministicOrdering() {
-        let weakKanji: Set<String> = ["B", "D", "F"]
-        let reviewOrdered = [q("A"), q("B"), q("D"), q("F"), q("D"), q("B")]
-        let allQuestions = [q("X"), q("Y"), q("Z"), q("X")]
-
-        let first = SessionEngine.makeTodaySession(
-            weakKanji: weakKanji,
-            reviewOrdered: reviewOrdered,
-            allQuestions: allQuestions
-        )
-        let second = SessionEngine.makeTodaySession(
-            weakKanji: weakKanji,
-            reviewOrdered: reviewOrdered,
-            allQuestions: allQuestions
+    func testPrepareTodaySession_isDeterministicForSameInput() {
+        let data = QuizData(
+            stages: [
+                Stage(stage: 3, questions: [makeQuestion("逞"), makeQuestion("鬱")]),
+                Stage(stage: 1, questions: [makeQuestion("燎"), makeQuestion("蹙")]),
+                Stage(stage: 2, questions: [makeQuestion("鬱"), makeQuestion("翳")])
+            ],
+            unused_questions: nil
         )
 
+        let first = SessionEngine.prepareTodaySession(
+            weakQuestionsOrdered: [],
+            quizData: data
+        )
+        let second = SessionEngine.prepareTodaySession(
+            weakQuestionsOrdered: [],
+            quizData: data
+        )
+
+        XCTAssertEqual(first.action, .gentle)
         XCTAssertEqual(first.questions.map(\.kanji), second.questions.map(\.kanji))
+        XCTAssertEqual(first.questions.map(\.kanji), ["燎", "蹙", "鬱", "翳", "逞"])
     }
 
-    private func q(_ kanji: String) -> Question {
+    private func makeQuestion(_ kanji: String) -> Question {
         Question(
             kanji: kanji,
-            choices: ["c1", "c2", "c3", "c4"],
-            answer: "c1",
-            explain: "exp"
+            choices: ["a", "b"],
+            answer: "a",
+            explain: "test"
         )
     }
 }
