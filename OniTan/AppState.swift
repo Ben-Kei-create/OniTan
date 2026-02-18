@@ -32,12 +32,21 @@ class AppState: ObservableObject {
     @Published var showingCannotResetAlert: Bool = false
 
     // MARK: - Keys
-    private enum Keys {
-        static let clearedStages = "clearedStages"
-        static let wrongQuestions = "wrongQuestions"
-        static let totalAnswered = "totalAnswered"
-        static let totalCorrect = "totalCorrect"
-        static let bestStreak = "bestStreak"
+    enum Keys {
+        private static let namespace = "com.onitan.appState"
+        static let clearedStages = "\(namespace).clearedStages"
+        static let wrongQuestions = "\(namespace).wrongQuestions"
+        static let totalAnswered = "\(namespace).totalAnswered"
+        static let totalCorrect = "\(namespace).totalCorrect"
+        static let bestStreak = "\(namespace).bestStreak"
+
+        static let all: [String] = [
+            clearedStages,
+            wrongQuestions,
+            totalAnswered,
+            totalCorrect,
+            bestStreak
+        ]
     }
 
     // MARK: - Init
@@ -113,7 +122,7 @@ class AppState: ObservableObject {
 
     // MARK: - Reset
     func resetUserDefaults() {
-        store.removeAll()
+        Keys.all.forEach { store.removeValue(forKey: $0) }
         self.clearedStages = []
         self.wrongQuestions = []
         self.totalAnswered = 0

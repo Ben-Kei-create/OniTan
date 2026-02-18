@@ -5,7 +5,7 @@ import Foundation
 protocol KeyValueStore {
     func data(forKey key: String) -> Data?
     func set(_ data: Data?, forKey key: String)
-    func removeAll()
+    func removeValue(forKey key: String)
 }
 
 // MARK: - UserDefaultsStore (Production)
@@ -23,14 +23,10 @@ final class UserDefaultsStore: KeyValueStore {
 
     func set(_ data: Data?, forKey key: String) {
         defaults.set(data, forKey: key)
-        defaults.synchronize()
     }
 
-    func removeAll() {
-        if let bundleID = Bundle.main.bundleIdentifier {
-            defaults.removePersistentDomain(forName: bundleID)
-            defaults.synchronize()
-        }
+    func removeValue(forKey key: String) {
+        defaults.removeObject(forKey: key)
     }
 }
 
@@ -51,7 +47,7 @@ final class InMemoryStore: KeyValueStore {
         }
     }
 
-    func removeAll() {
-        storage.removeAll()
+    func removeValue(forKey key: String) {
+        storage.removeValue(forKey: key)
     }
 }
