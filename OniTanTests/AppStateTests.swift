@@ -5,6 +5,12 @@ class AppStateTests: XCTestCase {
 
     // MARK: - Initialization Tests
 
+    func testPersistenceKeys_areNamespaced() {
+        for key in AppState.Keys.all {
+            XCTAssertTrue(key.hasPrefix("com.onitan.appState."))
+        }
+    }
+
     func testInitialization_emptyStore() {
         let store = InMemoryStore()
         let state = AppState(store: store)
@@ -20,7 +26,7 @@ class AppStateTests: XCTestCase {
         let store = InMemoryStore()
         let saved: Set<Int> = [1, 2]
         let data = try! JSONEncoder().encode(saved)
-        store.set(data, forKey: "clearedStages")
+        store.set(data, forKey: AppState.Keys.clearedStages)
 
         let state = AppState(store: store)
         XCTAssertEqual(state.clearedStages, saved)
@@ -30,7 +36,7 @@ class AppStateTests: XCTestCase {
         let store = InMemoryStore()
         let saved: Set<String> = ["燎", "鬱"]
         let data = try! JSONEncoder().encode(saved)
-        store.set(data, forKey: "wrongQuestions")
+        store.set(data, forKey: AppState.Keys.wrongQuestions)
 
         let state = AppState(store: store)
         XCTAssertEqual(state.wrongQuestions, saved)
@@ -38,9 +44,9 @@ class AppStateTests: XCTestCase {
 
     func testInitialization_withSavedStatistics() {
         let store = InMemoryStore()
-        store.set(try! JSONEncoder().encode(50), forKey: "totalAnswered")
-        store.set(try! JSONEncoder().encode(40), forKey: "totalCorrect")
-        store.set(try! JSONEncoder().encode(15), forKey: "bestStreak")
+        store.set(try! JSONEncoder().encode(50), forKey: AppState.Keys.totalAnswered)
+        store.set(try! JSONEncoder().encode(40), forKey: AppState.Keys.totalCorrect)
+        store.set(try! JSONEncoder().encode(15), forKey: AppState.Keys.bestStreak)
 
         let state = AppState(store: store)
         XCTAssertEqual(state.totalAnswered, 50)
@@ -178,5 +184,18 @@ class AppStateTests: XCTestCase {
         let reloaded = AppState(store: store)
         XCTAssertTrue(reloaded.clearedStages.isEmpty)
         XCTAssertTrue(reloaded.wrongQuestions.isEmpty)
+    }
+
+    func testResetUserDefaults_doesNotClearUnownedKeys() {
+        let store = InMemoryStore()
+        let state = AppState(store: store)
+        let unrelatedKey = "com.onitan.settings.colorScheme"
+
+        store.set(try! JSONEncoder().encode("dark"), forKey: unrelatedKey)
+        state.clearedStages = [1]
+
+        state.resetUserDefaults()
+
+        XCTAssertNotNil(store.data(forKey: unrelatedKey))
     }
 }
