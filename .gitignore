@@ -10,3 +10,6 @@ DerivedData/
 
 # SwiftPM
 .build/
+# Xcode workspace generated data (SwiftPM etc.)
+*.xcodeproj/project.xcworkspace/xcshareddata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
