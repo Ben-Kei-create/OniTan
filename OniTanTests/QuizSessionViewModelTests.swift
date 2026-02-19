@@ -4,30 +4,33 @@ import XCTest
 @MainActor
 final class QuizSessionViewModelTests: XCTestCase {
 
+    var store: InMemoryPersistenceStore!
     var appState: AppState!
     var statsRepo: StudyStatsRepository!
     var stage: Stage!
 
-    override func setUpWithError() throws {
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-        }
-        appState = AppState()
-        statsRepo = StudyStatsRepository()
+    // Test questions
+    var q1: Question!
+    var q2: Question!
+    var q3: Question!
 
-        // Build a minimal 2-question test stage
-        let q1 = Question(kanji: "燎", choices: ["かがりび", "ひのき"], answer: "かがりび", explain: "野火・かがり火")
-        let q2 = Question(kanji: "逞", choices: ["たくましい", "こころよい"], answer: "たくましい", explain: "たくましいさま")
-        stage = Stage(stage: 1, questions: [q1, q2])
+    override func setUpWithError() throws {
+        store = InMemoryPersistenceStore()
+        appState = AppState(store: store)
+        statsRepo = StudyStatsRepository(store: store)
+
+        q1 = Question(kanji: "燎", choices: ["かがりび", "ひのき", "ともしび", "てまり"], answer: "かがりび", explain: "野火・かがり火")
+        q2 = Question(kanji: "逞", choices: ["たくましい", "こころよい", "やさしい", "うつくしい"], answer: "たくましい", explain: "たくましいさま")
+        q3 = Question(kanji: "慧", choices: ["かしこい", "いそがしい", "くるしい", "たのしい"], answer: "かしこい", explain: "かしこいさま")
+        stage = Stage(stage: 1, questions: [q1, q2, q3])
     }
 
     override func tearDownWithError() throws {
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-        }
         appState = nil
         statsRepo = nil
+        store = nil
         stage = nil
+        q1 = nil; q2 = nil; q3 = nil
     }
 
     // MARK: - Initial state
@@ -37,6 +40,14 @@ final class QuizSessionViewModelTests: XCTestCase {
         XCTAssertEqual(vm.clearedCount, 0)
         XCTAssertEqual(vm.phase, .answering)
         XCTAssertEqual(vm.currentQuestion.kanji, "燎")
+        XCTAssertEqual(vm.totalGoal, 3)
+        XCTAssertEqual(vm.passNumber, 1)
+        XCTAssertEqual(vm.lastAnswerResult, .none)
+    }
+
+    func testProgressFraction_startsAtZero() {
+        let vm = makeVM()
+        XCTAssertEqual(vm.progressFraction, 0.0, accuracy: 0.001)
     }
 
     // MARK: - Correct answer
@@ -53,12 +64,25 @@ final class QuizSessionViewModelTests: XCTestCase {
         XCTAssertEqual(vm.phase, .showingExplanation)
     }
 
+    func testCorrectAnswer_setsLastResultCorrect() {
+        let vm = makeVM()
+        vm.answer(selected: "かがりび")
+        XCTAssertEqual(vm.lastAnswerResult, .correct)
+    }
+
     func testCorrectAnswer_proceedToNextQuestion() {
         let vm = makeVM()
         vm.answer(selected: "かがりび")
         vm.proceed()
         XCTAssertEqual(vm.currentQuestion.kanji, "逞")
         XCTAssertEqual(vm.phase, .answering)
+        XCTAssertEqual(vm.lastAnswerResult, .none)
+    }
+
+    func testProgressFraction_updatesOnCorrectAnswer() {
+        let vm = makeVM()
+        vm.answer(selected: "かがりび")
+        XCTAssertEqual(vm.progressFraction, 1.0 / 3.0, accuracy: 0.001)
     }
 
     // MARK: - Wrong answer
@@ -79,102 +103,179 @@ final class QuizSessionViewModelTests: XCTestCase {
         }
     }
 
-    func testWrongAnswer_queuesForReview() {
+    func testWrongAnswer_setsLastResultWrong() {
         let vm = makeVM()
-        // Wrong on q1
         vm.answer(selected: "ひのき")
-        vm.proceed()
-        // Correct on q2 → stage not cleared yet (q1 still pending review)
-        vm.answer(selected: "たくましい")
-        vm.proceed()
-        // Should loop back to review q1
-        XCTAssertEqual(vm.currentQuestion.kanji, "燎")
-        XCTAssertEqual(vm.phase, .answering)
+        XCTAssertEqual(vm.lastAnswerResult, .wrong)
     }
 
-    // MARK: - Stage clear
-
-    func testAllCorrect_clearsStage() {
-        let vm = makeVM()
-        vm.answer(selected: "かがりび")
+    func testWrongAnswer_queuesForReview_normalMode() {
+        let vm = makeVM(mode: .normal)
+        vm.answer(selected: "ひのき")   // wrong on q1
         vm.proceed()
-        vm.answer(selected: "たくましい")
+        vm.answer(selected: "たくましい") // correct on q2
+        vm.proceed()
+        vm.answer(selected: "かしこい")  // correct on q3
+        vm.proceed()
+        // q1 should come back as review
+        XCTAssertEqual(vm.currentQuestion.kanji, "燎")
+        XCTAssertEqual(vm.passNumber, 2)
+    }
+
+    func testWrongAnswer_noReviewQueue_examMode() {
+        let vm = makeVM(mode: .exam30)
+        // In exam mode wrong answers don't re-queue
+        vm.answer(selected: "ひのき")   // wrong on q1
+        vm.proceed()
+        // Next question should be q2, not back to q1
+        XCTAssertNotEqual(vm.currentQuestion.kanji, "燎",
+            "Exam mode should not re-queue wrong answers")
+    }
+
+    // MARK: - Stage clear (normal mode)
+
+    func testAllCorrect_clearsStage_normalMode() {
+        let vm = makeVM(mode: .normal)
+        vm.answer(selected: "かがりび"); vm.proceed()
+        vm.answer(selected: "たくましい"); vm.proceed()
+        vm.answer(selected: "かしこい")
         XCTAssertEqual(vm.phase, .stageCleared)
         XCTAssertTrue(appState.isCleared(1))
     }
 
+    func testAllCorrect_doesNotClearStage_examMode() {
+        let examStage = Stage(stage: 1, questions: [q1, q2])
+        let vm = QuizSessionViewModel(stage: examStage, appState: appState, statsRepo: statsRepo, mode: .exam30)
+        vm.answer(selected: q1.answer)
+        vm.proceed()
+        vm.answer(selected: q2.answer)
+        XCTAssertEqual(vm.phase, .stageCleared, "Exam mode should reach stageCleared")
+        XCTAssertFalse(appState.isCleared(1), "Exam mode should NOT mark stage cleared in AppState")
+    }
+
     func testAllCorrect_clearedCountMatchesGoal() {
         let vm = makeVM()
-        vm.answer(selected: "かがりび")
-        vm.proceed()
-        vm.answer(selected: "たくましい")
+        vm.answer(selected: "かがりび"); vm.proceed()
+        vm.answer(selected: "たくましい"); vm.proceed()
+        vm.answer(selected: "かしこい")
         XCTAssertEqual(vm.clearedCount, vm.totalGoal)
+    }
+
+    // MARK: - Quick10 mode
+
+    func testQuick10Mode_limitsQuestions() {
+        // Build a pool larger than 10
+        var pool: [Question] = []
+        for i in 0..<15 {
+            pool.append(Question(
+                kanji: "漢\(i)", choices: ["A", "B", "C", "D"],
+                answer: "A", explain: "test \(i)"
+            ))
+        }
+        let bigStage = Stage(stage: 1, questions: pool)
+        let vm = QuizSessionViewModel(stage: bigStage, appState: appState, statsRepo: statsRepo, mode: .quick10)
+        XCTAssertEqual(vm.totalGoal, 10, "Quick10 mode should cap at 10 questions")
+    }
+
+    func testExam30Mode_limitsQuestions() {
+        var pool: [Question] = []
+        for i in 0..<40 {
+            pool.append(Question(
+                kanji: "漢\(i)", choices: ["A", "B", "C", "D"],
+                answer: "A", explain: "test \(i)"
+            ))
+        }
+        let bigStage = Stage(stage: 1, questions: pool)
+        let vm = QuizSessionViewModel(stage: bigStage, appState: appState, statsRepo: statsRepo, mode: .exam30)
+        XCTAssertEqual(vm.totalGoal, 30)
+    }
+
+    // MARK: - Weak focus mode
+
+    func testWeakFocusMode_usesWeakKanji() {
+        // Pre-populate weak kanji for stage 1
+        statsRepo.record(stageNumber: 1, kanji: "燎", wasCorrect: false, correctAnswer: "かがりび")
+
+        let vm = makeVM(mode: .weakFocus)
+        XCTAssertEqual(vm.totalGoal, 1, "WeakFocus should only use weak kanji")
+        XCTAssertEqual(vm.currentQuestion.kanji, "燎")
+    }
+
+    func testWeakFocusMode_fallsBackToAllQuestions_whenNoWeakPoints() {
+        // No weak kanji recorded
+        let vm = makeVM(mode: .weakFocus)
+        XCTAssertEqual(vm.totalGoal, stage.questions.count,
+            "WeakFocus should fall back to all questions when no weak points")
+    }
+
+    // MARK: - Pass counter
+
+    func testPassNumber_incrementsOnReviewPass() {
+        let twoQ = Stage(stage: 1, questions: [q1, q2])
+        let vm = QuizSessionViewModel(stage: twoQ, appState: appState, statsRepo: statsRepo, mode: .normal)
+        XCTAssertEqual(vm.passNumber, 1)
+
+        vm.answer(selected: "ひのき")     // wrong on q1
+        vm.proceed()
+        vm.answer(selected: "たくましい") // correct on q2
+        vm.proceed()
+        // Now in review pass
+        XCTAssertEqual(vm.passNumber, 2, "Second pass should be marked as pass 2")
     }
 
     // MARK: - Reset
 
     func testResetGame_restoresInitialState() {
         let vm = makeVM()
-        vm.answer(selected: "かがりび")
-        vm.proceed()
+        vm.answer(selected: "かがりび"); vm.proceed()
         vm.resetGame()
         XCTAssertEqual(vm.clearedCount, 0)
         XCTAssertEqual(vm.phase, .answering)
-        XCTAssertEqual(vm.currentQuestion.kanji, "燎")
+        XCTAssertEqual(vm.passNumber, 1)
+        XCTAssertEqual(vm.lastAnswerResult, .none)
     }
 
     // MARK: - Quit alert
 
-    func testShowingQuitAlert_defaultFalse() {
+    func testRequestQuit_setsActiveAlert() {
         let vm = makeVM()
-        XCTAssertFalse(vm.showingQuitAlert)
+        vm.requestQuit()
+        XCTAssertEqual(vm.activeAlert, .quitConfirmation)
     }
 
-    func testShowingQuitAlert_canBeSet() {
-        let vm = makeVM()
-        vm.showingQuitAlert = true
-        XCTAssertTrue(vm.showingQuitAlert)
+    func testRequestQuit_whenStageCleared_doesNotSetAlert() {
+        let oneQ = Stage(stage: 1, questions: [q1])
+        let vm = QuizSessionViewModel(stage: oneQ, appState: appState, statsRepo: statsRepo)
+        vm.answer(selected: q1.answer)
+        XCTAssertEqual(vm.phase, .stageCleared)
+        vm.requestQuit()
+        XCTAssertNil(vm.activeAlert, "No quit alert needed when stage is already cleared")
     }
 
     // MARK: - Review session
 
-    /// 苦手問題だけを渡した「復習セッション」として動作することを検証
     func testReviewSession_clearsWithSubsetOfQuestions() {
-        // 弱点問題 q1 だけで復習ステージを構成
-        let q1 = stage.questions[0]
-        let reviewStage = Stage(stage: stage.stage, questions: [q1])
+        let reviewStage = Stage(stage: 1, questions: [q1])
         let vm = QuizSessionViewModel(stage: reviewStage, appState: appState, statsRepo: statsRepo)
-
-        XCTAssertEqual(vm.totalGoal, 1, "復習セッションのゴールは渡した問題数")
-        XCTAssertEqual(vm.currentQuestion.kanji, q1.kanji)
-
+        XCTAssertEqual(vm.totalGoal, 1)
         vm.answer(selected: q1.answer)
-        XCTAssertEqual(vm.phase, .stageCleared, "1問正解でセッション完了")
+        XCTAssertEqual(vm.phase, .stageCleared)
     }
 
-    /// 復習セッション中に不正解 → 再度出題 → 正解でクリア
     func testReviewSession_wrongThenCorrectClears() {
-        let q1 = stage.questions[0]
-        let reviewStage = Stage(stage: stage.stage, questions: [q1])
+        let reviewStage = Stage(stage: 1, questions: [q1])
         let vm = QuizSessionViewModel(stage: reviewStage, appState: appState, statsRepo: statsRepo)
-
-        // 不正解
         let wrongChoice = q1.choices.first { $0 != q1.answer }!
         vm.answer(selected: wrongChoice)
-        XCTAssertEqual(vm.clearedCount, 0)
-
-        // 次へ進む（reviewQueue に入り再出題）
         vm.proceed()
-        XCTAssertEqual(vm.currentQuestion.kanji, q1.kanji, "不正解は再出題される")
-
-        // 正解
+        XCTAssertEqual(vm.currentQuestion.kanji, q1.kanji, "Wrong answer re-queued")
         vm.answer(selected: q1.answer)
         XCTAssertEqual(vm.phase, .stageCleared)
     }
 
     // MARK: - Helpers
 
-    private func makeVM() -> QuizSessionViewModel {
-        QuizSessionViewModel(stage: stage, appState: appState, statsRepo: statsRepo)
+    private func makeVM(mode: QuizMode = .normal) -> QuizSessionViewModel {
+        QuizSessionViewModel(stage: stage, appState: appState, statsRepo: statsRepo, mode: mode)
     }
 }

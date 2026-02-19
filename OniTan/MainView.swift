@@ -1,180 +1,425 @@
 import SwiftUI
 
+// MARK: - Main Quiz View
+
 struct MainView: View {
     @StateObject private var vm: QuizSessionViewModel
     @Environment(\.dismiss) private var dismiss
-    private let clearTitle: String
 
-    init(stage: Stage, appState: AppState, statsRepo: StudyStatsRepository, clearTitle: String? = nil) {
+    init(
+        stage: Stage,
+        appState: AppState,
+        statsRepo: StudyStatsRepository,
+        mode: QuizMode = .normal,
+        clearTitle: String? = nil
+    ) {
         _vm = StateObject(wrappedValue: QuizSessionViewModel(
             stage: stage,
             appState: appState,
-            statsRepo: statsRepo
+            statsRepo: statsRepo,
+            mode: mode,
+            clearTitle: clearTitle
         ))
-        self.clearTitle = clearTitle ?? "ステージ \(stage.stage) クリア！"
     }
 
     var body: some View {
         ZStack {
-            backgroundGradient
+            OniTanTheme.backgroundGradientFallback
+                .ignoresSafeArea()
 
-            VStack(spacing: 20) {
-                quitButton
+            VStack(spacing: 0) {
+                topBar
 
                 switch vm.phase {
                 case .stageCleared:
                     stageClearedView
+                        .transition(.asymmetric(
+                            insertion: .scale(scale: 0.85).combined(with: .opacity),
+                            removal: .opacity
+                        ))
                 default:
                     quizContentView
                 }
             }
-            .padding()
             .navigationBarBackButtonHidden(true)
-        }
-        .alert("確認", isPresented: $vm.showingQuitAlert) {
-            Button("OK", role: .destructive) { dismiss() }
-            Button("キャンセル", role: .cancel) {}
-        } message: {
-            Text("途中で辞めると、ステージクリアになりません。")
-        }
-        .overlay {
+
+            // Explanation overlay
             if vm.phase == .showingExplanation {
-                ExplanationView(question: vm.currentQuestion)
-                    .onTapGesture { vm.proceed() }
-                    .transition(.opacity)
+                ExplanationView(question: vm.currentQuestion) {
+                    vm.proceed()
+                }
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 0.2), value: vm.phase)
+                .zIndex(10)
             }
+        }
+        .animation(.easeInOut(duration: 0.25), value: vm.phase)
+        .alert(item: $vm.activeAlert) { alert in
+            alertView(for: alert)
         }
     }
 
-    // MARK: - Sub-views
+    // MARK: - Top Bar
 
-    private var quitButton: some View {
-        HStack {
-            Button("辞める") {
+    private var topBar: some View {
+        HStack(spacing: 12) {
+            // Quit button
+            Button {
                 if vm.phase == .stageCleared {
                     dismiss()
                 } else {
-                    vm.showingQuitAlert = true
+                    vm.requestQuit()
                 }
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 26))
+                    .foregroundColor(.white.opacity(0.7))
             }
-            .foregroundColor(.red)
+            .accessibilityLabel("終了")
+            .accessibilityHint("タップすると確認ダイアログが表示されます")
+
             Spacer()
+
+            // Mode badge
+            HStack(spacing: 4) {
+                Image(systemName: vm.mode.systemImage)
+                    .font(.system(size: 11))
+                Text(vm.mode.displayName)
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+            }
+            .foregroundColor(.white.opacity(0.6))
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(Color.white.opacity(0.10))
+            .cornerRadius(20)
+
+            // Progress ring
+            ProgressRingView(
+                progress: vm.progressFraction,
+                lineWidth: 5,
+                size: 44,
+                gradient: Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentCorrect])
+            )
+            .accessibilityLabel("進捗 \(vm.clearedCount)問 / \(vm.totalGoal)問")
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 20)
+        .padding(.top, 12)
+        .padding(.bottom, 8)
     }
+
+    // MARK: - Quiz Content
 
     private var quizContentView: some View {
         VStack(spacing: 20) {
-            Text("ステージ \(vm.stageNumber)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.accentColor)
-                .padding(.bottom)
-
-            Text("進行度: \(vm.clearedCount) / \(vm.totalGoal) 問")
-                .font(.headline)
-                .foregroundColor(.secondary)
+            // Stage number + pass indicator
+            stageHeader
 
             Spacer()
 
+            // Kanji display
             kanjiDisplay
 
             Spacer()
 
+            // Choice area
             switch vm.phase {
             case .answering:
-                choiceButtons
+                choiceGrid
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
             case .showingWrongAnswer(let correct):
                 wrongAnswerView(correctAnswer: correct)
+                    .transition(.scale(scale: 0.9).combined(with: .opacity))
             default:
                 EmptyView()
             }
 
-            Spacer()
+            Spacer().frame(maxHeight: 24)
         }
+        .padding(.horizontal, 20)
     }
+
+    private var stageHeader: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("ステージ \(vm.stageNumber)")
+                    .font(.system(.title3, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                if vm.passNumber > 1 {
+                    Text("復習パス \(vm.passNumber)")
+                        .font(.system(.caption, design: .rounded))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                }
+            }
+
+            Spacer()
+
+            Text("\(vm.clearedCount) / \(vm.totalGoal) 問")
+                .font(.system(.subheadline, design: .rounded))
+                .foregroundColor(.white.opacity(0.7))
+        }
+        .accessibilityElement()
+        .accessibilityLabel("ステージ\(vm.stageNumber) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
+    }
+
+    // MARK: - Kanji Display
 
     private var kanjiDisplay: some View {
-        Text(vm.currentQuestion.kanji)
-            .font(.system(size: 150, weight: .heavy, design: .rounded))
-            .foregroundColor(.primary)
-            .minimumScaleFactor(0.5)
-            .lineLimit(1)
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: 200)
-            .background(Color.white.opacity(0.1))
-            .cornerRadius(20)
-            .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
+        ZStack {
+            // Background card
+            RoundedRectangle(cornerRadius: 24)
+                .fill(Color.white.opacity(0.12))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                )
+                .shadow(color: .black.opacity(0.2), radius: 16, y: 8)
+
+            // Flash on answer
+            if vm.lastAnswerResult == .correct {
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(OniTanTheme.accentCorrect.opacity(0.25))
+                    .transition(.opacity)
+            } else if vm.lastAnswerResult == .wrong {
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(OniTanTheme.accentWrong.opacity(0.25))
+                    .transition(.opacity)
+            }
+
+            VStack(spacing: 8) {
+                Text(vm.currentQuestion.kanji)
+                    .font(.system(size: 130, weight: .black, design: .rounded))
+                    .foregroundColor(.white)
+                    .minimumScaleFactor(0.4)
+                    .lineLimit(1)
+                    .shadow(color: .black.opacity(0.3), radius: 4)
+                    .id(vm.currentQuestion.id)   // force re-render on question change
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing).combined(with: .opacity),
+                        removal: .move(edge: .leading).combined(with: .opacity)
+                    ))
+            }
+            .padding(24)
+        }
+        .frame(height: 220)
+        .accessibilityElement()
+        .accessibilityLabel("漢字: \(vm.currentQuestion.kanji)")
+        .accessibilityHint("この漢字の読みを選んでください")
     }
 
-    private var choiceButtons: some View {
-        VStack(spacing: 15) {
-            ForEach(vm.currentQuestion.choices, id: \.self) { choice in
-                Button(action: { vm.answer(selected: choice) }) {
-                    Text(choice)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, minHeight: 60)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(15)
-                        .shadow(color: .blue.opacity(0.3), radius: 5, x: 0, y: 5)
+    // MARK: - 2x2 Choice Grid
+
+    private var choiceGrid: some View {
+        let choices = vm.currentQuestion.choices
+        let rows = choices.chunked(into: 2)
+
+        return VStack(spacing: 12) {
+            ForEach(rows.indices, id: \.self) { rowIndex in
+                HStack(spacing: 12) {
+                    ForEach(rows[rowIndex], id: \.self) { choice in
+                        ChoiceCard(
+                            text: choice,
+                            onTap: {
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                    vm.answer(selected: choice)
+                                }
+                                OniTanTheme.haptic(.medium)
+                            }
+                        )
+                    }
                 }
             }
         }
-        .padding(.horizontal)
     }
+
+    // MARK: - Wrong Answer View
 
     private func wrongAnswerView(correctAnswer: String) -> some View {
-        VStack(spacing: 16) {
-            Text("× 不正解…")
-                .font(.system(size: 60, weight: .heavy))
-                .foregroundColor(.red)
-            Text("正解は「\(correctAnswer)」")
-                .font(.title2)
-                .foregroundColor(.secondary)
-            Button("次へ") { vm.proceed() }
-                .font(.title2)
-                .fontWeight(.bold)
-                .frame(maxWidth: 200, minHeight: 50)
-                .background(Color.orange)
-                .foregroundColor(.white)
-                .cornerRadius(15)
+        VStack(spacing: 20) {
+            VStack(spacing: 8) {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 48))
+                    .foregroundColor(OniTanTheme.accentWrong)
+                    .symbolEffect(.bounce, value: vm.phase)
+
+                Text("不正解")
+                    .font(.system(.title, design: .rounded))
+                    .fontWeight(.black)
+                    .foregroundColor(OniTanTheme.accentWrong)
+
+                Text("正解は「\(correctAnswer)」")
+                    .font(.system(.title2, design: .rounded))
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+            }
+
+            Button {
+                withAnimation { vm.proceed() }
+                OniTanTheme.haptic(.light)
+            } label: {
+                Text("次へ")
+                    .font(.system(.headline, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, minHeight: 54)
+                    .background(
+                        RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+                            .fill(OniTanTheme.wrongGradient)
+                    )
+                    .shadow(color: OniTanTheme.accentWrong.opacity(0.4), radius: 8, y: 4)
+            }
+            .accessibilityLabel("次の問題へ進む")
         }
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                .fill(Color.white.opacity(0.08))
+                .overlay(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .stroke(OniTanTheme.accentWrong.opacity(0.3), lineWidth: 1)
+                )
+        )
     }
+
+    // MARK: - Stage Cleared
 
     private var stageClearedView: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 32) {
             Spacer()
-            Text(clearTitle)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.green)
-            Text("🎉 おめでとうございます！ 🎉")
-                .font(.title)
-                .foregroundColor(.primary)
-            Spacer()
-            Button(action: { dismiss() }) {
-                Text("ステージ選択へ戻る")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: 250, minHeight: 60)
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(30)
-                    .shadow(color: .green.opacity(0.4), radius: 10, x: 0, y: 10)
+
+            // Trophy icon with glow
+            ZStack {
+                Circle()
+                    .fill(OniTanTheme.accentCorrect.opacity(0.15))
+                    .frame(width: 120, height: 120)
+                    .blur(radius: 20)
+
+                Image(systemName: "trophy.fill")
+                    .font(.system(size: 72))
+                    .foregroundStyle(OniTanTheme.goldGradient)
+                    .shadow(color: .yellow.opacity(0.6), radius: 16)
             }
+
+            VStack(spacing: 12) {
+                Text(vm.clearTitle)
+                    .font(.system(size: 32, weight: .black, design: .rounded))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+
+                Text("全 \(vm.totalGoal) 問クリア！")
+                    .font(.system(.title3, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+            }
+
+            // Final progress ring (always 100%)
+            ProgressRingView(
+                progress: 1.0,
+                lineWidth: 12,
+                size: 100,
+                gradient: Gradient(colors: [OniTanTheme.accentCorrect, OniTanTheme.accentPrimary]),
+                label: "完了"
+            )
+            .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 16)
+
             Spacer()
+
+            VStack(spacing: 12) {
+                Button {
+                    OniTanTheme.hapticSuccess()
+                    dismiss()
+                } label: {
+                    Text("ステージ選択へ戻る")
+                        .font(.system(.headline, design: .rounded))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, minHeight: 56)
+                        .background(OniTanTheme.correctGradient)
+                        .cornerRadius(OniTanTheme.radiusButton)
+                        .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 12, y: 6)
+                }
+
+                Button {
+                    withAnimation { vm.resetGame() }
+                } label: {
+                    Text("もう一度")
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundColor(.white.opacity(0.65))
+                }
+            }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 32)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました")
     }
 
-    private var backgroundGradient: some View {
-        LinearGradient(
-            gradient: Gradient(colors: [Color.blue.opacity(0.2), Color.purple.opacity(0.1)]),
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
+    // MARK: - Alert
+
+    private func alertView(for alert: OniAlert) -> Alert {
+        if alert.isDestructive {
+            return Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
+                primaryButton: .destructive(Text("OK")) { dismiss() },
+                secondaryButton: .cancel(Text("キャンセル"))
+            )
+        } else {
+            return Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+    }
+}
+
+// MARK: - Choice Card
+
+private struct ChoiceCard: View {
+    let text: String
+    let onTap: () -> Void
+
+    @State private var isPressed = false
+
+    var body: some View {
+        Button(action: onTap) {
+            Text(text)
+                .font(.system(.title2, design: .rounded))
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .minimumScaleFactor(0.6)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, minHeight: 72)
+                .padding(.horizontal, 8)
+        }
+        .background(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+                .fill(
+                    isPressed
+                        ? OniTanTheme.primaryGradient
+                        : LinearGradient(
+                            colors: [Color.white.opacity(0.15), Color.white.opacity(0.08)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+                        .stroke(Color.white.opacity(isPressed ? 0.5 : 0.2), lineWidth: 1)
+                )
         )
-        .edgesIgnoringSafeArea(.all)
+        .shadow(color: .black.opacity(0.2), radius: 6, y: 3)
+        .scaleEffect(isPressed ? 0.95 : 1.0)
+        .animation(.easeInOut(duration: 0.10), value: isPressed)
+        .buttonStyle(PlainButtonStyle())
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded   { _ in isPressed = false }
+        )
+        .accessibilityLabel("選択肢: \(text)")
+        .accessibilityHint("タップするとこの選択肢を選びます")
     }
 }
 
@@ -182,34 +427,87 @@ struct MainView: View {
 
 struct ExplanationView: View {
     let question: Question
+    let onDismiss: () -> Void
+
+    @State private var appear = false
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.7)
-                .edgesIgnoringSafeArea(.all)
+            Color.black.opacity(0.72)
+                .ignoresSafeArea()
+                .onTapGesture { onDismiss() }
 
-            VStack(spacing: 20) {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(question.kanji)
-                            .font(.system(size: 60, weight: .bold))
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        Text(question.explain)
-                            .font(.body)
+            VStack(spacing: 0) {
+                // Kanji header
+                VStack(spacing: 8) {
+                    Text(question.kanji)
+                        .font(.system(size: 70, weight: .black, design: .rounded))
+                        .foregroundStyle(OniTanTheme.primaryGradient)
+
+                    HStack(spacing: 4) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(OniTanTheme.accentCorrect)
+                        Text("正解！")
+                            .font(.system(.headline, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(OniTanTheme.accentCorrect)
                     }
-                    .padding()
                 }
-                .background(Color.white)
-                .cornerRadius(15)
-                .shadow(radius: 10)
-                .frame(maxHeight: 400)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 24)
+                .background(Color(red: 0.12, green: 0.10, blue: 0.20))
 
-                Text("タップして次へ")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.top, 8)
+                Divider().background(Color.white.opacity(0.15))
+
+                // Explanation body
+                ScrollView {
+                    Text(question.explain)
+                        .font(.system(.body, design: .rounded))
+                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
+                        .lineSpacing(6)
+                        .padding(20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(maxHeight: 260)
+                .background(Color(red: 0.10, green: 0.08, blue: 0.18))
+
+                // Dismiss button
+                Button {
+                    onDismiss()
+                    OniTanTheme.haptic(.light)
+                } label: {
+                    Text("次へ")
+                        .font(.system(.headline, design: .rounded))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, minHeight: 52)
+                        .background(OniTanTheme.primaryGradient)
+                }
             }
-            .padding(.horizontal, 24)
+            .clipShape(RoundedRectangle(cornerRadius: 24))
+            .shadow(color: .black.opacity(0.5), radius: 30)
+            .padding(.horizontal, 20)
+            .scaleEffect(appear ? 1 : 0.88)
+            .opacity(appear ? 1 : 0)
+            .onAppear {
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
+                    appear = true
+                }
+                OniTanTheme.hapticSuccess()
+            }
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("正解の解説: \(question.kanji). \(question.explain)")
+        .accessibilityHint("タップまたは次へボタンで閉じます")
+    }
+}
+
+// MARK: - Array Chunk Helper
+
+private extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
         }
     }
 }

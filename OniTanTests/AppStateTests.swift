@@ -4,79 +4,109 @@ import Foundation
 
 final class AppStateTests: XCTestCase {
 
+    // Uses InMemoryPersistenceStore — no UserDefaults side-effects
+    var store: InMemoryPersistenceStore!
     var appState: AppState!
 
     override func setUpWithError() throws {
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-        }
-        appState = AppState()
+        store = InMemoryPersistenceStore()
+        appState = AppState(store: store)
     }
 
     override func tearDownWithError() throws {
         appState = nil
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-        }
+        store = nil
     }
 
     // MARK: - Initialization
 
-    func testInitialization_emptyUserDefaults() {
+    func testInitialization_empty() {
         XCTAssertTrue(appState.clearedStages.isEmpty, "clearedStages should be empty with no saved data")
     }
 
-    func testInitialization_withSavedData() {
+    func testInitialization_withSavedData() throws {
         let saved: Set<Int> = [1, 3]
-        if let encoded = try? JSONEncoder().encode(saved) {
-            UserDefaults.standard.set(encoded, forKey: "clearedStages")
-        }
-        let newState = AppState()
-        XCTAssertEqual(newState.clearedStages, saved, "clearedStages should load saved data")
+        let encoded = try JSONEncoder().encode(saved)
+        store.set(encoded, forKey: "clearedStages")
+        let newState = AppState(store: store)
+        XCTAssertEqual(newState.clearedStages, saved)
     }
 
     // MARK: - markStageCleared
 
     func testMarkStageCleared() {
         appState.markStageCleared(1)
-        XCTAssertTrue(appState.isCleared(1), "Stage 1 should be cleared")
-        XCTAssertFalse(appState.isCleared(2), "Stage 2 should not be cleared")
+        XCTAssertTrue(appState.isCleared(1))
+        XCTAssertFalse(appState.isCleared(2))
     }
 
-    func testMarkStageCleared_persists() {
+    func testMarkStageCleared_persists() throws {
         appState.markStageCleared(2)
-        let newState = AppState()
-        XCTAssertTrue(newState.isCleared(2), "Cleared stage should be persisted")
+        let newState = AppState(store: store)
+        XCTAssertTrue(newState.isCleared(2), "Cleared stage should be persisted to the store")
+    }
+
+    func testMarkStageCleared_idempotent() {
+        appState.markStageCleared(1)
+        appState.markStageCleared(1)
+        XCTAssertEqual(appState.clearedStages.count, 1)
     }
 
     // MARK: - isUnlocked
 
     func testIsUnlocked_stage1_alwaysUnlocked() {
-        XCTAssertTrue(appState.isUnlocked(1), "Stage 1 is always unlocked")
+        XCTAssertTrue(appState.isUnlocked(1))
     }
 
     func testIsUnlocked_stage2_lockedByDefault() {
-        XCTAssertFalse(appState.isUnlocked(2), "Stage 2 locked before stage 1 cleared")
+        XCTAssertFalse(appState.isUnlocked(2))
     }
 
     func testIsUnlocked_stage2_unlockedAfterStage1Cleared() {
         appState.markStageCleared(1)
-        XCTAssertTrue(appState.isUnlocked(2), "Stage 2 unlocked after stage 1 cleared")
+        XCTAssertTrue(appState.isUnlocked(2))
+    }
+
+    func testIsUnlocked_stage3_lockedWhenOnlyStage1Cleared() {
+        appState.markStageCleared(1)
+        XCTAssertFalse(appState.isUnlocked(3))
+    }
+
+    // MARK: - overallProgress
+
+    func testOverallProgress_zeroClearedStages() {
+        XCTAssertEqual(appState.overallProgress(totalStages: 3), 0.0, accuracy: 0.001)
+    }
+
+    func testOverallProgress_allCleared() {
+        appState.markStageCleared(1)
+        appState.markStageCleared(2)
+        appState.markStageCleared(3)
+        XCTAssertEqual(appState.overallProgress(totalStages: 3), 1.0, accuracy: 0.001)
+    }
+
+    func testOverallProgress_partialCleared() {
+        appState.markStageCleared(1)
+        XCTAssertEqual(appState.overallProgress(totalStages: 3), 1.0 / 3.0, accuracy: 0.001)
+    }
+
+    func testOverallProgress_zeroTotal() {
+        XCTAssertEqual(appState.overallProgress(totalStages: 0), 0.0)
     }
 
     // MARK: - reset
 
-    func testReset_clearsStages() {
+    func testReset_clearsInMemory() {
         appState.markStageCleared(1)
         appState.markStageCleared(2)
         appState.reset()
-        XCTAssertTrue(appState.clearedStages.isEmpty, "clearedStages should be empty after reset")
+        XCTAssertTrue(appState.clearedStages.isEmpty)
     }
 
-    func testReset_clearsUserDefaults() {
+    func testReset_clearsStore() {
         appState.markStageCleared(1)
         appState.reset()
-        let newState = AppState()
-        XCTAssertTrue(newState.clearedStages.isEmpty, "UserDefaults should be cleared after reset")
+        let newState = AppState(store: store)
+        XCTAssertTrue(newState.clearedStages.isEmpty, "Store should be cleared after reset")
     }
 }
