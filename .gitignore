@@ -4,3 +4,8 @@
 **/xcuserdata/
 *.xcuserstate
 DerivedData/
+
+# local artifacts
+.DS_Store
+/.claude/
+/PROJECT/
