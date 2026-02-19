@@ -136,6 +136,42 @@ final class QuizSessionViewModelTests: XCTestCase {
         XCTAssertTrue(vm.showingQuitAlert)
     }
 
+    // MARK: - Review session
+
+    /// 苦手問題だけを渡した「復習セッション」として動作することを検証
+    func testReviewSession_clearsWithSubsetOfQuestions() {
+        // 弱点問題 q1 だけで復習ステージを構成
+        let q1 = stage.questions[0]
+        let reviewStage = Stage(stage: stage.stage, questions: [q1])
+        let vm = QuizSessionViewModel(stage: reviewStage, appState: appState, statsRepo: statsRepo)
+
+        XCTAssertEqual(vm.totalGoal, 1, "復習セッションのゴールは渡した問題数")
+        XCTAssertEqual(vm.currentQuestion.kanji, q1.kanji)
+
+        vm.answer(selected: q1.answer)
+        XCTAssertEqual(vm.phase, .stageCleared, "1問正解でセッション完了")
+    }
+
+    /// 復習セッション中に不正解 → 再度出題 → 正解でクリア
+    func testReviewSession_wrongThenCorrectClears() {
+        let q1 = stage.questions[0]
+        let reviewStage = Stage(stage: stage.stage, questions: [q1])
+        let vm = QuizSessionViewModel(stage: reviewStage, appState: appState, statsRepo: statsRepo)
+
+        // 不正解
+        let wrongChoice = q1.choices.first { $0 != q1.answer }!
+        vm.answer(selected: wrongChoice)
+        XCTAssertEqual(vm.clearedCount, 0)
+
+        // 次へ進む（reviewQueue に入り再出題）
+        vm.proceed()
+        XCTAssertEqual(vm.currentQuestion.kanji, q1.kanji, "不正解は再出題される")
+
+        // 正解
+        vm.answer(selected: q1.answer)
+        XCTAssertEqual(vm.phase, .stageCleared)
+    }
+
     // MARK: - Helpers
 
     private func makeVM() -> QuizSessionViewModel {

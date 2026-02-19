@@ -11,8 +11,10 @@ struct StageSelectView: View {
             ForEach(stages, id: \.stage) { stage in
                 let isCleared = appState.isCleared(stage.stage)
                 let isUnlocked = appState.isUnlocked(stage.stage)
-                let weakCount = statsRepo.weakQuestions(for: stage).count
+                let weakQuestions = statsRepo.weakQuestions(for: stage)
+                let weakCount = weakQuestions.count
 
+                // 通常プレイ行
                 NavigationLink(destination: MainView(stage: stage, appState: appState, statsRepo: statsRepo)) {
                     HStack(spacing: 20) {
                         if isCleared {
@@ -53,6 +55,43 @@ struct StageSelectView: View {
                 }
                 .disabled(!isUnlocked)
                 .listRowBackground(isUnlocked ? Color.clear : Color.gray.opacity(0.1))
+
+                // 復習行（解放済み & 苦手問題あり の場合のみ）
+                if isUnlocked && weakCount > 0 {
+                    let reviewStage = Stage(stage: stage.stage, questions: weakQuestions)
+                    NavigationLink(
+                        destination: MainView(
+                            stage: reviewStage,
+                            appState: appState,
+                            statsRepo: statsRepo,
+                            clearTitle: "復習完了！"
+                        )
+                    ) {
+                        HStack(spacing: 20) {
+                            Image(systemName: "arrow.counterclockwise.circle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.orange)
+
+                            VStack(alignment: .leading) {
+                                Text("復習モード")
+                                    .font(.headline)
+                                    .foregroundColor(.orange)
+                                Text("苦手 \(weakCount) 問を集中練習")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.leading, 50)
+                    }
+                    .listRowBackground(Color.orange.opacity(0.06))
+                }
             }
         }
         .navigationTitle("ステージ選択")

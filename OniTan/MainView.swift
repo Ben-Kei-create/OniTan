@@ -3,13 +3,15 @@ import SwiftUI
 struct MainView: View {
     @StateObject private var vm: QuizSessionViewModel
     @Environment(\.dismiss) private var dismiss
+    private let clearTitle: String
 
-    init(stage: Stage, appState: AppState, statsRepo: StudyStatsRepository) {
+    init(stage: Stage, appState: AppState, statsRepo: StudyStatsRepository, clearTitle: String? = nil) {
         _vm = StateObject(wrappedValue: QuizSessionViewModel(
             stage: stage,
             appState: appState,
             statsRepo: statsRepo
         ))
+        self.clearTitle = clearTitle ?? "ステージ \(stage.stage) クリア！"
     }
 
     var body: some View {
@@ -144,7 +146,7 @@ struct MainView: View {
     private var stageClearedView: some View {
         VStack(spacing: 24) {
             Spacer()
-            Text("ステージ \(vm.stageNumber) クリア！")
+            Text(clearTitle)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.green)
