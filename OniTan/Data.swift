@@ -4,17 +4,13 @@ import OSLog
 private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "OniTan", category: "DataLoading")
 
 let quizData: QuizData = {
-    var allStages: [Stage] = []
-    for i in 1...3 {
-        let filename = "stage\(i).json"
-        let loadedStage: Stage = load(filename)
-        allStages.append(loadedStage)
-    }
-    let loadedUnusedQuestions: [Question]? = loadOptional("unused_questions.json")
-    let loadedData = QuizData(stages: allStages, unused_questions: loadedUnusedQuestions)
+    let manifest: StageManifest = load("stages.json")
+    let allStages: [Stage] = manifest.stages.map { entry in load(entry.file) }
+    let unusedQuestions: [Question]? = loadOptional("unused_questions.json")
+    let loadedData = QuizData(stages: allStages, unused_questions: unusedQuestions)
     for stage in loadedData.stages {
-        if stage.questions.count != 30 {
-            logger.warning("Stage \(stage.stage, privacy: .public) has \(stage.questions.count, privacy: .public) questions, expected 30.")
+        if stage.questions.isEmpty {
+            logger.warning("Stage \(stage.stage, privacy: .public) has no questions.")
         }
     }
     return loadedData
