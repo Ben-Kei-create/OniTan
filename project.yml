@@ -1,0 +1,40 @@
+name: OniTan
+options:
+  bundleIdPrefix: com.fumiakiMogi777
+  deploymentTarget:
+    iOS: "16.0"
+
+targets:
+  OniTan:
+    type: application
+    platform: iOS
+    sources:
+      - path: OniTan
+        excludes:
+          - "**/*.md"
+    resources:
+      - path: OniTan/Resources
+        optional: true
+      - path: Resources
+        optional: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.fumiakiMogi777.OniTan
+        DEVELOPMENT_TEAM: ""   # 必要なら後で埋める（Simulatorだけなら空でOK）
+        GENERATE_INFOPLIST_FILE: YES
+
+  OniTanTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: OniTanTests
+    dependencies:
+      - target: OniTan
+
+  OniTanUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: OniTanUITests
+    dependencies:
+      - target: OniTan

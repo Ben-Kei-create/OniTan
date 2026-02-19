@@ -1,0 +1,579 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0197D2685D3AEBB237D9F940 /* StageManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F823A6137158BA416E060C /* StageManifestTests.swift */; };
+		06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709DAD0107E879561BB3203 /* StatsView.swift */; };
+		177F094D0EBB21EADAE605AF /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF720D8313B0EE232F3045F /* AppState.swift */; };
+		1CF76AF4375B7C0BE8DD4DE3 /* QuizSessionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */; };
+		2B6FDB021767EC7AF38CCDD8 /* OniTanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */; };
+		3005B5F4E7012934860BDFF9 /* OniTanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */; };
+		51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = C3B011EB643E76B5B8B3CBE0 /* stage1.json */; };
+		5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7592732299AE4C3F02EAD315 /* OniTanApp.swift */; };
+		65840B0402AE04492F903F10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352DD65B20BC1C414C33B3C /* MainView.swift */; };
+		88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */; };
+		8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904927EFABE72A0965302AC5 /* QuizData.swift */; };
+		9417672A2D70817B9420092C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5A6A484C73AF85F7810F4 /* SettingsView.swift */; };
+		99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860301C6672CBF8DF84E8AA2 /* HomeView.swift */; };
+		A1D1F660F532ED53C5ED409B /* OniTanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */; };
+		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
+		AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B2EFC3923D1727E152736 /* AppStateTests.swift */; };
+		AEBE96F9C4D4D456E18AE7EB /* stages.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F1395D0735D685DEED95EEC /* stages.json */; };
+		B671326085AE2F3D7A0167E2 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BB68317A918563A730DF620 /* stage3.json */; };
+		C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C22BCB83C026070FB98DC8 /* StageSelectView.swift */; };
+		E584AE3550568854A086E3AF /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = 107EB57A894AA8A8CF252B11 /* stage2.json */; };
+		EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F707F6682B94FE1C60CCE /* Question.swift */; };
+		EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29076909A8310033010EC721 /* QuizSessionViewModel.swift */; };
+		EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 096C66E38B34DF2D43548956 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00D602BA3167699F998F639F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCAF01079AC30C2BAEC35F5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 162DDD53AB6855F5542EF0BC;
+			remoteInfo = OniTan;
+		};
+		8D8FE00EFC8D4BC6EB605044 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCAF01079AC30C2BAEC35F5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 162DDD53AB6855F5542EF0BC;
+			remoteInfo = OniTan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08F823A6137158BA416E060C /* StageManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManifestTests.swift; sourceTree = "<group>"; };
+		096C66E38B34DF2D43548956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		107EB57A894AA8A8CF252B11 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
+		29076909A8310033010EC721 /* QuizSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModel.swift; sourceTree = "<group>"; };
+		2FF720D8313B0EE232F3045F /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyStatsRepository.swift; sourceTree = "<group>"; };
+		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModelTests.swift; sourceTree = "<group>"; };
+		577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		59C22BCB83C026070FB98DC8 /* StageSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSelectView.swift; sourceTree = "<group>"; };
+		5F1395D0735D685DEED95EEC /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
+		74745D835668D62C4F1D5954 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		7592732299AE4C3F02EAD315 /* OniTanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanApp.swift; sourceTree = "<group>"; };
+		7BB68317A918563A730DF620 /* stage3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage3.json; sourceTree = "<group>"; };
+		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		860301C6672CBF8DF84E8AA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		904927EFABE72A0965302AC5 /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
+		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
+		B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITests.swift; sourceTree = "<group>"; };
+		BB9F707F6682B94FE1C60CCE /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		C3B011EB643E76B5B8B3CBE0 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
+		D352DD65B20BC1C414C33B3C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		20CFE708821AC1E4E072923A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3B011EB643E76B5B8B3CBE0 /* stage1.json */,
+				107EB57A894AA8A8CF252B11 /* stage2.json */,
+				7BB68317A918563A730DF620 /* stage3.json */,
+				5F1395D0735D685DEED95EEC /* stages.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F83EF4B07D30D699F0AEABE /* OniTan */ = {
+			isa = PBXGroup;
+			children = (
+				2FF720D8313B0EE232F3045F /* AppState.swift */,
+				096C66E38B34DF2D43548956 /* Assets.xcassets */,
+				74745D835668D62C4F1D5954 /* Data.swift */,
+				860301C6672CBF8DF84E8AA2 /* HomeView.swift */,
+				D352DD65B20BC1C414C33B3C /* MainView.swift */,
+				7592732299AE4C3F02EAD315 /* OniTanApp.swift */,
+				BB9F707F6682B94FE1C60CCE /* Question.swift */,
+				904927EFABE72A0965302AC5 /* QuizData.swift */,
+				29076909A8310033010EC721 /* QuizSessionViewModel.swift */,
+				99F5A6A484C73AF85F7810F4 /* SettingsView.swift */,
+				59C22BCB83C026070FB98DC8 /* StageSelectView.swift */,
+				A709DAD0107E879561BB3203 /* StatsView.swift */,
+				42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */,
+				20CFE708821AC1E4E072923A /* Resources */,
+			);
+			path = OniTan;
+			sourceTree = "<group>";
+		};
+		4B65D13EE156BEE1331DC453 /* OniTanTests */ = {
+			isa = PBXGroup;
+			children = (
+				B23B2EFC3923D1727E152736 /* AppStateTests.swift */,
+				FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */,
+				500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */,
+				08F823A6137158BA416E060C /* StageManifestTests.swift */,
+			);
+			path = OniTanTests;
+			sourceTree = "<group>";
+		};
+		4D9299DB082E20ADE6191048 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8501973E7C7AEEC9131BA60D /* OniTan.app */,
+				4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */,
+				0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6CCCEC17AED11499184DEF0B /* OniTanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */,
+				577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */,
+			);
+			path = OniTanUITests;
+			sourceTree = "<group>";
+		};
+		EBC93F64F93D6A258A843ABB = {
+			isa = PBXGroup;
+			children = (
+				3F83EF4B07D30D699F0AEABE /* OniTan */,
+				4B65D13EE156BEE1331DC453 /* OniTanTests */,
+				6CCCEC17AED11499184DEF0B /* OniTanUITests */,
+				4D9299DB082E20ADE6191048 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		05C0061633CAB5A9464030E0 /* OniTanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A2A5E4B1C5A2831E7DD383F /* Build configuration list for PBXNativeTarget "OniTanTests" */;
+			buildPhases = (
+				1A87F1489B0BE4288D8B2F13 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				461591885B42653DD3059E52 /* PBXTargetDependency */,
+			);
+			name = OniTanTests;
+			packageProductDependencies = (
+			);
+			productName = OniTanTests;
+			productReference = 4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		162DDD53AB6855F5542EF0BC /* OniTan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16CE64002FBD8D27D72C15A7 /* Build configuration list for PBXNativeTarget "OniTan" */;
+			buildPhases = (
+				32BF8172296E37725DD68B23 /* Sources */,
+				8A49CBC20A5A9E0D293B6872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OniTan;
+			packageProductDependencies = (
+			);
+			productName = OniTan;
+			productReference = 8501973E7C7AEEC9131BA60D /* OniTan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FA51812D936614518D7A0719 /* OniTanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7931008E4AF9043FDFFEF719 /* Build configuration list for PBXNativeTarget "OniTanUITests" */;
+			buildPhases = (
+				FAE6B412653CF70B173E193B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F59F84D39C81BBBDF90692E9 /* PBXTargetDependency */,
+			);
+			name = OniTanUITests;
+			packageProductDependencies = (
+			);
+			productName = OniTanUITests;
+			productReference = 0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCAF01079AC30C2BAEC35F5D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					162DDD53AB6855F5542EF0BC = {
+						DevelopmentTeam = "";
+					};
+					FA51812D936614518D7A0719 = {
+						TestTargetID = 162DDD53AB6855F5542EF0BC;
+					};
+				};
+			};
+			buildConfigurationList = 76205FDBA0711912FACF3A20 /* Build configuration list for PBXProject "OniTan" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = EBC93F64F93D6A258A843ABB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				162DDD53AB6855F5542EF0BC /* OniTan */,
+				05C0061633CAB5A9464030E0 /* OniTanTests */,
+				FA51812D936614518D7A0719 /* OniTanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A49CBC20A5A9E0D293B6872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */,
+				51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */,
+				E584AE3550568854A086E3AF /* stage2.json in Resources */,
+				B671326085AE2F3D7A0167E2 /* stage3.json in Resources */,
+				AEBE96F9C4D4D456E18AE7EB /* stages.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A87F1489B0BE4288D8B2F13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */,
+				3005B5F4E7012934860BDFF9 /* OniTanTests.swift in Sources */,
+				1CF76AF4375B7C0BE8DD4DE3 /* QuizSessionViewModelTests.swift in Sources */,
+				0197D2685D3AEBB237D9F940 /* StageManifestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32BF8172296E37725DD68B23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				177F094D0EBB21EADAE605AF /* AppState.swift in Sources */,
+				A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */,
+				99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */,
+				65840B0402AE04492F903F10 /* MainView.swift in Sources */,
+				5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */,
+				EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */,
+				8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */,
+				EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */,
+				9417672A2D70817B9420092C /* SettingsView.swift in Sources */,
+				C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */,
+				06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */,
+				88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAE6B412653CF70B173E193B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1D1F660F532ED53C5ED409B /* OniTanUITests.swift in Sources */,
+				2B6FDB021767EC7AF38CCDD8 /* OniTanUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		461591885B42653DD3059E52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 162DDD53AB6855F5542EF0BC /* OniTan */;
+			targetProxy = 00D602BA3167699F998F639F /* PBXContainerItemProxy */;
+		};
+		F59F84D39C81BBBDF90692E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 162DDD53AB6855F5542EF0BC /* OniTan */;
+			targetProxy = 8D8FE00EFC8D4BC6EB605044 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3639EB14127A7BB751998563 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OniTan;
+			};
+			name = Debug;
+		};
+		3F34E66229C180DDDF2975E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OniTan;
+			};
+			name = Release;
+		};
+		8AA95967C5F0A99D507E666C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTan;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8AEDAB751C579E0D6C981C6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OniTan.app/OniTan";
+			};
+			name = Release;
+		};
+		8ED674368448B55A541DBFD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTan;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9B0C0EF4F8827D4A24013B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9B9FD72118FF8A5C5EB56A02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BC2E3AE6B178DB6CABEBF445 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OniTan.app/OniTan";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		16CE64002FBD8D27D72C15A7 /* Build configuration list for PBXNativeTarget "OniTan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ED674368448B55A541DBFD0 /* Debug */,
+				8AA95967C5F0A99D507E666C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1A2A5E4B1C5A2831E7DD383F /* Build configuration list for PBXNativeTarget "OniTanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC2E3AE6B178DB6CABEBF445 /* Debug */,
+				8AEDAB751C579E0D6C981C6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		76205FDBA0711912FACF3A20 /* Build configuration list for PBXProject "OniTan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B9FD72118FF8A5C5EB56A02 /* Debug */,
+				9B0C0EF4F8827D4A24013B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7931008E4AF9043FDFFEF719 /* Build configuration list for PBXNativeTarget "OniTanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3639EB14127A7BB751998563 /* Debug */,
+				3F34E66229C180DDDF2975E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCAF01079AC30C2BAEC35F5D /* Project object */;
+}
