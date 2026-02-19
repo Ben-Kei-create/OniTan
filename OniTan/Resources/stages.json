@@ -1,0 +1,7 @@
+{
+  "stages": [
+    { "id": 1, "file": "stage1.json", "title": "準1級 基礎", "difficulty": 1 },
+    { "id": 2, "file": "stage2.json", "title": "準1級 標準", "difficulty": 2 },
+    { "id": 3, "file": "stage3.json", "title": "準1級 鬼",   "difficulty": 3 }
+  ]
+}

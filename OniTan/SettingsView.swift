@@ -2,38 +2,30 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("colorScheme") private var colorScheme: String = "system"
-    @EnvironmentObject var appState: AppState // Access AppState
-    
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var statsRepo: StudyStatsRepository
+
+    @State private var showingResetAlert = false
+    @State private var showResetConfirmation = false
+    @State private var showingCannotResetAlert = false
+
     var body: some View {
         Form {
-            Section(header: Text("表示設定")
-                .font(.headline) // Slightly larger header font
-                .foregroundColor(.accentColor) // Accent color for header
-            ) {
+            Section(header: Text("表示設定")) {
                 Picker("モード", selection: $colorScheme) {
                     Text("システム設定").tag("system")
                     Text("ライト").tag("light")
                     Text("ダーク").tag("dark")
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .padding(.vertical, 5) // Add vertical padding to picker
-                .onChange(of: colorScheme) { oldValue, newValue in
-                    print("SettingsView: colorScheme changed from \(oldValue) to \(newValue)")
-                    UserDefaults.standard.synchronize() // Force write to UserDefaults
-                }
             }
-            
-            Section {
+
+            Section(header: Text("データ管理")) {
                 Button(action: {
-                    print("SettingsView: '初期化' button tapped.")
                     if appState.clearedStages.isEmpty {
-                        print("SettingsView: clearedStages is empty. Setting showingCannotResetAlert to true.")
-                        appState.showingCannotResetAlert = true
-                        print("SettingsView: showingCannotResetAlert is now \(appState.showingCannotResetAlert)")
+                        showingCannotResetAlert = true
                     } else {
-                        print("SettingsView: clearedStages is NOT empty. Setting showingResetAlert to true.")
-                        appState.showingResetAlert = true
-                        print("SettingsView: showingResetAlert is now \(appState.showingResetAlert)")
+                        showingResetAlert = true
                     }
                 }) {
                     HStack {
@@ -50,54 +42,28 @@ struct SettingsView: View {
                 }
                 .listRowInsets(EdgeInsets())
                 .buttonStyle(PlainButtonStyle())
-            } header: {
-                Text("データ管理")
-                    .font(.headline)
-                    .foregroundColor(.accentColor)
             }
         }
         .navigationTitle("設定")
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            print("SettingsView: appState.clearedStages.isEmpty = \(appState.clearedStages.isEmpty)")
-            print("SettingsView: appState.clearedStages = \(appState.clearedStages)")
-        }
-        .alert(isPresented: $appState.showingResetAlert) {
-            Alert(
-                title: Text("確認"),
-                message: Text("本当に進行状況を初期化しますか？\nすべてのクリア情報が失われます。"),
-                primaryButton: .destructive(Text("初期化")) {
-                    print("SettingsView: '初期化' alert - Destructive button tapped.")
-                    appState.resetUserDefaults() // Call the new reset method
-                    appState.showResetConfirmation = true // Show confirmation message
-                },
-                secondaryButton: .cancel(Text("キャンセル"))
-            )
-        }
-        .alert(isPresented: $appState.showResetConfirmation) {
-            Alert(
-                title: Text("完了"),
-                message: Text("進行状況が初期化されました。"),
-                dismissButton: .default(Text("OK"))
-            )
-        }
-        .alert(isPresented: $appState.showingCannotResetAlert) {
-            Alert(
-                title: Text("初期化できません"),
-                message: Text("ステージをクリアしていないため、初期化できません。ステージ1をクリアしてから初期化してください"), // Added more helpful message
-                dismissButton: .default(Text("OK")) {
-                    print("SettingsView: '初期化できません' alert - OK button tapped.")
-                }
-            )
-        }
-    }
-    
-    struct SettingsView_Previews: PreviewProvider {
-        static var previews: some View {
-            NavigationView { // Wrap in NavigationView for preview
-                SettingsView()
+        .alert("確認", isPresented: $showingResetAlert) {
+            Button("初期化", role: .destructive) {
+                appState.reset()
+                statsRepo.reset()
+                showResetConfirmation = true
             }
-            .environmentObject(AppState()) // Provide AppState for preview
+            Button("キャンセル", role: .cancel) {}
+        } message: {
+            Text("本当に進行状況を初期化しますか？\nすべてのクリア情報が失われます。")
+        }
+        .alert("完了", isPresented: $showResetConfirmation) {
+            Button("OK") {}
+        } message: {
+            Text("進行状況が初期化されました。")
+        }
+        .alert("初期化できません", isPresented: $showingCannotResetAlert) {
+            Button("OK") {}
+        } message: {
+            Text("ステージをクリアしていないため、初期化できません。")
         }
     }
 }
