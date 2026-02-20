@@ -226,6 +226,7 @@ private struct ModeCard: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(mode.displayName) \(questionCount)問 \(mode.description)")
         .accessibilityHint("タップして\(mode.displayName)で開始")
+        .accessibilityIdentifier("mode_card_\(mode.rawValue)")
     }
 
     private var iconBackground: LinearGradient {

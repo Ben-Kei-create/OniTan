@@ -6,6 +6,8 @@ struct HomeView: View {
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
 
+    @State private var freezeToastVisible = false
+
     private let totalStages = quizData.stages.count
 
     var body: some View {
@@ -34,6 +36,46 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
+            .overlay(alignment: .top) {
+                if freezeToastVisible {
+                    freezeConsumedToast
+                        .padding(.top, 12)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                }
+            }
+            .onChange(of: streakRepo.freezeConsumedNoticeID) { _ in
+                showFreezeToast()
+            }
+        }
+    }
+
+
+    private var freezeConsumedToast: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "snowflake")
+                .foregroundColor(OniTanTheme.accentPrimary)
+            Text("ストリーク保護を使って継続しました")
+                .font(.system(.caption, design: .rounded))
+                .foregroundColor(.white)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(
+            Capsule()
+                .fill(Color.black.opacity(0.45))
+                .overlay(Capsule().stroke(Color.white.opacity(0.15), lineWidth: 1))
+        )
+        .accessibilityLabel("ストリーク保護を使用しました")
+    }
+
+    private func showFreezeToast() {
+        withAnimation(.easeInOut(duration: 0.2)) {
+            freezeToastVisible = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                freezeToastVisible = false
+            }
         }
     }
 
@@ -86,6 +128,10 @@ struct HomeView: View {
                     .foregroundColor(streakRepo.todayCompleted
                         ? OniTanTheme.accentWeak
                         : .white.opacity(0.7))
+
+                Text("🧊\(streakRepo.freezeCount)")
+                    .font(.system(size: 10, weight: .bold, design: .rounded))
+                    .foregroundColor(.white.opacity(0.8))
             } else {
                 Text("記録を作ろう")
                     .font(.system(.caption, design: .rounded))
@@ -111,8 +157,8 @@ struct HomeView: View {
         )
         .accessibilityElement()
         .accessibilityLabel(streakRepo.currentStreak > 0
-            ? "\(streakRepo.currentStreak)日連続学習中"
-            : "ストリーク未記録")
+            ? "\(streakRepo.currentStreak)日連続学習中。保護\(streakRepo.freezeCount)"
+            : "ストリーク未記録。保護\(streakRepo.freezeCount)")
     }
 
     // MARK: - XP Chip
@@ -142,12 +188,10 @@ struct HomeView: View {
                             endPoint: .trailing
                         ))
                         .frame(
-                            width: geo.size.width
-                                * CGFloat(xpRepo.xpInCurrentLevel)
-                                / CGFloat(xpRepo.xpPerLevel),
+                            width: geo.size.width * CGFloat(xpRepo.levelProgress),
                             height: 4
                         )
-                        .animation(.easeInOut(duration: 0.4), value: xpRepo.xpInCurrentLevel)
+                        .animation(.easeInOut(duration: 0.4), value: xpRepo.levelProgress)
                 }
             }
             .frame(width: 44, height: 4)
@@ -163,7 +207,7 @@ struct HomeView: View {
                 )
         )
         .accessibilityElement()
-        .accessibilityLabel("レベル\(xpRepo.level)、XP\(xpRepo.xpInCurrentLevel)/\(xpRepo.xpPerLevel)")
+        .accessibilityLabel("レベル\(xpRepo.level)、XP\(xpRepo.xpInCurrentLevel)/\(xpRepo.xpToNextLevel)")
     }
 
     // MARK: - Progress Ring
@@ -334,6 +378,7 @@ private struct HomeTodayCard: View {
             ? "今日の10問 完了済み。もう一度挑戦できます"
             : "今日の10問 弱点強化と新規問題ミックス。ワンタップで開始")
         .accessibilityHint("タップして今日の10問を開始")
+        .accessibilityIdentifier("home_today_card")
     }
 
     private var cardContent: some View {
@@ -476,5 +521,6 @@ private struct HomeMenuButton<Destination: View>: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel(subtitle != nil ? "\(title): \(subtitle!)" : title)
         .accessibilityHint("タップして\(title)へ進む")
+        .accessibilityIdentifier("home_menu_\(title)")
     }
 }

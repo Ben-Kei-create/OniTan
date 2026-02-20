@@ -63,6 +63,7 @@ private struct StageCard: View {
                     modeSelectBadge
                 }
                 .buttonStyle(PlainButtonStyle())
+                .accessibilityIdentifier("stage_mode_link_\(stage.stage)")
             }
         }
         .background(
@@ -77,6 +78,7 @@ private struct StageCard: View {
         .opacity(isUnlocked ? 1.0 : 0.6)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityText)
+        .accessibilityIdentifier("stage_card_\(stage.stage)")
     }
 
     // MARK: Main Row
