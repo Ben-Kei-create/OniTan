@@ -3,6 +3,8 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
 
     private let totalStages = quizData.stages.count
 
@@ -12,20 +14,24 @@ struct HomeView: View {
                 OniTanTheme.backgroundGradientFallback
                     .ignoresSafeArea()
 
-                // Data load error banner (non-fatal)
                 if let loadError = dataLoadError {
                     dataErrorBanner(loadError)
                 }
 
-                VStack(spacing: 0) {
-                    headerSection
-                    Spacer()
-                    menuSection
-                    Spacer()
-                    footerSection
+                ScrollView {
+                    VStack(spacing: 0) {
+                        headerSection
+                            .padding(.top, 40)
+
+                        menuSection
+                            .padding(.top, 24)
+
+                        footerSection
+                            .padding(.top, 20)
+                            .padding(.bottom, 40)
+                    }
+                    .padding(.horizontal, 24)
                 }
-                .padding(.horizontal, 24)
-                .padding(.vertical, 40)
             }
             .navigationBarHidden(true)
         }
@@ -34,10 +40,9 @@ struct HomeView: View {
     // MARK: - Header
 
     private var headerSection: some View {
-        VStack(spacing: 16) {
-            // App logo / title
+        VStack(spacing: 12) {
             Text("鬼単")
-                .font(.system(size: 88, weight: .black, design: .rounded))
+                .font(.system(size: 80, weight: .black, design: .rounded))
                 .foregroundStyle(
                     LinearGradient(
                         colors: [.white, Color(red: 0.75, green: 0.65, blue: 1.0)],
@@ -53,21 +58,125 @@ struct HomeView: View {
                 .foregroundColor(OniTanTheme.textSecondary)
                 .accessibilityHidden(true)
 
-            // Overall achievement ring
+            HStack(spacing: 12) {
+                streakChip
+                xpChip
+            }
+            .padding(.top, 4)
+
             overallProgressRing
         }
-        .padding(.top, 8)
     }
+
+    // MARK: - Streak Chip
+
+    private var streakChip: some View {
+        HStack(spacing: 5) {
+            Image(systemName: streakRepo.todayCompleted ? "flame.fill" : "flame")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(streakRepo.currentStreak > 0
+                    ? OniTanTheme.accentWeak
+                    : .white.opacity(0.4))
+                .symbolEffect(.bounce, value: streakRepo.todayCompleted)
+
+            if streakRepo.currentStreak > 0 {
+                Text("\(streakRepo.currentStreak)日連続")
+                    .font(.system(.caption, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(streakRepo.todayCompleted
+                        ? OniTanTheme.accentWeak
+                        : .white.opacity(0.7))
+            } else {
+                Text("記録を作ろう")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(.white.opacity(0.5))
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+        .background(
+            Capsule()
+                .fill(streakRepo.todayCompleted
+                    ? Color(red: 0.5, green: 0.25, blue: 0.0).opacity(0.55)
+                    : Color.white.opacity(0.08))
+                .overlay(
+                    Capsule()
+                        .stroke(
+                            streakRepo.currentStreak > 0
+                                ? OniTanTheme.accentWeak.opacity(0.4)
+                                : Color.white.opacity(0.12),
+                            lineWidth: 1
+                        )
+                )
+        )
+        .accessibilityElement()
+        .accessibilityLabel(streakRepo.currentStreak > 0
+            ? "\(streakRepo.currentStreak)日連続学習中"
+            : "ストリーク未記録")
+    }
+
+    // MARK: - XP Chip
+
+    private var xpChip: some View {
+        HStack(spacing: 5) {
+            Image(systemName: "star.fill")
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+
+            Text("Lv.\(xpRepo.level)")
+                .font(.system(.caption, design: .rounded))
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(Color.white.opacity(0.15))
+                        .frame(height: 4)
+
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(LinearGradient(
+                            colors: [Color(red: 1.0, green: 0.85, blue: 0.2),
+                                     Color(red: 1.0, green: 0.55, blue: 0.0)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        ))
+                        .frame(
+                            width: geo.size.width
+                                * CGFloat(xpRepo.xpInCurrentLevel)
+                                / CGFloat(xpRepo.xpPerLevel),
+                            height: 4
+                        )
+                        .animation(.easeInOut(duration: 0.4), value: xpRepo.xpInCurrentLevel)
+                }
+            }
+            .frame(width: 44, height: 4)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+        .background(
+            Capsule()
+                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.55))
+                .overlay(
+                    Capsule()
+                        .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.35), lineWidth: 1)
+                )
+        )
+        .accessibilityElement()
+        .accessibilityLabel("レベル\(xpRepo.level)、XP\(xpRepo.xpInCurrentLevel)/\(xpRepo.xpPerLevel)")
+    }
+
+    // MARK: - Progress Ring
 
     private var overallProgressRing: some View {
         let progress = appState.overallProgress(totalStages: totalStages)
         let cleared = appState.clearedStages.count
 
-        return VStack(spacing: 8) {
+        return VStack(spacing: 6) {
             ProgressRingView(
                 progress: progress,
-                lineWidth: 10,
-                size: 80,
+                lineWidth: 9,
+                size: 70,
                 gradient: Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentCorrect])
             )
             .shadow(color: OniTanTheme.accentPrimary.opacity(0.4), radius: 12)
@@ -83,9 +192,11 @@ struct HomeView: View {
     // MARK: - Menu
 
     private var menuSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 14) {
+            HomeTodayCard()
+
             HomeMenuButton(
-                title: "スタート",
+                title: "ステージ選択",
                 subtitle: "ステージを選んで学習",
                 icon: "books.vertical.fill",
                 gradient: OniTanTheme.primaryGradient,
@@ -94,7 +205,7 @@ struct HomeView: View {
 
             HomeMenuButton(
                 title: "誤答ノート",
-                subtitle: "間違えた漢字を復習",
+                subtitle: "間違えた漢字を復習 → XP獲得",
                 icon: "exclamationmark.triangle.fill",
                 gradient: LinearGradient(
                     colors: [OniTanTheme.accentWeak, Color(red: 0.9, green: 0.4, blue: 0.0)],
@@ -104,13 +215,14 @@ struct HomeView: View {
                 destination: WrongAnswerNoteView()
             )
 
-            HStack(spacing: 16) {
+            HStack(spacing: 14) {
                 HomeMenuButton(
                     title: "統計",
                     subtitle: nil,
                     icon: "chart.bar.fill",
                     gradient: LinearGradient(
-                        colors: [Color(red: 0.3, green: 0.5, blue: 0.9), Color(red: 0.2, green: 0.4, blue: 0.7)],
+                        colors: [Color(red: 0.3, green: 0.5, blue: 0.9),
+                                 Color(red: 0.2, green: 0.4, blue: 0.7)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
@@ -122,7 +234,8 @@ struct HomeView: View {
                     subtitle: nil,
                     icon: "gearshape.fill",
                     gradient: LinearGradient(
-                        colors: [Color(red: 0.4, green: 0.4, blue: 0.5), Color(red: 0.3, green: 0.3, blue: 0.4)],
+                        colors: [Color(red: 0.4, green: 0.4, blue: 0.5),
+                                 Color(red: 0.3, green: 0.3, blue: 0.4)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
@@ -172,6 +285,131 @@ struct HomeView: View {
         }
         .padding(.top, 8)
         .zIndex(1)
+    }
+}
+
+// MARK: - Today Card
+
+private struct HomeTodayCard: View {
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
+
+    @State private var isPressed = false
+
+    /// Today stage is built lazily when NavigationLink destination is created.
+    private var todayStage: Stage {
+        TodaySessionBuilder.buildTodayStage(
+            allStages: quizData.stages,
+            statsRepo: statsRepo,
+            clearedStages: appState.clearedStages
+        )
+    }
+
+    var body: some View {
+        NavigationLink(
+            destination: MainView(
+                stage: todayStage,
+                appState: appState,
+                statsRepo: statsRepo,
+                streakRepo: streakRepo,
+                xpRepo: xpRepo,
+                mode: .quick10,
+                clearTitle: "今日の10問 完了！"
+            )
+        ) {
+            cardContent
+        }
+        .buttonStyle(PlainButtonStyle())
+        .scaleEffect(isPressed ? 0.97 : 1.0)
+        .animation(.easeInOut(duration: 0.12), value: isPressed)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded   { _ in isPressed = false }
+        )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(streakRepo.todayCompleted
+            ? "今日の10問 完了済み。もう一度挑戦できます"
+            : "今日の10問 弱点強化と新規問題ミックス。ワンタップで開始")
+        .accessibilityHint("タップして今日の10問を開始")
+    }
+
+    private var cardContent: some View {
+        HStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .fill(Color.white.opacity(0.18))
+                    .frame(width: 52, height: 52)
+
+                Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
+                    .font(.system(size: 24, weight: .semibold))
+                    .foregroundColor(.white)
+                    .symbolEffect(.bounce, value: streakRepo.todayCompleted)
+            }
+            .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 6) {
+                    Text("今日の10問")
+                        .font(.system(.headline, design: .rounded))
+                        .fontWeight(.black)
+                        .foregroundColor(.white)
+
+                    if streakRepo.todayCompleted {
+                        Text("達成！")
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.white.opacity(0.25))
+                            .cornerRadius(6)
+                    }
+                }
+
+                Text(streakRepo.todayCompleted
+                     ? "本日の目標クリア 🎉 もう一度やる？"
+                     : "弱点優先 + 新規問題 ・ ワンタップで開始")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(.white.opacity(0.80))
+            }
+
+            Spacer()
+
+            Image(systemName: "chevron.right")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.white.opacity(0.65))
+                .accessibilityHidden(true)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 18)
+        .background(cardGradient)
+        .cornerRadius(OniTanTheme.radiusCard)
+        .shadow(
+            color: (streakRepo.todayCompleted
+                ? OniTanTheme.accentCorrect
+                : OniTanTheme.accentWeak).opacity(0.45),
+            radius: 14,
+            y: 6
+        )
+    }
+
+    private var cardGradient: LinearGradient {
+        if streakRepo.todayCompleted {
+            return LinearGradient(
+                colors: [Color(red: 0.10, green: 0.55, blue: 0.30),
+                         Color(red: 0.08, green: 0.40, blue: 0.22)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        }
+        return LinearGradient(
+            colors: [Color(red: 0.95, green: 0.55, blue: 0.05),
+                     Color(red: 0.80, green: 0.30, blue: 0.0)],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
     }
 }
 

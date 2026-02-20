@@ -10,6 +10,8 @@ struct MainView: View {
         stage: Stage,
         appState: AppState,
         statsRepo: StudyStatsRepository,
+        streakRepo: StreakRepository? = nil,
+        xpRepo: GamificationRepository? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil
     ) {
@@ -17,6 +19,8 @@ struct MainView: View {
             stage: stage,
             appState: appState,
             statsRepo: statsRepo,
+            streakRepo: streakRepo,
+            xpRepo: xpRepo,
             mode: mode,
             clearTitle: clearTitle
         ))
@@ -141,7 +145,7 @@ struct MainView: View {
     private var stageHeader: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text("ステージ \(vm.stageNumber)")
+                Text(vm.displayTitle)
                     .font(.system(.title3, design: .rounded))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -159,7 +163,7 @@ struct MainView: View {
                 .foregroundColor(.white.opacity(0.7))
         }
         .accessibilityElement()
-        .accessibilityLabel("ステージ\(vm.stageNumber) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
+        .accessibilityLabel("\(vm.displayTitle) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
     }
 
     // MARK: - Kanji Display

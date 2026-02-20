@@ -138,6 +138,9 @@ private struct ModeCard: View {
     let appState: AppState
     let statsRepo: StudyStatsRepository
 
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
+
     @State private var isPressed = false
 
     private var questionCount: Int {
@@ -152,6 +155,8 @@ private struct ModeCard: View {
                 stage: stage,
                 appState: appState,
                 statsRepo: statsRepo,
+                streakRepo: streakRepo,
+                xpRepo: xpRepo,
                 mode: mode
             )
         ) {
