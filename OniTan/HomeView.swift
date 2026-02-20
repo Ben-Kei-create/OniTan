@@ -128,12 +128,20 @@ struct HomeView: View {
 
     private var streakChip: some View {
         HStack(spacing: 5) {
-            Image(systemName: streakRepo.todayCompleted ? "flame.fill" : "flame")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(streakRepo.currentStreak > 0
-                    ? OniTanTheme.accentWeak
-                    : .white.opacity(0.4))
-                .symbolEffect(.bounce, value: streakRepo.todayCompleted)
+            if #available(iOS 17.0, *) {
+                Image(systemName: streakRepo.todayCompleted ? "flame.fill" : "flame")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(streakRepo.currentStreak > 0
+                        ? OniTanTheme.accentWeak
+                        : .white.opacity(0.4))
+                    .symbolEffect(.bounce, value: streakRepo.todayCompleted)
+            } else {
+                Image(systemName: streakRepo.todayCompleted ? "flame.fill" : "flame")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(streakRepo.currentStreak > 0
+                        ? OniTanTheme.accentWeak
+                        : .white.opacity(0.4))
+            }
 
             if streakRepo.currentStreak > 0 {
                 Text("\(streakRepo.currentStreak)日連続")
@@ -402,10 +410,16 @@ private struct HomeTodayCard: View {
                     .fill(Color.white.opacity(0.18))
                     .frame(width: 52, height: 52)
 
-                Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                    .font(.system(size: 24, weight: .semibold))
-                    .foregroundColor(.white)
-                    .symbolEffect(.bounce, value: streakRepo.todayCompleted)
+                if #available(iOS 17.0, *) {
+                    Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
+                        .font(.system(size: 24, weight: .semibold))
+                        .foregroundColor(.white)
+                        .symbolEffect(.bounce, value: streakRepo.todayCompleted)
+                } else {
+                    Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
+                        .font(.system(size: 24, weight: .semibold))
+                        .foregroundColor(.white)
+                }
             }
             .accessibilityHidden(true)
 
