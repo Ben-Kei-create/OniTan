@@ -40,10 +40,10 @@ enum XPEvent {
 
     var label: String {
         switch self {
-        case .correctAnswer:      return "+5 XP"
-        case .sessionComplete:    return "+20 XP"
-        case .wrongNoteRetrieved: return "+3 XP 回収！"
-        case .comboBonus:         return "+2 XP コンボ！"
+        case .correctAnswer:      return "+\(Self.config.correctAnswerPoints) XP"
+        case .sessionComplete:    return "+\(Self.config.sessionCompletePoints) XP"
+        case .wrongNoteRetrieved: return "+\(Self.config.wrongNoteRetrievedPoints) XP 回収！"
+        case .comboBonus:         return "+\(Self.config.comboBonusPoints) XP コンボ！"
         }
     }
 }
@@ -74,7 +74,19 @@ final class GamificationRepository: ObservableObject {
         /// XP required to go from level N to N+1.
         let requiredXP: (_ level: Int) -> Int
 
+        /// Quasi-exponential growth (×1.35/level): motivating early progression
+        /// that slows to reflect genuine long-term effort.
+        /// Sample thresholds with default XP rates (+5 correct, +20 session):
+        ///   Lv1→2:  100 XP  ≈ 1-2 sessions
+        ///   Lv3→4:  182 XP  ≈ 3 sessions
+        ///   Lv5→6:  332 XP  ≈ 5 sessions
+        ///   Lv10→11: 1604 XP ≈ 23 sessions
         static let `default` = LevelCurve { level in
+            Int(100.0 * pow(1.35, Double(level - 1)))
+        }
+
+        /// Linear ramp, useful for testing and gentle levelling.
+        static let linear = LevelCurve { level in
             max(60, 60 + (level - 1) * 20)
         }
     }

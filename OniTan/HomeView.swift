@@ -7,6 +7,9 @@ struct HomeView: View {
     @EnvironmentObject var xpRepo: GamificationRepository
 
     @State private var freezeToastVisible = false
+    /// Tracks the last freeze-notice ID we showed, so onAppear can catch
+    /// a freeze consumed during StreakRepository.init (before onChange fires).
+    @State private var lastShownFreezeID: Int = -1
 
     private let totalStages = quizData.stages.count
 
@@ -43,7 +46,18 @@ struct HomeView: View {
                         .transition(.move(edge: .top).combined(with: .opacity))
                 }
             }
-            .onChange(of: streakRepo.freezeConsumedNoticeID) { _ in
+            .onAppear {
+                // A freeze consumed during StreakRepository.init fires before
+                // the view subscribes, so onChange would miss it. Catch it here.
+                let current = streakRepo.freezeConsumedNoticeID
+                if lastShownFreezeID == -1 {
+                    lastShownFreezeID = current
+                    if current > 0 { showFreezeToast() }
+                }
+            }
+            .onChange(of: streakRepo.freezeConsumedNoticeID) { newID in
+                guard newID != lastShownFreezeID else { return }
+                lastShownFreezeID = newID
                 showFreezeToast()
             }
         }

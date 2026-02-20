@@ -274,6 +274,84 @@ struct StreakRepositoryTests {
         #expect(repoAgain.currentStreak == 4)
     }
 
+    /// Exactly 2-day gap: lastStudyDate is 2 days ago, which is < yesterday,
+    /// so a freeze should be consumed (boundary condition).
+    @Test func streak_exactlyTwoDayGap_consumesFreeze() {
+        let cal = Calendar.current
+        let now = cal.startOfDay(for: Date())
+        let twoDaysAgo = cal.date(byAdding: .day, value: -2, to: now)!
+
+        let seed = StreakData(
+            currentStreak: 3,
+            longestStreak: 3,
+            lastStudyDate: twoDaysAgo,
+            todayCompleted: false,
+            todayAnswerCount: 0,
+            todayStudySeconds: 0,
+            freezeCount: 1,
+            freezeGrantMonthKey: StreakRepositoryTests.monthKey(for: now)
+        )
+
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+
+        let repo = StreakRepository(store: store, nowProvider: { now })
+        #expect(repo.currentStreak == 3, "2-day gap with freeze should preserve streak")
+        #expect(repo.freezeCount == 0, "Freeze must be consumed on 2-day gap")
+    }
+
+    /// Exactly 1-day gap: lastStudyDate is yesterday, which is NOT < yesterday.
+    /// No freeze should be consumed; streak stays intact and awaits today.
+    @Test func streak_exactlyOneDayGap_noFreezeConsumed() {
+        let cal = Calendar.current
+        let now = cal.startOfDay(for: Date())
+        let yesterday = cal.date(byAdding: .day, value: -1, to: now)!
+
+        let seed = StreakData(
+            currentStreak: 7,
+            longestStreak: 7,
+            lastStudyDate: yesterday,
+            todayCompleted: false,
+            todayAnswerCount: 0,
+            todayStudySeconds: 0,
+            freezeCount: 1,
+            freezeGrantMonthKey: StreakRepositoryTests.monthKey(for: now)
+        )
+
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+
+        let repo = StreakRepository(store: store, nowProvider: { now })
+        #expect(repo.currentStreak == 7, "1-day gap must not break streak (played yesterday)")
+        #expect(repo.freezeCount == 1, "Freeze must NOT be consumed for a 1-day gap")
+    }
+
+    /// When a freeze is consumed, freezeConsumedNoticeID should increment
+    /// so the UI can present a toast (without relying on SwiftUI onChange alone).
+    @Test func streak_freezeConsumedNoticeIDIncrements() {
+        let cal = Calendar.current
+        let now = cal.startOfDay(for: Date())
+        let threeDaysAgo = cal.date(byAdding: .day, value: -3, to: now)!
+
+        let seed = StreakData(
+            currentStreak: 2,
+            longestStreak: 2,
+            lastStudyDate: threeDaysAgo,
+            todayCompleted: false,
+            todayAnswerCount: 0,
+            todayStudySeconds: 0,
+            freezeCount: 1,
+            freezeGrantMonthKey: StreakRepositoryTests.monthKey(for: now)
+        )
+
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+
+        let repo = StreakRepository(store: store, nowProvider: { now })
+        #expect(repo.freezeConsumedNoticeID > 0,
+            "freezeConsumedNoticeID should increment when freeze is consumed at init")
+    }
+
     private static func monthKey(for date: Date) -> String {
         let comps = Calendar.current.dateComponents([.year, .month], from: date)
         return "\(comps.year ?? 0)-\(comps.month ?? 0)"
@@ -313,6 +391,36 @@ struct GamificationRepositoryTests {
             #expect(required >= previous, "requiredXP should be monotonic")
             previous = required
         }
+    }
+
+    /// Default quasi-exponential curve must be strictly increasing (not just monotone).
+    @Test func xp_defaultCurve_isStrictlyIncreasing() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        for level in 1...15 {
+            let current = repo.requiredXP(for: level)
+            let next = repo.requiredXP(for: level + 1)
+            #expect(next > current,
+                "Default curve must strictly increase: requiredXP(\(level+1)) > requiredXP(\(level))")
+        }
+    }
+
+    /// Verify that XPEvent.label reflects the active Config values,
+    /// so custom point values render correctly in the UI.
+    @Test func xp_labelReflectsConfig() {
+        let original = XPEvent.config
+        defer { XPEvent.config = original }
+
+        XPEvent.config = XPEvent.Config(
+            correctAnswerPoints: 10,
+            sessionCompletePoints: 50,
+            wrongNoteRetrievedPoints: 6,
+            comboBonusPoints: 4
+        )
+
+        #expect(XPEvent.correctAnswer.label == "+10 XP")
+        #expect(XPEvent.sessionComplete.label == "+50 XP")
+        #expect(XPEvent.wrongNoteRetrieved.label == "+6 XP 回収！")
+        #expect(XPEvent.comboBonus.label == "+4 XP コンボ！")
     }
 
     @Test func xp_levelState_matchesExpectedBoundaries() {
