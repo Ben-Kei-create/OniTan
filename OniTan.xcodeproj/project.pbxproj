@@ -9,27 +9,37 @@
 /* Begin PBXBuildFile section */
 		0197D2685D3AEBB237D9F940 /* StageManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F823A6137158BA416E060C /* StageManifestTests.swift */; };
 		06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709DAD0107E879561BB3203 /* StatsView.swift */; };
+		077D89097C5A3C5A70A0C559 /* TodaySessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */; };
 		177F094D0EBB21EADAE605AF /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF720D8313B0EE232F3045F /* AppState.swift */; };
 		1CF76AF4375B7C0BE8DD4DE3 /* QuizSessionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */; };
+		1D666F77A86DFCC0C51A2267 /* GamificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878ED351D8C0E69141C83475 /* GamificationRepository.swift */; };
+		20B8C39D07F751DFA50D1FDF /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697706E8DAEDA779C15F4536 /* ProgressRingView.swift */; };
 		2B6FDB021767EC7AF38CCDD8 /* OniTanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */; };
 		3005B5F4E7012934860BDFF9 /* OniTanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */; };
 		51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = C3B011EB643E76B5B8B3CBE0 /* stage1.json */; };
+		539DDFE4A00729EB8F1304B9 /* OniTanTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */; };
 		5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7592732299AE4C3F02EAD315 /* OniTanApp.swift */; };
+		64C54B2B9205CD9DC6DA7074 /* WrongAnswerNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */; };
 		65840B0402AE04492F903F10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352DD65B20BC1C414C33B3C /* MainView.swift */; };
 		88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */; };
 		8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904927EFABE72A0965302AC5 /* QuizData.swift */; };
 		9417672A2D70817B9420092C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5A6A484C73AF85F7810F4 /* SettingsView.swift */; };
 		99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860301C6672CBF8DF84E8AA2 /* HomeView.swift */; };
 		A1D1F660F532ED53C5ED409B /* OniTanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */; };
+		A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAA2A72218BF205143EBB6 /* QuestionKind.swift */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
 		AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B2EFC3923D1727E152736 /* AppStateTests.swift */; };
 		AEBE96F9C4D4D456E18AE7EB /* stages.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F1395D0735D685DEED95EEC /* stages.json */; };
+		B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */; };
 		B671326085AE2F3D7A0167E2 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BB68317A918563A730DF620 /* stage3.json */; };
 		C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C22BCB83C026070FB98DC8 /* StageSelectView.swift */; };
 		E584AE3550568854A086E3AF /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = 107EB57A894AA8A8CF252B11 /* stage2.json */; };
+		E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B304DA79873F9CF82ACCD64 /* QuizMode.swift */; };
 		EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F707F6682B94FE1C60CCE /* Question.swift */; };
 		EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29076909A8310033010EC721 /* QuizSessionViewModel.swift */; };
 		EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 096C66E38B34DF2D43548956 /* Assets.xcassets */; };
+		EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F33F3E41355E6617E24291 /* StreakRepository.swift */; };
+		FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43FC022C83E344ABEE7C03 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,25 +60,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00F33F3E41355E6617E24291 /* StreakRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakRepository.swift; sourceTree = "<group>"; };
+		0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerNoteView.swift; sourceTree = "<group>"; };
 		08F823A6137158BA416E060C /* StageManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManifestTests.swift; sourceTree = "<group>"; };
 		096C66E38B34DF2D43548956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		107EB57A894AA8A8CF252B11 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
+		26DAA2A72218BF205143EBB6 /* QuestionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionKind.swift; sourceTree = "<group>"; };
 		29076909A8310033010EC721 /* QuizSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModel.swift; sourceTree = "<group>"; };
 		2FF720D8313B0EE232F3045F /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyStatsRepository.swift; sourceTree = "<group>"; };
 		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B304DA79873F9CF82ACCD64 /* QuizMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMode.swift; sourceTree = "<group>"; };
+		4B43FC022C83E344ABEE7C03 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 		500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModelTests.swift; sourceTree = "<group>"; };
 		577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		59C22BCB83C026070FB98DC8 /* StageSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSelectView.swift; sourceTree = "<group>"; };
 		5F1395D0735D685DEED95EEC /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
+		697706E8DAEDA779C15F4536 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
+		7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModeSelectView.swift; sourceTree = "<group>"; };
 		74745D835668D62C4F1D5954 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		7592732299AE4C3F02EAD315 /* OniTanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanApp.swift; sourceTree = "<group>"; };
 		7BB68317A918563A730DF620 /* stage3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage3.json; sourceTree = "<group>"; };
 		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		860301C6672CBF8DF84E8AA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		878ED351D8C0E69141C83475 /* GamificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationRepository.swift; sourceTree = "<group>"; };
 		904927EFABE72A0965302AC5 /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
+		A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySessionBuilder.swift; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITests.swift; sourceTree = "<group>"; };
@@ -96,16 +116,26 @@
 				2FF720D8313B0EE232F3045F /* AppState.swift */,
 				096C66E38B34DF2D43548956 /* Assets.xcassets */,
 				74745D835668D62C4F1D5954 /* Data.swift */,
+				4B43FC022C83E344ABEE7C03 /* ErrorState.swift */,
+				878ED351D8C0E69141C83475 /* GamificationRepository.swift */,
 				860301C6672CBF8DF84E8AA2 /* HomeView.swift */,
 				D352DD65B20BC1C414C33B3C /* MainView.swift */,
 				7592732299AE4C3F02EAD315 /* OniTanApp.swift */,
+				9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */,
+				697706E8DAEDA779C15F4536 /* ProgressRingView.swift */,
 				BB9F707F6682B94FE1C60CCE /* Question.swift */,
+				26DAA2A72218BF205143EBB6 /* QuestionKind.swift */,
 				904927EFABE72A0965302AC5 /* QuizData.swift */,
+				4B304DA79873F9CF82ACCD64 /* QuizMode.swift */,
+				7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */,
 				29076909A8310033010EC721 /* QuizSessionViewModel.swift */,
 				99F5A6A484C73AF85F7810F4 /* SettingsView.swift */,
 				59C22BCB83C026070FB98DC8 /* StageSelectView.swift */,
 				A709DAD0107E879561BB3203 /* StatsView.swift */,
+				00F33F3E41355E6617E24291 /* StreakRepository.swift */,
 				42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */,
+				A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */,
+				0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */,
 				20CFE708821AC1E4E072923A /* Resources */,
 			);
 			path = OniTan;
@@ -279,16 +309,26 @@
 			files = (
 				177F094D0EBB21EADAE605AF /* AppState.swift in Sources */,
 				A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */,
+				FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */,
+				1D666F77A86DFCC0C51A2267 /* GamificationRepository.swift in Sources */,
 				99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */,
 				65840B0402AE04492F903F10 /* MainView.swift in Sources */,
 				5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */,
+				539DDFE4A00729EB8F1304B9 /* OniTanTheme.swift in Sources */,
+				20B8C39D07F751DFA50D1FDF /* ProgressRingView.swift in Sources */,
 				EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */,
+				A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */,
 				8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */,
+				E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */,
+				B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */,
 				EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */,
 				9417672A2D70817B9420092C /* SettingsView.swift in Sources */,
 				C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */,
 				06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */,
+				EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */,
 				88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */,
+				077D89097C5A3C5A70A0C559 /* TodaySessionBuilder.swift in Sources */,
+				64C54B2B9205CD9DC6DA7074 /* WrongAnswerNoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +361,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -337,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,6 +412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,6 +565,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

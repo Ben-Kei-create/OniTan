@@ -28,6 +28,9 @@ targets:
     platform: iOS
     sources:
       - path: OniTanTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: OniTan
 
@@ -36,5 +39,8 @@ targets:
     platform: iOS
     sources:
       - path: OniTanUITests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: OniTan
