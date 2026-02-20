@@ -155,6 +155,111 @@ struct OniTanTests {
     }
 }
 
+// MARK: - StreakRepository Tests
+
+struct StreakRepositoryTests {
+
+    @Test func streak_startsAtZero() {
+        let repo = StreakRepository(store: InMemoryPersistenceStore())
+        #expect(repo.currentStreak == 0)
+        #expect(repo.todayCompleted == false)
+        #expect(repo.todayAnswerCount == 0)
+    }
+
+    @Test func streak_completedAfter10CorrectAnswers() {
+        let repo = StreakRepository(store: InMemoryPersistenceStore())
+        for _ in 0..<10 { repo.recordCorrectAnswer() }
+        #expect(repo.todayCompleted == true, "Daily goal should be met after 10 correct answers")
+        #expect(repo.currentStreak == 1)
+        #expect(repo.longestStreak == 1)
+    }
+
+    @Test func streak_completedAfterSufficientStudyTime() {
+        let repo = StreakRepository(store: InMemoryPersistenceStore())
+        repo.addStudyTime(120)
+        #expect(repo.todayCompleted == true, "Daily goal should be met after 120 seconds")
+        #expect(repo.currentStreak == 1)
+    }
+
+    @Test func streak_partialAnswersDontComplete() {
+        let repo = StreakRepository(store: InMemoryPersistenceStore())
+        for _ in 0..<9 { repo.recordCorrectAnswer() }
+        #expect(repo.todayCompleted == false, "9 correct answers should not satisfy the 10-question goal")
+        #expect(repo.currentStreak == 0)
+    }
+
+    @Test func streak_notDuplicatedOnDoubleComplete() {
+        let repo = StreakRepository(store: InMemoryPersistenceStore())
+        for _ in 0..<15 { repo.recordCorrectAnswer() }
+        #expect(repo.currentStreak == 1, "Streak should only increment once per day")
+    }
+
+    @Test func streak_longestTracked() {
+        let repo = StreakRepository(store: InMemoryPersistenceStore())
+        for _ in 0..<10 { repo.recordCorrectAnswer() }
+        #expect(repo.longestStreak >= repo.currentStreak)
+    }
+}
+
+// MARK: - GamificationRepository Tests
+
+struct GamificationRepositoryTests {
+
+    @Test func xp_startsAtZero() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        #expect(repo.totalXP == 0)
+        #expect(repo.todayXP == 0)
+        #expect(repo.level == 1)
+    }
+
+    @Test func xp_correctAnswerAdds5() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        let gained = repo.addXP(.correctAnswer)
+        #expect(gained == 5)
+        #expect(repo.totalXP == 5)
+        #expect(repo.todayXP == 5)
+    }
+
+    @Test func xp_sessionCompleteAdds20() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        repo.addXP(.sessionComplete)
+        #expect(repo.totalXP == 20)
+    }
+
+    @Test func xp_levelIncreasesAt100XP() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        for _ in 0..<20 { repo.addXP(.correctAnswer) }  // 100 XP
+        #expect(repo.level == 2, "Level should be 2 at 100 XP")
+    }
+
+    @Test func xp_levelIsAtLeast1() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        #expect(repo.level >= 1)
+    }
+
+    @Test func xp_xpInCurrentLevelIsModulo100() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        for _ in 0..<23 { repo.addXP(.correctAnswer) }  // 115 XP → level 2, 15 in level
+        #expect(repo.xpInCurrentLevel == 15)
+        #expect(repo.level == 2)
+    }
+
+    @Test func xp_accumulatesAcrossEvents() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        repo.addXP(.correctAnswer)       // +5
+        repo.addXP(.wrongNoteRetrieved)  // +3
+        repo.addXP(.comboBonus)          // +2
+        #expect(repo.totalXP == 10)
+    }
+
+    @Test func xp_todayXPAccumulates() {
+        let repo = GamificationRepository(store: InMemoryPersistenceStore())
+        repo.addXP(.correctAnswer)   // +5
+        repo.addXP(.sessionComplete) // +20
+        #expect(repo.todayXP == 25)
+    }
+}
+
 // MARK: - XCTest-based real data tests
 
 final class RealDataTests: XCTestCase {
