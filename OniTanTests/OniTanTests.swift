@@ -199,6 +199,85 @@ struct StreakRepositoryTests {
         for _ in 0..<10 { repo.recordCorrectAnswer() }
         #expect(repo.longestStreak >= repo.currentStreak)
     }
+
+    @Test func streak_freezeConsumesOnGapOverOneDay() {
+        let cal = Calendar.current
+        let now = cal.startOfDay(for: Date())
+        let threeDaysAgo = cal.date(byAdding: .day, value: -3, to: now)!
+
+        let seed = StreakData(
+            currentStreak: 5,
+            longestStreak: 5,
+            lastStudyDate: threeDaysAgo,
+            todayCompleted: false,
+            todayAnswerCount: 0,
+            todayStudySeconds: 0,
+            freezeCount: 1,
+            freezeGrantMonthKey: nil
+        )
+
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+
+        let repo = StreakRepository(store: store, nowProvider: { now })
+        #expect(repo.currentStreak == 5, "Freeze should preserve streak when there is a gap")
+        #expect(repo.freezeCount == 0, "Freeze should be consumed")
+    }
+
+    @Test func streak_resetsWithoutFreezeOnGapOverOneDay() {
+        let cal = Calendar.current
+        let now = cal.startOfDay(for: Date())
+        let threeDaysAgo = cal.date(byAdding: .day, value: -3, to: now)!
+
+        let seed = StreakData(
+            currentStreak: 5,
+            longestStreak: 5,
+            lastStudyDate: threeDaysAgo,
+            todayCompleted: false,
+            todayAnswerCount: 0,
+            todayStudySeconds: 0,
+            freezeCount: 0,
+            freezeGrantMonthKey: StreakRepositoryTests.monthKey(for: now)
+        )
+
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+
+        let repo = StreakRepository(store: store, nowProvider: { now })
+        #expect(repo.currentStreak == 0, "Streak should reset when no freeze remains")
+        #expect(repo.freezeCount == 0)
+    }
+
+    @Test func streak_freezeConsumedOnlyOncePerGapRepair() {
+        let cal = Calendar.current
+        let now = cal.startOfDay(for: Date())
+        let threeDaysAgo = cal.date(byAdding: .day, value: -3, to: now)!
+
+        let seed = StreakData(
+            currentStreak: 4,
+            longestStreak: 4,
+            lastStudyDate: threeDaysAgo,
+            todayCompleted: false,
+            todayAnswerCount: 0,
+            todayStudySeconds: 0,
+            freezeCount: 1,
+            freezeGrantMonthKey: StreakRepositoryTests.monthKey(for: now)
+        )
+
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+
+        _ = StreakRepository(store: store, nowProvider: { now })
+        let repoAgain = StreakRepository(store: store, nowProvider: { now })
+
+        #expect(repoAgain.freezeCount == 0, "Freeze should not be consumed multiple times for same day")
+        #expect(repoAgain.currentStreak == 4)
+    }
+
+    private static func monthKey(for date: Date) -> String {
+        let comps = Calendar.current.dateComponents([.year, .month], from: date)
+        return "\(comps.year ?? 0)-\(comps.month ?? 0)"
+    }
 }
 
 // MARK: - GamificationRepository Tests
@@ -226,10 +305,38 @@ struct GamificationRepositoryTests {
         #expect(repo.totalXP == 20)
     }
 
-    @Test func xp_levelIncreasesAt100XP() {
+    @Test func xp_requiredXP_isMonotonicIncreasing() {
         let repo = GamificationRepository(store: InMemoryPersistenceStore())
-        for _ in 0..<20 { repo.addXP(.correctAnswer) }  // 100 XP
-        #expect(repo.level == 2, "Level should be 2 at 100 XP")
+        var previous = 0
+        for level in 1...12 {
+            let required = repo.requiredXP(for: level)
+            #expect(required >= previous, "requiredXP should be monotonic")
+            previous = required
+        }
+    }
+
+    @Test func xp_levelState_matchesExpectedBoundaries() {
+        let curve = GamificationRepository.LevelCurve { level in
+            switch level {
+            case 1: return 100
+            case 2: return 200
+            default: return 300
+            }
+        }
+        let repo = GamificationRepository(store: InMemoryPersistenceStore(), levelCurve: curve)
+
+        let atBoundary = repo.levelState(for: 100)
+        #expect(atBoundary.level == 2)
+        #expect(atBoundary.xpInLevel == 0)
+
+        let beforeBoundary = repo.levelState(for: 99)
+        #expect(beforeBoundary.level == 1)
+        #expect(beforeBoundary.xpInLevel == 99)
+
+        let afterBoundary = repo.levelState(for: 101)
+        #expect(afterBoundary.level == 2)
+        #expect(afterBoundary.xpInLevel == 1)
+        #expect(abs(afterBoundary.progress - 0.005) < 0.0001)
     }
 
     @Test func xp_levelIsAtLeast1() {
@@ -237,11 +344,14 @@ struct GamificationRepositoryTests {
         #expect(repo.level >= 1)
     }
 
-    @Test func xp_xpInCurrentLevelIsModulo100() {
-        let repo = GamificationRepository(store: InMemoryPersistenceStore())
-        for _ in 0..<23 { repo.addXP(.correctAnswer) }  // 115 XP → level 2, 15 in level
-        #expect(repo.xpInCurrentLevel == 15)
+    @Test func xp_progressUsesConfigurableCurve() {
+        let curve = GamificationRepository.LevelCurve { _ in 50 }
+        let repo = GamificationRepository(store: InMemoryPersistenceStore(), levelCurve: curve)
+        for _ in 0..<12 { repo.addXP(.correctAnswer) } // 60 XP
         #expect(repo.level == 2)
+        #expect(repo.xpInCurrentLevel == 10)
+        #expect(repo.xpToNextLevel == 50)
+        #expect(abs(repo.levelProgress - 0.2) < 0.0001)
     }
 
     @Test func xp_accumulatesAcrossEvents() {

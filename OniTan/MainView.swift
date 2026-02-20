@@ -230,6 +230,7 @@ struct MainView: View {
         .accessibilityElement()
         .accessibilityLabel("漢字: \(vm.currentQuestion.kanji)")
         .accessibilityHint("この漢字の読みを選んでください")
+        .accessibilityIdentifier("quiz_kanji")
     }
 
     // MARK: - 2x2 Choice Grid
@@ -294,6 +295,7 @@ struct MainView: View {
                     .shadow(color: OniTanTheme.accentWrong.opacity(0.4), radius: 8, y: 4)
             }
             .accessibilityLabel("次の問題へ進む")
+            .accessibilityIdentifier("quiz_next_wrong")
         }
         .padding(20)
         .background(
@@ -477,6 +479,7 @@ private struct ChoiceCard: View {
         )
         .accessibilityLabel("選択肢: \(text)")
         .accessibilityHint("タップするとこの選択肢を選びます")
+        .accessibilityIdentifier("quiz_choice_\(text)")
     }
 }
 
@@ -540,6 +543,7 @@ struct ExplanationView: View {
                         .frame(maxWidth: .infinity, minHeight: 52)
                         .background(OniTanTheme.primaryGradient)
                 }
+                .accessibilityIdentifier("quiz_next_explanation")
             }
             .clipShape(RoundedRectangle(cornerRadius: 24))
             .shadow(color: .black.opacity(0.5), radius: 30)
