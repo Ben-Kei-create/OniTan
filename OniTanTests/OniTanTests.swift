@@ -260,6 +260,87 @@ struct GamificationRepositoryTests {
     }
 }
 
+// MARK: - TodaySessionBuilder Tests
+
+struct TodaySessionBuilderTests {
+
+    private func makeStage(_ n: Int, kanjiPrefix: String, count: Int) -> Stage {
+        let questions = (0..<count).map { i in
+            Question(kanji: "\(kanjiPrefix)\(i)", choices: ["A", "B"], answer: "A", explain: "")
+        }
+        return Stage(stage: n, questions: questions)
+    }
+
+    @Test func todaySession_returnsAtMost10Questions() {
+        let stages = [makeStage(1, kanjiPrefix: "漢", count: 30)]
+        let repo = StudyStatsRepository(store: InMemoryPersistenceStore())
+        let pool = TodaySessionBuilder.buildPool(
+            allStages: stages, statsRepo: repo, clearedStages: []
+        )
+        #expect(pool.count <= 10)
+    }
+
+    @Test func todaySession_noDuplicateKanji() {
+        let stages = [makeStage(1, kanjiPrefix: "字", count: 20),
+                      makeStage(2, kanjiPrefix: "語", count: 20)]
+        let repo = StudyStatsRepository(store: InMemoryPersistenceStore())
+        let pool = TodaySessionBuilder.buildPool(
+            allStages: stages, statsRepo: repo, clearedStages: []
+        )
+        let kanjis = pool.map { $0.kanji }
+        #expect(Set(kanjis).count == kanjis.count, "No duplicate kanji in today's pool")
+    }
+
+    @Test func todaySession_prefersUnclearedStages() {
+        let stage1 = makeStage(1, kanjiPrefix: "A", count: 10)  // cleared
+        let stage2 = makeStage(2, kanjiPrefix: "B", count: 10)  // not cleared
+        let repo = StudyStatsRepository(store: InMemoryPersistenceStore())
+        let pool = TodaySessionBuilder.buildPool(
+            allStages: [stage1, stage2],
+            statsRepo: repo,
+            clearedStages: [1]
+        )
+        // All fill questions should come from stage2 (prefix "B")
+        let fromStage2 = pool.filter { $0.kanji.hasPrefix("B") }
+        let fromStage1 = pool.filter { $0.kanji.hasPrefix("A") }
+        #expect(fromStage2.count >= fromStage1.count,
+            "Should prefer uncleared stage2 questions over cleared stage1")
+    }
+
+    @Test func todaySession_includesWeakQuestionsFirst() {
+        let stage = makeStage(1, kanjiPrefix: "W", count: 20)
+        let repo = StudyStatsRepository(store: InMemoryPersistenceStore())
+        // Mark first 3 kanji as weak
+        repo.record(stageNumber: 1, kanji: "W0", wasCorrect: false, correctAnswer: "A")
+        repo.record(stageNumber: 1, kanji: "W1", wasCorrect: false, correctAnswer: "A")
+        repo.record(stageNumber: 1, kanji: "W2", wasCorrect: false, correctAnswer: "A")
+
+        let pool = TodaySessionBuilder.buildPool(
+            allStages: [stage], statsRepo: repo, clearedStages: []
+        )
+        let weakInPool = pool.filter { ["W0", "W1", "W2"].contains($0.kanji) }
+        #expect(weakInPool.count == 3, "All 3 weak questions should appear in pool (≤5 weak slots)")
+    }
+
+    @Test func todaySession_syntheticStageHasStage0() {
+        let stage = makeStage(1, kanjiPrefix: "Z", count: 10)
+        let repo = StudyStatsRepository(store: InMemoryPersistenceStore())
+        let synthetic = TodaySessionBuilder.buildTodayStage(
+            allStages: [stage], statsRepo: repo, clearedStages: []
+        )
+        #expect(synthetic.stage == 0, "Synthetic today-stage should have stageNumber 0")
+        #expect(!synthetic.questions.isEmpty)
+    }
+
+    @Test func todaySession_emptyStagesReturnsFallback() {
+        let repo = StudyStatsRepository(store: InMemoryPersistenceStore())
+        let synthetic = TodaySessionBuilder.buildTodayStage(
+            allStages: [], statsRepo: repo, clearedStages: []
+        )
+        #expect(synthetic.questions.isEmpty, "Empty input should produce empty stage safely")
+    }
+}
+
 // MARK: - XCTest-based real data tests
 
 final class RealDataTests: XCTestCase {
