@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,12 +52,12 @@
 /* Begin PBXFileReference section */
 		08F823A6137158BA416E060C /* StageManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManifestTests.swift; sourceTree = "<group>"; };
 		096C66E38B34DF2D43548956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OniTanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		107EB57A894AA8A8CF252B11 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
 		29076909A8310033010EC721 /* QuizSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModel.swift; sourceTree = "<group>"; };
 		2FF720D8313B0EE232F3045F /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyStatsRepository.swift; sourceTree = "<group>"; };
-		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModelTests.swift; sourceTree = "<group>"; };
 		577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		59C22BCB83C026070FB98DC8 /* StageSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSelectView.swift; sourceTree = "<group>"; };
@@ -235,7 +235,6 @@
 			);
 			mainGroup = EBC93F64F93D6A258A843ABB;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -321,6 +320,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -337,6 +337,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,6 +371,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
