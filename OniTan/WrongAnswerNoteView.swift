@@ -137,6 +137,7 @@ struct WrongAnswerNoteView: View {
 
 private struct WrongAnswerRow: View {
     let entry: WrongAnswerEntry
+    var showsXPBadge: Bool = true
 
     private var relativeDate: String {
         let formatter = RelativeDateTimeFormatter()
@@ -196,10 +197,25 @@ private struct WrongAnswerRow: View {
 
             Spacer()
 
-            Image(systemName: "chevron.right")
-                .font(.system(size: 12))
-                .foregroundColor(.white.opacity(0.3))
-                .accessibilityHidden(true)
+            VStack(alignment: .trailing, spacing: 4) {
+                if showsXPBadge {
+                    Text("+\(XPEvent.wrongNoteRetrieved.points) XP")
+                        .font(.system(size: 9, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 2)
+                        .background(
+                            Capsule()
+                                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.6))
+                        )
+                        .accessibilityHidden(true)
+                }
+
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12))
+                    .foregroundColor(.white.opacity(0.3))
+                    .accessibilityHidden(true)
+            }
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
@@ -221,8 +237,10 @@ private struct WrongAnswerRow: View {
 struct WrongAnswerDetailSheet: View {
     let entry: WrongAnswerEntry
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var xpRepo: GamificationRepository
 
-    // Look up the full question from quiz data
+    @State private var xpAwarded: Int = 0
+
     private var fullQuestion: Question? {
         questions.first { $0.kanji == entry.kanji }
     }
@@ -305,6 +323,42 @@ struct WrongAnswerDetailSheet: View {
         }
         .presentationDetents([.fraction(0.75), .large])
         .presentationDragIndicator(.hidden)
+        .onAppear {
+            // Award XP for reviewing this wrong answer (capped to 1 per open)
+            xpAwarded = xpRepo.addXP(.wrongNoteRetrieved)
+            OniTanTheme.haptic(.light)
+        }
+        .overlay(alignment: .top) {
+            if xpAwarded > 0 {
+                xpToast
+                    .padding(.top, 20)
+            }
+        }
+    }
+
+    private var xpToast: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "star.fill")
+                .font(.system(size: 12))
+                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+            Text("+\(xpAwarded) XP 回収！")
+                .font(.system(.caption, design: .rounded))
+                .fontWeight(.bold)
+                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 7)
+        .background(
+            Capsule()
+                .fill(Color(red: 0.18, green: 0.14, blue: 0.02))
+                .overlay(
+                    Capsule()
+                        .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1)
+                )
+        )
+        .shadow(color: Color(red: 1.0, green: 0.75, blue: 0.0).opacity(0.3), radius: 6)
+        .transition(.move(edge: .top).combined(with: .opacity))
+        .animation(.spring(response: 0.4, dampingFraction: 0.7).delay(0.1), value: xpAwarded)
     }
 
     private func infoRow(icon: String, iconColor: Color, label: String, value: String) -> some View {

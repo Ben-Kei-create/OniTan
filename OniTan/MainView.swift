@@ -84,6 +84,27 @@ struct MainView: View {
 
             Spacer()
 
+            // Combo badge (appears at 3+ consecutive correct answers)
+            if vm.consecutiveCorrect >= 3 {
+                HStack(spacing: 4) {
+                    Text("🔥")
+                        .font(.system(size: 13))
+                    Text("\(vm.consecutiveCorrect)連続！")
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                }
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .background(
+                    Capsule()
+                        .fill(Color(red: 0.5, green: 0.25, blue: 0.0).opacity(0.55))
+                        .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.5), lineWidth: 1))
+                )
+                .transition(.scale(scale: 0.7).combined(with: .opacity))
+                .animation(.spring(response: 0.3, dampingFraction: 0.6), value: vm.consecutiveCorrect)
+                .accessibilityLabel("\(vm.consecutiveCorrect)連続正解")
+            }
+
             // Mode badge
             HStack(spacing: 4) {
                 Image(systemName: vm.mode.systemImage)
@@ -325,6 +346,11 @@ struct MainView: View {
             )
             .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 16)
 
+            // XP earned this session
+            if vm.sessionXPGained > 0 {
+                sessionXPBadge(vm.sessionXPGained)
+            }
+
             Spacer()
 
             VStack(spacing: 12) {
@@ -354,7 +380,34 @@ struct MainView: View {
             .padding(.bottom, 32)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました")
+        .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました"
+            + (vm.sessionXPGained > 0 ? " +\(vm.sessionXPGained) XP獲得" : ""))
+    }
+
+    // MARK: - XP Badge
+
+    private func sessionXPBadge(_ xp: Int) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: "star.fill")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+            Text("+\(xp) XP 獲得！")
+                .font(.system(.subheadline, design: .rounded))
+                .fontWeight(.bold)
+                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+        .background(
+            Capsule()
+                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.65))
+                .overlay(
+                    Capsule()
+                        .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1)
+                )
+        )
+        .shadow(color: Color(red: 1.0, green: 0.75, blue: 0.0).opacity(0.3), radius: 8)
+        .transition(.scale(scale: 0.8).combined(with: .opacity))
     }
 
     // MARK: - Alert
