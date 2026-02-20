@@ -273,6 +273,116 @@ final class QuizSessionViewModelTests: XCTestCase {
         XCTAssertEqual(vm.phase, .stageCleared)
     }
 
+    // MARK: - Combo Counter
+
+    func testComboCounter_incrementsOnCorrectAnswer() {
+        let vm = makeVM()
+        vm.answer(selected: q1.answer)   // correct
+        XCTAssertEqual(vm.consecutiveCorrect, 1)
+    }
+
+    func testComboCounter_resetsOnWrongAnswer() {
+        let vm = makeVM()
+        vm.answer(selected: q1.answer)           // correct → 1
+        vm.proceed()
+        let wrongChoice = q2.choices.first { $0 != q2.answer }!
+        vm.answer(selected: wrongChoice)          // wrong → reset
+        XCTAssertEqual(vm.consecutiveCorrect, 0)
+    }
+
+    func testComboCounter_countsContinuously() {
+        let vm = makeVM()
+        vm.answer(selected: q1.answer); vm.proceed()  // 1
+        vm.answer(selected: q2.answer); vm.proceed()  // 2
+        vm.answer(selected: q3.answer)                 // 3
+        XCTAssertEqual(vm.consecutiveCorrect, 3)
+    }
+
+    func testComboCounter_resetOnResetGame() {
+        let vm = makeVM()
+        vm.answer(selected: q1.answer)
+        vm.resetGame()
+        XCTAssertEqual(vm.consecutiveCorrect, 0)
+    }
+
+    // MARK: - XP + Streak Integration
+
+    func testXP_accruesOnCorrectAnswers() {
+        let xpStore = InMemoryPersistenceStore()
+        let xpRepo = GamificationRepository(store: xpStore)
+        let vm = QuizSessionViewModel(
+            stage: stage, appState: appState, statsRepo: statsRepo,
+            xpRepo: xpRepo, mode: .normal
+        )
+        vm.answer(selected: q1.answer)
+        XCTAssertEqual(xpRepo.totalXP, XPEvent.correctAnswer.points,
+            "Correct answer should award \(XPEvent.correctAnswer.points) XP")
+    }
+
+    func testXP_sessionCompleteBonus_awardedOnClear() {
+        let xpStore = InMemoryPersistenceStore()
+        let xpRepo = GamificationRepository(store: xpStore)
+        let oneQ = Stage(stage: 1, questions: [q1])
+        let vm = QuizSessionViewModel(
+            stage: oneQ, appState: appState, statsRepo: statsRepo,
+            xpRepo: xpRepo, mode: .normal
+        )
+        vm.answer(selected: q1.answer)
+        XCTAssertEqual(vm.phase, .stageCleared)
+        let expectedXP = XPEvent.correctAnswer.points + XPEvent.sessionComplete.points
+        XCTAssertEqual(xpRepo.totalXP, expectedXP)
+    }
+
+    func testXP_comboBonusEvery3Correct() {
+        let xpStore = InMemoryPersistenceStore()
+        let xpRepo = GamificationRepository(store: xpStore)
+        let vm = QuizSessionViewModel(
+            stage: stage, appState: appState, statsRepo: statsRepo,
+            xpRepo: xpRepo, mode: .normal
+        )
+        // Answer all 3 correct — combo fires at consecutive 3
+        vm.answer(selected: q1.answer); vm.proceed()
+        vm.answer(selected: q2.answer); vm.proceed()
+        vm.answer(selected: q3.answer)
+        // Expected: 3 * correctAnswer(5) + 1 * comboBonus(2) + sessionComplete(20) = 37
+        let expected = 3 * XPEvent.correctAnswer.points
+            + XPEvent.comboBonus.points
+            + XPEvent.sessionComplete.points
+        XCTAssertEqual(xpRepo.totalXP, expected,
+            "Should receive combo bonus after 3 consecutive correct answers")
+    }
+
+    func testStreak_recordsCorrectAnswer() {
+        let streakStore = InMemoryPersistenceStore()
+        let streakRepo = StreakRepository(store: streakStore)
+        let vm = QuizSessionViewModel(
+            stage: stage, appState: appState, statsRepo: statsRepo,
+            streakRepo: streakRepo, mode: .normal
+        )
+        vm.answer(selected: q1.answer)
+        XCTAssertEqual(streakRepo.todayAnswerCount, 1)
+    }
+
+    // MARK: - Today Session (stage 0)
+
+    func testTodaySession_displayTitle() {
+        let todayStage = Stage(stage: 0, questions: [q1, q2])
+        let vm = QuizSessionViewModel(stage: todayStage, appState: appState, statsRepo: statsRepo)
+        XCTAssertEqual(vm.displayTitle, "今日の10問")
+        XCTAssertTrue(vm.isToday)
+    }
+
+    func testTodaySession_doesNotMarkStageCleared() {
+        let todayStage = Stage(stage: 0, questions: [q1])
+        let vm = QuizSessionViewModel(
+            stage: todayStage, appState: appState, statsRepo: statsRepo, mode: .normal
+        )
+        vm.answer(selected: q1.answer)
+        XCTAssertEqual(vm.phase, .stageCleared)
+        XCTAssertFalse(appState.isCleared(0), "Today session should never mark stage 0 as cleared")
+        XCTAssertTrue(appState.clearedStages.isEmpty, "Today session should not touch clearedStages")
+    }
+
     // MARK: - Helpers
 
     private func makeVM(mode: QuizMode = .normal) -> QuizSessionViewModel {

@@ -27,7 +27,9 @@ final class QuizSessionViewModel: ObservableObject {
     @Published private(set) var clearedCount: Int = 0
     @Published private(set) var phase: QuizPhase = .answering
     @Published private(set) var lastAnswerResult: AnswerResult = .none
-    @Published private(set) var passNumber: Int = 1       // which review pass we're on
+    @Published private(set) var passNumber: Int = 1
+    @Published private(set) var consecutiveCorrect: Int = 0   // for combo display
+    @Published private(set) var sessionXPGained: Int = 0      // shown in cleared screen
     @Published var activeAlert: OniAlert? = nil
 
     // MARK: Read-only
@@ -36,14 +38,18 @@ final class QuizSessionViewModel: ObservableObject {
     let mode: QuizMode
     let clearTitle: String
 
-    /// Total distinct kanji in this session (may be < stage.questions.count in quick/exam modes).
+    /// Whether this is the cross-stage "今日の10問" session (stageNumber == 0).
+    var isToday: Bool { stage.stage == 0 }
+
+    /// Human-readable header shown in the quiz top bar.
+    var displayTitle: String {
+        isToday ? "今日の10問" : "ステージ \(stage.stage)"
+    }
+
     var totalGoal: Int { sessionQuestions.count }
     var stageNumber: Int { stage.stage }
+    var remainingCount: Int { pendingQueue.count }
 
-    /// Remaining questions in current pass.
-    var remainingCount: Int { pendingQueue.count + (phase == .answering ? 0 : 0) }
-
-    /// Progress fraction (0.0 – 1.0) based on cleared kanji.
     var progressFraction: Double {
         guard totalGoal > 0 else { return 0 }
         return Double(clearedCount) / Double(totalGoal)
@@ -53,18 +59,14 @@ final class QuizSessionViewModel: ObservableObject {
 
     private let appState: AppState
     private let statsRepo: StudyStatsRepository
+    private let streakRepo: StreakRepository?
+    private let xpRepo: GamificationRepository?
 
-    /// The resolved question list for this session (after mode filtering, shuffle, limit).
     private let sessionQuestions: [Question]
-
-    /// Questions remaining in the current pass (answered wrong come back via reviewQueue).
     private var pendingQueue: [Question]
-
-    /// Wrong answers accumulated in the current pass, to be retried next pass.
     private var reviewQueue: [Question] = []
-
-    /// Kanji that have been answered correctly at least once.
     private var clearedKanji: Set<String> = []
+    private var sessionStartTime = Date()
 
     // MARK: - Init
 
@@ -72,25 +74,31 @@ final class QuizSessionViewModel: ObservableObject {
         stage: Stage,
         appState: AppState,
         statsRepo: StudyStatsRepository,
+        streakRepo: StreakRepository? = nil,
+        xpRepo: GamificationRepository? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil
     ) {
         self.stage = stage
         self.appState = appState
         self.statsRepo = statsRepo
+        self.streakRepo = streakRepo
+        self.xpRepo = xpRepo
         self.mode = mode
         self.clearTitle = clearTitle ?? Self.defaultClearTitle(for: mode, stageNumber: stage.stage)
 
-        // Build the resolved question list using the mode's rules
         let weakKanji = Set(statsRepo.allWeakKanji(forStage: stage.stage))
-        let resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)
+        // For today-session (stage 0) the pool is pre-built; don't re-filter by mode
+        let resolved: [Question]
+        if stage.stage == 0 {
+            resolved = stage.questions  // already curated by TodaySessionBuilder
+        } else {
+            resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)
+        }
 
-        // Guard against empty question list (shouldn't happen with valid data)
         let safeResolved = resolved.isEmpty ? stage.questions : resolved
         self.sessionQuestions = safeResolved
         self.pendingQueue = safeResolved
-
-        // Guaranteed safe: we ensured non-empty above
         self.currentQuestion = safeResolved[0]
     }
 
@@ -102,27 +110,44 @@ final class QuizSessionViewModel: ObservableObject {
         let question = currentQuestion
         let isCorrect = selected == question.answer
 
-        statsRepo.record(stageNumber: stage.stage, kanji: question.kanji, wasCorrect: isCorrect)
+        statsRepo.record(
+            stageNumber: stage.stage,
+            kanji: question.kanji,
+            wasCorrect: isCorrect,
+            selectedAnswer: selected,
+            correctAnswer: question.answer
+        )
         pendingQueue.removeFirst()
 
         if isCorrect {
             lastAnswerResult = .correct
+            consecutiveCorrect += 1
             clearedKanji.insert(question.kanji)
             clearedCount = clearedKanji.count
 
+            // XP for correct answer
+            let xpGained = xpRepo?.addXP(.correctAnswer) ?? 0
+            sessionXPGained += xpGained
+
+            // Combo bonus every 3 consecutive correct answers
+            if consecutiveCorrect > 0, consecutiveCorrect % 3 == 0 {
+                let comboXP = xpRepo?.addXP(.comboBonus) ?? 0
+                sessionXPGained += comboXP
+            }
+
+            // Streak
+            streakRepo?.recordCorrectAnswer()
+
             if clearedKanji.count >= totalGoal {
-                // Only mark stage cleared in normal/weakFocus modes (not in exam/quick)
-                if mode == .normal || mode == .weakFocus {
-                    appState.markStageCleared(stage.stage)
-                }
-                phase = .stageCleared
+                onSessionCleared()
                 return
             }
             phase = .showingExplanation
 
         } else {
             lastAnswerResult = .wrong
-            // Re-queue for review only in modes that use it
+            consecutiveCorrect = 0
+
             if mode.usesReviewQueue, !reviewQueue.contains(where: { $0.kanji == question.kanji }) {
                 reviewQueue.append(question)
             }
@@ -130,18 +155,13 @@ final class QuizSessionViewModel: ObservableObject {
         }
     }
 
-    /// Called after the user taps through an explanation or wrong-answer screen.
     func proceed() {
         guard phase != .answering, phase != .stageCleared else { return }
         lastAnswerResult = .none
 
         if pendingQueue.isEmpty {
-            // Current pass finished — start review pass or declare clear
             if reviewQueue.isEmpty || !mode.usesReviewQueue {
-                if mode == .normal || mode == .weakFocus {
-                    appState.markStageCleared(stage.stage)
-                }
-                phase = .stageCleared
+                onSessionCleared()
             } else {
                 passNumber += 1
                 pendingQueue = reviewQueue
@@ -155,10 +175,14 @@ final class QuizSessionViewModel: ObservableObject {
         }
     }
 
-    /// Reset the session from the beginning.
     func resetGame() {
         let weakKanji = Set(statsRepo.allWeakKanji(forStage: stage.stage))
-        let resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)
+        let resolved: [Question]
+        if stage.stage == 0 {
+            resolved = stage.questions
+        } else {
+            resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)
+        }
         let safe = resolved.isEmpty ? stage.questions : resolved
         pendingQueue = safe
         reviewQueue = []
@@ -166,21 +190,42 @@ final class QuizSessionViewModel: ObservableObject {
         clearedCount = 0
         passNumber = 1
         lastAnswerResult = .none
+        consecutiveCorrect = 0
+        sessionXPGained = 0
+        sessionStartTime = Date()
         currentQuestion = safe[0]
         phase = .answering
     }
 
     func requestQuit() {
         if phase == .stageCleared {
-            activeAlert = nil  // caller should dismiss view directly
+            activeAlert = nil
         } else {
             activeAlert = .quitConfirmation
         }
     }
 
-    // MARK: - Helpers
+    // MARK: - Private
+
+    private func onSessionCleared() {
+        // Mark stage cleared only for normal/weakFocus on real stages
+        if !isToday, mode == .normal || mode == .weakFocus {
+            appState.markStageCleared(stage.stage)
+        }
+
+        // Award session-complete XP
+        let sessionXP = xpRepo?.addXP(.sessionComplete) ?? 0
+        sessionXPGained += sessionXP
+
+        // Record study time for streak
+        let studyTime = Date().timeIntervalSince(sessionStartTime)
+        streakRepo?.addStudyTime(studyTime)
+
+        phase = .stageCleared
+    }
 
     private static func defaultClearTitle(for mode: QuizMode, stageNumber: Int) -> String {
+        if stageNumber == 0 { return "今日の10問 完了！" }
         switch mode {
         case .quick10:   return "クイック完了！"
         case .exam30:    return "模試完了！"
