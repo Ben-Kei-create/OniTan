@@ -612,3 +612,171 @@ final class RealDataTests: XCTestCase {
         XCTAssertNil(dataLoadError, "Production data should load without errors. Error: \(dataLoadError?.localizedDescription ?? "none")")
     }
 }
+
+// MARK: - QuestionModel Tests (decoding + validation)
+
+struct QuestionModelTests {
+
+    // ── Helpers ─────────────────────────────────────────────────────────
+
+    private func decode(_ json: String) throws -> Question {
+        let data = json.data(using: .utf8)!
+        return try JSONDecoder().decode(Question.self, from: data)
+    }
+
+    private func stage(_ questions: Question...) -> Stage {
+        Stage(stage: 99, questions: questions)
+    }
+
+    private func quizData(_ stages: Stage...) -> QuizData {
+        QuizData(stages: stages, unused_questions: nil)
+    }
+
+    // ── Decoding: legacy format ──────────────────────────────────────────
+
+    /// Legacy JSON without "kind" → defaults to .reading
+    @Test func decode_legacyJSON_noKindField() throws {
+        let json = """
+        {"kanji":"燎","choices":["A","B","C","D"],"answer":"A","explain":"説明"}
+        """
+        let q = try decode(json)
+        #expect(q.kind == .reading, "Missing kind should default to .reading")
+        #expect(q.kanji == "燎")
+        #expect(q.explain == "説明")
+        #expect(q.payload == nil)
+    }
+
+    /// Legacy JSON using "explain" key (not "explanation")
+    @Test func decode_legacyJSON_explainKey() throws {
+        let json = """
+        {"kanji":"逞","choices":["A","B"],"answer":"B","explain":"旧キー説明"}
+        """
+        let q = try decode(json)
+        #expect(q.explain == "旧キー説明")
+    }
+
+    /// New JSON with "explanation" key (preferred new key)
+    @Test func decode_newJSON_explanationKey() throws {
+        let json = """
+        {"kanji":"燎","choices":["A","B"],"answer":"A","explanation":"新キー説明"}
+        """
+        let q = try decode(json)
+        #expect(q.explain == "新キー説明", "explanation key should be accepted")
+    }
+
+    /// Full new JSON with kind, payload, tags, difficulty
+    @Test func decode_newJSON_withKindAndPayload() throws {
+        let json = """
+        {
+          "kanji": "燎",
+          "choices": ["A","B","C","D"],
+          "answer": "A",
+          "explain": "e",
+          "kind": "reading",
+          "tags": ["常用外"],
+          "difficulty": 3,
+          "payload": {
+            "type": "reading",
+            "targetKanji": "燎",
+            "readingType": "on"
+          }
+        }
+        """
+        let q = try decode(json)
+        #expect(q.kind == .reading)
+        #expect(q.tags == ["常用外"])
+        #expect(q.difficulty == 3)
+        #expect(q.payload?.targetKanji == "燎")
+        #expect(q.payload?.readingType == "on")
+    }
+
+    /// Unknown kind string → .unknown (must not crash)
+    @Test func decode_unknownKind() throws {
+        let json = """
+        {"kanji":"燎","choices":["A","B"],"answer":"A","explain":"e","kind":"future_kind_xyz"}
+        """
+        let q = try decode(json)
+        #expect(q.kind == .unknown, "Unrecognised kind should map to .unknown")
+    }
+
+    // ── validateQuizDataStrict: fatal errors ─────────────────────────────
+
+    /// Empty kanji (prompt) → fatal error
+    @Test func validate_missingPrompt() throws {
+        let q = Question(kanji: "", choices: ["A", "B"], answer: "A", explain: "e")
+        #expect(throws: DataLoadError.self) {
+            try validateQuizDataStrict(quizData(stage(q)))
+        }
+    }
+
+    /// Answer not in choices → fatal error
+    @Test func validate_answerNotInChoices() throws {
+        let q = Question(kanji: "燎", choices: ["A", "B"], answer: "Z", explain: "e")
+        #expect(throws: DataLoadError.self) {
+            try validateQuizDataStrict(quizData(stage(q)))
+        }
+    }
+
+    /// Duplicate kanji within same stage → fatal error
+    @Test func validate_duplicateIDsWithinStage() throws {
+        let q1 = Question(kanji: "燎", choices: ["A", "B"], answer: "A", explain: "e")
+        let q2 = Question(kanji: "燎", choices: ["C", "D"], answer: "C", explain: "e")
+        let s = Stage(stage: 99, questions: [q1, q2])
+        #expect(throws: DataLoadError.self) {
+            try validateQuizDataStrict(QuizData(stages: [s], unused_questions: nil))
+        }
+    }
+
+    /// cloze where sentence does not contain blankToken → fatal error
+    @Test func validate_cloze_blankNotInSentence() throws {
+        let payload = QuestionPayload(
+            type: "cloze",
+            sentence: "この文章に穴はありません",
+            blankToken: "存在しないトークン"
+        )
+        let q = Question(kanji: "燎", choices: ["A", "B"], answer: "A",
+                         explain: "e", kind: .cloze, payload: payload)
+        #expect(throws: DataLoadError.self) {
+            try validateQuizDataStrict(quizData(stage(q)))
+        }
+    }
+
+    /// errorcorrection where wrongKanji == correctKanji → fatal error
+    @Test func validate_errorcorrection_sameKanji() throws {
+        let payload = QuestionPayload(
+            type: "errorcorrection",
+            originalSentence: "誤字を含む文章",
+            wrongKanji: "燎",
+            correctKanji: "燎"
+        )
+        let q = Question(kanji: "燎", choices: ["A", "B"], answer: "A",
+                         explain: "e", kind: .errorcorrection, payload: payload)
+        #expect(throws: DataLoadError.self) {
+            try validateQuizDataStrict(quizData(stage(q)))
+        }
+    }
+
+    // ── validateQuizData: warnings (non-throwing) ─────────────────────────
+
+    /// 2 choices is below the 4-choice recommendation but above the 2-choice
+    /// hard minimum → must NOT throw, but should appear in warnings.
+    @Test func validate_choicesLessThanFour_isWarningNotError() throws {
+        let q = Question(kanji: "燎", choices: ["A", "B"], answer: "A", explain: "e")
+        // Must not throw
+        try validateQuizDataStrict(quizData(stage(q)))
+        // Must appear as a warning in the soft-validation list
+        let warnings = validateQuizData(quizData(stage(q)))
+        #expect(warnings.contains { $0.contains("推奨は4個") },
+            "2-choice question should produce a '推奨は4個' warning")
+    }
+
+    /// Unknown kind produces a warning but does not throw
+    @Test func validate_unknownKind_isWarning() throws {
+        let q = Question(kanji: "燎", choices: ["A", "B", "C", "D"], answer: "A",
+                         explain: "e", kind: .unknown)
+        try validateQuizDataStrict(quizData(stage(q)))  // must not throw
+        let warnings = validateQuizData(quizData(stage(q)))
+        #expect(warnings.contains { $0.contains("不明な値") },
+            "unknown kind should produce a warning")
+    }
+}
