@@ -102,6 +102,24 @@ struct HomeView: View {
 
     private func headerSection(isCompact: Bool) -> some View {
         VStack(spacing: isCompact ? 8 : 12) {
+            HStack(spacing: isCompact ? 8 : 10) {
+                Spacer()
+
+                HomeHeaderIconButton(
+                    icon: "chart.bar.fill",
+                    accessibilityTitle: "統計",
+                    compact: isCompact,
+                    destination: StatsView()
+                )
+
+                HomeHeaderIconButton(
+                    icon: "gearshape.fill",
+                    accessibilityTitle: "設定",
+                    compact: isCompact,
+                    destination: SettingsView()
+                )
+            }
+
             Text("鬼単")
                 .font(.system(size: isCompact ? 68 : 80, weight: .black, design: .rounded))
                 .foregroundStyle(
@@ -260,34 +278,6 @@ struct HomeView: View {
                 compact: isCompact,
                 destination: WrongAnswerNoteView()
             )
-
-            HStack(spacing: isCompact ? 10 : 12) {
-                HomeMenuButton(
-                    title: "統計",
-                    icon: "chart.bar.fill",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 0.3, green: 0.5, blue: 0.9),
-                                 Color(red: 0.2, green: 0.4, blue: 0.7)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    compact: isCompact,
-                    destination: StatsView()
-                )
-
-                HomeMenuButton(
-                    title: "設定",
-                    icon: "gearshape.fill",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 0.4, green: 0.4, blue: 0.5),
-                                 Color(red: 0.3, green: 0.3, blue: 0.4)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    compact: isCompact,
-                    destination: SettingsView()
-                )
-            }
         }
     }
 
@@ -459,6 +449,46 @@ private struct HomeTodayCard: View {
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
+    }
+}
+
+// MARK: - Header Icon Button
+
+private struct HomeHeaderIconButton<Destination: View>: View {
+    let icon: String
+    let accessibilityTitle: String
+    let compact: Bool
+    let destination: Destination
+
+    @State private var isPressed = false
+
+    var body: some View {
+        NavigationLink(destination: destination) {
+            Image(systemName: icon)
+                .font(.system(size: compact ? 16 : 17, weight: .semibold))
+                .foregroundColor(.white)
+                .frame(width: compact ? 38 : 40, height: compact ? 38 : 40)
+                .background(
+                    Circle()
+                        .fill(Color.white.opacity(isPressed ? 0.26 : 0.18))
+                        .overlay(
+                            Circle()
+                                .stroke(Color.white.opacity(0.22), lineWidth: 1)
+                        )
+                )
+                .shadow(color: .black.opacity(0.24), radius: 6, y: 3)
+                .scaleEffect(isPressed ? 0.95 : 1.0)
+                .animation(.easeInOut(duration: 0.12), value: isPressed)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded { _ in isPressed = false }
+        )
+        .accessibilityLabel(accessibilityTitle)
+        .accessibilityHint("タップして\(accessibilityTitle)へ進む")
+        .accessibilityIdentifier("home_header_icon_\(accessibilityTitle)")
     }
 }
 
