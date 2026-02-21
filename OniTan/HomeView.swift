@@ -17,6 +17,7 @@ struct HomeView: View {
         NavigationStack {
             GeometryReader { proxy in
                 let contentMinHeight = proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
+                let contentWidth = min(proxy.size.width - 28, 520)
 
                 ZStack {
                     OniTanTheme.backgroundGradientFallback
@@ -30,17 +31,17 @@ struct HomeView: View {
                         VStack(spacing: 0) {
                             headerSection
                                 .padding(.top, 20)
+                                .frame(maxWidth: contentWidth)
 
                             menuSection
                                 .padding(.top, 20)
-                                // Keep cards slightly narrower than the page for easier tapping focus.
-                                .padding(.horizontal, 10)
+                                .frame(maxWidth: contentWidth)
 
                             footerSection
                                 .padding(.top, 20)
                                 .padding(.bottom, 40)
+                                .frame(maxWidth: contentWidth)
                         }
-                        .padding(.horizontal, 16)
                         .frame(maxWidth: .infinity)
                         .frame(minHeight: contentMinHeight, alignment: .top)
                     }
@@ -413,20 +414,20 @@ private struct HomeTodayCard: View {
     }
 
     private var cardContent: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 12) {
             ZStack {
                 Circle()
                     .fill(Color.white.opacity(0.18))
-                    .frame(width: 52, height: 52)
+                    .frame(width: 46, height: 46)
 
                 if #available(iOS 17.0, *) {
                     Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: 24, weight: .semibold))
+                        .font(.system(size: 21, weight: .semibold))
                         .foregroundColor(.white)
                         .symbolEffect(.bounce, value: streakRepo.todayCompleted)
                 } else {
                     Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: 24, weight: .semibold))
+                        .font(.system(size: 21, weight: .semibold))
                         .foregroundColor(.white)
                 }
             }
@@ -435,13 +436,15 @@ private struct HomeTodayCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
                     Text("今日の10問")
-                        .font(.system(.headline, design: .rounded))
+                        .font(.system(size: 18, weight: .black, design: .rounded))
                         .fontWeight(.black)
                         .foregroundColor(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.85)
 
                     if streakRepo.todayCompleted {
                         Text("達成！")
-                            .font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 10, weight: .bold))
                             .foregroundColor(.white)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
@@ -453,19 +456,21 @@ private struct HomeTodayCard: View {
                 Text(streakRepo.todayCompleted
                      ? "本日の目標クリア 🎉 もう一度やる？"
                      : "弱点優先 + 新規問題 ・ ワンタップで開始")
-                    .font(.system(.caption, design: .rounded))
+                    .font(.system(size: 12, design: .rounded))
                     .foregroundColor(.white.opacity(0.80))
+                    .lineLimit(2)
             }
 
             Spacer()
 
             Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .semibold))
+                .font(.system(size: 13, weight: .semibold))
                 .foregroundColor(.white.opacity(0.65))
                 .accessibilityHidden(true)
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
         .background(cardGradient)
         .cornerRadius(OniTanTheme.radiusCard)
         .shadow(
@@ -508,37 +513,41 @@ private struct HomeMenuButton<Destination: View>: View {
 
     var body: some View {
         NavigationLink(destination: destination) {
-            HStack(spacing: 16) {
+            HStack(spacing: 12) {
                 Image(systemName: icon)
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(.system(size: 19, weight: .semibold))
                     .foregroundColor(.white)
-                    .frame(width: 44, height: 44)
+                    .frame(width: 40, height: 40)
                     .background(Color.white.opacity(0.2))
                     .clipShape(Circle())
                     .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
-                        .font(.system(.headline, design: .rounded))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.85)
 
                     if let subtitle {
                         Text(subtitle)
-                            .font(.system(.caption, design: .rounded))
+                            .font(.system(size: 12, design: .rounded))
                             .foregroundColor(.white.opacity(0.75))
+                            .lineLimit(2)
                     }
                 }
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(.white.opacity(0.6))
                     .accessibilityHidden(true)
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 13)
             .background(gradient)
             .cornerRadius(OniTanTheme.radiusCard)
             .shadow(
