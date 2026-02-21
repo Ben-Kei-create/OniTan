@@ -29,7 +29,6 @@ struct MainView: View {
     var body: some View {
         GeometryReader { proxy in
             let scale = layoutScale(containerHeight: proxy.size.height, safeArea: proxy.safeAreaInsets)
-            let contentHeight = proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
 
             ZStack {
                 OniTanTheme.backgroundGradientFallback
@@ -46,7 +45,7 @@ struct MainView: View {
                                 removal: .opacity
                             ))
                     default:
-                        quizContentView(scale: scale, availableHeight: contentHeight)
+                        quizContentView(scale: scale)
                     }
                 }
                 .navigationBarBackButtonHidden(true)
@@ -139,9 +138,8 @@ struct MainView: View {
 
     // MARK: - Quiz Content
 
-    @ViewBuilder
-    private func quizContentView(scale: CGFloat, availableHeight: CGFloat) -> some View {
-        let content = VStack(spacing: scaled(20, by: scale, min: 12)) {
+    private func quizContentView(scale: CGFloat) -> some View {
+        VStack(spacing: scaled(20, by: scale, min: 12)) {
             // Stage number + pass indicator
             stageHeader(scale: scale)
 
@@ -168,15 +166,6 @@ struct MainView: View {
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .frame(maxWidth: .infinity, alignment: .top)
-
-        if availableHeight < 760 || isWrongAnswerPhase {
-            ScrollView(showsIndicators: false) {
-                content
-                    .frame(minHeight: availableHeight - scaled(16, by: scale, min: 8), alignment: .top)
-            }
-        } else {
-            content
-        }
     }
 
     private func stageHeader(scale: CGFloat) -> some View {
@@ -454,11 +443,6 @@ struct MainView: View {
                 dismissButton: .default(Text("OK"))
             )
         }
-    }
-
-    private var isWrongAnswerPhase: Bool {
-        if case .showingWrongAnswer = vm.phase { return true }
-        return false
     }
 
     private func layoutScale(containerHeight: CGFloat, safeArea: EdgeInsets) -> CGFloat {
