@@ -11,13 +11,12 @@ struct HomeView: View {
     /// a freeze consumed during StreakRepository.init (before onChange fires).
     @State private var lastShownFreezeID: Int = -1
 
-    private let totalStages = quizData.stages.count
-
     var body: some View {
         NavigationStack {
             GeometryReader { proxy in
                 let contentMinHeight = proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
-                let contentWidth = min(proxy.size.width - 28, 520)
+                let isCompactHeight = contentMinHeight < 760
+                let contentWidth = min(proxy.size.width - (isCompactHeight ? 16 : 20), 560)
 
                 ZStack {
                     OniTanTheme.backgroundGradientFallback
@@ -27,25 +26,21 @@ struct HomeView: View {
                         dataErrorBanner(loadError)
                     }
 
-                    ScrollView(.vertical, showsIndicators: true) {
-                        VStack(spacing: 0) {
-                            headerSection
-                                .padding(.top, 20)
-                                .frame(maxWidth: contentWidth)
+                    VStack(spacing: 0) {
+                        headerSection(isCompact: isCompactHeight)
+                            .padding(.top, isCompactHeight ? 10 : 20)
+                            .frame(maxWidth: contentWidth)
 
-                            menuSection
-                                .padding(.top, 20)
-                                .frame(maxWidth: contentWidth)
+                        menuSection(isCompact: isCompactHeight)
+                            .padding(.top, isCompactHeight ? 12 : 20)
+                            .frame(maxWidth: contentWidth)
 
-                            footerSection
-                                .padding(.top, 20)
-                                .padding(.bottom, 40)
-                                .frame(maxWidth: contentWidth)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(minHeight: contentMinHeight, alignment: .top)
+                        footerSection
+                            .padding(.top, isCompactHeight ? 10 : 16)
+                            .padding(.bottom, isCompactHeight ? 12 : 24)
+                            .frame(maxWidth: contentWidth)
                     }
-                    .scrollIndicators(.visible)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
             }
             .navigationBarHidden(true)
@@ -105,10 +100,10 @@ struct HomeView: View {
 
     // MARK: - Header
 
-    private var headerSection: some View {
-        VStack(spacing: 12) {
+    private func headerSection(isCompact: Bool) -> some View {
+        VStack(spacing: isCompact ? 8 : 12) {
             Text("鬼単")
-                .font(.system(size: 80, weight: .black, design: .rounded))
+                .font(.system(size: isCompact ? 68 : 80, weight: .black, design: .rounded))
                 .foregroundStyle(
                     LinearGradient(
                         colors: [.white, Color(red: 0.75, green: 0.65, blue: 1.0)],
@@ -120,7 +115,7 @@ struct HomeView: View {
                 .accessibilityLabel("鬼単アプリ")
 
             Text("漢字検定準1級 対策")
-                .font(.system(.subheadline, design: .rounded))
+                .font(.system(size: isCompact ? 14 : 16, weight: .regular, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .accessibilityHidden(true)
 
@@ -128,9 +123,7 @@ struct HomeView: View {
                 streakChip
                 xpChip
             }
-            .padding(.top, 4)
-
-            overallProgressRing
+            .padding(.top, isCompact ? 2 : 4)
         }
     }
 
@@ -242,59 +235,35 @@ struct HomeView: View {
         .accessibilityLabel("レベル\(xpRepo.level)、XP\(xpRepo.xpInCurrentLevel)/\(xpRepo.xpToNextLevel)")
     }
 
-    // MARK: - Progress Ring
-
-    private var overallProgressRing: some View {
-        let progress = appState.overallProgress(totalStages: totalStages)
-        let cleared = appState.clearedStages.count
-
-        return VStack(spacing: 6) {
-            ProgressRingView(
-                progress: progress,
-                lineWidth: 9,
-                size: 70,
-                gradient: Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentCorrect])
-            )
-            .shadow(color: OniTanTheme.accentPrimary.opacity(0.4), radius: 12)
-
-            Text("\(cleared) / \(totalStages) ステージクリア")
-                .font(.system(.caption, design: .rounded))
-                .foregroundColor(OniTanTheme.textSecondary)
-        }
-        .accessibilityElement()
-        .accessibilityLabel("達成率: \(cleared)ステージ中\(totalStages)クリア済み")
-    }
-
     // MARK: - Menu
 
-    private var menuSection: some View {
-        VStack(spacing: 14) {
-            HomeTodayCard()
+    private func menuSection(isCompact: Bool) -> some View {
+        VStack(spacing: isCompact ? 10 : 12) {
+            HomeTodayCard(compact: isCompact)
 
             HomeMenuButton(
                 title: "ステージ選択",
-                subtitle: "ステージを選んで学習",
                 icon: "books.vertical.fill",
                 gradient: OniTanTheme.primaryGradient,
+                compact: isCompact,
                 destination: StageSelectView()
             )
 
             HomeMenuButton(
                 title: "誤答ノート",
-                subtitle: "間違えた漢字を復習 → XP獲得",
                 icon: "exclamationmark.triangle.fill",
                 gradient: LinearGradient(
                     colors: [OniTanTheme.accentWeak, Color(red: 0.9, green: 0.4, blue: 0.0)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 ),
+                compact: isCompact,
                 destination: WrongAnswerNoteView()
             )
 
-            HStack(spacing: 14) {
+            HStack(spacing: isCompact ? 10 : 12) {
                 HomeMenuButton(
                     title: "統計",
-                    subtitle: nil,
                     icon: "chart.bar.fill",
                     gradient: LinearGradient(
                         colors: [Color(red: 0.3, green: 0.5, blue: 0.9),
@@ -302,12 +271,12 @@ struct HomeView: View {
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
+                    compact: isCompact,
                     destination: StatsView()
                 )
 
                 HomeMenuButton(
                     title: "設定",
-                    subtitle: nil,
                     icon: "gearshape.fill",
                     gradient: LinearGradient(
                         colors: [Color(red: 0.4, green: 0.4, blue: 0.5),
@@ -315,6 +284,7 @@ struct HomeView: View {
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
+                    compact: isCompact,
                     destination: SettingsView()
                 )
             }
@@ -371,6 +341,7 @@ private struct HomeTodayCard: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    let compact: Bool
 
     @State private var isPressed = false
 
@@ -408,69 +379,60 @@ private struct HomeTodayCard: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel(streakRepo.todayCompleted
             ? "今日の10問 完了済み。もう一度挑戦できます"
-            : "今日の10問 弱点強化と新規問題ミックス。ワンタップで開始")
+            : "今日の10問を開始")
         .accessibilityHint("タップして今日の10問を開始")
         .accessibilityIdentifier("home_today_card")
     }
 
     private var cardContent: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: compact ? 10 : 12) {
             ZStack {
                 Circle()
                     .fill(Color.white.opacity(0.18))
-                    .frame(width: 46, height: 46)
+                    .frame(width: compact ? 42 : 46, height: compact ? 42 : 46)
 
                 if #available(iOS 17.0, *) {
                     Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: 21, weight: .semibold))
+                        .font(.system(size: compact ? 18 : 21, weight: .semibold))
                         .foregroundColor(.white)
                         .symbolEffect(.bounce, value: streakRepo.todayCompleted)
                 } else {
                     Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: 21, weight: .semibold))
+                        .font(.system(size: compact ? 18 : 21, weight: .semibold))
                         .foregroundColor(.white)
                 }
             }
             .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 6) {
-                    Text("今日の10問")
-                        .font(.system(size: 18, weight: .black, design: .rounded))
-                        .fontWeight(.black)
+            HStack(spacing: 6) {
+                Text("今日の10問")
+                    .font(.system(size: compact ? 16 : 17, weight: .black, design: .rounded))
+                    .fontWeight(.black)
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
+
+                if streakRepo.todayCompleted {
+                    Text("達成！")
+                        .font(.system(size: 10, weight: .bold))
                         .foregroundColor(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.85)
-
-                    if streakRepo.todayCompleted {
-                        Text("達成！")
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(Color.white.opacity(0.25))
-                            .cornerRadius(6)
-                    }
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(Color.white.opacity(0.25))
+                        .cornerRadius(6)
                 }
-
-                Text(streakRepo.todayCompleted
-                     ? "本日の目標クリア 🎉 もう一度やる？"
-                     : "弱点優先 + 新規問題 ・ ワンタップで開始")
-                    .font(.system(size: 12, design: .rounded))
-                    .foregroundColor(.white.opacity(0.80))
-                    .lineLimit(2)
             }
 
             Spacer()
 
             Image(systemName: "chevron.right")
-                .font(.system(size: 13, weight: .semibold))
+                .font(.system(size: compact ? 12 : 13, weight: .semibold))
                 .foregroundColor(.white.opacity(0.65))
                 .accessibilityHidden(true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 14)
+        .padding(.horizontal, compact ? 14 : 16)
+        .padding(.vertical, compact ? 11 : 13)
         .background(cardGradient)
         .cornerRadius(OniTanTheme.radiusCard)
         .shadow(
@@ -504,50 +466,41 @@ private struct HomeTodayCard: View {
 
 private struct HomeMenuButton<Destination: View>: View {
     let title: String
-    let subtitle: String?
     let icon: String
     let gradient: LinearGradient
+    let compact: Bool
     let destination: Destination
 
     @State private var isPressed = false
 
     var body: some View {
         NavigationLink(destination: destination) {
-            HStack(spacing: 12) {
+            HStack(spacing: compact ? 10 : 12) {
                 Image(systemName: icon)
-                    .font(.system(size: 19, weight: .semibold))
+                    .font(.system(size: compact ? 17 : 18, weight: .semibold))
                     .foregroundColor(.white)
-                    .frame(width: 40, height: 40)
+                    .frame(width: compact ? 36 : 38, height: compact ? 36 : 38)
                     .background(Color.white.opacity(0.2))
                     .clipShape(Circle())
                     .accessibilityHidden(true)
 
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.85)
-
-                    if let subtitle {
-                        Text(subtitle)
-                            .font(.system(size: 12, design: .rounded))
-                            .foregroundColor(.white.opacity(0.75))
-                            .lineLimit(2)
-                    }
-                }
+                Text(title)
+                    .font(.system(size: compact ? 16 : 17, weight: .bold, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.system(size: compact ? 12 : 13, weight: .semibold))
                     .foregroundColor(.white.opacity(0.6))
                     .accessibilityHidden(true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 13)
+            .padding(.horizontal, compact ? 14 : 16)
+            .padding(.vertical, compact ? 11 : 13)
             .background(gradient)
             .cornerRadius(OniTanTheme.radiusCard)
             .shadow(
@@ -565,7 +518,7 @@ private struct HomeMenuButton<Destination: View>: View {
         )
         .buttonStyle(PlainButtonStyle())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(subtitle != nil ? "\(title): \(subtitle!)" : title)
+        .accessibilityLabel(title)
         .accessibilityHint("タップして\(title)へ進む")
         .accessibilityIdentifier("home_menu_\(title)")
     }
