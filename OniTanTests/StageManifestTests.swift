@@ -54,7 +54,7 @@ final class StageManifestTests: XCTestCase {
     }
 
     func testStageManifest_emptyStages() throws {
-        let json = """{ "stages": [] }""".data(using: .utf8)!
+        let json = "{ \"stages\": [] }".data(using: .utf8)!
         let manifest = try JSONDecoder().decode(StageManifest.self, from: json)
         XCTAssertTrue(manifest.stages.isEmpty)
     }

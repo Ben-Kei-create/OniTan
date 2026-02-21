@@ -19,7 +19,7 @@ final class OniTanUITests: XCTestCase {
     func testTodayFlow_homeToAnswerAndContinue() throws {
         let todayCard = app.otherElements["home_today_card"]
         guard todayCard.waitForExistence(timeout: 5) else {
-            XCTSkip("Today card not found")
+            throw XCTSkip("Today card not found")
         }
         todayCard.tap()
 
@@ -44,19 +44,19 @@ final class OniTanUITests: XCTestCase {
     func testStageFlow_homeToModeSelectToMainView() throws {
         let stageSelect = app.otherElements["home_menu_ステージ選択"]
         guard stageSelect.waitForExistence(timeout: 5) else {
-            XCTSkip("Stage select menu not found")
+            throw XCTSkip("Stage select menu not found")
         }
         stageSelect.tap()
 
         let stage1Mode = app.otherElements["stage_mode_link_1"]
         guard stage1Mode.waitForExistence(timeout: 5) else {
-            XCTSkip("Stage 1 mode link not found")
+            throw XCTSkip("Stage 1 mode link not found")
         }
         stage1Mode.tap()
 
         let normalMode = app.otherElements["mode_card_normal"]
         guard normalMode.waitForExistence(timeout: 5) else {
-            XCTSkip("Normal mode card not found")
+            throw XCTSkip("Normal mode card not found")
         }
         normalMode.tap()
 

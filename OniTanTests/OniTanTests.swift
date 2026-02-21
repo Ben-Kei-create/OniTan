@@ -563,28 +563,28 @@ struct TodaySessionBuilderTests {
 
 final class RealDataTests: XCTestCase {
 
-    func testAllStageJSONFiles_haveNoValidationIssues() {
+    func testAllStageJSONFiles_haveNoValidationIssues() throws {
         // This test validates the actual production JSON files bundled with the app
         // It will only run when tests have bundle access to the JSON files
         guard !quizData.stages.isEmpty else {
-            XCTSkip("No stages loaded — skipping real data test")
+            throw XCTSkip("No stages loaded — skipping real data test")
         }
         let issues = validateQuizData(quizData)
         XCTAssertTrue(issues.isEmpty, "Production data has validation issues:\n\(issues.joined(separator: "\n"))")
     }
 
-    func testAllStages_haveAtLeastOneQuestion() {
+    func testAllStages_haveAtLeastOneQuestion() throws {
         guard !quizData.stages.isEmpty else {
-            XCTSkip("No stages loaded")
+            throw XCTSkip("No stages loaded")
         }
         for stage in quizData.stages {
             XCTAssertFalse(stage.questions.isEmpty, "Stage \(stage.stage) has no questions")
         }
     }
 
-    func testNoDuplicateKanji_withinAnyStage() {
+    func testNoDuplicateKanji_withinAnyStage() throws {
         guard !quizData.stages.isEmpty else {
-            XCTSkip("No stages loaded")
+            throw XCTSkip("No stages loaded")
         }
         for stage in quizData.stages {
             var seen = Set<String>()
@@ -595,9 +595,9 @@ final class RealDataTests: XCTestCase {
         }
     }
 
-    func testAllQuestions_answerInChoices() {
+    func testAllQuestions_answerInChoices() throws {
         guard !quizData.stages.isEmpty else {
-            XCTSkip("No stages loaded")
+            throw XCTSkip("No stages loaded")
         }
         for stage in quizData.stages {
             for q in stage.questions {
