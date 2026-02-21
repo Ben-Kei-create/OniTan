@@ -26,6 +26,12 @@ struct MainView: View {
         ))
     }
 
+    /// Whether we are in wrong-answer feedback state
+    private var isShowingWrong: Bool {
+        if case .showingWrongAnswer = vm.phase { return true }
+        return false
+    }
+
     var body: some View {
         GeometryReader { proxy in
             let scale = layoutScale(containerHeight: proxy.size.height, safeArea: proxy.safeAreaInsets)
@@ -133,22 +139,22 @@ struct MainView: View {
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .padding(.top, scaled(12, by: scale, min: 8))
-        .padding(.bottom, scaled(8, by: scale, min: 6))
+        .padding(.bottom, scaled(8, by: scale, min: 4))
     }
 
     // MARK: - Quiz Content
 
     private func quizContentView(scale: CGFloat) -> some View {
-        VStack(spacing: scaled(20, by: scale, min: 12)) {
+        VStack(spacing: 0) {
             // Stage number + pass indicator
             stageHeader(scale: scale)
+                .padding(.bottom, scaled(8, by: scale, min: 4))
 
-            Spacer(minLength: scaled(8, by: scale, min: 4))
-
-            // Kanji display
+            // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
+                .padding(.bottom, scaled(12, by: scale, min: 6))
 
-            Spacer(minLength: scaled(8, by: scale, min: 4))
+            Spacer(minLength: 4)
 
             // Choice area
             switch vm.phase {
@@ -162,10 +168,10 @@ struct MainView: View {
                 EmptyView()
             }
 
-            Spacer(minLength: scaled(16, by: scale, min: 8))
+            Spacer(minLength: scaled(12, by: scale, min: 6))
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
-        .frame(maxWidth: .infinity, alignment: .top)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 
     private func stageHeader(scale: CGFloat) -> some View {
@@ -196,6 +202,14 @@ struct MainView: View {
 
     private func kanjiDisplay(scale: CGFloat) -> some View {
         let corner = scaled(24, by: scale, min: 16)
+        // Shrink the kanji card when showing wrong answer to make room
+        let kanjiHeight: CGFloat = isShowingWrong
+            ? scaled(160, by: scale, min: 120)
+            : scaled(220, by: scale, min: 170)
+        let kanjiFont: CGFloat = isShowingWrong
+            ? scaled(90, by: scale, min: 64)
+            : scaled(130, by: scale, min: 92)
+
         return ZStack {
             // Background card
             RoundedRectangle(cornerRadius: corner)
@@ -217,22 +231,21 @@ struct MainView: View {
                     .transition(.opacity)
             }
 
-            VStack(spacing: scaled(8, by: scale, min: 4)) {
-                Text(vm.currentQuestion.kanji)
-                    .font(.system(size: scaled(130, by: scale, min: 92), weight: .black, design: .rounded))
-                    .foregroundColor(.white)
-                    .minimumScaleFactor(0.4)
-                    .lineLimit(1)
-                    .shadow(color: .black.opacity(0.3), radius: 4)
-                    .id(vm.currentQuestion.id)   // force re-render on question change
-                    .transition(.asymmetric(
-                        insertion: .move(edge: .trailing).combined(with: .opacity),
-                        removal: .move(edge: .leading).combined(with: .opacity)
-                    ))
-            }
-            .padding(scaled(24, by: scale, min: 12))
+            Text(vm.currentQuestion.kanji)
+                .font(.system(size: kanjiFont, weight: .black, design: .rounded))
+                .foregroundColor(.white)
+                .minimumScaleFactor(0.4)
+                .lineLimit(1)
+                .shadow(color: .black.opacity(0.3), radius: 4)
+                .id(vm.currentQuestion.id)
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing).combined(with: .opacity),
+                    removal: .move(edge: .leading).combined(with: .opacity)
+                ))
+                .padding(scaled(16, by: scale, min: 8))
         }
-        .frame(height: scaled(220, by: scale, min: 170))
+        .frame(height: kanjiHeight)
+        .animation(.easeInOut(duration: 0.25), value: isShowingWrong)
         .accessibilityElement()
         .accessibilityLabel("漢字: \(vm.currentQuestion.kanji)")
         .accessibilityHint("この漢字の読みを選んでください")
@@ -268,25 +281,26 @@ struct MainView: View {
     // MARK: - Wrong Answer View
 
     private func wrongAnswerView(correctAnswer: String, scale: CGFloat) -> some View {
-        VStack(spacing: scaled(20, by: scale, min: 12)) {
-            VStack(spacing: scaled(8, by: scale, min: 4)) {
+        VStack(spacing: scaled(16, by: scale, min: 10)) {
+            // Compact feedback: icon + text on the same line
+            HStack(spacing: scaled(10, by: scale, min: 6)) {
                 Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: scaled(48, by: scale, min: 34)))
+                    .font(.system(size: scaled(36, by: scale, min: 28)))
                     .foregroundColor(OniTanTheme.accentWrong)
 
-                Text("不正解")
-                    .font(.system(size: scaled(34, by: scale, min: 24), weight: .black, design: .rounded))
-                    .fontWeight(.black)
-                    .foregroundColor(OniTanTheme.accentWrong)
+                VStack(alignment: .leading, spacing: scaled(4, by: scale, min: 2)) {
+                    Text("不正解")
+                        .font(.system(size: scaled(26, by: scale, min: 20), weight: .black, design: .rounded))
+                        .foregroundColor(OniTanTheme.accentWrong)
 
-                Text("正解は「\(correctAnswer)」")
-                    .font(.system(size: scaled(30, by: scale, min: 20), weight: .semibold, design: .rounded))
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.75)
+                    Text("正解は「\(correctAnswer)」")
+                        .font(.system(size: scaled(20, by: scale, min: 16), weight: .semibold, design: .rounded))
+                        .foregroundColor(.white)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.75)
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
 
             Button {
                 withAnimation { vm.proceed() }
@@ -296,7 +310,7 @@ struct MainView: View {
                     .font(.system(.headline, design: .rounded))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, minHeight: scaled(54, by: scale, min: 48))
+                    .frame(maxWidth: .infinity, minHeight: scaled(50, by: scale, min: 44))
                     .background(
                         RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
                             .fill(OniTanTheme.wrongGradient)
@@ -310,7 +324,8 @@ struct MainView: View {
             .accessibilityLabel("次の問題へ進む")
             .accessibilityIdentifier("quiz_next_wrong")
         }
-        .padding(scaled(20, by: scale, min: 12))
+        .padding(.horizontal, scaled(20, by: scale, min: 14))
+        .padding(.vertical, scaled(18, by: scale, min: 12))
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                 .fill(Color.white.opacity(0.08))
@@ -449,7 +464,7 @@ struct MainView: View {
         let usable = max(1, containerHeight - safeArea.top - safeArea.bottom)
         let baseHeight: CGFloat = 780
         let raw = usable / baseHeight
-        return min(1.0, max(0.8, raw))
+        return min(1.0, max(0.75, raw))
     }
 
     private func scaled(_ value: CGFloat, by scale: CGFloat, min minValue: CGFloat) -> CGFloat {
