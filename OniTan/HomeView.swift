@@ -15,27 +15,36 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                OniTanTheme.backgroundGradientFallback
-                    .ignoresSafeArea()
+            GeometryReader { proxy in
+                let contentMinHeight = proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
 
-                if let loadError = dataLoadError {
-                    dataErrorBanner(loadError)
-                }
+                ZStack {
+                    OniTanTheme.backgroundGradientFallback
+                        .ignoresSafeArea()
 
-                ScrollView {
-                    VStack(spacing: 0) {
-                        headerSection
-                            .padding(.top, 40)
-
-                        menuSection
-                            .padding(.top, 24)
-
-                        footerSection
-                            .padding(.top, 20)
-                            .padding(.bottom, 40)
+                    if let loadError = dataLoadError {
+                        dataErrorBanner(loadError)
                     }
-                    .padding(.horizontal, 24)
+
+                    ScrollView(.vertical, showsIndicators: true) {
+                        VStack(spacing: 0) {
+                            headerSection
+                                .padding(.top, 20)
+
+                            menuSection
+                                .padding(.top, 20)
+                                // Keep cards slightly narrower than the page for easier tapping focus.
+                                .padding(.horizontal, 10)
+
+                            footerSection
+                                .padding(.top, 20)
+                                .padding(.bottom, 40)
+                        }
+                        .padding(.horizontal, 16)
+                        .frame(maxWidth: .infinity)
+                        .frame(minHeight: contentMinHeight, alignment: .top)
+                    }
+                    .scrollIndicators(.visible)
                 }
             }
             .navigationBarHidden(true)
