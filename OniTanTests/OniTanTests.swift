@@ -727,6 +727,22 @@ struct QuestionModelTests {
         }
     }
 
+    /// Duplicate kanji across different stages (different JSON files) is allowed
+    @Test func validate_duplicateKanjiAcrossStages_isAllowed() throws {
+        let s1 = Stage(stage: 1, questions: [
+            Question(kanji: "綻", choices: ["A", "B"], answer: "A", explain: "e1")
+        ])
+        let s2 = Stage(stage: 2, questions: [
+            Question(kanji: "綻", choices: ["C", "D"], answer: "C", explain: "e2")
+        ])
+        let data = QuizData(stages: [s1, s2], unused_questions: nil)
+
+        // Must not throw: duplicate scope is per-stage (per JSON), not global.
+        try validateQuizDataStrict(data)
+        let warnings = validateQuizData(data)
+        #expect(!warnings.contains { $0.contains("重複漢字") })
+    }
+
     /// cloze where sentence does not contain blankToken → fatal error
     @Test func validate_cloze_blankNotInSentence() throws {
         let payload = QuestionPayload(
