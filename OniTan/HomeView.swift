@@ -17,6 +17,7 @@ struct HomeView: View {
                 let contentMinHeight = proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
                 let isCompactHeight = contentMinHeight < 760
                 let contentWidth = min(proxy.size.width - (isCompactHeight ? 16 : 20), 560)
+                let verticalInset: CGFloat = isCompactHeight ? 8 : 14
 
                 ZStack {
                     OniTanTheme.backgroundGradientFallback
@@ -27,20 +28,23 @@ struct HomeView: View {
                     }
 
                     VStack(spacing: 0) {
-                        headerSection(isCompact: isCompactHeight)
-                            .padding(.top, isCompactHeight ? 10 : 20)
-                            .frame(maxWidth: contentWidth)
+                        Spacer(minLength: verticalInset)
 
-                        menuSection(isCompact: isCompactHeight)
-                            .padding(.top, isCompactHeight ? 12 : 20)
-                            .frame(maxWidth: contentWidth)
+                        VStack(spacing: 0) {
+                            headerSection(isCompact: isCompactHeight)
+                                .padding(.top, isCompactHeight ? 4 : 8)
 
-                        footerSection
-                            .padding(.top, isCompactHeight ? 10 : 16)
-                            .padding(.bottom, isCompactHeight ? 12 : 24)
-                            .frame(maxWidth: contentWidth)
+                            menuSection(isCompact: isCompactHeight)
+                                .padding(.top, isCompactHeight ? 10 : 14)
+
+                            footerSection
+                                .padding(.top, isCompactHeight ? 8 : 12)
+                        }
+                        .frame(maxWidth: contentWidth)
+
+                        Spacer(minLength: verticalInset)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             .navigationBarHidden(true)
@@ -307,7 +311,7 @@ struct HomeView: View {
             HStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .foregroundColor(.yellow)
-                Text(error.localizedDescription ?? "データ読み込みエラー")
+                Text(error.localizedDescription)
                     .font(.caption)
                     .foregroundColor(.white)
                     .lineLimit(2)
