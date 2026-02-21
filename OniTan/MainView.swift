@@ -281,16 +281,9 @@ struct MainView: View {
     private func wrongAnswerView(correctAnswer: String, scale: CGFloat) -> some View {
         VStack(spacing: scaled(20, by: scale, min: 12)) {
             VStack(spacing: scaled(8, by: scale, min: 4)) {
-                if #available(iOS 17.0, *) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: scaled(48, by: scale, min: 34)))
-                        .foregroundColor(OniTanTheme.accentWrong)
-                        .symbolEffect(.bounce, value: vm.phase)
-                } else {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: scaled(48, by: scale, min: 34)))
-                        .foregroundColor(OniTanTheme.accentWrong)
-                }
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: scaled(48, by: scale, min: 34)))
+                    .foregroundColor(OniTanTheme.accentWrong)
 
                 Text("不正解")
                     .font(.system(size: scaled(34, by: scale, min: 24), weight: .black, design: .rounded))
