@@ -259,7 +259,7 @@ struct MainView: View {
         return VStack(spacing: scaled(12, by: scale, min: 8)) {
             ForEach(rows.indices, id: \.self) { rowIndex in
                 HStack(spacing: scaled(12, by: scale, min: 8)) {
-                    ForEach(rows[rowIndex], id: \.self) { choice in
+                    ForEach(Array(rows[rowIndex].enumerated()), id: \.offset) { _, choice in
                         ChoiceCard(
                             text: choice,
                             scale: scale,

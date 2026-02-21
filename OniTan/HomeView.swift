@@ -28,23 +28,18 @@ struct HomeView: View {
                     }
 
                     VStack(spacing: 0) {
-                        Spacer(minLength: verticalInset)
+                        headerSection(isCompact: isCompactHeight)
+                            .padding(.top, isCompactHeight ? 2 : 6)
 
-                        VStack(spacing: 0) {
-                            headerSection(isCompact: isCompactHeight)
-                                .padding(.top, isCompactHeight ? 4 : 8)
+                        menuSection(isCompact: isCompactHeight)
+                            .padding(.top, isCompactHeight ? 8 : 12)
 
-                            menuSection(isCompact: isCompactHeight)
-                                .padding(.top, isCompactHeight ? 10 : 14)
-
-                            footerSection
-                                .padding(.top, isCompactHeight ? 8 : 12)
-                        }
-                        .frame(maxWidth: contentWidth)
-
-                        Spacer(minLength: verticalInset)
+                        footerSection
+                            .padding(.top, isCompactHeight ? 6 : 10)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: contentWidth)
+                    .padding(.vertical, verticalInset)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
             }
             .navigationBarHidden(true)
@@ -105,7 +100,7 @@ struct HomeView: View {
     // MARK: - Header
 
     private func headerSection(isCompact: Bool) -> some View {
-        VStack(spacing: isCompact ? 8 : 12) {
+        VStack(spacing: isCompact ? 6 : 10) {
             HStack(spacing: isCompact ? 8 : 10) {
                 Spacer()
 
@@ -125,7 +120,7 @@ struct HomeView: View {
             }
 
             Text("鬼単")
-                .font(.system(size: isCompact ? 68 : 80, weight: .black, design: .rounded))
+                .font(.system(size: isCompact ? 60 : 74, weight: .black, design: .rounded))
                 .foregroundStyle(
                     LinearGradient(
                         colors: [.white, Color(red: 0.75, green: 0.65, blue: 1.0)],
@@ -145,7 +140,7 @@ struct HomeView: View {
                 streakChip
                 xpChip
             }
-            .padding(.top, isCompact ? 2 : 4)
+            .padding(.top, isCompact ? 1 : 3)
         }
     }
 
@@ -185,8 +180,8 @@ struct HomeView: View {
                     .foregroundColor(.white.opacity(0.5))
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
         .background(
             Capsule()
                 .fill(streakRepo.todayCompleted
@@ -243,8 +238,8 @@ struct HomeView: View {
             }
             .frame(width: 44, height: 4)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
         .background(
             Capsule()
                 .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.55))
@@ -260,7 +255,7 @@ struct HomeView: View {
     // MARK: - Menu
 
     private func menuSection(isCompact: Bool) -> some View {
-        VStack(spacing: isCompact ? 10 : 12) {
+        VStack(spacing: isCompact ? 8 : 10) {
             HomeTodayCard(compact: isCompact)
 
             HomeMenuButton(
@@ -383,16 +378,16 @@ private struct HomeTodayCard: View {
             ZStack {
                 Circle()
                     .fill(Color.white.opacity(0.18))
-                    .frame(width: compact ? 42 : 46, height: compact ? 42 : 46)
+                    .frame(width: compact ? 38 : 42, height: compact ? 38 : 42)
 
                 if #available(iOS 17.0, *) {
                     Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: compact ? 18 : 21, weight: .semibold))
+                        .font(.system(size: compact ? 16 : 18, weight: .semibold))
                         .foregroundColor(.white)
                         .symbolEffect(.bounce, value: streakRepo.todayCompleted)
                 } else {
                     Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: compact ? 18 : 21, weight: .semibold))
+                        .font(.system(size: compact ? 16 : 18, weight: .semibold))
                         .foregroundColor(.white)
                 }
             }
@@ -400,7 +395,7 @@ private struct HomeTodayCard: View {
 
             HStack(spacing: 6) {
                 Text("今日の10問")
-                    .font(.system(size: compact ? 16 : 17, weight: .black, design: .rounded))
+                    .font(.system(size: compact ? 15 : 16, weight: .black, design: .rounded))
                     .fontWeight(.black)
                     .foregroundColor(.white)
                     .lineLimit(1)
@@ -425,8 +420,8 @@ private struct HomeTodayCard: View {
                 .accessibilityHidden(true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, compact ? 14 : 16)
-        .padding(.vertical, compact ? 11 : 13)
+        .padding(.horizontal, compact ? 13 : 15)
+        .padding(.vertical, compact ? 9 : 11)
         .background(cardGradient)
         .cornerRadius(OniTanTheme.radiusCard)
         .shadow(
@@ -511,15 +506,15 @@ private struct HomeMenuButton<Destination: View>: View {
         NavigationLink(destination: destination) {
             HStack(spacing: compact ? 10 : 12) {
                 Image(systemName: icon)
-                    .font(.system(size: compact ? 17 : 18, weight: .semibold))
+                    .font(.system(size: compact ? 16 : 17, weight: .semibold))
                     .foregroundColor(.white)
-                    .frame(width: compact ? 36 : 38, height: compact ? 36 : 38)
+                    .frame(width: compact ? 34 : 36, height: compact ? 34 : 36)
                     .background(Color.white.opacity(0.2))
                     .clipShape(Circle())
                     .accessibilityHidden(true)
 
                 Text(title)
-                    .font(.system(size: compact ? 16 : 17, weight: .bold, design: .rounded))
+                    .font(.system(size: compact ? 15 : 16, weight: .bold, design: .rounded))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .lineLimit(1)
@@ -533,8 +528,8 @@ private struct HomeMenuButton<Destination: View>: View {
                     .accessibilityHidden(true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, compact ? 14 : 16)
-            .padding(.vertical, compact ? 11 : 13)
+            .padding(.horizontal, compact ? 13 : 15)
+            .padding(.vertical, compact ? 9 : 11)
             .background(gradient)
             .cornerRadius(OniTanTheme.radiusCard)
             .shadow(
