@@ -27,46 +27,51 @@ struct MainView: View {
     }
 
     var body: some View {
-        ZStack {
-            OniTanTheme.backgroundGradientFallback
-                .ignoresSafeArea()
+        GeometryReader { proxy in
+            let scale = layoutScale(containerHeight: proxy.size.height, safeArea: proxy.safeAreaInsets)
+            let contentHeight = proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
 
-            VStack(spacing: 0) {
-                topBar
+            ZStack {
+                OniTanTheme.backgroundGradientFallback
+                    .ignoresSafeArea()
 
-                switch vm.phase {
-                case .stageCleared:
-                    stageClearedView
-                        .transition(.asymmetric(
-                            insertion: .scale(scale: 0.85).combined(with: .opacity),
-                            removal: .opacity
-                        ))
-                default:
-                    quizContentView
+                VStack(spacing: 0) {
+                    topBar(scale: scale)
+
+                    switch vm.phase {
+                    case .stageCleared:
+                        stageClearedView
+                            .transition(.asymmetric(
+                                insertion: .scale(scale: 0.85).combined(with: .opacity),
+                                removal: .opacity
+                            ))
+                    default:
+                        quizContentView(scale: scale, availableHeight: contentHeight)
+                    }
+                }
+                .navigationBarBackButtonHidden(true)
+
+                // Explanation overlay
+                if vm.phase == .showingExplanation {
+                    ExplanationView(question: vm.currentQuestion) {
+                        vm.proceed()
+                    }
+                    .transition(.opacity)
+                    .animation(.easeInOut(duration: 0.2), value: vm.phase)
+                    .zIndex(10)
                 }
             }
-            .navigationBarBackButtonHidden(true)
-
-            // Explanation overlay
-            if vm.phase == .showingExplanation {
-                ExplanationView(question: vm.currentQuestion) {
-                    vm.proceed()
-                }
-                .transition(.opacity)
-                .animation(.easeInOut(duration: 0.2), value: vm.phase)
-                .zIndex(10)
+            .animation(.easeInOut(duration: 0.25), value: vm.phase)
+            .alert(item: $vm.activeAlert) { alert in
+                alertView(for: alert)
             }
-        }
-        .animation(.easeInOut(duration: 0.25), value: vm.phase)
-        .alert(item: $vm.activeAlert) { alert in
-            alertView(for: alert)
         }
     }
 
     // MARK: - Top Bar
 
-    private var topBar: some View {
-        HStack(spacing: 12) {
+    private func topBar(scale: CGFloat) -> some View {
+        HStack(spacing: scaled(12, by: scale, min: 8)) {
             // Quit button
             Button {
                 if vm.phase == .stageCleared {
@@ -76,7 +81,7 @@ struct MainView: View {
                 }
             } label: {
                 Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: 26))
+                    .font(.system(size: scaled(26, by: scale, min: 20)))
                     .foregroundColor(.white.opacity(0.7))
             }
             .accessibilityLabel("終了")
@@ -86,15 +91,15 @@ struct MainView: View {
 
             // Combo badge (appears at 3+ consecutive correct answers)
             if vm.consecutiveCorrect >= 3 {
-                HStack(spacing: 4) {
+                HStack(spacing: scaled(4, by: scale, min: 2)) {
                     Text("🔥")
-                        .font(.system(size: 13))
+                        .font(.system(size: scaled(13, by: scale, min: 10)))
                     Text("\(vm.consecutiveCorrect)連続！")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .font(.system(size: scaled(12, by: scale, min: 10), weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                 }
-                .padding(.horizontal, 10)
-                .padding(.vertical, 4)
+                .padding(.horizontal, scaled(10, by: scale, min: 8))
+                .padding(.vertical, scaled(4, by: scale, min: 3))
                 .background(
                     Capsule()
                         .fill(Color(red: 0.5, green: 0.25, blue: 0.0).opacity(0.55))
@@ -106,73 +111,84 @@ struct MainView: View {
             }
 
             // Mode badge
-            HStack(spacing: 4) {
+            HStack(spacing: scaled(4, by: scale, min: 2)) {
                 Image(systemName: vm.mode.systemImage)
-                    .font(.system(size: 11))
+                    .font(.system(size: scaled(11, by: scale, min: 9)))
                 Text(vm.mode.displayName)
-                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .font(.system(size: scaled(12, by: scale, min: 10), weight: .semibold, design: .rounded))
             }
             .foregroundColor(.white.opacity(0.6))
-            .padding(.horizontal, 10)
-            .padding(.vertical, 4)
+            .padding(.horizontal, scaled(10, by: scale, min: 8))
+            .padding(.vertical, scaled(4, by: scale, min: 3))
             .background(Color.white.opacity(0.10))
             .cornerRadius(20)
 
             // Progress ring
             ProgressRingView(
                 progress: vm.progressFraction,
-                lineWidth: 5,
-                size: 44,
+                lineWidth: scaled(5, by: scale, min: 4),
+                size: scaled(44, by: scale, min: 36),
                 gradient: Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentCorrect])
             )
             .accessibilityLabel("進捗 \(vm.clearedCount)問 / \(vm.totalGoal)問")
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 12)
-        .padding(.bottom, 8)
+        .padding(.horizontal, scaled(20, by: scale, min: 14))
+        .padding(.top, scaled(12, by: scale, min: 8))
+        .padding(.bottom, scaled(8, by: scale, min: 6))
     }
 
     // MARK: - Quiz Content
 
-    private var quizContentView: some View {
-        VStack(spacing: 20) {
+    @ViewBuilder
+    private func quizContentView(scale: CGFloat, availableHeight: CGFloat) -> some View {
+        let content = VStack(spacing: scaled(20, by: scale, min: 12)) {
             // Stage number + pass indicator
-            stageHeader
+            stageHeader(scale: scale)
 
-            Spacer()
+            Spacer(minLength: scaled(8, by: scale, min: 4))
 
             // Kanji display
-            kanjiDisplay
+            kanjiDisplay(scale: scale)
 
-            Spacer()
+            Spacer(minLength: scaled(8, by: scale, min: 4))
 
             // Choice area
             switch vm.phase {
             case .answering:
-                choiceGrid
+                choiceGrid(scale: scale)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             case .showingWrongAnswer(let correct):
-                wrongAnswerView(correctAnswer: correct)
+                wrongAnswerView(correctAnswer: correct, scale: scale)
                     .transition(.scale(scale: 0.9).combined(with: .opacity))
             default:
                 EmptyView()
             }
 
-            Spacer().frame(maxHeight: 24)
+            Spacer(minLength: scaled(16, by: scale, min: 8))
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, scaled(20, by: scale, min: 14))
+        .frame(maxWidth: .infinity, alignment: .top)
+
+        if availableHeight < 760 || isWrongAnswerPhase {
+            ScrollView(showsIndicators: false) {
+                content
+                    .frame(minHeight: availableHeight - scaled(16, by: scale, min: 8), alignment: .top)
+            }
+        } else {
+            content
+        }
     }
 
-    private var stageHeader: some View {
+    private func stageHeader(scale: CGFloat) -> some View {
         HStack {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: scaled(2, by: scale, min: 1)) {
                 Text(vm.displayTitle)
-                    .font(.system(.title3, design: .rounded))
+                    .font(.system(size: scaled(22, by: scale, min: 18), weight: .bold, design: .rounded))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 if vm.passNumber > 1 {
                     Text("復習パス \(vm.passNumber)")
-                        .font(.system(.caption, design: .rounded))
+                        .font(.system(size: scaled(12, by: scale, min: 10), weight: .regular, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                 }
             }
@@ -180,7 +196,7 @@ struct MainView: View {
             Spacer()
 
             Text("\(vm.clearedCount) / \(vm.totalGoal) 問")
-                .font(.system(.subheadline, design: .rounded))
+                .font(.system(size: scaled(16, by: scale, min: 12), weight: .regular, design: .rounded))
                 .foregroundColor(.white.opacity(0.7))
         }
         .accessibilityElement()
@@ -189,31 +205,32 @@ struct MainView: View {
 
     // MARK: - Kanji Display
 
-    private var kanjiDisplay: some View {
-        ZStack {
+    private func kanjiDisplay(scale: CGFloat) -> some View {
+        let corner = scaled(24, by: scale, min: 16)
+        return ZStack {
             // Background card
-            RoundedRectangle(cornerRadius: 24)
+            RoundedRectangle(cornerRadius: corner)
                 .fill(Color.white.opacity(0.12))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 24)
+                    RoundedRectangle(cornerRadius: corner)
                         .stroke(Color.white.opacity(0.2), lineWidth: 1)
                 )
-                .shadow(color: .black.opacity(0.2), radius: 16, y: 8)
+                .shadow(color: .black.opacity(0.2), radius: scaled(16, by: scale, min: 8), y: scaled(8, by: scale, min: 4))
 
             // Flash on answer
             if vm.lastAnswerResult == .correct {
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: corner)
                     .fill(OniTanTheme.accentCorrect.opacity(0.25))
                     .transition(.opacity)
             } else if vm.lastAnswerResult == .wrong {
-                RoundedRectangle(cornerRadius: 24)
+                RoundedRectangle(cornerRadius: corner)
                     .fill(OniTanTheme.accentWrong.opacity(0.25))
                     .transition(.opacity)
             }
 
-            VStack(spacing: 8) {
+            VStack(spacing: scaled(8, by: scale, min: 4)) {
                 Text(vm.currentQuestion.kanji)
-                    .font(.system(size: 130, weight: .black, design: .rounded))
+                    .font(.system(size: scaled(130, by: scale, min: 92), weight: .black, design: .rounded))
                     .foregroundColor(.white)
                     .minimumScaleFactor(0.4)
                     .lineLimit(1)
@@ -224,9 +241,9 @@ struct MainView: View {
                         removal: .move(edge: .leading).combined(with: .opacity)
                     ))
             }
-            .padding(24)
+            .padding(scaled(24, by: scale, min: 12))
         }
-        .frame(height: 220)
+        .frame(height: scaled(220, by: scale, min: 170))
         .accessibilityElement()
         .accessibilityLabel("漢字: \(vm.currentQuestion.kanji)")
         .accessibilityHint("この漢字の読みを選んでください")
@@ -235,16 +252,17 @@ struct MainView: View {
 
     // MARK: - 2x2 Choice Grid
 
-    private var choiceGrid: some View {
+    private func choiceGrid(scale: CGFloat) -> some View {
         let choices = vm.currentQuestion.choices
         let rows = choices.chunked(into: 2)
 
-        return VStack(spacing: 12) {
+        return VStack(spacing: scaled(12, by: scale, min: 8)) {
             ForEach(rows.indices, id: \.self) { rowIndex in
-                HStack(spacing: 12) {
+                HStack(spacing: scaled(12, by: scale, min: 8)) {
                     ForEach(rows[rowIndex], id: \.self) { choice in
                         ChoiceCard(
                             text: choice,
+                            scale: scale,
                             onTap: {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                     vm.answer(selected: choice)
@@ -260,29 +278,32 @@ struct MainView: View {
 
     // MARK: - Wrong Answer View
 
-    private func wrongAnswerView(correctAnswer: String) -> some View {
-        VStack(spacing: 20) {
-            VStack(spacing: 8) {
+    private func wrongAnswerView(correctAnswer: String, scale: CGFloat) -> some View {
+        VStack(spacing: scaled(20, by: scale, min: 12)) {
+            VStack(spacing: scaled(8, by: scale, min: 4)) {
                 if #available(iOS 17.0, *) {
                     Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 48))
+                        .font(.system(size: scaled(48, by: scale, min: 34)))
                         .foregroundColor(OniTanTheme.accentWrong)
                         .symbolEffect(.bounce, value: vm.phase)
                 } else {
                     Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 48))
+                        .font(.system(size: scaled(48, by: scale, min: 34)))
                         .foregroundColor(OniTanTheme.accentWrong)
                 }
 
                 Text("不正解")
-                    .font(.system(.title, design: .rounded))
+                    .font(.system(size: scaled(34, by: scale, min: 24), weight: .black, design: .rounded))
                     .fontWeight(.black)
                     .foregroundColor(OniTanTheme.accentWrong)
 
                 Text("正解は「\(correctAnswer)」")
-                    .font(.system(.title2, design: .rounded))
+                    .font(.system(size: scaled(30, by: scale, min: 20), weight: .semibold, design: .rounded))
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.75)
             }
 
             Button {
@@ -293,17 +314,21 @@ struct MainView: View {
                     .font(.system(.headline, design: .rounded))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, minHeight: 54)
+                    .frame(maxWidth: .infinity, minHeight: scaled(54, by: scale, min: 48))
                     .background(
                         RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
                             .fill(OniTanTheme.wrongGradient)
                     )
-                    .shadow(color: OniTanTheme.accentWrong.opacity(0.4), radius: 8, y: 4)
+                    .shadow(
+                        color: OniTanTheme.accentWrong.opacity(0.4),
+                        radius: scaled(8, by: scale, min: 4),
+                        y: scaled(4, by: scale, min: 2)
+                    )
             }
             .accessibilityLabel("次の問題へ進む")
             .accessibilityIdentifier("quiz_next_wrong")
         }
-        .padding(20)
+        .padding(scaled(20, by: scale, min: 12))
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                 .fill(Color.white.opacity(0.08))
@@ -312,6 +337,7 @@ struct MainView: View {
                         .stroke(OniTanTheme.accentWrong.opacity(0.3), lineWidth: 1)
                 )
         )
+        .frame(maxWidth: .infinity)
     }
 
     // MARK: - Stage Cleared
@@ -436,12 +462,29 @@ struct MainView: View {
             )
         }
     }
+
+    private var isWrongAnswerPhase: Bool {
+        if case .showingWrongAnswer = vm.phase { return true }
+        return false
+    }
+
+    private func layoutScale(containerHeight: CGFloat, safeArea: EdgeInsets) -> CGFloat {
+        let usable = max(1, containerHeight - safeArea.top - safeArea.bottom)
+        let baseHeight: CGFloat = 780
+        let raw = usable / baseHeight
+        return min(1.0, max(0.8, raw))
+    }
+
+    private func scaled(_ value: CGFloat, by scale: CGFloat, min minValue: CGFloat) -> CGFloat {
+        max(minValue, value * scale)
+    }
 }
 
 // MARK: - Choice Card
 
 private struct ChoiceCard: View {
     let text: String
+    let scale: CGFloat
     let onTap: () -> Void
 
     @State private var isPressed = false
@@ -449,17 +492,17 @@ private struct ChoiceCard: View {
     var body: some View {
         Button(action: onTap) {
             Text(text)
-                .font(.system(.title2, design: .rounded))
+                .font(.system(size: max(18, 24 * scale), weight: .bold, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .minimumScaleFactor(0.6)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, minHeight: 72)
-                .padding(.horizontal, 8)
+                .frame(maxWidth: .infinity, minHeight: max(56, 72 * scale))
+                .padding(.horizontal, max(6, 8 * scale))
         }
         .background(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+            RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
                 .fill(
                     isPressed
                         ? OniTanTheme.primaryGradient
@@ -470,11 +513,11 @@ private struct ChoiceCard: View {
                         )
                 )
                 .overlay(
-                    RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+                    RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
                         .stroke(Color.white.opacity(isPressed ? 0.5 : 0.2), lineWidth: 1)
                 )
         )
-        .shadow(color: .black.opacity(0.2), radius: 6, y: 3)
+        .shadow(color: .black.opacity(0.2), radius: max(3, 6 * scale), y: max(2, 3 * scale))
         .scaleEffect(isPressed ? 0.95 : 1.0)
         .animation(.easeInOut(duration: 0.10), value: isPressed)
         .buttonStyle(PlainButtonStyle())
