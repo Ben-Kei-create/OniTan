@@ -97,9 +97,15 @@ final class QuizSessionViewModel: ObservableObject {
         }
 
         let safeResolved = resolved.isEmpty ? stage.questions : resolved
+        // safeResolved should never be empty when data loads correctly.
+        // Guard here to surface the failure clearly rather than crash silently.
+        guard let firstQuestion = safeResolved.first else {
+            preconditionFailure("QuizSessionViewModel: question pool is empty for stage \(stage.stage). " +
+                "Check that JSON data loaded successfully (see dataLoadError in HomeView).")
+        }
         self.sessionQuestions = safeResolved
         self.pendingQueue = safeResolved
-        self.currentQuestion = safeResolved[0]
+        self.currentQuestion = firstQuestion
     }
 
     // MARK: - Actions

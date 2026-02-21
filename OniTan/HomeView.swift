@@ -357,14 +357,12 @@ private struct HomeTodayCard: View {
         ) {
             cardContent
         }
-        .buttonStyle(PlainButtonStyle())
-        .scaleEffect(isPressed ? 0.97 : 1.0)
-        .animation(.easeInOut(duration: 0.12), value: isPressed)
         .simultaneousGesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in isPressed = true }
                 .onEnded   { _ in isPressed = false }
         )
+        .buttonStyle(PlainButtonStyle())
         .accessibilityElement(children: .combine)
         .accessibilityLabel(streakRepo.todayCompleted
             ? "今日の10問 完了済み。もう一度挑戦できます"
@@ -431,6 +429,8 @@ private struct HomeTodayCard: View {
             radius: 14,
             y: 6
         )
+        .scaleEffect(isPressed ? 0.97 : 1.0)
+        .animation(.easeInOut(duration: 0.12), value: isPressed)
     }
 
     private var cardGradient: LinearGradient {
