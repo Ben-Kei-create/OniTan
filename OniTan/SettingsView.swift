@@ -4,6 +4,8 @@ struct SettingsView: View {
     @AppStorage("colorScheme") private var colorSchemeString: String = "system"
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
 
     // Unified alert state — replaces three separate Bool flags
     @State private var activeAlert: OniAlert? = nil
@@ -65,7 +67,11 @@ struct SettingsView: View {
 
                 // Reset button
                 Button {
-                    if appState.clearedStages.isEmpty && statsRepo.stageStats.isEmpty {
+                    let hasData = !appState.clearedStages.isEmpty
+                        || !statsRepo.stageStats.isEmpty
+                        || streakRepo.currentStreak > 0
+                        || xpRepo.totalXP > 0
+                    if !hasData {
                         activeAlert = .nothingToReset
                     } else {
                         activeAlert = .resetConfirmation
@@ -166,12 +172,23 @@ struct SettingsView: View {
             return Alert(
                 title: Text(alert.title),
                 message: Text(alert.message),
+                primaryButton: .destructive(Text("次へ")) {
+                    activeAlert = .resetFinalConfirmation
+                },
+                secondaryButton: .cancel(Text("キャンセル"))
+            )
+        case .resetFinalConfirmation:
+            return Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
                 primaryButton: .destructive(Text("初期化する")) {
                     appState.reset()
                     statsRepo.reset()
+                    streakRepo.reset()
+                    xpRepo.reset()
                     activeAlert = .resetComplete
                 },
-                secondaryButton: .cancel(Text("キャンセル"))
+                secondaryButton: .cancel(Text("やめる"))
             )
         default:
             return Alert(

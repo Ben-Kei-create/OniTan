@@ -130,6 +130,15 @@ final class GamificationRepository: ObservableObject {
         return pts
     }
 
+    /// Reset all XP and level data to initial state.
+    func reset() {
+        data = GamificationData()
+        store.remove(forKey: key)
+        store.remove(forKey: legacyKey)
+        publish()
+        xpLogger.info("Gamification data reset")
+    }
+
     // MARK: - Private
 
     func requiredXP(for level: Int) -> Int {

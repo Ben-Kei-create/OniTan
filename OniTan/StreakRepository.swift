@@ -74,6 +74,15 @@ final class StreakRepository: ObservableObject {
         publish()
     }
 
+    /// Reset all streak data to initial state.
+    func reset() {
+        data = StreakData()
+        store.remove(forKey: key)
+        store.remove(forKey: legacyKey)
+        publish()
+        streakLogger.info("Streak data reset")
+    }
+
     // MARK: - Private
 
     private func checkAndMarkCompleted() {

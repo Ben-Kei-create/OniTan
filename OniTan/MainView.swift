@@ -340,76 +340,85 @@ struct MainView: View {
     // MARK: - Stage Cleared
 
     private var stageClearedView: some View {
-        VStack(spacing: 32) {
-            Spacer()
+        VStack(spacing: 0) {
+            Spacer(minLength: 12)
 
-            // Trophy icon with glow
+            // Trophy icon with glow (scaled down for compact layout)
             ZStack {
                 Circle()
                     .fill(OniTanTheme.accentCorrect.opacity(0.15))
-                    .frame(width: 120, height: 120)
-                    .blur(radius: 20)
+                    .frame(width: 90, height: 90)
+                    .blur(radius: 16)
 
                 Image(systemName: "trophy.fill")
-                    .font(.system(size: 72))
+                    .font(.system(size: 54))
                     .foregroundStyle(OniTanTheme.goldGradient)
-                    .shadow(color: .yellow.opacity(0.6), radius: 16)
+                    .shadow(color: .yellow.opacity(0.6), radius: 12)
             }
 
-            VStack(spacing: 12) {
+            Spacer(minLength: 16)
+
+            VStack(spacing: 8) {
                 Text(vm.clearTitle)
-                    .font(.system(size: 32, weight: .black, design: .rounded))
+                    .font(.system(size: 28, weight: .black, design: .rounded))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
 
                 Text("全 \(vm.totalGoal) 問クリア！")
-                    .font(.system(.title3, design: .rounded))
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
                     .foregroundColor(OniTanTheme.textSecondary)
             }
 
-            // Final progress ring (always 100%)
+            Spacer(minLength: 12)
+
+            // Final progress ring (scaled down)
             ProgressRingView(
                 progress: 1.0,
-                lineWidth: 12,
-                size: 100,
+                lineWidth: 10,
+                size: 80,
                 gradient: Gradient(colors: [OniTanTheme.accentCorrect, OniTanTheme.accentPrimary]),
                 label: "完了"
             )
-            .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 16)
+            .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 12)
 
-            // XP earned this session
+            Spacer(minLength: 8)
+
+            // XP earned this session (compact)
             if vm.sessionXPGained > 0 {
                 sessionXPBadge(vm.sessionXPGained)
             }
 
-            Spacer()
+            Spacer(minLength: 12)
 
-            VStack(spacing: 12) {
+            VStack(spacing: 10) {
                 Button {
                     OniTanTheme.hapticSuccess()
                     dismiss()
                 } label: {
                     Text("ステージ選択へ戻る")
-                        .font(.system(.headline, design: .rounded))
+                        .font(.system(.subheadline, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 56)
+                        .frame(maxWidth: .infinity, minHeight: 48)
                         .background(OniTanTheme.correctGradient)
                         .cornerRadius(OniTanTheme.radiusButton)
-                        .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 12, y: 6)
+                        .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 8, y: 4)
                 }
 
                 Button {
                     withAnimation { vm.resetGame() }
                 } label: {
                     Text("もう一度")
-                        .font(.system(.subheadline, design: .rounded))
+                        .font(.system(size: 13, weight: .semibold, design: .rounded))
                         .foregroundColor(.white.opacity(0.65))
                 }
             }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 32)
+            .padding(.horizontal, 20)
+            .padding(.bottom, 16)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました"
             + (vm.sessionXPGained > 0 ? " +\(vm.sessionXPGained) XP獲得" : ""))
@@ -482,7 +491,19 @@ private struct ChoiceCard: View {
     @State private var isPressed = false
 
     var body: some View {
-        Button(action: onTap) {
+        Button(action: {
+            // Visual feedback
+            withAnimation(.easeInOut(duration: 0.10)) {
+                isPressed = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation(.easeInOut(duration: 0.10)) {
+                    isPressed = false
+                }
+            }
+            // Execute action
+            onTap()
+        }) {
             Text(text)
                 .font(.system(size: max(18, 24 * scale), weight: .bold, design: .rounded))
                 .fontWeight(.bold)
@@ -491,7 +512,6 @@ private struct ChoiceCard: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, minHeight: max(56, 72 * scale))
-                .padding(.horizontal, max(6, 8 * scale))
         }
         .background(
             RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
@@ -509,15 +529,10 @@ private struct ChoiceCard: View {
                         .stroke(Color.white.opacity(isPressed ? 0.5 : 0.2), lineWidth: 1)
                 )
         )
+        .padding(.horizontal, max(6, 8 * scale))
         .shadow(color: .black.opacity(0.2), radius: max(3, 6 * scale), y: max(2, 3 * scale))
         .scaleEffect(isPressed ? 0.95 : 1.0)
-        .animation(.easeInOut(duration: 0.10), value: isPressed)
         .buttonStyle(PlainButtonStyle())
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded   { _ in isPressed = false }
-        )
         .accessibilityLabel("選択肢: \(text)")
         .accessibilityHint("タップするとこの選択肢を選びます")
         .accessibilityIdentifier("quiz_choice_\(text)")

@@ -11,6 +11,7 @@ enum OniAlert: Identifiable, Equatable {
 
     // Settings
     case resetConfirmation
+    case resetFinalConfirmation
     case resetComplete
     case nothingToReset
 
@@ -26,6 +27,7 @@ enum OniAlert: Identifiable, Equatable {
         case .quitConfirmation:              return "quitConfirmation"
         case .stageAlreadyCleared(let n):   return "stageAlreadyCleared_\(n)"
         case .resetConfirmation:             return "resetConfirmation"
+        case .resetFinalConfirmation:        return "resetFinalConfirmation"
         case .resetComplete:                 return "resetComplete"
         case .nothingToReset:               return "nothingToReset"
         case .dataLoadError:                return "dataLoadError"
@@ -39,6 +41,7 @@ enum OniAlert: Identifiable, Equatable {
         case .quitConfirmation:     return "確認"
         case .stageAlreadyCleared:  return "クリア済み"
         case .resetConfirmation:    return "初期化の確認"
+        case .resetFinalConfirmation: return "最終確認"
         case .resetComplete:        return "完了"
         case .nothingToReset:       return "初期化できません"
         case .dataLoadError:        return "データエラー"
@@ -54,7 +57,9 @@ enum OniAlert: Identifiable, Equatable {
         case .stageAlreadyCleared(let n):
             return "ステージ \(n) はすでにクリア済みです。"
         case .resetConfirmation:
-            return "本当に進行状況を初期化しますか？\nすべてのクリア情報と統計が失われます。"
+            return "進行状況を初期化しますか？\nすべてのクリア情報、統計、ストリーク、XP/レベルが失われます。"
+        case .resetFinalConfirmation:
+            return "本当にすべてのデータを初期化しますか？\nクリア情報、統計、ストリーク、XP/レベルがすべて失われます。\nこの操作は元に戻せません。"
         case .resetComplete:
             return "進行状況が初期化されました。"
         case .nothingToReset:
@@ -70,7 +75,7 @@ enum OniAlert: Identifiable, Equatable {
 
     var isDestructive: Bool {
         switch self {
-        case .resetConfirmation, .quitConfirmation: return true
+        case .resetConfirmation, .resetFinalConfirmation, .quitConfirmation: return true
         default: return false
         }
     }
