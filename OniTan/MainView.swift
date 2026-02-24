@@ -150,9 +150,14 @@ struct MainView: View {
             stageHeader(scale: scale)
                 .padding(.bottom, scaled(8, by: scale, min: 4))
 
-            // Kanji display — shrinks when showing wrong answer
-            kanjiDisplay(scale: scale)
-                .padding(.bottom, scaled(12, by: scale, min: 6))
+            // Kind-specific question prompt
+            QuestionPromptView(
+                question: vm.currentQuestion,
+                isShowingWrong: isShowingWrong,
+                lastAnswerResult: vm.lastAnswerResult,
+                scale: scale
+            )
+            .padding(.bottom, scaled(12, by: scale, min: 6))
 
             Spacer(minLength: 4)
 
@@ -198,80 +203,51 @@ struct MainView: View {
         .accessibilityLabel("\(vm.displayTitle) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
     }
 
-    // MARK: - Kanji Display
-
-    private func kanjiDisplay(scale: CGFloat) -> some View {
-        let corner = scaled(24, by: scale, min: 16)
-        // Shrink the kanji card when showing wrong answer to make room
-        let kanjiHeight: CGFloat = isShowingWrong
-            ? scaled(160, by: scale, min: 120)
-            : scaled(220, by: scale, min: 170)
-        let kanjiFont: CGFloat = isShowingWrong
-            ? scaled(90, by: scale, min: 64)
-            : scaled(130, by: scale, min: 92)
-
-        return ZStack {
-            // Background card
-            RoundedRectangle(cornerRadius: corner)
-                .fill(Color.white.opacity(0.12))
-                .overlay(
-                    RoundedRectangle(cornerRadius: corner)
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                )
-                .shadow(color: .black.opacity(0.2), radius: scaled(16, by: scale, min: 8), y: scaled(8, by: scale, min: 4))
-
-            // Flash on answer
-            if vm.lastAnswerResult == .correct {
-                RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentCorrect.opacity(0.25))
-                    .transition(.opacity)
-            } else if vm.lastAnswerResult == .wrong {
-                RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentWrong.opacity(0.25))
-                    .transition(.opacity)
-            }
-
-            Text(vm.currentQuestion.kanji)
-                .font(.system(size: kanjiFont, weight: .black, design: .rounded))
-                .foregroundColor(.white)
-                .minimumScaleFactor(0.4)
-                .lineLimit(1)
-                .shadow(color: .black.opacity(0.3), radius: 4)
-                .id(vm.currentQuestion.id)
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing).combined(with: .opacity),
-                    removal: .move(edge: .leading).combined(with: .opacity)
-                ))
-                .padding(scaled(16, by: scale, min: 8))
-        }
-        .frame(height: kanjiHeight)
-        .animation(.easeInOut(duration: 0.25), value: isShowingWrong)
-        .accessibilityElement()
-        .accessibilityLabel("漢字: \(vm.currentQuestion.kanji)")
-        .accessibilityHint("この漢字の読みを選んでください")
-        .accessibilityIdentifier("quiz_kanji")
-    }
-
-    // MARK: - 2x2 Choice Grid
+    // MARK: - Choice Grid
 
     private func choiceGrid(scale: CGFloat) -> some View {
         let choices = vm.currentQuestion.choices
-        let rows = choices.chunked(into: 2)
+        let kind = vm.currentQuestion.kind
+        let useVertical = kind == .composition || choices.count > 4
+        let isLongText = kind == .usage
 
-        return VStack(spacing: scaled(12, by: scale, min: 8)) {
-            ForEach(rows.indices, id: \.self) { rowIndex in
-                HStack(spacing: scaled(12, by: scale, min: 8)) {
-                    ForEach(Array(rows[rowIndex].enumerated()), id: \.offset) { _, choice in
-                        ChoiceCard(
-                            text: choice,
-                            scale: scale,
-                            onTap: {
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                                    vm.answer(selected: choice)
-                                }
-                                OniTanTheme.haptic(.medium)
+        return VStack(spacing: scaled(useVertical ? 8 : 12, by: scale, min: useVertical ? 6 : 8)) {
+            if useVertical {
+                // Vertical single-column layout for composition (5 choices) etc.
+                ForEach(Array(choices.enumerated()), id: \.offset) { _, choice in
+                    let label = kind == .composition
+                        ? (QuestionKind.structureTypeLabels[choice] ?? choice)
+                        : choice
+                    ChoiceCard(
+                        text: label,
+                        scale: scale,
+                        compact: true,
+                        onTap: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                vm.answer(selected: choice)
                             }
-                        )
+                            OniTanTheme.haptic(.medium)
+                        }
+                    )
+                }
+            } else {
+                // Standard 2x2 grid
+                let rows = choices.chunked(into: 2)
+                ForEach(rows.indices, id: \.self) { rowIndex in
+                    HStack(spacing: scaled(12, by: scale, min: 8)) {
+                        ForEach(Array(rows[rowIndex].enumerated()), id: \.offset) { _, choice in
+                            ChoiceCard(
+                                text: choice,
+                                scale: scale,
+                                compact: isLongText,
+                                onTap: {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                        vm.answer(selected: choice)
+                                    }
+                                    OniTanTheme.haptic(.medium)
+                                }
+                            )
+                        }
                     }
                 }
             }
@@ -486,11 +462,15 @@ struct MainView: View {
 private struct ChoiceCard: View {
     let text: String
     let scale: CGFloat
+    var compact: Bool = false
     let onTap: () -> Void
 
     @State private var isPressed = false
 
     var body: some View {
+        let fontSize: CGFloat = compact ? max(14, 18 * scale) : max(18, 24 * scale)
+        let minH: CGFloat = compact ? max(44, 52 * scale) : max(56, 72 * scale)
+
         Button(action: {
             // Visual feedback
             withAnimation(.easeInOut(duration: 0.10)) {
@@ -505,13 +485,13 @@ private struct ChoiceCard: View {
             onTap()
         }) {
             Text(text)
-                .font(.system(size: max(18, 24 * scale), weight: .bold, design: .rounded))
+                .font(.system(size: fontSize, weight: .bold, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(.white)
-                .minimumScaleFactor(0.6)
-                .lineLimit(2)
+                .minimumScaleFactor(0.5)
+                .lineLimit(compact ? 3 : 2)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, minHeight: max(56, 72 * scale))
+                .frame(maxWidth: .infinity, minHeight: minH)
         }
         .background(
             RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
@@ -554,11 +534,24 @@ struct ExplanationView: View {
                 .onTapGesture { onDismiss() }
 
             VStack(spacing: 0) {
-                // Kanji header
+                // Header — adapts display for question kind
                 VStack(spacing: 8) {
-                    Text(question.kanji)
-                        .font(.system(size: 70, weight: .black, design: .rounded))
+                    if question.kind != .reading {
+                        Text(question.kind.promptLabel)
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundColor(.white.opacity(0.5))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 2)
+                            .background(Color.white.opacity(0.1))
+                            .cornerRadius(6)
+                    }
+
+                    Text(explanationHeaderText)
+                        .font(.system(size: explanationHeaderFontSize, weight: .black, design: .rounded))
                         .foregroundStyle(OniTanTheme.primaryGradient)
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
 
                     HStack(spacing: 4) {
                         Image(systemName: "checkmark.circle.fill")
@@ -616,6 +609,30 @@ struct ExplanationView: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel("正解の解説: \(question.kanji). \(question.explain)")
         .accessibilityHint("タップまたは次へボタンで閉じます")
+    }
+
+    private var explanationHeaderText: String {
+        switch question.kind {
+        case .yojijukugo:
+            return question.payload?.yoji ?? question.kanji
+        case .composition:
+            return question.payload?.compound ?? question.kanji
+        case .errorcorrection:
+            return question.payload?.correctKanji ?? question.answer
+        case .cloze:
+            return question.answer
+        default:
+            return question.kanji
+        }
+    }
+
+    private var explanationHeaderFontSize: CGFloat {
+        switch question.kind {
+        case .errorcorrection, .cloze:
+            return 40
+        default:
+            return 70
+        }
     }
 }
 

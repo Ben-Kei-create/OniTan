@@ -8,6 +8,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
     case quick10     // ランダム10問クイックモード
     case exam30      // ランダム30問模試モード（誤答キュー無し）
     case weakFocus   // 苦手問題集中モード
+    case passage     // 文章題モード（著作権フリーの文章から出題）
     case srsReview   // 将来SRS実装用プレースホルダー
 
     var id: String { rawValue }
@@ -18,6 +19,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
         case .quick10:   return "クイック10問"
         case .exam30:    return "模試30問"
         case .weakFocus: return "苦手集中"
+        case .passage:   return "文章題"
         case .srsReview: return "SRS復習"
         }
     }
@@ -28,6 +30,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
         case .quick10:   return "ランダムな10問を素早く解く短時間モード。"
         case .exam30:    return "ランダム30問。誤答の再出題なし。実力をテストします。"
         case .weakFocus: return "苦手な問題だけを集中的に練習します。"
+        case .passage:   return "文章を読みながら漢字の読みを連続で答えます。"
         case .srsReview: return "Coming soon: 間隔反復アルゴリズムによる復習。"
         }
     }
@@ -38,6 +41,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
         case .quick10:   return "bolt.fill"
         case .exam30:    return "doc.text.fill"
         case .weakFocus: return "exclamationmark.triangle.fill"
+        case .passage:   return "text.book.closed.fill"
         case .srsReview: return "brain.head.profile"
         }
     }
@@ -46,7 +50,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
     var usesReviewQueue: Bool {
         switch self {
         case .normal, .weakFocus: return true
-        case .quick10, .exam30, .srsReview: return false
+        case .quick10, .exam30, .passage, .srsReview: return false
         }
     }
 
@@ -62,7 +66,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
     /// Whether to shuffle questions at session start.
     var shufflesQuestions: Bool {
         switch self {
-        case .normal, .weakFocus: return false
+        case .normal, .weakFocus, .passage: return false
         case .quick10, .exam30, .srsReview: return true
         }
     }
@@ -73,6 +77,10 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
 
     var isSRSPlaceholder: Bool {
         self == .srsReview
+    }
+
+    var isPassageMode: Bool {
+        self == .passage
     }
 }
 

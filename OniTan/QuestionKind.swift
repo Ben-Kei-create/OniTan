@@ -34,6 +34,68 @@ enum QuestionKind: String, Codable, CaseIterable {
 }
 
 extension QuestionKind {
+    /// 出題画面に表示するカテゴリラベル
+    var promptLabel: String {
+        switch self {
+        case .reading:         return "読み"
+        case .writing:         return "書き取り"
+        case .composition:     return "熟語の構成"
+        case .yojijukugo:      return "四字熟語"
+        case .synonym:         return "類義語"
+        case .antonym:         return "対義語"
+        case .okurigana:       return "送り仮名"
+        case .errorcorrection: return "誤字訂正"
+        case .cloze:           return "文章穴埋め"
+        case .usage:           return "語彙用法"
+        case .unknown:         return "問題"
+        }
+    }
+
+    /// 出題エリアに表示する指示テキスト（readingは暗黙的なのでnil）
+    var instructionText: String? {
+        switch self {
+        case .reading:         return nil
+        case .writing:         return "正しい漢字は？"
+        case .composition:     return "この熟語の構成は？"
+        case .yojijukugo:      return "□に入る字は？"
+        case .synonym:         return "類義語は？"
+        case .antonym:         return "対義語は？"
+        case .okurigana:       return "正しい送り仮名は？"
+        case .errorcorrection: return "誤字はどれ？"
+        case .cloze:           return "＿＿に入る語は？"
+        case .usage:           return "正しい使い方は？"
+        case .unknown:         return nil
+        }
+    }
+
+    /// アクセシビリティ用のヒントテキスト
+    var accessibilityHint: String {
+        switch self {
+        case .reading:         return "この漢字の読みを選んでください"
+        case .writing:         return "正しい漢字を選んでください"
+        case .composition:     return "熟語の構成を選んでください"
+        case .yojijukugo:      return "□に入る漢字を選んでください"
+        case .synonym:         return "類義語を選んでください"
+        case .antonym:         return "対義語を選んでください"
+        case .okurigana:       return "正しい送り仮名を選んでください"
+        case .errorcorrection: return "正しい漢字を選んでください"
+        case .cloze:           return "空欄に入る語を選んでください"
+        case .usage:           return "正しい使い方を選んでください"
+        case .unknown:         return "答えを選んでください"
+        }
+    }
+
+    /// 熟語の構成の選択肢ラベル（structureType → 日本語）
+    static let structureTypeLabels: [String: String] = [
+        "synonym_chars":     "同じ意味の漢字（類義）",
+        "antonym_chars":     "反対の意味の漢字（対義）",
+        "modifier":          "上が下を修飾（修飾）",
+        "verb_object":       "下を上が動作（動目）",
+        "subject_predicate": "上が主・下が述（主述）"
+    ]
+}
+
+extension QuestionKind {
     /// Whitelist for `QuestionPayload.structureType` when kind == .composition.
     /// Based on the standard 漢字検定 5-category classification:
     ///   synonymChars  — 類義（岩石）

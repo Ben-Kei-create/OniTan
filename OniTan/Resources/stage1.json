@@ -174,6 +174,169 @@
       "choices": ["ひそめる", "あげる"],
       "answer": "ひそめる",
       "explain": "意味: 眉をひそめる\n音読み: ヒン\n訓読み: ひそめる\n例文:\n  顰蹙 (ひんしゅく) - 眉をひそめて不快に思うこと\n  顰眉 (ひんび) - 眉をひそめること\n四字熟語: 顰蹙不快 (ひんしゅくふかい) - 非常に不快に思うこと"
+    },
+
+    {
+      "kanji": "かいこん→漢字",
+      "choices": ["懐恨", "開墾", "悔恨", "回懇"],
+      "answer": "開墾",
+      "explain": "開墾（かいこん）: 山林や荒地を切り開いて田畑にすること。\n「開」は開く、「墾」は土地を切り開く意。",
+      "kind": "writing",
+      "payload": { "type": "writing", "kana": "かいこん", "targetKanji": "開墾" }
+    },
+    {
+      "kanji": "ちょくさい→漢字",
+      "choices": ["勅裁", "直截", "直裁", "勅祭"],
+      "answer": "直截",
+      "explain": "直截（ちょくさい）: まわりくどくなく、すっぱりと判断すること。\n「直」はまっすぐ、「截」は断ち切る意。",
+      "kind": "writing",
+      "payload": { "type": "writing", "kana": "ちょくさい", "targetKanji": "直截" }
+    },
+    {
+      "kanji": "しゅんびん→漢字",
+      "choices": ["俊敏", "峻敏", "駿敏", "舜敏"],
+      "answer": "俊敏",
+      "explain": "俊敏（しゅんびん）: 判断や行動がすばやいこと。\n「俊」は優れた、「敏」はすばやい意。",
+      "kind": "writing",
+      "payload": { "type": "writing", "kana": "しゅんびん", "targetKanji": "俊敏" }
+    },
+
+    {
+      "kanji": "岩石",
+      "choices": ["synonym_chars", "antonym_chars", "modifier", "verb_object", "subject_predicate"],
+      "answer": "synonym_chars",
+      "explain": "岩石（がんせき）: 「岩」と「石」はどちらも石の意味。\n同じ意味の漢字を重ねた熟語（類義）。",
+      "kind": "composition",
+      "payload": { "type": "composition", "structureType": "synonym_chars", "compound": "岩石" }
+    },
+    {
+      "kanji": "高低",
+      "choices": ["synonym_chars", "antonym_chars", "modifier", "verb_object", "subject_predicate"],
+      "answer": "antonym_chars",
+      "explain": "高低（こうてい）: 「高」と「低」は反対の意味。\n反対の意味の漢字を重ねた熟語（対義）。",
+      "kind": "composition",
+      "payload": { "type": "composition", "structureType": "antonym_chars", "compound": "高低" }
+    },
+    {
+      "kanji": "着席",
+      "choices": ["synonym_chars", "antonym_chars", "modifier", "verb_object", "subject_predicate"],
+      "answer": "verb_object",
+      "explain": "着席（ちゃくせき）: 「席」に「着」く。\n上の字が下の字を目的語としている熟語（動目）。",
+      "kind": "composition",
+      "payload": { "type": "composition", "structureType": "verb_object", "compound": "着席" }
+    },
+
+    {
+      "kanji": "臥薪嘗胆",
+      "choices": ["薪", "臥", "嘗", "胆"],
+      "answer": "薪",
+      "explain": "臥薪嘗胆（がしんしょうたん）: 将来の成功のために苦労に耐えること。\n薪（たきぎ）の上に臥（ふ）し、胆（きも）を嘗（な）める。",
+      "kind": "yojijukugo",
+      "payload": { "type": "yojijukugo", "yoji": "臥□嘗胆", "missingIndex": 1, "meaning": "将来の成功のために苦労に耐えること" }
+    },
+    {
+      "kanji": "粉骨砕身",
+      "choices": ["骨", "砕", "粉", "身"],
+      "answer": "砕",
+      "explain": "粉骨砕身（ふんこつさいしん）: 力の限りを尽くして努力すること。\n骨を粉にし身を砕くほど努力する意。",
+      "kind": "yojijukugo",
+      "payload": { "type": "yojijukugo", "yoji": "粉骨□身", "missingIndex": 2, "meaning": "力の限りを尽くして努力すること" }
+    },
+
+    {
+      "kanji": "崇拝",
+      "choices": ["敬慕", "軽蔑", "嫉妬", "怨恨"],
+      "answer": "敬慕",
+      "explain": "崇拝（すうはい）: あがめうやまうこと。\n類義語は「敬慕」（けいぼ）— 尊敬し慕うこと。",
+      "kind": "synonym"
+    },
+    {
+      "kanji": "懸念",
+      "choices": ["危惧", "安堵", "確信", "歓喜"],
+      "answer": "危惧",
+      "explain": "懸念（けねん）: 心配すること・気がかり。\n類義語は「危惧」（きぐ）— おそれ心配すること。",
+      "kind": "synonym"
+    },
+
+    {
+      "kanji": "簡潔",
+      "choices": ["冗長", "明瞭", "簡略", "詳細"],
+      "answer": "冗長",
+      "explain": "簡潔（かんけつ）: 簡単で要領を得ていること。\n対義語は「冗長」（じょうちょう）— 無駄が多く長いこと。",
+      "kind": "antonym"
+    },
+    {
+      "kanji": "謙遜",
+      "choices": ["傲慢", "卑下", "遜色", "謙虚"],
+      "answer": "傲慢",
+      "explain": "謙遜（けんそん）: へりくだって控えめにすること。\n対義語は「傲慢」（ごうまん）— おごり高ぶること。",
+      "kind": "antonym"
+    },
+
+    {
+      "kanji": "翻る",
+      "choices": ["ひるがえる", "ひるがえす", "ほんる", "かえる"],
+      "answer": "ひるがえる",
+      "explain": "翻る（ひるがえる）: 風になびいてはためく。旗が翻る。\n「翻す」（ひるがえす）は他動詞。",
+      "kind": "okurigana",
+      "payload": { "type": "okurigana", "targetWord": "翻" }
+    },
+    {
+      "kanji": "携わる",
+      "choices": ["たずさわる", "たずさえる", "かかわる", "あずかる"],
+      "answer": "たずさわる",
+      "explain": "携わる（たずさわる）: ある仕事に関係する・従事する。\n「携える」（たずさえる）は手に持つ意。",
+      "kind": "okurigana",
+      "payload": { "type": "okurigana", "targetWord": "携" }
+    },
+
+    {
+      "kanji": "彼は衆人監視の中で演説した。",
+      "choices": ["環", "勧", "観", "慣"],
+      "answer": "環",
+      "explain": "誤: 監視 → 正: 環視\n「衆人環視」（しゅうじんかんし）: 大勢の人が取り巻いて見ていること。\n「環」（めぐらす）が正しく、「監」（監督する）は誤り。",
+      "kind": "errorcorrection",
+      "payload": { "type": "errorcorrection", "originalSentence": "彼は衆人監視の中で演説した。", "wrongKanji": "監", "correctKanji": "環" }
+    },
+    {
+      "kanji": "旧態以然とした組織を改革する。",
+      "choices": ["依", "意", "威", "異"],
+      "answer": "依",
+      "explain": "誤: 以然 → 正: 依然\n「旧態依然」（きゅうたいいぜん）: 昔のままで少しも変わっていないこと。\n「依」（よる）が正しく、「以」は誤り。",
+      "kind": "errorcorrection",
+      "payload": { "type": "errorcorrection", "originalSentence": "旧態以然とした組織を改革する。", "wrongKanji": "以", "correctKanji": "依" }
+    },
+
+    {
+      "kanji": "会議は＿＿に進んだ。",
+      "choices": ["円滑", "混沌", "漫然", "逼迫"],
+      "answer": "円滑",
+      "explain": "「会議は円滑に進んだ」\n円滑（えんかつ）: 物事がすらすらと滞りなく運ぶこと。",
+      "kind": "cloze",
+      "payload": { "type": "cloze", "sentence": "会議は＿＿に進んだ。", "blankToken": "＿＿" }
+    },
+    {
+      "kanji": "彼の＿＿な態度に皆感心した。",
+      "choices": ["毅然", "曖昧", "漫然", "杜撰"],
+      "answer": "毅然",
+      "explain": "「彼の毅然な態度に皆感心した」\n毅然（きぜん）: 意志が強くしっかりしているさま。",
+      "kind": "cloze",
+      "payload": { "type": "cloze", "sentence": "彼の＿＿な態度に皆感心した。", "blankToken": "＿＿" }
+    },
+
+    {
+      "kanji": "忖度",
+      "choices": ["他人の気持ちを推し量ること", "自分の意見を押し通すこと", "物事を計画的に進めること", "過去の出来事を振り返ること"],
+      "answer": "他人の気持ちを推し量ること",
+      "explain": "忖度（そんたく）: 他人の心中をおしはかること。\n「忖」も「度」も「はかる」の意。",
+      "kind": "usage"
+    },
+    {
+      "kanji": "逡巡",
+      "choices": ["ためらって決心がつかないこと", "素早く行動に移ること", "順序よく物事を進めること", "遠回りして目的地に向かうこと"],
+      "answer": "ためらって決心がつかないこと",
+      "explain": "逡巡（しゅんじゅん）: 決断できず、ぐずぐずすること。\n「逡」はしりぞく、「巡」はめぐる意。",
+      "kind": "usage"
     }
   ]
 }

@@ -8,6 +8,7 @@ struct QuizData: Codable {
 struct Stage: Codable {
     let stage: Int
     let questions: [Question]
+    let passages: [Passage]?
 }
 
 // MARK: - Stage Manifest
