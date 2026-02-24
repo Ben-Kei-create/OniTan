@@ -1,7 +1,6 @@
 import SwiftUI
 
 // MARK: - Progress Ring Component
-// Reusable circular progress indicator used on HomeView and StageSelectView.
 
 struct ProgressRingView: View {
     let progress: Double          // 0.0 – 1.0
@@ -28,7 +27,7 @@ struct ProgressRingView: View {
         ZStack {
             // Track
             Circle()
-                .stroke(Color.white.opacity(0.15), lineWidth: lineWidth)
+                .stroke(OniTanTheme.cardBorder, lineWidth: lineWidth)
 
             // Fill
             Circle()
@@ -44,12 +43,12 @@ struct ProgressRingView: View {
             if let label {
                 Text(label)
                     .font(.system(size: size * 0.26, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(OniTanTheme.textPrimary)
                     .accessibilityHidden(true)
             } else {
                 Text(progressText)
                     .font(.system(size: size * 0.22, weight: .semibold, design: .rounded))
-                    .foregroundColor(.white.opacity(0.85))
+                    .foregroundColor(OniTanTheme.textSecondary)
                     .accessibilityHidden(true)
             }
         }
@@ -73,7 +72,7 @@ struct ProgressRingView: View {
 struct StageProgressRing: View {
     let stageNumber: Int
     let cleared: Bool
-    let progress: Double   // weak-point ratio or cleared indicator
+    let progress: Double
 
     var body: some View {
         ZStack {
@@ -93,7 +92,7 @@ struct StageProgressRing: View {
             } else {
                 Text("S\(stageNumber)")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundColor(.white.opacity(0.85))
+                    .foregroundColor(OniTanTheme.textSecondary)
             }
         }
         .accessibilityElement()

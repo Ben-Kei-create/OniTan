@@ -5,10 +5,9 @@ struct HomeView: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var themeManager: ThemeManager
 
     @State private var freezeToastVisible = false
-    /// Tracks the last freeze-notice ID we showed, so onAppear can catch
-    /// a freeze consumed during StreakRepository.init (before onChange fires).
     @State private var lastShownFreezeID: Int = -1
 
     var body: some View {
@@ -51,8 +50,6 @@ struct HomeView: View {
                 }
             }
             .onAppear {
-                // A freeze consumed during StreakRepository.init fires before
-                // the view subscribes, so onChange would miss it. Catch it here.
                 let current = streakRepo.freezeConsumedNoticeID
                 if lastShownFreezeID == -1 {
                     lastShownFreezeID = current
@@ -74,14 +71,14 @@ struct HomeView: View {
                 .foregroundColor(OniTanTheme.accentPrimary)
             Text("ストリーク保護を使って継続しました")
                 .font(.system(.caption, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(
             Capsule()
                 .fill(Color.black.opacity(0.45))
-                .overlay(Capsule().stroke(Color.white.opacity(0.15), lineWidth: 1))
+                .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
         )
         .accessibilityLabel("ストリーク保護を使用しました")
     }
@@ -123,12 +120,12 @@ struct HomeView: View {
                 .font(.system(size: isCompact ? 60 : 74, weight: .black, design: .rounded))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.white, Color(red: 0.75, green: 0.65, blue: 1.0)],
+                        colors: [OniTanTheme.textPrimary, OniTanTheme.accentPrimary.opacity(0.7)],
                         startPoint: .top,
                         endPoint: .bottom
                     )
                 )
-                .shadow(color: .purple.opacity(0.5), radius: 16, y: 8)
+                .shadow(color: OniTanTheme.shadowGlow.color, radius: 16, y: 8)
                 .accessibilityLabel("鬼単アプリ")
 
             Text("漢字検定準1級 対策")
@@ -153,14 +150,14 @@ struct HomeView: View {
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(streakRepo.currentStreak > 0
                         ? OniTanTheme.accentWeak
-                        : .white.opacity(0.4))
+                        : OniTanTheme.textTertiary)
                     .symbolEffect(.bounce, value: streakRepo.todayCompleted)
             } else {
                 Image(systemName: streakRepo.todayCompleted ? "flame.fill" : "flame")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(streakRepo.currentStreak > 0
                         ? OniTanTheme.accentWeak
-                        : .white.opacity(0.4))
+                        : OniTanTheme.textTertiary)
             }
 
             if streakRepo.currentStreak > 0 {
@@ -169,15 +166,15 @@ struct HomeView: View {
                     .fontWeight(.bold)
                     .foregroundColor(streakRepo.todayCompleted
                         ? OniTanTheme.accentWeak
-                        : .white.opacity(0.7))
+                        : OniTanTheme.textSecondary)
 
                 Text("🧊\(streakRepo.freezeCount)")
                     .font(.system(size: 10, weight: .bold, design: .rounded))
-                    .foregroundColor(.white.opacity(0.8))
+                    .foregroundColor(OniTanTheme.textSecondary)
             } else {
                 Text("記録を作ろう")
                     .font(.system(.caption, design: .rounded))
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(OniTanTheme.textTertiary)
             }
         }
         .padding(.horizontal, 10)
@@ -186,13 +183,13 @@ struct HomeView: View {
             Capsule()
                 .fill(streakRepo.todayCompleted
                     ? Color(red: 0.5, green: 0.25, blue: 0.0).opacity(0.55)
-                    : Color.white.opacity(0.08))
+                    : OniTanTheme.cardBackground)
                 .overlay(
                     Capsule()
                         .stroke(
                             streakRepo.currentStreak > 0
                                 ? OniTanTheme.accentWeak.opacity(0.4)
-                                : Color.white.opacity(0.12),
+                                : OniTanTheme.cardBorder,
                             lineWidth: 1
                         )
                 )
@@ -214,12 +211,12 @@ struct HomeView: View {
             Text("Lv.\(xpRepo.level)")
                 .font(.system(.caption, design: .rounded))
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
 
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 2)
-                        .fill(Color.white.opacity(0.15))
+                        .fill(OniTanTheme.cardBorder)
                         .frame(height: 4)
 
                     RoundedRectangle(cornerRadius: 2)
@@ -334,7 +331,6 @@ private struct HomeTodayCard: View {
 
     @State private var isPressed = false
 
-    /// Today stage is built lazily when NavigationLink destination is created.
     private var todayStage: Stage {
         TodaySessionBuilder.buildTodayStage(
             allStages: quizData.stages,
@@ -465,14 +461,14 @@ private struct HomeHeaderIconButton<Destination: View>: View {
         NavigationLink(destination: destination) {
             Image(systemName: icon)
                 .font(.system(size: compact ? 16 : 17, weight: .semibold))
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
                 .frame(width: compact ? 38 : 40, height: compact ? 38 : 40)
                 .background(
                     Circle()
-                        .fill(Color.white.opacity(isPressed ? 0.26 : 0.18))
+                        .fill(isPressed ? OniTanTheme.cardBackgroundPressed : OniTanTheme.cardBackground)
                         .overlay(
                             Circle()
-                                .stroke(Color.white.opacity(0.22), lineWidth: 1)
+                                .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                         )
                 )
                 .shadow(color: .black.opacity(0.24), radius: 6, y: 3)
@@ -493,7 +489,7 @@ private struct HomeHeaderIconButton<Destination: View>: View {
 
 // MARK: - Home Menu Button
 
-private struct HomeMenuButton<Destination: View>: View {
+struct HomeMenuButton<Destination: View>: View {
     let title: String
     let icon: String
     let gradient: LinearGradient

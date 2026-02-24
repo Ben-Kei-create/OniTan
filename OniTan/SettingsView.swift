@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("colorScheme") private var colorSchemeString: String = "system"
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var themeManager: ThemeManager
 
-    // Unified alert state — replaces three separate Bool flags
+    // Unified alert state
     @State private var activeAlert: OniAlert? = nil
 
     var body: some View {
@@ -28,7 +28,7 @@ struct SettingsView: View {
         .navigationTitle("設定")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
         .alert(item: $activeAlert) { alert in
             buildAlert(for: alert)
         }
@@ -39,18 +39,24 @@ struct SettingsView: View {
     private var appearanceSection: some View {
         SettingsCard(title: "表示設定", icon: "paintbrush.fill", iconColor: OniTanTheme.accentPrimary) {
             VStack(alignment: .leading, spacing: 12) {
-                Text("カラーモード")
+                Text("テーマ")
                     .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(.white.opacity(0.65))
+                    .foregroundColor(OniTanTheme.textTertiary)
                     .accessibilityHidden(true)
 
-                Picker("カラーモード", selection: $colorSchemeString) {
-                    Text("システム").tag("system")
-                    Text("ライト").tag("light")
-                    Text("ダーク").tag("dark")
+                HStack(spacing: 10) {
+                    ForEach(AppTheme.allCases) { theme in
+                        ThemePickerCard(
+                            theme: theme,
+                            isSelected: themeManager.theme == theme
+                        ) {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                themeManager.theme = theme
+                            }
+                        }
+                    }
                 }
-                .pickerStyle(.segmented)
-                .accessibilityLabel("カラーモードの選択")
+                .accessibilityLabel("テーマの選択")
             }
         }
     }
@@ -60,12 +66,10 @@ struct SettingsView: View {
     private var dataSection: some View {
         SettingsCard(title: "データ管理", icon: "folder.fill", iconColor: OniTanTheme.accentWeak) {
             VStack(spacing: 12) {
-                // Progress summary
                 progressSummaryRow
 
-                Divider().background(Color.white.opacity(0.12))
+                Divider().background(OniTanTheme.cardBorder)
 
-                // Reset button
                 Button {
                     let hasData = !appState.clearedStages.isEmpty
                         || !statsRepo.stageStats.isEmpty
@@ -126,7 +130,7 @@ struct SettingsView: View {
                 .foregroundColor(iconColor)
             Text(label)
                 .font(.system(size: 10, design: .rounded))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(OniTanTheme.textTertiary)
         }
         .frame(maxWidth: .infinity)
         .accessibilityHidden(true)
@@ -149,12 +153,12 @@ struct SettingsView: View {
         HStack {
             Text(label)
                 .font(.system(.subheadline, design: .rounded))
-                .foregroundColor(.white.opacity(0.55))
+                .foregroundColor(OniTanTheme.textTertiary)
             Spacer()
             Text(value)
                 .font(.system(.subheadline, design: .rounded))
                 .fontWeight(.semibold)
-                .foregroundColor(.white.opacity(0.9))
+                .foregroundColor(OniTanTheme.textSecondary)
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(label): \(value)")
@@ -200,6 +204,68 @@ struct SettingsView: View {
     }
 }
 
+// MARK: - Theme Picker Card
+
+private struct ThemePickerCard: View {
+    let theme: AppTheme
+    let isSelected: Bool
+    let onTap: () -> Void
+
+    private var palette: ThemePalette {
+        switch theme {
+        case .current: return .current
+        case .cool:    return .cool
+        case .cute:    return .cute
+        }
+    }
+
+    var body: some View {
+        Button(action: onTap) {
+            VStack(spacing: 6) {
+                // Color swatch
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(
+                        LinearGradient(
+                            colors: palette.backgroundGradientColors,
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(height: 36)
+                    .overlay(
+                        Circle()
+                            .fill(palette.accentPrimary)
+                            .frame(width: 14, height: 14)
+                    )
+
+                Text(theme.displayName)
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(OniTanTheme.cardBackground)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(
+                                isSelected ? OniTanTheme.accentPrimary : OniTanTheme.cardBorder,
+                                lineWidth: isSelected ? 2 : 1
+                            )
+                    )
+            )
+            .scaleEffect(isSelected ? 1.0 : 0.96)
+            .animation(.easeInOut(duration: 0.15), value: isSelected)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .frame(maxWidth: .infinity)
+        .accessibilityLabel("\(theme.displayName)テーマ")
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+}
+
 // MARK: - Settings Card
 
 private struct SettingsCard<Content: View>: View {
@@ -210,7 +276,6 @@ private struct SettingsCard<Content: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            // Card header
             HStack(spacing: 8) {
                 Image(systemName: icon)
                     .font(.system(size: 13, weight: .semibold))
@@ -219,7 +284,7 @@ private struct SettingsCard<Content: View>: View {
                 Text(title)
                     .font(.system(.caption, design: .rounded))
                     .fontWeight(.bold)
-                    .foregroundColor(.white.opacity(0.55))
+                    .foregroundColor(OniTanTheme.textTertiary)
                     .textCase(.uppercase)
             }
 
@@ -229,10 +294,10 @@ private struct SettingsCard<Content: View>: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(Color.white.opacity(0.08))
+                .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(Color.white.opacity(0.12), lineWidth: 1)
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
         .shadow(color: .black.opacity(0.15), radius: 6, y: 3)
