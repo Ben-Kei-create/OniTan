@@ -34,6 +34,40 @@ enum QuestionKind: String, Codable, CaseIterable {
 }
 
 extension QuestionKind {
+    var examLabel: String {
+        switch self {
+        case .reading: return "読み"
+        case .writing: return "書き取り"
+        case .composition: return "熟語の構成"
+        case .yojijukugo: return "四字熟語"
+        case .synonym: return "類義語"
+        case .antonym: return "対義語"
+        case .okurigana: return "送り仮名"
+        case .errorcorrection: return "誤字訂正"
+        case .cloze: return "文章穴埋め"
+        case .usage: return "語彙用法"
+        case .unknown: return "総合"
+        }
+    }
+
+    var promptText: String {
+        switch self {
+        case .reading: return "この漢字の読みを選びましょう"
+        case .writing: return "かなに合う漢字を選びましょう"
+        case .composition: return "熟語の構成タイプを選びましょう"
+        case .yojijukugo: return "四字熟語の空欄を埋めましょう"
+        case .synonym: return "最も近い意味を選びましょう"
+        case .antonym: return "反対の意味を選びましょう"
+        case .okurigana: return "正しい送り仮名を選びましょう"
+        case .errorcorrection: return "誤字の正しい字を選びましょう"
+        case .cloze: return "文脈に合う語を選びましょう"
+        case .usage: return "使い方として適切な語を選びましょう"
+        case .unknown: return "最適な選択肢を選びましょう"
+        }
+    }
+}
+
+extension QuestionKind {
     /// Whitelist for `QuestionPayload.structureType` when kind == .composition.
     /// Based on the standard 漢字検定 5-category classification:
     ///   synonymChars  — 類義（岩石）
@@ -92,6 +126,11 @@ struct QuestionPayload: Codable {
     let targetWord: String?
     let ruleTag: String?
 
+    // MARK: public domain source metadata
+    let sourceTitle: String?
+    let sourceAuthor: String?
+    let sourceExcerpt: String?
+
     // MARK: - Convenience init (all fields default to nil)
     // Explicit defaults let call sites omit unused fields cleanly (tests, builders).
     init(
@@ -110,7 +149,10 @@ struct QuestionPayload: Codable {
         wrongKanji: String? = nil,
         correctKanji: String? = nil,
         targetWord: String? = nil,
-        ruleTag: String? = nil
+        ruleTag: String? = nil,
+        sourceTitle: String? = nil,
+        sourceAuthor: String? = nil,
+        sourceExcerpt: String? = nil
     ) {
         self.type = type
         self.targetKanji = targetKanji
@@ -128,5 +170,8 @@ struct QuestionPayload: Codable {
         self.correctKanji = correctKanji
         self.targetWord = targetWord
         self.ruleTag = ruleTag
+        self.sourceTitle = sourceTitle
+        self.sourceAuthor = sourceAuthor
+        self.sourceExcerpt = sourceExcerpt
     }
 }

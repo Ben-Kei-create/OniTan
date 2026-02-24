@@ -32,6 +32,10 @@ struct QuizModeSelectView: View {
                 // Header
                 headerSection
 
+                examCoverageCard
+                    .padding(.horizontal, 20)
+                    .padding(.top, 14)
+
                 // Mode list
                 ScrollView {
                     VStack(spacing: 14) {
@@ -57,6 +61,37 @@ struct QuizModeSelectView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
+    }
+
+
+    private var examCoverageCard: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("出題範囲ガイド")
+                .font(.system(.subheadline, design: .rounded))
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+
+            Text("読み・書き取りに加え、対義語・類義語・同音同訓異字・ことわざ・四字熟語まで、準1級で問われる形式を段階的に学習できます。")
+                .font(.system(.caption, design: .rounded))
+                .foregroundColor(.white.opacity(0.75))
+                .lineSpacing(3)
+
+            Label("著作権フリー作品からの引用文問題にも対応", systemImage: "book.closed.fill")
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                .foregroundColor(.white.opacity(0.82))
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusBadge)
+                .fill(Color.white.opacity(0.08))
+                .overlay(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusBadge)
+                        .stroke(Color.white.opacity(0.14), lineWidth: 1)
+                )
+        )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("出題範囲ガイド。準1級の主要形式と、著作権フリー作品の引用文問題に対応")
     }
 
     // MARK: Header

@@ -191,6 +191,10 @@ struct MainView: View {
                         .font(.system(size: scaled(12, by: scale, min: 10), weight: .regular, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                 }
+
+                Text("出題: \(vm.currentQuestion.kind.examLabel)")
+                    .font(.system(size: scaled(11, by: scale, min: 9), weight: .regular, design: .rounded))
+                    .foregroundColor(.white.opacity(0.5))
             }
 
             Spacer()
@@ -229,6 +233,10 @@ struct MainView: View {
             }
 
             VStack(spacing: scaled(8, by: scale, min: 4)) {
+                Text(vm.currentQuestion.kind.promptText)
+                    .font(.system(size: scaled(14, by: scale, min: 11), weight: .semibold, design: .rounded))
+                    .foregroundColor(.white.opacity(0.78))
+
                 Text(vm.currentQuestion.kanji)
                     .font(.system(size: scaled(130, by: scale, min: 92), weight: .black, design: .rounded))
                     .foregroundColor(.white)
@@ -240,13 +248,23 @@ struct MainView: View {
                         insertion: .move(edge: .trailing).combined(with: .opacity),
                         removal: .move(edge: .leading).combined(with: .opacity)
                     ))
+
+                if let excerpt = vm.currentQuestion.payload?.sourceExcerpt,
+                   !excerpt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    Text("出典文: \(excerpt)")
+                        .font(.system(size: scaled(12, by: scale, min: 10), design: .rounded))
+                        .foregroundColor(.white.opacity(0.65))
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, scaled(12, by: scale, min: 8))
+                }
             }
             .padding(scaled(24, by: scale, min: 12))
         }
         .frame(height: scaled(220, by: scale, min: 170))
         .accessibilityElement()
-        .accessibilityLabel("漢字: \(vm.currentQuestion.kanji)")
-        .accessibilityHint("この漢字の読みを選んでください")
+        .accessibilityLabel("問題: \(vm.currentQuestion.kanji)")
+        .accessibilityHint(vm.currentQuestion.kind.promptText)
         .accessibilityIdentifier("quiz_kanji")
     }
 
@@ -563,12 +581,40 @@ struct ExplanationView: View {
 
                 // Explanation body
                 ScrollView {
-                    Text(question.explain)
-                        .font(.system(.body, design: .rounded))
-                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
-                        .lineSpacing(6)
-                        .padding(20)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    VStack(alignment: .leading, spacing: 14) {
+                        Text(question.explain)
+                            .font(.system(.body, design: .rounded))
+                            .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
+                            .lineSpacing(6)
+
+                        if let payload = question.payload,
+                           payload.sourceTitle != nil || payload.sourceAuthor != nil || payload.sourceExcerpt != nil {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("出典（著作権フリー）")
+                                    .font(.system(.subheadline, design: .rounded))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white.opacity(0.9))
+                                if let title = payload.sourceTitle, !title.isEmpty {
+                                    Text("作品: \(title)")
+                                }
+                                if let author = payload.sourceAuthor, !author.isEmpty {
+                                    Text("著者: \(author)")
+                                }
+                                if let excerpt = payload.sourceExcerpt, !excerpt.isEmpty {
+                                    Text("引用: \(excerpt)")
+                                        .lineLimit(nil)
+                                }
+                            }
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(.white.opacity(0.75))
+                            .padding(12)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.white.opacity(0.07))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                        }
+                    }
+                    .padding(20)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .frame(maxHeight: 260)
                 .background(Color(red: 0.10, green: 0.08, blue: 0.18))
