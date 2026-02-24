@@ -1,11 +1,10 @@
 import SwiftUI
 
 // MARK: - Wrong Answer Note View
-// Displays chronological log of all wrong answers grouped by stage.
-// Users can tap any entry to see the full question detail.
 
 struct WrongAnswerNoteView: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var themeManager: ThemeManager
 
     @State private var selectedFilter: FilterMode = .all
     @State private var selectedEntry: WrongAnswerEntry? = nil
@@ -33,7 +32,6 @@ struct WrongAnswerNoteView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Filter bar
                 filterBar
 
                 if filteredEntries.isEmpty {
@@ -46,7 +44,7 @@ struct WrongAnswerNoteView: View {
         .navigationTitle("誤答ノート")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
         .sheet(item: $selectedEntry) { entry in
             WrongAnswerDetailSheet(entry: entry)
         }
@@ -65,14 +63,14 @@ struct WrongAnswerNoteView: View {
                     Text(filter.rawValue)
                         .font(.system(.caption, design: .rounded))
                         .fontWeight(selectedFilter == filter ? .bold : .regular)
-                        .foregroundColor(selectedFilter == filter ? .white : .white.opacity(0.55))
+                        .foregroundColor(selectedFilter == filter ? .white : OniTanTheme.textTertiary)
                         .padding(.horizontal, 14)
                         .padding(.vertical, 7)
                         .background(
                             Capsule()
                                 .fill(selectedFilter == filter
                                       ? OniTanTheme.accentWeak
-                                      : Color.white.opacity(0.10))
+                                      : OniTanTheme.cardBackground)
                         )
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -84,11 +82,11 @@ struct WrongAnswerNoteView: View {
 
             Text("\(filteredEntries.count) 件")
                 .font(.system(.caption2, design: .rounded))
-                .foregroundColor(.white.opacity(0.45))
+                .foregroundColor(OniTanTheme.textTertiary)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
-        .background(Color.white.opacity(0.05))
+        .background(OniTanTheme.cardBackground.opacity(0.5))
     }
 
     // MARK: Entry List
@@ -120,11 +118,11 @@ struct WrongAnswerNoteView: View {
             Text("誤答記録なし")
                 .font(.system(.title3, design: .rounded))
                 .fontWeight(.bold)
-                .foregroundColor(.white.opacity(0.7))
+                .foregroundColor(OniTanTheme.textSecondary)
 
             Text("ステージに挑戦すると\n間違えた問題がここに記録されます")
                 .font(.system(.caption, design: .rounded))
-                .foregroundColor(.white.opacity(0.45))
+                .foregroundColor(OniTanTheme.textTertiary)
                 .multilineTextAlignment(.center)
             Spacer()
         }
@@ -148,7 +146,6 @@ private struct WrongAnswerRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            // Kanji
             Text(entry.kanji)
                 .font(.system(size: 38, weight: .black, design: .rounded))
                 .foregroundColor(.white)
@@ -162,15 +159,15 @@ private struct WrongAnswerRow: View {
                 HStack(spacing: 6) {
                     Text("S\(entry.stageNumber)")
                         .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(.white.opacity(0.5))
+                        .foregroundColor(OniTanTheme.textTertiary)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
-                        .background(Color.white.opacity(0.1))
+                        .background(OniTanTheme.cardBackground)
                         .cornerRadius(6)
 
                     Text(relativeDate)
                         .font(.system(.caption2, design: .rounded))
-                        .foregroundColor(.white.opacity(0.4))
+                        .foregroundColor(OniTanTheme.textTertiary)
                 }
 
                 HStack(spacing: 4) {
@@ -180,7 +177,7 @@ private struct WrongAnswerRow: View {
                     Text("正解: \(entry.correctAnswer)")
                         .font(.system(.subheadline, design: .rounded))
                         .fontWeight(.semibold)
-                        .foregroundColor(.white)
+                        .foregroundColor(OniTanTheme.textPrimary)
                 }
 
                 if !entry.selectedAnswer.isEmpty {
@@ -190,7 +187,7 @@ private struct WrongAnswerRow: View {
                             .foregroundColor(OniTanTheme.accentWrong)
                         Text("選択: \(entry.selectedAnswer)")
                             .font(.system(.caption, design: .rounded))
-                            .foregroundColor(.white.opacity(0.55))
+                            .foregroundColor(OniTanTheme.textTertiary)
                     }
                 }
             }
@@ -213,7 +210,7 @@ private struct WrongAnswerRow: View {
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12))
-                    .foregroundColor(.white.opacity(0.3))
+                    .foregroundColor(OniTanTheme.textTertiary)
                     .accessibilityHidden(true)
             }
         }
@@ -221,7 +218,7 @@ private struct WrongAnswerRow: View {
         .padding(.vertical, 12)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusBadge)
-                .fill(Color.white.opacity(0.08))
+                .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusBadge)
                         .stroke(OniTanTheme.accentWrong.opacity(0.20), lineWidth: 1)
@@ -251,23 +248,20 @@ struct WrongAnswerDetailSheet: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Handle
                 Capsule()
-                    .fill(Color.white.opacity(0.3))
+                    .fill(OniTanTheme.textTertiary)
                     .frame(width: 40, height: 4)
                     .padding(.top, 12)
                     .padding(.bottom, 20)
 
                 ScrollView {
                     VStack(spacing: 20) {
-                        // Big kanji
                         Text(entry.kanji)
                             .font(.system(size: 100, weight: .black, design: .rounded))
                             .foregroundStyle(OniTanTheme.primaryGradient)
-                            .shadow(color: .purple.opacity(0.3), radius: 8)
+                            .shadow(color: OniTanTheme.shadowGlow.color, radius: 8)
                             .accessibilityLabel("漢字: \(entry.kanji)")
 
-                        // Answer info
                         VStack(spacing: 10) {
                             infoRow(
                                 icon: "checkmark.circle.fill",
@@ -291,26 +285,25 @@ struct WrongAnswerDetailSheet: View {
                             )
                         }
                         .padding(16)
-                        .background(Color.white.opacity(0.08))
+                        .background(OniTanTheme.cardBackground)
                         .cornerRadius(OniTanTheme.radiusCard)
                         .padding(.horizontal, 20)
 
-                        // Full explanation (if available)
                         if let q = fullQuestion {
                             VStack(alignment: .leading, spacing: 10) {
                                 Text("解説")
                                     .font(.system(.headline, design: .rounded))
                                     .fontWeight(.bold)
-                                    .foregroundColor(.white.opacity(0.85))
+                                    .foregroundColor(OniTanTheme.textSecondary)
 
                                 Text(q.explain)
                                     .font(.system(.body, design: .rounded))
-                                    .foregroundColor(.white.opacity(0.75))
+                                    .foregroundColor(OniTanTheme.textSecondary)
                                     .lineSpacing(5)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(16)
-                            .background(Color.white.opacity(0.08))
+                            .background(OniTanTheme.cardBackground)
                             .cornerRadius(OniTanTheme.radiusCard)
                             .padding(.horizontal, 20)
                             .accessibilityElement(children: .combine)
@@ -324,7 +317,6 @@ struct WrongAnswerDetailSheet: View {
         .presentationDetents([.fraction(0.75), .large])
         .presentationDragIndicator(.hidden)
         .onAppear {
-            // Award XP for reviewing this wrong answer (capped to 1 per open)
             xpAwarded = xpRepo.addXP(.wrongNoteRetrieved)
             OniTanTheme.haptic(.light)
         }
@@ -369,12 +361,12 @@ struct WrongAnswerDetailSheet: View {
                 .frame(width: 24)
             Text(label)
                 .font(.system(.caption, design: .rounded))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(OniTanTheme.textTertiary)
                 .frame(width: 80, alignment: .leading)
             Text(value)
                 .font(.system(.subheadline, design: .rounded))
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
             Spacer()
         }
         .accessibilityElement(children: .combine)

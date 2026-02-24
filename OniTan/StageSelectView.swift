@@ -3,6 +3,7 @@ import SwiftUI
 struct StageSelectView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var themeManager: ThemeManager
 
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
     private let stageManifest = (try? safeLoad("stages.json") as StageManifest)
@@ -30,7 +31,7 @@ struct StageSelectView: View {
         .navigationTitle("ステージ選択")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
     }
 }
 
@@ -49,15 +50,12 @@ private struct StageCard: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Main stage row
             mainRow
 
-            // Progress bar
             if isUnlocked {
                 progressBar
             }
 
-            // Mode selector (unlocked stages only)
             if isUnlocked {
                 NavigationLink(destination: QuizModeSelectView(stage: stage)) {
                     modeSelectBadge
@@ -85,20 +83,18 @@ private struct StageCard: View {
 
     private var mainRow: some View {
         HStack(spacing: 14) {
-            // Progress ring
             StageProgressRing(
                 stageNumber: stage.stage,
                 cleared: isCleared,
                 progress: accuracy
             )
 
-            // Text info
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {
                     Text(manifest?.title ?? "ステージ \(stage.stage)")
                         .font(.system(.headline, design: .rounded))
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(OniTanTheme.textPrimary)
 
                     if let diff = manifest?.difficulty {
                         DifficultyBadge(level: diff)
@@ -110,10 +106,9 @@ private struct StageCard: View {
 
             Spacer()
 
-            // Lock / chevron
             if !isUnlocked {
                 Image(systemName: "lock.fill")
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(OniTanTheme.textTertiary)
                     .font(.system(size: 18))
                     .accessibilityHidden(true)
             }
@@ -128,7 +123,7 @@ private struct StageCard: View {
         if !isUnlocked {
             Text("前のステージをクリアして解放")
                 .font(.system(.caption, design: .rounded))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(OniTanTheme.textTertiary)
         } else if weakCount > 0 {
             HStack(spacing: 4) {
                 Image(systemName: "exclamationmark.triangle.fill")
@@ -150,7 +145,7 @@ private struct StageCard: View {
         } else {
             Text("\(stage.questions.count) 問")
                 .font(.system(.caption, design: .rounded))
-                .foregroundColor(.white.opacity(0.6))
+                .foregroundColor(OniTanTheme.textTertiary)
         }
     }
 
@@ -165,7 +160,7 @@ private struct StageCard: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 3)
-                        .fill(Color.white.opacity(0.15))
+                        .fill(OniTanTheme.cardBorder)
                         .frame(height: 6)
 
                     RoundedRectangle(cornerRadius: 3)
@@ -180,12 +175,12 @@ private struct StageCard: View {
             HStack {
                 Text("習得率: \(Int(fraction * 100))%")
                     .font(.system(size: 10, design: .rounded))
-                    .foregroundColor(.white.opacity(0.55))
+                    .foregroundColor(OniTanTheme.textTertiary)
                 Spacer()
                 if let stats = statsRepo.stageStats[stage.stage] {
                     Text("正答率: \(Int(stats.accuracy * 100))%")
                         .font(.system(size: 10, design: .rounded))
-                        .foregroundColor(.white.opacity(0.55))
+                        .foregroundColor(OniTanTheme.textTertiary)
                 }
             }
             .padding(.horizontal, 16)
@@ -206,11 +201,11 @@ private struct StageCard: View {
             Image(systemName: "chevron.right")
                 .font(.system(size: 11))
         }
-        .foregroundColor(.white.opacity(0.85))
+        .foregroundColor(OniTanTheme.textSecondary)
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
-        .background(Color.white.opacity(0.08))
-        .cornerRadius(0)  // Bottom of card — inherits parent's corner radius via clipping
+        .background(OniTanTheme.cardBackground)
+        .cornerRadius(0)
         .clipShape(
             .rect(
                 topLeadingRadius: 0,
@@ -224,15 +219,15 @@ private struct StageCard: View {
     // MARK: Colors
 
     private var stageCardColor: Color {
-        if !isUnlocked { return Color.white.opacity(0.05) }
+        if !isUnlocked { return OniTanTheme.cardBackground.opacity(0.5) }
         if isCleared   { return Color(red: 0.10, green: 0.35, blue: 0.20).opacity(0.7) }
-        return Color.white.opacity(0.10)
+        return OniTanTheme.cardBackground
     }
 
     private var stageCardBorder: Color {
         if isCleared    { return OniTanTheme.accentCorrect.opacity(0.4) }
-        if !isUnlocked  { return Color.white.opacity(0.10) }
-        return Color.white.opacity(0.20)
+        if !isUnlocked  { return OniTanTheme.cardBorder.opacity(0.5) }
+        return OniTanTheme.cardBorder
     }
 
     private var accessibilityText: String {
@@ -254,7 +249,7 @@ private struct DifficultyBadge: View {
             ForEach(1...3, id: \.self) { i in
                 Image(systemName: i <= level ? "flame.fill" : "flame")
                     .font(.system(size: 8))
-                    .foregroundColor(i <= level ? OniTanTheme.accentWeak : .white.opacity(0.3))
+                    .foregroundColor(i <= level ? OniTanTheme.accentWeak : OniTanTheme.textTertiary)
             }
         }
         .accessibilityLabel("難易度\(level)")

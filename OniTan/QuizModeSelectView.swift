@@ -1,14 +1,13 @@
 import SwiftUI
 
 // MARK: - Quiz Mode Select View
-// Presented between StageSelectView and MainView.
-// Allows users to choose a learning mode for the selected stage.
 
 struct QuizModeSelectView: View {
     let stage: Stage
 
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var themeManager: ThemeManager
     @Environment(\.dismiss) private var dismiss
 
     private var weakCount: Int {
@@ -29,10 +28,8 @@ struct QuizModeSelectView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Header
                 headerSection
 
-                // Mode list
                 ScrollView {
                     VStack(spacing: 14) {
                         ForEach(availableModes) { mode in
@@ -45,7 +42,6 @@ struct QuizModeSelectView: View {
                             )
                         }
 
-                        // SRS placeholder
                         srsBadge
                     }
                     .padding(.horizontal, 20)
@@ -56,7 +52,7 @@ struct QuizModeSelectView: View {
         .navigationTitle("モード選択")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
     }
 
     // MARK: Header
@@ -66,7 +62,7 @@ struct QuizModeSelectView: View {
             Text("ステージ \(stage.stage)")
                 .font(.system(.title2, design: .rounded))
                 .fontWeight(.black)
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
 
             HStack(spacing: 16) {
                 Label("\(stage.questions.count) 問", systemImage: "doc.text")
@@ -76,11 +72,11 @@ struct QuizModeSelectView: View {
                 }
             }
             .font(.system(.caption, design: .rounded))
-            .foregroundColor(.white.opacity(0.65))
+            .foregroundColor(OniTanTheme.textTertiary)
         }
         .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
-        .background(Color.white.opacity(0.05))
+        .background(OniTanTheme.cardBackground.opacity(0.5))
     }
 
     // MARK: SRS Badge
@@ -89,7 +85,7 @@ struct QuizModeSelectView: View {
         HStack(spacing: 12) {
             Image(systemName: "brain.head.profile")
                 .font(.system(size: 20))
-                .foregroundColor(.white.opacity(0.35))
+                .foregroundColor(OniTanTheme.textTertiary)
                 .frame(width: 44)
 
             VStack(alignment: .leading, spacing: 3) {
@@ -97,20 +93,20 @@ struct QuizModeSelectView: View {
                     Text("SRS復習")
                         .font(.system(.headline, design: .rounded))
                         .fontWeight(.bold)
-                        .foregroundColor(.white.opacity(0.35))
+                        .foregroundColor(OniTanTheme.textTertiary)
 
                     Text("Coming Soon")
                         .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(.white.opacity(0.3))
+                        .foregroundColor(OniTanTheme.textTertiary)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
-                        .background(Color.white.opacity(0.1))
+                        .background(OniTanTheme.cardBackground)
                         .cornerRadius(6)
                 }
 
                 Text("間隔反復アルゴリズムによる最適復習")
                     .font(.system(.caption, design: .rounded))
-                    .foregroundColor(.white.opacity(0.25))
+                    .foregroundColor(OniTanTheme.textTertiary.opacity(0.6))
             }
 
             Spacer()
@@ -119,10 +115,10 @@ struct QuizModeSelectView: View {
         .padding(.vertical, 14)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(Color.white.opacity(0.04))
+                .fill(OniTanTheme.cardBackground.opacity(0.4))
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                        .stroke(OniTanTheme.cardBorder.opacity(0.5), lineWidth: 1)
                 )
         )
         .accessibilityLabel("SRS復習モード（準備中）")
@@ -161,7 +157,6 @@ private struct ModeCard: View {
             )
         ) {
             HStack(spacing: 14) {
-                // Icon circle
                 ZStack {
                     Circle()
                         .fill(iconBackground)
@@ -178,21 +173,20 @@ private struct ModeCard: View {
                         Text(mode.displayName)
                             .font(.system(.headline, design: .rounded))
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(OniTanTheme.textPrimary)
 
-                        // Question count badge
                         Text("\(questionCount) 問")
                             .font(.system(size: 11, weight: .semibold))
-                            .foregroundColor(.white.opacity(0.65))
+                            .foregroundColor(OniTanTheme.textTertiary)
                             .padding(.horizontal, 7)
                             .padding(.vertical, 2)
-                            .background(Color.white.opacity(0.12))
+                            .background(OniTanTheme.cardBackground)
                             .cornerRadius(8)
                     }
 
                     Text(mode.description)
                         .font(.system(.caption, design: .rounded))
-                        .foregroundColor(.white.opacity(0.6))
+                        .foregroundColor(OniTanTheme.textTertiary)
                         .lineLimit(2)
                 }
 
@@ -200,7 +194,7 @@ private struct ModeCard: View {
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 13))
-                    .foregroundColor(.white.opacity(0.4))
+                    .foregroundColor(OniTanTheme.textTertiary)
                     .accessibilityHidden(true)
             }
             .padding(.horizontal, 16)
@@ -240,10 +234,10 @@ private struct ModeCard: View {
     }
 
     private var cardBackground: Color {
-        mode == .weakFocus ? Color(red: 0.25, green: 0.15, blue: 0.05).opacity(0.7) : Color.white.opacity(0.10)
+        mode == .weakFocus ? Color(red: 0.25, green: 0.15, blue: 0.05).opacity(0.7) : OniTanTheme.cardBackground
     }
 
     private var cardBorder: Color {
-        mode == .weakFocus ? OniTanTheme.accentWeak.opacity(0.35) : Color.white.opacity(0.18)
+        mode == .weakFocus ? OniTanTheme.accentWeak.opacity(0.35) : OniTanTheme.cardBorder
     }
 }

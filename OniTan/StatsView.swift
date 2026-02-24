@@ -3,6 +3,7 @@ import SwiftUI
 struct StatsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var themeManager: ThemeManager
 
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
 
@@ -13,10 +14,8 @@ struct StatsView: View {
 
             ScrollView {
                 VStack(spacing: 20) {
-                    // Overall summary card
                     overallSummaryCard
 
-                    // Per-stage cards
                     ForEach(stages, id: \.stage) { stage in
                         StageStatCard(
                             stage: stage,
@@ -32,7 +31,7 @@ struct StatsView: View {
         .navigationTitle("学習統計")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
     }
 
     // MARK: - Overall Summary
@@ -49,7 +48,7 @@ struct StatsView: View {
 
                 Divider()
                     .frame(height: 40)
-                    .background(Color.white.opacity(0.15))
+                    .background(OniTanTheme.cardBorder)
 
                 summaryMetric(
                     value: String(format: "%.0f%%", statsRepo.overallAccuracy * 100),
@@ -60,7 +59,7 @@ struct StatsView: View {
 
                 Divider()
                     .frame(height: 40)
-                    .background(Color.white.opacity(0.15))
+                    .background(OniTanTheme.cardBorder)
 
                 summaryMetric(
                     value: "\(statsRepo.totalCorrect)",
@@ -70,13 +69,12 @@ struct StatsView: View {
                 )
             }
 
-            // Overall progress bar
             VStack(spacing: 4) {
                 let p = appState.overallProgress(totalStages: stages.count)
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 3)
-                            .fill(Color.white.opacity(0.15))
+                            .fill(OniTanTheme.cardBorder)
                             .frame(height: 6)
                         RoundedRectangle(cornerRadius: 3)
                             .fill(OniTanTheme.primaryGradient)
@@ -89,21 +87,21 @@ struct StatsView: View {
                 HStack {
                     Text("全体進捗")
                         .font(.system(.caption2, design: .rounded))
-                        .foregroundColor(.white.opacity(0.45))
+                        .foregroundColor(OniTanTheme.textTertiary)
                     Spacer()
                     Text("\(Int(p * 100))%")
                         .font(.system(.caption2, design: .rounded))
-                        .foregroundColor(.white.opacity(0.65))
+                        .foregroundColor(OniTanTheme.textSecondary)
                 }
             }
         }
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(Color.white.opacity(0.10))
+                .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(Color.white.opacity(0.18), lineWidth: 1)
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
         .shadow(color: .black.opacity(0.2), radius: 10, y: 5)
@@ -120,11 +118,11 @@ struct StatsView: View {
             Text(value)
                 .font(.system(.headline, design: .rounded))
                 .fontWeight(.black)
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
 
             Text(label)
                 .font(.system(size: 10, design: .rounded))
-                .foregroundColor(.white.opacity(0.5))
+                .foregroundColor(OniTanTheme.textTertiary)
         }
         .frame(maxWidth: .infinity)
         .accessibilityHidden(true)
@@ -140,12 +138,11 @@ private struct StageStatCard: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            // Header
             HStack {
                 Text("ステージ \(stage.stage)")
                     .font(.system(.headline, design: .rounded))
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(OniTanTheme.textPrimary)
 
                 Spacer()
 
@@ -158,12 +155,11 @@ private struct StageStatCard: View {
             }
 
             if let stats {
-                // Accuracy bar
                 VStack(spacing: 4) {
                     HStack {
                         Text("正答率")
                             .font(.system(.caption, design: .rounded))
-                            .foregroundColor(.white.opacity(0.55))
+                            .foregroundColor(OniTanTheme.textTertiary)
                         Spacer()
                         Text(String(format: "%.0f%%", stats.accuracy * 100))
                             .font(.system(.subheadline, design: .rounded))
@@ -174,7 +170,7 @@ private struct StageStatCard: View {
                     GeometryReader { geo in
                         ZStack(alignment: .leading) {
                             RoundedRectangle(cornerRadius: 3)
-                                .fill(Color.white.opacity(0.12))
+                                .fill(OniTanTheme.cardBorder)
                                 .frame(height: 6)
                             RoundedRectangle(cornerRadius: 3)
                                 .fill(stats.accuracy >= 0.8 ? OniTanTheme.correctGradient : OniTanTheme.primaryGradient)
@@ -185,16 +181,14 @@ private struct StageStatCard: View {
                     .frame(height: 6)
                 }
 
-                // Metrics row
                 HStack(spacing: 0) {
                     miniMetric(value: "\(stats.totalAttempts)", label: "解答回数")
-                    Divider().frame(height: 28).background(Color.white.opacity(0.15))
+                    Divider().frame(height: 28).background(OniTanTheme.cardBorder)
                     miniMetric(value: "\(stats.correctAttempts)", label: "正解")
-                    Divider().frame(height: 28).background(Color.white.opacity(0.15))
+                    Divider().frame(height: 28).background(OniTanTheme.cardBorder)
                     miniMetric(value: "\(stats.wrongKanji.count)", label: "苦手漢字")
                 }
 
-                // Weak kanji display
                 if !stats.wrongKanji.isEmpty {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("苦手な漢字")
@@ -220,10 +214,10 @@ private struct StageStatCard: View {
             } else {
                 HStack(spacing: 8) {
                     Image(systemName: "book.closed")
-                        .foregroundColor(.white.opacity(0.3))
+                        .foregroundColor(OniTanTheme.textTertiary)
                     Text("まだ学習していません")
                         .font(.system(.subheadline, design: .rounded))
-                        .foregroundColor(.white.opacity(0.4))
+                        .foregroundColor(OniTanTheme.textTertiary)
                         .italic()
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -233,10 +227,10 @@ private struct StageStatCard: View {
         .padding(16)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(Color.white.opacity(0.08))
+                .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(isCleared ? OniTanTheme.accentCorrect.opacity(0.3) : Color.white.opacity(0.12), lineWidth: 1)
+                        .stroke(isCleared ? OniTanTheme.accentCorrect.opacity(0.3) : OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
         .shadow(color: .black.opacity(0.15), radius: 6, y: 3)
@@ -249,10 +243,10 @@ private struct StageStatCard: View {
             Text(value)
                 .font(.system(.headline, design: .rounded))
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
             Text(label)
                 .font(.system(size: 9, design: .rounded))
-                .foregroundColor(.white.opacity(0.45))
+                .foregroundColor(OniTanTheme.textTertiary)
         }
         .frame(maxWidth: .infinity)
         .accessibilityHidden(true)

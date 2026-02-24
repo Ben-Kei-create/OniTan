@@ -6,7 +6,7 @@ struct OniTanApp: App {
     @StateObject private var statsRepo = StudyStatsRepository()
     @StateObject private var streakRepo = StreakRepository()
     @StateObject private var xpRepo = GamificationRepository()
-    @AppStorage("colorScheme") private var colorSchemeString: String = "system"
+    @StateObject private var themeManager = ThemeManager.shared
 
     var body: some Scene {
         WindowGroup {
@@ -15,15 +15,8 @@ struct OniTanApp: App {
                 .environmentObject(statsRepo)
                 .environmentObject(streakRepo)
                 .environmentObject(xpRepo)
-                .preferredColorScheme(appColorScheme)
-        }
-    }
-
-    private var appColorScheme: ColorScheme? {
-        switch colorSchemeString {
-        case "light": return .light
-        case "dark": return .dark
-        default: return nil
+                .environmentObject(themeManager)
+                .preferredColorScheme(themeManager.preferredColorScheme)
         }
     }
 }

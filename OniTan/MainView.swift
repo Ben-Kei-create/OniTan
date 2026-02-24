@@ -87,7 +87,7 @@ struct MainView: View {
             } label: {
                 Image(systemName: "xmark.circle.fill")
                     .font(.system(size: scaled(26, by: scale, min: 20)))
-                    .foregroundColor(.white.opacity(0.7))
+                    .foregroundColor(OniTanTheme.textSecondary)
             }
             .accessibilityLabel("終了")
             .accessibilityHint("タップすると確認ダイアログが表示されます")
@@ -122,10 +122,10 @@ struct MainView: View {
                 Text(vm.mode.displayName)
                     .font(.system(size: scaled(12, by: scale, min: 10), weight: .semibold, design: .rounded))
             }
-            .foregroundColor(.white.opacity(0.6))
+            .foregroundColor(OniTanTheme.textTertiary)
             .padding(.horizontal, scaled(10, by: scale, min: 8))
             .padding(.vertical, scaled(4, by: scale, min: 3))
-            .background(Color.white.opacity(0.10))
+            .background(OniTanTheme.cardBackground)
             .cornerRadius(20)
 
             // Progress ring
@@ -180,7 +180,7 @@ struct MainView: View {
                 Text(vm.displayTitle)
                     .font(.system(size: scaled(22, by: scale, min: 18), weight: .bold, design: .rounded))
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(OniTanTheme.textPrimary)
                 if vm.passNumber > 1 {
                     Text("復習パス \(vm.passNumber)")
                         .font(.system(size: scaled(12, by: scale, min: 10), weight: .regular, design: .rounded))
@@ -192,7 +192,7 @@ struct MainView: View {
 
             Text("\(vm.clearedCount) / \(vm.totalGoal) 問")
                 .font(.system(size: scaled(16, by: scale, min: 12), weight: .regular, design: .rounded))
-                .foregroundColor(.white.opacity(0.7))
+                .foregroundColor(OniTanTheme.textSecondary)
         }
         .accessibilityElement()
         .accessibilityLabel("\(vm.displayTitle) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
@@ -213,10 +213,10 @@ struct MainView: View {
         return ZStack {
             // Background card
             RoundedRectangle(cornerRadius: corner)
-                .fill(Color.white.opacity(0.12))
+                .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: corner)
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                 )
                 .shadow(color: .black.opacity(0.2), radius: scaled(16, by: scale, min: 8), y: scaled(8, by: scale, min: 4))
 
@@ -233,7 +233,7 @@ struct MainView: View {
 
             Text(vm.currentQuestion.kanji)
                 .font(.system(size: kanjiFont, weight: .black, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
                 .shadow(color: .black.opacity(0.3), radius: 4)
@@ -295,7 +295,7 @@ struct MainView: View {
 
                     Text("正解は「\(correctAnswer)」")
                         .font(.system(size: scaled(20, by: scale, min: 16), weight: .semibold, design: .rounded))
-                        .foregroundColor(.white)
+                        .foregroundColor(OniTanTheme.textPrimary)
                         .lineLimit(2)
                         .minimumScaleFactor(0.75)
                 }
@@ -328,7 +328,7 @@ struct MainView: View {
         .padding(.vertical, scaled(18, by: scale, min: 12))
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(Color.white.opacity(0.08))
+                .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                         .stroke(OniTanTheme.accentWrong.opacity(0.3), lineWidth: 1)
@@ -343,7 +343,6 @@ struct MainView: View {
         VStack(spacing: 0) {
             Spacer(minLength: 12)
 
-            // Trophy icon with glow (scaled down for compact layout)
             ZStack {
                 Circle()
                     .fill(OniTanTheme.accentCorrect.opacity(0.15))
@@ -361,7 +360,7 @@ struct MainView: View {
             VStack(spacing: 8) {
                 Text(vm.clearTitle)
                     .font(.system(size: 28, weight: .black, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(OniTanTheme.textPrimary)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
@@ -373,7 +372,6 @@ struct MainView: View {
 
             Spacer(minLength: 12)
 
-            // Final progress ring (scaled down)
             ProgressRingView(
                 progress: 1.0,
                 lineWidth: 10,
@@ -385,7 +383,6 @@ struct MainView: View {
 
             Spacer(minLength: 8)
 
-            // XP earned this session (compact)
             if vm.sessionXPGained > 0 {
                 sessionXPBadge(vm.sessionXPGained)
             }
@@ -412,7 +409,7 @@ struct MainView: View {
                 } label: {
                     Text("もう一度")
                         .font(.system(size: 13, weight: .semibold, design: .rounded))
-                        .foregroundColor(.white.opacity(0.65))
+                        .foregroundColor(OniTanTheme.textTertiary)
                 }
             }
             .padding(.horizontal, 20)
@@ -492,7 +489,6 @@ private struct ChoiceCard: View {
 
     var body: some View {
         Button(action: {
-            // Visual feedback
             withAnimation(.easeInOut(duration: 0.10)) {
                 isPressed = true
             }
@@ -501,13 +497,12 @@ private struct ChoiceCard: View {
                     isPressed = false
                 }
             }
-            // Execute action
             onTap()
         }) {
             Text(text)
                 .font(.system(size: max(18, 24 * scale), weight: .bold, design: .rounded))
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
                 .minimumScaleFactor(0.6)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
@@ -519,14 +514,14 @@ private struct ChoiceCard: View {
                     isPressed
                         ? OniTanTheme.primaryGradient
                         : LinearGradient(
-                            colors: [Color.white.opacity(0.15), Color.white.opacity(0.08)],
+                            colors: [OniTanTheme.cardBackground, OniTanTheme.cardBackground.opacity(0.6)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
-                        .stroke(Color.white.opacity(isPressed ? 0.5 : 0.2), lineWidth: 1)
+                        .stroke(isPressed ? OniTanTheme.accentPrimary.opacity(0.5) : OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
         .padding(.horizontal, max(6, 8 * scale))
