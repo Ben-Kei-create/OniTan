@@ -18,9 +18,11 @@
 		3005B5F4E7012934860BDFF9 /* OniTanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */; };
 		51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = C3B011EB643E76B5B8B3CBE0 /* stage1.json */; };
 		539DDFE4A00729EB8F1304B9 /* OniTanTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */; };
+		582A739E4F66FEF892F0EBB3 /* PassageSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4411425D9E074830F19810 /* PassageSessionViewModel.swift */; };
 		5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7592732299AE4C3F02EAD315 /* OniTanApp.swift */; };
 		64C54B2B9205CD9DC6DA7074 /* WrongAnswerNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */; };
 		65840B0402AE04492F903F10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352DD65B20BC1C414C33B3C /* MainView.swift */; };
+		8683F773E7E2528F5360E612 /* Passage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A2025B456CF186225AD8D /* Passage.swift */; };
 		88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */; };
 		8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904927EFABE72A0965302AC5 /* QuizData.swift */; };
 		8D84660DEC35DFCD5F110E20 /* QuestionPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDAD76C7E232DB407E807F8 /* QuestionPromptView.swift */; };
@@ -40,6 +42,7 @@
 		EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29076909A8310033010EC721 /* QuizSessionViewModel.swift */; };
 		EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 096C66E38B34DF2D43548956 /* Assets.xcassets */; };
 		EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F33F3E41355E6617E24291 /* StreakRepository.swift */; };
+		EED15FD88F4FAC7F63C1E1B9 /* PassageQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C3651D9DA260967D7EEAD2 /* PassageQuizView.swift */; };
 		FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43FC022C83E344ABEE7C03 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,14 +90,17 @@
 		860301C6672CBF8DF84E8AA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		878ED351D8C0E69141C83475 /* GamificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationRepository.swift; sourceTree = "<group>"; };
 		904927EFABE72A0965302AC5 /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
+		95C3651D9DA260967D7EEAD2 /* PassageQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageQuizView.swift; sourceTree = "<group>"; };
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
 		A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySessionBuilder.swift; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		AD9A2025B456CF186225AD8D /* Passage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passage.swift; sourceTree = "<group>"; };
 		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITests.swift; sourceTree = "<group>"; };
 		BB9F707F6682B94FE1C60CCE /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		C3B011EB643E76B5B8B3CBE0 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
+		CD4411425D9E074830F19810 /* PassageSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageSessionViewModel.swift; sourceTree = "<group>"; };
 		D352DD65B20BC1C414C33B3C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		EFDAD76C7E232DB407E807F8 /* QuestionPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPromptView.swift; sourceTree = "<group>"; };
 		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
@@ -124,6 +130,9 @@
 				D352DD65B20BC1C414C33B3C /* MainView.swift */,
 				7592732299AE4C3F02EAD315 /* OniTanApp.swift */,
 				9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */,
+				AD9A2025B456CF186225AD8D /* Passage.swift */,
+				95C3651D9DA260967D7EEAD2 /* PassageQuizView.swift */,
+				CD4411425D9E074830F19810 /* PassageSessionViewModel.swift */,
 				697706E8DAEDA779C15F4536 /* ProgressRingView.swift */,
 				BB9F707F6682B94FE1C60CCE /* Question.swift */,
 				26DAA2A72218BF205143EBB6 /* QuestionKind.swift */,
@@ -318,6 +327,9 @@
 				65840B0402AE04492F903F10 /* MainView.swift in Sources */,
 				5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */,
 				539DDFE4A00729EB8F1304B9 /* OniTanTheme.swift in Sources */,
+				8683F773E7E2528F5360E612 /* Passage.swift in Sources */,
+				EED15FD88F4FAC7F63C1E1B9 /* PassageQuizView.swift in Sources */,
+				582A739E4F66FEF892F0EBB3 /* PassageSessionViewModel.swift in Sources */,
 				20B8C39D07F751DFA50D1FDF /* ProgressRingView.swift in Sources */,
 				EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */,
 				A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */,

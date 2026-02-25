@@ -102,7 +102,7 @@ struct PassageQuizView: View {
             ProgressRingView(
                 progress: vm.progressFraction,
                 lineWidth: scaled(3, by: scale, min: 2),
-                gradient: OniTanTheme.primaryGradient
+                gradient: Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentCorrect])
             )
             .frame(width: scaled(32, by: scale, min: 26), height: scaled(32, by: scale, min: 26))
         }
@@ -218,7 +218,7 @@ struct PassageQuizView: View {
                 seg.foregroundColor = Color(red: 1.0, green: 0.85, blue: 0.2)
                 seg.font = .system(size: 18, weight: .bold, design: .rounded)
                 seg.underlineStyle = .thick
-                seg.underlineColor = Color(red: 1.0, green: 0.85, blue: 0.2)
+                seg.underlineColor = UIColor(red: 1.0, green: 0.85, blue: 0.2, alpha: 1.0)
             } else if isCompleted {
                 // Completed target: green with checkmark
                 seg.foregroundColor = Color(red: 0.4, green: 0.9, blue: 0.5)
@@ -227,7 +227,7 @@ struct PassageQuizView: View {
                 // Upcoming target: underlined but subtle
                 seg.foregroundColor = .white
                 seg.underlineStyle = .single
-                seg.underlineColor = .white.opacity(0.4)
+                seg.underlineColor = UIColor.white.withAlphaComponent(0.4)
             }
 
             result.append(seg)

@@ -9,7 +9,7 @@ struct OniTanTests {
     // MARK: - validateQuizData
 
     @Test func validateQuizData_emptyStage_reportsIssue() {
-        let empty = Stage(stage: 1, questions: [])
+        let empty = Stage(stage: 1, questions: [], passages: nil)
         let data = QuizData(stages: [empty], unused_questions: nil)
         let issues = validateQuizData(data)
         #expect(!issues.isEmpty, "Empty stage should produce a validation issue")
@@ -19,7 +19,7 @@ struct OniTanTests {
     @Test func validateQuizData_duplicateKanji_reportsIssue() {
         let q1 = Question(kanji: "燎", choices: ["A", "B"], answer: "A", explain: "e")
         let q2 = Question(kanji: "燎", choices: ["A", "B"], answer: "A", explain: "e")  // duplicate
-        let stage = Stage(stage: 1, questions: [q1, q2])
+        let stage = Stage(stage: 1, questions: [q1, q2], passages: nil)
         let data = QuizData(stages: [stage], unused_questions: nil)
         let issues = validateQuizData(data)
         #expect(issues.contains { $0.contains("重複") })
@@ -27,7 +27,7 @@ struct OniTanTests {
 
     @Test func validateQuizData_answerNotInChoices_reportsIssue() {
         let q = Question(kanji: "燎", choices: ["A", "B"], answer: "Z", explain: "e")
-        let stage = Stage(stage: 1, questions: [q])
+        let stage = Stage(stage: 1, questions: [q], passages: nil)
         let data = QuizData(stages: [stage], unused_questions: nil)
         let issues = validateQuizData(data)
         #expect(issues.contains { $0.contains("選択肢に含まれていません") })
@@ -35,7 +35,7 @@ struct OniTanTests {
 
     @Test func validateQuizData_tooFewChoices_reportsIssue() {
         let q = Question(kanji: "燎", choices: ["A"], answer: "A", explain: "e")
-        let stage = Stage(stage: 1, questions: [q])
+        let stage = Stage(stage: 1, questions: [q], passages: nil)
         let data = QuizData(stages: [stage], unused_questions: nil)
         let issues = validateQuizData(data)
         #expect(issues.contains { $0.contains("最低2個") })
@@ -44,7 +44,7 @@ struct OniTanTests {
     @Test func validateQuizData_validData_noIssues() {
         let q1 = Question(kanji: "燎", choices: ["A", "B", "C", "D"], answer: "A", explain: "e1")
         let q2 = Question(kanji: "逞", choices: ["W", "X", "Y", "Z"], answer: "W", explain: "e2")
-        let stage = Stage(stage: 1, questions: [q1, q2])
+        let stage = Stage(stage: 1, questions: [q1, q2], passages: nil)
         let data = QuizData(stages: [stage], unused_questions: nil)
         let issues = validateQuizData(data)
         #expect(issues.isEmpty, "Valid data should produce no issues. Got: \(issues)")
@@ -52,7 +52,7 @@ struct OniTanTests {
 
     @Test func validateQuizData_emptyKanji_reportsIssue() {
         let q = Question(kanji: "", choices: ["A", "B"], answer: "A", explain: "e")
-        let stage = Stage(stage: 1, questions: [q])
+        let stage = Stage(stage: 1, questions: [q], passages: nil)
         let data = QuizData(stages: [stage], unused_questions: nil)
         let issues = validateQuizData(data)
         #expect(issues.contains { $0.contains("空の kanji") })
@@ -486,7 +486,7 @@ struct TodaySessionBuilderTests {
         let questions = (0..<count).map { i in
             Question(kanji: "\(kanjiPrefix)\(i)", choices: ["A", "B"], answer: "A", explain: "")
         }
-        return Stage(stage: n, questions: questions)
+        return Stage(stage: n, questions: questions, passages: nil)
     }
 
     @Test func todaySession_returnsAtMost10Questions() {
@@ -570,7 +570,8 @@ final class RealDataTests: XCTestCase {
             throw XCTSkip("No stages loaded — skipping real data test")
         }
         let issues = validateQuizData(quizData)
-        XCTAssertTrue(issues.isEmpty, "Production data has validation issues:\n\(issues.joined(separator: "\n"))")
+        let errors = issues.filter { !$0.hasPrefix("⚠️") }
+        XCTAssertTrue(errors.isEmpty, "Production data has validation errors:\n\(errors.joined(separator: "\n"))")
     }
 
     func testAllStages_haveAtLeastOneQuestion() throws {
@@ -625,7 +626,7 @@ struct QuestionModelTests {
     }
 
     private func stage(_ questions: Question...) -> Stage {
-        Stage(stage: 99, questions: questions)
+        Stage(stage: 99, questions: questions, passages: nil)
     }
 
     private func quizData(_ stages: Stage...) -> QuizData {
@@ -721,7 +722,7 @@ struct QuestionModelTests {
     @Test func validate_duplicateIDsWithinStage() throws {
         let q1 = Question(kanji: "燎", choices: ["A", "B"], answer: "A", explain: "e")
         let q2 = Question(kanji: "燎", choices: ["C", "D"], answer: "C", explain: "e")
-        let s = Stage(stage: 99, questions: [q1, q2])
+        let s = Stage(stage: 99, questions: [q1, q2], passages: nil)
         #expect(throws: DataLoadError.self) {
             try validateQuizDataStrict(QuizData(stages: [s], unused_questions: nil))
         }
@@ -731,10 +732,10 @@ struct QuestionModelTests {
     @Test func validate_duplicateKanjiAcrossStages_isAllowed() throws {
         let s1 = Stage(stage: 1, questions: [
             Question(kanji: "綻", choices: ["A", "B"], answer: "A", explain: "e1")
-        ])
+        ], passages: nil)
         let s2 = Stage(stage: 2, questions: [
             Question(kanji: "綻", choices: ["C", "D"], answer: "C", explain: "e2")
-        ])
+        ], passages: nil)
         let data = QuizData(stages: [s1, s2], unused_questions: nil)
 
         // Must not throw: duplicate scope is per-stage (per JSON), not global.

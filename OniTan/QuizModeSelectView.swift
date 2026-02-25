@@ -15,9 +15,14 @@ struct QuizModeSelectView: View {
         statsRepo.weakQuestions(for: stage).count
     }
 
+    private var passageCount: Int {
+        stage.passages?.reduce(0) { $0 + $1.targets.count } ?? 0
+    }
+
     private var availableModes: [QuizMode] {
         QuizMode.allCases.filter { mode in
             guard !mode.isSRSPlaceholder else { return false }
+            guard !mode.isPassageMode else { return false }  // passage has its own card
             if mode == .weakFocus { return weakCount > 0 }
             return true
         }
@@ -43,6 +48,11 @@ struct QuizModeSelectView: View {
                                 appState: appState,
                                 statsRepo: statsRepo
                             )
+                        }
+
+                        // Passage mode (shown only when passages exist)
+                        if let passages = stage.passages, !passages.isEmpty {
+                            passageModeCard(passages: passages)
                         }
 
                         // SRS placeholder
@@ -81,6 +91,86 @@ struct QuizModeSelectView: View {
         .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
         .background(Color.white.opacity(0.05))
+    }
+
+    // MARK: Passage Mode Card
+
+    @EnvironmentObject private var streakRepo: StreakRepository
+    @EnvironmentObject private var xpRepo: GamificationRepository
+
+    private func passageModeCard(passages: [Passage]) -> some View {
+        let targetCount = passages.reduce(0) { $0 + $1.targets.count }
+
+        return NavigationLink(
+            destination: PassageQuizView(
+                passages: passages,
+                stageNumber: stage.stage,
+                statsRepo: statsRepo,
+                streakRepo: streakRepo,
+                xpRepo: xpRepo
+            )
+        ) {
+            HStack(spacing: 14) {
+                ZStack {
+                    Circle()
+                        .fill(LinearGradient(
+                            colors: [Color(red: 0.2, green: 0.7, blue: 0.5), Color(red: 0.1, green: 0.5, blue: 0.4)],
+                            startPoint: .topLeading, endPoint: .bottomTrailing
+                        ))
+                        .frame(width: 48, height: 48)
+
+                    Image(systemName: "text.book.closed.fill")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(.white)
+                }
+                .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 8) {
+                        Text("文章題")
+                            .font(.system(.headline, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+
+                        Text("\(passages.count) 文章・\(targetCount) 問")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundColor(.white.opacity(0.65))
+                            .padding(.horizontal, 7)
+                            .padding(.vertical, 2)
+                            .background(Color.white.opacity(0.12))
+                            .cornerRadius(8)
+                    }
+
+                    Text("文章を読みながら漢字の読みを連続で答えます。")
+                        .font(.system(.caption, design: .rounded))
+                        .foregroundColor(.white.opacity(0.6))
+                        .lineLimit(2)
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13))
+                    .foregroundColor(.white.opacity(0.4))
+                    .accessibilityHidden(true)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 14)
+            .background(
+                RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                    .fill(Color(red: 0.08, green: 0.18, blue: 0.15).opacity(0.8))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                            .stroke(Color(red: 0.2, green: 0.7, blue: 0.5).opacity(0.35), lineWidth: 1)
+                    )
+            )
+            .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("文章題 \(passages.count)文章 \(targetCount)問")
+        .accessibilityHint("タップして文章題モードで開始")
+        .accessibilityIdentifier("mode_card_passage")
     }
 
     // MARK: SRS Badge

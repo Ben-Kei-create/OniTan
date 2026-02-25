@@ -26,7 +26,9 @@ let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
         // Fatal validation: throws DataLoadError if critical data errors found
         try validateQuizDataStrict(data)
 
-        logger.info("QuizData loaded: \(loadedStages.count) stages, \(data.stages.flatMap(\.questions).count) total questions")
+        let totalPassages = data.stages.compactMap(\.passages).flatMap { $0 }.count
+        let totalTargets = data.stages.compactMap(\.passages).flatMap { $0 }.reduce(0) { $0 + $1.targets.count }
+        logger.info("QuizData loaded: \(loadedStages.count) stages, \(data.stages.flatMap(\.questions).count) total questions, \(totalPassages) passages (\(totalTargets) targets)")
         return (data, nil)
 
     } catch let error as DataLoadError {
@@ -130,6 +132,32 @@ func validateQuizData(_ data: QuizData) -> [String] {
                 }
             }
         }
+
+        // Passage validation (non-fatal)
+        if let passages = stage.passages {
+            for (pIdx, passage) in passages.enumerated() {
+                let ptag = "\(tag)/Passage[\(pIdx)]"
+                if passage.text.isEmpty {
+                    issues.append("⚠️ \(ptag): テキストが空です")
+                }
+                if passage.targets.isEmpty {
+                    issues.append("⚠️ \(ptag): ターゲットが0件です")
+                }
+                for (tIdx, target) in passage.targets.enumerated() {
+                    let ttag = "\(ptag)/Target[\(tIdx)]"
+                    let chars = Array(passage.text)
+                    if target.position < 0 || target.position + target.length > chars.count {
+                        issues.append("⚠️ \(ttag): position+length が文章範囲外です")
+                    }
+                    if !target.choices.contains(target.reading) {
+                        issues.append("⚠️ \(ttag): 正解「\(target.reading)」が選択肢に含まれていません")
+                    }
+                    if target.choices.count < 2 {
+                        issues.append("⚠️ \(ttag): 選択肢が \(target.choices.count) 個（最低2個必要）")
+                    }
+                }
+            }
+        }
     }
 
     return issues
@@ -215,6 +243,26 @@ func validateQuizDataStrict(_ data: QuizData) throws {
 
             default:
                 break
+            }
+        }
+
+        // Passage strict validation
+        if let passages = stage.passages {
+            for (pIdx, passage) in passages.enumerated() {
+                let ptag = "\(tag)/Passage[\(pIdx)]"
+                for (tIdx, target) in passage.targets.enumerated() {
+                    let ttag = "\(ptag)/Target[\(tIdx)]"
+                    if !target.choices.contains(target.reading) {
+                        errors.append("\(ttag): 正解「\(target.reading)」が選択肢に含まれていません")
+                    }
+                    if target.choices.contains(where: { $0.isEmpty }) {
+                        errors.append("\(ttag): 空文字列の選択肢が含まれています")
+                    }
+                    let chars = Array(passage.text)
+                    if target.position < 0 || target.position + target.length > chars.count {
+                        errors.append("\(ttag): position(\(target.position))+length(\(target.length)) が文章範囲外です（全\(chars.count)文字）")
+                    }
+                }
             }
         }
     }

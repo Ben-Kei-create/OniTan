@@ -30,6 +30,14 @@ struct Passage: Codable, Identifiable {
         self.text = try c.decode(String.self, forKey: .text)
         self.targets = try c.decode([PassageTarget].self, forKey: .targets)
     }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(title, forKey: .title)
+        try c.encodeIfPresent(source, forKey: .source)
+        try c.encode(text, forKey: .text)
+        try c.encode(targets, forKey: .targets)
+    }
 }
 
 // MARK: - Passage Target
@@ -63,6 +71,15 @@ struct PassageTarget: Codable, Identifiable {
         self.reading = try c.decode(String.self, forKey: .reading)
         self.choices = try c.decode([String].self, forKey: .choices)
         self.explain = try c.decode(String.self, forKey: .explain)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(position, forKey: .position)
+        try c.encode(length, forKey: .length)
+        try c.encode(reading, forKey: .reading)
+        try c.encode(choices, forKey: .choices)
+        try c.encode(explain, forKey: .explain)
     }
 
     /// Extract the target word from the passage text.

@@ -22,7 +22,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         q1 = Question(kanji: "燎", choices: ["かがりび", "ひのき", "ともしび", "てまり"], answer: "かがりび", explain: "野火・かがり火")
         q2 = Question(kanji: "逞", choices: ["たくましい", "こころよい", "やさしい", "うつくしい"], answer: "たくましい", explain: "たくましいさま")
         q3 = Question(kanji: "慧", choices: ["かしこい", "いそがしい", "くるしい", "たのしい"], answer: "かしこい", explain: "かしこいさま")
-        stage = Stage(stage: 1, questions: [q1, q2, q3])
+        stage = Stage(stage: 1, questions: [q1, q2, q3], passages: nil)
     }
 
     override func tearDownWithError() throws {
@@ -144,11 +144,12 @@ final class QuizSessionViewModelTests: XCTestCase {
     }
 
     func testAllCorrect_doesNotClearStage_examMode() {
-        let examStage = Stage(stage: 1, questions: [q1, q2])
+        let examStage = Stage(stage: 1, questions: [q1, q2], passages: nil)
         let vm = QuizSessionViewModel(stage: examStage, appState: appState, statsRepo: statsRepo, mode: .exam30)
-        vm.answer(selected: q1.answer)
+        // Use currentQuestion.answer to handle shuffled order
+        vm.answer(selected: vm.currentQuestion.answer)
         vm.proceed()
-        vm.answer(selected: q2.answer)
+        vm.answer(selected: vm.currentQuestion.answer)
         XCTAssertEqual(vm.phase, .stageCleared, "Exam mode should reach stageCleared")
         XCTAssertFalse(appState.isCleared(1), "Exam mode should NOT mark stage cleared in AppState")
     }
@@ -172,7 +173,7 @@ final class QuizSessionViewModelTests: XCTestCase {
                 answer: "A", explain: "test \(i)"
             ))
         }
-        let bigStage = Stage(stage: 1, questions: pool)
+        let bigStage = Stage(stage: 1, questions: pool, passages: nil)
         let vm = QuizSessionViewModel(stage: bigStage, appState: appState, statsRepo: statsRepo, mode: .quick10)
         XCTAssertEqual(vm.totalGoal, 10, "Quick10 mode should cap at 10 questions")
     }
@@ -185,7 +186,7 @@ final class QuizSessionViewModelTests: XCTestCase {
                 answer: "A", explain: "test \(i)"
             ))
         }
-        let bigStage = Stage(stage: 1, questions: pool)
+        let bigStage = Stage(stage: 1, questions: pool, passages: nil)
         let vm = QuizSessionViewModel(stage: bigStage, appState: appState, statsRepo: statsRepo, mode: .exam30)
         XCTAssertEqual(vm.totalGoal, 30)
     }
@@ -211,7 +212,7 @@ final class QuizSessionViewModelTests: XCTestCase {
     // MARK: - Pass counter
 
     func testPassNumber_incrementsOnReviewPass() {
-        let twoQ = Stage(stage: 1, questions: [q1, q2])
+        let twoQ = Stage(stage: 1, questions: [q1, q2], passages: nil)
         let vm = QuizSessionViewModel(stage: twoQ, appState: appState, statsRepo: statsRepo, mode: .normal)
         XCTAssertEqual(vm.passNumber, 1)
 
@@ -244,7 +245,7 @@ final class QuizSessionViewModelTests: XCTestCase {
     }
 
     func testRequestQuit_whenStageCleared_doesNotSetAlert() {
-        let oneQ = Stage(stage: 1, questions: [q1])
+        let oneQ = Stage(stage: 1, questions: [q1], passages: nil)
         let vm = QuizSessionViewModel(stage: oneQ, appState: appState, statsRepo: statsRepo)
         vm.answer(selected: q1.answer)
         XCTAssertEqual(vm.phase, .stageCleared)
@@ -255,7 +256,7 @@ final class QuizSessionViewModelTests: XCTestCase {
     // MARK: - Review session
 
     func testReviewSession_clearsWithSubsetOfQuestions() {
-        let reviewStage = Stage(stage: 1, questions: [q1])
+        let reviewStage = Stage(stage: 1, questions: [q1], passages: nil)
         let vm = QuizSessionViewModel(stage: reviewStage, appState: appState, statsRepo: statsRepo)
         XCTAssertEqual(vm.totalGoal, 1)
         vm.answer(selected: q1.answer)
@@ -263,7 +264,7 @@ final class QuizSessionViewModelTests: XCTestCase {
     }
 
     func testReviewSession_wrongThenCorrectClears() {
-        let reviewStage = Stage(stage: 1, questions: [q1])
+        let reviewStage = Stage(stage: 1, questions: [q1], passages: nil)
         let vm = QuizSessionViewModel(stage: reviewStage, appState: appState, statsRepo: statsRepo)
         let wrongChoice = q1.choices.first { $0 != q1.answer }!
         vm.answer(selected: wrongChoice)
@@ -322,7 +323,7 @@ final class QuizSessionViewModelTests: XCTestCase {
     func testXP_sessionCompleteBonus_awardedOnClear() {
         let xpStore = InMemoryPersistenceStore()
         let xpRepo = GamificationRepository(store: xpStore)
-        let oneQ = Stage(stage: 1, questions: [q1])
+        let oneQ = Stage(stage: 1, questions: [q1], passages: nil)
         let vm = QuizSessionViewModel(
             stage: oneQ, appState: appState, statsRepo: statsRepo,
             xpRepo: xpRepo, mode: .normal
@@ -366,14 +367,14 @@ final class QuizSessionViewModelTests: XCTestCase {
     // MARK: - Today Session (stage 0)
 
     func testTodaySession_displayTitle() {
-        let todayStage = Stage(stage: 0, questions: [q1, q2])
+        let todayStage = Stage(stage: 0, questions: [q1, q2], passages: nil)
         let vm = QuizSessionViewModel(stage: todayStage, appState: appState, statsRepo: statsRepo)
         XCTAssertEqual(vm.displayTitle, "今日の10問")
         XCTAssertTrue(vm.isToday)
     }
 
     func testTodaySession_doesNotMarkStageCleared() {
-        let todayStage = Stage(stage: 0, questions: [q1])
+        let todayStage = Stage(stage: 0, questions: [q1], passages: nil)
         let vm = QuizSessionViewModel(
             stage: todayStage, appState: appState, statsRepo: statsRepo, mode: .normal
         )

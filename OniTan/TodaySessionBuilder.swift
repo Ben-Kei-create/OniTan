@@ -69,6 +69,6 @@ enum TodaySessionBuilder {
             ? Array((allStages.first?.questions ?? []).prefix(targetCount))
             : pool
 
-        return Stage(stage: 0, questions: safePool)
+        return Stage(stage: 0, questions: safePool, passages: nil)
     }
 }
