@@ -328,6 +328,12 @@ struct StreakRepositoryTests {
 
     /// When a freeze is consumed, freezeConsumedNoticeID should increment
     /// so the UI can present a toast (without relying on SwiftUI onChange alone).
+    @Test func streak_hasStreakFreezeAvailable_reflectsCount() {
+        let repo = StreakRepository(store: InMemoryPersistenceStore())
+        #expect(repo.hasStreakFreezeAvailable == true, "New repo should have freeze available")
+        #expect(repo.freezeCount == 1)
+    }
+
     @Test func streak_freezeConsumedNoticeIDIncrements() {
         let cal = Calendar.current
         let now = cal.startOfDay(for: Date())
@@ -360,6 +366,7 @@ struct StreakRepositoryTests {
 
 // MARK: - GamificationRepository Tests
 
+@Suite(.serialized)
 struct GamificationRepositoryTests {
 
     @Test func xp_startsAtZero() {
@@ -453,11 +460,16 @@ struct GamificationRepositoryTests {
     }
 
     @Test func xp_progressUsesConfigurableCurve() {
+        // Snapshot and restore XPEvent.config to avoid race with xp_labelReflectsConfig
+        let original = XPEvent.config
+        defer { XPEvent.config = original }
+        XPEvent.config = .default  // ensure correctAnswer == 5
+
         let curve = GamificationRepository.LevelCurve { _ in 50 }
         let repo = GamificationRepository(store: InMemoryPersistenceStore(), levelCurve: curve)
-        for _ in 0..<12 { repo.addXP(.correctAnswer) } // 60 XP
+        for _ in 0..<12 { repo.addXP(.correctAnswer) } // 12 * 5 = 60 XP
         #expect(repo.level == 2)
-        #expect(repo.xpInCurrentLevel == 10)
+        #expect(repo.xpInCurrentLevel == 10)  // 60 - 50 = 10
         #expect(repo.xpToNextLevel == 50)
         #expect(abs(repo.levelProgress - 0.2) < 0.0001)
     }
@@ -475,6 +487,30 @@ struct GamificationRepositoryTests {
         repo.addXP(.correctAnswer)   // +5
         repo.addXP(.sessionComplete) // +20
         #expect(repo.todayXP == 25)
+    }
+
+    // MARK: - XPCurveConfig (deterministic formula)
+
+    @Test func xpCurve_defaultConfig() {
+        let config = XPCurveConfig.default
+        #expect(config.computeXP() == 5, "5 * 1.0 * 1.0 + 0 = 5")
+    }
+
+    @Test func xpCurve_passageConfig() {
+        let config = XPCurveConfig.passageDefault
+        #expect(config.computeXP() == 8, "5 * 1.0 * 1.0 + 3 = 8")
+    }
+
+    @Test func xpCurve_customMultipliers() {
+        let config = XPCurveConfig(baseXP: 10, streakMultiplier: 2.0, difficultyMultiplier: 1.5, passageBonus: 3)
+        #expect(config.computeXP() == 33, "Int(10 * 2.0 * 1.5) + 3 = 33")
+    }
+
+    @Test func xpCurve_isDeterministic() {
+        let config = XPCurveConfig(baseXP: 7, streakMultiplier: 1.2, difficultyMultiplier: 1.1, passageBonus: 2)
+        let result1 = config.computeXP()
+        let result2 = config.computeXP()
+        #expect(result1 == result2, "Same config must always produce same result")
     }
 }
 

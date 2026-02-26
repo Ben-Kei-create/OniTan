@@ -38,6 +38,10 @@ final class StreakRepository: ObservableObject {
     /// Alternatively, 2 minutes of active study counts.
     static let dailyGoalSeconds: Double = 120
 
+    /// Whether the user has a streak freeze available to absorb a missed day.
+    /// UI can display a "shield" icon when true.
+    var hasStreakFreezeAvailable: Bool { freezeCount > 0 }
+
     private let store: PersistenceStore
     private let key = "streak_v2"
     private let legacyKey = "streak_v1"

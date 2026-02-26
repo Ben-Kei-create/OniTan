@@ -123,13 +123,20 @@ final class QuizSessionViewModelTests: XCTestCase {
     }
 
     func testWrongAnswer_noReviewQueue_examMode() {
-        let vm = makeVM(mode: .exam30)
-        // In exam mode wrong answers don't re-queue
-        vm.answer(selected: "ひのき")   // wrong on q1
+        // Use a 2-question stage so we can answer wrong on first, correct on second,
+        // and verify session completes without a review pass.
+        let twoQ = Stage(stage: 1, questions: [q1, q2], passages: nil)
+        let vm = QuizSessionViewModel(stage: twoQ, appState: appState, statsRepo: statsRepo, mode: .exam30)
+        // Answer both using currentQuestion.answer to handle shuffled order
+        let firstQ = vm.currentQuestion
+        let wrongChoice = firstQ.choices.first { $0 != firstQ.answer }!
+        vm.answer(selected: wrongChoice)  // wrong on first
         vm.proceed()
-        // Next question should be q2, not back to q1
-        XCTAssertNotEqual(vm.currentQuestion.kanji, "燎",
-            "Exam mode should not re-queue wrong answers")
+        vm.answer(selected: vm.currentQuestion.answer) // correct on second → showingExplanation
+        vm.proceed() // empty pending + no review queue → session cleared
+        XCTAssertEqual(vm.phase, .stageCleared,
+            "Exam mode should not re-queue wrong answers — session completes after all pending")
+        XCTAssertEqual(vm.passNumber, 1, "Exam mode should never enter pass 2")
     }
 
     // MARK: - Stage clear (normal mode)

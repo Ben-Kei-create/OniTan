@@ -48,6 +48,41 @@ enum XPEvent {
     }
 }
 
+// MARK: - XP Curve Config (Deterministic)
+
+/// Consolidates all XP calculation parameters into a single, testable config.
+/// The deterministic formula:
+///   xp = Int(Double(baseXP) * streakMultiplier * difficultyMultiplier) + passageBonus
+///
+/// Usage:
+///   let config = XPCurveConfig(baseXP: 5, streakMultiplier: 1.5, difficultyMultiplier: 1.0, passageBonus: 0)
+///   let xp = config.computeXP()  // → 7
+struct XPCurveConfig {
+    let baseXP: Int
+    let streakMultiplier: Double
+    let difficultyMultiplier: Double
+    let passageBonus: Int
+
+    static let `default` = XPCurveConfig(
+        baseXP: 5,
+        streakMultiplier: 1.0,
+        difficultyMultiplier: 1.0,
+        passageBonus: 0
+    )
+
+    static let passageDefault = XPCurveConfig(
+        baseXP: 5,
+        streakMultiplier: 1.0,
+        difficultyMultiplier: 1.0,
+        passageBonus: 3
+    )
+
+    /// Deterministic XP calculation. No hidden state, no side effects.
+    func computeXP() -> Int {
+        Int(Double(baseXP) * streakMultiplier * difficultyMultiplier) + passageBonus
+    }
+}
+
 // MARK: - Persistence Model
 
 struct GamificationData: Codable {
