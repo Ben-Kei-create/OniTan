@@ -138,6 +138,7 @@ struct WrongAnswerNoteView: View {
 private struct WrongAnswerRow: View {
     let entry: WrongAnswerEntry
     var showsXPBadge: Bool = true
+    var wrongNoteXP: Int = XPEvent.Config.default.wrongNoteRetrievedPoints
 
     private var relativeDate: String {
         let formatter = RelativeDateTimeFormatter()
@@ -199,7 +200,7 @@ private struct WrongAnswerRow: View {
 
             VStack(alignment: .trailing, spacing: 4) {
                 if showsXPBadge {
-                    Text("+\(XPEvent.wrongNoteRetrieved.points) XP")
+                    Text("+\(wrongNoteXP) XP")
                         .font(.system(size: 9, weight: .bold, design: .rounded))
                         .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
                         .padding(.horizontal, 5)

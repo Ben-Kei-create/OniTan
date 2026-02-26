@@ -323,8 +323,8 @@ final class QuizSessionViewModelTests: XCTestCase {
             xpRepo: xpRepo, mode: .normal
         )
         vm.answer(selected: q1.answer)
-        XCTAssertEqual(xpRepo.totalXP, XPEvent.correctAnswer.points,
-            "Correct answer should award \(XPEvent.correctAnswer.points) XP")
+        XCTAssertEqual(xpRepo.totalXP, xpRepo.points(for: .correctAnswer),
+            "Correct answer should award \(xpRepo.points(for: .correctAnswer)) XP")
     }
 
     func testXP_sessionCompleteBonus_awardedOnClear() {
@@ -337,7 +337,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         )
         vm.answer(selected: q1.answer)
         XCTAssertEqual(vm.phase, .stageCleared)
-        let expectedXP = XPEvent.correctAnswer.points + XPEvent.sessionComplete.points
+        let expectedXP = xpRepo.points(for: .correctAnswer) + xpRepo.points(for: .sessionComplete)
         XCTAssertEqual(xpRepo.totalXP, expectedXP)
     }
 
@@ -353,9 +353,9 @@ final class QuizSessionViewModelTests: XCTestCase {
         vm.answer(selected: q2.answer); vm.proceed()
         vm.answer(selected: q3.answer)
         // Expected: 3 * correctAnswer(5) + 1 * comboBonus(2) + sessionComplete(20) = 37
-        let expected = 3 * XPEvent.correctAnswer.points
-            + XPEvent.comboBonus.points
-            + XPEvent.sessionComplete.points
+        let expected = 3 * xpRepo.points(for: .correctAnswer)
+            + xpRepo.points(for: .comboBonus)
+            + xpRepo.points(for: .sessionComplete)
         XCTAssertEqual(xpRepo.totalXP, expected,
             "Should receive combo bonus after 3 consecutive correct answers")
     }

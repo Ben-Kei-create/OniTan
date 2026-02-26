@@ -167,8 +167,8 @@ final class PassageSessionViewModelTests: XCTestCase {
         vm.startAnswering()
         let xpBefore = xpRepo.totalXP
         vm.answer(selected: "やまじ")
-        XCTAssertEqual(xpRepo.totalXP, xpBefore + XPEvent.correctAnswer.points)
-        XCTAssertEqual(vm.sessionXPGained, XPEvent.correctAnswer.points)
+        XCTAssertEqual(xpRepo.totalXP, xpBefore + xpRepo.points(for: .correctAnswer))
+        XCTAssertEqual(vm.sessionXPGained, xpRepo.points(for: .correctAnswer))
     }
 
     func testCorrectAnswer_recordsStreakCorrectAnswer() {
@@ -366,9 +366,9 @@ final class PassageSessionViewModelTests: XCTestCase {
         vm.startAnswering()
         vm.answer(selected: "ち"); vm.proceed()
         // 3 correct answers + session complete bonus
-        let expected = 3 * XPEvent.correctAnswer.points
-            + XPEvent.comboBonus.points    // combo at 3 consecutive
-            + XPEvent.sessionComplete.points
+        let expected = 3 * xpRepo.points(for: .correctAnswer)
+            + xpRepo.points(for: .comboBonus)    // combo at 3 consecutive
+            + xpRepo.points(for: .sessionComplete)
         XCTAssertEqual(xpRepo.totalXP, expected)
         XCTAssertEqual(vm.sessionXPGained, expected)
     }
@@ -463,10 +463,10 @@ final class PassageSessionViewModelTests: XCTestCase {
         vm.startAnswering()
         vm.answer(selected: "ち")                      // combo 3 → bonus
         // 3 * correctAnswer(5) + comboBonus(2) = 17 (before session complete)
-        let expectedBeforeSession = 3 * XPEvent.correctAnswer.points + XPEvent.comboBonus.points
+        let expectedBeforeSession = 3 * xpRepo.points(for: .correctAnswer) + xpRepo.points(for: .comboBonus)
         // Session complete adds sessionComplete points
         vm.proceed()
-        let expectedTotal = expectedBeforeSession + XPEvent.sessionComplete.points
+        let expectedTotal = expectedBeforeSession + xpRepo.points(for: .sessionComplete)
         XCTAssertEqual(xpRepo.totalXP, expectedTotal)
     }
 

@@ -366,7 +366,6 @@ struct StreakRepositoryTests {
 
 // MARK: - GamificationRepository Tests
 
-@Suite(.serialized)
 struct GamificationRepositoryTests {
 
     @Test func xp_startsAtZero() {
@@ -411,23 +410,41 @@ struct GamificationRepositoryTests {
         }
     }
 
-    /// Verify that XPEvent.label reflects the active Config values,
+    /// Verify that label(for:) reflects the injected Config values,
     /// so custom point values render correctly in the UI.
     @Test func xp_labelReflectsConfig() {
-        let original = XPEvent.config
-        defer { XPEvent.config = original }
-
-        XPEvent.config = XPEvent.Config(
+        let custom = XPEvent.Config(
             correctAnswerPoints: 10,
             sessionCompletePoints: 50,
             wrongNoteRetrievedPoints: 6,
             comboBonusPoints: 4
         )
+        let repo = GamificationRepository(store: InMemoryPersistenceStore(), eventConfig: custom)
 
-        #expect(XPEvent.correctAnswer.label == "+10 XP")
-        #expect(XPEvent.sessionComplete.label == "+50 XP")
-        #expect(XPEvent.wrongNoteRetrieved.label == "+6 XP 回収！")
-        #expect(XPEvent.comboBonus.label == "+4 XP コンボ！")
+        #expect(repo.label(for: .correctAnswer) == "+10 XP")
+        #expect(repo.label(for: .sessionComplete) == "+50 XP")
+        #expect(repo.label(for: .wrongNoteRetrieved) == "+6 XP 回収！")
+        #expect(repo.label(for: .comboBonus) == "+4 XP コンボ！")
+    }
+
+    /// Custom eventConfig produces different XP from default — confirms DI works.
+    @Test func xp_customConfig_producesDifferentXP() {
+        let custom = XPEvent.Config(
+            correctAnswerPoints: 10,
+            sessionCompletePoints: 50,
+            wrongNoteRetrievedPoints: 6,
+            comboBonusPoints: 4
+        )
+        let defaultRepo = GamificationRepository(store: InMemoryPersistenceStore())
+        let customRepo = GamificationRepository(store: InMemoryPersistenceStore(), eventConfig: custom)
+
+        defaultRepo.addXP(.correctAnswer)
+        customRepo.addXP(.correctAnswer)
+
+        #expect(defaultRepo.totalXP == 5)
+        #expect(customRepo.totalXP == 10)
+        #expect(defaultRepo.totalXP != customRepo.totalXP,
+            "Different configs must produce different XP for the same event")
     }
 
     @Test func xp_levelState_matchesExpectedBoundaries() {
@@ -460,11 +477,6 @@ struct GamificationRepositoryTests {
     }
 
     @Test func xp_progressUsesConfigurableCurve() {
-        // Snapshot and restore XPEvent.config to avoid race with xp_labelReflectsConfig
-        let original = XPEvent.config
-        defer { XPEvent.config = original }
-        XPEvent.config = .default  // ensure correctAnswer == 5
-
         let curve = GamificationRepository.LevelCurve { _ in 50 }
         let repo = GamificationRepository(store: InMemoryPersistenceStore(), levelCurve: curve)
         for _ in 0..<12 { repo.addXP(.correctAnswer) } // 12 * 5 = 60 XP
@@ -487,6 +499,21 @@ struct GamificationRepositoryTests {
         repo.addXP(.correctAnswer)   // +5
         repo.addXP(.sessionComplete) // +20
         #expect(repo.todayXP == 25)
+    }
+
+    /// Points resolution via repo.points(for:) matches eventConfig.
+    @Test func xp_pointsForEvent_matchesConfig() {
+        let custom = XPEvent.Config(
+            correctAnswerPoints: 7,
+            sessionCompletePoints: 30,
+            wrongNoteRetrievedPoints: 4,
+            comboBonusPoints: 3
+        )
+        let repo = GamificationRepository(store: InMemoryPersistenceStore(), eventConfig: custom)
+        #expect(repo.points(for: .correctAnswer) == 7)
+        #expect(repo.points(for: .sessionComplete) == 30)
+        #expect(repo.points(for: .wrongNoteRetrieved) == 4)
+        #expect(repo.points(for: .comboBonus) == 3)
     }
 
     // MARK: - XPCurveConfig (deterministic formula)
