@@ -27,6 +27,24 @@ final class PassageSessionViewModel: ObservableObject {
     @Published private(set) var completedTargetIndices: Set<Int> = []
     @Published var activeAlert: OniAlert? = nil
 
+    // MARK: Psychological Reinforcement
+
+    /// Micro-completion flag: set to true when a passage is fully completed.
+    /// UI can use this to trigger celebratory feedback (toast, animation, etc.).
+    @Published private(set) var didCompletePassage: Bool = false
+
+    /// Combo counter: consecutive correct answers within the current session.
+    /// Resets on incorrect answer. Exposed for UI (e.g., "3-combo!" badge).
+    var comboCount: Int { consecutiveCorrect }
+
+    /// Completion ratio for the entire session (0.0 ... 1.0).
+    /// Suitable for progress bars and motivational "almost there!" prompts.
+    var completionRatio: Double {
+        let total = totalTargets
+        guard total > 0 else { return 0 }
+        return Double(totalCorrect) / Double(total)
+    }
+
     // MARK: Read-only
 
     let passages: [Passage]
@@ -133,6 +151,7 @@ final class PassageSessionViewModel: ObservableObject {
             phase = .answering
         } else {
             // All targets in this passage are done
+            didCompletePassage = true
             if passageIndex + 1 < passages.count {
                 phase = .passageComplete
             } else {
@@ -144,6 +163,7 @@ final class PassageSessionViewModel: ObservableObject {
     /// Move to the next passage.
     func nextPassage() {
         guard phase == .passageComplete else { return }
+        didCompletePassage = false
         passageIndex += 1
         targetIndex = 0
         completedTargetIndices = []

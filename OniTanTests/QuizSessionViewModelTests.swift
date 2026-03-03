@@ -123,13 +123,20 @@ final class QuizSessionViewModelTests: XCTestCase {
     }
 
     func testWrongAnswer_noReviewQueue_examMode() {
-        let vm = makeVM(mode: .exam30)
-        // In exam mode wrong answers don't re-queue
-        vm.answer(selected: "ひのき")   // wrong on q1
+        // Use a 2-question stage so we can answer wrong on first, correct on second,
+        // and verify session completes without a review pass.
+        let twoQ = Stage(stage: 1, questions: [q1, q2], passages: nil)
+        let vm = QuizSessionViewModel(stage: twoQ, appState: appState, statsRepo: statsRepo, mode: .exam30)
+        // Answer both using currentQuestion.answer to handle shuffled order
+        let firstQ = vm.currentQuestion
+        let wrongChoice = firstQ.choices.first { $0 != firstQ.answer }!
+        vm.answer(selected: wrongChoice)  // wrong on first
         vm.proceed()
-        // Next question should be q2, not back to q1
-        XCTAssertNotEqual(vm.currentQuestion.kanji, "燎",
-            "Exam mode should not re-queue wrong answers")
+        vm.answer(selected: vm.currentQuestion.answer) // correct on second → showingExplanation
+        vm.proceed() // empty pending + no review queue → session cleared
+        XCTAssertEqual(vm.phase, .stageCleared,
+            "Exam mode should not re-queue wrong answers — session completes after all pending")
+        XCTAssertEqual(vm.passNumber, 1, "Exam mode should never enter pass 2")
     }
 
     // MARK: - Stage clear (normal mode)
@@ -316,8 +323,8 @@ final class QuizSessionViewModelTests: XCTestCase {
             xpRepo: xpRepo, mode: .normal
         )
         vm.answer(selected: q1.answer)
-        XCTAssertEqual(xpRepo.totalXP, XPEvent.correctAnswer.points,
-            "Correct answer should award \(XPEvent.correctAnswer.points) XP")
+        XCTAssertEqual(xpRepo.totalXP, xpRepo.points(for: .correctAnswer),
+            "Correct answer should award \(xpRepo.points(for: .correctAnswer)) XP")
     }
 
     func testXP_sessionCompleteBonus_awardedOnClear() {
@@ -330,7 +337,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         )
         vm.answer(selected: q1.answer)
         XCTAssertEqual(vm.phase, .stageCleared)
-        let expectedXP = XPEvent.correctAnswer.points + XPEvent.sessionComplete.points
+        let expectedXP = xpRepo.points(for: .correctAnswer) + xpRepo.points(for: .sessionComplete)
         XCTAssertEqual(xpRepo.totalXP, expectedXP)
     }
 
@@ -346,9 +353,9 @@ final class QuizSessionViewModelTests: XCTestCase {
         vm.answer(selected: q2.answer); vm.proceed()
         vm.answer(selected: q3.answer)
         // Expected: 3 * correctAnswer(5) + 1 * comboBonus(2) + sessionComplete(20) = 37
-        let expected = 3 * XPEvent.correctAnswer.points
-            + XPEvent.comboBonus.points
-            + XPEvent.sessionComplete.points
+        let expected = 3 * xpRepo.points(for: .correctAnswer)
+            + xpRepo.points(for: .comboBonus)
+            + xpRepo.points(for: .sessionComplete)
         XCTAssertEqual(xpRepo.totalXP, expected,
             "Should receive combo bonus after 3 consecutive correct answers")
     }

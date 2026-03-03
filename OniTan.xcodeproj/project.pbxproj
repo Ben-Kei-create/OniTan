@@ -36,6 +36,7 @@
 		B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */; };
 		B671326085AE2F3D7A0167E2 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BB68317A918563A730DF620 /* stage3.json */; };
 		C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C22BCB83C026070FB98DC8 /* StageSelectView.swift */; };
+		D9E07B7F92800733B72D0A65 /* PassageSessionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD2CE70F740F02DFDFE23D /* PassageSessionViewModelTests.swift */; };
 		E584AE3550568854A086E3AF /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = 107EB57A894AA8A8CF252B11 /* stage2.json */; };
 		E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B304DA79873F9CF82ACCD64 /* QuizMode.swift */; };
 		EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F707F6682B94FE1C60CCE /* Question.swift */; };
@@ -103,6 +104,7 @@
 		CD4411425D9E074830F19810 /* PassageSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageSessionViewModel.swift; sourceTree = "<group>"; };
 		D352DD65B20BC1C414C33B3C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		EFDAD76C7E232DB407E807F8 /* QuestionPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPromptView.swift; sourceTree = "<group>"; };
+		F8FD2CE70F740F02DFDFE23D /* PassageSessionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageSessionViewModelTests.swift; sourceTree = "<group>"; };
 		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 			children = (
 				B23B2EFC3923D1727E152736 /* AppStateTests.swift */,
 				FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */,
+				F8FD2CE70F740F02DFDFE23D /* PassageSessionViewModelTests.swift */,
 				500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */,
 				08F823A6137158BA416E060C /* StageManifestTests.swift */,
 			);
@@ -310,6 +313,7 @@
 			files = (
 				AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */,
 				3005B5F4E7012934860BDFF9 /* OniTanTests.swift in Sources */,
+				D9E07B7F92800733B72D0A65 /* PassageSessionViewModelTests.swift in Sources */,
 				1CF76AF4375B7C0BE8DD4DE3 /* QuizSessionViewModelTests.swift in Sources */,
 				0197D2685D3AEBB237D9F940 /* StageManifestTests.swift in Sources */,
 			);

@@ -13,7 +13,9 @@ enum XPEvent {
     case wrongNoteRetrieved  // +3  — viewing a wrong-answer detail (encourages review)
     case comboBonus          // +2  — every 3-consecutive-correct streak
 
-    struct Config {
+    /// Per-event point table. Injected into GamificationRepository at init.
+    /// No mutable global state — each repository instance owns its own config.
+    struct Config: Equatable {
         let correctAnswerPoints: Int
         let sessionCompletePoints: Int
         let wrongNoteRetrievedPoints: Int
@@ -25,26 +27,62 @@ enum XPEvent {
             wrongNoteRetrievedPoints: 3,
             comboBonusPoints: 2
         )
-    }
 
-    static var config: Config = .default
+        /// Resolve points for a given event type.
+        func points(for event: XPEvent) -> Int {
+            switch event {
+            case .correctAnswer:      return correctAnswerPoints
+            case .sessionComplete:    return sessionCompletePoints
+            case .wrongNoteRetrieved: return wrongNoteRetrievedPoints
+            case .comboBonus:         return comboBonusPoints
+            }
+        }
 
-    var points: Int {
-        switch self {
-        case .correctAnswer:      return Self.config.correctAnswerPoints
-        case .sessionComplete:    return Self.config.sessionCompletePoints
-        case .wrongNoteRetrieved: return Self.config.wrongNoteRetrievedPoints
-        case .comboBonus:         return Self.config.comboBonusPoints
+        /// Localized label for UI display (e.g., "+5 XP", "+2 XP コンボ！").
+        func label(for event: XPEvent) -> String {
+            let pts = points(for: event)
+            switch event {
+            case .correctAnswer:      return "+\(pts) XP"
+            case .sessionComplete:    return "+\(pts) XP"
+            case .wrongNoteRetrieved: return "+\(pts) XP 回収！"
+            case .comboBonus:         return "+\(pts) XP コンボ！"
+            }
         }
     }
+}
 
-    var label: String {
-        switch self {
-        case .correctAnswer:      return "+\(Self.config.correctAnswerPoints) XP"
-        case .sessionComplete:    return "+\(Self.config.sessionCompletePoints) XP"
-        case .wrongNoteRetrieved: return "+\(Self.config.wrongNoteRetrievedPoints) XP 回収！"
-        case .comboBonus:         return "+\(Self.config.comboBonusPoints) XP コンボ！"
-        }
+// MARK: - XP Curve Config (Deterministic)
+
+/// Consolidates all XP calculation parameters into a single, testable config.
+/// The deterministic formula:
+///   xp = Int(Double(baseXP) * streakMultiplier * difficultyMultiplier) + passageBonus
+///
+/// Usage:
+///   let config = XPCurveConfig(baseXP: 5, streakMultiplier: 1.5, difficultyMultiplier: 1.0, passageBonus: 0)
+///   let xp = config.computeXP()  // → 7
+struct XPCurveConfig {
+    let baseXP: Int
+    let streakMultiplier: Double
+    let difficultyMultiplier: Double
+    let passageBonus: Int
+
+    static let `default` = XPCurveConfig(
+        baseXP: 5,
+        streakMultiplier: 1.0,
+        difficultyMultiplier: 1.0,
+        passageBonus: 0
+    )
+
+    static let passageDefault = XPCurveConfig(
+        baseXP: 5,
+        streakMultiplier: 1.0,
+        difficultyMultiplier: 1.0,
+        passageBonus: 3
+    )
+
+    /// Deterministic XP calculation. No hidden state, no side effects.
+    func computeXP() -> Int {
+        Int(Double(baseXP) * streakMultiplier * difficultyMultiplier) + passageBonus
     }
 }
 
@@ -91,6 +129,10 @@ final class GamificationRepository: ObservableObject {
         }
     }
 
+    /// The per-event point table owned by this repository instance.
+    /// Tests can inject custom configs; production uses `.default`.
+    let eventConfig: XPEvent.Config
+
     private let store: PersistenceStore
     private let key = "gamification_v2"
     private let legacyKey = "gamification_v1"
@@ -104,10 +146,12 @@ final class GamificationRepository: ObservableObject {
 
     init(
         store: PersistenceStore,
+        eventConfig: XPEvent.Config = .default,
         levelCurve: LevelCurve = .default,
         nowProvider: @escaping () -> Date = Date.init
     ) {
         self.store = store
+        self.eventConfig = eventConfig
         self.levelCurve = levelCurve
         self.nowProvider = nowProvider
         load()
@@ -117,10 +161,20 @@ final class GamificationRepository: ObservableObject {
 
     // MARK: - Public API
 
+    /// Resolve the point value for an event using this repository's config.
+    func points(for event: XPEvent) -> Int {
+        eventConfig.points(for: event)
+    }
+
+    /// Localized label for an event (e.g., "+5 XP").
+    func label(for event: XPEvent) -> String {
+        eventConfig.label(for: event)
+    }
+
     /// Award XP for an event and return the points added (useful for UI feedback).
     @discardableResult
     func addXP(_ event: XPEvent) -> Int {
-        let pts = event.points
+        let pts = eventConfig.points(for: event)
         data.totalXP += pts
         data.todayXP += pts
         data.lastXPDate = nowProvider()
