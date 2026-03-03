@@ -6,6 +6,7 @@ struct SettingsView: View {
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var donationManager: DonationManager
 
     // Unified alert state
     @State private var activeAlert: OniAlert? = nil
@@ -18,6 +19,7 @@ struct SettingsView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     appearanceSection
+                    donationSection
                     dataSection
                     appInfoSection
                 }
@@ -31,6 +33,97 @@ struct SettingsView: View {
         .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
         .alert(item: $activeAlert) { alert in
             buildAlert(for: alert)
+        }
+    }
+
+    // MARK: - Donation
+
+    private var donationSection: some View {
+        SettingsCard(
+            title: "開発者への寄付",
+            icon: "heart.fill",
+            iconColor: Color(red: 1.0, green: 0.3, blue: 0.4)
+        ) {
+            VStack(spacing: 12) {
+                if donationManager.hasDonated {
+                    // 寄付済みの場合
+                    VStack(spacing: 8) {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+
+                        Text("Thank you!")
+                            .font(.system(.title3, design: .rounded))
+                            .fontWeight(.black)
+                            .foregroundColor(OniTanTheme.textPrimary)
+
+                        Text("ご支援ありがとうございます。\n広告が非表示になりました。")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
+                } else {
+                    // 未寄付の場合
+                    Text("広告を非表示にして、開発を応援しよう！\n寄付が完了すると上部の広告が消えます。")
+                        .font(.system(.caption, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Button {
+                        Task { await donationManager.purchase() }
+                    } label: {
+                        HStack(spacing: 8) {
+                            if donationManager.isPurchasing {
+                                ProgressView()
+                                    .progressViewStyle(.circular)
+                                    .tint(.white)
+                                    .scaleEffect(0.8)
+                            } else {
+                                Image(systemName: "heart.fill")
+                                    .font(.system(size: 14, weight: .semibold))
+                            }
+                            Text(donationManager.product.map { $0.displayPrice + " 寄付する" } ?? "寄付する")
+                                .font(.system(.headline, design: .rounded))
+                                .fontWeight(.bold)
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .background(
+                            LinearGradient(
+                                colors: [Color(red: 1.0, green: 0.3, blue: 0.5),
+                                         Color(red: 0.8, green: 0.1, blue: 0.3)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .cornerRadius(OniTanTheme.radiusButton)
+                        .shadow(color: Color(red: 1.0, green: 0.3, blue: 0.4).opacity(0.3), radius: 6, y: 3)
+                    }
+                    .disabled(donationManager.isPurchasing || donationManager.product == nil)
+                    .accessibilityLabel("開発者に寄付する")
+
+                    Button {
+                        Task { await donationManager.restore() }
+                    } label: {
+                        Text("購入を復元する")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(OniTanTheme.textTertiary)
+                            .underline()
+                    }
+                    .disabled(donationManager.isPurchasing)
+                    .frame(maxWidth: .infinity)
+
+                    if let error = donationManager.purchaseError {
+                        Text(error)
+                            .font(.system(.caption2, design: .rounded))
+                            .foregroundColor(OniTanTheme.accentWrong)
+                            .multilineTextAlignment(.center)
+                    }
+                }
+            }
         }
     }
 

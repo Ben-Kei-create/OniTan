@@ -89,10 +89,6 @@ struct StageProgressRing: View {
                 Image(systemName: "checkmark")
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(OniTanTheme.accentCorrect)
-            } else {
-                Text("S\(stageNumber)")
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundColor(OniTanTheme.textSecondary)
             }
         }
         .accessibilityElement()

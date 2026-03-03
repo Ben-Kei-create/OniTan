@@ -1,5 +1,8 @@
 import SwiftUI
 
+// Google Mobile Ads SDK が導入されたら以下のコメントを外してください:
+// import GoogleMobileAds
+
 @main
 struct OniTanApp: App {
     @StateObject private var appState = AppState()
@@ -7,6 +10,12 @@ struct OniTanApp: App {
     @StateObject private var streakRepo = StreakRepository()
     @StateObject private var xpRepo = GamificationRepository()
     @StateObject private var themeManager = ThemeManager.shared
+    @StateObject private var donationManager = DonationManager()
+
+    init() {
+        // Google Mobile Ads SDK が導入されたら以下のコメントを外してください:
+        // GADMobileAds.sharedInstance().start(completionHandler: nil)
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -16,6 +25,7 @@ struct OniTanApp: App {
                 .environmentObject(streakRepo)
                 .environmentObject(xpRepo)
                 .environmentObject(themeManager)
+                .environmentObject(donationManager)
                 .preferredColorScheme(themeManager.preferredColorScheme)
         }
     }

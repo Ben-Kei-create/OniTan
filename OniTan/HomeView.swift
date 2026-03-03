@@ -6,6 +6,7 @@ struct HomeView: View {
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var donationManager: DonationManager
 
     @State private var freezeToastVisible = false
     @State private var lastShownFreezeID: Int = -1
@@ -60,6 +61,11 @@ struct HomeView: View {
                 guard newID != lastShownFreezeID else { return }
                 lastShownFreezeID = newID
                 showFreezeToast()
+            }
+        }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            if !donationManager.hasDonated {
+                AdBannerView()
             }
         }
     }
