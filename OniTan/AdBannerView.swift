@@ -71,10 +71,10 @@ struct AdBannerView: View {
 
             Spacer()
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 12)
         .frame(maxWidth: .infinity)
-        .frame(height: 50)
-        .background(Color.black.opacity(0.22))
+        .frame(height: 32)
+        .background(Color.black.opacity(0.18))
         .overlay(
             Rectangle()
                 .stroke(Color.white.opacity(0.07), lineWidth: 0.5)

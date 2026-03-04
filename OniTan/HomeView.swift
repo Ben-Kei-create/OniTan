@@ -42,6 +42,11 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
             }
+            .safeAreaInset(edge: .top, spacing: 0) {
+                if !donationManager.hasDonated {
+                    AdBannerView()
+                }
+            }
             .navigationBarHidden(true)
             .overlay(alignment: .top) {
                 if freezeToastVisible {
@@ -61,11 +66,6 @@ struct HomeView: View {
                 guard newID != lastShownFreezeID else { return }
                 lastShownFreezeID = newID
                 showFreezeToast()
-            }
-        }
-        .safeAreaInset(edge: .top, spacing: 0) {
-            if !donationManager.hasDonated {
-                AdBannerView()
             }
         }
     }
