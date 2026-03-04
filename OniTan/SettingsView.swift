@@ -66,7 +66,7 @@ struct SettingsView: View {
                     .padding(.vertical, 4)
                 } else {
                     // 未寄付の場合
-                    Text("広告を非表示にして、開発を応援しよう！\n寄付が完了すると上部の広告が消えます。")
+                    Text("広告を非表示にして、開発を応援しよう！\n寄付が完了するとプレイ画面の広告が消えます。")
                         .font(.system(.caption, design: .rounded))
                         .foregroundColor(OniTanTheme.textSecondary)
                         .multilineTextAlignment(.leading)

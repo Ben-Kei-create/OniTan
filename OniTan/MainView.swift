@@ -5,6 +5,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject private var vm: QuizSessionViewModel
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var donationManager: DonationManager
 
     init(
         stage: Stage,
@@ -69,6 +70,11 @@ struct MainView: View {
             .animation(.easeInOut(duration: 0.25), value: vm.phase)
             .alert(item: $vm.activeAlert) { alert in
                 alertView(for: alert)
+            }
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if !donationManager.hasDonated {
+                AdBannerView()
             }
         }
     }
