@@ -261,30 +261,37 @@ struct MainView: View {
         .accessibilityIdentifier("quiz_kanji")
     }
 
-    // MARK: - 2x2 Choice Grid
+    // MARK: - 2-Choice Grid
 
     private func choiceGrid(scale: CGFloat) -> some View {
-        let choices = vm.currentQuestion.choices
-        let rows = choices.chunked(into: 2)
+        let twoChoices = Self.twoChoices(
+            from: vm.currentQuestion.choices,
+            answer: vm.currentQuestion.answer
+        )
 
-        return VStack(spacing: scaled(12, by: scale, min: 8)) {
-            ForEach(rows.indices, id: \.self) { rowIndex in
-                HStack(spacing: scaled(12, by: scale, min: 8)) {
-                    ForEach(Array(rows[rowIndex].enumerated()), id: \.offset) { _, choice in
-                        ChoiceCard(
-                            text: choice,
-                            scale: scale,
-                            onTap: {
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                                    vm.answer(selected: choice)
-                                }
-                                OniTanTheme.haptic(.medium)
-                            }
-                        )
+        return HStack(spacing: scaled(12, by: scale, min: 8)) {
+            ForEach(Array(twoChoices.enumerated()), id: \.offset) { _, choice in
+                ChoiceCard(
+                    text: choice,
+                    scale: scale,
+                    onTap: {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                            vm.answer(selected: choice)
+                        }
+                        OniTanTheme.haptic(.medium)
                     }
-                }
+                )
             }
         }
+    }
+
+    /// Returns exactly 2 choices: the correct answer + 1 wrong choice.
+    /// Order is derived from the original choices array (stable, deterministic).
+    private static func twoChoices(from choices: [String], answer: String) -> [String] {
+        let wrongs = choices.filter { $0 != answer }
+        guard let firstWrong = wrongs.first else { return [answer] }
+        let pair = Set([answer, firstWrong])
+        return choices.filter { pair.contains($0) }.prefix(2).map { $0 }
     }
 
     // MARK: - Wrong Answer View
@@ -623,12 +630,3 @@ struct ExplanationView: View {
     }
 }
 
-// MARK: - Array Chunk Helper
-
-private extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
-}
