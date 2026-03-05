@@ -22,6 +22,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.fumiakiMogi777.OniTan
         DEVELOPMENT_TEAM: ""   # 必要なら後で埋める（Simulatorだけなら空でOK）
         GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_GADApplicationIdentifier: ca-app-pub-4859622277330192~8703189628
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone:
           - UIInterfaceOrientationPortrait
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:
