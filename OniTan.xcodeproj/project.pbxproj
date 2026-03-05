@@ -83,6 +83,11 @@
 		A58A91842F59C1600092B608 /* stage60.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91832F59C1600092B608 /* stage60.json */; };
 		A58A91862F59C17C0092B608 /* stage61.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91852F59C17C0092B608 /* stage61.json */; };
 		A58A91882F59C50D0092B608 /* stage27.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91872F59C50D0092B608 /* stage27.json */; };
+		A58A918A2F59C5610092B608 /* stage28.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91892F59C5610092B608 /* stage28.json */; };
+		A58A918C2F59C57B0092B608 /* stage29.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918B2F59C57B0092B608 /* stage29.json */; };
+		A58A91902F59C5E80092B608 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918E2F59C5E80092B608 /* stage31.json */; };
+		A58A91912F59C5E80092B608 /* stage32.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918F2F59C5E80092B608 /* stage32.json */; };
+		A58A91922F59C5E80092B608 /* stage30.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918D2F59C5E80092B608 /* stage30.json */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
 		AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B2EFC3923D1727E152736 /* AppStateTests.swift */; };
 		B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */; };
@@ -197,6 +202,11 @@
 		A58A91832F59C1600092B608 /* stage60.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage60.json; sourceTree = "<group>"; };
 		A58A91852F59C17C0092B608 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
 		A58A91872F59C50D0092B608 /* stage27.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage27.json; sourceTree = "<group>"; };
+		A58A91892F59C5610092B608 /* stage28.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage28.json; sourceTree = "<group>"; };
+		A58A918B2F59C57B0092B608 /* stage29.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage29.json; sourceTree = "<group>"; };
+		A58A918D2F59C5E80092B608 /* stage30.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage30.json; sourceTree = "<group>"; };
+		A58A918E2F59C5E80092B608 /* stage31.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage31.json; sourceTree = "<group>"; };
+		A58A918F2F59C5E80092B608 /* stage32.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage32.json; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationManager.swift; sourceTree = "<group>"; };
 		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
@@ -231,6 +241,7 @@
 				A58A912E2F58866D0092B608 /* stage18.json */,
 				A58A912F2F58866D0092B608 /* stages.json */,
 				A58A91432F5887720092B608 /* stage19.json */,
+				A58A918B2F59C57B0092B608 /* stage29.json */,
 				A58A916D2F59C12F0092B608 /* stage59.json */,
 				A58A916E2F59C12F0092B608 /* stage62.json */,
 				A58A916F2F59C12F0092B608 /* stage63.json */,
@@ -246,9 +257,13 @@
 				A58A91772F59C12F0092B608 /* stage72.json */,
 				A58A91442F5887720092B608 /* stage20.json */,
 				A58A91452F5887720092B608 /* stage21.json */,
+				A58A918D2F59C5E80092B608 /* stage30.json */,
+				A58A918E2F59C5E80092B608 /* stage31.json */,
+				A58A918F2F59C5E80092B608 /* stage32.json */,
 				A58A91462F5887720092B608 /* stage22.json */,
 				A58A91472F5887720092B608 /* stage23.json */,
 				A58A914D2F588E920092B608 /* stage24.json */,
+				A58A91892F59C5610092B608 /* stage28.json */,
 				A58A914E2F588E920092B608 /* stage25.json */,
 				A58A914F2F588E920092B608 /* stage26.json */,
 				A58A91532F5988A10092B608 /* stage50.json */,
@@ -463,8 +478,12 @@
 				A58A91822F59C12F0092B608 /* stage71.json in Resources */,
 				A58A91342F58866D0092B608 /* stage6.json in Resources */,
 				A58A91352F58866D0092B608 /* stage18.json in Resources */,
+				A58A918C2F59C57B0092B608 /* stage29.json in Resources */,
 				A58A91362F58866D0092B608 /* stage3.json in Resources */,
 				A58A91862F59C17C0092B608 /* stage61.json in Resources */,
+				A58A91902F59C5E80092B608 /* stage31.json in Resources */,
+				A58A91912F59C5E80092B608 /* stage32.json in Resources */,
+				A58A91922F59C5E80092B608 /* stage30.json in Resources */,
 				A58A915B2F5988A10092B608 /* stage57.json in Resources */,
 				A58A915C2F5988A10092B608 /* stage53.json in Resources */,
 				A58A915D2F5988A10092B608 /* stage50.json in Resources */,
@@ -484,6 +503,7 @@
 				A58A91522F588E920092B608 /* stage26.json in Resources */,
 				A58A913A2F58866D0092B608 /* stage7.json in Resources */,
 				A58A913B2F58866D0092B608 /* stage9.json in Resources */,
+				A58A918A2F59C5610092B608 /* stage28.json in Resources */,
 				A58A913C2F58866D0092B608 /* stage13.json in Resources */,
 				A58A913D2F58866D0092B608 /* stage1.json in Resources */,
 				A58A913E2F58866D0092B608 /* stage11.json in Resources */,
