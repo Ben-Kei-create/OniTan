@@ -9,3 +9,5 @@ DerivedData/
 .DS_Store
 /.claude/
 /PROJECT/
+.DS_Store
+**/.DS_Store
