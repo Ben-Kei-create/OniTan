@@ -20,8 +20,8 @@ import GoogleMobileAds
 
 struct AdBannerView: UIViewRepresentable {
 
-    // テスト用ID。本番は AdMob コンソールから取得した ID に変更してください。
-    private let adUnitID = "ca-app-pub-3940256099942544/2934735716"
+    // 本番用ID (OniTan_Banner_Main)
+    private let adUnitID = "ca-app-pub-4859622277330192/9892982365"
 
     func makeUIView(context: Context) -> GADBannerView {
         let banner = GADBannerView(adSize: GADAdSizeBanner)

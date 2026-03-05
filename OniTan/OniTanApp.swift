@@ -1,7 +1,6 @@
 import SwiftUI
 
-// Google Mobile Ads SDK が導入されたら以下のコメントを外してください:
-// import GoogleMobileAds
+import GoogleMobileAds
 
 @main
 struct OniTanApp: App {
@@ -13,8 +12,7 @@ struct OniTanApp: App {
     @StateObject private var donationManager = DonationManager()
 
     init() {
-        // Google Mobile Ads SDK が導入されたら以下のコメントを外してください:
-        // GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
 
     var body: some Scene {
