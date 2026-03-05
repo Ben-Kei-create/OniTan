@@ -12,7 +12,8 @@ struct OniTanApp: App {
     @StateObject private var donationManager = DonationManager()
 
     init() {
-        GADMobileAds.sharedInstance().start()
+        // Google Mobile Ads SDK は iOS 14+ で自動初期化される
+        // 明示的な初期化は不要
     }
 
     var body: some Scene {
