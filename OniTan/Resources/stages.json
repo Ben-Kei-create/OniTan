@@ -1,76 +1,430 @@
 {
   "stages": [
-    { "id": 1,  "file": "stage1.json",  "title": "準1級 基礎",    "difficulty": 1 },
-    { "id": 2,  "file": "stage2.json",  "title": "準1級 標準",    "difficulty": 2 },
-    { "id": 3,  "file": "stage3.json",  "title": "準1級 鬼",      "difficulty": 3 },
-    { "id": 4,  "file": "stage4.json",  "title": "準1級 基礎②",  "difficulty": 1 },
-    { "id": 5,  "file": "stage5.json",  "title": "準1級 標準②",  "difficulty": 2 },
-    { "id": 6,  "file": "stage6.json",  "title": "準1級 鬼②",    "difficulty": 3 },
-    { "id": 7,  "file": "stage7.json",  "title": "準1級 基礎③",  "difficulty": 1 },
-    { "id": 8,  "file": "stage8.json",  "title": "準1級 標準③",  "difficulty": 2 },
-    { "id": 9,  "file": "stage9.json",  "title": "準1級 鬼③",    "difficulty": 3 },
-    { "id": 10, "file": "stage10.json", "title": "準1級 基礎④",  "difficulty": 1 },
-    { "id": 11, "file": "stage11.json", "title": "準1級 標準④",  "difficulty": 2 },
-    { "id": 12, "file": "stage12.json", "title": "準1級 鬼④",    "difficulty": 3 },
-    { "id": 13, "file": "stage13.json", "title": "準1級 基礎⑤",  "difficulty": 1 },
-    { "id": 14, "file": "stage14.json", "title": "準1級 標準⑤",  "difficulty": 2 },
-    { "id": 15, "file": "stage15.json", "title": "準1級 鬼⑤",    "difficulty": 3 },
-    { "id": 16, "file": "stage16.json", "title": "準1級 基礎⑥",  "difficulty": 1 },
-    { "id": 17, "file": "stage17.json", "title": "準1級 標準⑥",  "difficulty": 2 },
-    { "id": 18, "file": "stage18.json", "title": "準1級 鬼⑥",    "difficulty": 3 },
-    { "id": 19, "file": "stage19.json", "title": "準1級 基礎⑦",  "difficulty": 1 },
-    { "id": 20, "file": "stage20.json", "title": "準1級 標準⑦",  "difficulty": 2 },
-    { "id": 21, "file": "stage21.json", "title": "準1級 鬼⑦",    "difficulty": 3 },
-    { "id": 22, "file": "stage22.json", "title": "準1級 基礎⑧",  "difficulty": 1 },
-    { "id": 23, "file": "stage23.json", "title": "準1級 標準⑧",  "difficulty": 2 },
-    { "id": 24, "file": "stage24.json", "title": "準1級 鬼⑧",    "difficulty": 3 },
-    { "id": 25, "file": "stage25.json", "title": "準1級 基礎⑨",  "difficulty": 1 },
-    { "id": 26, "file": "stage26.json", "title": "準1級 標準⑨",  "difficulty": 2 },
-    { "id": 27, "file": "stage27.json", "title": "準1級 鬼⑨",    "difficulty": 3 },
-    { "id": 28, "file": "stage28.json", "title": "準1級 基礎⑩",  "difficulty": 1 },
-    { "id": 29, "file": "stage29.json", "title": "準1級 標準⑩",  "difficulty": 2 },
-    { "id": 30, "file": "stage30.json", "title": "準1級 鬼⑩",    "difficulty": 3 },
-    { "id": 31, "file": "stage31.json", "title": "準1級 基礎⑪",  "difficulty": 1 },
-    { "id": 32, "file": "stage32.json", "title": "準1級 標準⑪",  "difficulty": 2 },
-    { "id": 33, "file": "stage33.json", "title": "準1級 鬼⑪",    "difficulty": 3 },
-    { "id": 34, "file": "stage34.json", "title": "準1級 基礎⑫",  "difficulty": 1 },
-    { "id": 35, "file": "stage35.json", "title": "準1級 標準⑫",  "difficulty": 2 },
-    { "id": 36, "file": "stage36.json", "title": "準1級 鬼⑫",    "difficulty": 3 },
-    { "id": 37, "file": "stage37.json", "title": "準1級 基礎⑬",  "difficulty": 1 },
-    { "id": 38, "file": "stage38.json", "title": "準1級 標準⑬",  "difficulty": 2 },
-    { "id": 39, "file": "stage39.json", "title": "準1級 鬼⑬",    "difficulty": 3 },
-    { "id": 40, "file": "stage40.json", "title": "準1級 基礎⑭",  "difficulty": 1 },
-    { "id": 41, "file": "stage41.json", "title": "準1級 標準⑭",  "difficulty": 2 },
-    { "id": 42, "file": "stage42.json", "title": "準1級 鬼⑭",    "difficulty": 3 },
-    { "id": 43, "file": "stage43.json", "title": "準1級 基礎⑮",  "difficulty": 1 },
-    { "id": 44, "file": "stage44.json", "title": "準1級 標準⑮",  "difficulty": 2 },
-    { "id": 45, "file": "stage45.json", "title": "準1級 鬼⑮",    "difficulty": 3 },
-    { "id": 46, "file": "stage46.json", "title": "準1級 基礎⑯",  "difficulty": 1 },
-    { "id": 47, "file": "stage47.json", "title": "準1級 標準⑯",  "difficulty": 2 },
-    { "id": 48, "file": "stage48.json", "title": "準1級 鬼⑯",    "difficulty": 3 },
-    { "id": 49, "file": "stage49.json", "title": "準1級 基礎⑰",  "difficulty": 1 },
-    { "id": 50, "file": "stage50.json", "title": "準1級 標準⑰",  "difficulty": 2 },
-    { "id": 51, "file": "stage51.json", "title": "準1級 鬼⑰",    "difficulty": 3 },
-    { "id": 52, "file": "stage52.json", "title": "準1級 基礎⑱",  "difficulty": 1 },
-    { "id": 53, "file": "stage53.json", "title": "準1級 標準⑱",  "difficulty": 2 },
-    { "id": 54, "file": "stage54.json", "title": "準1級 鬼⑱",    "difficulty": 3 },
-    { "id": 55, "file": "stage55.json", "title": "準1級 基礎⑲",  "difficulty": 1 },
-    { "id": 56, "file": "stage56.json", "title": "準1級 標準⑲",  "difficulty": 2 },
-    { "id": 57, "file": "stage57.json", "title": "準1級 鬼⑲",    "difficulty": 3 },
-    { "id": 58, "file": "stage58.json", "title": "準1級 基礎⑳",  "difficulty": 1 },
-    { "id": 59, "file": "stage59.json", "title": "準1級 標準⑳",  "difficulty": 2 },
-    { "id": 60, "file": "stage60.json", "title": "準1級 鬼⑳",    "difficulty": 3 },
-    { "id": 61, "file": "stage61.json", "title": "準1級 基礎㉑",  "difficulty": 1 },
-    { "id": 62, "file": "stage62.json", "title": "準1級 標準㉑",  "difficulty": 2 },
-    { "id": 63, "file": "stage67.json", "title": "準1級 基礎㉒",  "difficulty": 1 },
-    { "id": 64, "file": "stage68.json", "title": "準1級 標準㉓",  "difficulty": 2 },
-    { "id": 65, "file": "stage69.json", "title": "準1級 鬼㉓",    "difficulty": 3 },
-    { "id": 66, "file": "stage70.json", "title": "準1級 基礎㉔",  "difficulty": 1 },
-    { "id": 67, "file": "stage67.json", "title": "準1級 基礎㉒",  "difficulty": 1 },
-    { "id": 68, "file": "stage68.json", "title": "準1級 標準㉓",  "difficulty": 2 },
-    { "id": 69, "file": "stage69.json", "title": "準1級 鬼㉓",    "difficulty": 3 },
-    { "id": 70, "file": "stage70.json", "title": "準1級 基礎㉔",  "difficulty": 1 },
-    { "id": 71, "file": "stage71.json", "title": "準1級 標準㉔",  "difficulty": 2 },
-    { "id": 72, "file": "stage72.json", "title": "準1級 鬼㉔",    "difficulty": 3 }
+    {
+      "id": 1,
+      "file": "stage1.json",
+      "title": "準1級 基礎①",
+      "difficulty": 1
+    },
+    {
+      "id": 2,
+      "file": "stage2.json",
+      "title": "準1級 標準①",
+      "difficulty": 2
+    },
+    {
+      "id": 3,
+      "file": "stage3.json",
+      "title": "準1級 鬼①",
+      "difficulty": 3
+    },
+    {
+      "id": 4,
+      "file": "stage4.json",
+      "title": "準1級 基礎②",
+      "difficulty": 1
+    },
+    {
+      "id": 5,
+      "file": "stage5.json",
+      "title": "準1級 標準②",
+      "difficulty": 2
+    },
+    {
+      "id": 6,
+      "file": "stage6.json",
+      "title": "準1級 鬼②",
+      "difficulty": 3
+    },
+    {
+      "id": 7,
+      "file": "stage7.json",
+      "title": "準1級 基礎③",
+      "difficulty": 1
+    },
+    {
+      "id": 8,
+      "file": "stage8.json",
+      "title": "準1級 標準③",
+      "difficulty": 2
+    },
+    {
+      "id": 9,
+      "file": "stage9.json",
+      "title": "準1級 鬼③",
+      "difficulty": 3
+    },
+    {
+      "id": 10,
+      "file": "stage10.json",
+      "title": "準1級 基礎④",
+      "difficulty": 1
+    },
+    {
+      "id": 11,
+      "file": "stage11.json",
+      "title": "準1級 標準④",
+      "difficulty": 2
+    },
+    {
+      "id": 12,
+      "file": "stage12.json",
+      "title": "準1級 鬼④",
+      "difficulty": 3
+    },
+    {
+      "id": 13,
+      "file": "stage13.json",
+      "title": "準1級 基礎⑤",
+      "difficulty": 1
+    },
+    {
+      "id": 14,
+      "file": "stage14.json",
+      "title": "準1級 標準⑤",
+      "difficulty": 2
+    },
+    {
+      "id": 15,
+      "file": "stage15.json",
+      "title": "準1級 鬼⑤",
+      "difficulty": 3
+    },
+    {
+      "id": 16,
+      "file": "stage16.json",
+      "title": "準1級 基礎⑥",
+      "difficulty": 1
+    },
+    {
+      "id": 17,
+      "file": "stage17.json",
+      "title": "準1級 標準⑥",
+      "difficulty": 2
+    },
+    {
+      "id": 18,
+      "file": "stage18.json",
+      "title": "準1級 鬼⑥",
+      "difficulty": 3
+    },
+    {
+      "id": 19,
+      "file": "stage19.json",
+      "title": "準1級 基礎⑦",
+      "difficulty": 1
+    },
+    {
+      "id": 20,
+      "file": "stage20.json",
+      "title": "準1級 標準⑦",
+      "difficulty": 2
+    },
+    {
+      "id": 21,
+      "file": "stage21.json",
+      "title": "準1級 鬼⑦",
+      "difficulty": 3
+    },
+    {
+      "id": 22,
+      "file": "stage22.json",
+      "title": "準1級 基礎⑧",
+      "difficulty": 1
+    },
+    {
+      "id": 23,
+      "file": "stage23.json",
+      "title": "準1級 標準⑧",
+      "difficulty": 2
+    },
+    {
+      "id": 24,
+      "file": "stage24.json",
+      "title": "準1級 鬼⑧",
+      "difficulty": 3
+    },
+    {
+      "id": 25,
+      "file": "stage25.json",
+      "title": "準1級 基礎⑨",
+      "difficulty": 1
+    },
+    {
+      "id": 26,
+      "file": "stage26.json",
+      "title": "準1級 標準⑨",
+      "difficulty": 2
+    },
+    {
+      "id": 27,
+      "file": "stage27.json",
+      "title": "準1級 鬼⑨",
+      "difficulty": 3
+    },
+    {
+      "id": 28,
+      "file": "stage28.json",
+      "title": "準1級 基礎⑩",
+      "difficulty": 1
+    },
+    {
+      "id": 29,
+      "file": "stage29.json",
+      "title": "準1級 標準⑩",
+      "difficulty": 2
+    },
+    {
+      "id": 30,
+      "file": "stage30.json",
+      "title": "準1級 鬼⑩",
+      "difficulty": 3
+    },
+    {
+      "id": 31,
+      "file": "stage31.json",
+      "title": "準1級 基礎⑪",
+      "difficulty": 1
+    },
+    {
+      "id": 32,
+      "file": "stage32.json",
+      "title": "準1級 標準⑪",
+      "difficulty": 2
+    },
+    {
+      "id": 33,
+      "file": "stage33.json",
+      "title": "準1級 鬼⑪",
+      "difficulty": 3
+    },
+    {
+      "id": 34,
+      "file": "stage34.json",
+      "title": "準1級 基礎⑫",
+      "difficulty": 1
+    },
+    {
+      "id": 35,
+      "file": "stage35.json",
+      "title": "準1級 標準⑫",
+      "difficulty": 2
+    },
+    {
+      "id": 36,
+      "file": "stage36.json",
+      "title": "準1級 鬼⑫",
+      "difficulty": 3
+    },
+    {
+      "id": 37,
+      "file": "stage37.json",
+      "title": "準1級 基礎⑬",
+      "difficulty": 1
+    },
+    {
+      "id": 38,
+      "file": "stage38.json",
+      "title": "準1級 標準⑬",
+      "difficulty": 2
+    },
+    {
+      "id": 39,
+      "file": "stage39.json",
+      "title": "準1級 鬼⑬",
+      "difficulty": 3
+    },
+    {
+      "id": 40,
+      "file": "stage40.json",
+      "title": "準1級 基礎⑭",
+      "difficulty": 1
+    },
+    {
+      "id": 41,
+      "file": "stage41.json",
+      "title": "準1級 標準⑭",
+      "difficulty": 2
+    },
+    {
+      "id": 42,
+      "file": "stage42.json",
+      "title": "準1級 鬼⑭",
+      "difficulty": 3
+    },
+    {
+      "id": 43,
+      "file": "stage43.json",
+      "title": "準1級 基礎⑮",
+      "difficulty": 1
+    },
+    {
+      "id": 44,
+      "file": "stage44.json",
+      "title": "準1級 標準⑮",
+      "difficulty": 2
+    },
+    {
+      "id": 45,
+      "file": "stage45.json",
+      "title": "準1級 鬼⑮",
+      "difficulty": 3
+    },
+    {
+      "id": 46,
+      "file": "stage46.json",
+      "title": "準1級 基礎⑯",
+      "difficulty": 1
+    },
+    {
+      "id": 47,
+      "file": "stage47.json",
+      "title": "準1級 標準⑯",
+      "difficulty": 2
+    },
+    {
+      "id": 48,
+      "file": "stage48.json",
+      "title": "準1級 鬼⑯",
+      "difficulty": 3
+    },
+    {
+      "id": 49,
+      "file": "stage49.json",
+      "title": "準1級 基礎⑰",
+      "difficulty": 1
+    },
+    {
+      "id": 50,
+      "file": "stage50.json",
+      "title": "準1級 標準⑰",
+      "difficulty": 2
+    },
+    {
+      "id": 51,
+      "file": "stage51.json",
+      "title": "準1級 鬼⑰",
+      "difficulty": 3
+    },
+    {
+      "id": 52,
+      "file": "stage52.json",
+      "title": "準1級 基礎⑱",
+      "difficulty": 1
+    },
+    {
+      "id": 53,
+      "file": "stage53.json",
+      "title": "準1級 標準⑱",
+      "difficulty": 2
+    },
+    {
+      "id": 54,
+      "file": "stage54.json",
+      "title": "準1級 鬼⑱",
+      "difficulty": 3
+    },
+    {
+      "id": 55,
+      "file": "stage55.json",
+      "title": "準1級 基礎⑲",
+      "difficulty": 1
+    },
+    {
+      "id": 56,
+      "file": "stage56.json",
+      "title": "準1級 標準⑲",
+      "difficulty": 2
+    },
+    {
+      "id": 57,
+      "file": "stage57.json",
+      "title": "準1級 鬼⑲",
+      "difficulty": 3
+    },
+    {
+      "id": 58,
+      "file": "stage58.json",
+      "title": "準1級 基礎⑳",
+      "difficulty": 1
+    },
+    {
+      "id": 59,
+      "file": "stage59.json",
+      "title": "準1級 標準⑳",
+      "difficulty": 2
+    },
+    {
+      "id": 60,
+      "file": "stage60.json",
+      "title": "準1級 鬼⑳",
+      "difficulty": 3
+    },
+    {
+      "id": 61,
+      "file": "stage61.json",
+      "title": "準1級 基礎㉑",
+      "difficulty": 1
+    },
+    {
+      "id": 62,
+      "file": "stage62.json",
+      "title": "準1級 標準㉑",
+      "difficulty": 2
+    },
+    {
+      "id": 63,
+      "file": "stage63.json",
+      "title": "準1級 鬼㉑",
+      "difficulty": 3
+    },
+    {
+      "id": 64,
+      "file": "stage64.json",
+      "title": "準1級 基礎㉒",
+      "difficulty": 1
+    },
+    {
+      "id": 65,
+      "file": "stage65.json",
+      "title": "準1級 標準㉒",
+      "difficulty": 2
+    },
+    {
+      "id": 66,
+      "file": "stage67.json",
+      "title": "準1級 基礎㉓",
+      "difficulty": 1
+    },
+    {
+      "id": 67,
+      "file": "stage68.json",
+      "title": "準1級 標準㉓",
+      "difficulty": 2
+    },
+    {
+      "id": 68,
+      "file": "stage69.json",
+      "title": "準1級 鬼㉓",
+      "difficulty": 3
+    },
+    {
+      "id": 69,
+      "file": "stage70.json",
+      "title": "準1級 基礎㉔",
+      "difficulty": 1
+    },
+    {
+      "id": 70,
+      "file": "stage71.json",
+      "title": "準1級 標準㉔",
+      "difficulty": 2
+    },
+    {
+      "id": 71,
+      "file": "stage72.json",
+      "title": "準1級 鬼㉔",
+      "difficulty": 3
+    }
   ]
 }
