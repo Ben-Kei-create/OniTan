@@ -54,6 +54,10 @@ struct MainView: View {
                     default:
                         quizContentView(scale: scale)
                     }
+
+                    if !donationManager.hasDonated {
+                        AdBannerView()
+                    }
                 }
                 .navigationBarBackButtonHidden(true)
 
@@ -70,11 +74,6 @@ struct MainView: View {
             .animation(.easeInOut(duration: 0.25), value: vm.phase)
             .alert(item: $vm.activeAlert) { alert in
                 alertView(for: alert)
-            }
-        }
-        .safeAreaInset(edge: .bottom, spacing: 0) {
-            if !donationManager.hasDonated {
-                AdBannerView()
             }
         }
     }
