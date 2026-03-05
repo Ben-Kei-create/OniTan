@@ -1,7 +1,5 @@
 import SwiftUI
 
-import GoogleMobileAds
-
 @main
 struct OniTanApp: App {
     @StateObject private var appState = AppState()
