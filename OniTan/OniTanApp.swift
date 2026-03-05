@@ -12,7 +12,7 @@ struct OniTanApp: App {
     @StateObject private var donationManager = DonationManager()
 
     init() {
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        GADMobileAds.sharedInstance().start()
     }
 
     var body: some Scene {
