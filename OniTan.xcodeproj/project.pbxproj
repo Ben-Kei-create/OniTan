@@ -82,6 +82,7 @@
 		A58A91822F59C12F0092B608 /* stage71.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91762F59C12F0092B608 /* stage71.json */; };
 		A58A91842F59C1600092B608 /* stage60.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91832F59C1600092B608 /* stage60.json */; };
 		A58A91862F59C17C0092B608 /* stage61.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91852F59C17C0092B608 /* stage61.json */; };
+		A58A91882F59C50D0092B608 /* stage27.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91872F59C50D0092B608 /* stage27.json */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
 		AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B2EFC3923D1727E152736 /* AppStateTests.swift */; };
 		B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */; };
@@ -195,6 +196,7 @@
 		A58A91772F59C12F0092B608 /* stage72.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage72.json; sourceTree = "<group>"; };
 		A58A91832F59C1600092B608 /* stage60.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage60.json; sourceTree = "<group>"; };
 		A58A91852F59C17C0092B608 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
+		A58A91872F59C50D0092B608 /* stage27.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage27.json; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationManager.swift; sourceTree = "<group>"; };
 		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				A58A916F2F59C12F0092B608 /* stage63.json */,
 				A58A91702F59C12F0092B608 /* stage64.json */,
 				A58A91712F59C12F0092B608 /* stage65.json */,
+				A58A91872F59C50D0092B608 /* stage27.json */,
 				A58A91832F59C1600092B608 /* stage60.json */,
 				A58A91722F59C12F0092B608 /* stage67.json */,
 				A58A91732F59C12F0092B608 /* stage68.json */,
@@ -444,6 +447,7 @@
 				A58A91312F58866D0092B608 /* stage16.json in Resources */,
 				A58A91322F58866D0092B608 /* stage10.json in Resources */,
 				A58A91842F59C1600092B608 /* stage60.json in Resources */,
+				A58A91882F59C50D0092B608 /* stage27.json in Resources */,
 				A58A91332F58866D0092B608 /* stage8.json in Resources */,
 				A58A916A2F59893C0092B608 /* stage49.json in Resources */,
 				A58A91782F59C12F0092B608 /* stage72.json in Resources */,
