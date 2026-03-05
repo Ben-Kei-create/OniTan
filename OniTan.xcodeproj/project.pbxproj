@@ -29,65 +29,65 @@
 		A0E8E6442CBF7CB93BDE9BDE /* DonationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */; };
 		A1D1F660F532ED53C5ED409B /* OniTanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */; };
 		A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAA2A72218BF205143EBB6 /* QuestionKind.swift */; };
-		A58A91302F58866D0092B608 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A912A2F58866D0092B608 /* stage14.json */; };
-		A58A91312F58866D0092B608 /* stage16.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A912C2F58866D0092B608 /* stage16.json */; };
-		A58A91322F58866D0092B608 /* stage10.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91262F58866D0092B608 /* stage10.json */; };
-		A58A91332F58866D0092B608 /* stage8.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91242F58866D0092B608 /* stage8.json */; };
-		A58A91342F58866D0092B608 /* stage6.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91222F58866D0092B608 /* stage6.json */; };
-		A58A91352F58866D0092B608 /* stage18.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A912E2F58866D0092B608 /* stage18.json */; };
-		A58A91362F58866D0092B608 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A911F2F58866D0092B608 /* stage3.json */; };
-		A58A91372F58866D0092B608 /* stage4.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91202F58866D0092B608 /* stage4.json */; };
-		A58A91382F58866D0092B608 /* stages.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A912F2F58866D0092B608 /* stages.json */; };
-		A58A91392F58866D0092B608 /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A911E2F58866D0092B608 /* stage2.json */; };
-		A58A913A2F58866D0092B608 /* stage7.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91232F58866D0092B608 /* stage7.json */; };
-		A58A913B2F58866D0092B608 /* stage9.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91252F58866D0092B608 /* stage9.json */; };
-		A58A913C2F58866D0092B608 /* stage13.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91292F58866D0092B608 /* stage13.json */; };
-		A58A913D2F58866D0092B608 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A911D2F58866D0092B608 /* stage1.json */; };
-		A58A913E2F58866D0092B608 /* stage11.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91272F58866D0092B608 /* stage11.json */; };
-		A58A913F2F58866D0092B608 /* stage17.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A912D2F58866D0092B608 /* stage17.json */; };
-		A58A91402F58866D0092B608 /* stage15.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A912B2F58866D0092B608 /* stage15.json */; };
-		A58A91412F58866D0092B608 /* stage5.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91212F58866D0092B608 /* stage5.json */; };
-		A58A91422F58866D0092B608 /* stage12.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91282F58866D0092B608 /* stage12.json */; };
-		A58A91482F5887720092B608 /* stage23.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91472F5887720092B608 /* stage23.json */; };
-		A58A91492F5887720092B608 /* stage22.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91462F5887720092B608 /* stage22.json */; };
-		A58A914A2F5887720092B608 /* stage20.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91442F5887720092B608 /* stage20.json */; };
-		A58A914B2F5887720092B608 /* stage19.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91432F5887720092B608 /* stage19.json */; };
-		A58A914C2F5887720092B608 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91452F5887720092B608 /* stage21.json */; };
-		A58A91502F588E920092B608 /* stage24.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A914D2F588E920092B608 /* stage24.json */; };
-		A58A91512F588E920092B608 /* stage25.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A914E2F588E920092B608 /* stage25.json */; };
-		A58A91522F588E920092B608 /* stage26.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A914F2F588E920092B608 /* stage26.json */; };
-		A58A915B2F5988A10092B608 /* stage57.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A915A2F5988A10092B608 /* stage57.json */; };
-		A58A915C2F5988A10092B608 /* stage53.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91562F5988A10092B608 /* stage53.json */; };
-		A58A915D2F5988A10092B608 /* stage50.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91532F5988A10092B608 /* stage50.json */; };
-		A58A915E2F5988A10092B608 /* stage51.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91542F5988A10092B608 /* stage51.json */; };
-		A58A915F2F5988A10092B608 /* stage55.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91582F5988A10092B608 /* stage55.json */; };
-		A58A91602F5988A10092B608 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91592F5988A10092B608 /* stage56.json */; };
-		A58A91612F5988A10092B608 /* stage52.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91552F5988A10092B608 /* stage52.json */; };
-		A58A91622F5988A10092B608 /* stage54.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91572F5988A10092B608 /* stage54.json */; };
-		A58A91662F59892E0092B608 /* stage48.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91652F59892E0092B608 /* stage48.json */; };
-		A58A91672F59892E0092B608 /* stage46.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91632F59892E0092B608 /* stage46.json */; };
-		A58A91682F59892E0092B608 /* stage47.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91642F59892E0092B608 /* stage47.json */; };
-		A58A916A2F59893C0092B608 /* stage49.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91692F59893C0092B608 /* stage49.json */; };
-		A58A916C2F59C0F70092B608 /* stage58.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A916B2F59C0F70092B608 /* stage58.json */; };
-		A58A91782F59C12F0092B608 /* stage72.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91772F59C12F0092B608 /* stage72.json */; };
-		A58A91792F59C12F0092B608 /* stage62.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A916E2F59C12F0092B608 /* stage62.json */; };
-		A58A917A2F59C12F0092B608 /* stage63.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A916F2F59C12F0092B608 /* stage63.json */; };
-		A58A917B2F59C12F0092B608 /* stage69.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91742F59C12F0092B608 /* stage69.json */; };
-		A58A917C2F59C12F0092B608 /* stage68.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91732F59C12F0092B608 /* stage68.json */; };
-		A58A917D2F59C12F0092B608 /* stage65.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91712F59C12F0092B608 /* stage65.json */; };
-		A58A917E2F59C12F0092B608 /* stage67.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91722F59C12F0092B608 /* stage67.json */; };
-		A58A917F2F59C12F0092B608 /* stage64.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91702F59C12F0092B608 /* stage64.json */; };
-		A58A91802F59C12F0092B608 /* stage59.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A916D2F59C12F0092B608 /* stage59.json */; };
-		A58A91812F59C12F0092B608 /* stage70.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91752F59C12F0092B608 /* stage70.json */; };
-		A58A91822F59C12F0092B608 /* stage71.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91762F59C12F0092B608 /* stage71.json */; };
-		A58A91842F59C1600092B608 /* stage60.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91832F59C1600092B608 /* stage60.json */; };
-		A58A91862F59C17C0092B608 /* stage61.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91852F59C17C0092B608 /* stage61.json */; };
-		A58A91882F59C50D0092B608 /* stage27.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91872F59C50D0092B608 /* stage27.json */; };
-		A58A918A2F59C5610092B608 /* stage28.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A91892F59C5610092B608 /* stage28.json */; };
-		A58A918C2F59C57B0092B608 /* stage29.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918B2F59C57B0092B608 /* stage29.json */; };
-		A58A91902F59C5E80092B608 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918E2F59C5E80092B608 /* stage31.json */; };
-		A58A91912F59C5E80092B608 /* stage32.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918F2F59C5E80092B608 /* stage32.json */; };
-		A58A91922F59C5E80092B608 /* stage30.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A918D2F59C5E80092B608 /* stage30.json */; };
+		A58A926B2F59CC550092B608 /* stage22.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92382F59CC550092B608 /* stage22.json */; };
+		A58A926C2F59CC550092B608 /* stage29.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923F2F59CC550092B608 /* stage29.json */; };
+		A58A926D2F59CC550092B608 /* stage62.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92602F59CC550092B608 /* stage62.json */; };
+		A58A926F2F59CC550092B608 /* stage7.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92292F59CC550092B608 /* stage7.json */; };
+		A58A92702F59CC550092B608 /* stage46.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92502F59CC550092B608 /* stage46.json */; };
+		A58A92712F59CC550092B608 /* stages.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A926A2F59CC550092B608 /* stages.json */; };
+		A58A92732F59CC550092B608 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92412F59CC550092B608 /* stage31.json */; };
+		A58A92742F59CC550092B608 /* stage5.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92272F59CC550092B608 /* stage5.json */; };
+		A58A92752F59CC550092B608 /* stage13.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922F2F59CC550092B608 /* stage13.json */; };
+		A58A92762F59CC550092B608 /* stage18.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92342F59CC550092B608 /* stage18.json */; };
+		A58A92772F59CC550092B608 /* stage47.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92512F59CC550092B608 /* stage47.json */; };
+		A58A92782F59CC550092B608 /* stage67.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92642F59CC550092B608 /* stage67.json */; };
+		A58A92792F59CC550092B608 /* stage23.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92392F59CC550092B608 /* stage23.json */; };
+		A58A927A2F59CC550092B608 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92372F59CC550092B608 /* stage21.json */; };
+		A58A927B2F59CC550092B608 /* stage19.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92352F59CC550092B608 /* stage19.json */; };
+		A58A927D2F59CC550092B608 /* stage28.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923E2F59CC550092B608 /* stage28.json */; };
+		A58A927E2F59CC550092B608 /* stage59.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925D2F59CC550092B608 /* stage59.json */; };
+		A58A92802F59CC550092B608 /* stage70.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92672F59CC550092B608 /* stage70.json */; };
+		A58A92812F59CC550092B608 /* stage58.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925C2F59CC550092B608 /* stage58.json */; };
+		A58A92822F59CC550092B608 /* stage53.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92572F59CC550092B608 /* stage53.json */; };
+		A58A92832F59CC550092B608 /* stage72.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92692F59CC550092B608 /* stage72.json */; };
+		A58A92852F59CC550092B608 /* stage9.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922B2F59CC550092B608 /* stage9.json */; };
+		A58A92872F59CC550092B608 /* stage63.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92612F59CC550092B608 /* stage63.json */; };
+		A58A92892F59CC550092B608 /* stage49.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92532F59CC550092B608 /* stage49.json */; };
+		A58A928A2F59CC550092B608 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92302F59CC550092B608 /* stage14.json */; };
+		A58A928B2F59CC550092B608 /* stage8.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922A2F59CC550092B608 /* stage8.json */; };
+		A58A928C2F59CC550092B608 /* stage26.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923C2F59CC550092B608 /* stage26.json */; };
+		A58A928D2F59CC550092B608 /* stage54.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92582F59CC550092B608 /* stage54.json */; };
+		A58A928E2F59CC550092B608 /* stage55.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92592F59CC550092B608 /* stage55.json */; };
+		A58A928F2F59CC550092B608 /* stage57.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925B2F59CC550092B608 /* stage57.json */; };
+		A58A92902F59CC550092B608 /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92242F59CC550092B608 /* stage2.json */; };
+		A58A92922F59CC550092B608 /* stage69.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92662F59CC550092B608 /* stage69.json */; };
+		A58A92932F59CC550092B608 /* stage15.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92312F59CC550092B608 /* stage15.json */; };
+		A58A92942F59CC550092B608 /* stage4.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92262F59CC550092B608 /* stage4.json */; };
+		A58A92962F59CC550092B608 /* stage51.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92552F59CC550092B608 /* stage51.json */; };
+		A58A92972F59CC550092B608 /* stage6.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92282F59CC550092B608 /* stage6.json */; };
+		A58A92982F59CC550092B608 /* stage52.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92562F59CC550092B608 /* stage52.json */; };
+		A58A92992F59CC550092B608 /* stage32.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92422F59CC550092B608 /* stage32.json */; };
+		A58A929A2F59CC550092B608 /* stage25.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923B2F59CC550092B608 /* stage25.json */; };
+		A58A929B2F59CC550092B608 /* stage17.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92332F59CC550092B608 /* stage17.json */; };
+		A58A929D2F59CC550092B608 /* stage48.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92522F59CC550092B608 /* stage48.json */; };
+		A58A929E2F59CC550092B608 /* stage20.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92362F59CC550092B608 /* stage20.json */; };
+		A58A929F2F59CC550092B608 /* stage30.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92402F59CC550092B608 /* stage30.json */; };
+		A58A92A12F59CC550092B608 /* stage27.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923D2F59CC550092B608 /* stage27.json */; };
+		A58A92A22F59CC550092B608 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925A2F59CC550092B608 /* stage56.json */; };
+		A58A92A32F59CC550092B608 /* stage71.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92682F59CC550092B608 /* stage71.json */; };
+		A58A92A42F59CC550092B608 /* stage24.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923A2F59CC550092B608 /* stage24.json */; };
+		A58A92A52F59CC550092B608 /* stage65.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92632F59CC550092B608 /* stage65.json */; };
+		A58A92A62F59CC550092B608 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92232F59CC550092B608 /* stage1.json */; };
+		A58A92A72F59CC550092B608 /* stage60.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925E2F59CC550092B608 /* stage60.json */; };
+		A58A92A92F59CC550092B608 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92252F59CC550092B608 /* stage3.json */; };
+		A58A92AB2F59CC550092B608 /* stage10.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922C2F59CC550092B608 /* stage10.json */; };
+		A58A92AC2F59CC550092B608 /* stage50.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92542F59CC550092B608 /* stage50.json */; };
+		A58A92AD2F59CC550092B608 /* stage68.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92652F59CC550092B608 /* stage68.json */; };
+		A58A92AE2F59CC550092B608 /* stage16.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92322F59CC550092B608 /* stage16.json */; };
+		A58A92AF2F59CC550092B608 /* stage11.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922D2F59CC550092B608 /* stage11.json */; };
+		A58A92B02F59CC550092B608 /* stage64.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92622F59CC550092B608 /* stage64.json */; };
+		A58A92B12F59CC550092B608 /* stage61.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925F2F59CC550092B608 /* stage61.json */; };
+		A58A92B22F59CC550092B608 /* stage12.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922E2F59CC550092B608 /* stage12.json */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
 		AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B2EFC3923D1727E152736 /* AppStateTests.swift */; };
 		B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */; };
@@ -148,65 +148,65 @@
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
 		A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySessionBuilder.swift; sourceTree = "<group>"; };
-		A58A911D2F58866D0092B608 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
-		A58A911E2F58866D0092B608 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
-		A58A911F2F58866D0092B608 /* stage3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage3.json; sourceTree = "<group>"; };
-		A58A91202F58866D0092B608 /* stage4.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage4.json; sourceTree = "<group>"; };
-		A58A91212F58866D0092B608 /* stage5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage5.json; sourceTree = "<group>"; };
-		A58A91222F58866D0092B608 /* stage6.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage6.json; sourceTree = "<group>"; };
-		A58A91232F58866D0092B608 /* stage7.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage7.json; sourceTree = "<group>"; };
-		A58A91242F58866D0092B608 /* stage8.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage8.json; sourceTree = "<group>"; };
-		A58A91252F58866D0092B608 /* stage9.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage9.json; sourceTree = "<group>"; };
-		A58A91262F58866D0092B608 /* stage10.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage10.json; sourceTree = "<group>"; };
-		A58A91272F58866D0092B608 /* stage11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage11.json; sourceTree = "<group>"; };
-		A58A91282F58866D0092B608 /* stage12.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage12.json; sourceTree = "<group>"; };
-		A58A91292F58866D0092B608 /* stage13.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage13.json; sourceTree = "<group>"; };
-		A58A912A2F58866D0092B608 /* stage14.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage14.json; sourceTree = "<group>"; };
-		A58A912B2F58866D0092B608 /* stage15.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage15.json; sourceTree = "<group>"; };
-		A58A912C2F58866D0092B608 /* stage16.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage16.json; sourceTree = "<group>"; };
-		A58A912D2F58866D0092B608 /* stage17.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage17.json; sourceTree = "<group>"; };
-		A58A912E2F58866D0092B608 /* stage18.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage18.json; sourceTree = "<group>"; };
-		A58A912F2F58866D0092B608 /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
-		A58A91432F5887720092B608 /* stage19.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage19.json; sourceTree = "<group>"; };
-		A58A91442F5887720092B608 /* stage20.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage20.json; sourceTree = "<group>"; };
-		A58A91452F5887720092B608 /* stage21.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage21.json; sourceTree = "<group>"; };
-		A58A91462F5887720092B608 /* stage22.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage22.json; sourceTree = "<group>"; };
-		A58A91472F5887720092B608 /* stage23.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage23.json; sourceTree = "<group>"; };
-		A58A914D2F588E920092B608 /* stage24.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage24.json; sourceTree = "<group>"; };
-		A58A914E2F588E920092B608 /* stage25.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage25.json; sourceTree = "<group>"; };
-		A58A914F2F588E920092B608 /* stage26.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage26.json; sourceTree = "<group>"; };
-		A58A91532F5988A10092B608 /* stage50.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage50.json; sourceTree = "<group>"; };
-		A58A91542F5988A10092B608 /* stage51.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage51.json; sourceTree = "<group>"; };
-		A58A91552F5988A10092B608 /* stage52.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage52.json; sourceTree = "<group>"; };
-		A58A91562F5988A10092B608 /* stage53.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage53.json; sourceTree = "<group>"; };
-		A58A91572F5988A10092B608 /* stage54.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage54.json; sourceTree = "<group>"; };
-		A58A91582F5988A10092B608 /* stage55.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage55.json; sourceTree = "<group>"; };
-		A58A91592F5988A10092B608 /* stage56.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage56.json; sourceTree = "<group>"; };
-		A58A915A2F5988A10092B608 /* stage57.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage57.json; sourceTree = "<group>"; };
-		A58A91632F59892E0092B608 /* stage46.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage46.json; sourceTree = "<group>"; };
-		A58A91642F59892E0092B608 /* stage47.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage47.json; sourceTree = "<group>"; };
-		A58A91652F59892E0092B608 /* stage48.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage48.json; sourceTree = "<group>"; };
-		A58A91692F59893C0092B608 /* stage49.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage49.json; sourceTree = "<group>"; };
-		A58A916B2F59C0F70092B608 /* stage58.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage58.json; sourceTree = "<group>"; };
-		A58A916D2F59C12F0092B608 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
-		A58A916E2F59C12F0092B608 /* stage62.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage62.json; sourceTree = "<group>"; };
-		A58A916F2F59C12F0092B608 /* stage63.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage63.json; sourceTree = "<group>"; };
-		A58A91702F59C12F0092B608 /* stage64.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage64.json; sourceTree = "<group>"; };
-		A58A91712F59C12F0092B608 /* stage65.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage65.json; sourceTree = "<group>"; };
-		A58A91722F59C12F0092B608 /* stage67.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage67.json; sourceTree = "<group>"; };
-		A58A91732F59C12F0092B608 /* stage68.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage68.json; sourceTree = "<group>"; };
-		A58A91742F59C12F0092B608 /* stage69.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage69.json; sourceTree = "<group>"; };
-		A58A91752F59C12F0092B608 /* stage70.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage70.json; sourceTree = "<group>"; };
-		A58A91762F59C12F0092B608 /* stage71.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage71.json; sourceTree = "<group>"; };
-		A58A91772F59C12F0092B608 /* stage72.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage72.json; sourceTree = "<group>"; };
-		A58A91832F59C1600092B608 /* stage60.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage60.json; sourceTree = "<group>"; };
-		A58A91852F59C17C0092B608 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
-		A58A91872F59C50D0092B608 /* stage27.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage27.json; sourceTree = "<group>"; };
-		A58A91892F59C5610092B608 /* stage28.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage28.json; sourceTree = "<group>"; };
-		A58A918B2F59C57B0092B608 /* stage29.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage29.json; sourceTree = "<group>"; };
-		A58A918D2F59C5E80092B608 /* stage30.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage30.json; sourceTree = "<group>"; };
-		A58A918E2F59C5E80092B608 /* stage31.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage31.json; sourceTree = "<group>"; };
-		A58A918F2F59C5E80092B608 /* stage32.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage32.json; sourceTree = "<group>"; };
+		A58A92232F59CC550092B608 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
+		A58A92242F59CC550092B608 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
+		A58A92252F59CC550092B608 /* stage3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage3.json; sourceTree = "<group>"; };
+		A58A92262F59CC550092B608 /* stage4.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage4.json; sourceTree = "<group>"; };
+		A58A92272F59CC550092B608 /* stage5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage5.json; sourceTree = "<group>"; };
+		A58A92282F59CC550092B608 /* stage6.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage6.json; sourceTree = "<group>"; };
+		A58A92292F59CC550092B608 /* stage7.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage7.json; sourceTree = "<group>"; };
+		A58A922A2F59CC550092B608 /* stage8.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage8.json; sourceTree = "<group>"; };
+		A58A922B2F59CC550092B608 /* stage9.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage9.json; sourceTree = "<group>"; };
+		A58A922C2F59CC550092B608 /* stage10.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage10.json; sourceTree = "<group>"; };
+		A58A922D2F59CC550092B608 /* stage11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage11.json; sourceTree = "<group>"; };
+		A58A922E2F59CC550092B608 /* stage12.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage12.json; sourceTree = "<group>"; };
+		A58A922F2F59CC550092B608 /* stage13.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage13.json; sourceTree = "<group>"; };
+		A58A92302F59CC550092B608 /* stage14.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage14.json; sourceTree = "<group>"; };
+		A58A92312F59CC550092B608 /* stage15.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage15.json; sourceTree = "<group>"; };
+		A58A92322F59CC550092B608 /* stage16.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage16.json; sourceTree = "<group>"; };
+		A58A92332F59CC550092B608 /* stage17.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage17.json; sourceTree = "<group>"; };
+		A58A92342F59CC550092B608 /* stage18.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage18.json; sourceTree = "<group>"; };
+		A58A92352F59CC550092B608 /* stage19.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage19.json; sourceTree = "<group>"; };
+		A58A92362F59CC550092B608 /* stage20.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage20.json; sourceTree = "<group>"; };
+		A58A92372F59CC550092B608 /* stage21.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage21.json; sourceTree = "<group>"; };
+		A58A92382F59CC550092B608 /* stage22.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage22.json; sourceTree = "<group>"; };
+		A58A92392F59CC550092B608 /* stage23.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage23.json; sourceTree = "<group>"; };
+		A58A923A2F59CC550092B608 /* stage24.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage24.json; sourceTree = "<group>"; };
+		A58A923B2F59CC550092B608 /* stage25.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage25.json; sourceTree = "<group>"; };
+		A58A923C2F59CC550092B608 /* stage26.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage26.json; sourceTree = "<group>"; };
+		A58A923D2F59CC550092B608 /* stage27.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage27.json; sourceTree = "<group>"; };
+		A58A923E2F59CC550092B608 /* stage28.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage28.json; sourceTree = "<group>"; };
+		A58A923F2F59CC550092B608 /* stage29.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage29.json; sourceTree = "<group>"; };
+		A58A92402F59CC550092B608 /* stage30.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage30.json; sourceTree = "<group>"; };
+		A58A92412F59CC550092B608 /* stage31.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage31.json; sourceTree = "<group>"; };
+		A58A92422F59CC550092B608 /* stage32.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage32.json; sourceTree = "<group>"; };
+		A58A92502F59CC550092B608 /* stage46.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage46.json; sourceTree = "<group>"; };
+		A58A92512F59CC550092B608 /* stage47.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage47.json; sourceTree = "<group>"; };
+		A58A92522F59CC550092B608 /* stage48.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage48.json; sourceTree = "<group>"; };
+		A58A92532F59CC550092B608 /* stage49.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage49.json; sourceTree = "<group>"; };
+		A58A92542F59CC550092B608 /* stage50.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage50.json; sourceTree = "<group>"; };
+		A58A92552F59CC550092B608 /* stage51.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage51.json; sourceTree = "<group>"; };
+		A58A92562F59CC550092B608 /* stage52.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage52.json; sourceTree = "<group>"; };
+		A58A92572F59CC550092B608 /* stage53.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage53.json; sourceTree = "<group>"; };
+		A58A92582F59CC550092B608 /* stage54.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage54.json; sourceTree = "<group>"; };
+		A58A92592F59CC550092B608 /* stage55.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage55.json; sourceTree = "<group>"; };
+		A58A925A2F59CC550092B608 /* stage56.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage56.json; sourceTree = "<group>"; };
+		A58A925B2F59CC550092B608 /* stage57.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage57.json; sourceTree = "<group>"; };
+		A58A925C2F59CC550092B608 /* stage58.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage58.json; sourceTree = "<group>"; };
+		A58A925D2F59CC550092B608 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
+		A58A925E2F59CC550092B608 /* stage60.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage60.json; sourceTree = "<group>"; };
+		A58A925F2F59CC550092B608 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
+		A58A92602F59CC550092B608 /* stage62.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage62.json; sourceTree = "<group>"; };
+		A58A92612F59CC550092B608 /* stage63.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage63.json; sourceTree = "<group>"; };
+		A58A92622F59CC550092B608 /* stage64.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage64.json; sourceTree = "<group>"; };
+		A58A92632F59CC550092B608 /* stage65.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage65.json; sourceTree = "<group>"; };
+		A58A92642F59CC550092B608 /* stage67.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage67.json; sourceTree = "<group>"; };
+		A58A92652F59CC550092B608 /* stage68.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage68.json; sourceTree = "<group>"; };
+		A58A92662F59CC550092B608 /* stage69.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage69.json; sourceTree = "<group>"; };
+		A58A92672F59CC550092B608 /* stage70.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage70.json; sourceTree = "<group>"; };
+		A58A92682F59CC550092B608 /* stage71.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage71.json; sourceTree = "<group>"; };
+		A58A92692F59CC550092B608 /* stage72.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage72.json; sourceTree = "<group>"; };
+		A58A926A2F59CC550092B608 /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationManager.swift; sourceTree = "<group>"; };
 		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
@@ -220,65 +220,65 @@
 		20CFE708821AC1E4E072923A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A58A911D2F58866D0092B608 /* stage1.json */,
-				A58A911E2F58866D0092B608 /* stage2.json */,
-				A58A911F2F58866D0092B608 /* stage3.json */,
-				A58A91202F58866D0092B608 /* stage4.json */,
-				A58A91212F58866D0092B608 /* stage5.json */,
-				A58A91222F58866D0092B608 /* stage6.json */,
-				A58A91232F58866D0092B608 /* stage7.json */,
-				A58A91242F58866D0092B608 /* stage8.json */,
-				A58A91252F58866D0092B608 /* stage9.json */,
-				A58A91262F58866D0092B608 /* stage10.json */,
-				A58A91272F58866D0092B608 /* stage11.json */,
-				A58A91282F58866D0092B608 /* stage12.json */,
-				A58A91292F58866D0092B608 /* stage13.json */,
-				A58A912A2F58866D0092B608 /* stage14.json */,
-				A58A912B2F58866D0092B608 /* stage15.json */,
-				A58A91852F59C17C0092B608 /* stage61.json */,
-				A58A912C2F58866D0092B608 /* stage16.json */,
-				A58A912D2F58866D0092B608 /* stage17.json */,
-				A58A912E2F58866D0092B608 /* stage18.json */,
-				A58A912F2F58866D0092B608 /* stages.json */,
-				A58A91432F5887720092B608 /* stage19.json */,
-				A58A918B2F59C57B0092B608 /* stage29.json */,
-				A58A916D2F59C12F0092B608 /* stage59.json */,
-				A58A916E2F59C12F0092B608 /* stage62.json */,
-				A58A916F2F59C12F0092B608 /* stage63.json */,
-				A58A91702F59C12F0092B608 /* stage64.json */,
-				A58A91712F59C12F0092B608 /* stage65.json */,
-				A58A91872F59C50D0092B608 /* stage27.json */,
-				A58A91832F59C1600092B608 /* stage60.json */,
-				A58A91722F59C12F0092B608 /* stage67.json */,
-				A58A91732F59C12F0092B608 /* stage68.json */,
-				A58A91742F59C12F0092B608 /* stage69.json */,
-				A58A91752F59C12F0092B608 /* stage70.json */,
-				A58A91762F59C12F0092B608 /* stage71.json */,
-				A58A91772F59C12F0092B608 /* stage72.json */,
-				A58A91442F5887720092B608 /* stage20.json */,
-				A58A91452F5887720092B608 /* stage21.json */,
-				A58A918D2F59C5E80092B608 /* stage30.json */,
-				A58A918E2F59C5E80092B608 /* stage31.json */,
-				A58A918F2F59C5E80092B608 /* stage32.json */,
-				A58A91462F5887720092B608 /* stage22.json */,
-				A58A91472F5887720092B608 /* stage23.json */,
-				A58A914D2F588E920092B608 /* stage24.json */,
-				A58A91892F59C5610092B608 /* stage28.json */,
-				A58A914E2F588E920092B608 /* stage25.json */,
-				A58A914F2F588E920092B608 /* stage26.json */,
-				A58A91532F5988A10092B608 /* stage50.json */,
-				A58A91542F5988A10092B608 /* stage51.json */,
-				A58A91552F5988A10092B608 /* stage52.json */,
-				A58A91562F5988A10092B608 /* stage53.json */,
-				A58A91572F5988A10092B608 /* stage54.json */,
-				A58A91582F5988A10092B608 /* stage55.json */,
-				A58A91592F5988A10092B608 /* stage56.json */,
-				A58A915A2F5988A10092B608 /* stage57.json */,
-				A58A91632F59892E0092B608 /* stage46.json */,
-				A58A91642F59892E0092B608 /* stage47.json */,
-				A58A91652F59892E0092B608 /* stage48.json */,
-				A58A91692F59893C0092B608 /* stage49.json */,
-				A58A916B2F59C0F70092B608 /* stage58.json */,
+				A58A92232F59CC550092B608 /* stage1.json */,
+				A58A92242F59CC550092B608 /* stage2.json */,
+				A58A92252F59CC550092B608 /* stage3.json */,
+				A58A92262F59CC550092B608 /* stage4.json */,
+				A58A92272F59CC550092B608 /* stage5.json */,
+				A58A92282F59CC550092B608 /* stage6.json */,
+				A58A92292F59CC550092B608 /* stage7.json */,
+				A58A922A2F59CC550092B608 /* stage8.json */,
+				A58A922B2F59CC550092B608 /* stage9.json */,
+				A58A922C2F59CC550092B608 /* stage10.json */,
+				A58A922D2F59CC550092B608 /* stage11.json */,
+				A58A922E2F59CC550092B608 /* stage12.json */,
+				A58A922F2F59CC550092B608 /* stage13.json */,
+				A58A92302F59CC550092B608 /* stage14.json */,
+				A58A92312F59CC550092B608 /* stage15.json */,
+				A58A92322F59CC550092B608 /* stage16.json */,
+				A58A92332F59CC550092B608 /* stage17.json */,
+				A58A92342F59CC550092B608 /* stage18.json */,
+				A58A92352F59CC550092B608 /* stage19.json */,
+				A58A92362F59CC550092B608 /* stage20.json */,
+				A58A92372F59CC550092B608 /* stage21.json */,
+				A58A92382F59CC550092B608 /* stage22.json */,
+				A58A92392F59CC550092B608 /* stage23.json */,
+				A58A923A2F59CC550092B608 /* stage24.json */,
+				A58A923B2F59CC550092B608 /* stage25.json */,
+				A58A923C2F59CC550092B608 /* stage26.json */,
+				A58A923D2F59CC550092B608 /* stage27.json */,
+				A58A923E2F59CC550092B608 /* stage28.json */,
+				A58A923F2F59CC550092B608 /* stage29.json */,
+				A58A92402F59CC550092B608 /* stage30.json */,
+				A58A92412F59CC550092B608 /* stage31.json */,
+				A58A92422F59CC550092B608 /* stage32.json */,
+				A58A92502F59CC550092B608 /* stage46.json */,
+				A58A92512F59CC550092B608 /* stage47.json */,
+				A58A92522F59CC550092B608 /* stage48.json */,
+				A58A92532F59CC550092B608 /* stage49.json */,
+				A58A92542F59CC550092B608 /* stage50.json */,
+				A58A92552F59CC550092B608 /* stage51.json */,
+				A58A92562F59CC550092B608 /* stage52.json */,
+				A58A92572F59CC550092B608 /* stage53.json */,
+				A58A92582F59CC550092B608 /* stage54.json */,
+				A58A92592F59CC550092B608 /* stage55.json */,
+				A58A925A2F59CC550092B608 /* stage56.json */,
+				A58A925B2F59CC550092B608 /* stage57.json */,
+				A58A925C2F59CC550092B608 /* stage58.json */,
+				A58A925D2F59CC550092B608 /* stage59.json */,
+				A58A925E2F59CC550092B608 /* stage60.json */,
+				A58A925F2F59CC550092B608 /* stage61.json */,
+				A58A92602F59CC550092B608 /* stage62.json */,
+				A58A92612F59CC550092B608 /* stage63.json */,
+				A58A92622F59CC550092B608 /* stage64.json */,
+				A58A92632F59CC550092B608 /* stage65.json */,
+				A58A92642F59CC550092B608 /* stage67.json */,
+				A58A92652F59CC550092B608 /* stage68.json */,
+				A58A92662F59CC550092B608 /* stage69.json */,
+				A58A92672F59CC550092B608 /* stage70.json */,
+				A58A92682F59CC550092B608 /* stage71.json */,
+				A58A92692F59CC550092B608 /* stage72.json */,
+				A58A926A2F59CC550092B608 /* stages.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -457,66 +457,66 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A58A926B2F59CC550092B608 /* stage22.json in Resources */,
+				A58A926C2F59CC550092B608 /* stage29.json in Resources */,
+				A58A926D2F59CC550092B608 /* stage62.json in Resources */,
+				A58A926F2F59CC550092B608 /* stage7.json in Resources */,
+				A58A92702F59CC550092B608 /* stage46.json in Resources */,
+				A58A92712F59CC550092B608 /* stages.json in Resources */,
+				A58A92732F59CC550092B608 /* stage31.json in Resources */,
+				A58A92742F59CC550092B608 /* stage5.json in Resources */,
+				A58A92752F59CC550092B608 /* stage13.json in Resources */,
+				A58A92762F59CC550092B608 /* stage18.json in Resources */,
+				A58A92772F59CC550092B608 /* stage47.json in Resources */,
+				A58A92782F59CC550092B608 /* stage67.json in Resources */,
+				A58A92792F59CC550092B608 /* stage23.json in Resources */,
+				A58A927A2F59CC550092B608 /* stage21.json in Resources */,
+				A58A927B2F59CC550092B608 /* stage19.json in Resources */,
+				A58A927D2F59CC550092B608 /* stage28.json in Resources */,
+				A58A927E2F59CC550092B608 /* stage59.json in Resources */,
+				A58A92802F59CC550092B608 /* stage70.json in Resources */,
+				A58A92812F59CC550092B608 /* stage58.json in Resources */,
+				A58A92822F59CC550092B608 /* stage53.json in Resources */,
+				A58A92832F59CC550092B608 /* stage72.json in Resources */,
+				A58A92852F59CC550092B608 /* stage9.json in Resources */,
+				A58A92872F59CC550092B608 /* stage63.json in Resources */,
+				A58A92892F59CC550092B608 /* stage49.json in Resources */,
+				A58A928A2F59CC550092B608 /* stage14.json in Resources */,
+				A58A928B2F59CC550092B608 /* stage8.json in Resources */,
+				A58A928C2F59CC550092B608 /* stage26.json in Resources */,
+				A58A928D2F59CC550092B608 /* stage54.json in Resources */,
+				A58A928E2F59CC550092B608 /* stage55.json in Resources */,
+				A58A928F2F59CC550092B608 /* stage57.json in Resources */,
+				A58A92902F59CC550092B608 /* stage2.json in Resources */,
+				A58A92922F59CC550092B608 /* stage69.json in Resources */,
+				A58A92932F59CC550092B608 /* stage15.json in Resources */,
+				A58A92942F59CC550092B608 /* stage4.json in Resources */,
+				A58A92962F59CC550092B608 /* stage51.json in Resources */,
+				A58A92972F59CC550092B608 /* stage6.json in Resources */,
+				A58A92982F59CC550092B608 /* stage52.json in Resources */,
+				A58A92992F59CC550092B608 /* stage32.json in Resources */,
+				A58A929A2F59CC550092B608 /* stage25.json in Resources */,
+				A58A929B2F59CC550092B608 /* stage17.json in Resources */,
+				A58A929D2F59CC550092B608 /* stage48.json in Resources */,
+				A58A929E2F59CC550092B608 /* stage20.json in Resources */,
+				A58A929F2F59CC550092B608 /* stage30.json in Resources */,
+				A58A92A12F59CC550092B608 /* stage27.json in Resources */,
+				A58A92A22F59CC550092B608 /* stage56.json in Resources */,
+				A58A92A32F59CC550092B608 /* stage71.json in Resources */,
+				A58A92A42F59CC550092B608 /* stage24.json in Resources */,
+				A58A92A52F59CC550092B608 /* stage65.json in Resources */,
+				A58A92A62F59CC550092B608 /* stage1.json in Resources */,
+				A58A92A72F59CC550092B608 /* stage60.json in Resources */,
+				A58A92A92F59CC550092B608 /* stage3.json in Resources */,
+				A58A92AB2F59CC550092B608 /* stage10.json in Resources */,
+				A58A92AC2F59CC550092B608 /* stage50.json in Resources */,
+				A58A92AD2F59CC550092B608 /* stage68.json in Resources */,
+				A58A92AE2F59CC550092B608 /* stage16.json in Resources */,
+				A58A92AF2F59CC550092B608 /* stage11.json in Resources */,
+				A58A92B02F59CC550092B608 /* stage64.json in Resources */,
+				A58A92B12F59CC550092B608 /* stage61.json in Resources */,
+				A58A92B22F59CC550092B608 /* stage12.json in Resources */,
 				EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */,
-				A58A91302F58866D0092B608 /* stage14.json in Resources */,
-				A58A91312F58866D0092B608 /* stage16.json in Resources */,
-				A58A91322F58866D0092B608 /* stage10.json in Resources */,
-				A58A91842F59C1600092B608 /* stage60.json in Resources */,
-				A58A91882F59C50D0092B608 /* stage27.json in Resources */,
-				A58A91332F58866D0092B608 /* stage8.json in Resources */,
-				A58A916A2F59893C0092B608 /* stage49.json in Resources */,
-				A58A91782F59C12F0092B608 /* stage72.json in Resources */,
-				A58A91792F59C12F0092B608 /* stage62.json in Resources */,
-				A58A917A2F59C12F0092B608 /* stage63.json in Resources */,
-				A58A917B2F59C12F0092B608 /* stage69.json in Resources */,
-				A58A917C2F59C12F0092B608 /* stage68.json in Resources */,
-				A58A917D2F59C12F0092B608 /* stage65.json in Resources */,
-				A58A917E2F59C12F0092B608 /* stage67.json in Resources */,
-				A58A917F2F59C12F0092B608 /* stage64.json in Resources */,
-				A58A91802F59C12F0092B608 /* stage59.json in Resources */,
-				A58A91812F59C12F0092B608 /* stage70.json in Resources */,
-				A58A91822F59C12F0092B608 /* stage71.json in Resources */,
-				A58A91342F58866D0092B608 /* stage6.json in Resources */,
-				A58A91352F58866D0092B608 /* stage18.json in Resources */,
-				A58A918C2F59C57B0092B608 /* stage29.json in Resources */,
-				A58A91362F58866D0092B608 /* stage3.json in Resources */,
-				A58A91862F59C17C0092B608 /* stage61.json in Resources */,
-				A58A91902F59C5E80092B608 /* stage31.json in Resources */,
-				A58A91912F59C5E80092B608 /* stage32.json in Resources */,
-				A58A91922F59C5E80092B608 /* stage30.json in Resources */,
-				A58A915B2F5988A10092B608 /* stage57.json in Resources */,
-				A58A915C2F5988A10092B608 /* stage53.json in Resources */,
-				A58A915D2F5988A10092B608 /* stage50.json in Resources */,
-				A58A915E2F5988A10092B608 /* stage51.json in Resources */,
-				A58A915F2F5988A10092B608 /* stage55.json in Resources */,
-				A58A91602F5988A10092B608 /* stage56.json in Resources */,
-				A58A91612F5988A10092B608 /* stage52.json in Resources */,
-				A58A91622F5988A10092B608 /* stage54.json in Resources */,
-				A58A91372F58866D0092B608 /* stage4.json in Resources */,
-				A58A91382F58866D0092B608 /* stages.json in Resources */,
-				A58A91662F59892E0092B608 /* stage48.json in Resources */,
-				A58A91672F59892E0092B608 /* stage46.json in Resources */,
-				A58A91682F59892E0092B608 /* stage47.json in Resources */,
-				A58A91392F58866D0092B608 /* stage2.json in Resources */,
-				A58A91502F588E920092B608 /* stage24.json in Resources */,
-				A58A91512F588E920092B608 /* stage25.json in Resources */,
-				A58A91522F588E920092B608 /* stage26.json in Resources */,
-				A58A913A2F58866D0092B608 /* stage7.json in Resources */,
-				A58A913B2F58866D0092B608 /* stage9.json in Resources */,
-				A58A918A2F59C5610092B608 /* stage28.json in Resources */,
-				A58A913C2F58866D0092B608 /* stage13.json in Resources */,
-				A58A913D2F58866D0092B608 /* stage1.json in Resources */,
-				A58A913E2F58866D0092B608 /* stage11.json in Resources */,
-				A58A913F2F58866D0092B608 /* stage17.json in Resources */,
-				A58A91402F58866D0092B608 /* stage15.json in Resources */,
-				A58A91412F58866D0092B608 /* stage5.json in Resources */,
-				A58A91482F5887720092B608 /* stage23.json in Resources */,
-				A58A91492F5887720092B608 /* stage22.json in Resources */,
-				A58A914A2F5887720092B608 /* stage20.json in Resources */,
-				A58A914B2F5887720092B608 /* stage19.json in Resources */,
-				A58A916C2F59C0F70092B608 /* stage58.json in Resources */,
-				A58A914C2F5887720092B608 /* stage21.json in Resources */,
-				A58A91422F58866D0092B608 /* stage12.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
