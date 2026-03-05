@@ -34,47 +34,51 @@ struct MainView: View {
     }
 
     var body: some View {
-        GeometryReader { proxy in
-            let scale = layoutScale(containerHeight: proxy.size.height, safeArea: proxy.safeAreaInsets)
+        ZStack {
+            OniTanTheme.backgroundGradientFallback
+                .ignoresSafeArea()
 
-            ZStack {
-                OniTanTheme.backgroundGradientFallback
-                    .ignoresSafeArea()
+            VStack(spacing: 0) {
+                GeometryReader { proxy in
+                    let scale = layoutScale(containerHeight: proxy.size.height, safeArea: proxy.safeAreaInsets)
 
-                VStack(spacing: 0) {
-                    topBar(scale: scale)
+                    ZStack {
+                        VStack(spacing: 0) {
+                            topBar(scale: scale)
 
-                    switch vm.phase {
-                    case .stageCleared:
-                        stageClearedView
-                            .transition(.asymmetric(
-                                insertion: .scale(scale: 0.85).combined(with: .opacity),
-                                removal: .opacity
-                            ))
-                    default:
-                        quizContentView(scale: scale)
+                            switch vm.phase {
+                            case .stageCleared:
+                                stageClearedView
+                                    .transition(.asymmetric(
+                                        insertion: .scale(scale: 0.85).combined(with: .opacity),
+                                        removal: .opacity
+                                    ))
+                            default:
+                                quizContentView(scale: scale)
+                            }
+                        }
+                        .navigationBarBackButtonHidden(true)
+
+                        // Explanation overlay
+                        if vm.phase == .showingExplanation {
+                            ExplanationView(question: vm.currentQuestion) {
+                                vm.proceed()
+                            }
+                            .transition(.opacity)
+                            .animation(.easeInOut(duration: 0.2), value: vm.phase)
+                            .zIndex(10)
+                        }
                     }
-
-                    if !donationManager.hasDonated {
-                        AdBannerView()
-                    }
+                    .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
-                .navigationBarBackButtonHidden(true)
 
-                // Explanation overlay
-                if vm.phase == .showingExplanation {
-                    ExplanationView(question: vm.currentQuestion) {
-                        vm.proceed()
-                    }
-                    .transition(.opacity)
-                    .animation(.easeInOut(duration: 0.2), value: vm.phase)
-                    .zIndex(10)
+                if !donationManager.hasDonated {
+                    AdBannerView()
                 }
             }
-            .animation(.easeInOut(duration: 0.25), value: vm.phase)
-            .alert(item: $vm.activeAlert) { alert in
-                alertView(for: alert)
-            }
+        }
+        .alert(item: $vm.activeAlert) { alert in
+            alertView(for: alert)
         }
     }
 
