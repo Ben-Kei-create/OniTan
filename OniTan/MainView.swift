@@ -40,13 +40,11 @@ struct MainView: View {
 
             VStack(spacing: 0) {
                 GeometryReader { proxy in
-                    let safeTop = proxy.safeAreaInsets.top
                     let scale = layoutScale(containerHeight: proxy.size.height, safeArea: proxy.safeAreaInsets)
 
                     ZStack {
                         VStack(spacing: 0) {
                             topBar(scale: scale)
-                                .padding(.top, safeTop)
 
                             switch vm.phase {
                             case .stageCleared:
@@ -73,7 +71,6 @@ struct MainView: View {
                     }
                     .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
-                .ignoresSafeArea(edges: .top)
 
                 if !donationManager.hasDonated {
                     AdBannerView()
