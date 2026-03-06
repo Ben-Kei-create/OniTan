@@ -63,6 +63,7 @@ struct HomeView: View {
                 showFreezeToast()
             }
         }
+        .background(OniTanTheme.backgroundGradientFallback.ignoresSafeArea())
     }
 
 

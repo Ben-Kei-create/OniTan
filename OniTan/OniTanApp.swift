@@ -10,8 +10,12 @@ struct OniTanApp: App {
     @StateObject private var donationManager = DonationManager()
 
     init() {
-        // Google Mobile Ads SDK は iOS 14+ で自動初期化される
-        // 明示的な初期化は不要
+        // NavigationStack のナビゲーションバー背景を透明にしてグラデーション背景を全画面に表示する
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 
     var body: some Scene {
