@@ -42,6 +42,7 @@
 		6301040F17C917D9604D8EF1 /* stage64.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C06596E96C17EC28D35F9C7 /* stage64.json */; };
 		649C6781730858F020EAAA7A /* stage24.json in Resources */ = {isa = PBXBuildFile; fileRef = EB122196F6D4D91A33A1693E /* stage24.json */; };
 		64C54B2B9205CD9DC6DA7074 /* WrongAnswerNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */; };
+		C8E2F4A1B9D357604E2F8C1A /* StreakChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7F9C2E1B4D8056F7A3E912 /* StreakChallengeView.swift */; };
 		65840B0402AE04492F903F10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352DD65B20BC1C414C33B3C /* MainView.swift */; };
 		674F0E69FF8C2BE16830B6E6 /* stage51.json in Resources */ = {isa = PBXBuildFile; fileRef = D645336E2E658C7E74A9A41F /* stage51.json */; };
 		6C698C51A8CB364DB83ABE95 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = 63B75D2597D27B71A3D23C7D /* stage31.json */; };
@@ -133,6 +134,7 @@
 
 /* Begin PBXFileReference section */
 		00F33F3E41355E6617E24291 /* StreakRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakRepository.swift; sourceTree = "<group>"; };
+		3A7F9C2E1B4D8056F7A3E912 /* StreakChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakChallengeView.swift; sourceTree = "<group>"; };
 		023DF7CFCCF5703ED48AA67F /* stage58.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage58.json; sourceTree = "<group>"; };
 		0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerNoteView.swift; sourceTree = "<group>"; };
 		04677EBCCA7958ED8426B67F /* stage23.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage23.json; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				59C22BCB83C026070FB98DC8 /* StageSelectView.swift */,
 				A709DAD0107E879561BB3203 /* StatsView.swift */,
 				00F33F3E41355E6617E24291 /* StreakRepository.swift */,
+				3A7F9C2E1B4D8056F7A3E912 /* StreakChallengeView.swift */,
 				42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */,
 				82790558D967BDF74A396745 /* ThemeManager.swift */,
 				8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */,
@@ -612,6 +615,7 @@
 				C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */,
 				06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */,
 				EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */,
+				C8E2F4A1B9D357604E2F8C1A /* StreakChallengeView.swift in Sources */,
 				88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */,
 				362516D45E32453B490BDA12 /* ThemeManager.swift in Sources */,
 				F2D12E25938A256A24A3A9F0 /* ThemePalette.swift in Sources */,
