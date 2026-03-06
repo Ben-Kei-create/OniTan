@@ -211,13 +211,8 @@ struct MainView: View {
 
     private func kanjiDisplay(scale: CGFloat) -> some View {
         let corner = scaled(24, by: scale, min: 16)
-        // Shrink the kanji card when showing wrong answer to make room
-        let kanjiHeight: CGFloat = isShowingWrong
-            ? scaled(160, by: scale, min: 120)
-            : scaled(220, by: scale, min: 170)
-        let kanjiFont: CGFloat = isShowingWrong
-            ? scaled(90, by: scale, min: 64)
-            : scaled(130, by: scale, min: 92)
+        let kanjiHeight: CGFloat = scaled(220, by: scale, min: 170)
+        let kanjiFont: CGFloat = scaled(130, by: scale, min: 92)
 
         return ZStack {
             // Background card
