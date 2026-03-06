@@ -156,6 +156,8 @@ final class QuizSessionViewModel: ObservableObject {
 
             if mode.usesReviewQueue, !reviewQueue.contains(where: { $0.kanji == question.kanji }) {
                 reviewQueue.append(question)
+            } else if !mode.usesReviewQueue {
+                clearedCount += 1
             }
             phase = .showingWrongAnswer(correct: question.answer)
         }
