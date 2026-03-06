@@ -20,8 +20,9 @@ import GoogleMobileAds
 
 struct AdBannerView: UIViewRepresentable {
 
-    // 本番用ID (OniTan_Banner_Main)
-    private let adUnitID = "ca-app-pub-4859622277330192/9892982365"
+    // テスト用ID（Google公式テストバナー）
+    // 本番用: ca-app-pub-4859622277330192/9892982365
+    private let adUnitID = "ca-app-pub-3940256099942544/2934735716"
 
     func makeUIView(context: Context) -> GADBannerView {
         let banner = GADBannerView(adSize: GADAdSizeBanner)
@@ -73,7 +74,7 @@ struct AdBannerView: View {
         }
         .padding(.horizontal, 12)
         .frame(maxWidth: .infinity)
-        .frame(height: 32)
+        .frame(height: 50)
         .background(Color.black.opacity(0.18))
         .overlay(
             Rectangle()

@@ -40,11 +40,13 @@ struct MainView: View {
 
             VStack(spacing: 0) {
                 GeometryReader { proxy in
+                    let safeTop = proxy.safeAreaInsets.top
                     let scale = layoutScale(containerHeight: proxy.size.height, safeArea: proxy.safeAreaInsets)
 
                     ZStack {
                         VStack(spacing: 0) {
                             topBar(scale: scale)
+                                .padding(.top, safeTop)
 
                             switch vm.phase {
                             case .stageCleared:
@@ -71,6 +73,7 @@ struct MainView: View {
                     }
                     .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
+                .ignoresSafeArea(edges: .top)
 
                 if !donationManager.hasDonated {
                     AdBannerView()
@@ -395,8 +398,6 @@ struct MainView: View {
                 sessionXPBadge(vm.sessionXPGained)
             }
 
-            Spacer()
-
             VStack(spacing: 8) {
                 Button {
                     OniTanTheme.hapticSuccess()
@@ -421,8 +422,8 @@ struct MainView: View {
                 }
             }
             .padding(.horizontal, 20)
-            .padding(.bottom, 8)
         }
+        .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました"
