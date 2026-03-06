@@ -14,10 +14,9 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             GeometryReader { proxy in
-                let contentMinHeight = proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom
-                let isCompactHeight = contentMinHeight < 760
+                let availableHeight = proxy.size.height
+                let isCompactHeight = availableHeight < 700
                 let contentWidth = min(proxy.size.width - (isCompactHeight ? 16 : 20), 560)
-                let verticalInset: CGFloat = isCompactHeight ? 8 : 14
 
                 ZStack {
                     OniTanTheme.backgroundGradientFallback
@@ -28,18 +27,22 @@ struct HomeView: View {
                     }
 
                     VStack(spacing: 0) {
+                        Spacer(minLength: 0)
+
                         headerSection(isCompact: isCompactHeight)
-                            .padding(.top, isCompactHeight ? 2 : 6)
+
+                        Spacer(minLength: isCompactHeight ? 12 : 20)
 
                         menuSection(isCompact: isCompactHeight)
-                            .padding(.top, isCompactHeight ? 8 : 12)
+
+                        Spacer(minLength: isCompactHeight ? 8 : 14)
 
                         footerSection
-                            .padding(.top, isCompactHeight ? 6 : 10)
+
+                        Spacer(minLength: 0)
                     }
                     .frame(maxWidth: contentWidth)
-                    .padding(.vertical, verticalInset)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             .navigationBarHidden(true)
