@@ -10,107 +10,107 @@
 		0197D2685D3AEBB237D9F940 /* StageManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F823A6137158BA416E060C /* StageManifestTests.swift */; };
 		06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709DAD0107E879561BB3203 /* StatsView.swift */; };
 		077D89097C5A3C5A70A0C559 /* TodaySessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */; };
+		0B8919B7874D575269C2710E /* stage49.json in Resources */ = {isa = PBXBuildFile; fileRef = 46D33B8FDDD0434828F5675C /* stage49.json */; };
+		0E5D1729659D9E844A6C7FF7 /* stage12.json in Resources */ = {isa = PBXBuildFile; fileRef = B5C1C7C0F6E1088848DD4749 /* stage12.json */; };
+		0EB63EA80660FCB18BCDD13A /* stage42.json in Resources */ = {isa = PBXBuildFile; fileRef = D0FC429592D64BF86EF57E7E /* stage42.json */; };
 		177F094D0EBB21EADAE605AF /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF720D8313B0EE232F3045F /* AppState.swift */; };
+		18A7CC3AE3EED46869DAB7AA /* stage46.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B03B97BEC4BFFD8E9FB3A0C /* stage46.json */; };
 		1CF76AF4375B7C0BE8DD4DE3 /* QuizSessionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */; };
 		1D666F77A86DFCC0C51A2267 /* GamificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878ED351D8C0E69141C83475 /* GamificationRepository.swift */; };
 		20B8C39D07F751DFA50D1FDF /* ProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697706E8DAEDA779C15F4536 /* ProgressRingView.swift */; };
 		2254374655C4246F82444AA4 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADB5A3C69CE326AF95624D /* AdBannerView.swift */; };
+		2AFF2718A28FF6FEB8FD7D0C /* stage23.json in Resources */ = {isa = PBXBuildFile; fileRef = 04677EBCCA7958ED8426B67F /* stage23.json */; };
 		2B6FDB021767EC7AF38CCDD8 /* OniTanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */; };
+		2D12EB4E7116103B9C44C819 /* stage29.json in Resources */ = {isa = PBXBuildFile; fileRef = CFBA6885AD09BD3CC8FF1F9D /* stage29.json */; };
+		2D99D7F2DFD6834CA970B42D /* stage33.json in Resources */ = {isa = PBXBuildFile; fileRef = A78D1BA326BF77A20284D2BF /* stage33.json */; };
+		2F47EC6DEA88781C89B5CE33 /* stage38.json in Resources */ = {isa = PBXBuildFile; fileRef = 42278466914DB93965F3017B /* stage38.json */; };
 		3005B5F4E7012934860BDFF9 /* OniTanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */; };
+		35C7A7A263BCBFDD88BA8396 /* stage50.json in Resources */ = {isa = PBXBuildFile; fileRef = 22C2B32F193BC7ACC61E06C0 /* stage50.json */; };
 		362516D45E32453B490BDA12 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82790558D967BDF74A396745 /* ThemeManager.swift */; };
+		3687FBABFD2E8AC997A696F4 /* stage5.json in Resources */ = {isa = PBXBuildFile; fileRef = BE1E211069E4A9AAB2115745 /* stage5.json */; };
+		40F9DEADD3551EAF6FC77758 /* stage58.json in Resources */ = {isa = PBXBuildFile; fileRef = 023DF7CFCCF5703ED48AA67F /* stage58.json */; };
+		41071E052CB02DB230802921 /* stage26.json in Resources */ = {isa = PBXBuildFile; fileRef = 555098B4DDEA6BBB35FF5380 /* stage26.json */; };
+		47B8EE9013F014AC06E17533 /* stage68.json in Resources */ = {isa = PBXBuildFile; fileRef = 223B6FE7D5456FF0F729B017 /* stage68.json */; };
+		494278A07FD46874A91289A8 /* stage47.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8416763B3A8807235DF628 /* stage47.json */; };
+		4AF74CB2D91C3E26F0EF7EED /* stage36.json in Resources */ = {isa = PBXBuildFile; fileRef = C0AC333B59CF7F712977B0FB /* stage36.json */; };
+		4BFE618D0F474A3FBDEA9373 /* stage15.json in Resources */ = {isa = PBXBuildFile; fileRef = BED14EE8159AA696ACED6403 /* stage15.json */; };
+		4EBEAC47F74294CB75B3908D /* stage30.json in Resources */ = {isa = PBXBuildFile; fileRef = E222ADCDDFA57C3EECBABCD9 /* stage30.json */; };
+		51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = C3B011EB643E76B5B8B3CBE0 /* stage1.json */; };
 		539DDFE4A00729EB8F1304B9 /* OniTanTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */; };
 		5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7592732299AE4C3F02EAD315 /* OniTanApp.swift */; };
+		627117B85733EC7A7C264A54 /* stage8.json in Resources */ = {isa = PBXBuildFile; fileRef = 255DD30EAA21AA7C299A4800 /* stage8.json */; };
+		6301040F17C917D9604D8EF1 /* stage64.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C06596E96C17EC28D35F9C7 /* stage64.json */; };
+		649C6781730858F020EAAA7A /* stage24.json in Resources */ = {isa = PBXBuildFile; fileRef = EB122196F6D4D91A33A1693E /* stage24.json */; };
 		64C54B2B9205CD9DC6DA7074 /* WrongAnswerNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */; };
 		65840B0402AE04492F903F10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352DD65B20BC1C414C33B3C /* MainView.swift */; };
+		674F0E69FF8C2BE16830B6E6 /* stage51.json in Resources */ = {isa = PBXBuildFile; fileRef = D645336E2E658C7E74A9A41F /* stage51.json */; };
+		6C698C51A8CB364DB83ABE95 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = 63B75D2597D27B71A3D23C7D /* stage31.json */; };
+		6C81582A0761DDC3819DFB76 /* stage70.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4C12808B72BD355BAFBD6B /* stage70.json */; };
+		6C83A07CEDFF0769C6C55633 /* stage22.json in Resources */ = {isa = PBXBuildFile; fileRef = E39C1E4E36F8C3AF0798754E /* stage22.json */; };
+		6DFFD18A21A6C5E62803D258 /* stage54.json in Resources */ = {isa = PBXBuildFile; fileRef = 5022A0A67FC08B6CB766A0C3 /* stage54.json */; };
+		6F5609AF03DEE4E977AD6E50 /* stage43.json in Resources */ = {isa = PBXBuildFile; fileRef = A4DE4246BE167B5F67D06997 /* stage43.json */; };
+		703B71E4A3E6896B3E3031A8 /* stage69.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B070E8EF42F19B60643AA35 /* stage69.json */; };
+		71F68B77354E3E4720835B89 /* stage37.json in Resources */ = {isa = PBXBuildFile; fileRef = 397B580B618DD4C1D44D5EE5 /* stage37.json */; };
+		7FE384F8175F615D06934B4F /* stage20.json in Resources */ = {isa = PBXBuildFile; fileRef = 968908FB08AF92A43B52A1A3 /* stage20.json */; };
+		877745FF2DA845A84291F9AC /* stage13.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D04BD3199B68D3F30197687 /* stage13.json */; };
 		88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */; };
 		8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904927EFABE72A0965302AC5 /* QuizData.swift */; };
+		8AF5060B5BF6243E80D19F10 /* stage59.json in Resources */ = {isa = PBXBuildFile; fileRef = F778B7974DE051C0BC2CC841 /* stage59.json */; };
+		8D1B53E206C4DF3F556632D4 /* stage27.json in Resources */ = {isa = PBXBuildFile; fileRef = 066F4F4E6E27F01CB9D83B45 /* stage27.json */; };
+		8D5D1C66AD947C1775D66C41 /* stage53.json in Resources */ = {isa = PBXBuildFile; fileRef = F47BC5CFCD73435ACF5AF71A /* stage53.json */; };
+		8EBB5A233823FA03F3C784F2 /* stage11.json in Resources */ = {isa = PBXBuildFile; fileRef = C5B92D880960294F4287FF87 /* stage11.json */; };
+		8ECE2BDA27E4F0C2637D27A6 /* stage67.json in Resources */ = {isa = PBXBuildFile; fileRef = C3378D5D814A976DC627D9E5 /* stage67.json */; };
 		9417672A2D70817B9420092C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5A6A484C73AF85F7810F4 /* SettingsView.swift */; };
+		960BB515368191F8DD935AA7 /* stage35.json in Resources */ = {isa = PBXBuildFile; fileRef = 8EF54987E7ECB378E4386772 /* stage35.json */; };
+		96999CC3EFD887E3957C6D29 /* stage52.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC3BF4309270E76662D1D10 /* stage52.json */; };
+		96E1201C8E610EB084E3310E /* stage39.json in Resources */ = {isa = PBXBuildFile; fileRef = AC8E8B43BAF081399475C0C0 /* stage39.json */; };
+		972BFFA9DCFD4A857D80C063 /* stage9.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D95C55E6991AA704403797F /* stage9.json */; };
+		98AA56B38D0E60DFF8DC504B /* stage16.json in Resources */ = {isa = PBXBuildFile; fileRef = 75DB370E3481522BA9F0F78A /* stage16.json */; };
 		99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860301C6672CBF8DF84E8AA2 /* HomeView.swift */; };
 		A0E8E6442CBF7CB93BDE9BDE /* DonationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */; };
+		A11FA7C6A7DBBB5E7FC172F7 /* stage55.json in Resources */ = {isa = PBXBuildFile; fileRef = 52D6A196EE4F84341DD6A63D /* stage55.json */; };
+		A1A6D440E55BBCFAD3E61CD9 /* stage19.json in Resources */ = {isa = PBXBuildFile; fileRef = BB645599D38E62EF26113A89 /* stage19.json */; };
 		A1D1F660F532ED53C5ED409B /* OniTanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */; };
 		A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAA2A72218BF205143EBB6 /* QuestionKind.swift */; };
-		A5347A402F59D66800490073 /* stage33.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92432F59CC550092B608 /* stage33.json */; };
-		A5347A412F59D66800490073 /* stage34.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92442F59CC550092B608 /* stage34.json */; };
-		A5347A422F59D66800490073 /* stage35.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92452F59CC550092B608 /* stage35.json */; };
-		A5347A432F59D66800490073 /* stage36.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92462F59CC550092B608 /* stage36.json */; };
-		A5347A442F59D66800490073 /* stage38.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92482F59CC550092B608 /* stage38.json */; };
-		A5347A452F59D66800490073 /* stage40.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A924A2F59CC550092B608 /* stage40.json */; };
-		A5347A462F59D66800490073 /* stage41.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A924B2F59CC550092B608 /* stage41.json */; };
-		A5347A472F59D66800490073 /* stage42.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A924C2F59CC550092B608 /* stage42.json */; };
-		A5347A482F59D66800490073 /* stage43.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A924D2F59CC550092B608 /* stage43.json */; };
-		A5347A492F59D66800490073 /* stage44.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A924E2F59CC550092B608 /* stage44.json */; };
-		A5347A4A2F59D66800490073 /* stage45.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A924F2F59CC550092B608 /* stage45.json */; };
-		A58A926B2F59CC550092B608 /* stage22.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92382F59CC550092B608 /* stage22.json */; };
-		A58A926C2F59CC550092B608 /* stage29.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923F2F59CC550092B608 /* stage29.json */; };
-		A58A926D2F59CC550092B608 /* stage62.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92602F59CC550092B608 /* stage62.json */; };
-		A58A926F2F59CC550092B608 /* stage7.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92292F59CC550092B608 /* stage7.json */; };
-		A58A92702F59CC550092B608 /* stage46.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92502F59CC550092B608 /* stage46.json */; };
-		A58A92712F59CC550092B608 /* stages.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A926A2F59CC550092B608 /* stages.json */; };
-		A58A92732F59CC550092B608 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92412F59CC550092B608 /* stage31.json */; };
-		A58A92742F59CC550092B608 /* stage5.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92272F59CC550092B608 /* stage5.json */; };
-		A58A92752F59CC550092B608 /* stage13.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922F2F59CC550092B608 /* stage13.json */; };
-		A58A92762F59CC550092B608 /* stage18.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92342F59CC550092B608 /* stage18.json */; };
-		A58A92772F59CC550092B608 /* stage47.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92512F59CC550092B608 /* stage47.json */; };
-		A58A92782F59CC550092B608 /* stage67.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92642F59CC550092B608 /* stage67.json */; };
-		A58A92792F59CC550092B608 /* stage23.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92392F59CC550092B608 /* stage23.json */; };
-		A58A927A2F59CC550092B608 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92372F59CC550092B608 /* stage21.json */; };
-		A58A927B2F59CC550092B608 /* stage19.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92352F59CC550092B608 /* stage19.json */; };
-		A58A927D2F59CC550092B608 /* stage28.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923E2F59CC550092B608 /* stage28.json */; };
-		A58A927E2F59CC550092B608 /* stage59.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925D2F59CC550092B608 /* stage59.json */; };
-		A58A92802F59CC550092B608 /* stage70.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92672F59CC550092B608 /* stage70.json */; };
-		A58A92812F59CC550092B608 /* stage58.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925C2F59CC550092B608 /* stage58.json */; };
-		A58A92822F59CC550092B608 /* stage53.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92572F59CC550092B608 /* stage53.json */; };
-		A58A92832F59CC550092B608 /* stage72.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92692F59CC550092B608 /* stage72.json */; };
-		A58A92852F59CC550092B608 /* stage9.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922B2F59CC550092B608 /* stage9.json */; };
-		A58A92872F59CC550092B608 /* stage63.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92612F59CC550092B608 /* stage63.json */; };
-		A58A92892F59CC550092B608 /* stage49.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92532F59CC550092B608 /* stage49.json */; };
-		A58A928A2F59CC550092B608 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92302F59CC550092B608 /* stage14.json */; };
-		A58A928B2F59CC550092B608 /* stage8.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922A2F59CC550092B608 /* stage8.json */; };
-		A58A928C2F59CC550092B608 /* stage26.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923C2F59CC550092B608 /* stage26.json */; };
-		A58A928D2F59CC550092B608 /* stage54.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92582F59CC550092B608 /* stage54.json */; };
-		A58A928E2F59CC550092B608 /* stage55.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92592F59CC550092B608 /* stage55.json */; };
-		A58A928F2F59CC550092B608 /* stage57.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925B2F59CC550092B608 /* stage57.json */; };
-		A58A92902F59CC550092B608 /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92242F59CC550092B608 /* stage2.json */; };
-		A58A92922F59CC550092B608 /* stage69.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92662F59CC550092B608 /* stage69.json */; };
-		A58A92932F59CC550092B608 /* stage15.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92312F59CC550092B608 /* stage15.json */; };
-		A58A92942F59CC550092B608 /* stage4.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92262F59CC550092B608 /* stage4.json */; };
-		A58A92962F59CC550092B608 /* stage51.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92552F59CC550092B608 /* stage51.json */; };
-		A58A92972F59CC550092B608 /* stage6.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92282F59CC550092B608 /* stage6.json */; };
-		A58A92982F59CC550092B608 /* stage52.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92562F59CC550092B608 /* stage52.json */; };
-		A58A92992F59CC550092B608 /* stage32.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92422F59CC550092B608 /* stage32.json */; };
-		A58A929A2F59CC550092B608 /* stage25.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923B2F59CC550092B608 /* stage25.json */; };
-		A58A929B2F59CC550092B608 /* stage17.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92332F59CC550092B608 /* stage17.json */; };
-		A58A929D2F59CC550092B608 /* stage48.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92522F59CC550092B608 /* stage48.json */; };
-		A58A929E2F59CC550092B608 /* stage20.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92362F59CC550092B608 /* stage20.json */; };
-		A58A929F2F59CC550092B608 /* stage30.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92402F59CC550092B608 /* stage30.json */; };
-		A58A92A12F59CC550092B608 /* stage27.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923D2F59CC550092B608 /* stage27.json */; };
-		A58A92A22F59CC550092B608 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925A2F59CC550092B608 /* stage56.json */; };
-		A58A92A32F59CC550092B608 /* stage71.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92682F59CC550092B608 /* stage71.json */; };
-		A58A92A42F59CC550092B608 /* stage24.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A923A2F59CC550092B608 /* stage24.json */; };
-		A58A92A52F59CC550092B608 /* stage65.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92632F59CC550092B608 /* stage65.json */; };
-		A58A92A62F59CC550092B608 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92232F59CC550092B608 /* stage1.json */; };
-		A58A92A72F59CC550092B608 /* stage60.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925E2F59CC550092B608 /* stage60.json */; };
-		A58A92A82F59CC550092B608 /* stage37.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92472F59CC550092B608 /* stage37.json */; };
-		A58A92A92F59CC550092B608 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92252F59CC550092B608 /* stage3.json */; };
-		A58A92AA2F59CC550092B608 /* stage39.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92492F59CC550092B608 /* stage39.json */; };
-		A58A92AB2F59CC550092B608 /* stage10.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922C2F59CC550092B608 /* stage10.json */; };
-		A58A92AC2F59CC550092B608 /* stage50.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92542F59CC550092B608 /* stage50.json */; };
-		A58A92AD2F59CC550092B608 /* stage68.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92652F59CC550092B608 /* stage68.json */; };
-		A58A92AE2F59CC550092B608 /* stage16.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92322F59CC550092B608 /* stage16.json */; };
-		A58A92AF2F59CC550092B608 /* stage11.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922D2F59CC550092B608 /* stage11.json */; };
-		A58A92B02F59CC550092B608 /* stage64.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A92622F59CC550092B608 /* stage64.json */; };
-		A58A92B12F59CC550092B608 /* stage61.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A925F2F59CC550092B608 /* stage61.json */; };
-		A58A92B22F59CC550092B608 /* stage12.json in Resources */ = {isa = PBXBuildFile; fileRef = A58A922E2F59CC550092B608 /* stage12.json */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
+		A9948E76FA5D5132F4E56897 /* stage17.json in Resources */ = {isa = PBXBuildFile; fileRef = B8B3017B906F3D53076A3F6A /* stage17.json */; };
+		AB661BC4BE284636DD0F1FE7 /* stage71.json in Resources */ = {isa = PBXBuildFile; fileRef = 16F284ECEF64DAAAAEECD7DB /* stage71.json */; };
+		AD5E749E79179E2C8F4DCA29 /* stage4.json in Resources */ = {isa = PBXBuildFile; fileRef = 60D557CF77C4478A77473FB1 /* stage4.json */; };
 		AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B2EFC3923D1727E152736 /* AppStateTests.swift */; };
+		AEBE96F9C4D4D456E18AE7EB /* stages.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F1395D0735D685DEED95EEC /* stages.json */; };
 		B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */; };
+		B671326085AE2F3D7A0167E2 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BB68317A918563A730DF620 /* stage3.json */; };
+		B774C705589D593C8764138E /* stage7.json in Resources */ = {isa = PBXBuildFile; fileRef = 44100CC7FC71EE69F7477E00 /* stage7.json */; };
+		BCC1A2D82FE39A0C9C770EBD /* stage10.json in Resources */ = {isa = PBXBuildFile; fileRef = B4DBF3F3959AA50D93E6F051 /* stage10.json */; };
+		BDCCEFD93AC828B640A3DB10 /* stage41.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEF3A3C073ABEFCF8560B6C /* stage41.json */; };
+		C098C8F3828C706A747AE058 /* stage6.json in Resources */ = {isa = PBXBuildFile; fileRef = 7ECADE603B1AA8F3235D668F /* stage6.json */; };
+		C1DE81A2D0FF3777FCC58BDD /* stage45.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA00CF2349275E0A068CDF0 /* stage45.json */; };
 		C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C22BCB83C026070FB98DC8 /* StageSelectView.swift */; };
+		C472E87234C3226CE340D16E /* stage62.json in Resources */ = {isa = PBXBuildFile; fileRef = 81706BE1C66194C70273C674 /* stage62.json */; };
+		C9309DFC5403D64C2A0FC330 /* stage63.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC0FE5B2CB3598B9C57A6C /* stage63.json */; };
+		CA358D08C04C2B91F18D8460 /* stage40.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B898B27B9FFADD4D3C05B93 /* stage40.json */; };
+		CE774257E0F08EA30079298C /* stage18.json in Resources */ = {isa = PBXBuildFile; fileRef = 43BA21B8537F72A698B888CF /* stage18.json */; };
+		CEE34A8698CB4A9726F029F1 /* stage60.json in Resources */ = {isa = PBXBuildFile; fileRef = EB26B5C1415ED8742E165B4B /* stage60.json */; };
+		D0936103FECBF9B7E2137923 /* stage25.json in Resources */ = {isa = PBXBuildFile; fileRef = 486F12EDA51B890C62E838A5 /* stage25.json */; };
+		D274754B08BB11C43DE7DC5B /* stage48.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CD9CF426396D7AB1E025969 /* stage48.json */; };
+		D8B67B78B45377420AB06FC7 /* stage61.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C8316098825221F61FACA61 /* stage61.json */; };
+		DAB97BBCCD850514D771066F /* stage65.json in Resources */ = {isa = PBXBuildFile; fileRef = D97081A527C6AE077BAED255 /* stage65.json */; };
+		E07C03299B6B62B38BF8C9C8 /* stage57.json in Resources */ = {isa = PBXBuildFile; fileRef = 25D61BBA99DDCFE4C669ED1B /* stage57.json */; };
+		E584AE3550568854A086E3AF /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = 107EB57A894AA8A8CF252B11 /* stage2.json */; };
 		E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B304DA79873F9CF82ACCD64 /* QuizMode.swift */; };
+		E9B93B5C6B4BABCA1772C801 /* stage28.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DB5E530E240E4FB49663307 /* stage28.json */; };
 		EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F707F6682B94FE1C60CCE /* Question.swift */; };
 		EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29076909A8310033010EC721 /* QuizSessionViewModel.swift */; };
 		EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 096C66E38B34DF2D43548956 /* Assets.xcassets */; };
 		EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F33F3E41355E6617E24291 /* StreakRepository.swift */; };
+		F0A05D48CAE91CD689A2B25B /* stage34.json in Resources */ = {isa = PBXBuildFile; fileRef = 2987B4DF5EAB1D7475563117 /* stage34.json */; };
+		F19435606A24C1EE87A8F768 /* stage32.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C5F98871927B928481BF0 /* stage32.json */; };
+		F2559985969EE81AC5E37558 /* stage72.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A56103791686BEF026452F2 /* stage72.json */; };
 		F2D12E25938A256A24A3A9F0 /* ThemePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */; };
+		F40F0785505722F2F5B3C568 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A30C74AFCC83BC81240FE8B /* stage14.json */; };
+		F44478D44E2B9D89E37BFB73 /* stage44.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B3D54D4915B729AAC99851 /* stage44.json */; };
+		FBFAC18715D43EFEB9C14142 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = D3A9974F2CF764CE1DD79C22 /* stage56.json */; };
+		FC72599E1B883C0D36F60464 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = ED0575009408B143BF71B4D0 /* stage21.json */; };
 		FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43FC022C83E344ABEE7C03 /* ErrorState.swift */; };
 /* End PBXBuildFile section */
 
@@ -133,112 +133,112 @@
 
 /* Begin PBXFileReference section */
 		00F33F3E41355E6617E24291 /* StreakRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakRepository.swift; sourceTree = "<group>"; };
+		023DF7CFCCF5703ED48AA67F /* stage58.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage58.json; sourceTree = "<group>"; };
 		0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerNoteView.swift; sourceTree = "<group>"; };
+		04677EBCCA7958ED8426B67F /* stage23.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage23.json; sourceTree = "<group>"; };
+		066F4F4E6E27F01CB9D83B45 /* stage27.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage27.json; sourceTree = "<group>"; };
 		08F823A6137158BA416E060C /* StageManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManifestTests.swift; sourceTree = "<group>"; };
 		096C66E38B34DF2D43548956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		107EB57A894AA8A8CF252B11 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
+		16F284ECEF64DAAAAEECD7DB /* stage71.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage71.json; sourceTree = "<group>"; };
+		1B070E8EF42F19B60643AA35 /* stage69.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage69.json; sourceTree = "<group>"; };
+		1F5C5F98871927B928481BF0 /* stage32.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage32.json; sourceTree = "<group>"; };
+		223B6FE7D5456FF0F729B017 /* stage68.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage68.json; sourceTree = "<group>"; };
+		22B3D54D4915B729AAC99851 /* stage44.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage44.json; sourceTree = "<group>"; };
+		22C2B32F193BC7ACC61E06C0 /* stage50.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage50.json; sourceTree = "<group>"; };
+		255DD30EAA21AA7C299A4800 /* stage8.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage8.json; sourceTree = "<group>"; };
+		25D61BBA99DDCFE4C669ED1B /* stage57.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage57.json; sourceTree = "<group>"; };
 		26DAA2A72218BF205143EBB6 /* QuestionKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionKind.swift; sourceTree = "<group>"; };
 		29076909A8310033010EC721 /* QuizSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModel.swift; sourceTree = "<group>"; };
+		2987B4DF5EAB1D7475563117 /* stage34.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage34.json; sourceTree = "<group>"; };
+		2B03B97BEC4BFFD8E9FB3A0C /* stage46.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage46.json; sourceTree = "<group>"; };
+		2C06596E96C17EC28D35F9C7 /* stage64.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage64.json; sourceTree = "<group>"; };
+		2CD9CF426396D7AB1E025969 /* stage48.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage48.json; sourceTree = "<group>"; };
 		2FF720D8313B0EE232F3045F /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		397B580B618DD4C1D44D5EE5 /* stage37.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage37.json; sourceTree = "<group>"; };
+		3B8416763B3A8807235DF628 /* stage47.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage47.json; sourceTree = "<group>"; };
+		3D04BD3199B68D3F30197687 /* stage13.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage13.json; sourceTree = "<group>"; };
+		3DB5E530E240E4FB49663307 /* stage28.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage28.json; sourceTree = "<group>"; };
+		42278466914DB93965F3017B /* stage38.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage38.json; sourceTree = "<group>"; };
 		42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyStatsRepository.swift; sourceTree = "<group>"; };
+		43BA21B8537F72A698B888CF /* stage18.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage18.json; sourceTree = "<group>"; };
+		44100CC7FC71EE69F7477E00 /* stage7.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage7.json; sourceTree = "<group>"; };
+		46D33B8FDDD0434828F5675C /* stage49.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage49.json; sourceTree = "<group>"; };
+		486F12EDA51B890C62E838A5 /* stage25.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage25.json; sourceTree = "<group>"; };
 		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B304DA79873F9CF82ACCD64 /* QuizMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMode.swift; sourceTree = "<group>"; };
 		4B43FC022C83E344ABEE7C03 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 		500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModelTests.swift; sourceTree = "<group>"; };
+		5022A0A67FC08B6CB766A0C3 /* stage54.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage54.json; sourceTree = "<group>"; };
+		52D6A196EE4F84341DD6A63D /* stage55.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage55.json; sourceTree = "<group>"; };
+		555098B4DDEA6BBB35FF5380 /* stage26.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage26.json; sourceTree = "<group>"; };
 		577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		59C22BCB83C026070FB98DC8 /* StageSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSelectView.swift; sourceTree = "<group>"; };
+		5A56103791686BEF026452F2 /* stage72.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage72.json; sourceTree = "<group>"; };
+		5DEF3A3C073ABEFCF8560B6C /* stage41.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage41.json; sourceTree = "<group>"; };
+		5F1395D0735D685DEED95EEC /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
+		60D557CF77C4478A77473FB1 /* stage4.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage4.json; sourceTree = "<group>"; };
 		62ADB5A3C69CE326AF95624D /* AdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
+		63B75D2597D27B71A3D23C7D /* stage31.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage31.json; sourceTree = "<group>"; };
 		697706E8DAEDA779C15F4536 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
+		6A30C74AFCC83BC81240FE8B /* stage14.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage14.json; sourceTree = "<group>"; };
 		7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModeSelectView.swift; sourceTree = "<group>"; };
 		74745D835668D62C4F1D5954 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		7592732299AE4C3F02EAD315 /* OniTanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanApp.swift; sourceTree = "<group>"; };
+		75DB370E3481522BA9F0F78A /* stage16.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage16.json; sourceTree = "<group>"; };
+		7BB68317A918563A730DF620 /* stage3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage3.json; sourceTree = "<group>"; };
+		7CC3BF4309270E76662D1D10 /* stage52.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage52.json; sourceTree = "<group>"; };
+		7E4C12808B72BD355BAFBD6B /* stage70.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage70.json; sourceTree = "<group>"; };
+		7ECADE603B1AA8F3235D668F /* stage6.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage6.json; sourceTree = "<group>"; };
+		81706BE1C66194C70273C674 /* stage62.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage62.json; sourceTree = "<group>"; };
 		82790558D967BDF74A396745 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
-		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		860301C6672CBF8DF84E8AA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		878ED351D8C0E69141C83475 /* GamificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationRepository.swift; sourceTree = "<group>"; };
+		8D95C55E6991AA704403797F /* stage9.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage9.json; sourceTree = "<group>"; };
+		8DAC0FE5B2CB3598B9C57A6C /* stage63.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage63.json; sourceTree = "<group>"; };
+		8EF54987E7ECB378E4386772 /* stage35.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage35.json; sourceTree = "<group>"; };
 		904927EFABE72A0965302AC5 /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
+		968908FB08AF92A43B52A1A3 /* stage20.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage20.json; sourceTree = "<group>"; };
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9B898B27B9FFADD4D3C05B93 /* stage40.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage40.json; sourceTree = "<group>"; };
+		9C8316098825221F61FACA61 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
 		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
 		A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySessionBuilder.swift; sourceTree = "<group>"; };
-		A58A92232F59CC550092B608 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
-		A58A92242F59CC550092B608 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
-		A58A92252F59CC550092B608 /* stage3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage3.json; sourceTree = "<group>"; };
-		A58A92262F59CC550092B608 /* stage4.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage4.json; sourceTree = "<group>"; };
-		A58A92272F59CC550092B608 /* stage5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage5.json; sourceTree = "<group>"; };
-		A58A92282F59CC550092B608 /* stage6.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage6.json; sourceTree = "<group>"; };
-		A58A92292F59CC550092B608 /* stage7.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage7.json; sourceTree = "<group>"; };
-		A58A922A2F59CC550092B608 /* stage8.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage8.json; sourceTree = "<group>"; };
-		A58A922B2F59CC550092B608 /* stage9.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage9.json; sourceTree = "<group>"; };
-		A58A922C2F59CC550092B608 /* stage10.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage10.json; sourceTree = "<group>"; };
-		A58A922D2F59CC550092B608 /* stage11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage11.json; sourceTree = "<group>"; };
-		A58A922E2F59CC550092B608 /* stage12.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage12.json; sourceTree = "<group>"; };
-		A58A922F2F59CC550092B608 /* stage13.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage13.json; sourceTree = "<group>"; };
-		A58A92302F59CC550092B608 /* stage14.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage14.json; sourceTree = "<group>"; };
-		A58A92312F59CC550092B608 /* stage15.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage15.json; sourceTree = "<group>"; };
-		A58A92322F59CC550092B608 /* stage16.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage16.json; sourceTree = "<group>"; };
-		A58A92332F59CC550092B608 /* stage17.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage17.json; sourceTree = "<group>"; };
-		A58A92342F59CC550092B608 /* stage18.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage18.json; sourceTree = "<group>"; };
-		A58A92352F59CC550092B608 /* stage19.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage19.json; sourceTree = "<group>"; };
-		A58A92362F59CC550092B608 /* stage20.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage20.json; sourceTree = "<group>"; };
-		A58A92372F59CC550092B608 /* stage21.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage21.json; sourceTree = "<group>"; };
-		A58A92382F59CC550092B608 /* stage22.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage22.json; sourceTree = "<group>"; };
-		A58A92392F59CC550092B608 /* stage23.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage23.json; sourceTree = "<group>"; };
-		A58A923A2F59CC550092B608 /* stage24.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage24.json; sourceTree = "<group>"; };
-		A58A923B2F59CC550092B608 /* stage25.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage25.json; sourceTree = "<group>"; };
-		A58A923C2F59CC550092B608 /* stage26.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage26.json; sourceTree = "<group>"; };
-		A58A923D2F59CC550092B608 /* stage27.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage27.json; sourceTree = "<group>"; };
-		A58A923E2F59CC550092B608 /* stage28.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage28.json; sourceTree = "<group>"; };
-		A58A923F2F59CC550092B608 /* stage29.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage29.json; sourceTree = "<group>"; };
-		A58A92402F59CC550092B608 /* stage30.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage30.json; sourceTree = "<group>"; };
-		A58A92412F59CC550092B608 /* stage31.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage31.json; sourceTree = "<group>"; };
-		A58A92422F59CC550092B608 /* stage32.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage32.json; sourceTree = "<group>"; };
-		A58A92432F59CC550092B608 /* stage33.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage33.json; sourceTree = "<group>"; };
-		A58A92442F59CC550092B608 /* stage34.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage34.json; sourceTree = "<group>"; };
-		A58A92452F59CC550092B608 /* stage35.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage35.json; sourceTree = "<group>"; };
-		A58A92462F59CC550092B608 /* stage36.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage36.json; sourceTree = "<group>"; };
-		A58A92472F59CC550092B608 /* stage37.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage37.json; sourceTree = "<group>"; };
-		A58A92482F59CC550092B608 /* stage38.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage38.json; sourceTree = "<group>"; };
-		A58A92492F59CC550092B608 /* stage39.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage39.json; sourceTree = "<group>"; };
-		A58A924A2F59CC550092B608 /* stage40.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage40.json; sourceTree = "<group>"; };
-		A58A924B2F59CC550092B608 /* stage41.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage41.json; sourceTree = "<group>"; };
-		A58A924C2F59CC550092B608 /* stage42.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage42.json; sourceTree = "<group>"; };
-		A58A924D2F59CC550092B608 /* stage43.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage43.json; sourceTree = "<group>"; };
-		A58A924E2F59CC550092B608 /* stage44.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage44.json; sourceTree = "<group>"; };
-		A58A924F2F59CC550092B608 /* stage45.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage45.json; sourceTree = "<group>"; };
-		A58A92502F59CC550092B608 /* stage46.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage46.json; sourceTree = "<group>"; };
-		A58A92512F59CC550092B608 /* stage47.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage47.json; sourceTree = "<group>"; };
-		A58A92522F59CC550092B608 /* stage48.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage48.json; sourceTree = "<group>"; };
-		A58A92532F59CC550092B608 /* stage49.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage49.json; sourceTree = "<group>"; };
-		A58A92542F59CC550092B608 /* stage50.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage50.json; sourceTree = "<group>"; };
-		A58A92552F59CC550092B608 /* stage51.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage51.json; sourceTree = "<group>"; };
-		A58A92562F59CC550092B608 /* stage52.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage52.json; sourceTree = "<group>"; };
-		A58A92572F59CC550092B608 /* stage53.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage53.json; sourceTree = "<group>"; };
-		A58A92582F59CC550092B608 /* stage54.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage54.json; sourceTree = "<group>"; };
-		A58A92592F59CC550092B608 /* stage55.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage55.json; sourceTree = "<group>"; };
-		A58A925A2F59CC550092B608 /* stage56.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage56.json; sourceTree = "<group>"; };
-		A58A925B2F59CC550092B608 /* stage57.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage57.json; sourceTree = "<group>"; };
-		A58A925C2F59CC550092B608 /* stage58.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage58.json; sourceTree = "<group>"; };
-		A58A925D2F59CC550092B608 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
-		A58A925E2F59CC550092B608 /* stage60.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage60.json; sourceTree = "<group>"; };
-		A58A925F2F59CC550092B608 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
-		A58A92602F59CC550092B608 /* stage62.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage62.json; sourceTree = "<group>"; };
-		A58A92612F59CC550092B608 /* stage63.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage63.json; sourceTree = "<group>"; };
-		A58A92622F59CC550092B608 /* stage64.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage64.json; sourceTree = "<group>"; };
-		A58A92632F59CC550092B608 /* stage65.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage65.json; sourceTree = "<group>"; };
-		A58A92642F59CC550092B608 /* stage67.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage67.json; sourceTree = "<group>"; };
-		A58A92652F59CC550092B608 /* stage68.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage68.json; sourceTree = "<group>"; };
-		A58A92662F59CC550092B608 /* stage69.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage69.json; sourceTree = "<group>"; };
-		A58A92672F59CC550092B608 /* stage70.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage70.json; sourceTree = "<group>"; };
-		A58A92682F59CC550092B608 /* stage71.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage71.json; sourceTree = "<group>"; };
-		A58A92692F59CC550092B608 /* stage72.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage72.json; sourceTree = "<group>"; };
-		A58A926A2F59CC550092B608 /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
+		A4DE4246BE167B5F67D06997 /* stage43.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage43.json; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		A78D1BA326BF77A20284D2BF /* stage33.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage33.json; sourceTree = "<group>"; };
+		AC8E8B43BAF081399475C0C0 /* stage39.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage39.json; sourceTree = "<group>"; };
 		AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationManager.swift; sourceTree = "<group>"; };
 		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITests.swift; sourceTree = "<group>"; };
+		B4DBF3F3959AA50D93E6F051 /* stage10.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage10.json; sourceTree = "<group>"; };
+		B5C1C7C0F6E1088848DD4749 /* stage12.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage12.json; sourceTree = "<group>"; };
+		B8B3017B906F3D53076A3F6A /* stage17.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage17.json; sourceTree = "<group>"; };
+		BB645599D38E62EF26113A89 /* stage19.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage19.json; sourceTree = "<group>"; };
 		BB9F707F6682B94FE1C60CCE /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		BE1E211069E4A9AAB2115745 /* stage5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage5.json; sourceTree = "<group>"; };
+		BED14EE8159AA696ACED6403 /* stage15.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage15.json; sourceTree = "<group>"; };
+		C0AC333B59CF7F712977B0FB /* stage36.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage36.json; sourceTree = "<group>"; };
+		C3378D5D814A976DC627D9E5 /* stage67.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage67.json; sourceTree = "<group>"; };
+		C3B011EB643E76B5B8B3CBE0 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
+		C5B92D880960294F4287FF87 /* stage11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage11.json; sourceTree = "<group>"; };
+		CFBA6885AD09BD3CC8FF1F9D /* stage29.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage29.json; sourceTree = "<group>"; };
+		D0FC429592D64BF86EF57E7E /* stage42.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage42.json; sourceTree = "<group>"; };
 		D352DD65B20BC1C414C33B3C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D3A9974F2CF764CE1DD79C22 /* stage56.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage56.json; sourceTree = "<group>"; };
+		D645336E2E658C7E74A9A41F /* stage51.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage51.json; sourceTree = "<group>"; };
+		D97081A527C6AE077BAED255 /* stage65.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage65.json; sourceTree = "<group>"; };
+		DDA00CF2349275E0A068CDF0 /* stage45.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage45.json; sourceTree = "<group>"; };
+		E222ADCDDFA57C3EECBABCD9 /* stage30.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage30.json; sourceTree = "<group>"; };
+		E39C1E4E36F8C3AF0798754E /* stage22.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage22.json; sourceTree = "<group>"; };
+		EB122196F6D4D91A33A1693E /* stage24.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage24.json; sourceTree = "<group>"; };
+		EB26B5C1415ED8742E165B4B /* stage60.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage60.json; sourceTree = "<group>"; };
+		ED0575009408B143BF71B4D0 /* stage21.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage21.json; sourceTree = "<group>"; };
+		F47BC5CFCD73435ACF5AF71A /* stage53.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage53.json; sourceTree = "<group>"; };
+		F778B7974DE051C0BC2CC841 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
 		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,78 +246,78 @@
 		20CFE708821AC1E4E072923A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A58A92232F59CC550092B608 /* stage1.json */,
-				A58A92242F59CC550092B608 /* stage2.json */,
-				A58A92252F59CC550092B608 /* stage3.json */,
-				A58A92262F59CC550092B608 /* stage4.json */,
-				A58A92272F59CC550092B608 /* stage5.json */,
-				A58A92282F59CC550092B608 /* stage6.json */,
-				A58A92292F59CC550092B608 /* stage7.json */,
-				A58A922A2F59CC550092B608 /* stage8.json */,
-				A58A922B2F59CC550092B608 /* stage9.json */,
-				A58A922C2F59CC550092B608 /* stage10.json */,
-				A58A922D2F59CC550092B608 /* stage11.json */,
-				A58A922E2F59CC550092B608 /* stage12.json */,
-				A58A922F2F59CC550092B608 /* stage13.json */,
-				A58A92302F59CC550092B608 /* stage14.json */,
-				A58A92312F59CC550092B608 /* stage15.json */,
-				A58A92322F59CC550092B608 /* stage16.json */,
-				A58A92332F59CC550092B608 /* stage17.json */,
-				A58A92342F59CC550092B608 /* stage18.json */,
-				A58A92352F59CC550092B608 /* stage19.json */,
-				A58A92362F59CC550092B608 /* stage20.json */,
-				A58A92372F59CC550092B608 /* stage21.json */,
-				A58A92382F59CC550092B608 /* stage22.json */,
-				A58A92392F59CC550092B608 /* stage23.json */,
-				A58A923A2F59CC550092B608 /* stage24.json */,
-				A58A923B2F59CC550092B608 /* stage25.json */,
-				A58A923C2F59CC550092B608 /* stage26.json */,
-				A58A923D2F59CC550092B608 /* stage27.json */,
-				A58A923E2F59CC550092B608 /* stage28.json */,
-				A58A923F2F59CC550092B608 /* stage29.json */,
-				A58A92402F59CC550092B608 /* stage30.json */,
-				A58A92412F59CC550092B608 /* stage31.json */,
-				A58A92422F59CC550092B608 /* stage32.json */,
-				A58A92432F59CC550092B608 /* stage33.json */,
-				A58A92442F59CC550092B608 /* stage34.json */,
-				A58A92452F59CC550092B608 /* stage35.json */,
-				A58A92462F59CC550092B608 /* stage36.json */,
-				A58A92472F59CC550092B608 /* stage37.json */,
-				A58A92482F59CC550092B608 /* stage38.json */,
-				A58A92492F59CC550092B608 /* stage39.json */,
-				A58A924A2F59CC550092B608 /* stage40.json */,
-				A58A924B2F59CC550092B608 /* stage41.json */,
-				A58A924C2F59CC550092B608 /* stage42.json */,
-				A58A924D2F59CC550092B608 /* stage43.json */,
-				A58A924E2F59CC550092B608 /* stage44.json */,
-				A58A924F2F59CC550092B608 /* stage45.json */,
-				A58A92502F59CC550092B608 /* stage46.json */,
-				A58A92512F59CC550092B608 /* stage47.json */,
-				A58A92522F59CC550092B608 /* stage48.json */,
-				A58A92532F59CC550092B608 /* stage49.json */,
-				A58A92542F59CC550092B608 /* stage50.json */,
-				A58A92552F59CC550092B608 /* stage51.json */,
-				A58A92562F59CC550092B608 /* stage52.json */,
-				A58A92572F59CC550092B608 /* stage53.json */,
-				A58A92582F59CC550092B608 /* stage54.json */,
-				A58A92592F59CC550092B608 /* stage55.json */,
-				A58A925A2F59CC550092B608 /* stage56.json */,
-				A58A925B2F59CC550092B608 /* stage57.json */,
-				A58A925C2F59CC550092B608 /* stage58.json */,
-				A58A925D2F59CC550092B608 /* stage59.json */,
-				A58A925E2F59CC550092B608 /* stage60.json */,
-				A58A925F2F59CC550092B608 /* stage61.json */,
-				A58A92602F59CC550092B608 /* stage62.json */,
-				A58A92612F59CC550092B608 /* stage63.json */,
-				A58A92622F59CC550092B608 /* stage64.json */,
-				A58A92632F59CC550092B608 /* stage65.json */,
-				A58A92642F59CC550092B608 /* stage67.json */,
-				A58A92652F59CC550092B608 /* stage68.json */,
-				A58A92662F59CC550092B608 /* stage69.json */,
-				A58A92672F59CC550092B608 /* stage70.json */,
-				A58A92682F59CC550092B608 /* stage71.json */,
-				A58A92692F59CC550092B608 /* stage72.json */,
-				A58A926A2F59CC550092B608 /* stages.json */,
+				C3B011EB643E76B5B8B3CBE0 /* stage1.json */,
+				107EB57A894AA8A8CF252B11 /* stage2.json */,
+				7BB68317A918563A730DF620 /* stage3.json */,
+				60D557CF77C4478A77473FB1 /* stage4.json */,
+				BE1E211069E4A9AAB2115745 /* stage5.json */,
+				7ECADE603B1AA8F3235D668F /* stage6.json */,
+				44100CC7FC71EE69F7477E00 /* stage7.json */,
+				255DD30EAA21AA7C299A4800 /* stage8.json */,
+				8D95C55E6991AA704403797F /* stage9.json */,
+				B4DBF3F3959AA50D93E6F051 /* stage10.json */,
+				C5B92D880960294F4287FF87 /* stage11.json */,
+				B5C1C7C0F6E1088848DD4749 /* stage12.json */,
+				3D04BD3199B68D3F30197687 /* stage13.json */,
+				6A30C74AFCC83BC81240FE8B /* stage14.json */,
+				BED14EE8159AA696ACED6403 /* stage15.json */,
+				75DB370E3481522BA9F0F78A /* stage16.json */,
+				B8B3017B906F3D53076A3F6A /* stage17.json */,
+				43BA21B8537F72A698B888CF /* stage18.json */,
+				BB645599D38E62EF26113A89 /* stage19.json */,
+				968908FB08AF92A43B52A1A3 /* stage20.json */,
+				ED0575009408B143BF71B4D0 /* stage21.json */,
+				E39C1E4E36F8C3AF0798754E /* stage22.json */,
+				04677EBCCA7958ED8426B67F /* stage23.json */,
+				EB122196F6D4D91A33A1693E /* stage24.json */,
+				486F12EDA51B890C62E838A5 /* stage25.json */,
+				555098B4DDEA6BBB35FF5380 /* stage26.json */,
+				066F4F4E6E27F01CB9D83B45 /* stage27.json */,
+				3DB5E530E240E4FB49663307 /* stage28.json */,
+				CFBA6885AD09BD3CC8FF1F9D /* stage29.json */,
+				E222ADCDDFA57C3EECBABCD9 /* stage30.json */,
+				63B75D2597D27B71A3D23C7D /* stage31.json */,
+				1F5C5F98871927B928481BF0 /* stage32.json */,
+				A78D1BA326BF77A20284D2BF /* stage33.json */,
+				2987B4DF5EAB1D7475563117 /* stage34.json */,
+				8EF54987E7ECB378E4386772 /* stage35.json */,
+				C0AC333B59CF7F712977B0FB /* stage36.json */,
+				397B580B618DD4C1D44D5EE5 /* stage37.json */,
+				42278466914DB93965F3017B /* stage38.json */,
+				AC8E8B43BAF081399475C0C0 /* stage39.json */,
+				9B898B27B9FFADD4D3C05B93 /* stage40.json */,
+				5DEF3A3C073ABEFCF8560B6C /* stage41.json */,
+				D0FC429592D64BF86EF57E7E /* stage42.json */,
+				A4DE4246BE167B5F67D06997 /* stage43.json */,
+				22B3D54D4915B729AAC99851 /* stage44.json */,
+				DDA00CF2349275E0A068CDF0 /* stage45.json */,
+				2B03B97BEC4BFFD8E9FB3A0C /* stage46.json */,
+				3B8416763B3A8807235DF628 /* stage47.json */,
+				2CD9CF426396D7AB1E025969 /* stage48.json */,
+				46D33B8FDDD0434828F5675C /* stage49.json */,
+				22C2B32F193BC7ACC61E06C0 /* stage50.json */,
+				D645336E2E658C7E74A9A41F /* stage51.json */,
+				7CC3BF4309270E76662D1D10 /* stage52.json */,
+				F47BC5CFCD73435ACF5AF71A /* stage53.json */,
+				5022A0A67FC08B6CB766A0C3 /* stage54.json */,
+				52D6A196EE4F84341DD6A63D /* stage55.json */,
+				D3A9974F2CF764CE1DD79C22 /* stage56.json */,
+				25D61BBA99DDCFE4C669ED1B /* stage57.json */,
+				023DF7CFCCF5703ED48AA67F /* stage58.json */,
+				F778B7974DE051C0BC2CC841 /* stage59.json */,
+				EB26B5C1415ED8742E165B4B /* stage60.json */,
+				9C8316098825221F61FACA61 /* stage61.json */,
+				81706BE1C66194C70273C674 /* stage62.json */,
+				8DAC0FE5B2CB3598B9C57A6C /* stage63.json */,
+				2C06596E96C17EC28D35F9C7 /* stage64.json */,
+				D97081A527C6AE077BAED255 /* stage65.json */,
+				C3378D5D814A976DC627D9E5 /* stage67.json */,
+				223B6FE7D5456FF0F729B017 /* stage68.json */,
+				1B070E8EF42F19B60643AA35 /* stage69.json */,
+				7E4C12808B72BD355BAFBD6B /* stage70.json */,
+				16F284ECEF64DAAAAEECD7DB /* stage71.json */,
+				5A56103791686BEF026452F2 /* stage72.json */,
+				5F1395D0735D685DEED95EEC /* stages.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -431,6 +431,7 @@
 			);
 			name = OniTan;
 			packageProductDependencies = (
+				A5347A4E2F59E55400490073 /* GoogleMobileAds */,
 			);
 			productName = OniTan;
 			productReference = 8501973E7C7AEEC9131BA60D /* OniTan.app */;
@@ -463,9 +464,6 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					162DDD53AB6855F5542EF0BC = {
-						DevelopmentTeam = "";
-					};
 					FA51812D936614518D7A0719 = {
 						TestTargetID = 162DDD53AB6855F5542EF0BC;
 					};
@@ -481,6 +479,9 @@
 			);
 			mainGroup = EBC93F64F93D6A258A843ABB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A5347A4D2F59E55400490073 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -496,91 +497,79 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5347A402F59D66800490073 /* stage33.json in Resources */,
-				A5347A412F59D66800490073 /* stage34.json in Resources */,
-				A5347A422F59D66800490073 /* stage35.json in Resources */,
-				A5347A432F59D66800490073 /* stage36.json in Resources */,
-				A5347A442F59D66800490073 /* stage38.json in Resources */,
-				A5347A452F59D66800490073 /* stage40.json in Resources */,
-				A5347A462F59D66800490073 /* stage41.json in Resources */,
-				A5347A472F59D66800490073 /* stage42.json in Resources */,
-				A5347A482F59D66800490073 /* stage43.json in Resources */,
-				A5347A492F59D66800490073 /* stage44.json in Resources */,
-				A5347A4A2F59D66800490073 /* stage45.json in Resources */,
-				A58A926B2F59CC550092B608 /* stage22.json in Resources */,
-				A58A926C2F59CC550092B608 /* stage29.json in Resources */,
-				A58A926D2F59CC550092B608 /* stage62.json in Resources */,
-				A58A926F2F59CC550092B608 /* stage7.json in Resources */,
-				A58A92702F59CC550092B608 /* stage46.json in Resources */,
-				A58A92712F59CC550092B608 /* stages.json in Resources */,
-				A58A92732F59CC550092B608 /* stage31.json in Resources */,
-				A58A92742F59CC550092B608 /* stage5.json in Resources */,
-				A58A92752F59CC550092B608 /* stage13.json in Resources */,
-				A58A92762F59CC550092B608 /* stage18.json in Resources */,
-				A58A92772F59CC550092B608 /* stage47.json in Resources */,
-				A58A92782F59CC550092B608 /* stage67.json in Resources */,
-				A58A92792F59CC550092B608 /* stage23.json in Resources */,
-				A58A927A2F59CC550092B608 /* stage21.json in Resources */,
-				A58A927B2F59CC550092B608 /* stage19.json in Resources */,
-				A58A927D2F59CC550092B608 /* stage28.json in Resources */,
-				A58A927E2F59CC550092B608 /* stage59.json in Resources */,
-				A58A92802F59CC550092B608 /* stage70.json in Resources */,
-				A58A92812F59CC550092B608 /* stage58.json in Resources */,
-				A58A92822F59CC550092B608 /* stage53.json in Resources */,
-				A58A92832F59CC550092B608 /* stage72.json in Resources */,
-				A58A92852F59CC550092B608 /* stage9.json in Resources */,
-				A58A92872F59CC550092B608 /* stage63.json in Resources */,
-				A58A92892F59CC550092B608 /* stage49.json in Resources */,
-				A58A928A2F59CC550092B608 /* stage14.json in Resources */,
-				A58A928B2F59CC550092B608 /* stage8.json in Resources */,
-				A58A928C2F59CC550092B608 /* stage26.json in Resources */,
-				A58A928D2F59CC550092B608 /* stage54.json in Resources */,
-				A58A928E2F59CC550092B608 /* stage55.json in Resources */,
-				A58A928F2F59CC550092B608 /* stage57.json in Resources */,
-				A58A92902F59CC550092B608 /* stage2.json in Resources */,
-				A58A92922F59CC550092B608 /* stage69.json in Resources */,
-				A58A92932F59CC550092B608 /* stage15.json in Resources */,
-				A58A92942F59CC550092B608 /* stage4.json in Resources */,
-				A58A92962F59CC550092B608 /* stage51.json in Resources */,
-				A58A92972F59CC550092B608 /* stage6.json in Resources */,
-				A58A92982F59CC550092B608 /* stage52.json in Resources */,
-				A58A92992F59CC550092B608 /* stage32.json in Resources */,
-				A58A929B2F59CC550092B608 /* stage17.json in Resources */,
-				A58A92A52F59CC550092B608 /* stage65.json in Resources */,
-				A58A92A62F59CC550092B608 /* stage1.json in Resources */,
-				A58A92A72F59CC550092B608 /* stage60.json in Resources */,
-				A58A92A82F59CC550092B608 /* stage37.json in Resources */,
-				A58A92A92F59CC550092B608 /* stage3.json in Resources */,
-				A58A92AA2F59CC550092B608 /* stage39.json in Resources */,
-				A58A92AB2F59CC550092B608 /* stage10.json in Resources */,
-				A58A92AC2F59CC550092B608 /* stage50.json in Resources */,
-				A58A92AD2F59CC550092B608 /* stage68.json in Resources */,
-				A58A92AE2F59CC550092B608 /* stage16.json in Resources */,
-				A58A92AF2F59CC550092B608 /* stage11.json in Resources */,
-				A58A92B02F59CC550092B608 /* stage64.json in Resources */,
-				A58A929A2F59CC550092B608 /* stage25.json in Resources */,
-				A58A929B2F59CC550092B608 /* stage17.json in Resources */,
-				A58A929D2F59CC550092B608 /* stage48.json in Resources */,
-				A58A929E2F59CC550092B608 /* stage20.json in Resources */,
-				A58A929F2F59CC550092B608 /* stage30.json in Resources */,
-				A58A92A12F59CC550092B608 /* stage27.json in Resources */,
-				A58A92A22F59CC550092B608 /* stage56.json in Resources */,
-				A58A92A32F59CC550092B608 /* stage71.json in Resources */,
-				A58A92A42F59CC550092B608 /* stage24.json in Resources */,
-				A58A92A52F59CC550092B608 /* stage65.json in Resources */,
-				A58A92B12F59CC550092B608 /* stage61.json in Resources */,
-				A58A92A62F59CC550092B608 /* stage1.json in Resources */,
-				A58A92A72F59CC550092B608 /* stage60.json in Resources */,
-				A58A92A92F59CC550092B608 /* stage3.json in Resources */,
-				A58A92AB2F59CC550092B608 /* stage10.json in Resources */,
-				A58A92AC2F59CC550092B608 /* stage50.json in Resources */,
-				A58A92AD2F59CC550092B608 /* stage68.json in Resources */,
-				A58A92AE2F59CC550092B608 /* stage16.json in Resources */,
-				A58A92AF2F59CC550092B608 /* stage11.json in Resources */,
-				A58A92B02F59CC550092B608 /* stage64.json in Resources */,
-				A58A92B12F59CC550092B608 /* stage61.json in Resources */,
-				A58A92B22F59CC550092B608 /* stage12.json in Resources */,
 				EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */,
+				51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */,
+				BCC1A2D82FE39A0C9C770EBD /* stage10.json in Resources */,
+				8EBB5A233823FA03F3C784F2 /* stage11.json in Resources */,
+				0E5D1729659D9E844A6C7FF7 /* stage12.json in Resources */,
+				877745FF2DA845A84291F9AC /* stage13.json in Resources */,
+				F40F0785505722F2F5B3C568 /* stage14.json in Resources */,
+				4BFE618D0F474A3FBDEA9373 /* stage15.json in Resources */,
+				98AA56B38D0E60DFF8DC504B /* stage16.json in Resources */,
+				A9948E76FA5D5132F4E56897 /* stage17.json in Resources */,
+				CE774257E0F08EA30079298C /* stage18.json in Resources */,
+				A1A6D440E55BBCFAD3E61CD9 /* stage19.json in Resources */,
+				E584AE3550568854A086E3AF /* stage2.json in Resources */,
+				7FE384F8175F615D06934B4F /* stage20.json in Resources */,
+				FC72599E1B883C0D36F60464 /* stage21.json in Resources */,
+				6C83A07CEDFF0769C6C55633 /* stage22.json in Resources */,
+				2AFF2718A28FF6FEB8FD7D0C /* stage23.json in Resources */,
+				649C6781730858F020EAAA7A /* stage24.json in Resources */,
+				D0936103FECBF9B7E2137923 /* stage25.json in Resources */,
+				41071E052CB02DB230802921 /* stage26.json in Resources */,
+				8D1B53E206C4DF3F556632D4 /* stage27.json in Resources */,
+				E9B93B5C6B4BABCA1772C801 /* stage28.json in Resources */,
+				2D12EB4E7116103B9C44C819 /* stage29.json in Resources */,
+				B671326085AE2F3D7A0167E2 /* stage3.json in Resources */,
+				4EBEAC47F74294CB75B3908D /* stage30.json in Resources */,
+				6C698C51A8CB364DB83ABE95 /* stage31.json in Resources */,
+				F19435606A24C1EE87A8F768 /* stage32.json in Resources */,
+				2D99D7F2DFD6834CA970B42D /* stage33.json in Resources */,
+				F0A05D48CAE91CD689A2B25B /* stage34.json in Resources */,
+				960BB515368191F8DD935AA7 /* stage35.json in Resources */,
+				4AF74CB2D91C3E26F0EF7EED /* stage36.json in Resources */,
+				71F68B77354E3E4720835B89 /* stage37.json in Resources */,
+				2F47EC6DEA88781C89B5CE33 /* stage38.json in Resources */,
+				96E1201C8E610EB084E3310E /* stage39.json in Resources */,
+				AD5E749E79179E2C8F4DCA29 /* stage4.json in Resources */,
+				CA358D08C04C2B91F18D8460 /* stage40.json in Resources */,
+				BDCCEFD93AC828B640A3DB10 /* stage41.json in Resources */,
+				0EB63EA80660FCB18BCDD13A /* stage42.json in Resources */,
+				6F5609AF03DEE4E977AD6E50 /* stage43.json in Resources */,
+				F44478D44E2B9D89E37BFB73 /* stage44.json in Resources */,
+				C1DE81A2D0FF3777FCC58BDD /* stage45.json in Resources */,
+				18A7CC3AE3EED46869DAB7AA /* stage46.json in Resources */,
+				494278A07FD46874A91289A8 /* stage47.json in Resources */,
+				D274754B08BB11C43DE7DC5B /* stage48.json in Resources */,
+				0B8919B7874D575269C2710E /* stage49.json in Resources */,
+				3687FBABFD2E8AC997A696F4 /* stage5.json in Resources */,
+				35C7A7A263BCBFDD88BA8396 /* stage50.json in Resources */,
+				674F0E69FF8C2BE16830B6E6 /* stage51.json in Resources */,
+				96999CC3EFD887E3957C6D29 /* stage52.json in Resources */,
+				8D5D1C66AD947C1775D66C41 /* stage53.json in Resources */,
+				6DFFD18A21A6C5E62803D258 /* stage54.json in Resources */,
+				A11FA7C6A7DBBB5E7FC172F7 /* stage55.json in Resources */,
+				FBFAC18715D43EFEB9C14142 /* stage56.json in Resources */,
+				E07C03299B6B62B38BF8C9C8 /* stage57.json in Resources */,
+				40F9DEADD3551EAF6FC77758 /* stage58.json in Resources */,
+				8AF5060B5BF6243E80D19F10 /* stage59.json in Resources */,
+				C098C8F3828C706A747AE058 /* stage6.json in Resources */,
+				CEE34A8698CB4A9726F029F1 /* stage60.json in Resources */,
+				D8B67B78B45377420AB06FC7 /* stage61.json in Resources */,
+				C472E87234C3226CE340D16E /* stage62.json in Resources */,
+				C9309DFC5403D64C2A0FC330 /* stage63.json in Resources */,
+				6301040F17C917D9604D8EF1 /* stage64.json in Resources */,
+				DAB97BBCCD850514D771066F /* stage65.json in Resources */,
+				8ECE2BDA27E4F0C2637D27A6 /* stage67.json in Resources */,
+				47B8EE9013F014AC06E17533 /* stage68.json in Resources */,
+				703B71E4A3E6896B3E3031A8 /* stage69.json in Resources */,
+				B774C705589D593C8764138E /* stage7.json in Resources */,
+				6C81582A0761DDC3819DFB76 /* stage70.json in Resources */,
+				AB661BC4BE284636DD0F1FE7 /* stage71.json in Resources */,
+				F2559985969EE81AC5E37558 /* stage72.json in Resources */,
+				627117B85733EC7A7C264A54 /* stage8.json in Resources */,
+				972BFFA9DCFD4A857D80C063 /* stage9.json in Resources */,
+				AEBE96F9C4D4D456E18AE7EB /* stages.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7R927F3U4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -731,7 +720,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 7R927F3U4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -921,6 +910,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5347A4D2F59E55400490073 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5347A4E2F59E55400490073 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5347A4D2F59E55400490073 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCAF01079AC30C2BAEC35F5D /* Project object */;
 }
