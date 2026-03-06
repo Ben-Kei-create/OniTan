@@ -129,7 +129,6 @@ final class QuizSessionViewModel: ObservableObject {
             lastAnswerResult = .correct
             consecutiveCorrect += 1
             clearedKanji.insert(question.kanji)
-            clearedCount = clearedKanji.count
 
             // XP for correct answer
             let xpGained = xpRepo?.addXP(.correctAnswer) ?? 0
@@ -144,9 +143,16 @@ final class QuizSessionViewModel: ObservableObject {
             // Streak
             streakRepo?.recordCorrectAnswer()
 
-            if clearedKanji.count >= totalGoal {
-                onSessionCleared()
-                return
+            if mode.usesReviewQueue {
+                // normal/weakFocus: count unique mastered kanji
+                clearedCount = clearedKanji.count
+                if clearedKanji.count >= totalGoal {
+                    onSessionCleared()
+                    return
+                }
+            } else {
+                // quick10/exam30/srsReview: count total answered (correct + wrong)
+                clearedCount += 1
             }
             phase = .showingExplanation
 

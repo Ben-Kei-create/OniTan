@@ -30,7 +30,7 @@ final class StreakChallengeViewModel: ObservableObject {
     private var questionPool: [Question]
     private var poolIndex: Int = 0
     private var timerTask: Task<Void, Never>?
-    static let timeLimit: Double = 5.0  // seconds per question
+    static let timeLimit: Double = 8.0  // seconds per question
 
     static let bestStreakKey = "streakChallenge_bestStreak_v1"
 
@@ -216,7 +216,7 @@ struct StreakChallengeView: View {
 
                 RoundedRectangle(cornerRadius: 3)
                     .fill(timerGradient)
-                    .frame(width: geo.size.width * (1.0 - vm.timerProgress), height: 6)
+                    .frame(width: geo.size.width * vm.timerProgress, height: 6)
                     .animation(.linear(duration: 0.05), value: vm.timerProgress)
             }
         }

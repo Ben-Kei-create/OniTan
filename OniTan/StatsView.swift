@@ -135,7 +135,6 @@ private struct StageStatCard: View {
     let stage: Stage
     let stats: StageStats?
     let isCleared: Bool
-    @EnvironmentObject var xpRepo: GamificationRepository
 
     @State private var selectedEntry: WrongAnswerEntry? = nil
 
