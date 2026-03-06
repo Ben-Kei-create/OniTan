@@ -357,55 +357,55 @@ struct MainView: View {
 
     private var stageClearedView: some View {
         VStack(spacing: 0) {
-            Spacer(minLength: 12)
+            Spacer(minLength: 4)
 
             ZStack {
                 Circle()
                     .fill(OniTanTheme.accentCorrect.opacity(0.15))
-                    .frame(width: 90, height: 90)
-                    .blur(radius: 16)
+                    .frame(width: 70, height: 70)
+                    .blur(radius: 12)
 
                 Image(systemName: "trophy.fill")
-                    .font(.system(size: 54))
+                    .font(.system(size: 44))
                     .foregroundStyle(OniTanTheme.goldGradient)
-                    .shadow(color: .yellow.opacity(0.6), radius: 12)
+                    .shadow(color: .yellow.opacity(0.6), radius: 10)
             }
 
-            Spacer(minLength: 16)
+            Spacer(minLength: 8)
 
-            VStack(spacing: 8) {
+            VStack(spacing: 6) {
                 Text(vm.clearTitle)
-                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .font(.system(size: 24, weight: .black, design: .rounded))
                     .foregroundColor(OniTanTheme.textPrimary)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
 
                 Text("全 \(vm.totalGoal) 問クリア！")
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .font(.system(size: 13, weight: .semibold, design: .rounded))
                     .foregroundColor(OniTanTheme.textSecondary)
             }
 
-            Spacer(minLength: 12)
+            Spacer(minLength: 8)
 
             ProgressRingView(
                 progress: 1.0,
-                lineWidth: 10,
-                size: 80,
+                lineWidth: 8,
+                size: 70,
                 gradient: Gradient(colors: [OniTanTheme.accentCorrect, OniTanTheme.accentPrimary]),
                 label: "完了"
             )
-            .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 12)
+            .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 10)
 
-            Spacer(minLength: 8)
+            Spacer(minLength: 6)
 
             if vm.sessionXPGained > 0 {
                 sessionXPBadge(vm.sessionXPGained)
             }
 
-            Spacer(minLength: 12)
+            Spacer(minLength: 8)
 
-            VStack(spacing: 10) {
+            VStack(spacing: 8) {
                 Button {
                     OniTanTheme.hapticSuccess()
                     dismiss()
@@ -414,10 +414,10 @@ struct MainView: View {
                         .font(.system(.subheadline, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .frame(maxWidth: .infinity, minHeight: 44)
                         .background(OniTanTheme.correctGradient)
                         .cornerRadius(OniTanTheme.radiusButton)
-                        .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 8, y: 4)
+                        .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 6, y: 3)
                 }
 
                 Button {
@@ -429,7 +429,7 @@ struct MainView: View {
                 }
             }
             .padding(.horizontal, 20)
-            .padding(.bottom, 16)
+            .padding(.bottom, 8)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .combine)
