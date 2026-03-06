@@ -91,14 +91,12 @@ private struct StageCard: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {
-                    Text(manifest?.title ?? "ステージ \(stage.stage)")
+                    Text(manifest?.title ?? "レベル \(stage.stage)")
                         .font(.system(.headline, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(OniTanTheme.textPrimary)
 
-                    if let diff = manifest?.difficulty {
-                        DifficultyBadge(level: diff)
-                    }
+                    DifficultyBadge(stageNumber: stage.stage)
                 }
 
                 subtitleText
@@ -231,7 +229,7 @@ private struct StageCard: View {
     }
 
     private var accessibilityText: String {
-        let base = manifest?.title ?? "ステージ \(stage.stage)"
+        let base = manifest?.title ?? "レベル \(stage.stage)"
         if !isUnlocked { return "\(base) ロック中" }
         if isCleared   { return "\(base) クリア済み 正答率\(Int(accuracy * 100))%" }
         if weakCount > 0 { return "\(base) 苦手\(weakCount)問あり" }
@@ -242,16 +240,30 @@ private struct StageCard: View {
 // MARK: - Difficulty Badge
 
 private struct DifficultyBadge: View {
-    let level: Int
+    let stageNumber: Int
+    private let maxStage: CGFloat = 72
+
+    /// Scale from 8pt (stage 1) to 16pt (stage 72).
+    private var flameSize: CGFloat {
+        let progress = min(CGFloat(stageNumber), maxStage) / maxStage
+        return 8 + progress * 8
+    }
+
+    /// Number of flames: 1 for stages 1-24, 2 for 25-48, 3 for 49-72.
+    private var flameCount: Int {
+        if stageNumber >= 49 { return 3 }
+        if stageNumber >= 25 { return 2 }
+        return 1
+    }
 
     var body: some View {
         HStack(spacing: 2) {
-            ForEach(1...3, id: \.self) { i in
-                Image(systemName: i <= level ? "flame.fill" : "flame")
-                    .font(.system(size: 8))
-                    .foregroundColor(i <= level ? OniTanTheme.accentWeak : OniTanTheme.textTertiary)
+            ForEach(0..<flameCount, id: \.self) { _ in
+                Image(systemName: "flame.fill")
+                    .font(.system(size: flameSize))
+                    .foregroundColor(OniTanTheme.accentWeak)
             }
         }
-        .accessibilityLabel("難易度\(level)")
+        .accessibilityLabel("難易度レベル\(stageNumber)")
     }
 }

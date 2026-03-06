@@ -135,6 +135,9 @@ private struct StageStatCard: View {
     let stage: Stage
     let stats: StageStats?
     let isCleared: Bool
+    @EnvironmentObject var xpRepo: GamificationRepository
+
+    @State private var selectedEntry: WrongAnswerEntry? = nil
 
     var body: some View {
         VStack(spacing: 12) {
@@ -197,14 +200,21 @@ private struct StageStatCard: View {
 
                         FlowLayout(spacing: 8) {
                             ForEach(stats.wrongKanji, id: \.self) { kanji in
-                                Text(kanji)
-                                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 10)
-                                    .padding(.vertical, 6)
-                                    .background(OniTanTheme.wrongGradient)
-                                    .cornerRadius(10)
-                                    .accessibilityLabel("苦手漢字: \(kanji)")
+                                Button {
+                                    if let entry = stats.wrongAnswerLog.last(where: { $0.kanji == kanji }) {
+                                        selectedEntry = entry
+                                    }
+                                } label: {
+                                    Text(kanji)
+                                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 6)
+                                        .background(OniTanTheme.wrongGradient)
+                                        .cornerRadius(10)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .accessibilityLabel("苦手漢字: \(kanji) タップで詳細表示")
                             }
                         }
                     }
@@ -236,6 +246,9 @@ private struct StageStatCard: View {
         .shadow(color: .black.opacity(0.15), radius: 6, y: 3)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityLabel)
+        .sheet(item: $selectedEntry) { entry in
+            WrongAnswerDetailSheet(entry: entry)
+        }
     }
 
     private func miniMetric(value: String, label: String) -> some View {

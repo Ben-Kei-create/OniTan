@@ -3,427 +3,427 @@
     {
       "id": 1,
       "file": "stage1.json",
-      "title": "準1級レベル①",
+      "title": "レベル①",
       "difficulty": 1
     },
     {
       "id": 2,
       "file": "stage2.json",
-      "title": "準1級レベル②",
+      "title": "レベル②",
       "difficulty": 2
     },
     {
       "id": 3,
       "file": "stage3.json",
-      "title": "準1級レベル③",
+      "title": "レベル③",
       "difficulty": 3
     },
     {
       "id": 4,
       "file": "stage4.json",
-      "title": "準1級レベル④",
+      "title": "レベル④",
       "difficulty": 1
     },
     {
       "id": 5,
       "file": "stage5.json",
-      "title": "準1級レベル⑤",
+      "title": "レベル⑤",
       "difficulty": 2
     },
     {
       "id": 6,
       "file": "stage6.json",
-      "title": "準1級レベル⑥",
+      "title": "レベル⑥",
       "difficulty": 3
     },
     {
       "id": 7,
       "file": "stage7.json",
-      "title": "準1級レベル⑦",
+      "title": "レベル⑦",
       "difficulty": 1
     },
     {
       "id": 8,
       "file": "stage8.json",
-      "title": "準1級レベル⑧",
+      "title": "レベル⑧",
       "difficulty": 2
     },
     {
       "id": 9,
       "file": "stage9.json",
-      "title": "準1級レベル⑨",
+      "title": "レベル⑨",
       "difficulty": 3
     },
     {
       "id": 10,
       "file": "stage10.json",
-      "title": "準1級レベル⑩",
+      "title": "レベル⑩",
       "difficulty": 1
     },
     {
       "id": 11,
       "file": "stage11.json",
-      "title": "準1級レベル⑪",
+      "title": "レベル⑪",
       "difficulty": 2
     },
     {
       "id": 12,
       "file": "stage12.json",
-      "title": "準1級レベル⑫",
+      "title": "レベル⑫",
       "difficulty": 3
     },
     {
       "id": 13,
       "file": "stage13.json",
-      "title": "準1級レベル⑬",
+      "title": "レベル⑬",
       "difficulty": 1
     },
     {
       "id": 14,
       "file": "stage14.json",
-      "title": "準1級レベル⑭",
+      "title": "レベル⑭",
       "difficulty": 2
     },
     {
       "id": 15,
       "file": "stage15.json",
-      "title": "準1級レベル⑮",
+      "title": "レベル⑮",
       "difficulty": 3
     },
     {
       "id": 16,
       "file": "stage16.json",
-      "title": "準1級レベル⑯",
+      "title": "レベル⑯",
       "difficulty": 1
     },
     {
       "id": 17,
       "file": "stage17.json",
-      "title": "準1級レベル⑰",
+      "title": "レベル⑰",
       "difficulty": 2
     },
     {
       "id": 18,
       "file": "stage18.json",
-      "title": "準1級レベル⑱",
+      "title": "レベル⑱",
       "difficulty": 3
     },
     {
       "id": 19,
       "file": "stage19.json",
-      "title": "準1級レベル⑲",
+      "title": "レベル⑲",
       "difficulty": 1
     },
     {
       "id": 20,
       "file": "stage20.json",
-      "title": "準1級レベル⑳",
+      "title": "レベル⑳",
       "difficulty": 2
     },
     {
       "id": 21,
       "file": "stage21.json",
-      "title": "準1級レベル㉑",
+      "title": "レベル㉑",
       "difficulty": 3
     },
     {
       "id": 22,
       "file": "stage22.json",
-      "title": "準1級レベル㉒",
+      "title": "レベル㉒",
       "difficulty": 1
     },
     {
       "id": 23,
       "file": "stage23.json",
-      "title": "準1級レベル㉓",
+      "title": "レベル㉓",
       "difficulty": 2
     },
     {
       "id": 24,
       "file": "stage24.json",
-      "title": "準1級レベル㉔",
+      "title": "レベル㉔",
       "difficulty": 3
     },
     {
       "id": 25,
       "file": "stage25.json",
-      "title": "準1級レベル25",
+      "title": "レベル25",
       "difficulty": 1
     },
     {
       "id": 26,
       "file": "stage26.json",
-      "title": "準1級レベル26",
+      "title": "レベル26",
       "difficulty": 2
     },
     {
       "id": 27,
       "file": "stage27.json",
-      "title": "準1級レベル27",
+      "title": "レベル27",
       "difficulty": 3
     },
     {
       "id": 28,
       "file": "stage28.json",
-      "title": "準1級レベル28",
+      "title": "レベル28",
       "difficulty": 1
     },
     {
       "id": 29,
       "file": "stage29.json",
-      "title": "準1級レベル29",
+      "title": "レベル29",
       "difficulty": 2
     },
     {
       "id": 30,
       "file": "stage30.json",
-      "title": "準1級レベル30",
+      "title": "レベル30",
       "difficulty": 3
     },
     {
       "id": 31,
       "file": "stage31.json",
-      "title": "準1級レベル31",
+      "title": "レベル31",
       "difficulty": 1
     },
     {
       "id": 32,
       "file": "stage32.json",
-      "title": "準1級レベル32",
+      "title": "レベル32",
       "difficulty": 2
     },
     {
       "id": 33,
       "file": "stage33.json",
-      "title": "準1級レベル33",
+      "title": "レベル33",
       "difficulty": 3
     },
     {
       "id": 34,
       "file": "stage34.json",
-      "title": "準1級レベル34",
+      "title": "レベル34",
       "difficulty": 1
     },
     {
       "id": 35,
       "file": "stage35.json",
-      "title": "準1級レベル35",
+      "title": "レベル35",
       "difficulty": 2
     },
     {
       "id": 36,
       "file": "stage36.json",
-      "title": "準1級レベル36",
+      "title": "レベル36",
       "difficulty": 3
     },
     {
       "id": 37,
       "file": "stage37.json",
-      "title": "準1級レベル37",
+      "title": "レベル37",
       "difficulty": 1
     },
     {
       "id": 38,
       "file": "stage38.json",
-      "title": "準1級レベル38",
+      "title": "レベル38",
       "difficulty": 2
     },
     {
       "id": 39,
       "file": "stage39.json",
-      "title": "準1級レベル39",
+      "title": "レベル39",
       "difficulty": 3
     },
     {
       "id": 40,
       "file": "stage40.json",
-      "title": "準1級レベル40",
+      "title": "レベル40",
       "difficulty": 1
     },
     {
       "id": 41,
       "file": "stage41.json",
-      "title": "準1級レベル41",
+      "title": "レベル41",
       "difficulty": 2
     },
     {
       "id": 42,
       "file": "stage42.json",
-      "title": "準1級レベル42",
+      "title": "レベル42",
       "difficulty": 3
     },
     {
       "id": 43,
       "file": "stage43.json",
-      "title": "準1級レベル43",
+      "title": "レベル43",
       "difficulty": 1
     },
     {
       "id": 44,
       "file": "stage44.json",
-      "title": "準1級レベル44",
+      "title": "レベル44",
       "difficulty": 2
     },
     {
       "id": 45,
       "file": "stage45.json",
-      "title": "準1級レベル45",
+      "title": "レベル45",
       "difficulty": 3
     },
     {
       "id": 46,
       "file": "stage46.json",
-      "title": "準1級レベル46",
+      "title": "レベル46",
       "difficulty": 1
     },
     {
       "id": 47,
       "file": "stage47.json",
-      "title": "準1級レベル47",
+      "title": "レベル47",
       "difficulty": 2
     },
     {
       "id": 48,
       "file": "stage48.json",
-      "title": "準1級レベル48",
+      "title": "レベル48",
       "difficulty": 3
     },
     {
       "id": 49,
       "file": "stage49.json",
-      "title": "準1級レベル49",
+      "title": "レベル49",
       "difficulty": 1
     },
     {
       "id": 50,
       "file": "stage50.json",
-      "title": "準1級レベル50",
+      "title": "レベル50",
       "difficulty": 2
     },
     {
       "id": 51,
       "file": "stage51.json",
-      "title": "準1級レベル51",
+      "title": "レベル51",
       "difficulty": 3
     },
     {
       "id": 52,
       "file": "stage52.json",
-      "title": "準1級レベル52",
+      "title": "レベル52",
       "difficulty": 1
     },
     {
       "id": 53,
       "file": "stage53.json",
-      "title": "準1級レベル53",
+      "title": "レベル53",
       "difficulty": 2
     },
     {
       "id": 54,
       "file": "stage54.json",
-      "title": "準1級レベル54",
+      "title": "レベル54",
       "difficulty": 3
     },
     {
       "id": 55,
       "file": "stage55.json",
-      "title": "準1級レベル55",
+      "title": "レベル55",
       "difficulty": 1
     },
     {
       "id": 56,
       "file": "stage56.json",
-      "title": "準1級レベル56",
+      "title": "レベル56",
       "difficulty": 2
     },
     {
       "id": 57,
       "file": "stage57.json",
-      "title": "準1級レベル57",
+      "title": "レベル57",
       "difficulty": 3
     },
     {
       "id": 58,
       "file": "stage58.json",
-      "title": "準1級レベル58",
+      "title": "レベル58",
       "difficulty": 1
     },
     {
       "id": 59,
       "file": "stage59.json",
-      "title": "準1級レベル59",
+      "title": "レベル59",
       "difficulty": 2
     },
     {
       "id": 60,
       "file": "stage60.json",
-      "title": "準1級レベル60",
+      "title": "レベル60",
       "difficulty": 3
     },
     {
       "id": 61,
       "file": "stage61.json",
-      "title": "準1級レベル61",
+      "title": "レベル61",
       "difficulty": 1
     },
     {
       "id": 62,
       "file": "stage62.json",
-      "title": "準1級レベル62",
+      "title": "レベル62",
       "difficulty": 2
     },
     {
       "id": 63,
       "file": "stage63.json",
-      "title": "準1級レベル63",
+      "title": "レベル63",
       "difficulty": 3
     },
     {
       "id": 64,
       "file": "stage64.json",
-      "title": "準1級レベル64",
+      "title": "レベル64",
       "difficulty": 1
     },
     {
       "id": 65,
       "file": "stage65.json",
-      "title": "準1級レベル65",
+      "title": "レベル65",
       "difficulty": 2
     },
     {
       "id": 66,
       "file": "stage67.json",
-      "title": "準1級レベル66",
+      "title": "レベル66",
       "difficulty": 1
     },
     {
       "id": 67,
       "file": "stage68.json",
-      "title": "準1級レベル67",
+      "title": "レベル67",
       "difficulty": 2
     },
     {
       "id": 68,
       "file": "stage69.json",
-      "title": "準1級レベル68",
+      "title": "レベル68",
       "difficulty": 3
     },
     {
       "id": 69,
       "file": "stage70.json",
-      "title": "準1級レベル69",
+      "title": "レベル69",
       "difficulty": 1
     },
     {
       "id": 70,
       "file": "stage71.json",
-      "title": "準1級レベル70",
+      "title": "レベル70",
       "difficulty": 2
     },
     {
       "id": 71,
       "file": "stage72.json",
-      "title": "準1級レベル71",
+      "title": "レベル71",
       "difficulty": 3
     }
   ]

@@ -41,8 +41,6 @@ struct QuizModeSelectView: View {
                                 statsRepo: statsRepo
                             )
                         }
-
-                        srsBadge
                     }
                     .padding(.horizontal, 20)
                     .padding(.vertical, 20)
@@ -79,50 +77,6 @@ struct QuizModeSelectView: View {
         .background(OniTanTheme.cardBackground.opacity(0.5))
     }
 
-    // MARK: SRS Badge
-
-    private var srsBadge: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "brain.head.profile")
-                .font(.system(size: 20))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .frame(width: 44)
-
-            VStack(alignment: .leading, spacing: 3) {
-                HStack(spacing: 6) {
-                    Text("SRS復習")
-                        .font(.system(.headline, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundColor(OniTanTheme.textTertiary)
-
-                    Text("Coming Soon")
-                        .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(OniTanTheme.textTertiary)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(OniTanTheme.cardBackground)
-                        .cornerRadius(6)
-                }
-
-                Text("間隔反復アルゴリズムによる最適復習")
-                    .font(.system(.caption, design: .rounded))
-                    .foregroundColor(OniTanTheme.textTertiary.opacity(0.6))
-            }
-
-            Spacer()
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 14)
-        .background(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground.opacity(0.4))
-                .overlay(
-                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(OniTanTheme.cardBorder.opacity(0.5), lineWidth: 1)
-                )
-        )
-        .accessibilityLabel("SRS復習モード（準備中）")
-    }
 }
 
 // MARK: - Mode Card

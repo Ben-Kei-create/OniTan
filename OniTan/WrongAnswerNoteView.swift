@@ -6,24 +6,10 @@ struct WrongAnswerNoteView: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
 
-    @State private var selectedFilter: FilterMode = .all
     @State private var selectedEntry: WrongAnswerEntry? = nil
 
-    enum FilterMode: String, CaseIterable {
-        case all    = "全て"
-        case stage1 = "S1"
-        case stage2 = "S2"
-        case stage3 = "S3"
-    }
-
     private var filteredEntries: [WrongAnswerEntry] {
-        let recent = statsRepo.recentWrongAnswers(limit: 200)
-        switch selectedFilter {
-        case .all:    return recent
-        case .stage1: return recent.filter { $0.stageNumber == 1 }
-        case .stage2: return recent.filter { $0.stageNumber == 2 }
-        case .stage3: return recent.filter { $0.stageNumber == 3 }
-        }
+        statsRepo.recentWrongAnswers(limit: 200)
     }
 
     var body: some View {
@@ -32,7 +18,7 @@ struct WrongAnswerNoteView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                filterBar
+                entryCountBar
 
                 if filteredEntries.isEmpty {
                     emptyState
@@ -50,36 +36,11 @@ struct WrongAnswerNoteView: View {
         }
     }
 
-    // MARK: Filter Bar
+    // MARK: Entry Count Bar
 
-    private var filterBar: some View {
-        HStack(spacing: 8) {
-            ForEach(FilterMode.allCases, id: \.self) { filter in
-                Button {
-                    withAnimation(.easeInOut(duration: 0.15)) {
-                        selectedFilter = filter
-                    }
-                } label: {
-                    Text(filter.rawValue)
-                        .font(.system(.caption, design: .rounded))
-                        .fontWeight(selectedFilter == filter ? .bold : .regular)
-                        .foregroundColor(selectedFilter == filter ? .white : OniTanTheme.textTertiary)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 7)
-                        .background(
-                            Capsule()
-                                .fill(selectedFilter == filter
-                                      ? OniTanTheme.accentWeak
-                                      : OniTanTheme.cardBackground)
-                        )
-                }
-                .buttonStyle(PlainButtonStyle())
-                .accessibilityLabel("\(filter.rawValue)フィルター")
-                .accessibilityAddTraits(selectedFilter == filter ? .isSelected : [])
-            }
-
+    private var entryCountBar: some View {
+        HStack {
             Spacer()
-
             Text("\(filteredEntries.count) 件")
                 .font(.system(.caption2, design: .rounded))
                 .foregroundColor(OniTanTheme.textTertiary)

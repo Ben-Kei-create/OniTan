@@ -22,12 +22,15 @@ final class StreakChallengeViewModel: ObservableObject {
     @Published private(set) var sessionXPGained: Int = 0
     @Published private(set) var bestStreak: Int
     @Published private(set) var isNewBest: Bool = false
+    @Published private(set) var timerProgress: Double = 0  // 0→1, game over at 1
 
     // MARK: Private
 
     private let xpRepo: GamificationRepository?
     private var questionPool: [Question]
     private var poolIndex: Int = 0
+    private var timerTask: Task<Void, Never>?
+    static let timeLimit: Double = 5.0  // seconds per question
 
     static let bestStreakKey = "streakChallenge_bestStreak_v1"
 
@@ -40,10 +43,34 @@ final class StreakChallengeViewModel: ObservableObject {
         self.currentQuestion = questionPool[0]
     }
 
+    func startTimer() {
+        stopTimer()
+        timerProgress = 0
+        timerTask = Task { @MainActor [weak self] in
+            let tickInterval: Double = 0.05  // 50ms ticks
+            let increment = tickInterval / Self.timeLimit
+            while let self = self, !Task.isCancelled, self.phase == .answering {
+                try? await Task.sleep(nanoseconds: UInt64(tickInterval * 1_000_000_000))
+                guard !Task.isCancelled, self.phase == .answering else { break }
+                self.timerProgress = min(self.timerProgress + increment, 1.0)
+                if self.timerProgress >= 1.0 {
+                    self.phase = .gameOver
+                    break
+                }
+            }
+        }
+    }
+
+    func stopTimer() {
+        timerTask?.cancel()
+        timerTask = nil
+    }
+
     // MARK: - Actions
 
     func answer(selected: String) {
         guard phase == .answering else { return }
+        stopTimer()
 
         let isCorrect = selected == currentQuestion.answer
         lastAnswerResult = isCorrect ? .correct : .wrong
@@ -75,6 +102,7 @@ final class StreakChallengeViewModel: ObservableObject {
         lastAnswerResult = .none
         advanceQuestion()
         phase = .answering
+        startTimer()
     }
 
     func restart() {
@@ -86,6 +114,7 @@ final class StreakChallengeViewModel: ObservableObject {
         isNewBest = false
         currentQuestion = questionPool[0]
         phase = .answering
+        startTimer()
     }
 
     // MARK: - Private
@@ -131,6 +160,11 @@ struct StreakChallengeView: View {
                         VStack(spacing: 0) {
                             topBar(scale: scale)
 
+                            // Timer bar
+                            if vm.phase == .answering {
+                                timerBar(scale: scale)
+                            }
+
                             switch vm.phase {
                             case .gameOver:
                                 gameOverView
@@ -167,6 +201,38 @@ struct StreakChallengeView: View {
         .navigationTitle("連続鬼たん")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .onAppear { vm.startTimer() }
+        .onDisappear { vm.stopTimer() }
+    }
+
+    // MARK: - Timer Bar
+
+    private func timerBar(scale: CGFloat) -> some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 3)
+                    .fill(OniTanTheme.cardBorder)
+                    .frame(height: 6)
+
+                RoundedRectangle(cornerRadius: 3)
+                    .fill(timerGradient)
+                    .frame(width: geo.size.width * (1.0 - vm.timerProgress), height: 6)
+                    .animation(.linear(duration: 0.05), value: vm.timerProgress)
+            }
+        }
+        .frame(height: 6)
+        .padding(.horizontal, scaled(20, by: scale, min: 14))
+        .padding(.top, scaled(4, by: scale, min: 2))
+        .accessibilityLabel("残り時間")
+    }
+
+    private var timerGradient: LinearGradient {
+        if vm.timerProgress > 0.7 {
+            return LinearGradient(colors: [OniTanTheme.accentWrong, Color.red], startPoint: .leading, endPoint: .trailing)
+        } else if vm.timerProgress > 0.4 {
+            return LinearGradient(colors: [OniTanTheme.accentWeak, Color.orange], startPoint: .leading, endPoint: .trailing)
+        }
+        return LinearGradient(colors: [OniTanTheme.accentCorrect, Color.green], startPoint: .leading, endPoint: .trailing)
     }
 
     // MARK: - Top Bar
