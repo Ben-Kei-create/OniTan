@@ -356,9 +356,7 @@ struct MainView: View {
     // MARK: - Stage Cleared
 
     private var stageClearedView: some View {
-        VStack(spacing: 0) {
-            Spacer(minLength: 4)
-
+        VStack(spacing: 16) {
             ZStack {
                 Circle()
                     .fill(OniTanTheme.accentCorrect.opacity(0.15))
@@ -370,8 +368,6 @@ struct MainView: View {
                     .foregroundStyle(OniTanTheme.goldGradient)
                     .shadow(color: .yellow.opacity(0.6), radius: 10)
             }
-
-            Spacer(minLength: 8)
 
             VStack(spacing: 6) {
                 Text(vm.clearTitle)
@@ -386,8 +382,6 @@ struct MainView: View {
                     .foregroundColor(OniTanTheme.textSecondary)
             }
 
-            Spacer(minLength: 8)
-
             ProgressRingView(
                 progress: 1.0,
                 lineWidth: 8,
@@ -397,13 +391,11 @@ struct MainView: View {
             )
             .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 10)
 
-            Spacer(minLength: 6)
-
             if vm.sessionXPGained > 0 {
                 sessionXPBadge(vm.sessionXPGained)
             }
 
-            Spacer(minLength: 8)
+            Spacer()
 
             VStack(spacing: 8) {
                 Button {
