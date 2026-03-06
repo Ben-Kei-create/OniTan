@@ -269,6 +269,18 @@ struct HomeView: View {
             )
 
             HomeMenuButton(
+                title: "連続鬼たん",
+                icon: "flame.fill",
+                gradient: LinearGradient(
+                    colors: [Color(red: 0.85, green: 0.15, blue: 0.15), Color(red: 0.55, green: 0.05, blue: 0.05)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
+                compact: isCompact,
+                destination: StreakChallengeView(xpRepo: xpRepo)
+            )
+
+            HomeMenuButton(
                 title: "誤答ノート",
                 icon: "exclamationmark.triangle.fill",
                 gradient: LinearGradient(

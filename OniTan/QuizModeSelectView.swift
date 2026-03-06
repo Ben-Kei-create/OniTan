@@ -187,7 +187,8 @@ private struct ModeCard: View {
                     Text(mode.description)
                         .font(.system(.caption, design: .rounded))
                         .foregroundColor(OniTanTheme.textTertiary)
-                        .lineLimit(2)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
 
                 Spacer()
