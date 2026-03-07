@@ -1,14 +1,12 @@
 import Foundation
 
 // MARK: - Quiz Mode
-// Defines available learning modes. Designed for future SRS extension.
 
 enum QuizMode: String, CaseIterable, Identifiable, Codable {
     case normal      // 全問通常プレイ（誤答は復習キューへ）
     case quick10     // ランダム10問クイックモード
     case exam30      // ランダム30問模試モード（誤答キュー無し）
     case weakFocus   // 苦手問題集中モード
-    case srsReview   // 将来SRS実装用プレースホルダー
 
     var id: String { rawValue }
 
@@ -18,7 +16,6 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
         case .quick10:   return "クイック10問"
         case .exam30:    return "模試30問"
         case .weakFocus: return "苦手集中"
-        case .srsReview: return "SRS復習"
         }
     }
 
@@ -28,7 +25,6 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
         case .quick10:   return "ランダムな10問を素早く解く短時間モード。"
         case .exam30:    return "ランダム30問。誤答の再出題なし。実力をテストします。"
         case .weakFocus: return "苦手な問題だけを集中的に練習します。"
-        case .srsReview: return "Coming soon: 間隔反復アルゴリズムによる復習。"
         }
     }
 
@@ -38,7 +34,6 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
         case .quick10:   return "bolt.fill"
         case .exam30:    return "doc.text.fill"
         case .weakFocus: return "exclamationmark.triangle.fill"
-        case .srsReview: return "brain.head.profile"
         }
     }
 
@@ -46,7 +41,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
     var usesReviewQueue: Bool {
         switch self {
         case .normal, .weakFocus: return true
-        case .quick10, .exam30, .srsReview: return false
+        case .quick10, .exam30:   return false
         }
     }
 
@@ -63,16 +58,12 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
     var shufflesQuestions: Bool {
         switch self {
         case .normal, .weakFocus: return false
-        case .quick10, .exam30, .srsReview: return true
+        case .quick10, .exam30:   return true
         }
     }
 
     var isAvailableWithoutWeakPoints: Bool {
         self != .weakFocus
-    }
-
-    var isSRSPlaceholder: Bool {
-        self == .srsReview
     }
 }
 

@@ -43,8 +43,7 @@ final class QuizSessionViewModel: ObservableObject {
 
     /// Human-readable header shown in the quiz top bar.
     var displayTitle: String {
-        if mode == .srsReview { return "SRS復習" }
-        return isToday ? "今日の10問" : "ステージ \(stage.stage)"
+        isToday ? "今日の10問" : "ステージ \(stage.stage)"
     }
 
     var totalGoal: Int { sessionQuestions.count }
@@ -152,7 +151,7 @@ final class QuizSessionViewModel: ObservableObject {
                     return
                 }
             } else {
-                // quick10/exam30/srsReview: count total answered (correct + wrong)
+                // quick10/exam30: count total answered (correct + wrong)
                 clearedCount += 1
             }
             phase = .showingExplanation

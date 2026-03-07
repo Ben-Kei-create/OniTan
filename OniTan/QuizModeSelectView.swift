@@ -16,7 +16,6 @@ struct QuizModeSelectView: View {
 
     private var availableModes: [QuizMode] {
         QuizMode.allCases.filter { mode in
-            guard !mode.isSRSPlaceholder else { return false }
             if mode == .weakFocus { return weakCount > 0 }
             return true
         }
