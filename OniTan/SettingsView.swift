@@ -139,10 +139,14 @@ struct SettingsView: View {
 
                 HStack(spacing: 10) {
                     ForEach(AppTheme.allCases) { theme in
+                        let locked = theme.unlockLevel.map { xpRepo.level < $0 } ?? false
                         ThemePickerCard(
                             theme: theme,
-                            isSelected: themeManager.theme == theme
+                            isSelected: themeManager.theme == theme,
+                            isLocked: locked,
+                            unlockLevel: theme.unlockLevel
                         ) {
+                            guard !locked else { return }
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 themeManager.theme = theme
                             }
@@ -302,6 +306,8 @@ struct SettingsView: View {
 private struct ThemePickerCard: View {
     let theme: AppTheme
     let isSelected: Bool
+    let isLocked: Bool
+    let unlockLevel: Int?
     let onTap: () -> Void
 
     private var palette: ThemePalette {
@@ -316,26 +322,42 @@ private struct ThemePickerCard: View {
         Button(action: onTap) {
             VStack(spacing: 6) {
                 // Color swatch
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(
-                        LinearGradient(
-                            colors: palette.backgroundGradientColors,
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(
+                            LinearGradient(
+                                colors: palette.backgroundGradientColors,
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
                         )
-                    )
-                    .frame(height: 36)
-                    .overlay(
-                        Circle()
-                            .fill(palette.accentPrimary)
-                            .frame(width: 14, height: 14)
-                    )
+                        .frame(height: 36)
+                        .overlay(
+                            Circle()
+                                .fill(palette.accentPrimary)
+                                .frame(width: 14, height: 14)
+                        )
+                        .opacity(isLocked ? 0.35 : 1.0)
 
-                Text(theme.displayName)
-                    .font(.system(size: 10, weight: .semibold, design: .rounded))
-                    .foregroundColor(OniTanTheme.textSecondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                    if isLocked {
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                }
+
+                if isLocked, let level = unlockLevel {
+                    Text("Lv.\(level)")
+                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                        .lineLimit(1)
+                } else {
+                    Text(theme.displayName)
+                        .font(.system(size: 10, weight: .semibold, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
             }
             .padding(8)
             .background(
@@ -354,7 +376,9 @@ private struct ThemePickerCard: View {
         }
         .buttonStyle(PlainButtonStyle())
         .frame(maxWidth: .infinity)
-        .accessibilityLabel("\(theme.displayName)テーマ")
+        .accessibilityLabel(isLocked
+            ? "\(theme.displayName)テーマ レベル\(unlockLevel ?? 0)で解放"
+            : "\(theme.displayName)テーマ")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }

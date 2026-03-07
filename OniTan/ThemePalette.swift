@@ -17,6 +17,15 @@ enum AppTheme: String, CaseIterable, Identifiable {
         }
     }
 
+    /// XP level required to unlock this theme. nil = always available.
+    var unlockLevel: Int? {
+        switch self {
+        case .current: return nil
+        case .cool:    return 10
+        case .cute:    return 20
+        }
+    }
+
     var preferredColorScheme: ColorScheme {
         switch self {
         case .current, .cool: return .dark
