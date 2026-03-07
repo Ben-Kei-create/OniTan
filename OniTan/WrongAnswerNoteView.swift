@@ -105,6 +105,10 @@ private struct WrongAnswerRow: View {
         return formatter.localizedString(for: entry.date, relativeTo: Date())
     }
 
+    private var stageBadgeText: String {
+        entry.stageNumber < 0 ? "復習" : "S\(entry.stageNumber)"
+    }
+
     var body: some View {
         HStack(spacing: 14) {
             Text(entry.kanji)
@@ -118,7 +122,7 @@ private struct WrongAnswerRow: View {
 
             VStack(alignment: .leading, spacing: 5) {
                 HStack(spacing: 6) {
-                    Text("S\(entry.stageNumber)")
+                    Text(stageBadgeText)
                         .font(.system(size: 11, weight: .bold))
                         .foregroundColor(OniTanTheme.textTertiary)
                         .padding(.horizontal, 6)
@@ -186,7 +190,7 @@ private struct WrongAnswerRow: View {
                 )
         )
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("漢字: \(entry.kanji) 正解: \(entry.correctAnswer) ステージ\(entry.stageNumber) \(relativeDate)")
+        .accessibilityLabel("漢字: \(entry.kanji) 正解: \(entry.correctAnswer) \(stageBadgeText) \(relativeDate)")
     }
 }
 
@@ -197,7 +201,7 @@ struct WrongAnswerDetailSheet: View {
     @Environment(\.dismiss) private var dismiss
 
     private var fullQuestion: Question? {
-        questions.first { $0.kanji == entry.kanji }
+        allQuestions.first { $0.kanji == entry.kanji }
     }
 
     var body: some View {

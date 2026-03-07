@@ -6,6 +6,7 @@ struct SettingsView: View {
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
 
     // Unified alert state
@@ -161,6 +162,33 @@ struct SettingsView: View {
                     }
                 }
                 .accessibilityLabel("テーマの選択")
+
+                Divider()
+                    .background(OniTanTheme.cardBorder)
+                    .padding(.vertical, 2)
+
+                Text("プレイ画面フォント")
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .accessibilityHidden(true)
+
+                HStack(spacing: 10) {
+                    ForEach(PlayFontStyle.allCases) { fontStyle in
+                        let locked = fontStyle.unlockLevel.map { xpRepo.level < $0 } ?? false
+                        PlayFontPickerCard(
+                            fontStyle: fontStyle,
+                            isSelected: playFontManager.fontStyle == fontStyle,
+                            isLocked: locked,
+                            unlockLevel: fontStyle.unlockLevel
+                        ) {
+                            guard !locked else { return }
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                playFontManager.fontStyle = fontStyle
+                            }
+                        }
+                    }
+                }
+                .accessibilityLabel("プレイ画面フォントの選択")
             }
         }
     }
@@ -249,7 +277,10 @@ struct SettingsView: View {
                 infoRow(label: "ビルド", value: appBuild)
                 infoRow(label: "対象範囲", value: "漢字検定準1級")
                 infoRow(label: "収録ステージ", value: "\(quizData.stages.count) ステージ")
-                infoRow(label: "収録問題数", value: "\(questions.count) 問")
+                infoRow(label: "準1級問題数", value: "\(questions.count) 問")
+                if !reviewQuestions.isEmpty {
+                    infoRow(label: "おさらい問題数", value: "\(reviewQuestions.count) 問")
+                }
             }
         }
     }
@@ -391,6 +422,79 @@ private struct ThemePickerCard: View {
         .accessibilityLabel(isLocked
             ? "\(theme.displayName)テーマ レベル\(unlockLevel ?? 0)で解放"
             : "\(theme.displayName)テーマ")
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+}
+
+private struct PlayFontPickerCard: View {
+    let fontStyle: PlayFontStyle
+    let isSelected: Bool
+    let isLocked: Bool
+    let unlockLevel: Int?
+    let onTap: () -> Void
+
+    var body: some View {
+        Button(action: onTap) {
+            VStack(spacing: 6) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(OniTanTheme.cardBackgroundPressed)
+                        .frame(height: 44)
+                        .overlay(
+                            Text(fontStyle.previewText)
+                                .font(fontStyle.font(size: 26, weight: .black))
+                                .foregroundColor(OniTanTheme.textPrimary)
+                                .opacity(isLocked ? 0.45 : 1.0)
+                        )
+
+                    if isLocked {
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                }
+
+                if isLocked, let level = unlockLevel {
+                    Text("Lv.\(level)")
+                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                        .lineLimit(1)
+                } else {
+                    VStack(spacing: 1) {
+                        Text(fontStyle.displayName)
+                            .font(.system(size: 10, weight: .semibold, design: .rounded))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+
+                        Text(fontStyle.subtitle)
+                            .font(.system(size: 9, weight: .regular, design: .rounded))
+                            .foregroundColor(OniTanTheme.textTertiary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                    }
+                }
+            }
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(OniTanTheme.cardBackground)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(
+                                isSelected ? OniTanTheme.accentPrimary : OniTanTheme.cardBorder,
+                                lineWidth: isSelected ? 2 : 1
+                            )
+                    )
+            )
+            .scaleEffect(isSelected ? 1.0 : 0.96)
+            .animation(.easeInOut(duration: 0.15), value: isSelected)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .frame(maxWidth: .infinity)
+        .accessibilityLabel(isLocked
+            ? "\(fontStyle.displayName)フォント レベル\(unlockLevel ?? 0)で解放"
+            : "\(fontStyle.displayName)フォント")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }

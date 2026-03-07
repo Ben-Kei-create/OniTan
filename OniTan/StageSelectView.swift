@@ -7,6 +7,7 @@ struct StageSelectView: View {
 
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
     private let stageManifest = (try? safeLoad("stages.json") as StageManifest)
+    private var totalStages: Int { max(stages.map(\.stage).max() ?? stages.count, 1) }
 
     var body: some View {
         ZStack {
@@ -19,6 +20,7 @@ struct StageSelectView: View {
                         StageCard(
                             stage: stage,
                             manifest: stageManifest?.stages.first { $0.id == stage.stage },
+                            totalStages: totalStages,
                             appState: appState,
                             statsRepo: statsRepo
                         )
@@ -40,6 +42,7 @@ struct StageSelectView: View {
 private struct StageCard: View {
     let stage: Stage
     let manifest: StageEntry?
+    let totalStages: Int
     @ObservedObject var appState: AppState
     @ObservedObject var statsRepo: StudyStatsRepository
 
@@ -96,7 +99,7 @@ private struct StageCard: View {
                         .fontWeight(.bold)
                         .foregroundColor(OniTanTheme.textPrimary)
 
-                    DifficultyBadge(stageNumber: stage.stage)
+                    DifficultyBadge(stageNumber: stage.stage, totalStages: totalStages)
                 }
 
                 subtitleText
@@ -241,18 +244,22 @@ private struct StageCard: View {
 
 private struct DifficultyBadge: View {
     let stageNumber: Int
-    private let maxStage: CGFloat = 72
+    let totalStages: Int
 
-    /// Scale from 8pt (stage 1) to 16pt (stage 72).
+    private var maxStage: CGFloat { CGFloat(max(totalStages, 1)) }
+    private var firstThreshold: Int { max(1, Int(ceil(Double(totalStages) / 3.0))) }
+    private var secondThreshold: Int { max(firstThreshold + 1, Int(ceil(Double(totalStages) * 2.0 / 3.0))) }
+
+    /// Scale from 8pt (stage 1) to 16pt (final stage).
     private var flameSize: CGFloat {
         let progress = min(CGFloat(stageNumber), maxStage) / maxStage
         return 8 + progress * 8
     }
 
-    /// Number of flames: 1 for stages 1-24, 2 for 25-48, 3 for 49-72.
+    /// Number of flames: 1 for the first third, 2 for the middle third, 3 for the final third.
     private var flameCount: Int {
-        if stageNumber >= 49 { return 3 }
-        if stageNumber >= 25 { return 2 }
+        if stageNumber > secondThreshold { return 3 }
+        if stageNumber > firstThreshold { return 2 }
         return 1
     }
 

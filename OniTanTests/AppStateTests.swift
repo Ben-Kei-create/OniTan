@@ -28,8 +28,19 @@ final class AppStateTests: XCTestCase {
         let saved: Set<Int> = [1, 3]
         let encoded = try JSONEncoder().encode(saved)
         store.set(encoded, forKey: "clearedStages")
+        store.set(try JSONEncoder().encode(quizContentVersion), forKey: "clearedStagesContentVersion")
         let newState = AppState(store: store)
         XCTAssertEqual(newState.clearedStages, saved)
+    }
+
+    func testInitialization_resetsWhenContentVersionChanges() throws {
+        let saved: Set<Int> = [1, 3]
+        store.set(try JSONEncoder().encode(saved), forKey: "clearedStages")
+        store.set(try JSONEncoder().encode("old-version"), forKey: "clearedStagesContentVersion")
+
+        let newState = AppState(store: store)
+
+        XCTAssertTrue(newState.clearedStages.isEmpty)
     }
 
     // MARK: - markStageCleared

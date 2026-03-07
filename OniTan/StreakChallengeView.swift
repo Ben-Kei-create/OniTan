@@ -141,6 +141,7 @@ final class StreakChallengeViewModel: ObservableObject {
 struct StreakChallengeView: View {
     @StateObject private var vm: StreakChallengeViewModel
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
 
     init(xpRepo: GamificationRepository? = nil) {
@@ -185,6 +186,7 @@ struct StreakChallengeView: View {
                             ) {
                                 vm.proceedAfterExplanation()
                             }
+                            .environmentObject(playFontManager)
                             .transition(.opacity)
                             .animation(.easeInOut(duration: 0.2), value: vm.phase)
                             .zIndex(10)
@@ -256,13 +258,13 @@ struct StreakChallengeView: View {
                     Text("🔥")
                         .font(.system(size: scaled(18, by: scale, min: 14)))
                     Text("\(vm.consecutiveCorrect)")
-                        .font(.system(size: scaled(30, by: scale, min: 24), weight: .black, design: .rounded))
+                        .font(playFont(scaled(30, by: scale, min: 24), weight: .black))
                         .foregroundColor(vm.consecutiveCorrect >= 10 ? OniTanTheme.accentWeak : OniTanTheme.textPrimary)
                         .contentTransition(.numericText())
                         .animation(.spring(response: 0.3, dampingFraction: 0.6), value: vm.consecutiveCorrect)
                 }
                 Text("連続正解")
-                    .font(.system(size: scaled(10, by: scale, min: 9), weight: .semibold, design: .rounded))
+                    .font(playFont(scaled(10, by: scale, min: 9), weight: .semibold))
                     .foregroundColor(OniTanTheme.textTertiary)
             }
 
@@ -275,11 +277,11 @@ struct StreakChallengeView: View {
                         .font(.system(size: scaled(11, by: scale, min: 10)))
                         .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
                     Text("\(vm.bestStreak)")
-                        .font(.system(size: scaled(16, by: scale, min: 13), weight: .black, design: .rounded))
+                        .font(playFont(scaled(16, by: scale, min: 13), weight: .black))
                         .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
                 }
                 Text("ベスト")
-                    .font(.system(size: scaled(10, by: scale, min: 9), weight: .regular, design: .rounded))
+                    .font(playFont(scaled(10, by: scale, min: 9), weight: .regular))
                     .foregroundColor(OniTanTheme.textTertiary)
             }
         }
@@ -297,7 +299,7 @@ struct StreakChallengeView: View {
                     .font(.system(size: scaled(11, by: scale, min: 10)))
                     .foregroundColor(OniTanTheme.accentWeak)
                 Text("全ステージからランダム出題 — 1問でもミスでゲームオーバー！")
-                    .font(.system(size: scaled(11, by: scale, min: 10), design: .rounded))
+                    .font(playFont(scaled(11, by: scale, min: 10), weight: .regular))
                     .foregroundColor(OniTanTheme.textTertiary)
                     .lineLimit(2)
                 Spacer()
@@ -341,7 +343,7 @@ struct StreakChallengeView: View {
             }
 
             Text(vm.currentQuestion.kanji)
-                .font(.system(size: fontSize, weight: .black, design: .rounded))
+                .font(playFont(fontSize, weight: .black))
                 .foregroundColor(OniTanTheme.textPrimary)
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
@@ -369,6 +371,7 @@ struct StreakChallengeView: View {
                 StreakChoiceCard(
                     text: choice,
                     scale: scale,
+                    fontStyle: playFontManager.fontStyle,
                     onTap: {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                             vm.answer(selected: choice)
@@ -399,15 +402,15 @@ struct StreakChallengeView: View {
 
                 VStack(spacing: 6) {
                     Text("ゲームオーバー！")
-                        .font(.system(size: 26, weight: .black, design: .rounded))
+                        .font(playFont(26, weight: .black))
                         .foregroundColor(OniTanTheme.textPrimary)
 
                     VStack(spacing: 2) {
                         Text("\(vm.consecutiveCorrect)")
-                            .font(.system(size: 72, weight: .black, design: .rounded))
+                            .font(playFont(72, weight: .black))
                             .foregroundStyle(OniTanTheme.primaryGradient)
                         Text("連続正解")
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                            .font(playFont(16, weight: .semibold))
                             .foregroundColor(OniTanTheme.textSecondary)
                     }
 
@@ -416,7 +419,7 @@ struct StreakChallengeView: View {
                             Image(systemName: "crown.fill")
                                 .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
                             Text("新記録達成！")
-                                .font(.system(.headline, design: .rounded))
+                                .font(playFont(17, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
                         }
@@ -429,7 +432,7 @@ struct StreakChallengeView: View {
                         )
                     } else {
                         Text("ベスト: \(vm.bestStreak) 連続")
-                            .font(.system(.subheadline, design: .rounded))
+                            .font(playFont(15, weight: .regular))
                             .foregroundColor(OniTanTheme.textTertiary)
                     }
                 }
@@ -440,7 +443,7 @@ struct StreakChallengeView: View {
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
                         Text("+\(vm.sessionXPGained) XP 獲得！")
-                            .font(.system(.subheadline, design: .rounded))
+                            .font(playFont(15, weight: .bold))
                             .fontWeight(.bold)
                             .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
                     }
@@ -462,7 +465,7 @@ struct StreakChallengeView: View {
                             Image(systemName: "arrow.counterclockwise")
                             Text("もう一度挑戦！")
                         }
-                        .font(.system(.headline, design: .rounded))
+                        .font(playFont(17, weight: .bold))
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, minHeight: 50)
@@ -481,7 +484,7 @@ struct StreakChallengeView: View {
                         dismiss()
                     } label: {
                         Text("ホームへ戻る")
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .font(playFont(14, weight: .semibold))
                             .foregroundColor(OniTanTheme.textTertiary)
                     }
                 }
@@ -505,6 +508,10 @@ struct StreakChallengeView: View {
     private func scaled(_ value: CGFloat, by scale: CGFloat, min minValue: CGFloat) -> CGFloat {
         max(minValue, value * scale)
     }
+
+    private func playFont(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
+        playFontManager.font(size: size, weight: weight)
+    }
 }
 
 // MARK: - Streak Choice Card
@@ -512,6 +519,7 @@ struct StreakChallengeView: View {
 private struct StreakChoiceCard: View {
     let text: String
     let scale: CGFloat
+    let fontStyle: PlayFontStyle
     let onTap: () -> Void
 
     @State private var isPressed = false
@@ -525,7 +533,7 @@ private struct StreakChoiceCard: View {
             onTap()
         }) {
             Text(text)
-                .font(.system(size: max(18, 24 * scale), weight: .bold, design: .rounded))
+                .font(fontStyle.font(size: max(18, 24 * scale), weight: .bold))
                 .foregroundColor(OniTanTheme.textPrimary)
                 .minimumScaleFactor(0.6)
                 .lineLimit(2)
@@ -564,6 +572,7 @@ struct StreakExplanationView: View {
     let streak: Int
     let onDismiss: () -> Void
 
+    @EnvironmentObject private var playFontManager: PlayFontManager
     @State private var appear = false
 
     var body: some View {
@@ -575,20 +584,20 @@ struct StreakExplanationView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
                     Text(question.kanji)
-                        .font(.system(size: 70, weight: .black, design: .rounded))
+                        .font(playFontManager.font(size: 70, weight: .black))
                         .foregroundStyle(OniTanTheme.primaryGradient)
 
                     HStack(spacing: 6) {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(OniTanTheme.accentCorrect)
                         Text("正解！")
-                            .font(.system(.headline, design: .rounded))
+                            .font(playFontManager.font(size: 17, weight: .bold))
                             .fontWeight(.bold)
                             .foregroundColor(OniTanTheme.accentCorrect)
 
                         if streak >= 3 {
                             Text("🔥 \(streak)連続！")
-                                .font(.system(.headline, design: .rounded))
+                                .font(playFontManager.font(size: 17, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.accentWeak)
                         }
@@ -602,7 +611,7 @@ struct StreakExplanationView: View {
 
                 ScrollView {
                     Text(question.explain)
-                        .font(.system(.body, design: .rounded))
+                        .font(playFontManager.font(size: 17))
                         .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
                         .lineSpacing(6)
                         .padding(20)
@@ -619,7 +628,7 @@ struct StreakExplanationView: View {
                         Text("次の問題へ")
                         Image(systemName: "arrow.right")
                     }
-                    .font(.system(.headline, design: .rounded))
+                    .font(playFontManager.font(size: 17, weight: .bold))
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity, minHeight: 52)

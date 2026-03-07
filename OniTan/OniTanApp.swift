@@ -6,7 +6,9 @@ struct OniTanApp: App {
     @StateObject private var statsRepo = StudyStatsRepository()
     @StateObject private var streakRepo = StreakRepository()
     @StateObject private var xpRepo = GamificationRepository()
+    @StateObject private var favoriteRepo = FavoriteKanjiRepository()
     @StateObject private var themeManager = ThemeManager.shared
+    @StateObject private var playFontManager = PlayFontManager.shared
     @StateObject private var donationManager = DonationManager()
 
     init() {
@@ -25,7 +27,9 @@ struct OniTanApp: App {
                 .environmentObject(statsRepo)
                 .environmentObject(streakRepo)
                 .environmentObject(xpRepo)
+                .environmentObject(favoriteRepo)
                 .environmentObject(themeManager)
+                .environmentObject(playFontManager)
                 .environmentObject(donationManager)
                 .preferredColorScheme(themeManager.preferredColorScheme)
         }

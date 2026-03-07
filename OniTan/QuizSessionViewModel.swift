@@ -37,13 +37,21 @@ final class QuizSessionViewModel: ObservableObject {
     let stage: Stage
     let mode: QuizMode
     let clearTitle: String
+    let sessionTitle: String?
 
     /// Whether this is the cross-stage "今日の10問" session (stageNumber == 0).
     var isToday: Bool { stage.stage == 0 }
+    var isSpecialSession: Bool { stage.stage <= 0 }
 
     /// Human-readable header shown in the quiz top bar.
     var displayTitle: String {
-        isToday ? "今日の10問" : "ステージ \(stage.stage)"
+        if isToday {
+            return sessionTitle ?? "今日の10問"
+        }
+        if let sessionTitle {
+            return sessionTitle
+        }
+        return "ステージ \(stage.stage)"
     }
 
     var totalGoal: Int { sessionQuestions.count }
@@ -77,7 +85,8 @@ final class QuizSessionViewModel: ObservableObject {
         streakRepo: StreakRepository? = nil,
         xpRepo: GamificationRepository? = nil,
         mode: QuizMode = .normal,
-        clearTitle: String? = nil
+        clearTitle: String? = nil,
+        sessionTitle: String? = nil
     ) {
         self.stage = stage
         self.appState = appState
@@ -85,7 +94,12 @@ final class QuizSessionViewModel: ObservableObject {
         self.streakRepo = streakRepo
         self.xpRepo = xpRepo
         self.mode = mode
-        self.clearTitle = clearTitle ?? Self.defaultClearTitle(for: mode, stageNumber: stage.stage)
+        self.sessionTitle = sessionTitle
+        self.clearTitle = clearTitle ?? Self.defaultClearTitle(
+            for: mode,
+            stageNumber: stage.stage,
+            sessionTitle: sessionTitle
+        )
 
         let weakKanji = Set(statsRepo.allWeakKanji(forStage: stage.stage))
         // For today-session (stage 0) the pool is pre-built; don't re-filter by mode
@@ -227,7 +241,7 @@ final class QuizSessionViewModel: ObservableObject {
 
     private func onSessionCleared() {
         // Mark stage cleared only for normal/weakFocus on real stages
-        if !isToday, mode == .normal || mode == .weakFocus {
+        if !isSpecialSession, mode == .normal || mode == .weakFocus {
             appState.markStageCleared(stage.stage)
         }
 
@@ -242,8 +256,11 @@ final class QuizSessionViewModel: ObservableObject {
         phase = .stageCleared
     }
 
-    private static func defaultClearTitle(for mode: QuizMode, stageNumber: Int) -> String {
+    private static func defaultClearTitle(for mode: QuizMode, stageNumber: Int, sessionTitle: String?) -> String {
         if stageNumber == 0 { return "今日の10問 完了！" }
+        if stageNumber < 0 {
+            return "\(sessionTitle ?? "おさらい") 完了！"
+        }
         switch mode {
         case .quick10:   return "クイック完了！"
         case .exam30:    return "模試完了！"

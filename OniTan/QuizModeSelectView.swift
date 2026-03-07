@@ -4,18 +4,31 @@ import SwiftUI
 
 struct QuizModeSelectView: View {
     let stage: Stage
+    let sessionTitle: String?
+    let allowedModes: [QuizMode]?
 
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
     @Environment(\.dismiss) private var dismiss
 
+    init(
+        stage: Stage,
+        sessionTitle: String? = nil,
+        allowedModes: [QuizMode]? = nil
+    ) {
+        self.stage = stage
+        self.sessionTitle = sessionTitle
+        self.allowedModes = allowedModes
+    }
+
     private var weakCount: Int {
         statsRepo.weakQuestions(for: stage).count
     }
 
     private var availableModes: [QuizMode] {
-        QuizMode.allCases.filter { mode in
+        let sourceModes = allowedModes ?? QuizMode.allCases
+        return sourceModes.filter { mode in
             if mode == .weakFocus { return weakCount > 0 }
             return true
         }
@@ -35,6 +48,7 @@ struct QuizModeSelectView: View {
                             ModeCard(
                                 mode: mode,
                                 stage: stage,
+                                sessionTitle: sessionTitle,
                                 weakCount: weakCount,
                                 appState: appState,
                                 statsRepo: statsRepo
@@ -56,7 +70,7 @@ struct QuizModeSelectView: View {
 
     private var headerSection: some View {
         VStack(spacing: 6) {
-            Text("ステージ \(stage.stage)")
+            Text(sessionTitle ?? "ステージ \(stage.stage)")
                 .font(.system(.title2, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(OniTanTheme.textPrimary)
@@ -83,6 +97,7 @@ struct QuizModeSelectView: View {
 private struct ModeCard: View {
     let mode: QuizMode
     let stage: Stage
+    let sessionTitle: String?
     let weakCount: Int
     let appState: AppState
     let statsRepo: StudyStatsRepository
@@ -106,7 +121,8 @@ private struct ModeCard: View {
                 statsRepo: statsRepo,
                 streakRepo: streakRepo,
                 xpRepo: xpRepo,
-                mode: mode
+                mode: mode,
+                sessionTitle: sessionTitle
             )
         ) {
             HStack(spacing: 14) {

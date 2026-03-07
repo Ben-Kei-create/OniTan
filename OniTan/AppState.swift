@@ -54,6 +54,7 @@ final class AppState: ObservableObject {
 
     private let store: PersistenceStore
     private let clearedKey = "clearedStages"
+    private let contentVersionKey = "clearedStagesContentVersion"
 
     /// Production initialiser — uses UserDefaults.
     convenience init() {
@@ -69,6 +70,7 @@ final class AppState: ObservableObject {
         } else {
             self.clearedStages = []
         }
+        migrateContentVersionIfNeeded()
     }
 
     // MARK: - Stage Management
@@ -98,8 +100,32 @@ final class AppState: ObservableObject {
 
     // MARK: - Persistence
 
+    private func migrateContentVersionIfNeeded() {
+        let savedVersion = loadContentVersion()
+        guard savedVersion == quizContentVersion else {
+            clearedStages = []
+            saveClearedStages()
+            saveContentVersion()
+            return
+        }
+        saveContentVersion()
+    }
+
     private func saveClearedStages() {
         guard let encoded = try? JSONEncoder().encode(clearedStages) else { return }
         store.set(encoded, forKey: clearedKey)
+    }
+
+    private func loadContentVersion() -> String? {
+        guard let data = store.data(forKey: contentVersionKey),
+              let decoded = try? JSONDecoder().decode(String.self, from: data) else {
+            return nil
+        }
+        return decoded
+    }
+
+    private func saveContentVersion() {
+        guard let encoded = try? JSONEncoder().encode(quizContentVersion) else { return }
+        store.set(encoded, forKey: contentVersionKey)
     }
 }

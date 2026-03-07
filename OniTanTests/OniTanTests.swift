@@ -153,6 +153,68 @@ struct OniTanTests {
         #expect(recent.count == 2)
         #expect(recent[0].date >= recent[1].date, "Newest entries should come first")
     }
+
+    @Test func studyStats_resetsWhenContentVersionChanges() throws {
+        let store = InMemoryPersistenceStore()
+        let seeded = [1: StageStats(stageNumber: 1)]
+        store.set(try JSONEncoder().encode(seeded), forKey: "stageStats_v2")
+        store.set(try JSONEncoder().encode("old-version"), forKey: "stageStatsContentVersion")
+
+        let repo = StudyStatsRepository(store: store)
+
+        #expect(repo.stageStats.isEmpty)
+    }
+}
+
+struct FavoriteKanjiRepositoryTests {
+
+    @Test func favorites_togglePersistsAcrossReload() {
+        let store = InMemoryPersistenceStore()
+        let repo = FavoriteKanjiRepository(store: store, availableKanji: ["魁", "庖"])
+
+        repo.toggle("魁")
+        #expect(repo.isFavorite("魁"))
+
+        let reloaded = FavoriteKanjiRepository(store: store, availableKanji: ["魁", "庖"])
+        #expect(reloaded.isFavorite("魁"))
+        #expect(reloaded.count == 1)
+    }
+
+    @Test func favorites_syncAvailableKanjiRemovesMissingEntries() {
+        let store = InMemoryPersistenceStore()
+        let repo = FavoriteKanjiRepository(store: store, availableKanji: ["魁", "庖"])
+
+        repo.toggle("魁")
+        repo.toggle("庖")
+        repo.syncAvailableKanji(["魁"])
+
+        #expect(repo.isFavorite("魁"))
+        #expect(!repo.isFavorite("庖"))
+        #expect(repo.count == 1)
+    }
+}
+
+struct PlayFontManagerTests {
+
+    @Test func playFonts_matchExpectedUnlockLevels() {
+        #expect(PlayFontStyle.default.unlockLevel == nil)
+        #expect(PlayFontStyle.mincho.unlockLevel == 15)
+        #expect(PlayFontStyle.monospaced.unlockLevel == 25)
+    }
+
+    @Test func playFontSelection_persistsAcrossReload() {
+        let suiteName = "PlayFontManagerTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defaults.removePersistentDomain(forName: suiteName)
+
+        let manager = PlayFontManager(store: defaults)
+        manager.fontStyle = .mincho
+
+        let reloaded = PlayFontManager(store: defaults)
+        #expect(reloaded.fontStyle == .mincho)
+
+        defaults.removePersistentDomain(forName: suiteName)
+    }
 }
 
 // MARK: - StreakRepository Tests

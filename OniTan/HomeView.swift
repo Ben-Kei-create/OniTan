@@ -296,6 +296,36 @@ struct HomeView: View {
                 destination: StageSelectView()
             )
 
+            if !reviewQuestions.isEmpty {
+                HomeMenuButton(
+                    title: "これまでをおさらい",
+                    icon: "arrow.triangle.2.circlepath.circle.fill",
+                    gradient: LinearGradient(
+                        colors: [Color(red: 0.78, green: 0.44, blue: 0.10), Color(red: 0.48, green: 0.20, blue: 0.05)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    compact: isCompact,
+                    destination: QuizModeSelectView(
+                        stage: ReviewSessionBuilder.buildReviewStage(reviewQuestions: reviewQuestions),
+                        sessionTitle: "これまでをおさらい",
+                        allowedModes: [.quick10, .exam30]
+                    )
+                )
+            }
+
+            HomeMenuButton(
+                title: "漢字一覧",
+                icon: "square.grid.3x3.fill",
+                gradient: LinearGradient(
+                    colors: [Color(red: 0.12, green: 0.50, blue: 0.72), Color(red: 0.08, green: 0.24, blue: 0.46)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
+                compact: isCompact,
+                destination: KanjiCatalogView()
+            )
+
             if xpRepo.level >= 5 {
                 HomeMenuButton(
                     title: "連続鬼たん",
@@ -627,4 +657,3 @@ struct HomeMenuButton<Destination: View>: View {
         .accessibilityIdentifier("home_menu_\(title)")
     }
 }
-

@@ -55,6 +55,7 @@ final class StudyStatsRepository: ObservableObject {
 
     private let store: PersistenceStore
     private let key = "stageStats_v2"   // bumped version for new schema
+    private let contentVersionKey = "stageStatsContentVersion"
 
     /// Days after last wrong answer before a kanji is auto-removed from weak list.
     static let weakKanjiExpiryDays = 14
@@ -66,6 +67,7 @@ final class StudyStatsRepository: ObservableObject {
     init(store: PersistenceStore) {
         self.store = store
         load()
+        migrateContentVersionIfNeeded()
         cleanupExpiredWeakKanji()
     }
 
@@ -199,5 +201,29 @@ final class StudyStatsRepository: ObservableObject {
             return
         }
         store.set(encoded, forKey: key)
+    }
+
+    private func migrateContentVersionIfNeeded() {
+        let savedVersion = loadContentVersion()
+        guard savedVersion == quizContentVersion else {
+            stageStats = [:]
+            save()
+            saveContentVersion()
+            return
+        }
+        saveContentVersion()
+    }
+
+    private func loadContentVersion() -> String? {
+        guard let data = store.data(forKey: contentVersionKey),
+              let decoded = try? JSONDecoder().decode(String.self, from: data) else {
+            return nil
+        }
+        return decoded
+    }
+
+    private func saveContentVersion() {
+        guard let encoded = try? JSONEncoder().encode(quizContentVersion) else { return }
+        store.set(encoded, forKey: contentVersionKey)
     }
 }

@@ -10,7 +10,7 @@
   - 実行コマンド: `xcodebuild -scheme OniTan -project OniTan.xcodeproj -configuration Release -destination 'generic/platform=iOS' build`
   - 環境: `Xcode 26.3 (17C529)`
 - [x] 学習データは読み込み成功
-  - 現状: `71 stages`, `2086 total questions`
+  - 現状: `66 jun1 stages`, `1238 jun1 questions`, `2232 review questions`
 - [x] 申請方針は iPhone専用
 - [x] `version/build` と `Launch Screen` は設定済み
   - `MARKETING_VERSION = 1.0.0`
@@ -191,7 +191,7 @@
 ### 実機確認
 
 - [ ] 初回起動
-- [ ] 71ステージの読み込み
+- [ ] 66ステージの読み込み
 - [ ] ステージ選択から出題
 - [ ] 今日の学習
 - [ ] 成績保存 / 復元

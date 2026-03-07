@@ -392,38 +392,8 @@
     },
     {
       "id": 66,
-      "file": "stage67.json",
+      "file": "stage66.json",
       "title": "レベル66",
-      "difficulty": 1
-    },
-    {
-      "id": 67,
-      "file": "stage68.json",
-      "title": "レベル67",
-      "difficulty": 2
-    },
-    {
-      "id": 68,
-      "file": "stage69.json",
-      "title": "レベル68",
-      "difficulty": 3
-    },
-    {
-      "id": 69,
-      "file": "stage70.json",
-      "title": "レベル69",
-      "difficulty": 1
-    },
-    {
-      "id": 70,
-      "file": "stage71.json",
-      "title": "レベル70",
-      "difficulty": 2
-    },
-    {
-      "id": 71,
-      "file": "stage72.json",
-      "title": "レベル71",
       "difficulty": 3
     }
   ]

@@ -16,31 +16,45 @@ let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
             let stage: Stage = try safeLoad(entry.file)
             loadedStages.append(stage)
         }
+        let reviewQuestions: [Question]? = try? safeLoad("review_questions.json")
         let unusedQuestions: [Question]? = try? safeLoad("unused_questions.json")
-        let data = QuizData(stages: loadedStages, unused_questions: unusedQuestions)
+        let data = QuizData(
+            stages: loadedStages,
+            review_questions: reviewQuestions,
+            unused_questions: unusedQuestions
+        )
+
+        var validationStages = loadedStages
+        if let reviewQuestions, !reviewQuestions.isEmpty {
+            validationStages.append(Stage(stage: -1, questions: reviewQuestions))
+        }
+        let validationData = QuizData(stages: validationStages)
 
         // Non-fatal validation: log warnings but don't crash
-        let issues = validateQuizData(data)
+        let issues = validateQuizData(validationData)
         issues.forEach { logger.warning("\($0, privacy: .public)") }
 
         // Fatal validation: throws DataLoadError if critical data errors found
-        try validateQuizDataStrict(data)
+        try validateQuizDataStrict(validationData)
 
-        logger.info("QuizData loaded: \(loadedStages.count) stages, \(data.stages.flatMap(\.questions).count) total questions")
+        let reviewCount = reviewQuestions?.count ?? 0
+        logger.info("QuizData loaded: \(loadedStages.count) stages, \(data.stages.flatMap(\.questions).count) main questions, \(reviewCount) review questions")
         return (data, nil)
 
     } catch let error as DataLoadError {
         logger.error("Fatal data load error: \(error.localizedDescription, privacy: .public)")
-        return (QuizData(stages: [], unused_questions: nil), error)
+        return (QuizData(stages: [], review_questions: nil, unused_questions: nil), error)
     } catch {
         let wrapped = DataLoadError.decodingFailed("unknown", underlying: error)
         logger.error("Unexpected load error: \(error.localizedDescription, privacy: .public)")
-        return (QuizData(stages: [], unused_questions: nil), wrapped)
+        return (QuizData(stages: [], review_questions: nil, unused_questions: nil), wrapped)
     }
 }()
 
-/// Flat list of all questions across all stages.
+/// Flat list of main-stage questions.
 let questions: [Question] = quizData.stages.flatMap { $0.questions }
+let reviewQuestions: [Question] = quizData.review_questions ?? []
+let allQuestions: [Question] = questions + reviewQuestions
 
 // MARK: - Safe Loaders
 

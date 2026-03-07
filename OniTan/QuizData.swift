@@ -2,7 +2,18 @@ import Foundation
 
 struct QuizData: Codable {
     let stages: [Stage]
+    let review_questions: [Question]?
     let unused_questions: [Question]?
+
+    init(
+        stages: [Stage],
+        review_questions: [Question]? = nil,
+        unused_questions: [Question]? = nil
+    ) {
+        self.stages = stages
+        self.review_questions = review_questions
+        self.unused_questions = unused_questions
+    }
 }
 
 struct Stage: Codable {

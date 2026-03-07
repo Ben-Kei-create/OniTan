@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,13 +30,16 @@
 		3687FBABFD2E8AC997A696F4 /* stage5.json in Resources */ = {isa = PBXBuildFile; fileRef = BE1E211069E4A9AAB2115745 /* stage5.json */; };
 		40F9DEADD3551EAF6FC77758 /* stage58.json in Resources */ = {isa = PBXBuildFile; fileRef = 023DF7CFCCF5703ED48AA67F /* stage58.json */; };
 		41071E052CB02DB230802921 /* stage26.json in Resources */ = {isa = PBXBuildFile; fileRef = 555098B4DDEA6BBB35FF5380 /* stage26.json */; };
-		47B8EE9013F014AC06E17533 /* stage68.json in Resources */ = {isa = PBXBuildFile; fileRef = 223B6FE7D5456FF0F729B017 /* stage68.json */; };
+		448B522BBC292427FFDD7B9D /* QuizContentVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B786838699B569CDA6C80F68 /* QuizContentVersion.swift */; };
 		494278A07FD46874A91289A8 /* stage47.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8416763B3A8807235DF628 /* stage47.json */; };
 		4AF74CB2D91C3E26F0EF7EED /* stage36.json in Resources */ = {isa = PBXBuildFile; fileRef = C0AC333B59CF7F712977B0FB /* stage36.json */; };
 		4BFE618D0F474A3FBDEA9373 /* stage15.json in Resources */ = {isa = PBXBuildFile; fileRef = BED14EE8159AA696ACED6403 /* stage15.json */; };
 		4EBEAC47F74294CB75B3908D /* stage30.json in Resources */ = {isa = PBXBuildFile; fileRef = E222ADCDDFA57C3EECBABCD9 /* stage30.json */; };
 		51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */ = {isa = PBXBuildFile; fileRef = C3B011EB643E76B5B8B3CBE0 /* stage1.json */; };
 		539DDFE4A00729EB8F1304B9 /* OniTanTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */; };
+		5550AA6F99A708539ACB71BB /* PlayFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E606BAFCD7E20931EFDF248 /* PlayFontManager.swift */; };
+		574AC60BBA7826BA14FEE301 /* KanjiCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF8ED945F9B84684BDFE61 /* KanjiCatalogView.swift */; };
+		58C912EFDBECD011F49C3272 /* FavoriteKanjiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */; };
 		5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7592732299AE4C3F02EAD315 /* OniTanApp.swift */; };
 		627117B85733EC7A7C264A54 /* stage8.json in Resources */ = {isa = PBXBuildFile; fileRef = 255DD30EAA21AA7C299A4800 /* stage8.json */; };
 		6301040F17C917D9604D8EF1 /* stage64.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C06596E96C17EC28D35F9C7 /* stage64.json */; };
@@ -45,12 +48,11 @@
 		65840B0402AE04492F903F10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352DD65B20BC1C414C33B3C /* MainView.swift */; };
 		674F0E69FF8C2BE16830B6E6 /* stage51.json in Resources */ = {isa = PBXBuildFile; fileRef = D645336E2E658C7E74A9A41F /* stage51.json */; };
 		6C698C51A8CB364DB83ABE95 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = 63B75D2597D27B71A3D23C7D /* stage31.json */; };
-		6C81582A0761DDC3819DFB76 /* stage70.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4C12808B72BD355BAFBD6B /* stage70.json */; };
 		6C83A07CEDFF0769C6C55633 /* stage22.json in Resources */ = {isa = PBXBuildFile; fileRef = E39C1E4E36F8C3AF0798754E /* stage22.json */; };
 		6DFFD18A21A6C5E62803D258 /* stage54.json in Resources */ = {isa = PBXBuildFile; fileRef = 5022A0A67FC08B6CB766A0C3 /* stage54.json */; };
 		6F5609AF03DEE4E977AD6E50 /* stage43.json in Resources */ = {isa = PBXBuildFile; fileRef = A4DE4246BE167B5F67D06997 /* stage43.json */; };
-		703B71E4A3E6896B3E3031A8 /* stage69.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B070E8EF42F19B60643AA35 /* stage69.json */; };
 		71F68B77354E3E4720835B89 /* stage37.json in Resources */ = {isa = PBXBuildFile; fileRef = 397B580B618DD4C1D44D5EE5 /* stage37.json */; };
+		7459C406F7CEB965B5274A73 /* review_questions.json in Resources */ = {isa = PBXBuildFile; fileRef = DAACB88E4CB59420C77DC160 /* review_questions.json */; };
 		7FE384F8175F615D06934B4F /* stage20.json in Resources */ = {isa = PBXBuildFile; fileRef = 968908FB08AF92A43B52A1A3 /* stage20.json */; };
 		877745FF2DA845A84291F9AC /* stage13.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D04BD3199B68D3F30197687 /* stage13.json */; };
 		88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */; };
@@ -59,7 +61,7 @@
 		8D1B53E206C4DF3F556632D4 /* stage27.json in Resources */ = {isa = PBXBuildFile; fileRef = 066F4F4E6E27F01CB9D83B45 /* stage27.json */; };
 		8D5D1C66AD947C1775D66C41 /* stage53.json in Resources */ = {isa = PBXBuildFile; fileRef = F47BC5CFCD73435ACF5AF71A /* stage53.json */; };
 		8EBB5A233823FA03F3C784F2 /* stage11.json in Resources */ = {isa = PBXBuildFile; fileRef = C5B92D880960294F4287FF87 /* stage11.json */; };
-		8ECE2BDA27E4F0C2637D27A6 /* stage67.json in Resources */ = {isa = PBXBuildFile; fileRef = C3378D5D814A976DC627D9E5 /* stage67.json */; };
+		92F771A218FF51A3531753B3 /* ReviewSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD8F1B92B2A5C902D978FC9 /* ReviewSessionBuilder.swift */; };
 		9417672A2D70817B9420092C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F5A6A484C73AF85F7810F4 /* SettingsView.swift */; };
 		960BB515368191F8DD935AA7 /* stage35.json in Resources */ = {isa = PBXBuildFile; fileRef = 8EF54987E7ECB378E4386772 /* stage35.json */; };
 		96999CC3EFD887E3957C6D29 /* stage52.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC3BF4309270E76662D1D10 /* stage52.json */; };
@@ -67,28 +69,28 @@
 		972BFFA9DCFD4A857D80C063 /* stage9.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D95C55E6991AA704403797F /* stage9.json */; };
 		98AA56B38D0E60DFF8DC504B /* stage16.json in Resources */ = {isa = PBXBuildFile; fileRef = 75DB370E3481522BA9F0F78A /* stage16.json */; };
 		99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860301C6672CBF8DF84E8AA2 /* HomeView.swift */; };
+		9BF1CE3A3A6B54E6083B7A90 /* StreakChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C69667D30FCCC04E86D11AE /* StreakChallengeView.swift */; };
 		A0E8E6442CBF7CB93BDE9BDE /* DonationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */; };
 		A11FA7C6A7DBBB5E7FC172F7 /* stage55.json in Resources */ = {isa = PBXBuildFile; fileRef = 52D6A196EE4F84341DD6A63D /* stage55.json */; };
 		A1A6D440E55BBCFAD3E61CD9 /* stage19.json in Resources */ = {isa = PBXBuildFile; fileRef = BB645599D38E62EF26113A89 /* stage19.json */; };
 		A1D1F660F532ED53C5ED409B /* OniTanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */; };
 		A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAA2A72218BF205143EBB6 /* QuestionKind.swift */; };
-		A3E5D7C9B1F2468091A2B3C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C3B2A1908642F1B9C7D5E3 /* LaunchScreen.storyboard */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
 		A9948E76FA5D5132F4E56897 /* stage17.json in Resources */ = {isa = PBXBuildFile; fileRef = B8B3017B906F3D53076A3F6A /* stage17.json */; };
-		AB661BC4BE284636DD0F1FE7 /* stage71.json in Resources */ = {isa = PBXBuildFile; fileRef = 16F284ECEF64DAAAAEECD7DB /* stage71.json */; };
 		AD5E749E79179E2C8F4DCA29 /* stage4.json in Resources */ = {isa = PBXBuildFile; fileRef = 60D557CF77C4478A77473FB1 /* stage4.json */; };
 		AEA48206088EC0B42C3D03CE /* AppStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23B2EFC3923D1727E152736 /* AppStateTests.swift */; };
 		AEBE96F9C4D4D456E18AE7EB /* stages.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F1395D0735D685DEED95EEC /* stages.json */; };
+		AEFD9C0DD0A18CC7AB578B1D /* stage66.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CFEB2FA8444234D769C1922 /* stage66.json */; };
 		B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */; };
 		B671326085AE2F3D7A0167E2 /* stage3.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BB68317A918563A730DF620 /* stage3.json */; };
 		B774C705589D593C8764138E /* stage7.json in Resources */ = {isa = PBXBuildFile; fileRef = 44100CC7FC71EE69F7477E00 /* stage7.json */; };
 		BCC1A2D82FE39A0C9C770EBD /* stage10.json in Resources */ = {isa = PBXBuildFile; fileRef = B4DBF3F3959AA50D93E6F051 /* stage10.json */; };
+		BD79B1102124D4C524FDB5A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 975C66663EB0052137ECFD37 /* LaunchScreen.storyboard */; };
 		BDCCEFD93AC828B640A3DB10 /* stage41.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEF3A3C073ABEFCF8560B6C /* stage41.json */; };
 		C098C8F3828C706A747AE058 /* stage6.json in Resources */ = {isa = PBXBuildFile; fileRef = 7ECADE603B1AA8F3235D668F /* stage6.json */; };
 		C1DE81A2D0FF3777FCC58BDD /* stage45.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA00CF2349275E0A068CDF0 /* stage45.json */; };
 		C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C22BCB83C026070FB98DC8 /* StageSelectView.swift */; };
 		C472E87234C3226CE340D16E /* stage62.json in Resources */ = {isa = PBXBuildFile; fileRef = 81706BE1C66194C70273C674 /* stage62.json */; };
-		C8E2F4A1B9D357604E2F8C1A /* StreakChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7F9C2E1B4D8056F7A3E912 /* StreakChallengeView.swift */; };
 		C9309DFC5403D64C2A0FC330 /* stage63.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC0FE5B2CB3598B9C57A6C /* stage63.json */; };
 		CA358D08C04C2B91F18D8460 /* stage40.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B898B27B9FFADD4D3C05B93 /* stage40.json */; };
 		CE774257E0F08EA30079298C /* stage18.json in Resources */ = {isa = PBXBuildFile; fileRef = 43BA21B8537F72A698B888CF /* stage18.json */; };
@@ -107,7 +109,6 @@
 		EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F33F3E41355E6617E24291 /* StreakRepository.swift */; };
 		F0A05D48CAE91CD689A2B25B /* stage34.json in Resources */ = {isa = PBXBuildFile; fileRef = 2987B4DF5EAB1D7475563117 /* stage34.json */; };
 		F19435606A24C1EE87A8F768 /* stage32.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F5C5F98871927B928481BF0 /* stage32.json */; };
-		F2559985969EE81AC5E37558 /* stage72.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A56103791686BEF026452F2 /* stage72.json */; };
 		F2D12E25938A256A24A3A9F0 /* ThemePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */; };
 		F40F0785505722F2F5B3C568 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A30C74AFCC83BC81240FE8B /* stage14.json */; };
 		F44478D44E2B9D89E37BFB73 /* stage44.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B3D54D4915B729AAC99851 /* stage44.json */; };
@@ -141,12 +142,9 @@
 		066F4F4E6E27F01CB9D83B45 /* stage27.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage27.json; sourceTree = "<group>"; };
 		08F823A6137158BA416E060C /* StageManifestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageManifestTests.swift; sourceTree = "<group>"; };
 		096C66E38B34DF2D43548956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OniTanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E6DEF9B11C4C103F4D15AB1 /* OniTanUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		107EB57A894AA8A8CF252B11 /* stage2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage2.json; sourceTree = "<group>"; };
-		16F284ECEF64DAAAAEECD7DB /* stage71.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage71.json; sourceTree = "<group>"; };
-		1B070E8EF42F19B60643AA35 /* stage69.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage69.json; sourceTree = "<group>"; };
 		1F5C5F98871927B928481BF0 /* stage32.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage32.json; sourceTree = "<group>"; };
-		223B6FE7D5456FF0F729B017 /* stage68.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage68.json; sourceTree = "<group>"; };
 		22B3D54D4915B729AAC99851 /* stage44.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage44.json; sourceTree = "<group>"; };
 		22C2B32F193BC7ACC61E06C0 /* stage50.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage50.json; sourceTree = "<group>"; };
 		255DD30EAA21AA7C299A4800 /* stage8.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage8.json; sourceTree = "<group>"; };
@@ -157,10 +155,11 @@
 		2B03B97BEC4BFFD8E9FB3A0C /* stage46.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage46.json; sourceTree = "<group>"; };
 		2C06596E96C17EC28D35F9C7 /* stage64.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage64.json; sourceTree = "<group>"; };
 		2CD9CF426396D7AB1E025969 /* stage48.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage48.json; sourceTree = "<group>"; };
+		2CFEB2FA8444234D769C1922 /* stage66.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage66.json; sourceTree = "<group>"; };
 		2FF720D8313B0EE232F3045F /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		397B580B618DD4C1D44D5EE5 /* stage37.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage37.json; sourceTree = "<group>"; };
-		3A7F9C2E1B4D8056F7A3E912 /* StreakChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakChallengeView.swift; sourceTree = "<group>"; };
 		3B8416763B3A8807235DF628 /* stage47.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage47.json; sourceTree = "<group>"; };
+		3C69667D30FCCC04E86D11AE /* StreakChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakChallengeView.swift; sourceTree = "<group>"; };
 		3D04BD3199B68D3F30197687 /* stage13.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage13.json; sourceTree = "<group>"; };
 		3DB5E530E240E4FB49663307 /* stage28.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage28.json; sourceTree = "<group>"; };
 		42278466914DB93965F3017B /* stage38.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage38.json; sourceTree = "<group>"; };
@@ -169,7 +168,7 @@
 		44100CC7FC71EE69F7477E00 /* stage7.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage7.json; sourceTree = "<group>"; };
 		46D33B8FDDD0434828F5675C /* stage49.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage49.json; sourceTree = "<group>"; };
 		486F12EDA51B890C62E838A5 /* stage25.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage25.json; sourceTree = "<group>"; };
-		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B304DA79873F9CF82ACCD64 /* QuizMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMode.swift; sourceTree = "<group>"; };
 		4B43FC022C83E344ABEE7C03 /* ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorState.swift; sourceTree = "<group>"; };
 		500CB0E370CC5B5783A02E7C /* QuizSessionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSessionViewModelTests.swift; sourceTree = "<group>"; };
@@ -178,26 +177,26 @@
 		555098B4DDEA6BBB35FF5380 /* stage26.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage26.json; sourceTree = "<group>"; };
 		577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		59C22BCB83C026070FB98DC8 /* StageSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSelectView.swift; sourceTree = "<group>"; };
-		5A56103791686BEF026452F2 /* stage72.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage72.json; sourceTree = "<group>"; };
 		5DEF3A3C073ABEFCF8560B6C /* stage41.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage41.json; sourceTree = "<group>"; };
+		5E606BAFCD7E20931EFDF248 /* PlayFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFontManager.swift; sourceTree = "<group>"; };
 		5F1395D0735D685DEED95EEC /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
 		60D557CF77C4478A77473FB1 /* stage4.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage4.json; sourceTree = "<group>"; };
 		62ADB5A3C69CE326AF95624D /* AdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 		63B75D2597D27B71A3D23C7D /* stage31.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage31.json; sourceTree = "<group>"; };
 		697706E8DAEDA779C15F4536 /* ProgressRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRingView.swift; sourceTree = "<group>"; };
 		6A30C74AFCC83BC81240FE8B /* stage14.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage14.json; sourceTree = "<group>"; };
+		6BD8F1B92B2A5C902D978FC9 /* ReviewSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSessionBuilder.swift; sourceTree = "<group>"; };
 		7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModeSelectView.swift; sourceTree = "<group>"; };
 		74745D835668D62C4F1D5954 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		7592732299AE4C3F02EAD315 /* OniTanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanApp.swift; sourceTree = "<group>"; };
 		75DB370E3481522BA9F0F78A /* stage16.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage16.json; sourceTree = "<group>"; };
 		7BB68317A918563A730DF620 /* stage3.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage3.json; sourceTree = "<group>"; };
 		7CC3BF4309270E76662D1D10 /* stage52.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage52.json; sourceTree = "<group>"; };
-		7E4C12808B72BD355BAFBD6B /* stage70.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage70.json; sourceTree = "<group>"; };
 		7ECADE603B1AA8F3235D668F /* stage6.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage6.json; sourceTree = "<group>"; };
 		81706BE1C66194C70273C674 /* stage62.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage62.json; sourceTree = "<group>"; };
 		82790558D967BDF74A396745 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
-		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		860301C6672CBF8DF84E8AA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		878ED351D8C0E69141C83475 /* GamificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationRepository.swift; sourceTree = "<group>"; };
 		8D95C55E6991AA704403797F /* stage9.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage9.json; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 		8EF54987E7ECB378E4386772 /* stage35.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage35.json; sourceTree = "<group>"; };
 		904927EFABE72A0965302AC5 /* QuizData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizData.swift; sourceTree = "<group>"; };
 		968908FB08AF92A43B52A1A3 /* stage20.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage20.json; sourceTree = "<group>"; };
+		975C66663EB0052137ECFD37 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B898B27B9FFADD4D3C05B93 /* stage40.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage40.json; sourceTree = "<group>"; };
 		9C8316098825221F61FACA61 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
@@ -213,28 +213,30 @@
 		A4DE4246BE167B5F67D06997 /* stage43.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage43.json; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		A78D1BA326BF77A20284D2BF /* stage33.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage33.json; sourceTree = "<group>"; };
+		AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteKanjiRepository.swift; sourceTree = "<group>"; };
 		AC8E8B43BAF081399475C0C0 /* stage39.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage39.json; sourceTree = "<group>"; };
 		AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationManager.swift; sourceTree = "<group>"; };
 		B23B2EFC3923D1727E152736 /* AppStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateTests.swift; sourceTree = "<group>"; };
 		B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITests.swift; sourceTree = "<group>"; };
 		B4DBF3F3959AA50D93E6F051 /* stage10.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage10.json; sourceTree = "<group>"; };
 		B5C1C7C0F6E1088848DD4749 /* stage12.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage12.json; sourceTree = "<group>"; };
+		B786838699B569CDA6C80F68 /* QuizContentVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContentVersion.swift; sourceTree = "<group>"; };
 		B8B3017B906F3D53076A3F6A /* stage17.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage17.json; sourceTree = "<group>"; };
 		BB645599D38E62EF26113A89 /* stage19.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage19.json; sourceTree = "<group>"; };
 		BB9F707F6682B94FE1C60CCE /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		BE1E211069E4A9AAB2115745 /* stage5.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage5.json; sourceTree = "<group>"; };
 		BED14EE8159AA696ACED6403 /* stage15.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage15.json; sourceTree = "<group>"; };
 		C0AC333B59CF7F712977B0FB /* stage36.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage36.json; sourceTree = "<group>"; };
-		C3378D5D814A976DC627D9E5 /* stage67.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage67.json; sourceTree = "<group>"; };
 		C3B011EB643E76B5B8B3CBE0 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
+		C3DF8ED945F9B84684BDFE61 /* KanjiCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiCatalogView.swift; sourceTree = "<group>"; };
 		C5B92D880960294F4287FF87 /* stage11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage11.json; sourceTree = "<group>"; };
 		CFBA6885AD09BD3CC8FF1F9D /* stage29.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage29.json; sourceTree = "<group>"; };
 		D0FC429592D64BF86EF57E7E /* stage42.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage42.json; sourceTree = "<group>"; };
-		D4C3B2A1908642F1B9C7D5E3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D352DD65B20BC1C414C33B3C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D3A9974F2CF764CE1DD79C22 /* stage56.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage56.json; sourceTree = "<group>"; };
 		D645336E2E658C7E74A9A41F /* stage51.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage51.json; sourceTree = "<group>"; };
 		D97081A527C6AE077BAED255 /* stage65.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage65.json; sourceTree = "<group>"; };
+		DAACB88E4CB59420C77DC160 /* review_questions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = review_questions.json; sourceTree = "<group>"; };
 		DDA00CF2349275E0A068CDF0 /* stage45.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage45.json; sourceTree = "<group>"; };
 		E222ADCDDFA57C3EECBABCD9 /* stage30.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage30.json; sourceTree = "<group>"; };
 		E39C1E4E36F8C3AF0798754E /* stage22.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage22.json; sourceTree = "<group>"; };
@@ -250,6 +252,8 @@
 		20CFE708821AC1E4E072923A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				975C66663EB0052137ECFD37 /* LaunchScreen.storyboard */,
+				DAACB88E4CB59420C77DC160 /* review_questions.json */,
 				C3B011EB643E76B5B8B3CBE0 /* stage1.json */,
 				107EB57A894AA8A8CF252B11 /* stage2.json */,
 				7BB68317A918563A730DF620 /* stage3.json */,
@@ -315,13 +319,7 @@
 				8DAC0FE5B2CB3598B9C57A6C /* stage63.json */,
 				2C06596E96C17EC28D35F9C7 /* stage64.json */,
 				D97081A527C6AE077BAED255 /* stage65.json */,
-				D4C3B2A1908642F1B9C7D5E3 /* LaunchScreen.storyboard */,
-				C3378D5D814A976DC627D9E5 /* stage67.json */,
-				223B6FE7D5456FF0F729B017 /* stage68.json */,
-				1B070E8EF42F19B60643AA35 /* stage69.json */,
-				7E4C12808B72BD355BAFBD6B /* stage70.json */,
-				16F284ECEF64DAAAAEECD7DB /* stage71.json */,
-				5A56103791686BEF026452F2 /* stage72.json */,
+				2CFEB2FA8444234D769C1922 /* stage66.json */,
 				5F1395D0735D685DEED95EEC /* stages.json */,
 			);
 			path = Resources;
@@ -336,23 +334,28 @@
 				74745D835668D62C4F1D5954 /* Data.swift */,
 				AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */,
 				4B43FC022C83E344ABEE7C03 /* ErrorState.swift */,
+				AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */,
 				878ED351D8C0E69141C83475 /* GamificationRepository.swift */,
 				860301C6672CBF8DF84E8AA2 /* HomeView.swift */,
+				C3DF8ED945F9B84684BDFE61 /* KanjiCatalogView.swift */,
 				D352DD65B20BC1C414C33B3C /* MainView.swift */,
 				7592732299AE4C3F02EAD315 /* OniTanApp.swift */,
 				9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */,
+				5E606BAFCD7E20931EFDF248 /* PlayFontManager.swift */,
 				697706E8DAEDA779C15F4536 /* ProgressRingView.swift */,
 				BB9F707F6682B94FE1C60CCE /* Question.swift */,
 				26DAA2A72218BF205143EBB6 /* QuestionKind.swift */,
+				B786838699B569CDA6C80F68 /* QuizContentVersion.swift */,
 				904927EFABE72A0965302AC5 /* QuizData.swift */,
 				4B304DA79873F9CF82ACCD64 /* QuizMode.swift */,
 				7144C853A5A699E8A6A3A140 /* QuizModeSelectView.swift */,
 				29076909A8310033010EC721 /* QuizSessionViewModel.swift */,
+				6BD8F1B92B2A5C902D978FC9 /* ReviewSessionBuilder.swift */,
 				99F5A6A484C73AF85F7810F4 /* SettingsView.swift */,
 				59C22BCB83C026070FB98DC8 /* StageSelectView.swift */,
 				A709DAD0107E879561BB3203 /* StatsView.swift */,
+				3C69667D30FCCC04E86D11AE /* StreakChallengeView.swift */,
 				00F33F3E41355E6617E24291 /* StreakRepository.swift */,
-				3A7F9C2E1B4D8056F7A3E912 /* StreakChallengeView.swift */,
 				42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */,
 				82790558D967BDF74A396745 /* ThemeManager.swift */,
 				8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */,
@@ -437,7 +440,6 @@
 			);
 			name = OniTan;
 			packageProductDependencies = (
-				A5347A4E2F59E55400490073 /* GoogleMobileAds */,
 			);
 			productName = OniTan;
 			productReference = 8501973E7C7AEEC9131BA60D /* OniTan.app */;
@@ -468,8 +470,11 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					162DDD53AB6855F5542EF0BC = {
+						DevelopmentTeam = "";
+					};
 					FA51812D936614518D7A0719 = {
 						TestTargetID = 162DDD53AB6855F5542EF0BC;
 					};
@@ -485,9 +490,7 @@
 			);
 			mainGroup = EBC93F64F93D6A258A843ABB;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				A5347A4D2F59E55400490073 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
-			);
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -504,7 +507,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC7D72A58AA6EEEECDE1D68D /* Assets.xcassets in Resources */,
-				A3E5D7C9B1F2468091A2B3C4 /* LaunchScreen.storyboard in Resources */,
+				BD79B1102124D4C524FDB5A7 /* LaunchScreen.storyboard in Resources */,
+				7459C406F7CEB965B5274A73 /* review_questions.json in Resources */,
 				51DCA1EF2CE54BC3B5F1CE15 /* stage1.json in Resources */,
 				BCC1A2D82FE39A0C9C770EBD /* stage10.json in Resources */,
 				8EBB5A233823FA03F3C784F2 /* stage11.json in Resources */,
@@ -567,13 +571,8 @@
 				C9309DFC5403D64C2A0FC330 /* stage63.json in Resources */,
 				6301040F17C917D9604D8EF1 /* stage64.json in Resources */,
 				DAB97BBCCD850514D771066F /* stage65.json in Resources */,
-				8ECE2BDA27E4F0C2637D27A6 /* stage67.json in Resources */,
-				47B8EE9013F014AC06E17533 /* stage68.json in Resources */,
-				703B71E4A3E6896B3E3031A8 /* stage69.json in Resources */,
+				AEFD9C0DD0A18CC7AB578B1D /* stage66.json in Resources */,
 				B774C705589D593C8764138E /* stage7.json in Resources */,
-				6C81582A0761DDC3819DFB76 /* stage70.json in Resources */,
-				AB661BC4BE284636DD0F1FE7 /* stage71.json in Resources */,
-				F2559985969EE81AC5E37558 /* stage72.json in Resources */,
 				627117B85733EC7A7C264A54 /* stage8.json in Resources */,
 				972BFFA9DCFD4A857D80C063 /* stage9.json in Resources */,
 				AEBE96F9C4D4D456E18AE7EB /* stages.json in Resources */,
@@ -603,23 +602,28 @@
 				A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */,
 				A0E8E6442CBF7CB93BDE9BDE /* DonationManager.swift in Sources */,
 				FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */,
+				58C912EFDBECD011F49C3272 /* FavoriteKanjiRepository.swift in Sources */,
 				1D666F77A86DFCC0C51A2267 /* GamificationRepository.swift in Sources */,
 				99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */,
+				574AC60BBA7826BA14FEE301 /* KanjiCatalogView.swift in Sources */,
 				65840B0402AE04492F903F10 /* MainView.swift in Sources */,
 				5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */,
 				539DDFE4A00729EB8F1304B9 /* OniTanTheme.swift in Sources */,
+				5550AA6F99A708539ACB71BB /* PlayFontManager.swift in Sources */,
 				20B8C39D07F751DFA50D1FDF /* ProgressRingView.swift in Sources */,
 				EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */,
 				A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */,
+				448B522BBC292427FFDD7B9D /* QuizContentVersion.swift in Sources */,
 				8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */,
 				E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */,
 				B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */,
 				EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */,
+				92F771A218FF51A3531753B3 /* ReviewSessionBuilder.swift in Sources */,
 				9417672A2D70817B9420092C /* SettingsView.swift in Sources */,
 				C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */,
 				06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */,
+				9BF1CE3A3A6B54E6083B7A90 /* StreakChallengeView.swift in Sources */,
 				EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */,
-				C8E2F4A1B9D357604E2F8C1A /* StreakChallengeView.swift in Sources */,
 				88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */,
 				362516D45E32453B490BDA12 /* ThemeManager.swift in Sources */,
 				F2D12E25938A256A24A3A9F0 /* ThemePalette.swift in Sources */,
@@ -665,7 +669,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanUITests;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = OniTan;
 			};
 			name = Debug;
@@ -682,7 +686,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanUITests;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = OniTan;
 			};
 			name = Release;
@@ -692,11 +696,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7R927F3U4V;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_GADApplicationIdentifier = "ca-app-pub-4859622277330192~8703189628";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
+					UIInterfaceOrientationPortrait,
+				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,7 +727,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanTests;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OniTan.app/OniTan";
 			};
 			name = Release;
@@ -730,11 +737,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7R927F3U4V;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_GADApplicationIdentifier = "ca-app-pub-4859622277330192~8703189628";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
+					UIInterfaceOrientationPortrait,
+				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -796,7 +806,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -860,7 +869,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -879,7 +887,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fumiakiMogi777.OniTanTests;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OniTan.app/OniTan";
 			};
 			name = Debug;
@@ -924,25 +932,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A5347A4D2F59E55400490073 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 13.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A5347A4E2F59E55400490073 /* GoogleMobileAds */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A5347A4D2F59E55400490073 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
-			productName = GoogleMobileAds;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCAF01079AC30C2BAEC35F5D /* Project object */;
 }
