@@ -56,6 +56,9 @@ final class StudyStatsRepository: ObservableObject {
     private let store: PersistenceStore
     private let key = "stageStats_v2"   // bumped version for new schema
 
+    /// Days after last wrong answer before a kanji is auto-removed from weak list.
+    static let weakKanjiExpiryDays = 14
+
     convenience init() {
         self.init(store: UserDefaults.standard)
     }
@@ -63,6 +66,7 @@ final class StudyStatsRepository: ObservableObject {
     init(store: PersistenceStore) {
         self.store = store
         load()
+        cleanupExpiredWeakKanji()
     }
 
     // MARK: - Recording
@@ -144,6 +148,34 @@ final class StudyStatsRepository: ObservableObject {
         let correct = stageStats.values.reduce(0) { $0 + $1.correctAttempts }
         guard total > 0 else { return 0 }
         return Double(correct) / Double(total)
+    }
+
+    // MARK: - Weak Kanji Expiry
+
+    /// Removes kanji from wrongKanji if the last wrong answer was more than `expiryDays` ago.
+    /// Called on init so stale weak kanji clear on next app launch.
+    func cleanupExpiredWeakKanji(expiryDays: Int = weakKanjiExpiryDays) {
+        guard let cutoff = Calendar.current.date(byAdding: .day, value: -expiryDays, to: Date()) else { return }
+        var changed = false
+
+        for stageNumber in stageStats.keys {
+            var stats = stageStats[stageNumber]!
+            let before = stats.wrongKanji.count
+            stats.wrongKanji.removeAll { kanji in
+                let lastWrong = stats.wrongAnswerLog
+                    .filter { $0.kanji == kanji }
+                    .map { $0.date }
+                    .max()
+                // No log entry or older than cutoff → expire
+                guard let lastDate = lastWrong else { return true }
+                return lastDate < cutoff
+            }
+            if stats.wrongKanji.count != before {
+                stageStats[stageNumber] = stats
+                changed = true
+            }
+        }
+        if changed { save() }
     }
 
     // MARK: - Reset
