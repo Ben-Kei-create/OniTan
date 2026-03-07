@@ -10,6 +10,7 @@ struct HomeView: View {
 
     @State private var freezeToastVisible = false
     @State private var lastShownFreezeID: Int = -1
+    @State private var bgAnimPhase = false
 
     var body: some View {
         NavigationStack {
@@ -19,7 +20,7 @@ struct HomeView: View {
                 let contentWidth = min(proxy.size.width - (isCompactHeight ? 16 : 20), 560)
 
                 ZStack {
-                    OniTanTheme.backgroundGradientFallback
+                    animatedBackground
                         .ignoresSafeArea()
 
                     if let loadError = dataLoadError {
@@ -66,7 +67,34 @@ struct HomeView: View {
                 showFreezeToast()
             }
         }
-        .background(OniTanTheme.backgroundGradientFallback.ignoresSafeArea())
+        .background(animatedBackground.ignoresSafeArea())
+    }
+
+    private var animatedBackground: some View {
+        ZStack {
+            LinearGradient(
+                colors: [
+                    Color(red: 0.10, green: 0.10, blue: 0.30),
+                    Color(red: 0.20, green: 0.05, blue: 0.25)
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            LinearGradient(
+                colors: [
+                    Color(red: 0.16, green: 0.08, blue: 0.38),
+                    Color(red: 0.10, green: 0.02, blue: 0.18)
+                ],
+                startPoint: .topTrailing,
+                endPoint: .bottomLeading
+            )
+            .opacity(bgAnimPhase ? 1 : 0)
+        }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 5).repeatForever(autoreverses: true)) {
+                bgAnimPhase = true
+            }
+        }
     }
 
 
@@ -268,20 +296,65 @@ struct HomeView: View {
                 destination: StageSelectView()
             )
 
-            HomeMenuButton(
-                title: "連続鬼たん",
-                icon: "flame.fill",
-                gradient: LinearGradient(
-                    colors: [Color(red: 0.85, green: 0.15, blue: 0.15), Color(red: 0.55, green: 0.05, blue: 0.05)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ),
-                compact: isCompact,
-                destination: StreakChallengeView(xpRepo: xpRepo)
-            )
+            if xpRepo.level >= 5 {
+                HomeMenuButton(
+                    title: "連続鬼たん",
+                    icon: "flame.fill",
+                    gradient: LinearGradient(
+                        colors: [Color(red: 0.85, green: 0.15, blue: 0.15), Color(red: 0.55, green: 0.05, blue: 0.05)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    compact: isCompact,
+                    destination: StreakChallengeView(xpRepo: xpRepo)
+                )
+            } else {
+                lockedStreakButton(isCompact: isCompact)
+            }
 
             HomeSRSReviewButton(compact: isCompact)
         }
+    }
+
+    private func lockedStreakButton(isCompact: Bool) -> some View {
+        HStack(spacing: isCompact ? 10 : 12) {
+            Image(systemName: "lock.fill")
+                .font(.system(size: isCompact ? 16 : 17, weight: .semibold))
+                .foregroundColor(.white.opacity(0.35))
+                .frame(width: isCompact ? 34 : 36, height: isCompact ? 34 : 36)
+                .background(Color.white.opacity(0.08))
+                .clipShape(Circle())
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("連続鬼たん")
+                    .font(.system(size: isCompact ? 15 : 16, weight: .bold, design: .rounded))
+                    .foregroundColor(.white.opacity(0.35))
+                Text("Lv.5で解放")
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
+                    .foregroundColor(.white.opacity(0.3))
+            }
+
+            Spacer()
+
+            Image(systemName: "lock.fill")
+                .font(.system(size: isCompact ? 12 : 13, weight: .semibold))
+                .foregroundColor(.white.opacity(0.25))
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, isCompact ? 13 : 15)
+        .padding(.vertical, isCompact ? 9 : 11)
+        .background(
+            LinearGradient(
+                colors: [Color.white.opacity(0.07), Color.white.opacity(0.04)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .cornerRadius(OniTanTheme.radiusCard)
+        .overlay(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
 
     // MARK: - Footer
