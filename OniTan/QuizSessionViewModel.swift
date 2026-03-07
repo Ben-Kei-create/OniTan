@@ -43,7 +43,8 @@ final class QuizSessionViewModel: ObservableObject {
 
     /// Human-readable header shown in the quiz top bar.
     var displayTitle: String {
-        isToday ? "今日の10問" : "ステージ \(stage.stage)"
+        if mode == .srsReview { return "SRS復習" }
+        return isToday ? "今日の10問" : "ステージ \(stage.stage)"
     }
 
     var totalGoal: Int { sessionQuestions.count }
