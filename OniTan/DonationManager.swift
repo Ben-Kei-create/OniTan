@@ -15,6 +15,7 @@ final class DonationManager: ObservableObject {
     @Published private(set) var hasDonated: Bool
     @Published private(set) var product: Product?
     @Published var isPurchasing: Bool = false
+    @Published var isLoadingProduct: Bool = false
     @Published var purchaseError: String? = nil
 
     init() {
@@ -25,11 +26,16 @@ final class DonationManager: ObservableObject {
     // MARK: - Load Product
 
     func loadProduct() async {
+        isLoadingProduct = true
+        defer { isLoadingProduct = false }
         do {
             let products = try await Product.products(for: [Self.productID])
             self.product = products.first
+            if product == nil {
+                purchaseError = "商品情報を取得できませんでした。後でもう一度お試しください。"
+            }
         } catch {
-            // Sandbox or production 環境でのみ取得可能
+            purchaseError = "商品情報の読み込みに失敗しました: \(error.localizedDescription)"
         }
     }
 

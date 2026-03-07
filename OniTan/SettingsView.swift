@@ -73,19 +73,26 @@ struct SettingsView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     Button {
-                        Task { await donationManager.purchase() }
+                        Task {
+                            if donationManager.product == nil {
+                                await donationManager.loadProduct()
+                            } else {
+                                await donationManager.purchase()
+                            }
+                        }
                     } label: {
                         HStack(spacing: 8) {
-                            if donationManager.isPurchasing {
+                            if donationManager.isPurchasing || donationManager.isLoadingProduct {
                                 ProgressView()
                                     .progressViewStyle(.circular)
                                     .tint(.white)
                                     .scaleEffect(0.8)
                             } else {
-                                Image(systemName: "heart.fill")
+                                Image(systemName: donationManager.product == nil ? "arrow.clockwise" : "heart.fill")
                                     .font(.system(size: 14, weight: .semibold))
                             }
-                            Text(donationManager.product.map { $0.displayPrice + " 寄付する" } ?? "寄付する")
+                            Text(donationManager.product.map { $0.displayPrice + " 寄付する" }
+                                 ?? (donationManager.isLoadingProduct ? "読み込み中..." : "再読み込み"))
                                 .font(.system(.headline, design: .rounded))
                                 .fontWeight(.bold)
                         }
@@ -102,7 +109,7 @@ struct SettingsView: View {
                         .cornerRadius(OniTanTheme.radiusButton)
                         .shadow(color: Color(red: 1.0, green: 0.3, blue: 0.4).opacity(0.3), radius: 6, y: 3)
                     }
-                    .disabled(donationManager.isPurchasing || donationManager.product == nil)
+                    .disabled(donationManager.isPurchasing || donationManager.isLoadingProduct)
                     .accessibilityLabel("開発者に寄付する")
 
                     Button {
