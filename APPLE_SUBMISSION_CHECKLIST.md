@@ -41,6 +41,11 @@
   - 現状: `OniTan/Assets.xcassets/AppIcon.appiconset/Contents.json` に画像ファイルの参照がない
 - [ ] App Store Connect 用の `Privacy Policy URL` を用意する
 - [ ] App Store Connect 用の `Support URL` を用意する
+  - 下書きページ: `docs/privacy.html`, `docs/support.html`
+  - GitHub Pages 候補:
+    - `https://ben-kei-create.github.io/OniTan/privacy.html`
+    - `https://ben-kei-create.github.io/OniTan/support.html`
+  - GitHub 側で Pages を有効化したあとに疎通確認する
 
 ### P0: 広告まわり
 

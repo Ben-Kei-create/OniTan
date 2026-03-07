@@ -246,6 +246,7 @@ struct SettingsView: View {
         SettingsCard(title: "アプリ情報", icon: "info.circle.fill", iconColor: Color(red: 0.3, green: 0.5, blue: 0.9)) {
             VStack(spacing: 10) {
                 infoRow(label: "バージョン", value: appVersion)
+                infoRow(label: "ビルド", value: appBuild)
                 infoRow(label: "対象範囲", value: "漢字検定準1級")
                 infoRow(label: "収録ステージ", value: "\(quizData.stages.count) ステージ")
                 infoRow(label: "収録問題数", value: "\(questions.count) 問")
@@ -270,6 +271,10 @@ struct SettingsView: View {
 
     private var appVersion: String {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    }
+
+    private var appBuild: String {
+        Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
     }
 
     // MARK: - Alert builder
