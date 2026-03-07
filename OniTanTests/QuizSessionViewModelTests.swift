@@ -124,11 +124,12 @@ final class QuizSessionViewModelTests: XCTestCase {
 
     func testWrongAnswer_noReviewQueue_examMode() {
         let vm = makeVM(mode: .exam30)
+        let firstKanji = vm.currentQuestion.kanji
+        let wrongChoice = vm.currentQuestion.choices.first { $0 != vm.currentQuestion.answer }!
         // In exam mode wrong answers don't re-queue
-        vm.answer(selected: "ひのき")   // wrong on q1
+        vm.answer(selected: wrongChoice)
         vm.proceed()
-        // Next question should be q2, not back to q1
-        XCTAssertNotEqual(vm.currentQuestion.kanji, "燎",
+        XCTAssertNotEqual(vm.currentQuestion.kanji, firstKanji,
             "Exam mode should not re-queue wrong answers")
     }
 
@@ -146,9 +147,9 @@ final class QuizSessionViewModelTests: XCTestCase {
     func testAllCorrect_doesNotClearStage_examMode() {
         let examStage = Stage(stage: 1, questions: [q1, q2])
         let vm = QuizSessionViewModel(stage: examStage, appState: appState, statsRepo: statsRepo, mode: .exam30)
-        vm.answer(selected: q1.answer)
+        vm.answer(selected: vm.currentQuestion.answer)
         vm.proceed()
-        vm.answer(selected: q2.answer)
+        vm.answer(selected: vm.currentQuestion.answer)
         XCTAssertEqual(vm.phase, .stageCleared, "Exam mode should reach stageCleared")
         XCTAssertFalse(appState.isCleared(1), "Exam mode should NOT mark stage cleared in AppState")
     }

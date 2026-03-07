@@ -183,7 +183,6 @@ private struct ModeCard: View {
         case .quick10:   return LinearGradient(colors: [Color(red: 1.0, green: 0.5, blue: 0.0), Color(red: 0.9, green: 0.35, blue: 0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
         case .exam30:    return LinearGradient(colors: [Color(red: 0.2, green: 0.5, blue: 0.9), Color(red: 0.1, green: 0.35, blue: 0.7)], startPoint: .topLeading, endPoint: .bottomTrailing)
         case .weakFocus: return LinearGradient(colors: [OniTanTheme.accentWeak, Color(red: 0.9, green: 0.4, blue: 0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
-        default:         return OniTanTheme.primaryGradient
         }
     }
 

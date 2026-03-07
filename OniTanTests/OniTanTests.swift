@@ -360,6 +360,7 @@ struct StreakRepositoryTests {
 
 // MARK: - GamificationRepository Tests
 
+@Suite(.serialized)
 struct GamificationRepositoryTests {
 
     @Test func xp_startsAtZero() {

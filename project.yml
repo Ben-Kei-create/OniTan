@@ -21,11 +21,13 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.fumiakiMogi777.OniTan
         DEVELOPMENT_TEAM: ""   # 必要なら後で埋める（Simulatorだけなら空でOK）
+        MARKETING_VERSION: 1.0.0
+        CURRENT_PROJECT_VERSION: 1
         GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: 1
         INFOPLIST_KEY_GADApplicationIdentifier: ca-app-pub-4859622277330192~8703189628
+        INFOPLIST_KEY_UILaunchStoryboardName: LaunchScreen
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone:
-          - UIInterfaceOrientationPortrait
-        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad:
           - UIInterfaceOrientationPortrait
 
   OniTanTests:

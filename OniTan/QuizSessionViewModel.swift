@@ -153,6 +153,10 @@ final class QuizSessionViewModel: ObservableObject {
             } else {
                 // quick10/exam30: count total answered (correct + wrong)
                 clearedCount += 1
+                if pendingQueue.isEmpty {
+                    onSessionCleared()
+                    return
+                }
             }
             phase = .showingExplanation
 
@@ -244,7 +248,6 @@ final class QuizSessionViewModel: ObservableObject {
         case .quick10:   return "クイック完了！"
         case .exam30:    return "模試完了！"
         case .weakFocus: return "復習完了！"
-        case .srsReview: return "SRS復習完了！"
         default:         return "ステージ \(stageNumber) クリア！"
         }
     }
