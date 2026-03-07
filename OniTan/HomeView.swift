@@ -17,7 +17,7 @@ struct HomeView: View {
             GeometryReader { proxy in
                 let availableHeight = proxy.size.height
                 let isCompactHeight = availableHeight < 700
-                let contentWidth = min(proxy.size.width - (isCompactHeight ? 16 : 20), 560)
+                let contentWidth = max(0, min(proxy.size.width - (isCompactHeight ? 16 : 20), 560))
 
                 ZStack {
                     animatedBackground
