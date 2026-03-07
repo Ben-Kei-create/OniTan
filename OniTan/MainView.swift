@@ -280,13 +280,11 @@ struct MainView: View {
         }
     }
 
-    /// Returns exactly 2 choices: the correct answer + 1 wrong choice.
-    /// Order is derived from the original choices array (stable, deterministic).
+    /// Returns exactly 2 choices: the correct answer + 1 wrong choice, in random order.
     private static func twoChoices(from choices: [String], answer: String) -> [String] {
         let wrongs = choices.filter { $0 != answer }
         guard let firstWrong = wrongs.first else { return [answer] }
-        let pair = Set([answer, firstWrong])
-        return choices.filter { pair.contains($0) }.prefix(2).map { $0 }
+        return [answer, firstWrong].shuffled()
     }
 
     // MARK: - Wrong Answer View
