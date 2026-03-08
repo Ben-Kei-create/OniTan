@@ -258,7 +258,7 @@ struct WrongAnswerDetailSheet: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(OniTanTheme.textSecondary)
 
-                                Text(q.explain)
+                                Text(q.displayExplanation)
                                     .font(.system(.body, design: .rounded))
                                     .foregroundColor(OniTanTheme.textSecondary)
                                     .lineSpacing(5)
@@ -269,7 +269,7 @@ struct WrongAnswerDetailSheet: View {
                             .cornerRadius(OniTanTheme.radiusCard)
                             .padding(.horizontal, 20)
                             .accessibilityElement(children: .combine)
-                            .accessibilityLabel("解説: \(q.explain)")
+                            .accessibilityLabel("解説: \(q.displayExplanation)")
                         }
                     }
                     .padding(.bottom, 40)

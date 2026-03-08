@@ -83,7 +83,7 @@ struct KanjiCatalogView: View {
                     .foregroundColor(OniTanTheme.accentWeak)
             }
 
-            Text("5列の一覧から漢字を選ぶと、読みと解説を確認できます。")
+            Text("5列の一覧から漢字を選ぶと、読みと解説を確認できます。お気に入りはホームからまとめて学習できます。")
                 .font(.system(.subheadline, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -150,7 +150,7 @@ private struct KanjiCatalogDetailView: View {
     let entry: KanjiCatalogEntry
 
     private var explanationLines: [String] {
-        entry.question.explain
+        entry.question.displayExplanation
             .split(separator: "\n")
             .map(String.init)
             .filter { !$0.isEmpty }

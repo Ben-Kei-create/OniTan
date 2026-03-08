@@ -4,6 +4,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var vm: QuizSessionViewModel
+    @State private var activeReportContext: QuizProblemReportContext?
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
@@ -67,6 +68,8 @@ struct MainView: View {
                         if vm.phase == .showingExplanation {
                             ExplanationView(question: vm.currentQuestion) {
                                 vm.proceed()
+                            } onReport: {
+                                presentProblemReport(for: vm.currentQuestion)
                             }
                             .environmentObject(playFontManager)
                             .transition(.opacity)
@@ -84,6 +87,9 @@ struct MainView: View {
         }
         .alert(item: $vm.activeAlert) { alert in
             alertView(for: alert)
+        }
+        .sheet(item: $activeReportContext) { context in
+            ProblemReportSheet(context: context)
         }
     }
 
@@ -258,8 +264,11 @@ struct MainView: View {
         }
         .frame(height: kanjiHeight)
         .overlay(alignment: .topTrailing) {
-            favoriteButton(scale: scale)
-                .padding(scaled(14, by: scale, min: 10))
+            VStack(spacing: scaled(8, by: scale, min: 6)) {
+                favoriteButton(scale: scale)
+                reportButton(scale: scale)
+            }
+            .padding(scaled(14, by: scale, min: 10))
         }
         .animation(.easeInOut(duration: 0.25), value: isShowingWrong)
         .accessibilityElement(children: .contain)
@@ -296,6 +305,27 @@ struct MainView: View {
         .accessibilityIdentifier("quiz_favorite_toggle")
     }
 
+    private func reportButton(scale: CGFloat) -> some View {
+        Button {
+            presentProblemReport(for: vm.currentQuestion)
+            OniTanTheme.haptic(.light)
+        } label: {
+            Image(systemName: "exclamationmark.bubble")
+                .font(.system(size: scaled(17, by: scale, min: 14), weight: .bold))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
+                .background(Color.black.opacity(0.18))
+                .overlay(
+                    Circle()
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                )
+                .clipShape(Circle())
+        }
+        .accessibilityLabel("問題を報告")
+        .accessibilityHint("現在の問題内容を添えて報告画面を開きます")
+        .accessibilityIdentifier("quiz_problem_report")
+    }
+
     // MARK: - 2-Choice Stack
 
     private func choiceStack(scale: CGFloat) -> some View {
@@ -309,6 +339,14 @@ struct MainView: View {
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .padding(.leading, 4)
+
+            if let note = vm.currentQuestion.readingMetadata.playerNote(for: vm.currentQuestion.answer) {
+                Text(note)
+                    .font(playFont(scaled(12, by: scale, min: 10), weight: .regular))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .padding(.leading, 4)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
 
             ForEach(Array(twoChoices.enumerated()), id: \.offset) { _, choice in
                 ChoiceCard(
@@ -525,6 +563,15 @@ struct MainView: View {
     private func playFont(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
         playFontManager.font(size: size, weight: weight)
     }
+
+    private func presentProblemReport(for question: Question) {
+        activeReportContext = QuizProblemReportContext(
+            question: question,
+            sessionTitle: vm.displayTitle,
+            modeName: vm.mode.displayName,
+            stageNumber: vm.stageNumber > 0 ? vm.stageNumber : nil
+        )
+    }
 }
 
 // MARK: - Choice Card
@@ -588,6 +635,7 @@ private struct ChoiceCard: View {
 struct ExplanationView: View {
     let question: Question
     let onDismiss: () -> Void
+    let onReport: () -> Void
 
     @EnvironmentObject private var playFontManager: PlayFontManager
     @State private var appear = false
@@ -601,6 +649,24 @@ struct ExplanationView: View {
             VStack(spacing: 0) {
                 // Kanji header
                 VStack(spacing: 8) {
+                    HStack {
+                        Spacer()
+
+                        Button {
+                            onReport()
+                        } label: {
+                            Image(systemName: "exclamationmark.bubble")
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundColor(OniTanTheme.textSecondary)
+                                .frame(width: 36, height: 36)
+                                .background(Color.white.opacity(0.08))
+                                .clipShape(Circle())
+                        }
+                        .accessibilityLabel("問題を報告")
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+
                     Text(question.kanji)
                         .font(playFontManager.font(size: 70, weight: .black))
                         .foregroundStyle(OniTanTheme.primaryGradient)
@@ -613,16 +679,24 @@ struct ExplanationView: View {
                             .fontWeight(.bold)
                             .foregroundColor(OniTanTheme.accentCorrect)
                     }
+
+                    if let note = question.readingMetadata.playerNote(for: question.answer) {
+                        Text(note)
+                            .font(playFontManager.font(size: 12))
+                            .foregroundColor(OniTanTheme.accentWeak)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 20)
+                    }
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 24)
+                .padding(.bottom, 24)
                 .background(Color(red: 0.12, green: 0.10, blue: 0.20))
 
                 Divider().background(Color.white.opacity(0.15))
 
                 // Explanation body
                 ScrollView {
-                    Text(question.explain)
+                    Text(question.displayExplanation)
                         .font(playFontManager.font(size: 17))
                         .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
                         .lineSpacing(6)
@@ -659,7 +733,7 @@ struct ExplanationView: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("正解の解説: \(question.kanji). \(question.explain)")
+        .accessibilityLabel("正解の解説: \(question.kanji). \(question.displayExplanation)")
         .accessibilityHint("タップまたは次へボタンで閉じます")
     }
 }

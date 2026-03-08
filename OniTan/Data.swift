@@ -131,6 +131,10 @@ func validateQuizData(_ data: QuizData) -> [String] {
                 issues.append("⚠️ \(qtag): kind が不明な値です")
             }
 
+            if q.kind == .reading, q.readingMetadata.answerKind(for: q.answer) == .shared {
+                issues.append("⚠️ \(qtag): 正解の読みが音読み・訓読みの両方に存在します")
+            }
+
             // Payload present but discriminator missing/empty
             if let p = q.payload, (p.type == nil || p.type?.isEmpty == true) {
                 issues.append("⚠️ \(qtag): payload.type が空または未設定です")

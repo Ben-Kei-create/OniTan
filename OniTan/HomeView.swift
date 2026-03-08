@@ -5,6 +5,7 @@ struct HomeView: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var donationManager: DonationManager
 
@@ -296,20 +297,21 @@ struct HomeView: View {
                 destination: StageSelectView()
             )
 
-            if !reviewQuestions.isEmpty {
+            if favoriteRepo.count > 0 {
                 HomeMenuButton(
-                    title: "これまでをおさらい",
-                    icon: "arrow.triangle.2.circlepath.circle.fill",
+                    title: "お気に入りから学習",
+                    icon: "star.fill",
                     gradient: LinearGradient(
-                        colors: [Color(red: 0.78, green: 0.44, blue: 0.10), Color(red: 0.48, green: 0.20, blue: 0.05)],
+                        colors: [Color(red: 0.95, green: 0.72, blue: 0.14), Color(red: 0.72, green: 0.42, blue: 0.04)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
                     compact: isCompact,
                     destination: QuizModeSelectView(
-                        stage: ReviewSessionBuilder.buildReviewStage(reviewQuestions: reviewQuestions),
-                        sessionTitle: "これまでをおさらい",
-                        allowedModes: [.quick10, .exam30]
+                        stage: FavoriteSessionBuilder.buildFavoriteStage(
+                            favoriteKanji: favoriteRepo.favoriteKanji
+                        ),
+                        sessionTitle: "お気に入り"
                     )
                 )
             }
@@ -326,7 +328,15 @@ struct HomeView: View {
                 destination: KanjiCatalogView()
             )
 
-            if xpRepo.level >= 5 {
+            if !reviewQuestions.isEmpty {
+                if xpRepo.level >= 30 {
+                    reviewMenuButton(isCompact: isCompact)
+                } else {
+                    lockedReviewButton(isCompact: isCompact)
+                }
+            }
+
+            if xpRepo.level >= 50 {
                 HomeMenuButton(
                     title: "連続鬼たん",
                     icon: "flame.fill",
@@ -345,6 +355,24 @@ struct HomeView: View {
         }
     }
 
+    private func reviewMenuButton(isCompact: Bool) -> some View {
+        HomeMenuButton(
+            title: "おさらい（準１級以下）",
+            icon: "arrow.triangle.2.circlepath.circle.fill",
+            gradient: LinearGradient(
+                colors: [Color(red: 0.78, green: 0.44, blue: 0.10), Color(red: 0.48, green: 0.20, blue: 0.05)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            ),
+            compact: isCompact,
+            destination: QuizModeSelectView(
+                stage: ReviewSessionBuilder.buildReviewStage(reviewQuestions: reviewQuestions),
+                sessionTitle: "おさらい（準１級以下）",
+                allowedModes: [.quick10, .exam30]
+            )
+        )
+    }
+
     private func lockedStreakButton(isCompact: Bool) -> some View {
         HStack(spacing: isCompact ? 10 : 12) {
             Image(systemName: "lock.fill")
@@ -358,7 +386,48 @@ struct HomeView: View {
                 Text("連続鬼たん")
                     .font(.system(size: isCompact ? 15 : 16, weight: .bold, design: .rounded))
                     .foregroundColor(.white.opacity(0.35))
-                Text("Lv.5で解放")
+                Text("Lv.50で解放")
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
+                    .foregroundColor(.white.opacity(0.3))
+            }
+
+            Spacer()
+
+            Image(systemName: "lock.fill")
+                .font(.system(size: isCompact ? 12 : 13, weight: .semibold))
+                .foregroundColor(.white.opacity(0.25))
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, isCompact ? 13 : 15)
+        .padding(.vertical, isCompact ? 9 : 11)
+        .background(
+            LinearGradient(
+                colors: [Color.white.opacity(0.07), Color.white.opacity(0.04)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .cornerRadius(OniTanTheme.radiusCard)
+        .overlay(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
+    }
+
+    private func lockedReviewButton(isCompact: Bool) -> some View {
+        HStack(spacing: isCompact ? 10 : 12) {
+            Image(systemName: "lock.fill")
+                .font(.system(size: isCompact ? 16 : 17, weight: .semibold))
+                .foregroundColor(.white.opacity(0.35))
+                .frame(width: isCompact ? 34 : 36, height: isCompact ? 34 : 36)
+                .background(Color.white.opacity(0.08))
+                .clipShape(Circle())
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("おさらい（準１級以下）")
+                    .font(.system(size: isCompact ? 15 : 16, weight: .bold, design: .rounded))
+                    .foregroundColor(.white.opacity(0.35))
+                Text("Lv.30で解放")
                     .font(.system(size: 11, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.3))
             }

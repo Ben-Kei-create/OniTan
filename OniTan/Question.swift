@@ -80,3 +80,14 @@ struct Question: Identifiable, Codable {
         try c.encodeIfPresent(payload,    forKey: .payload)
     }
 }
+
+extension Question {
+    var displayExplanation: String {
+        explain
+            .split(separator: "\n", omittingEmptySubsequences: false)
+            .map(String.init)
+            .filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("出典:") }
+            .joined(separator: "\n")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}

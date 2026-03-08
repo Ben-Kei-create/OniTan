@@ -5,6 +5,7 @@ struct SettingsView: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var adConsentManager: AdConsentManager
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
@@ -20,6 +21,7 @@ struct SettingsView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     appearanceSection
+                    adPrivacySection
                     donationSection
                     dataSection
                     appInfoSection
@@ -38,6 +40,52 @@ struct SettingsView: View {
     }
 
     // MARK: - Donation
+
+    private var adPrivacySection: some View {
+        SettingsCard(
+            title: "広告とプライバシー",
+            icon: "hand.raised.fill",
+            iconColor: Color(red: 0.95, green: 0.72, blue: 0.14)
+        ) {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("広告表示のため、初回起動時に Google の同意確認が行われる場合があります。必要な地域では、ここから広告のプライバシー設定を開けます。")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                if adConsentManager.privacyOptionsRequired {
+                    Button {
+                        Task {
+                            await adConsentManager.presentPrivacyOptionsFormIfRequired()
+                        }
+                    } label: {
+                        HStack(spacing: 8) {
+                            Image(systemName: "shield.lefthalf.filled")
+                                .font(.system(size: 14, weight: .semibold))
+                            Text("広告のプライバシー設定を開く")
+                                .font(.system(.headline, design: .rounded))
+                                .fontWeight(.bold)
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .background(OniTanTheme.primaryGradient)
+                        .cornerRadius(OniTanTheme.radiusButton)
+                    }
+                    .accessibilityLabel("広告のプライバシー設定を開く")
+                } else {
+                    Text("現在は追加の広告プライバシー操作は不要です。")
+                        .font(.system(.caption, design: .rounded))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
+
+                if let error = adConsentManager.lastErrorMessage {
+                    Text(error)
+                        .font(.system(.caption2, design: .rounded))
+                        .foregroundColor(OniTanTheme.accentWrong)
+                }
+            }
+        }
+    }
 
     private var donationSection: some View {
         SettingsCard(
@@ -277,9 +325,9 @@ struct SettingsView: View {
                 infoRow(label: "ビルド", value: appBuild)
                 infoRow(label: "対象範囲", value: "漢字検定準1級")
                 infoRow(label: "収録ステージ", value: "\(quizData.stages.count) ステージ")
-                infoRow(label: "準1級問題数", value: "\(questions.count) 問")
+                infoRow(label: "準1級問題数", value: "\(questions.count)")
                 if !reviewQuestions.isEmpty {
-                    infoRow(label: "おさらい問題数", value: "\(reviewQuestions.count) 問")
+                    infoRow(label: "おさらい問題数", value: "\(reviewQuestions.count)")
                 }
             }
         }

@@ -140,6 +140,7 @@ final class StreakChallengeViewModel: ObservableObject {
 
 struct StreakChallengeView: View {
     @StateObject private var vm: StreakChallengeViewModel
+    @State private var activeReportContext: QuizProblemReportContext?
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
@@ -185,6 +186,8 @@ struct StreakChallengeView: View {
                                 streak: vm.consecutiveCorrect
                             ) {
                                 vm.proceedAfterExplanation()
+                            } onReport: {
+                                presentProblemReport(for: vm.currentQuestion)
                             }
                             .environmentObject(playFontManager)
                             .transition(.opacity)
@@ -205,6 +208,9 @@ struct StreakChallengeView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .onAppear { vm.startTimer() }
         .onDisappear { vm.stopTimer() }
+        .sheet(item: $activeReportContext) { context in
+            ProblemReportSheet(context: context)
+        }
     }
 
     // MARK: - Timer Bar
@@ -356,9 +362,34 @@ struct StreakChallengeView: View {
                 .padding(scaled(16, by: scale, min: 8))
         }
         .frame(height: height)
+        .overlay(alignment: .topTrailing) {
+            reportButton(scale: scale)
+                .padding(scaled(14, by: scale, min: 10))
+        }
         .animation(.easeInOut(duration: 0.25), value: vm.currentQuestion.kanji)
         .accessibilityElement()
         .accessibilityLabel("漢字: \(vm.currentQuestion.kanji)")
+    }
+
+    private func reportButton(scale: CGFloat) -> some View {
+        Button {
+            presentProblemReport(for: vm.currentQuestion)
+            OniTanTheme.haptic(.light)
+        } label: {
+            Image(systemName: "exclamationmark.bubble")
+                .font(.system(size: scaled(17, by: scale, min: 14), weight: .bold))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
+                .background(Color.black.opacity(0.18))
+                .overlay(
+                    Circle()
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                )
+                .clipShape(Circle())
+        }
+        .accessibilityLabel("問題を報告")
+        .accessibilityHint("現在の問題内容を添えて報告画面を開きます")
+        .accessibilityIdentifier("streak_problem_report")
     }
 
     private func streakChoiceGrid(scale: CGFloat) -> some View {
@@ -366,19 +397,28 @@ struct StreakChallengeView: View {
             from: vm.currentQuestion.choices,
             answer: vm.currentQuestion.answer
         )
-        return HStack(spacing: scaled(12, by: scale, min: 8)) {
-            ForEach(Array(choices.enumerated()), id: \.offset) { _, choice in
-                StreakChoiceCard(
-                    text: choice,
-                    scale: scale,
-                    fontStyle: playFontManager.fontStyle,
-                    onTap: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                            vm.answer(selected: choice)
+        return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
+            if let note = vm.currentQuestion.readingMetadata.playerNote(for: vm.currentQuestion.answer) {
+                Text(note)
+                    .font(playFont(scaled(12, by: scale, min: 10), weight: .regular))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            HStack(spacing: scaled(12, by: scale, min: 8)) {
+                ForEach(Array(choices.enumerated()), id: \.offset) { _, choice in
+                    StreakChoiceCard(
+                        text: choice,
+                        scale: scale,
+                        fontStyle: playFontManager.fontStyle,
+                        onTap: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                vm.answer(selected: choice)
+                            }
+                            OniTanTheme.haptic(.medium)
                         }
-                        OniTanTheme.haptic(.medium)
-                    }
-                )
+                    )
+                }
             }
         }
     }
@@ -512,6 +552,15 @@ struct StreakChallengeView: View {
     private func playFont(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
         playFontManager.font(size: size, weight: weight)
     }
+
+    private func presentProblemReport(for question: Question) {
+        activeReportContext = QuizProblemReportContext(
+            question: question,
+            sessionTitle: "連続鬼たん",
+            modeName: "連続鬼たん",
+            stageNumber: nil
+        )
+    }
 }
 
 // MARK: - Streak Choice Card
@@ -571,6 +620,7 @@ struct StreakExplanationView: View {
     let question: Question
     let streak: Int
     let onDismiss: () -> Void
+    let onReport: () -> Void
 
     @EnvironmentObject private var playFontManager: PlayFontManager
     @State private var appear = false
@@ -583,6 +633,24 @@ struct StreakExplanationView: View {
 
             VStack(spacing: 0) {
                 VStack(spacing: 8) {
+                    HStack {
+                        Spacer()
+
+                        Button {
+                            onReport()
+                        } label: {
+                            Image(systemName: "exclamationmark.bubble")
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundColor(OniTanTheme.textSecondary)
+                                .frame(width: 36, height: 36)
+                                .background(Color.white.opacity(0.08))
+                                .clipShape(Circle())
+                        }
+                        .accessibilityLabel("問題を報告")
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+
                     Text(question.kanji)
                         .font(playFontManager.font(size: 70, weight: .black))
                         .foregroundStyle(OniTanTheme.primaryGradient)
@@ -602,15 +670,23 @@ struct StreakExplanationView: View {
                                 .foregroundColor(OniTanTheme.accentWeak)
                         }
                     }
+
+                    if let note = question.readingMetadata.playerNote(for: question.answer) {
+                        Text(note)
+                            .font(playFontManager.font(size: 12))
+                            .foregroundColor(OniTanTheme.accentWeak)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 20)
+                    }
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 24)
+                .padding(.bottom, 24)
                 .background(Color(red: 0.12, green: 0.10, blue: 0.20))
 
                 Divider().background(Color.white.opacity(0.15))
 
                 ScrollView {
-                    Text(question.explain)
+                    Text(question.displayExplanation)
                         .font(playFontManager.font(size: 17))
                         .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
                         .lineSpacing(6)
@@ -649,6 +725,6 @@ struct StreakExplanationView: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("正解の解説: \(question.kanji). \(question.explain)")
+        .accessibilityLabel("正解の解説: \(question.kanji). \(question.displayExplanation)")
     }
 }

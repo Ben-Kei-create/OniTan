@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,7 @@
 		362516D45E32453B490BDA12 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82790558D967BDF74A396745 /* ThemeManager.swift */; };
 		3687FBABFD2E8AC997A696F4 /* stage5.json in Resources */ = {isa = PBXBuildFile; fileRef = BE1E211069E4A9AAB2115745 /* stage5.json */; };
 		40F9DEADD3551EAF6FC77758 /* stage58.json in Resources */ = {isa = PBXBuildFile; fileRef = 023DF7CFCCF5703ED48AA67F /* stage58.json */; };
+		41021FB5B9FE659C37411DFC /* IssueReportSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1DF2D4A2BEC63131259E1D /* IssueReportSupport.swift */; };
 		41071E052CB02DB230802921 /* stage26.json in Resources */ = {isa = PBXBuildFile; fileRef = 555098B4DDEA6BBB35FF5380 /* stage26.json */; };
 		448B522BBC292427FFDD7B9D /* QuizContentVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B786838699B569CDA6C80F68 /* QuizContentVersion.swift */; };
 		494278A07FD46874A91289A8 /* stage47.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8416763B3A8807235DF628 /* stage47.json */; };
@@ -46,7 +47,9 @@
 		649C6781730858F020EAAA7A /* stage24.json in Resources */ = {isa = PBXBuildFile; fileRef = EB122196F6D4D91A33A1693E /* stage24.json */; };
 		64C54B2B9205CD9DC6DA7074 /* WrongAnswerNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273AFB1306429A1281DC68F /* WrongAnswerNoteView.swift */; };
 		65840B0402AE04492F903F10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352DD65B20BC1C414C33B3C /* MainView.swift */; };
+		65E78D4191B412DB4194A751 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = F0C974EC09668B3982F087BD /* GoogleUserMessagingPlatform */; };
 		674F0E69FF8C2BE16830B6E6 /* stage51.json in Resources */ = {isa = PBXBuildFile; fileRef = D645336E2E658C7E74A9A41F /* stage51.json */; };
+		68E8D60193D2241163241854 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 85377F28796EB1E2855B25B7 /* GoogleMobileAds */; };
 		6C698C51A8CB364DB83ABE95 /* stage31.json in Resources */ = {isa = PBXBuildFile; fileRef = 63B75D2597D27B71A3D23C7D /* stage31.json */; };
 		6C83A07CEDFF0769C6C55633 /* stage22.json in Resources */ = {isa = PBXBuildFile; fileRef = E39C1E4E36F8C3AF0798754E /* stage22.json */; };
 		6DFFD18A21A6C5E62803D258 /* stage54.json in Resources */ = {isa = PBXBuildFile; fileRef = 5022A0A67FC08B6CB766A0C3 /* stage54.json */; };
@@ -99,7 +102,9 @@
 		D274754B08BB11C43DE7DC5B /* stage48.json in Resources */ = {isa = PBXBuildFile; fileRef = 2CD9CF426396D7AB1E025969 /* stage48.json */; };
 		D8B67B78B45377420AB06FC7 /* stage61.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C8316098825221F61FACA61 /* stage61.json */; };
 		DAB97BBCCD850514D771066F /* stage65.json in Resources */ = {isa = PBXBuildFile; fileRef = D97081A527C6AE077BAED255 /* stage65.json */; };
+		DBE151A3D90428D55AB8FD3F /* AdConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D1980D10BAEB54602E12F5 /* AdConsentManager.swift */; };
 		E07C03299B6B62B38BF8C9C8 /* stage57.json in Resources */ = {isa = PBXBuildFile; fileRef = 25D61BBA99DDCFE4C669ED1B /* stage57.json */; };
+		E10D6D428CBB7885969D5902 /* QuestionReadingMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37751537CEB0C3CEB24EA5A /* QuestionReadingMetadata.swift */; };
 		E584AE3550568854A086E3AF /* stage2.json in Resources */ = {isa = PBXBuildFile; fileRef = 107EB57A894AA8A8CF252B11 /* stage2.json */; };
 		E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B304DA79873F9CF82ACCD64 /* QuizMode.swift */; };
 		E9B93B5C6B4BABCA1772C801 /* stage28.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DB5E530E240E4FB49663307 /* stage28.json */; };
@@ -112,6 +117,7 @@
 		F2D12E25938A256A24A3A9F0 /* ThemePalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */; };
 		F40F0785505722F2F5B3C568 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A30C74AFCC83BC81240FE8B /* stage14.json */; };
 		F44478D44E2B9D89E37BFB73 /* stage44.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B3D54D4915B729AAC99851 /* stage44.json */; };
+		F53C4B342E9FB51D2FBFB233 /* FavoriteSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */; };
 		FBFAC18715D43EFEB9C14142 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = D3A9974F2CF764CE1DD79C22 /* stage56.json */; };
 		FC72599E1B883C0D36F60464 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = ED0575009408B143BF71B4D0 /* stage21.json */; };
 		FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43FC022C83E344ABEE7C03 /* ErrorState.swift */; };
@@ -167,6 +173,7 @@
 		43BA21B8537F72A698B888CF /* stage18.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage18.json; sourceTree = "<group>"; };
 		44100CC7FC71EE69F7477E00 /* stage7.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage7.json; sourceTree = "<group>"; };
 		46D33B8FDDD0434828F5675C /* stage49.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage49.json; sourceTree = "<group>"; };
+		46DD1A5A4E1BFAB1F2920AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		486F12EDA51B890C62E838A5 /* stage25.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage25.json; sourceTree = "<group>"; };
 		4B1D8140D9AFAAC2D9B9013B /* OniTanTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = OniTanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B304DA79873F9CF82ACCD64 /* QuizMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMode.swift; sourceTree = "<group>"; };
@@ -196,7 +203,7 @@
 		81706BE1C66194C70273C674 /* stage62.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage62.json; sourceTree = "<group>"; };
 		82790558D967BDF74A396745 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePalette.swift; sourceTree = "<group>"; };
-		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8501973E7C7AEEC9131BA60D /* OniTan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OniTan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		860301C6672CBF8DF84E8AA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		878ED351D8C0E69141C83475 /* GamificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationRepository.swift; sourceTree = "<group>"; };
 		8D95C55E6991AA704403797F /* stage9.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage9.json; sourceTree = "<group>"; };
@@ -206,6 +213,7 @@
 		968908FB08AF92A43B52A1A3 /* stage20.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage20.json; sourceTree = "<group>"; };
 		975C66663EB0052137ECFD37 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSessionBuilder.swift; sourceTree = "<group>"; };
 		9B898B27B9FFADD4D3C05B93 /* stage40.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage40.json; sourceTree = "<group>"; };
 		9C8316098825221F61FACA61 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
 		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 		BED14EE8159AA696ACED6403 /* stage15.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage15.json; sourceTree = "<group>"; };
 		C0AC333B59CF7F712977B0FB /* stage36.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage36.json; sourceTree = "<group>"; };
 		C3B011EB643E76B5B8B3CBE0 /* stage1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage1.json; sourceTree = "<group>"; };
+		C3D1980D10BAEB54602E12F5 /* AdConsentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdConsentManager.swift; sourceTree = "<group>"; };
 		C3DF8ED945F9B84684BDFE61 /* KanjiCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiCatalogView.swift; sourceTree = "<group>"; };
 		C5B92D880960294F4287FF87 /* stage11.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage11.json; sourceTree = "<group>"; };
 		CFBA6885AD09BD3CC8FF1F9D /* stage29.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage29.json; sourceTree = "<group>"; };
@@ -237,16 +246,30 @@
 		D645336E2E658C7E74A9A41F /* stage51.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage51.json; sourceTree = "<group>"; };
 		D97081A527C6AE077BAED255 /* stage65.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage65.json; sourceTree = "<group>"; };
 		DAACB88E4CB59420C77DC160 /* review_questions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = review_questions.json; sourceTree = "<group>"; };
+		DD1DF2D4A2BEC63131259E1D /* IssueReportSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReportSupport.swift; sourceTree = "<group>"; };
 		DDA00CF2349275E0A068CDF0 /* stage45.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage45.json; sourceTree = "<group>"; };
 		E222ADCDDFA57C3EECBABCD9 /* stage30.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage30.json; sourceTree = "<group>"; };
 		E39C1E4E36F8C3AF0798754E /* stage22.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage22.json; sourceTree = "<group>"; };
 		EB122196F6D4D91A33A1693E /* stage24.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage24.json; sourceTree = "<group>"; };
 		EB26B5C1415ED8742E165B4B /* stage60.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage60.json; sourceTree = "<group>"; };
 		ED0575009408B143BF71B4D0 /* stage21.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage21.json; sourceTree = "<group>"; };
+		F37751537CEB0C3CEB24EA5A /* QuestionReadingMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionReadingMetadata.swift; sourceTree = "<group>"; };
 		F47BC5CFCD73435ACF5AF71A /* stage53.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage53.json; sourceTree = "<group>"; };
 		F778B7974DE051C0BC2CC841 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
 		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7ECB131175B9A29A8D5E1216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68E8D60193D2241163241854 /* GoogleMobileAds in Frameworks */,
+				65E78D4191B412DB4194A751 /* GoogleUserMessagingPlatform in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		20CFE708821AC1E4E072923A /* Resources */ = {
@@ -329,14 +352,18 @@
 			isa = PBXGroup;
 			children = (
 				62ADB5A3C69CE326AF95624D /* AdBannerView.swift */,
+				C3D1980D10BAEB54602E12F5 /* AdConsentManager.swift */,
 				2FF720D8313B0EE232F3045F /* AppState.swift */,
 				096C66E38B34DF2D43548956 /* Assets.xcassets */,
 				74745D835668D62C4F1D5954 /* Data.swift */,
 				AC8F6ECD726DCF29CABF6B5A /* DonationManager.swift */,
 				4B43FC022C83E344ABEE7C03 /* ErrorState.swift */,
 				AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */,
+				9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */,
 				878ED351D8C0E69141C83475 /* GamificationRepository.swift */,
 				860301C6672CBF8DF84E8AA2 /* HomeView.swift */,
+				46DD1A5A4E1BFAB1F2920AEF /* Info.plist */,
+				DD1DF2D4A2BEC63131259E1D /* IssueReportSupport.swift */,
 				C3DF8ED945F9B84684BDFE61 /* KanjiCatalogView.swift */,
 				D352DD65B20BC1C414C33B3C /* MainView.swift */,
 				7592732299AE4C3F02EAD315 /* OniTanApp.swift */,
@@ -345,6 +372,7 @@
 				697706E8DAEDA779C15F4536 /* ProgressRingView.swift */,
 				BB9F707F6682B94FE1C60CCE /* Question.swift */,
 				26DAA2A72218BF205143EBB6 /* QuestionKind.swift */,
+				F37751537CEB0C3CEB24EA5A /* QuestionReadingMetadata.swift */,
 				B786838699B569CDA6C80F68 /* QuizContentVersion.swift */,
 				904927EFABE72A0965302AC5 /* QuizData.swift */,
 				4B304DA79873F9CF82ACCD64 /* QuizMode.swift */,
@@ -433,6 +461,7 @@
 			buildPhases = (
 				32BF8172296E37725DD68B23 /* Sources */,
 				8A49CBC20A5A9E0D293B6872 /* Resources */,
+				7ECB131175B9A29A8D5E1216 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -440,6 +469,8 @@
 			);
 			name = OniTan;
 			packageProductDependencies = (
+				85377F28796EB1E2855B25B7 /* GoogleMobileAds */,
+				F0C974EC09668B3982F087BD /* GoogleUserMessagingPlatform */,
 			);
 			productName = OniTan;
 			productReference = 8501973E7C7AEEC9131BA60D /* OniTan.app */;
@@ -472,9 +503,6 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					162DDD53AB6855F5542EF0BC = {
-						DevelopmentTeam = "";
-					};
 					FA51812D936614518D7A0719 = {
 						TestTargetID = 162DDD53AB6855F5542EF0BC;
 					};
@@ -490,7 +518,10 @@
 			);
 			mainGroup = EBC93F64F93D6A258A843ABB;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			packageReferences = (
+				5D08CDAD98EFE2E4C03E45F9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				875303BA72143021F08AE04B /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -598,13 +629,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2254374655C4246F82444AA4 /* AdBannerView.swift in Sources */,
+				DBE151A3D90428D55AB8FD3F /* AdConsentManager.swift in Sources */,
 				177F094D0EBB21EADAE605AF /* AppState.swift in Sources */,
 				A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */,
 				A0E8E6442CBF7CB93BDE9BDE /* DonationManager.swift in Sources */,
 				FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */,
 				58C912EFDBECD011F49C3272 /* FavoriteKanjiRepository.swift in Sources */,
+				F53C4B342E9FB51D2FBFB233 /* FavoriteSessionBuilder.swift in Sources */,
 				1D666F77A86DFCC0C51A2267 /* GamificationRepository.swift in Sources */,
 				99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */,
+				41021FB5B9FE659C37411DFC /* IssueReportSupport.swift in Sources */,
 				574AC60BBA7826BA14FEE301 /* KanjiCatalogView.swift in Sources */,
 				65840B0402AE04492F903F10 /* MainView.swift in Sources */,
 				5FB69196CBFA65B9849A4B4A /* OniTanApp.swift in Sources */,
@@ -613,6 +647,7 @@
 				20B8C39D07F751DFA50D1FDF /* ProgressRingView.swift in Sources */,
 				EA2B7DC79559643E25AB6FC0 /* Question.swift in Sources */,
 				A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */,
+				E10D6D428CBB7885969D5902 /* QuestionReadingMetadata.swift in Sources */,
 				448B522BBC292427FFDD7B9D /* QuizContentVersion.swift in Sources */,
 				8AB3D4A56E5838A224C2F721 /* QuizData.swift in Sources */,
 				E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */,
@@ -697,13 +732,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_GADApplicationIdentifier = "ca-app-pub-4859622277330192~8703189628";
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
-					UIInterfaceOrientationPortrait,
-				);
+				DEVELOPMENT_TEAM = 7R927F3U4V;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OniTan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -738,13 +769,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_GADApplicationIdentifier = "ca-app-pub-4859622277330192~8703189628";
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = (
-					UIInterfaceOrientationPortrait,
-				);
+				DEVELOPMENT_TEAM = 7R927F3U4V;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OniTan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -932,6 +959,38 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D08CDAD98EFE2E4C03E45F9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.1.0;
+			};
+		};
+		875303BA72143021F08AE04B /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		85377F28796EB1E2855B25B7 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D08CDAD98EFE2E4C03E45F9 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		F0C974EC09668B3982F087BD /* GoogleUserMessagingPlatform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 875303BA72143021F08AE04B /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
+			productName = GoogleUserMessagingPlatform;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCAF01079AC30C2BAEC35F5D /* Project object */;
 }

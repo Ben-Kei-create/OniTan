@@ -217,6 +217,69 @@ struct PlayFontManagerTests {
     }
 }
 
+struct FavoriteSessionBuilderTests {
+
+    @Test func favoriteStage_keepsOnlyFavoriteKanjiInSourceOrder() {
+        let pool = [
+            Question(kanji: "魁", choices: ["かい", "がい"], answer: "かい", explain: ""),
+            Question(kanji: "庖", choices: ["ほう", "びょう"], answer: "ほう", explain: ""),
+            Question(kanji: "麒", choices: ["き", "ぎ"], answer: "き", explain: "")
+        ]
+
+        let stage = FavoriteSessionBuilder.buildFavoriteStage(
+            favoriteKanji: ["麒", "魁"],
+            questions: pool
+        )
+
+        #expect(stage.stage == -2)
+        #expect(stage.questions.map(\.kanji) == ["魁", "麒"])
+    }
+}
+
+struct QuestionReadingMetadataTests {
+
+    @Test func sharedReading_detectedFromExplanation() {
+        let question = Question(
+            kanji: "也",
+            choices: ["や", "た"],
+            answer: "や",
+            explain: """
+            意味: 呼びかけの意
+            正解の読み: や
+            音読み: や・え・い
+            訓読み: か・なり・また・や
+            出典: モジナビ
+            """
+        )
+
+        #expect(question.readingMetadata.answerKind(for: question.answer) == .shared)
+        #expect(question.readingMetadata.playerNote(for: question.answer) != nil)
+    }
+}
+
+struct QuizProblemReportBuilderTests {
+
+    @Test func reportDraft_includesQuestionSummary() {
+        let context = QuizProblemReportContext(
+            question: Question(
+                kanji: "魁",
+                choices: ["かい", "がい"],
+                answer: "かい",
+                explain: "意味: さきがけ"
+            ),
+            sessionTitle: "ステージ 1",
+            modeName: "ノーマル",
+            stageNumber: 1
+        )
+
+        let draft = QuizProblemReportBuilder.draftText(for: context)
+
+        #expect(draft.contains("漢字: 魁"))
+        #expect(draft.contains("正解: かい"))
+        #expect(draft.contains("モード: ノーマル"))
+    }
+}
+
 // MARK: - StreakRepository Tests
 
 struct StreakRepositoryTests {
@@ -633,7 +696,8 @@ final class RealDataTests: XCTestCase {
             throw XCTSkip("No stages loaded — skipping real data test")
         }
         let issues = validateQuizData(quizData)
-        XCTAssertTrue(issues.isEmpty, "Production data has validation issues:\n\(issues.joined(separator: "\n"))")
+        let unexpectedIssues = issues.filter { !$0.contains("正解の読みが音読み・訓読みの両方に存在します") }
+        XCTAssertTrue(unexpectedIssues.isEmpty, "Production data has unexpected validation issues:\n\(unexpectedIssues.joined(separator: "\n"))")
     }
 
     func testAllStages_haveAtLeastOneQuestion() throws {
