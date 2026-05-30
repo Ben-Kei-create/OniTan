@@ -36,6 +36,8 @@ targets:
         TARGETED_DEVICE_FAMILY: 1
         # GoogleMobileAds SDK の _Beta.h umbrella header 警告を抑制
         CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
+        OTHER_CFLAGS: "-Wno-incomplete-umbrella"
+        OTHER_SWIFT_FLAGS: "-Xcc -Wno-incomplete-umbrella"
     dependencies:
       - package: GoogleMobileAds
         product: GoogleMobileAds
