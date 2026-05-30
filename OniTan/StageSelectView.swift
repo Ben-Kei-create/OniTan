@@ -4,30 +4,39 @@ struct StageSelectView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var donationManager: DonationManager
 
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
     private let stageManifest = (try? safeLoad("stages.json") as StageManifest)
     private var totalStages: Int { max(stages.map(\.stage).max() ?? stages.count, 1) }
+    private var orderedStageIDs: [Int] { stages.map(\.stage) }
 
     var body: some View {
-        ZStack {
-            OniTanTheme.backgroundGradientFallback
-                .ignoresSafeArea()
+        VStack(spacing: 0) {
+            ZStack {
+                OniTanTheme.backgroundGradientFallback
+                    .ignoresSafeArea()
 
-            ScrollView {
-                VStack(spacing: 16) {
-                    ForEach(stages, id: \.stage) { stage in
-                        StageCard(
-                            stage: stage,
-                            manifest: stageManifest?.stages.first { $0.id == stage.stage },
-                            totalStages: totalStages,
-                            appState: appState,
-                            statsRepo: statsRepo
-                        )
+                ScrollView {
+                    VStack(spacing: 16) {
+                        ForEach(stages, id: \.stage) { stage in
+                            StageCard(
+                                stage: stage,
+                                manifest: stageManifest?.stages.first { $0.id == stage.stage },
+                                totalStages: totalStages,
+                                orderedStageIDs: orderedStageIDs,
+                                appState: appState,
+                                statsRepo: statsRepo
+                            )
+                        }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 20)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 20)
+            }
+
+            if !donationManager.hasDonated {
+                AdBannerView()
             }
         }
         .navigationTitle("ステージ選択")
@@ -43,11 +52,12 @@ private struct StageCard: View {
     let stage: Stage
     let manifest: StageEntry?
     let totalStages: Int
+    let orderedStageIDs: [Int]
     @ObservedObject var appState: AppState
     @ObservedObject var statsRepo: StudyStatsRepository
 
     private var isCleared: Bool  { appState.isCleared(stage.stage) }
-    private var isUnlocked: Bool { appState.isUnlocked(stage.stage) }
+    private var isUnlocked: Bool { appState.isUnlocked(stage.stage, orderedStageIDs: orderedStageIDs) }
     private var weakCount: Int   { statsRepo.weakQuestions(for: stage).count }
     private var accuracy: Double { statsRepo.stageStats[stage.stage]?.accuracy ?? 0 }
 

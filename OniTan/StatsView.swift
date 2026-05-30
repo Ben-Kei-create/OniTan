@@ -4,28 +4,35 @@ struct StatsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var donationManager: DonationManager
 
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
 
     var body: some View {
-        ZStack {
-            OniTanTheme.backgroundGradientFallback
-                .ignoresSafeArea()
+        VStack(spacing: 0) {
+            ZStack {
+                OniTanTheme.backgroundGradientFallback
+                    .ignoresSafeArea()
 
-            ScrollView {
-                VStack(spacing: 20) {
-                    overallSummaryCard
+                ScrollView {
+                    VStack(spacing: 20) {
+                        overallSummaryCard
 
-                    ForEach(stages, id: \.stage) { stage in
-                        StageStatCard(
-                            stage: stage,
-                            stats: statsRepo.stageStats[stage.stage],
-                            isCleared: appState.isCleared(stage.stage)
-                        )
+                        ForEach(stages, id: \.stage) { stage in
+                            StageStatCard(
+                                stage: stage,
+                                stats: statsRepo.stageStats[stage.stage],
+                                isCleared: appState.isCleared(stage.stage)
+                            )
+                        }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 20)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 20)
+            }
+
+            if !donationManager.hasDonated {
+                AdBannerView()
             }
         }
         .navigationTitle("学習統計")

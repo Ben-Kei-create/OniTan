@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var bgAnimPhase = false
 
     var body: some View {
+        VStack(spacing: 0) {
         NavigationStack {
             GeometryReader { proxy in
                 let availableHeight = proxy.size.height
@@ -69,6 +70,11 @@ struct HomeView: View {
             }
         }
         .background(animatedBackground.ignoresSafeArea())
+
+        if !donationManager.hasDonated {
+            AdBannerView()
+        }
+        } // VStack
     }
 
     private var animatedBackground: some View {
