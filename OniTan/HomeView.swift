@@ -537,32 +537,86 @@ private struct HomeTodayCard: View {
         )
     }
 
+    private var allWeakQuestions: [Question] {
+        quizData.stages.flatMap { statsRepo.weakQuestions(for: $0) }
+    }
+
     var body: some View {
-        NavigationLink(
-            destination: MainView(
-                stage: todayStage,
-                appState: appState,
-                statsRepo: statsRepo,
-                streakRepo: streakRepo,
-                xpRepo: xpRepo,
-                mode: .quick10,
-                clearTitle: "今日の10問 完了！"
+        VStack(spacing: 6) {
+            NavigationLink(
+                destination: MainView(
+                    stage: todayStage,
+                    appState: appState,
+                    statsRepo: statsRepo,
+                    streakRepo: streakRepo,
+                    xpRepo: xpRepo,
+                    mode: .quick10,
+                    clearTitle: "今日の10問 完了！"
+                )
+            ) {
+                cardContent
+            }
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in isPressed = true }
+                    .onEnded   { _ in isPressed = false }
             )
-        ) {
-            cardContent
+            .buttonStyle(PlainButtonStyle())
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(streakRepo.todayCompleted
+                ? "今日の10問 完了済み。もう一度挑戦できます"
+                : "今日の10問を開始")
+            .accessibilityHint("タップして今日の10問を開始")
+            .accessibilityIdentifier("home_today_card")
+
+            if streakRepo.todayCompleted {
+                weakFocusCTA
+            }
         }
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded   { _ in isPressed = false }
-        )
-        .buttonStyle(PlainButtonStyle())
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(streakRepo.todayCompleted
-            ? "今日の10問 完了済み。もう一度挑戦できます"
-            : "今日の10問を開始")
-        .accessibilityHint("タップして今日の10問を開始")
-        .accessibilityIdentifier("home_today_card")
+    }
+
+    @ViewBuilder
+    private var weakFocusCTA: some View {
+        let weak = allWeakQuestions
+        if !weak.isEmpty {
+            let weakStage = Stage(stage: -99, questions: weak)
+            NavigationLink(
+                destination: MainView(
+                    stage: weakStage,
+                    appState: appState,
+                    statsRepo: statsRepo,
+                    streakRepo: streakRepo,
+                    xpRepo: xpRepo,
+                    mode: .normal,
+                    sessionTitle: "苦手問題 \(weak.count)問"
+                )
+            ) {
+                HStack(spacing: 8) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                    Text("苦手問題を続けて解く（\(weak.count) 問）")
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 11))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 9)
+                .background(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .fill(Color(red: 0.25, green: 0.15, blue: 0.05).opacity(0.65))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                                .stroke(OniTanTheme.accentWeak.opacity(0.3), lineWidth: 1)
+                        )
+                )
+            }
+            .buttonStyle(PlainButtonStyle())
+            .accessibilityLabel("苦手問題\(weak.count)問に挑戦")
+        }
     }
 
     private var cardContent: some View {
