@@ -393,6 +393,20 @@ struct HomeView: View {
                 destination: KanjiCatalogView()
             )
 
+            if statsRepo.recentWrongAnswers(limit: 1).count > 0 {
+                HomeMenuButton(
+                    title: "誤答ノート",
+                    icon: "note.text",
+                    gradient: LinearGradient(
+                        colors: [Color(red: 0.55, green: 0.20, blue: 0.55), Color(red: 0.35, green: 0.08, blue: 0.38)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    compact: isCompact,
+                    destination: WrongAnswerNoteView()
+                )
+            }
+
             if !reviewQuestions.isEmpty {
                 if xpRepo.level >= 30 {
                     reviewMenuButton(isCompact: isCompact)

@@ -9,8 +9,8 @@ struct SettingsView: View {
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
+    @EnvironmentObject var notificationManager: NotificationManager
 
-    // Unified alert state
     @State private var activeAlert: OniAlert? = nil
 
     var body: some View {
@@ -21,6 +21,7 @@ struct SettingsView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     appearanceSection
+                    notificationSection
                     adPrivacySection
                     donationSection
                     dataSection
@@ -36,6 +37,143 @@ struct SettingsView: View {
         .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
         .alert(item: $activeAlert) { alert in
             buildAlert(for: alert)
+        }
+    }
+
+    // MARK: - Notifications
+
+    @Environment(\.openURL) private var openURL
+
+    private var notificationSection: some View {
+        SettingsCard(
+            title: "通知",
+            icon: "bell.badge.fill",
+            iconColor: Color(red: 1.0, green: 0.65, blue: 0.15)
+        ) {
+            VStack(alignment: .leading, spacing: 12) {
+                switch notificationManager.authStatus {
+                case .authorized:
+                    authorizedNotifContent
+                case .denied:
+                    deniedNotifContent
+                default:
+                    notDeterminedNotifContent
+                }
+            }
+        }
+        .task { await notificationManager.refresh() }
+    }
+
+    private var authorizedNotifContent: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: notificationManager.isReminderScheduled
+                      ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(notificationManager.isReminderScheduled
+                                     ? OniTanTheme.accentCorrect : OniTanTheme.textTertiary)
+                    .font(.system(size: 17))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("毎日リマインダー")
+                        .font(.system(.subheadline, design: .rounded))
+                        .fontWeight(.semibold)
+                        .foregroundColor(OniTanTheme.textPrimary)
+                    Text("毎晩 \(notificationManager.reminderHour):00 に未完了のときだけ通知")
+                        .font(.system(.caption, design: .rounded))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
+                Spacer()
+                Toggle("", isOn: Binding(
+                    get: { notificationManager.isReminderScheduled },
+                    set: { on in
+                        if on { notificationManager.scheduleReminder() }
+                        else  { notificationManager.cancelReminder() }
+                    }
+                ))
+                .tint(OniTanTheme.accentPrimary)
+                .labelsHidden()
+            }
+
+            if notificationManager.isReminderScheduled {
+                HStack(spacing: 8) {
+                    Text("通知時刻")
+                        .font(.system(.caption, design: .rounded))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                    Spacer()
+                    Picker("時刻", selection: Binding(
+                        get: { notificationManager.reminderHour },
+                        set: { hour in
+                            notificationManager.reminderHour = hour
+                            notificationManager.scheduleReminder()
+                        }
+                    )) {
+                        ForEach([17, 18, 19, 20, 21, 22, 23], id: \.self) { hour in
+                            Text("\(hour):00").tag(hour)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .tint(OniTanTheme.accentPrimary)
+                }
+            }
+        }
+    }
+
+    private var deniedNotifContent: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("通知が拒否されています。iOS の設定アプリから許可してください。")
+                .font(.system(.caption, design: .rounded))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Button {
+                if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+                    openURL(url)
+                }
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "gear")
+                    Text("設定アプリを開く")
+                        .fontWeight(.bold)
+                }
+                .font(.system(.subheadline, design: .rounded))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, minHeight: 44)
+                .background(OniTanTheme.primaryGradient)
+                .cornerRadius(OniTanTheme.radiusButton)
+            }
+        }
+    }
+
+    private var notDeterminedNotifContent: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("毎日 20:00 頃に今日の学習を促す通知を受け取れます。")
+                .font(.system(.caption, design: .rounded))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Button {
+                Task {
+                    let granted = await notificationManager.requestPermission()
+                    if granted { notificationManager.scheduleReminder() }
+                }
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "bell.badge.fill")
+                    Text("通知を有効にする")
+                        .fontWeight(.bold)
+                }
+                .font(.system(.subheadline, design: .rounded))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, minHeight: 44)
+                .background(
+                    LinearGradient(
+                        colors: [Color(red: 1.0, green: 0.55, blue: 0.05),
+                                 Color(red: 0.8, green: 0.30, blue: 0.0)],
+                        startPoint: .topLeading, endPoint: .bottomTrailing
+                    )
+                )
+                .cornerRadius(OniTanTheme.radiusButton)
+                .shadow(color: Color(red: 1.0, green: 0.40, blue: 0.0).opacity(0.3), radius: 6, y: 3)
+            }
         }
     }
 

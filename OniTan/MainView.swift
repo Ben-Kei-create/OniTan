@@ -11,7 +11,13 @@ struct MainView: View {
     @EnvironmentObject var donationManager: DonationManager
     @EnvironmentObject var adConsentManager: AdConsentManager
     @EnvironmentObject var interstitialManager: AdInterstitialManager
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
 
+    private let appState: AppState
+    private let statsRepo: StudyStatsRepository
+    private let passedStreakRepo: StreakRepository?
+    private let passedXPRepo: GamificationRepository?
     private let nextStage: Stage?
     private let nextStageTitle: String?
 
@@ -27,6 +33,10 @@ struct MainView: View {
         nextStage: Stage? = nil,
         nextStageTitle: String? = nil
     ) {
+        self.appState = appState
+        self.statsRepo = statsRepo
+        self.passedStreakRepo = streakRepo
+        self.passedXPRepo = xpRepo
         self.nextStage = nextStage
         self.nextStageTitle = nextStageTitle
         _vm = StateObject(wrappedValue: QuizSessionViewModel(
@@ -496,8 +506,13 @@ struct MainView: View {
             VStack(spacing: 8) {
                 if let next = nextStage {
                     NavigationLink(
-                        destination: QuizModeSelectView(
+                        destination: MainView(
                             stage: next,
+                            appState: appState,
+                            statsRepo: statsRepo,
+                            streakRepo: passedStreakRepo ?? streakRepo,
+                            xpRepo: passedXPRepo ?? xpRepo,
+                            mode: .normal,
                             sessionTitle: nextStageTitle
                         )
                     ) {

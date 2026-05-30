@@ -12,9 +12,12 @@ struct OniTanApp: App {
     @StateObject private var playFontManager = PlayFontManager.shared
     @StateObject private var donationManager = DonationManager()
     @StateObject private var interstitialManager = AdInterstitialManager()
+    @StateObject private var notificationManager = NotificationManager.shared
+
+    @AppStorage("onboarding_v1_complete") private var onboardingComplete = false
+    @State private var showOnboarding = false
 
     init() {
-        // NavigationStack のナビゲーションバー背景を透明にしてグラデーション背景を全画面に表示する
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         UINavigationBar.appearance().standardAppearance = appearance
@@ -35,9 +38,36 @@ struct OniTanApp: App {
                 .environmentObject(playFontManager)
                 .environmentObject(donationManager)
                 .environmentObject(interstitialManager)
+                .environmentObject(notificationManager)
                 .preferredColorScheme(themeManager.preferredColorScheme)
+                .fullScreenCover(isPresented: $showOnboarding) {
+                    OnboardingView(isPresented: $showOnboarding)
+                        .environmentObject(notificationManager)
+                        .preferredColorScheme(.dark)
+                }
                 .task {
                     await adConsentManager.prepareIfNeeded()
+                    await notificationManager.refresh()
+                    notificationManager.ensureScheduledIfNeeded(
+                        todayCompleted: streakRepo.todayCompleted
+                    )
+                    if !onboardingComplete {
+                        onboardingComplete = true
+                        showOnboarding = true
+                    }
+                }
+                .onChange(of: streakRepo.todayCompleted) { completed in
+                    if completed {
+                        notificationManager.handleTodayCompleted()
+                    }
+                }
+                .onChange(of: showOnboarding) { showing in
+                    if !showing {
+                        // Ensure reminder is scheduled after onboarding completes
+                        notificationManager.ensureScheduledIfNeeded(
+                            todayCompleted: streakRepo.todayCompleted
+                        )
+                    }
                 }
         }
     }
