@@ -34,6 +34,8 @@ targets:
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: OniTan/Info.plist
         TARGETED_DEVICE_FAMILY: 1
+        # GoogleMobileAds SDK の _Beta.h umbrella header 警告を抑制
+        CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
     dependencies:
       - package: GoogleMobileAds
         product: GoogleMobileAds
