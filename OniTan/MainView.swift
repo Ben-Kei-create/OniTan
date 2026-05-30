@@ -9,6 +9,8 @@ struct MainView: View {
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
+    @EnvironmentObject var adConsentManager: AdConsentManager
+    @EnvironmentObject var interstitialManager: AdInterstitialManager
 
     init(
         stage: Stage,
@@ -90,6 +92,18 @@ struct MainView: View {
         }
         .sheet(item: $activeReportContext) { context in
             ProblemReportSheet(context: context)
+        }
+        .onAppear {
+            if !donationManager.hasDonated {
+                interstitialManager.loadIfNeeded(canRequestAds: adConsentManager.canRequestAds)
+            }
+        }
+        .onChange(of: vm.phase) { phase in
+            if case .stageCleared = phase, !donationManager.hasDonated {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    interstitialManager.showIfReady()
+                }
+            }
         }
     }
 

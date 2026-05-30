@@ -11,6 +11,7 @@ struct OniTanApp: App {
     @StateObject private var themeManager = ThemeManager.shared
     @StateObject private var playFontManager = PlayFontManager.shared
     @StateObject private var donationManager = DonationManager()
+    @StateObject private var interstitialManager = AdInterstitialManager()
 
     init() {
         // NavigationStack のナビゲーションバー背景を透明にしてグラデーション背景を全画面に表示する
@@ -33,6 +34,7 @@ struct OniTanApp: App {
                 .environmentObject(themeManager)
                 .environmentObject(playFontManager)
                 .environmentObject(donationManager)
+                .environmentObject(interstitialManager)
                 .preferredColorScheme(themeManager.preferredColorScheme)
                 .task {
                     await adConsentManager.prepareIfNeeded()
