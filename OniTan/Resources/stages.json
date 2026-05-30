@@ -395,6 +395,12 @@
       "file": "stage66.json",
       "title": "レベル66",
       "difficulty": 3
+    },
+    {
+      "id": 67,
+      "file": "stage67.json",
+      "title": "レベル67",
+      "difficulty": 2
     }
   ]
 }
