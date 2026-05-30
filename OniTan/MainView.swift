@@ -12,6 +12,9 @@ struct MainView: View {
     @EnvironmentObject var adConsentManager: AdConsentManager
     @EnvironmentObject var interstitialManager: AdInterstitialManager
 
+    private let nextStage: Stage?
+    private let nextStageTitle: String?
+
     init(
         stage: Stage,
         appState: AppState,
@@ -20,8 +23,12 @@ struct MainView: View {
         xpRepo: GamificationRepository? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
-        sessionTitle: String? = nil
+        sessionTitle: String? = nil,
+        nextStage: Stage? = nil,
+        nextStageTitle: String? = nil
     ) {
+        self.nextStage = nextStage
+        self.nextStageTitle = nextStageTitle
         _vm = StateObject(wrappedValue: QuizSessionViewModel(
             stage: stage,
             appState: appState,
@@ -487,18 +494,51 @@ struct MainView: View {
             }
 
             VStack(spacing: 8) {
-                Button {
-                    OniTanTheme.hapticSuccess()
-                    dismiss()
-                } label: {
-                    Text("ステージ選択へ戻る")
-                        .font(playFont(15, weight: .bold))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                        .background(OniTanTheme.correctGradient)
+                if let next = nextStage {
+                    NavigationLink(
+                        destination: QuizModeSelectView(
+                            stage: next,
+                            sessionTitle: nextStageTitle
+                        )
+                    ) {
+                        HStack(spacing: 8) {
+                            Text("次のステージへ")
+                                .font(playFont(15, weight: .bold))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            Image(systemName: "arrow.right")
+                                .font(.system(size: 13, weight: .bold))
+                                .foregroundColor(.white.opacity(0.8))
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .background(OniTanTheme.primaryGradient)
                         .cornerRadius(OniTanTheme.radiusButton)
-                        .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 6, y: 3)
+                        .shadow(color: OniTanTheme.accentPrimary.opacity(0.4), radius: 6, y: 3)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+
+                    Button {
+                        OniTanTheme.hapticSuccess()
+                        dismiss()
+                    } label: {
+                        Text("ステージ選択へ戻る")
+                            .font(playFont(13, weight: .semibold))
+                            .foregroundColor(OniTanTheme.textTertiary)
+                    }
+                } else {
+                    Button {
+                        OniTanTheme.hapticSuccess()
+                        dismiss()
+                    } label: {
+                        Text("ステージ選択へ戻る")
+                            .font(playFont(15, weight: .bold))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                            .background(OniTanTheme.correctGradient)
+                            .cornerRadius(OniTanTheme.radiusButton)
+                            .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 6, y: 3)
+                    }
                 }
 
                 Button {

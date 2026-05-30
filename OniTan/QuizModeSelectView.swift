@@ -6,6 +6,8 @@ struct QuizModeSelectView: View {
     let stage: Stage
     let sessionTitle: String?
     let allowedModes: [QuizMode]?
+    let nextStage: Stage?
+    let nextStageTitle: String?
 
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
@@ -15,11 +17,15 @@ struct QuizModeSelectView: View {
     init(
         stage: Stage,
         sessionTitle: String? = nil,
-        allowedModes: [QuizMode]? = nil
+        allowedModes: [QuizMode]? = nil,
+        nextStage: Stage? = nil,
+        nextStageTitle: String? = nil
     ) {
         self.stage = stage
         self.sessionTitle = sessionTitle
         self.allowedModes = allowedModes
+        self.nextStage = nextStage
+        self.nextStageTitle = nextStageTitle
     }
 
     private var weakCount: Int {
@@ -49,6 +55,8 @@ struct QuizModeSelectView: View {
                                 mode: mode,
                                 stage: stage,
                                 sessionTitle: sessionTitle,
+                                nextStage: nextStage,
+                                nextStageTitle: nextStageTitle,
                                 weakCount: weakCount,
                                 appState: appState,
                                 statsRepo: statsRepo
@@ -98,6 +106,8 @@ private struct ModeCard: View {
     let mode: QuizMode
     let stage: Stage
     let sessionTitle: String?
+    let nextStage: Stage?
+    let nextStageTitle: String?
     let weakCount: Int
     let appState: AppState
     let statsRepo: StudyStatsRepository
@@ -122,7 +132,9 @@ private struct ModeCard: View {
                 streakRepo: streakRepo,
                 xpRepo: xpRepo,
                 mode: mode,
-                sessionTitle: sessionTitle
+                sessionTitle: sessionTitle,
+                nextStage: nextStage,
+                nextStageTitle: nextStageTitle
             )
         ) {
             HStack(spacing: 14) {

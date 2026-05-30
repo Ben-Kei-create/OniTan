@@ -69,6 +69,10 @@ final class GamificationRepository: ObservableObject {
     @Published private(set) var xpToNextLevel: Int = 100
     /// Fraction (0...1) in the current level for UI progress bars.
     @Published private(set) var levelProgress: Double = 0
+    /// Set to the new level when a level-up occurs; cleared by `clearLevelUpFlag()`.
+    @Published private(set) var recentLevelUp: Int? = nil
+
+    private var publishedOnce = false
 
     struct LevelCurve {
         /// XP required to go from level N to N+1.
@@ -169,14 +173,21 @@ final class GamificationRepository: ObservableObject {
         }
     }
 
+    func clearLevelUpFlag() { recentLevelUp = nil }
+
     private func publish() {
         totalXP = data.totalXP
         todayXP = data.todayXP
         let state = levelState(for: data.totalXP)
-        level = state.level
+        let newLevel = state.level
+        if publishedOnce && newLevel > level {
+            recentLevelUp = newLevel
+        }
+        level = newLevel
         xpInCurrentLevel = state.xpInLevel
         xpToNextLevel = state.xpToNext
         levelProgress = state.progress
+        publishedOnce = true
     }
 
     private func load() {

@@ -11,6 +11,16 @@ struct StageSelectView: View {
     private var totalStages: Int { max(stages.map(\.stage).max() ?? stages.count, 1) }
     private var orderedStageIDs: [Int] { stages.map(\.stage) }
 
+    private func displayNumber(for stageID: Int) -> Int {
+        (stages.firstIndex(where: { $0.stage == stageID }) ?? 0) + 1
+    }
+
+    private func nextStage(after stageID: Int) -> Stage? {
+        guard let idx = stages.firstIndex(where: { $0.stage == stageID }),
+              idx + 1 < stages.count else { return nil }
+        return stages[idx + 1]
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
@@ -22,6 +32,9 @@ struct StageSelectView: View {
                         ForEach(stages, id: \.stage) { stage in
                             StageCard(
                                 stage: stage,
+                                displayNumber: displayNumber(for: stage.stage),
+                                nextStage: nextStage(after: stage.stage),
+                                nextDisplayNumber: nextStage(after: stage.stage).map { displayNumber(for: $0.stage) },
                                 manifest: stageManifest?.stages.first { $0.id == stage.stage },
                                 totalStages: totalStages,
                                 orderedStageIDs: orderedStageIDs,
@@ -50,6 +63,9 @@ struct StageSelectView: View {
 
 private struct StageCard: View {
     let stage: Stage
+    let displayNumber: Int
+    let nextStage: Stage?
+    let nextDisplayNumber: Int?
     let manifest: StageEntry?
     let totalStages: Int
     let orderedStageIDs: [Int]
@@ -58,6 +74,7 @@ private struct StageCard: View {
 
     private var isCleared: Bool  { appState.isCleared(stage.stage) }
     private var isUnlocked: Bool { appState.isUnlocked(stage.stage, orderedStageIDs: orderedStageIDs) }
+    private var sessionTitle: String { "ステージ \(displayNumber)" }
     private var weakCount: Int   { statsRepo.weakQuestions(for: stage).count }
     private var accuracy: Double { statsRepo.stageStats[stage.stage]?.accuracy ?? 0 }
 
@@ -70,7 +87,14 @@ private struct StageCard: View {
             }
 
             if isUnlocked {
-                NavigationLink(destination: QuizModeSelectView(stage: stage)) {
+                NavigationLink(
+                    destination: QuizModeSelectView(
+                        stage: stage,
+                        sessionTitle: sessionTitle,
+                        nextStage: nextStage,
+                        nextStageTitle: nextDisplayNumber.map { "ステージ \($0)" }
+                    )
+                ) {
                     modeSelectBadge
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -104,7 +128,7 @@ private struct StageCard: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {
-                    Text(manifest?.title ?? "レベル \(stage.stage)")
+                    Text(sessionTitle)
                         .font(.system(.headline, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(OniTanTheme.textPrimary)
@@ -242,7 +266,7 @@ private struct StageCard: View {
     }
 
     private var accessibilityText: String {
-        let base = manifest?.title ?? "レベル \(stage.stage)"
+        let base = sessionTitle
         if !isUnlocked { return "\(base) ロック中" }
         if isCleared   { return "\(base) クリア済み 正答率\(Int(accuracy * 100))%" }
         if weakCount > 0 { return "\(base) 苦手\(weakCount)問あり" }
