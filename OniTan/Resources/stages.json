@@ -25,180 +25,6 @@
       "difficulty": 1
     },
     {
-      "id": 5,
-      "file": "stage5.json",
-      "title": "レベル5",
-      "difficulty": 2
-    },
-    {
-      "id": 6,
-      "file": "stage6.json",
-      "title": "レベル6",
-      "difficulty": 3
-    },
-    {
-      "id": 7,
-      "file": "stage7.json",
-      "title": "レベル7",
-      "difficulty": 1
-    },
-    {
-      "id": 8,
-      "file": "stage8.json",
-      "title": "レベル8",
-      "difficulty": 2
-    },
-    {
-      "id": 9,
-      "file": "stage9.json",
-      "title": "レベル9",
-      "difficulty": 3
-    },
-    {
-      "id": 10,
-      "file": "stage10.json",
-      "title": "レベル10",
-      "difficulty": 1
-    },
-    {
-      "id": 11,
-      "file": "stage11.json",
-      "title": "レベル11",
-      "difficulty": 2
-    },
-    {
-      "id": 12,
-      "file": "stage12.json",
-      "title": "レベル12",
-      "difficulty": 3
-    },
-    {
-      "id": 13,
-      "file": "stage13.json",
-      "title": "レベル13",
-      "difficulty": 1
-    },
-    {
-      "id": 14,
-      "file": "stage14.json",
-      "title": "レベル14",
-      "difficulty": 2
-    },
-    {
-      "id": 15,
-      "file": "stage15.json",
-      "title": "レベル15",
-      "difficulty": 3
-    },
-    {
-      "id": 16,
-      "file": "stage16.json",
-      "title": "レベル16",
-      "difficulty": 1
-    },
-    {
-      "id": 17,
-      "file": "stage17.json",
-      "title": "レベル17",
-      "difficulty": 2
-    },
-    {
-      "id": 18,
-      "file": "stage18.json",
-      "title": "レベル18",
-      "difficulty": 3
-    },
-    {
-      "id": 19,
-      "file": "stage19.json",
-      "title": "レベル19",
-      "difficulty": 1
-    },
-    {
-      "id": 20,
-      "file": "stage20.json",
-      "title": "レベル20",
-      "difficulty": 2
-    },
-    {
-      "id": 21,
-      "file": "stage21.json",
-      "title": "レベル21",
-      "difficulty": 3
-    },
-    {
-      "id": 22,
-      "file": "stage22.json",
-      "title": "レベル22",
-      "difficulty": 1
-    },
-    {
-      "id": 23,
-      "file": "stage23.json",
-      "title": "レベル23",
-      "difficulty": 2
-    },
-    {
-      "id": 24,
-      "file": "stage24.json",
-      "title": "レベル24",
-      "difficulty": 3
-    },
-    {
-      "id": 25,
-      "file": "stage25.json",
-      "title": "レベル25",
-      "difficulty": 1
-    },
-    {
-      "id": 26,
-      "file": "stage26.json",
-      "title": "レベル26",
-      "difficulty": 2
-    },
-    {
-      "id": 27,
-      "file": "stage27.json",
-      "title": "レベル27",
-      "difficulty": 3
-    },
-    {
-      "id": 28,
-      "file": "stage28.json",
-      "title": "レベル28",
-      "difficulty": 1
-    },
-    {
-      "id": 29,
-      "file": "stage29.json",
-      "title": "レベル29",
-      "difficulty": 2
-    },
-    {
-      "id": 30,
-      "file": "stage30.json",
-      "title": "レベル30",
-      "difficulty": 3
-    },
-    {
-      "id": 31,
-      "file": "stage31.json",
-      "title": "レベル31",
-      "difficulty": 1
-    },
-    {
-      "id": 32,
-      "file": "stage32.json",
-      "title": "レベル32",
-      "difficulty": 2
-    },
-    {
-      "id": 33,
-      "file": "stage33.json",
-      "title": "レベル33",
-      "difficulty": 3
-    },
-    {
       "id": 34,
       "file": "stage34.json",
       "title": "レベル34",
@@ -400,6 +226,180 @@
       "id": 67,
       "file": "stage67.json",
       "title": "レベル67",
+      "difficulty": 2
+    },
+    {
+      "id": 68,
+      "file": "stage68.json",
+      "title": "レベル68",
+      "difficulty": 1
+    },
+    {
+      "id": 69,
+      "file": "stage69.json",
+      "title": "レベル69",
+      "difficulty": 2
+    },
+    {
+      "id": 70,
+      "file": "stage70.json",
+      "title": "レベル70",
+      "difficulty": 3
+    },
+    {
+      "id": 71,
+      "file": "stage71.json",
+      "title": "レベル71",
+      "difficulty": 1
+    },
+    {
+      "id": 72,
+      "file": "stage72.json",
+      "title": "レベル72",
+      "difficulty": 2
+    },
+    {
+      "id": 73,
+      "file": "stage73.json",
+      "title": "レベル73",
+      "difficulty": 3
+    },
+    {
+      "id": 74,
+      "file": "stage74.json",
+      "title": "レベル74",
+      "difficulty": 1
+    },
+    {
+      "id": 75,
+      "file": "stage75.json",
+      "title": "レベル75",
+      "difficulty": 2
+    },
+    {
+      "id": 76,
+      "file": "stage76.json",
+      "title": "レベル76",
+      "difficulty": 3
+    },
+    {
+      "id": 77,
+      "file": "stage77.json",
+      "title": "レベル77",
+      "difficulty": 1
+    },
+    {
+      "id": 78,
+      "file": "stage78.json",
+      "title": "レベル78",
+      "difficulty": 2
+    },
+    {
+      "id": 79,
+      "file": "stage79.json",
+      "title": "レベル79",
+      "difficulty": 3
+    },
+    {
+      "id": 80,
+      "file": "stage80.json",
+      "title": "レベル80",
+      "difficulty": 1
+    },
+    {
+      "id": 81,
+      "file": "stage81.json",
+      "title": "レベル81",
+      "difficulty": 2
+    },
+    {
+      "id": 82,
+      "file": "stage82.json",
+      "title": "レベル82",
+      "difficulty": 3
+    },
+    {
+      "id": 83,
+      "file": "stage83.json",
+      "title": "レベル83",
+      "difficulty": 1
+    },
+    {
+      "id": 84,
+      "file": "stage84.json",
+      "title": "レベル84",
+      "difficulty": 2
+    },
+    {
+      "id": 85,
+      "file": "stage85.json",
+      "title": "レベル85",
+      "difficulty": 3
+    },
+    {
+      "id": 86,
+      "file": "stage86.json",
+      "title": "レベル86",
+      "difficulty": 1
+    },
+    {
+      "id": 87,
+      "file": "stage87.json",
+      "title": "レベル87",
+      "difficulty": 2
+    },
+    {
+      "id": 88,
+      "file": "stage88.json",
+      "title": "レベル88",
+      "difficulty": 3
+    },
+    {
+      "id": 89,
+      "file": "stage89.json",
+      "title": "レベル89",
+      "difficulty": 1
+    },
+    {
+      "id": 90,
+      "file": "stage90.json",
+      "title": "レベル90",
+      "difficulty": 2
+    },
+    {
+      "id": 91,
+      "file": "stage91.json",
+      "title": "レベル91",
+      "difficulty": 3
+    },
+    {
+      "id": 92,
+      "file": "stage92.json",
+      "title": "レベル92",
+      "difficulty": 1
+    },
+    {
+      "id": 93,
+      "file": "stage93.json",
+      "title": "レベル93",
+      "difficulty": 2
+    },
+    {
+      "id": 94,
+      "file": "stage94.json",
+      "title": "レベル94",
+      "difficulty": 3
+    },
+    {
+      "id": 95,
+      "file": "stage95.json",
+      "title": "レベル95",
+      "difficulty": 1
+    },
+    {
+      "id": 96,
+      "file": "stage96.json",
+      "title": "レベル96",
       "difficulty": 2
     }
   ]
