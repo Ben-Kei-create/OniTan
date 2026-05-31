@@ -29,11 +29,15 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.fumiakiMogi777.OniTan
         DEVELOPMENT_TEAM: ""   # 必要なら後で埋める（Simulatorだけなら空でOK）
-        MARKETING_VERSION: 1.0.0
-        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1.1.0
+        CURRENT_PROJECT_VERSION: 2
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: OniTan/Info.plist
         TARGETED_DEVICE_FAMILY: 1
+        # GoogleMobileAds SDK の _Beta.h umbrella header 警告を抑制
+        CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
+        OTHER_CFLAGS: "-Wno-incomplete-umbrella"
+        OTHER_SWIFT_FLAGS: "-Xcc -Wno-incomplete-umbrella"
     dependencies:
       - package: GoogleMobileAds
         product: GoogleMobileAds

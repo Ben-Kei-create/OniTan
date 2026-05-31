@@ -4,29 +4,38 @@ struct StatsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
-
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
 
+    private func displayNumber(for stageID: Int) -> Int {
+        (stages.firstIndex(where: { $0.stage == stageID }) ?? 0) + 1
+    }
+
     var body: some View {
-        ZStack {
-            OniTanTheme.backgroundGradientFallback
-                .ignoresSafeArea()
+        VStack(spacing: 0) {
+            ZStack {
+                OniTanTheme.backgroundGradientFallback
+                    .ignoresSafeArea()
 
-            ScrollView {
-                VStack(spacing: 20) {
-                    overallSummaryCard
+                ScrollView {
+                    VStack(spacing: 20) {
+                        overallSummaryCard
 
-                    ForEach(stages, id: \.stage) { stage in
-                        StageStatCard(
-                            stage: stage,
-                            stats: statsRepo.stageStats[stage.stage],
-                            isCleared: appState.isCleared(stage.stage)
-                        )
+                        wrongAnswerNoteLink
+
+                        ForEach(stages, id: \.stage) { stage in
+                            StageStatCard(
+                                stage: stage,
+                                displayNumber: displayNumber(for: stage.stage),
+                                stats: statsRepo.stageStats[stage.stage],
+                                isCleared: appState.isCleared(stage.stage)
+                            )
+                        }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 20)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 20)
             }
+
         }
         .navigationTitle("学習統計")
         .navigationBarTitleDisplayMode(.large)
@@ -109,6 +118,60 @@ struct StatsView: View {
         .accessibilityLabel("総合統計: \(appState.clearedStages.count)/\(stages.count)ステージクリア 正答率\(Int(statsRepo.overallAccuracy * 100))% 総正解\(statsRepo.totalCorrect)問")
     }
 
+    @ViewBuilder
+    private var wrongAnswerNoteLink: some View {
+        let count = statsRepo.recentWrongAnswers(limit: 200).count
+        if count > 0 {
+            NavigationLink(destination: WrongAnswerNoteView()) {
+                HStack(spacing: 12) {
+                    ZStack {
+                        Circle()
+                            .fill(LinearGradient(
+                                colors: [Color(red: 0.55, green: 0.20, blue: 0.55), Color(red: 0.35, green: 0.08, blue: 0.38)],
+                                startPoint: .topLeading, endPoint: .bottomTrailing
+                            ))
+                            .frame(width: 40, height: 40)
+                        Image(systemName: "note.text")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
+                    .accessibilityHidden(true)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("誤答ノート")
+                            .font(.system(.headline, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(OniTanTheme.textPrimary)
+                        Text("直近 \(count) 件の誤答記録")
+                            .font(.system(.caption, design: .rounded))
+                            .foregroundColor(OniTanTheme.textTertiary)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 13))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                        .accessibilityHidden(true)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 12)
+                .background(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .fill(OniTanTheme.cardBackground)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                                .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                        )
+                )
+                .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
+            }
+            .buttonStyle(PlainButtonStyle())
+            .accessibilityLabel("誤答ノート \(count)件")
+            .accessibilityHint("タップして誤答ノートを開く")
+        }
+    }
+
     private func summaryMetric(value: String, label: String, icon: String, iconColor: Color) -> some View {
         VStack(spacing: 6) {
             Image(systemName: icon)
@@ -133,6 +196,7 @@ struct StatsView: View {
 
 private struct StageStatCard: View {
     let stage: Stage
+    let displayNumber: Int
     let stats: StageStats?
     let isCleared: Bool
 
@@ -141,7 +205,7 @@ private struct StageStatCard: View {
     var body: some View {
         VStack(spacing: 12) {
             HStack {
-                Text("ステージ \(stage.stage)")
+                Text("ステージ \(displayNumber)")
                     .font(.system(.headline, design: .rounded))
                     .fontWeight(.bold)
                     .foregroundColor(OniTanTheme.textPrimary)

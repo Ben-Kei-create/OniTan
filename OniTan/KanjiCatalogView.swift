@@ -10,7 +10,6 @@ private struct KanjiCatalogEntry: Identifiable {
 struct KanjiCatalogView: View {
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
-
     @State private var selectedEntry: KanjiCatalogEntry?
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 5)
@@ -35,30 +34,33 @@ struct KanjiCatalogView: View {
     }
 
     var body: some View {
-        ZStack {
-            OniTanTheme.backgroundGradientFallback
-                .ignoresSafeArea()
+        VStack(spacing: 0) {
+            ZStack {
+                OniTanTheme.backgroundGradientFallback
+                    .ignoresSafeArea()
 
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    summaryCard
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        summaryCard
 
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(entries) { entry in
-                            Button {
-                                selectedEntry = entry
-                            } label: {
-                                KanjiCatalogCell(entry: entry)
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(entries) { entry in
+                                Button {
+                                    selectedEntry = entry
+                                } label: {
+                                    KanjiCatalogCell(entry: entry)
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel("\(entry.question.kanji) の詳細")
+                                .accessibilityHint("タップして読みと解説を見る")
                             }
-                            .buttonStyle(.plain)
-                            .accessibilityLabel("\(entry.question.kanji) の詳細")
-                            .accessibilityHint("タップして読みと解説を見る")
                         }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 20)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 20)
             }
+
         }
         .navigationTitle("漢字一覧")
         .navigationBarTitleDisplayMode(.large)

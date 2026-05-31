@@ -4,31 +4,48 @@ struct StageSelectView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
-
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
     private let stageManifest = (try? safeLoad("stages.json") as StageManifest)
     private var totalStages: Int { max(stages.map(\.stage).max() ?? stages.count, 1) }
+    private var orderedStageIDs: [Int] { stages.map(\.stage) }
+
+    private func displayNumber(for stageID: Int) -> Int {
+        (stages.firstIndex(where: { $0.stage == stageID }) ?? 0) + 1
+    }
+
+    private func nextStage(after stageID: Int) -> Stage? {
+        guard let idx = stages.firstIndex(where: { $0.stage == stageID }),
+              idx + 1 < stages.count else { return nil }
+        return stages[idx + 1]
+    }
 
     var body: some View {
-        ZStack {
-            OniTanTheme.backgroundGradientFallback
-                .ignoresSafeArea()
+        VStack(spacing: 0) {
+            ZStack {
+                OniTanTheme.backgroundGradientFallback
+                    .ignoresSafeArea()
 
-            ScrollView {
-                VStack(spacing: 16) {
-                    ForEach(stages, id: \.stage) { stage in
-                        StageCard(
-                            stage: stage,
-                            manifest: stageManifest?.stages.first { $0.id == stage.stage },
-                            totalStages: totalStages,
-                            appState: appState,
-                            statsRepo: statsRepo
-                        )
+                ScrollView {
+                    VStack(spacing: 16) {
+                        ForEach(stages, id: \.stage) { stage in
+                            StageCard(
+                                stage: stage,
+                                displayNumber: displayNumber(for: stage.stage),
+                                nextStage: nextStage(after: stage.stage),
+                                nextDisplayNumber: nextStage(after: stage.stage).map { displayNumber(for: $0.stage) },
+                                manifest: stageManifest?.stages.first { $0.id == stage.stage },
+                                totalStages: totalStages,
+                                orderedStageIDs: orderedStageIDs,
+                                appState: appState,
+                                statsRepo: statsRepo
+                            )
+                        }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 20)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 20)
             }
+
         }
         .navigationTitle("ステージ選択")
         .navigationBarTitleDisplayMode(.large)
@@ -41,30 +58,61 @@ struct StageSelectView: View {
 
 private struct StageCard: View {
     let stage: Stage
+    let displayNumber: Int
+    let nextStage: Stage?
+    let nextDisplayNumber: Int?
     let manifest: StageEntry?
     let totalStages: Int
+    let orderedStageIDs: [Int]
     @ObservedObject var appState: AppState
     @ObservedObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
 
     private var isCleared: Bool  { appState.isCleared(stage.stage) }
-    private var isUnlocked: Bool { appState.isUnlocked(stage.stage) }
+    private var isUnlocked: Bool { appState.isUnlocked(stage.stage, orderedStageIDs: orderedStageIDs) }
+    private var sessionTitle: String { "ステージ \(displayNumber)" }
     private var weakCount: Int   { statsRepo.weakQuestions(for: stage).count }
     private var accuracy: Double { statsRepo.stageStats[stage.stage]?.accuracy ?? 0 }
+    private var nextStageTitle: String? { nextDisplayNumber.map { "ステージ \($0)" } }
 
     var body: some View {
         VStack(spacing: 0) {
-            mainRow
-
             if isUnlocked {
-                progressBar
-            }
+                NavigationLink(
+                    destination: MainView(
+                        stage: stage,
+                        appState: appState,
+                        statsRepo: statsRepo,
+                        streakRepo: streakRepo,
+                        xpRepo: xpRepo,
+                        mode: weakCount > 0 ? .weakFocus : .normal,
+                        sessionTitle: sessionTitle,
+                        nextStage: nextStage,
+                        nextStageTitle: nextStageTitle
+                    )
+                ) {
+                    VStack(spacing: 0) {
+                        mainRow
+                        progressBar
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
 
-            if isUnlocked {
-                NavigationLink(destination: QuizModeSelectView(stage: stage)) {
+                NavigationLink(
+                    destination: QuizModeSelectView(
+                        stage: stage,
+                        sessionTitle: sessionTitle,
+                        nextStage: nextStage,
+                        nextStageTitle: nextStageTitle
+                    )
+                ) {
                     modeSelectBadge
                 }
                 .buttonStyle(PlainButtonStyle())
                 .accessibilityIdentifier("stage_mode_link_\(stage.stage)")
+            } else {
+                mainRow
             }
         }
         .background(
@@ -94,7 +142,7 @@ private struct StageCard: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {
-                    Text(manifest?.title ?? "レベル \(stage.stage)")
+                    Text(sessionTitle)
                         .font(.system(.headline, design: .rounded))
                         .fontWeight(.bold)
                         .foregroundColor(OniTanTheme.textPrimary)
@@ -107,7 +155,12 @@ private struct StageCard: View {
 
             Spacer()
 
-            if !isUnlocked {
+            if isUnlocked {
+                Image(systemName: weakCount > 0 ? "exclamationmark.triangle.fill" : "play.circle.fill")
+                    .font(.system(size: weakCount > 0 ? 20 : 28))
+                    .foregroundColor(weakCount > 0 ? OniTanTheme.accentWeak : OniTanTheme.accentPrimary.opacity(0.8))
+                    .accessibilityHidden(true)
+            } else {
                 Image(systemName: "lock.fill")
                     .foregroundColor(OniTanTheme.textTertiary)
                     .font(.system(size: 18))
@@ -126,14 +179,22 @@ private struct StageCard: View {
                 .font(.system(.caption, design: .rounded))
                 .foregroundColor(OniTanTheme.textTertiary)
         } else if weakCount > 0 {
-            HStack(spacing: 4) {
+            HStack(spacing: 5) {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 10))
+                    .font(.system(size: 10, weight: .semibold))
                     .foregroundColor(OniTanTheme.accentWeak)
                 Text("苦手 \(weakCount) 問")
                     .font(.system(.caption, design: .rounded))
+                    .fontWeight(.semibold)
                     .foregroundColor(OniTanTheme.accentWeak)
+                Text("→ 苦手モードで開始")
+                    .font(.system(size: 10, design: .rounded))
+                    .foregroundColor(OniTanTheme.accentWeak.opacity(0.7))
             }
+            .padding(.horizontal, 7)
+            .padding(.vertical, 3)
+            .background(OniTanTheme.accentWeak.opacity(0.12))
+            .cornerRadius(6)
         } else if isCleared {
             HStack(spacing: 4) {
                 Image(systemName: "checkmark.circle.fill")
@@ -194,18 +255,18 @@ private struct StageCard: View {
 
     private var modeSelectBadge: some View {
         HStack(spacing: 6) {
-            Image(systemName: "play.fill")
+            Image(systemName: "slider.horizontal.3")
                 .font(.system(size: 11, weight: .semibold))
-            Text("モードを選んでスタート")
+            Text("他のモードで学ぶ")
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
             Spacer()
             Image(systemName: "chevron.right")
                 .font(.system(size: 11))
         }
-        .foregroundColor(OniTanTheme.textSecondary)
+        .foregroundColor(OniTanTheme.textTertiary)
         .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(OniTanTheme.cardBackground)
+        .padding(.vertical, 9)
+        .background(OniTanTheme.cardBackground.opacity(0.6))
         .cornerRadius(0)
         .clipShape(
             .rect(
@@ -232,7 +293,7 @@ private struct StageCard: View {
     }
 
     private var accessibilityText: String {
-        let base = manifest?.title ?? "レベル \(stage.stage)"
+        let base = sessionTitle
         if !isUnlocked { return "\(base) ロック中" }
         if isCleared   { return "\(base) クリア済み 正答率\(Int(accuracy * 100))%" }
         if weakCount > 0 { return "\(base) 苦手\(weakCount)問あり" }

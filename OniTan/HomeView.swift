@@ -12,8 +12,11 @@ struct HomeView: View {
     @State private var freezeToastVisible = false
     @State private var lastShownFreezeID: Int = -1
     @State private var bgAnimPhase = false
+    @State private var showLevelUpOverlay = false
+    @State private var levelUpValue: Int = 0
 
     var body: some View {
+        VStack(spacing: 0) {
         NavigationStack {
             GeometryReader { proxy in
                 let availableHeight = proxy.size.height
@@ -67,8 +70,70 @@ struct HomeView: View {
                 lastShownFreezeID = newID
                 showFreezeToast()
             }
+            .onChange(of: xpRepo.recentLevelUp) { newLevel in
+                guard let lv = newLevel else { return }
+                levelUpValue = lv
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                    showLevelUpOverlay = true
+                }
+                OniTanTheme.hapticSuccess()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    withAnimation(.easeOut(duration: 0.3)) { showLevelUpOverlay = false }
+                    xpRepo.clearLevelUpFlag()
+                }
+            }
         }
         .background(animatedBackground.ignoresSafeArea())
+
+        if !donationManager.hasDonated {
+            AdBannerView()
+        }
+        } // VStack
+        .overlay {
+            if showLevelUpOverlay {
+                levelUpToast(level: levelUpValue)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .zIndex(100)
+            }
+        }
+    }
+
+    // MARK: - Level Up Toast
+
+    private func levelUpToast(level: Int) -> some View {
+        VStack {
+            HStack(spacing: 10) {
+                Image(systemName: "star.circle.fill")
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundStyle(LinearGradient(
+                        colors: [Color(red: 1.0, green: 0.85, blue: 0.2), Color(red: 1.0, green: 0.55, blue: 0.0)],
+                        startPoint: .top, endPoint: .bottom
+                    ))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("レベルアップ！")
+                        .font(.system(.caption, design: .rounded))
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                    Text("Lv.\(level) に到達")
+                        .font(.system(.subheadline, design: .rounded))
+                        .fontWeight(.black)
+                        .foregroundColor(OniTanTheme.textPrimary)
+                }
+            }
+            .padding(.horizontal, 18)
+            .padding(.vertical, 12)
+            .background(
+                Capsule()
+                    .fill(Color(red: 0.15, green: 0.12, blue: 0.30).opacity(0.95))
+                    .overlay(
+                        Capsule()
+                            .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1.5)
+                    )
+            )
+            .shadow(color: Color(red: 1.0, green: 0.75, blue: 0.0).opacity(0.35), radius: 16, y: 6)
+            .padding(.top, 60)
+            Spacer()
+        }
     }
 
     private var animatedBackground: some View {
@@ -328,11 +393,23 @@ struct HomeView: View {
                 destination: KanjiCatalogView()
             )
 
+            if statsRepo.recentWrongAnswers(limit: 1).count > 0 {
+                HomeMenuButton(
+                    title: "誤答ノート",
+                    icon: "note.text",
+                    gradient: LinearGradient(
+                        colors: [Color(red: 0.55, green: 0.20, blue: 0.55), Color(red: 0.35, green: 0.08, blue: 0.38)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    compact: isCompact,
+                    destination: WrongAnswerNoteView()
+                )
+            }
+
             if !reviewQuestions.isEmpty {
                 if xpRepo.level >= 30 {
                     reviewMenuButton(isCompact: isCompact)
-                } else {
-                    lockedReviewButton(isCompact: isCompact)
                 }
             }
 
@@ -348,9 +425,9 @@ struct HomeView: View {
                     compact: isCompact,
                     destination: StreakChallengeView(xpRepo: xpRepo)
                 )
-            } else {
-                lockedStreakButton(isCompact: isCompact)
             }
+
+            lockedFeaturesRow(isCompact: isCompact)
 
         }
     }
@@ -373,86 +450,43 @@ struct HomeView: View {
         )
     }
 
-    private func lockedStreakButton(isCompact: Bool) -> some View {
-        HStack(spacing: isCompact ? 10 : 12) {
-            Image(systemName: "lock.fill")
-                .font(.system(size: isCompact ? 16 : 17, weight: .semibold))
-                .foregroundColor(.white.opacity(0.35))
-                .frame(width: isCompact ? 34 : 36, height: isCompact ? 34 : 36)
-                .background(Color.white.opacity(0.08))
-                .clipShape(Circle())
+    /// 未解放機能をコンパクトな1行で表示する
+    @ViewBuilder
+    private func lockedFeaturesRow(isCompact: Bool) -> some View {
+        let showReviewLock = !reviewQuestions.isEmpty && xpRepo.level < 30
+        let showStreakLock = xpRepo.level < 50
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text("連続鬼たん")
-                    .font(.system(size: isCompact ? 15 : 16, weight: .bold, design: .rounded))
-                    .foregroundColor(.white.opacity(0.35))
-                Text("Lv.50で解放")
-                    .font(.system(size: 11, weight: .medium, design: .rounded))
-                    .foregroundColor(.white.opacity(0.3))
+        if showReviewLock || showStreakLock {
+            HStack(spacing: 8) {
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundColor(.white.opacity(0.25))
+                if showReviewLock {
+                    Text("おさらい Lv.30")
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundColor(.white.opacity(0.3))
+                }
+                if showReviewLock && showStreakLock {
+                    Text("·")
+                        .foregroundColor(.white.opacity(0.2))
+                        .font(.system(size: 11))
+                }
+                if showStreakLock {
+                    Text("連続鬼たん Lv.50")
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundColor(.white.opacity(0.3))
+                }
+                Spacer()
             }
-
-            Spacer()
-
-            Image(systemName: "lock.fill")
-                .font(.system(size: isCompact ? 12 : 13, weight: .semibold))
-                .foregroundColor(.white.opacity(0.25))
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, isCompact ? 13 : 15)
-        .padding(.vertical, isCompact ? 9 : 11)
-        .background(
-            LinearGradient(
-                colors: [Color.white.opacity(0.07), Color.white.opacity(0.04)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
+            .padding(.horizontal, 14)
+            .padding(.vertical, 7)
+            .background(Color.white.opacity(0.04))
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.white.opacity(0.07), lineWidth: 1)
             )
-        )
-        .cornerRadius(OniTanTheme.radiusCard)
-        .overlay(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .stroke(Color.white.opacity(0.1), lineWidth: 1)
-        )
-    }
-
-    private func lockedReviewButton(isCompact: Bool) -> some View {
-        HStack(spacing: isCompact ? 10 : 12) {
-            Image(systemName: "lock.fill")
-                .font(.system(size: isCompact ? 16 : 17, weight: .semibold))
-                .foregroundColor(.white.opacity(0.35))
-                .frame(width: isCompact ? 34 : 36, height: isCompact ? 34 : 36)
-                .background(Color.white.opacity(0.08))
-                .clipShape(Circle())
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text("おさらい（準１級以下）")
-                    .font(.system(size: isCompact ? 15 : 16, weight: .bold, design: .rounded))
-                    .foregroundColor(.white.opacity(0.35))
-                Text("Lv.30で解放")
-                    .font(.system(size: 11, weight: .medium, design: .rounded))
-                    .foregroundColor(.white.opacity(0.3))
-            }
-
-            Spacer()
-
-            Image(systemName: "lock.fill")
-                .font(.system(size: isCompact ? 12 : 13, weight: .semibold))
-                .foregroundColor(.white.opacity(0.25))
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, isCompact ? 13 : 15)
-        .padding(.vertical, isCompact ? 9 : 11)
-        .background(
-            LinearGradient(
-                colors: [Color.white.opacity(0.07), Color.white.opacity(0.04)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        )
-        .cornerRadius(OniTanTheme.radiusCard)
-        .overlay(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .stroke(Color.white.opacity(0.1), lineWidth: 1)
-        )
     }
 
     // MARK: - Footer
@@ -517,32 +551,86 @@ private struct HomeTodayCard: View {
         )
     }
 
+    private var allWeakQuestions: [Question] {
+        quizData.stages.flatMap { statsRepo.weakQuestions(for: $0) }
+    }
+
     var body: some View {
-        NavigationLink(
-            destination: MainView(
-                stage: todayStage,
-                appState: appState,
-                statsRepo: statsRepo,
-                streakRepo: streakRepo,
-                xpRepo: xpRepo,
-                mode: .quick10,
-                clearTitle: "今日の10問 完了！"
+        VStack(spacing: 6) {
+            NavigationLink(
+                destination: MainView(
+                    stage: todayStage,
+                    appState: appState,
+                    statsRepo: statsRepo,
+                    streakRepo: streakRepo,
+                    xpRepo: xpRepo,
+                    mode: .quick10,
+                    clearTitle: "今日の10問 完了！"
+                )
+            ) {
+                cardContent
+            }
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in isPressed = true }
+                    .onEnded   { _ in isPressed = false }
             )
-        ) {
-            cardContent
+            .buttonStyle(PlainButtonStyle())
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(streakRepo.todayCompleted
+                ? "今日の10問 完了済み。もう一度挑戦できます"
+                : "今日の10問を開始")
+            .accessibilityHint("タップして今日の10問を開始")
+            .accessibilityIdentifier("home_today_card")
+
+            if streakRepo.todayCompleted {
+                weakFocusCTA
+            }
         }
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded   { _ in isPressed = false }
-        )
-        .buttonStyle(PlainButtonStyle())
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(streakRepo.todayCompleted
-            ? "今日の10問 完了済み。もう一度挑戦できます"
-            : "今日の10問を開始")
-        .accessibilityHint("タップして今日の10問を開始")
-        .accessibilityIdentifier("home_today_card")
+    }
+
+    @ViewBuilder
+    private var weakFocusCTA: some View {
+        let weak = allWeakQuestions
+        if !weak.isEmpty {
+            let weakStage = Stage(stage: -99, questions: weak)
+            NavigationLink(
+                destination: MainView(
+                    stage: weakStage,
+                    appState: appState,
+                    statsRepo: statsRepo,
+                    streakRepo: streakRepo,
+                    xpRepo: xpRepo,
+                    mode: .normal,
+                    sessionTitle: "苦手問題 \(weak.count)問"
+                )
+            ) {
+                HStack(spacing: 8) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                    Text("苦手問題を続けて解く（\(weak.count) 問）")
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 11))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 9)
+                .background(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .fill(Color(red: 0.25, green: 0.15, blue: 0.05).opacity(0.65))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                                .stroke(OniTanTheme.accentWeak.opacity(0.3), lineWidth: 1)
+                        )
+                )
+            }
+            .buttonStyle(PlainButtonStyle())
+            .accessibilityLabel("苦手問題\(weak.count)問に挑戦")
+        }
     }
 
     private var cardContent: some View {

@@ -9,6 +9,17 @@ struct MainView: View {
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
+    @EnvironmentObject var adConsentManager: AdConsentManager
+    @EnvironmentObject var interstitialManager: AdInterstitialManager
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
+
+    private let appState: AppState
+    private let statsRepo: StudyStatsRepository
+    private let passedStreakRepo: StreakRepository?
+    private let passedXPRepo: GamificationRepository?
+    private let nextStage: Stage?
+    private let nextStageTitle: String?
 
     init(
         stage: Stage,
@@ -18,8 +29,16 @@ struct MainView: View {
         xpRepo: GamificationRepository? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
-        sessionTitle: String? = nil
+        sessionTitle: String? = nil,
+        nextStage: Stage? = nil,
+        nextStageTitle: String? = nil
     ) {
+        self.appState = appState
+        self.statsRepo = statsRepo
+        self.passedStreakRepo = streakRepo
+        self.passedXPRepo = xpRepo
+        self.nextStage = nextStage
+        self.nextStageTitle = nextStageTitle
         _vm = StateObject(wrappedValue: QuizSessionViewModel(
             stage: stage,
             appState: appState,
@@ -80,9 +99,6 @@ struct MainView: View {
                     .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
 
-                if !donationManager.hasDonated {
-                    AdBannerView()
-                }
             }
         }
         .alert(item: $vm.activeAlert) { alert in
@@ -90,6 +106,18 @@ struct MainView: View {
         }
         .sheet(item: $activeReportContext) { context in
             ProblemReportSheet(context: context)
+        }
+        .onAppear {
+            if !donationManager.hasDonated {
+                interstitialManager.loadIfNeeded(canRequestAds: adConsentManager.canRequestAds)
+            }
+        }
+        .onChange(of: vm.phase) { phase in
+            if case .stageCleared = phase, !donationManager.hasDonated {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    interstitialManager.showIfReady()
+                }
+            }
         }
     }
 
@@ -473,18 +501,56 @@ struct MainView: View {
             }
 
             VStack(spacing: 8) {
-                Button {
-                    OniTanTheme.hapticSuccess()
-                    dismiss()
-                } label: {
-                    Text("ステージ選択へ戻る")
-                        .font(playFont(15, weight: .bold))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                        .background(OniTanTheme.correctGradient)
+                if let next = nextStage {
+                    NavigationLink(
+                        destination: MainView(
+                            stage: next,
+                            appState: appState,
+                            statsRepo: statsRepo,
+                            streakRepo: passedStreakRepo ?? streakRepo,
+                            xpRepo: passedXPRepo ?? xpRepo,
+                            mode: .normal,
+                            sessionTitle: nextStageTitle
+                        )
+                    ) {
+                        HStack(spacing: 8) {
+                            Text("次のステージへ")
+                                .font(playFont(15, weight: .bold))
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                            Image(systemName: "arrow.right")
+                                .font(.system(size: 13, weight: .bold))
+                                .foregroundColor(.white.opacity(0.8))
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .background(OniTanTheme.primaryGradient)
                         .cornerRadius(OniTanTheme.radiusButton)
-                        .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 6, y: 3)
+                        .shadow(color: OniTanTheme.accentPrimary.opacity(0.4), radius: 6, y: 3)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+
+                    Button {
+                        OniTanTheme.hapticSuccess()
+                        dismiss()
+                    } label: {
+                        Text("ステージ選択へ戻る")
+                            .font(playFont(13, weight: .semibold))
+                            .foregroundColor(OniTanTheme.textTertiary)
+                    }
+                } else {
+                    Button {
+                        OniTanTheme.hapticSuccess()
+                        dismiss()
+                    } label: {
+                        Text("ステージ選択へ戻る")
+                            .font(playFont(15, weight: .bold))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                            .background(OniTanTheme.correctGradient)
+                            .cornerRadius(OniTanTheme.radiusButton)
+                            .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 6, y: 3)
+                    }
                 }
 
                 Button {

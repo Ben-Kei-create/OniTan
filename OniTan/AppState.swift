@@ -87,6 +87,13 @@ final class AppState: ObservableObject {
         stage == 1 || clearedStages.contains(stage - 1)
     }
 
+    /// Unlock check based on manifest ordering — use this when stage IDs are non-contiguous.
+    func isUnlocked(_ stage: Int, orderedStageIDs: [Int]) -> Bool {
+        guard let idx = orderedStageIDs.firstIndex(of: stage) else { return false }
+        if idx == 0 { return true }
+        return clearedStages.contains(orderedStageIDs[idx - 1])
+    }
+
     /// Overall progress ratio across all stages (0.0 – 1.0).
     func overallProgress(totalStages: Int) -> Double {
         guard totalStages > 0 else { return 0 }
