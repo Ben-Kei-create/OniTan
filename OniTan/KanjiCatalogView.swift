@@ -10,8 +10,6 @@ private struct KanjiCatalogEntry: Identifiable {
 struct KanjiCatalogView: View {
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
-    @EnvironmentObject var donationManager: DonationManager
-
     @State private var selectedEntry: KanjiCatalogEntry?
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 5)
@@ -63,9 +61,6 @@ struct KanjiCatalogView: View {
                 }
             }
 
-            if !donationManager.hasDonated {
-                AdBannerView()
-            }
         }
         .navigationTitle("漢字一覧")
         .navigationBarTitleDisplayMode(.large)

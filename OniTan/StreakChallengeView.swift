@@ -143,8 +143,6 @@ struct StreakChallengeView: View {
     @State private var activeReportContext: QuizProblemReportContext?
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var playFontManager: PlayFontManager
-    @EnvironmentObject var donationManager: DonationManager
-
     init(xpRepo: GamificationRepository? = nil) {
         _vm = StateObject(wrappedValue: StreakChallengeViewModel(xpRepo: xpRepo))
     }
@@ -198,9 +196,6 @@ struct StreakChallengeView: View {
                     .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
 
-                if !donationManager.hasDonated {
-                    AdBannerView()
-                }
             }
         }
         .navigationTitle("連続鬼たん")

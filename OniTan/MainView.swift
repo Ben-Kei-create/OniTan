@@ -99,9 +99,6 @@ struct MainView: View {
                     .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
 
-                if !donationManager.hasDonated {
-                    AdBannerView()
-                }
             }
         }
         .alert(item: $vm.activeAlert) { alert in

@@ -4,8 +4,6 @@ struct StatsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
-    @EnvironmentObject var donationManager: DonationManager
-
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
 
     private func displayNumber(for stageID: Int) -> Int {
@@ -38,9 +36,6 @@ struct StatsView: View {
                 }
             }
 
-            if !donationManager.hasDonated {
-                AdBannerView()
-            }
         }
         .navigationTitle("学習統計")
         .navigationBarTitleDisplayMode(.large)
