@@ -16,6 +16,7 @@ struct OniTanApp: App {
 
     @AppStorage("onboarding_v1_complete") private var onboardingComplete = false
     @State private var showOnboarding = false
+    @State private var showSplash = true
 
     init() {
         let appearance = UINavigationBarAppearance()
@@ -27,48 +28,59 @@ struct OniTanApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environmentObject(appState)
-                .environmentObject(statsRepo)
-                .environmentObject(streakRepo)
-                .environmentObject(xpRepo)
-                .environmentObject(adConsentManager)
-                .environmentObject(favoriteRepo)
-                .environmentObject(themeManager)
-                .environmentObject(playFontManager)
-                .environmentObject(donationManager)
-                .environmentObject(interstitialManager)
-                .environmentObject(notificationManager)
-                .preferredColorScheme(themeManager.preferredColorScheme)
-                .fullScreenCover(isPresented: $showOnboarding) {
-                    OnboardingView(isPresented: $showOnboarding)
-                        .environmentObject(notificationManager)
-                        .preferredColorScheme(.dark)
-                }
-                .task {
-                    await adConsentManager.prepareIfNeeded()
-                    await notificationManager.refresh()
-                    notificationManager.ensureScheduledIfNeeded(
-                        todayCompleted: streakRepo.todayCompleted
-                    )
-                    if !onboardingComplete {
-                        onboardingComplete = true
-                        showOnboarding = true
+            ZStack {
+                HomeView()
+                    .environmentObject(appState)
+                    .environmentObject(statsRepo)
+                    .environmentObject(streakRepo)
+                    .environmentObject(xpRepo)
+                    .environmentObject(adConsentManager)
+                    .environmentObject(favoriteRepo)
+                    .environmentObject(themeManager)
+                    .environmentObject(playFontManager)
+                    .environmentObject(donationManager)
+                    .environmentObject(interstitialManager)
+                    .environmentObject(notificationManager)
+                    .preferredColorScheme(themeManager.preferredColorScheme)
+                    .fullScreenCover(isPresented: $showOnboarding) {
+                        OnboardingView(isPresented: $showOnboarding)
+                            .environmentObject(notificationManager)
+                            .preferredColorScheme(.dark)
                     }
-                }
-                .onChange(of: streakRepo.todayCompleted) { completed in
-                    if completed {
-                        notificationManager.handleTodayCompleted()
-                    }
-                }
-                .onChange(of: showOnboarding) { showing in
-                    if !showing {
-                        // Ensure reminder is scheduled after onboarding completes
+                    .task {
+                        await adConsentManager.prepareIfNeeded()
+                        await notificationManager.refresh()
                         notificationManager.ensureScheduledIfNeeded(
                             todayCompleted: streakRepo.todayCompleted
                         )
+                        if !onboardingComplete {
+                            onboardingComplete = true
+                            showOnboarding = true
+                        }
                     }
+                    .onChange(of: streakRepo.todayCompleted) { completed in
+                        if completed {
+                            notificationManager.handleTodayCompleted()
+                        }
+                    }
+                    .onChange(of: showOnboarding) { showing in
+                        if !showing {
+                            notificationManager.ensureScheduledIfNeeded(
+                                todayCompleted: streakRepo.todayCompleted
+                            )
+                        }
+                    }
+
+                if showSplash {
+                    SplashView {
+                        withAnimation(.easeOut(duration: 0.35)) {
+                            showSplash = false
+                        }
+                    }
+                    .transition(.opacity)
+                    .zIndex(1)
                 }
+            }
         }
     }
 }

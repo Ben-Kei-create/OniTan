@@ -4,8 +4,6 @@ struct StageSelectView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
-    @EnvironmentObject var donationManager: DonationManager
-
     private let stages = quizData.stages.sorted { $0.stage < $1.stage }
     private let stageManifest = (try? safeLoad("stages.json") as StageManifest)
     private var totalStages: Int { max(stages.map(\.stage).max() ?? stages.count, 1) }
@@ -48,9 +46,6 @@ struct StageSelectView: View {
                 }
             }
 
-            if !donationManager.hasDonated {
-                AdBannerView()
-            }
         }
         .navigationTitle("ステージ選択")
         .navigationBarTitleDisplayMode(.large)
