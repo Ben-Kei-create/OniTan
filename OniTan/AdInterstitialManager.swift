@@ -12,8 +12,7 @@ final class AdInterstitialManager: NSObject, ObservableObject {
     #if DEBUG
     private let adUnitID = "ca-app-pub-3940256099942544/4411468910"
     #else
-    // TODO: AdMobコンソールでインタースティシャル広告ユニットを作成し、IDを差し替える
-    private let adUnitID = "ca-app-pub-4859622277330192/REPLACE_WITH_INTERSTITIAL_ID"
+    private let adUnitID = "ca-app-pub-4859622277330192/3670335626"
     #endif
 
     override init() { super.init() }
