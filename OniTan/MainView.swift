@@ -13,6 +13,7 @@ struct MainView: View {
     @EnvironmentObject var interstitialManager: AdInterstitialManager
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var appNavState: AppNavigationState
 
     private let appState: AppState
     private let statsRepo: StudyStatsRepository
@@ -111,6 +112,9 @@ struct MainView: View {
             if !donationManager.hasDonated {
                 interstitialManager.loadIfNeeded(canRequestAds: adConsentManager.canRequestAds)
             }
+        }
+        .onChange(of: appNavState.shouldPopToRoot) { should in
+            if should { dismiss() }
         }
         .onChange(of: vm.phase) { phase in
             if case .stageCleared = phase, !donationManager.hasDonated {
@@ -502,6 +506,9 @@ struct MainView: View {
 
             VStack(spacing: 8) {
                 if let next = nextStage {
+                    let nextNext = stageAfter(next)
+                    let nextNextTitle = nextNext.map { displayTitle(for: $0) }
+
                     NavigationLink(
                         destination: MainView(
                             stage: next,
@@ -510,7 +517,10 @@ struct MainView: View {
                             streakRepo: passedStreakRepo ?? streakRepo,
                             xpRepo: passedXPRepo ?? xpRepo,
                             mode: .normal,
-                            sessionTitle: nextStageTitle
+                            clearTitle: "\(displayTitle(for: next)) クリア！",
+                            sessionTitle: nextStageTitle,
+                            nextStage: nextNext,
+                            nextStageTitle: nextNextTitle
                         )
                     ) {
                         HStack(spacing: 8) {
@@ -531,6 +541,7 @@ struct MainView: View {
 
                     Button {
                         OniTanTheme.hapticSuccess()
+                        appNavState.popToRoot()
                         dismiss()
                     } label: {
                         Text("ステージ選択へ戻る")
@@ -540,6 +551,7 @@ struct MainView: View {
                 } else {
                     Button {
                         OniTanTheme.hapticSuccess()
+                        appNavState.popToRoot()
                         dismiss()
                     } label: {
                         Text("ステージ選択へ戻る")
@@ -628,6 +640,21 @@ struct MainView: View {
 
     private func playFont(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
         playFontManager.font(size: size, weight: weight)
+    }
+
+    // MARK: - Stage Navigation Helpers
+
+    private func stageAfter(_ s: Stage) -> Stage? {
+        let sorted = quizData.stages.sorted { $0.stage < $1.stage }
+        guard let idx = sorted.firstIndex(where: { $0.stage == s.stage }),
+              idx + 1 < sorted.count else { return nil }
+        return sorted[idx + 1]
+    }
+
+    private func displayTitle(for s: Stage) -> String {
+        let sorted = quizData.stages.sorted { $0.stage < $1.stage }
+        let num = (sorted.firstIndex(where: { $0.stage == s.stage }) ?? 0) + 1
+        return "ステージ \(num)"
     }
 
     private func presentProblemReport(for question: Question) {

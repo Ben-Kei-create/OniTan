@@ -98,6 +98,7 @@ struct ProblemReportSheet: View {
     @Environment(\.openURL) private var openURL
 
     @State private var copied = false
+    @State private var showDraft = false
 
     private var draftText: String {
         QuizProblemReportBuilder.draftText(for: context)
@@ -150,16 +151,29 @@ struct ProblemReportSheet: View {
 
     private var draftCard: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("送信される内容")
-                .font(.system(.headline, design: .rounded))
-                .fontWeight(.bold)
-                .foregroundColor(OniTanTheme.textPrimary)
+            Button {
+                withAnimation(.easeInOut(duration: 0.2)) { showDraft.toggle() }
+            } label: {
+                HStack {
+                    Text("送信される内容")
+                        .font(.system(.headline, design: .rounded))
+                        .fontWeight(.bold)
+                        .foregroundColor(OniTanTheme.textPrimary)
+                    Spacer()
+                    Image(systemName: showDraft ? "chevron.up" : "chevron.down")
+                        .font(.system(size: 13))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
 
-            Text(draftText)
-                .font(.system(.footnote, design: .monospaced))
-                .foregroundColor(OniTanTheme.textSecondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .textSelection(.enabled)
+            if showDraft {
+                Text(draftText)
+                    .font(.system(.footnote, design: .monospaced))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .textSelection(.enabled)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)

@@ -3,6 +3,7 @@ import SwiftUI
 private struct KanjiCatalogEntry: Identifiable {
     let question: Question
     let stageNumber: Int
+    let displayNumber: Int
 
     var id: String { question.kanji }
 }
@@ -22,9 +23,10 @@ struct KanjiCatalogView: View {
         var seen = Set<String>()
         var result: [KanjiCatalogEntry] = []
 
-        for stage in quizData.stages.sorted(by: { $0.stage < $1.stage }) {
+        let sorted = quizData.stages.sorted(by: { $0.stage < $1.stage })
+        for (idx, stage) in sorted.enumerated() {
             for question in stage.questions where seen.insert(question.kanji).inserted {
-                result.append(KanjiCatalogEntry(question: question, stageNumber: stage.stage))
+                result.append(KanjiCatalogEntry(question: question, stageNumber: stage.stage, displayNumber: idx + 1))
             }
         }
 
@@ -123,7 +125,7 @@ private struct KanjiCatalogCell: View {
                 .padding(6)
             }
 
-            Text("S\(entry.stageNumber)")
+            Text("S\(entry.displayNumber)")
                 .font(.system(size: 9, weight: .bold, design: .rounded))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .padding(.horizontal, 6)
@@ -198,7 +200,7 @@ private struct KanjiCatalogDetailView: View {
 
             HStack(spacing: 8) {
                 detailPill(title: "正解", value: entry.question.answer)
-                detailPill(title: "収録", value: "Stage \(entry.stageNumber)")
+                detailPill(title: "収録", value: "Stage \(entry.displayNumber)")
             }
         }
         .frame(maxWidth: .infinity)

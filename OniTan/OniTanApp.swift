@@ -13,6 +13,7 @@ struct OniTanApp: App {
     @StateObject private var donationManager = DonationManager()
     @StateObject private var interstitialManager = AdInterstitialManager()
     @StateObject private var notificationManager = NotificationManager.shared
+    @StateObject private var appNavState = AppNavigationState()
 
     @AppStorage("onboarding_v1_complete") private var onboardingComplete = false
     @State private var showOnboarding = false
@@ -41,6 +42,7 @@ struct OniTanApp: App {
                     .environmentObject(donationManager)
                     .environmentObject(interstitialManager)
                     .environmentObject(notificationManager)
+                    .environmentObject(appNavState)
                     .preferredColorScheme(themeManager.preferredColorScheme)
                     .fullScreenCover(isPresented: $showOnboarding) {
                         OnboardingView(isPresented: $showOnboarding)

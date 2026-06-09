@@ -87,6 +87,7 @@ private struct StageCard: View {
                         streakRepo: streakRepo,
                         xpRepo: xpRepo,
                         mode: weakCount > 0 ? .weakFocus : .normal,
+                        clearTitle: "\(sessionTitle) クリア！",
                         sessionTitle: sessionTitle,
                         nextStage: nextStage,
                         nextStageTitle: nextStageTitle
