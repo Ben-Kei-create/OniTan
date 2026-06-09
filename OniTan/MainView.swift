@@ -203,12 +203,12 @@ struct MainView: View {
             // Stage number + pass indicator
             stageHeader(scale: scale)
 
-            Spacer(minLength: scaled(14, by: scale, min: 10))
+            Spacer(minLength: scaled(10, by: scale, min: 6))
 
             // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
 
-            Spacer(minLength: scaled(18, by: scale, min: 12))
+            Spacer(minLength: scaled(14, by: scale, min: 8))
 
             // Choice area
             switch vm.phase {
@@ -256,8 +256,8 @@ struct MainView: View {
 
     private func kanjiDisplay(scale: CGFloat) -> some View {
         let corner = scaled(24, by: scale, min: 16)
-        let kanjiHeight: CGFloat = scaled(208, by: scale, min: 164)
-        let kanjiFont: CGFloat = scaled(122, by: scale, min: 88)
+        let kanjiHeight: CGFloat = scaled(180, by: scale, min: 144)
+        let kanjiFont: CGFloat = scaled(108, by: scale, min: 80)
 
         return ZStack {
             // Background card
@@ -358,16 +358,18 @@ struct MainView: View {
         .accessibilityIdentifier("quiz_problem_report")
     }
 
-    // MARK: - 2-Choice Stack
+    // MARK: - Choice Grid
 
     private func choiceStack(scale: CGFloat) -> some View {
-        let twoChoices = Self.twoChoices(
+        let shuffled = Self.shuffledChoices(
             from: vm.currentQuestion.choices,
             answer: vm.currentQuestion.answer
         )
+        let columns = [GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8)),
+                       GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
-            Text("読みを選ぶ")
+            Text(vm.currentQuestion.kind.choicePrompt)
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .padding(.leading, 4)
@@ -380,27 +382,29 @@ struct MainView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            ForEach(Array(twoChoices.enumerated()), id: \.offset) { _, choice in
-                ChoiceCard(
-                    text: choice,
-                    scale: scale,
-                    fontStyle: playFontManager.fontStyle,
-                    onTap: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                            vm.answer(selected: choice)
+            LazyVGrid(columns: columns, spacing: scaled(10, by: scale, min: 8)) {
+                ForEach(Array(shuffled.enumerated()), id: \.offset) { _, choice in
+                    ChoiceCard(
+                        text: choice,
+                        scale: scale,
+                        fontStyle: playFontManager.fontStyle,
+                        onTap: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                vm.answer(selected: choice)
+                            }
+                            OniTanTheme.haptic(.medium)
                         }
-                        OniTanTheme.haptic(.medium)
-                    }
-                )
+                    )
+                }
             }
         }
     }
 
-    /// Returns exactly 2 choices: the correct answer + 1 wrong choice, in random order.
-    private static func twoChoices(from choices: [String], answer: String) -> [String] {
-        let wrongs = choices.filter { $0 != answer }
-        guard let firstWrong = wrongs.first else { return [answer] }
-        return [answer, firstWrong].shuffled()
+    /// Returns all choices (up to 4) in random order, ensuring the correct answer is included.
+    private static func shuffledChoices(from choices: [String], answer: String) -> [String] {
+        var pool = choices
+        if !pool.contains(answer) { pool.append(answer) }
+        return pool.shuffled()
     }
 
     // MARK: - Wrong Answer View

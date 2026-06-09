@@ -34,6 +34,25 @@ enum QuestionKind: String, Codable, CaseIterable {
 }
 
 extension QuestionKind {
+    /// Instruction label shown above the answer choices during quiz.
+    var choicePrompt: String {
+        switch self {
+        case .reading:         return "読みを選びなさい"
+        case .writing:         return "正しい漢字を選びなさい"
+        case .composition:     return "熟語の構成を選びなさい"
+        case .yojijukugo:      return "□に入る漢字を選びなさい"
+        case .synonym:         return "類義語を選びなさい"
+        case .antonym:         return "対義語を選びなさい"
+        case .okurigana:       return "送り仮名を選びなさい"
+        case .errorcorrection: return "誤った漢字を選びなさい"
+        case .cloze:           return "□に入る言葉を選びなさい"
+        case .usage:           return "正しい用法を選びなさい"
+        case .unknown:         return "答えを選びなさい"
+        }
+    }
+}
+
+extension QuestionKind {
     /// Whitelist for `QuestionPayload.structureType` when kind == .composition.
     /// Based on the standard 漢字検定 5-category classification:
     ///   synonymChars  — 類義（岩石）
