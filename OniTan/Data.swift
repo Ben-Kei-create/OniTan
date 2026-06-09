@@ -68,7 +68,13 @@ let supplementalQuestions: [Question] = {
         "yojijukugo_questions.json",
         "synonym_questions.json",
         "antonym_questions.json",
-        "writing_questions.json"
+        "writing_questions.json",
+        "hyogai_reading_questions.json",
+        "compound_reading_kun_questions.json",
+        "common_kanji_questions.json",
+        "error_correction_questions.json",
+        "proverb_questions.json",
+        "passage_questions.json",
     ]
     let loaded = files.flatMap { (loadOptional($0) as [Question]?) ?? [] }
     logger.info("Supplemental questions loaded: \(loaded.count, privacy: .public)")

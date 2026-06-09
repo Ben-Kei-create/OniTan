@@ -1,0 +1,87 @@
+[
+  {
+    "id": "errcor-001",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["捕→補", "報→補", "輔→補", "舗→補"],
+    "answer": "捕→補",
+    "explain": "「補佐」が正しい。「捕佐」は存在しない語。「捕」は捕まえる意（逮捕・捕獲）、「補」は補う意（補佐・補足）。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "大臣を捕佐する役職が新たに設けられた。",
+      "correctedSentence": "大臣を補佐する役職が新たに設けられた。",
+      "wrongKanji": "捕",
+      "correctKanji": "補"
+    }
+  },
+  {
+    "id": "errcor-002",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["既→期", "紀→期", "記→期", "起→期"],
+    "answer": "既→期",
+    "explain": "「期待」が正しい。「既待」は存在しない語。「既」は「すでに」の意（既成・既存）、「期」は「時期・期待」の意。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "選手たちの活躍に既待が高まっている。",
+      "correctedSentence": "選手たちの活躍に期待が高まっている。",
+      "wrongKanji": "既",
+      "correctKanji": "期"
+    }
+  },
+  {
+    "id": "errcor-003",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["追→遂", "対→遂", "退→遂", "替→遂"],
+    "answer": "追→遂",
+    "explain": "「遂行」が正しい。「追行」は誤り。「遂（と）げる」は「やり遂げる・完遂」の意。「追」は追跡・追求の意で混同しやすい。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "困難な任務を最後まで追行した。",
+      "correctedSentence": "困難な任務を最後まで遂行した。",
+      "wrongKanji": "追",
+      "correctKanji": "遂"
+    }
+  },
+  {
+    "id": "errcor-004",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["機→規", "危→規", "帰→規", "棋→規"],
+    "answer": "機→規",
+    "explain": "「規律」が正しい。「機律」は存在しない語。「機」は機械・機会の意、「規」は規則・規律の意。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "部隊は厳しい機律のもとで訓練を行った。",
+      "correctedSentence": "部隊は厳しい規律のもとで訓練を行った。",
+      "wrongKanji": "機",
+      "correctKanji": "規"
+    }
+  },
+  {
+    "id": "errcor-005",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["諦→締", "帝→締", "程→締", "提→締"],
+    "answer": "諦→締",
+    "explain": "「締結」が正しい。「諦結」は存在しない語。「諦」はあきらめる意（諦念・諦観）、「締」はしめる意（締結・締切）。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "両国は平和条約の諦結に向けて交渉を続けた。",
+      "correctedSentence": "両国は平和条約の締結に向けて交渉を続けた。",
+      "wrongKanji": "諦",
+      "correctKanji": "締"
+    }
+  }
+]

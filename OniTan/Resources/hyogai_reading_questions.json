@@ -1,0 +1,77 @@
+[
+  {
+    "id": "hyogai-001",
+    "prompt": "「笑靨」の読みをひらがなで答えよ。",
+    "kanji": "笑靨",
+    "choices": ["えくぼ", "わらい", "えがお", "えみ"],
+    "answer": "えくぼ",
+    "explain": "「笑靨」は「えくぼ」と読む。頬にできる小さなくぼみ。「靨」は表外の読みで「えくぼ」を意味する字。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "笑靨",
+      "sentenceContext": "彼女の笑靨がとても愛らしかった。"
+    }
+  },
+  {
+    "id": "hyogai-002",
+    "prompt": "「木乃伊」の読みをひらがなで答えよ。",
+    "kanji": "木乃伊",
+    "choices": ["みいら", "もくのい", "きのみ", "ひのき"],
+    "answer": "みいら",
+    "explain": "「木乃伊」は「みいら」と読む。ポルトガル語 mirra（没薬）に由来する当て字。干からびた死体を指す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "当て字", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "木乃伊",
+      "sentenceContext": "博物館で古代エジプトの木乃伊が展示されていた。"
+    }
+  },
+  {
+    "id": "hyogai-003",
+    "prompt": "「山葵」の読みをひらがなで答えよ。",
+    "kanji": "山葵",
+    "choices": ["わさび", "やまぶき", "さんき", "やまあおい"],
+    "answer": "わさび",
+    "explain": "「山葵」は「わさび」と読む。薬味として用いられる植物。山に生える葵に似た草という意味の当て字。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "当て字", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetWord": "山葵",
+      "sentenceContext": "刺身には山葵と醤油がよく合う。"
+    }
+  },
+  {
+    "id": "hyogai-004",
+    "prompt": "「海豹」の読みをひらがなで答えよ。",
+    "kanji": "海豹",
+    "choices": ["あざらし", "かいひょう", "らっこ", "とど"],
+    "answer": "あざらし",
+    "explain": "「海豹」は「あざらし」と読む。鰭脚類の動物。海に住む豹という意味の当て字。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "動物", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "海豹",
+      "sentenceContext": "北の海で海豹が氷の上に寝転んでいた。"
+    }
+  },
+  {
+    "id": "hyogai-005",
+    "prompt": "「蒟蒻」の読みをひらがなで答えよ。",
+    "kanji": "蒟蒻",
+    "choices": ["こんにゃく", "くず", "ごぼう", "とろろ"],
+    "answer": "こんにゃく",
+    "explain": "「蒟蒻」は「こんにゃく」と読む。サトイモ科の植物の球茎から作る食品。漢語の「蒟蒻（くにゃく）」が転じた当て字。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "食物", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetWord": "蒟蒻",
+      "sentenceContext": "おでんに蒟蒻を入れると美味しい。"
+    }
+  }
+]

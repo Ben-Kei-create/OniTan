@@ -1,0 +1,77 @@
+[
+  {
+    "id": "crkun-001",
+    "prompt": "「今日」の読みをひらがなで答えよ。",
+    "kanji": "今日",
+    "choices": ["きょう", "こんにち", "いまひ", "こんじつ"],
+    "answer": "きょう",
+    "explain": "「今日」は熟字訓で「きょう」と読む。一字一字の音訓ではなく、熟語全体に訓読みが当てられる。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "今日",
+      "targetKanjiInCompound": "今"
+    }
+  },
+  {
+    "id": "crkun-002",
+    "prompt": "「時雨」の読みをひらがなで答えよ。",
+    "kanji": "時雨",
+    "choices": ["しぐれ", "じう", "ときあめ", "はるさめ"],
+    "answer": "しぐれ",
+    "explain": "「時雨」は熟字訓で「しぐれ」と読む。晩秋から初冬にかけて降る、にわか雨。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "季語", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "時雨",
+      "targetKanjiInCompound": "雨"
+    }
+  },
+  {
+    "id": "crkun-003",
+    "prompt": "「雪崩」の読みをひらがなで答えよ。",
+    "kanji": "雪崩",
+    "choices": ["なだれ", "ゆきくずれ", "せっぽう", "せっすい"],
+    "answer": "なだれ",
+    "explain": "「雪崩」は熟字訓で「なだれ」と読む。山の斜面の雪が崩れ落ちる現象。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "自然", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "雪崩",
+      "targetKanjiInCompound": "崩"
+    }
+  },
+  {
+    "id": "crkun-004",
+    "prompt": "「土産」の読みをひらがなで答えよ。",
+    "kanji": "土産",
+    "choices": ["みやげ", "どさん", "つちうまれ", "じさん"],
+    "answer": "みやげ",
+    "explain": "「土産」は熟字訓で「みやげ」と読む。旅先などから持ち帰る贈り物。「宮笥（みやけ）」が転じたという説がある。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "土産",
+      "targetKanjiInCompound": "土"
+    }
+  },
+  {
+    "id": "crkun-005",
+    "prompt": "「紅葉」の訓読みをひらがなで答えよ。",
+    "kanji": "紅葉",
+    "choices": ["もみじ", "こうよう", "べにば", "くれないは"],
+    "answer": "もみじ",
+    "explain": "「紅葉」の熟字訓は「もみじ」。秋に葉が赤や黄に色づく現象、またその葉。音読みは「こうよう」。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "季語", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "紅葉",
+      "targetKanjiInCompound": "紅"
+    }
+  }
+]
