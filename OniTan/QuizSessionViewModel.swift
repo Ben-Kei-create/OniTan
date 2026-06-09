@@ -26,6 +26,7 @@ final class QuizSessionViewModel: ObservableObject {
     @Published private(set) var currentQuestion: Question
     @Published private(set) var clearedCount: Int = 0
     @Published private(set) var phase: QuizPhase = .answering
+    private var pendingSessionClear = false
     @Published private(set) var lastAnswerResult: AnswerResult = .none
     @Published private(set) var passNumber: Int = 1
     @Published private(set) var consecutiveCorrect: Int = 0   // for combo display
@@ -161,15 +162,13 @@ final class QuizSessionViewModel: ObservableObject {
                 // normal/weakFocus: count unique mastered kanji
                 clearedCount = clearedKanji.count
                 if clearedKanji.count >= totalGoal {
-                    onSessionCleared()
-                    return
+                    pendingSessionClear = true
                 }
             } else {
                 // quick10/exam30: count total answered (correct + wrong)
                 clearedCount += 1
                 if pendingQueue.isEmpty {
-                    onSessionCleared()
-                    return
+                    pendingSessionClear = true
                 }
             }
             phase = .showingExplanation
@@ -190,6 +189,12 @@ final class QuizSessionViewModel: ObservableObject {
     func proceed() {
         guard phase != .answering, phase != .stageCleared else { return }
         lastAnswerResult = .none
+
+        if pendingSessionClear {
+            pendingSessionClear = false
+            onSessionCleared()
+            return
+        }
 
         if pendingQueue.isEmpty {
             if reviewQueue.isEmpty || !mode.usesReviewQueue {
@@ -224,6 +229,7 @@ final class QuizSessionViewModel: ObservableObject {
         lastAnswerResult = .none
         consecutiveCorrect = 0
         sessionXPGained = 0
+        pendingSessionClear = false
         sessionStartTime = Date()
         currentQuestion = safe[0]
         phase = .answering
