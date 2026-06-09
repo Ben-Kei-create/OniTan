@@ -1,0 +1,94 @@
+{
+  "categories": [
+    {
+      "id": "reading",
+      "title": "読み道場",
+      "description": "音読み・訓読み・熟字訓を鍛える",
+      "questionKinds": ["reading", "jukujikun"],
+      "stageIDs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "targetAccuracy": 0.90,
+      "iconName": "character.book.closed",
+      "colorHex": "#4A90D9"
+    },
+    {
+      "id": "writing",
+      "title": "書き取り道場",
+      "description": "かなを正しい漢字に変換する力を鍛える",
+      "questionKinds": ["writing"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "pencil",
+      "colorHex": "#E85D3A"
+    },
+    {
+      "id": "yojijukugo",
+      "title": "四字熟語道場",
+      "description": "四字熟語の意味と欠けた文字を覚える",
+      "questionKinds": ["yojijukugo"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "square.grid.2x2",
+      "colorHex": "#9B59B6"
+    },
+    {
+      "id": "synonym_antonym",
+      "title": "類義語・対義語道場",
+      "description": "意味が近い・反対の語を覚える",
+      "questionKinds": ["synonym", "antonym"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "arrow.left.arrow.right",
+      "colorHex": "#27AE60"
+    },
+    {
+      "id": "composition",
+      "title": "熟語構成道場",
+      "description": "熟語の5種類の構成を理解する",
+      "questionKinds": ["composition"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "arrow.triangle.2.circlepath",
+      "colorHex": "#F39C12"
+    },
+    {
+      "id": "okurigana",
+      "title": "送り仮名道場",
+      "description": "正しい送り仮名を選ぶ力を鍛える",
+      "questionKinds": ["okurigana"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "textformat",
+      "colorHex": "#16A085"
+    },
+    {
+      "id": "sentence",
+      "title": "文章題道場",
+      "description": "誤字訂正・文章穴埋め・語彙用法を練習する",
+      "questionKinds": ["errorcorrection", "cloze", "usage"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "doc.text.below.ecg",
+      "colorHex": "#2980B9"
+    },
+    {
+      "id": "jukujikun",
+      "title": "熟字訓・当て字道場",
+      "description": "特殊な読み方の熟字訓・当て字を覚える",
+      "questionKinds": ["jukujikun"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "character.ja.hiragana",
+      "colorHex": "#8E44AD"
+    },
+    {
+      "id": "exam",
+      "title": "模擬試験",
+      "description": "全カテゴリ混合の本番形式テスト",
+      "questionKinds": ["reading", "writing", "yojijukugo", "synonym", "antonym", "composition", "okurigana", "errorcorrection", "cloze", "usage"],
+      "stageIDs": [],
+      "targetAccuracy": 0.70,
+      "iconName": "doc.richtext.fill",
+      "colorHex": "#C0392B"
+    }
+  ]
+}

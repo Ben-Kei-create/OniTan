@@ -14,6 +14,8 @@ struct OniTanApp: App {
     @StateObject private var interstitialManager = AdInterstitialManager()
     @StateObject private var notificationManager = NotificationManager.shared
     @StateObject private var appNavState = AppNavigationState()
+    @StateObject private var masteryRepo = MasteryRepository()
+    @StateObject private var examResultRepo = ExamResultRepository()
 
     @AppStorage("onboarding_v1_complete") private var onboardingComplete = false
     @State private var showOnboarding = false
@@ -43,6 +45,8 @@ struct OniTanApp: App {
                     .environmentObject(interstitialManager)
                     .environmentObject(notificationManager)
                     .environmentObject(appNavState)
+                    .environmentObject(masteryRepo)
+                    .environmentObject(examResultRepo)
                     .preferredColorScheme(themeManager.preferredColorScheme)
                     .fullScreenCover(isPresented: $showOnboarding) {
                         OnboardingView(isPresented: $showOnboarding)

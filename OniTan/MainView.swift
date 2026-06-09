@@ -252,49 +252,15 @@ struct MainView: View {
         .accessibilityLabel("\(vm.displayTitle) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
     }
 
-    // MARK: - Kanji Display
+    // MARK: - Kanji / Prompt Display
 
     private func kanjiDisplay(scale: CGFloat) -> some View {
-        let corner = scaled(24, by: scale, min: 16)
-        let kanjiHeight: CGFloat = scaled(180, by: scale, min: 144)
-        let kanjiFont: CGFloat = scaled(108, by: scale, min: 80)
-
-        return ZStack {
-            // Background card
-            RoundedRectangle(cornerRadius: corner)
-                .fill(OniTanTheme.cardBackground)
-                .overlay(
-                    RoundedRectangle(cornerRadius: corner)
-                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
-                )
-                .shadow(color: .black.opacity(0.2), radius: scaled(16, by: scale, min: 8), y: scaled(8, by: scale, min: 4))
-
-            // Flash on answer
-            if vm.lastAnswerResult == .correct {
-                RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentCorrect.opacity(0.25))
-                    .transition(.opacity)
-            } else if vm.lastAnswerResult == .wrong {
-                RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentWrong.opacity(0.25))
-                    .transition(.opacity)
-            }
-
-            Text(vm.currentQuestion.kanji)
-                .font(playFont(kanjiFont, weight: .black))
-                .foregroundColor(OniTanTheme.textPrimary)
-                .minimumScaleFactor(0.4)
-                .lineLimit(1)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .shadow(color: .black.opacity(0.3), radius: 4)
-                .id(vm.currentQuestion.id)
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing).combined(with: .opacity),
-                    removal: .move(edge: .leading).combined(with: .opacity)
-                ))
-                .padding(scaled(16, by: scale, min: 8))
-        }
-        .frame(height: kanjiHeight)
+        QuestionPromptView(
+            question: vm.currentQuestion,
+            scale: scale,
+            isCorrect: vm.lastAnswerResult == .correct,
+            isWrong:   vm.lastAnswerResult == .wrong
+        )
         .overlay(alignment: .topTrailing) {
             VStack(spacing: scaled(8, by: scale, min: 6)) {
                 favoriteButton(scale: scale)
@@ -744,64 +710,44 @@ struct ExplanationView: View {
                 .onTapGesture { onDismiss() }
 
             VStack(spacing: 0) {
-                // Kanji header
-                VStack(spacing: 8) {
-                    HStack {
-                        Spacer()
-
-                        Button {
-                            onReport()
-                        } label: {
-                            Image(systemName: "exclamationmark.bubble")
-                                .font(.system(size: 15, weight: .bold))
-                                .foregroundColor(OniTanTheme.textSecondary)
-                                .frame(width: 36, height: 36)
-                                .background(Color.white.opacity(0.08))
-                                .clipShape(Circle())
-                        }
-                        .accessibilityLabel("問題を報告")
+                // Report button row
+                HStack {
+                    Spacer()
+                    Button {
+                        onReport()
+                    } label: {
+                        Image(systemName: "exclamationmark.bubble")
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .frame(width: 36, height: 36)
+                            .background(Color.white.opacity(0.08))
+                            .clipShape(Circle())
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 16)
-
-                    Text(question.kanji)
-                        .font(playFontManager.font(size: 70, weight: .black))
-                        .foregroundStyle(OniTanTheme.primaryGradient)
-
-                    HStack(spacing: 4) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(OniTanTheme.accentCorrect)
-                        Text("正解！")
-                            .font(playFontManager.font(size: 17, weight: .bold))
-                            .fontWeight(.bold)
-                            .foregroundColor(OniTanTheme.accentCorrect)
-                    }
-
-                    if let note = question.readingMetadata.playerNote(for: question.answer) {
-                        Text(note)
-                            .font(playFontManager.font(size: 12))
-                            .foregroundColor(OniTanTheme.accentWeak)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 20)
-                    }
+                    .accessibilityLabel("問題を報告")
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.bottom, 24)
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
                 .background(Color(red: 0.12, green: 0.10, blue: 0.20))
 
-                Divider().background(Color.white.opacity(0.15))
-
-                // Explanation body
+                // Kind-aware header + explanation
                 ScrollView {
-                    Text(question.displayExplanation)
-                        .font(playFontManager.font(size: 17))
-                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
-                        .lineSpacing(6)
-                        .padding(20)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    ExplanationContentView(question: question)
+                        .environmentObject(playFontManager)
                 }
-                .frame(maxHeight: 260)
+                .frame(maxHeight: 360)
                 .background(Color(red: 0.10, green: 0.08, blue: 0.18))
+
+                // Reading-specific note (shown for reading/jukujikun kinds)
+                if [QuestionKind.reading, .jukujikun].contains(question.kind),
+                   let note = question.readingMetadata.playerNote(for: question.answer) {
+                    Text(note)
+                        .font(playFontManager.font(size: 12))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                        .background(Color(red: 0.12, green: 0.10, blue: 0.20))
+                }
 
                 // Dismiss button
                 Button {

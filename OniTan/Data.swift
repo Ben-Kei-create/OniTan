@@ -14,7 +14,14 @@ let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
         var loadedStages: [Stage] = []
         for entry in manifest.stages {
             let stage: Stage = try safeLoad(entry.file)
-            loadedStages.append(stage)
+            // Stamp deterministic IDs: "{stageNumber}-{index}-{kanji}-{answer}"
+            let stamped = Stage(
+                stage: stage.stage,
+                questions: stage.questions.enumerated().map { idx, q in
+                    q.stamped(stageNumber: stage.stage, index: idx)
+                }
+            )
+            loadedStages.append(stamped)
         }
         let reviewQuestions: [Question]? = try? safeLoad("review_questions.json")
         let unusedQuestions: [Question]? = try? safeLoad("unused_questions.json")

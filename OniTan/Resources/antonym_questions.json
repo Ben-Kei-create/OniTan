@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ant-001",
+    "kanji": "集合",
+    "prompt": "「集合」の対義語は？",
+    "choices": ["解散", "集中", "団結", "結集"],
+    "answer": "解散",
+    "kind": "antonym",
+    "tags": ["対義語", "集団", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 集合⇔解散\n正解: 解散（かいさん）\n解説: 「集合」は一か所に集まること。「解散」はそれと反対に、集まっていたものがばらばらになること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "集合",
+      "relationWord": "解散"
+    }
+  },
+  {
+    "id": "ant-002",
+    "kanji": "緊張",
+    "prompt": "「緊張」の対義語は？",
+    "choices": ["弛緩", "興奮", "緊迫", "張り詰め"],
+    "answer": "弛緩",
+    "kind": "antonym",
+    "tags": ["対義語", "状態", "準1級"],
+    "difficulty": 4,
+    "explain": "意味: 緊張⇔弛緩\n正解: 弛緩（しかん）\n解説: 「緊張」は心身が張りつめた状態。「弛緩」はゆるんでたるんだ状態を指す。「弛」「緩」ともに「ゆるむ」という意味。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "緊張",
+      "relationWord": "弛緩"
+    }
+  },
+  {
+    "id": "ant-003",
+    "kanji": "栄転",
+    "prompt": "「栄転」の対義語は？",
+    "choices": ["左遷", "昇進", "出世", "躍進"],
+    "answer": "左遷",
+    "kind": "antonym",
+    "tags": ["対義語", "職位", "準1級"],
+    "difficulty": 3,
+    "explain": "意味: 栄転⇔左遷\n正解: 左遷（させん）\n解説: 「栄転」は名誉ある異動や昇進。「左遷」は低い地位や閑職へ追いやられること。古代中国で右が上位・左が下位とされた習慣から。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "栄転",
+      "relationWord": "左遷"
+    }
+  },
+  {
+    "id": "ant-004",
+    "kanji": "抽象",
+    "prompt": "「抽象」の対義語は？",
+    "choices": ["具体", "観念", "概念", "理念"],
+    "answer": "具体",
+    "kind": "antonym",
+    "tags": ["対義語", "概念", "準1級"],
+    "difficulty": 3,
+    "explain": "意味: 抽象⇔具体\n正解: 具体（ぐたい）\n解説: 「抽象」は形のない概念的なもの。「具体」は実際の形や内容を伴っていること。「具体的」の対義語が「抽象的」。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "抽象",
+      "relationWord": "具体"
+    }
+  },
+  {
+    "id": "ant-005",
+    "kanji": "悲観",
+    "prompt": "「悲観」の対義語は？",
+    "choices": ["楽観", "希望", "喜悦", "満悦"],
+    "answer": "楽観",
+    "kind": "antonym",
+    "tags": ["対義語", "心理", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 悲観⇔楽観\n正解: 楽観（らっかん）\n解説: 「悲観」は物事を悲しく・否定的に考えること。「楽観」は物事を楽しく・肯定的に見ること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "悲観",
+      "relationWord": "楽観"
+    }
+  }
+]

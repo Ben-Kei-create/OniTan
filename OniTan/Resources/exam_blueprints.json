@@ -1,0 +1,37 @@
+[
+  {
+    "id": "mini",
+    "title": "模試ミニ（30問）",
+    "questionCount": 30,
+    "distribution": {
+      "reading":         8,
+      "writing":         6,
+      "yojijukugo":      4,
+      "synonym":         3,
+      "antonym":         3,
+      "composition":     2,
+      "okurigana":       2,
+      "errorcorrection": 1,
+      "cloze":           1
+    },
+    "passingAccuracy": 0.70
+  },
+  {
+    "id": "full",
+    "title": "本番模試（100問）",
+    "questionCount": 100,
+    "distribution": {
+      "reading":         20,
+      "writing":         20,
+      "yojijukugo":      10,
+      "synonym":         8,
+      "antonym":         8,
+      "composition":     8,
+      "okurigana":       8,
+      "errorcorrection": 8,
+      "cloze":           5,
+      "usage":           5
+    },
+    "passingAccuracy": 0.70
+  }
+]
