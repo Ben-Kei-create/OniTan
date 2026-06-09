@@ -73,5 +73,230 @@
       "targetWord": "蒟蒻",
       "sentenceContext": "おでんに蒟蒻を入れると美味しい。"
     }
+  },
+  {
+    "id": "hyogai-006",
+    "prompt": "「反芻」の読みをひらがなで答えよ。",
+    "kanji": "反芻",
+    "choices": ["はんすう", "はんちゅう", "はんそ", "へんすう"],
+    "answer": "はんすう",
+    "explain": "「反芻」は「はんすう」と読む。「芻」は牛馬の飼料となる草の意で、表外読みの「すう」をとる。牛が一度飲み込んだ食物を口に戻して噛み直すことから、転じて物事を繰り返し考えることを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "反芻",
+      "sentenceContext": "彼は先生の言葉を何度も反芻した。"
+    }
+  },
+  {
+    "id": "hyogai-007",
+    "prompt": "「慟哭」の読みをひらがなで答えよ。",
+    "kanji": "慟哭",
+    "choices": ["どうこく", "つうこく", "どうこう", "とうこく"],
+    "answer": "どうこく",
+    "explain": "「慟哭」は「どうこく」と読む。「慟」は「哀しみのあまり身もだえする」意。声をあげて激しく泣くことを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "感情", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "慟哭",
+      "sentenceContext": "彼女は訃報を聞き、慟哭した。"
+    }
+  },
+  {
+    "id": "hyogai-008",
+    "prompt": "「跋扈」の読みをひらがなで答えよ。",
+    "kanji": "跋扈",
+    "choices": ["ばっこ", "ばつご", "はつこ", "ばっき"],
+    "answer": "ばっこ",
+    "explain": "「跋扈」は「ばっこ」と読む。もとは魚が梁（やな）を越えて自由に泳ぎ回る意で、転じて好ましくない者がのさばり、勝手にふるまうことを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 5,
+    "payload": {
+      "targetWord": "跋扈",
+      "sentenceContext": "悪徳業者が市場に跋扈している。"
+    }
+  },
+  {
+    "id": "hyogai-009",
+    "prompt": "「恣意」の読みをひらがなで答えよ。",
+    "kanji": "恣意",
+    "choices": ["しい", "じい", "しき", "しゆう"],
+    "answer": "しい",
+    "explain": "「恣意」は「しい」と読む。「恣」は「ほしいまま」の意で、自分勝手な考えや気まぐれな思いつきを表す。「恣意的」の形でよく使われる。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "恣意",
+      "sentenceContext": "規則の運用が担当者の恣意に任されている。"
+    }
+  },
+  {
+    "id": "hyogai-010",
+    "prompt": "「颯爽」の読みをひらがなで答えよ。",
+    "kanji": "颯爽",
+    "choices": ["さっそう", "さつそう", "そうさつ", "さんそう"],
+    "answer": "さっそう",
+    "explain": "「颯爽」は「さっそう」と読む。「颯」は風が吹くさまを表す字で、表外の読み「さつ」をとる。姿や態度がきびきびとして爽やかな様子を表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetWord": "颯爽",
+      "sentenceContext": "彼女は颯爽と会場に現れた。"
+    }
+  },
+  {
+    "id": "hyogai-011",
+    "prompt": "「凋落」の読みをひらがなで答えよ。",
+    "kanji": "凋落",
+    "choices": ["ちょうらく", "とうらく", "しゅうらく", "ちょうろう"],
+    "answer": "ちょうらく",
+    "explain": "「凋落」は「ちょうらく」と読む。「凋」は草木がしぼみ枯れる意の表外読み「ちょう」。勢いが衰え、落ちぶれることを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "凋落",
+      "sentenceContext": "かつて栄えた商店街も今は凋落の一途をたどっている。"
+    }
+  },
+  {
+    "id": "hyogai-012",
+    "prompt": "「杜撰」の読みをひらがなで答えよ。",
+    "kanji": "杜撰",
+    "choices": ["ずさん", "としん", "とせん", "ずざん"],
+    "answer": "ずさん",
+    "explain": "「杜撰」は「ずさん」と読む。中国宋代の詩人杜黙の詩が、規則に合わないものが多かったという故事に由来する語で、いいかげんで誤りが多いことを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "故事", "準1級"],
+    "difficulty": 5,
+    "payload": {
+      "targetWord": "杜撰",
+      "sentenceContext": "杜撰な管理体制が事故の原因とされた。"
+    }
+  },
+  {
+    "id": "hyogai-013",
+    "prompt": "「邂逅」の読みをひらがなで答えよ。",
+    "kanji": "邂逅",
+    "choices": ["かいこう", "かいごう", "がいこう", "あいこう"],
+    "answer": "かいこう",
+    "explain": "「邂逅」は「かいこう」と読む。「邂」も「逅」も「思いがけず出会う」意の字で、二字とも同様の意味を重ねた語。偶然の出会いを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 5,
+    "payload": {
+      "targetWord": "邂逅",
+      "sentenceContext": "旅先で旧友との思いがけない邂逅を果たした。"
+    }
+  },
+  {
+    "id": "hyogai-014",
+    "prompt": "「忖度」の読みをひらがなで答えよ。",
+    "kanji": "忖度",
+    "choices": ["そんたく", "すんたく", "そんど", "ぞんたく"],
+    "answer": "そんたく",
+    "explain": "「忖度」は「そんたく」と読む。「忖」も「度」も「はかる」の意。他人の心情や事情を推し量ることを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "忖度",
+      "sentenceContext": "上司の意向を忖度して資料を作成した。"
+    }
+  },
+  {
+    "id": "hyogai-015",
+    "prompt": "「招聘」の読みをひらがなで答えよ。",
+    "kanji": "招聘",
+    "choices": ["しょうへい", "しょうへき", "しょうばい", "かんぺい"],
+    "answer": "しょうへい",
+    "explain": "「招聘」は「しょうへい」と読む。「聘」は礼を尽くして人を招く意の表外読み「へい」。専門家などを礼を尽くして招くことを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "招聘",
+      "sentenceContext": "海外から著名な研究者を招聘した。"
+    }
+  },
+  {
+    "id": "hyogai-016",
+    "prompt": "「罹患」の読みをひらがなで答えよ。",
+    "kanji": "罹患",
+    "choices": ["りかん", "らかん", "いかん", "りがん"],
+    "answer": "りかん",
+    "explain": "「罹患」は「りかん」と読む。「罹」は「かかる」「こうむる」意の表外読み「り」。病気にかかることを意味する。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "医療", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "罹患",
+      "sentenceContext": "近年、この感染症に罹患する患者が増えている。"
+    }
+  },
+  {
+    "id": "hyogai-017",
+    "prompt": "「払拭」の読みをひらがなで答えよ。",
+    "kanji": "払拭",
+    "choices": ["ふっしょく", "ふつしき", "ばっしき", "はらいぬぐい"],
+    "answer": "ふっしょく",
+    "explain": "「払拭」は「ふっしょく」と読む。「拭」は「ぬぐう」意の表外読み「しょく」。よくない印象や疑念などをすっかり取り除くことを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetWord": "払拭",
+      "sentenceContext": "新しい経営陣は会社の古い体質を払拭しようとしている。"
+    }
+  },
+  {
+    "id": "hyogai-018",
+    "prompt": "「逼迫」の読みをひらがなで答えよ。",
+    "kanji": "逼迫",
+    "choices": ["ひっぱく", "ふくはく", "ひつばく", "へきはく"],
+    "answer": "ひっぱく",
+    "explain": "「逼迫」は「ひっぱく」と読む。「逼」は「せまる」意の表外読み「ひつ」。情勢や財政などに余裕がなくなり、差し迫った状態になることを表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "targetWord": "逼迫",
+      "sentenceContext": "資金繰りが逼迫し、対応を迫られている。"
+    }
+  },
+  {
+    "id": "hyogai-019",
+    "prompt": "「漸次」の読みをひらがなで答えよ。",
+    "kanji": "漸次",
+    "choices": ["ぜんじ", "しだいじ", "ざんじ", "せんじ"],
+    "answer": "ぜんじ",
+    "explain": "「漸次」は「ぜんじ」と読む。「漸」は「次第に」「徐々に」の意。物事が順を追って少しずつ進む様子を表す。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetWord": "漸次",
+      "sentenceContext": "新制度は漸次導入される予定だ。"
+    }
+  },
+  {
+    "id": "hyogai-020",
+    "prompt": "「一矢」の読みをひらがなで答えよ。",
+    "kanji": "一矢",
+    "choices": ["いっし", "ひとや", "いちし", "いつし"],
+    "answer": "いっし",
+    "explain": "「一矢」は「いっし」と読む。「一矢を報いる」で、攻撃や非難に対してわずかながら反撃することを表す慣用句として頻出する。",
+    "kind": "hyogaiReading",
+    "tags": ["表外の読み", "慣用句", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetWord": "一矢",
+      "sentenceContext": "劣勢のチームは終盤に一矢を報いた。"
+    }
   }
 ]

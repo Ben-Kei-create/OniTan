@@ -83,5 +83,260 @@
       "wrongKanji": "諦",
       "correctKanji": "締"
     }
+  },
+  {
+    "id": "errcor-006",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["以→意", "似→意", "位→意", "偉→意"],
+    "answer": "以→意",
+    "explain": "「意外」が正しい。「以外」は「それを除いて」の意で、ここでは「予想に反して」の意味の「意外」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "この問題は以外に難しかった。",
+      "correctedSentence": "この問題は意外に難しかった。",
+      "wrongKanji": "以",
+      "correctKanji": "意"
+    }
+  },
+  {
+    "id": "errcor-007",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["関→感", "間→感", "観→感", "完→感"],
+    "answer": "関→感",
+    "explain": "「感心」が正しい。「関心」は興味を持つことを表すが、ここでは「立派だと感じ入る」意味の「感心」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "彼の地道な努力に関心した。",
+      "correctedSentence": "彼の地道な努力に感心した。",
+      "wrongKanji": "関",
+      "correctKanji": "感"
+    }
+  },
+  {
+    "id": "errcor-008",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["意→異", "違→異", "以→異", "委→異"],
+    "answer": "意→異",
+    "explain": "「異議」が正しい。「意義」は物事の価値や意味を表すが、ここでは「反対の意見」を表す「異議」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "彼は会議でその決定に意義を唱えた。",
+      "correctedSentence": "彼は会議でその決定に異議を唱えた。",
+      "wrongKanji": "意",
+      "correctKanji": "異"
+    }
+  },
+  {
+    "id": "errcor-009",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["求→及", "救→及", "球→及", "及→求"],
+    "answer": "求→及",
+    "explain": "「追及」が正しい。「追求」は理想や目的を追い求めることだが、ここでは「責任などを問いただす」意味の「追及」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "彼は事故の責任を厳しく追求した。",
+      "correctedSentence": "彼は事故の責任を厳しく追及した。",
+      "wrongKanji": "求",
+      "correctKanji": "及"
+    }
+  },
+  {
+    "id": "errcor-010",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["移→異", "委→異", "維→異", "違→異"],
+    "answer": "移→異",
+    "explain": "「異動」が正しい。「移動」は場所が変わることだが、ここでは「人事配置の変更」を表す「異動」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "彼は来月本社へ移動になった。",
+      "correctedSentence": "彼は来月本社へ異動になった。",
+      "wrongKanji": "移",
+      "correctKanji": "異"
+    }
+  },
+  {
+    "id": "errcor-011",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["正→性", "証→性", "政→性", "整→性"],
+    "answer": "正→性",
+    "explain": "「適性」が正しい。「適正」は「ちょうどよく正しいこと」だが、ここでは「能力や性質が向いているか」を表す「適性」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "新入社員の適正検査を実施した。",
+      "correctedSentence": "新入社員の適性検査を実施した。",
+      "wrongKanji": "正",
+      "correctKanji": "性"
+    }
+  },
+  {
+    "id": "errcor-012",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["講→抗", "構→抗", "効→抗", "校→抗"],
+    "answer": "講→抗",
+    "explain": "「抗議」が正しい。「講義」は授業を行うことだが、ここでは「反対の意を申し立てる」意味の「抗議」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "学生たちは学長の決定に講義した。",
+      "correctedSentence": "学生たちは学長の決定に抗議した。",
+      "wrongKanji": "講",
+      "correctKanji": "抗"
+    }
+  },
+  {
+    "id": "errcor-013",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["観→鑑", "監→鑑", "環→鑑", "勧→鑑"],
+    "answer": "観→鑑",
+    "explain": "「鑑賞」が正しい。「観賞」は景色や植物などを見て楽しむことだが、ここでは「芸術作品を味わう」意味の「鑑賞」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "美術館で名画の数々を観賞した。",
+      "correctedSentence": "美術館で名画の数々を鑑賞した。",
+      "wrongKanji": "観",
+      "correctKanji": "鑑"
+    }
+  },
+  {
+    "id": "errcor-014",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["紹→照", "召→照", "昭→照", "証→照"],
+    "answer": "紹→照",
+    "explain": "「照会」が正しい。「紹介」は人や物事を引き合わせることだが、ここでは「問い合わせて確認する」意味の「照会」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "銀行は本人確認のため身元を紹介した。",
+      "correctedSentence": "銀行は本人確認のため身元を照会した。",
+      "wrongKanji": "紹",
+      "correctKanji": "照"
+    }
+  },
+  {
+    "id": "errcor-015",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["過→課", "渦→課", "禍→課", "果→課"],
+    "answer": "過→課",
+    "explain": "「課程」が正しい。「過程」は物事が進行する道筋を表すが、ここでは「学校の教育課程」を表す「課程」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "彼は大学院の過程を修了した。",
+      "correctedSentence": "彼は大学院の課程を修了した。",
+      "wrongKanji": "過",
+      "correctKanji": "課"
+    }
+  },
+  {
+    "id": "errcor-016",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["信→審", "新→審", "針→審", "真→審"],
+    "answer": "信→審",
+    "explain": "「審議」が正しい。「信議」は存在しない語。「審」は詳しく調べ考える意（審査・審議）。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "国会でその法案が信議された。",
+      "correctedSentence": "国会でその法案が審議された。",
+      "wrongKanji": "信",
+      "correctKanji": "審"
+    }
+  },
+  {
+    "id": "errcor-017",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["解→開", "界→開", "階→開", "改→開"],
+    "answer": "解→開",
+    "explain": "「開放」が正しい。「解放」は束縛から自由にすることだが、ここでは「施設を一般に開け放つ」意味の「開放」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "週末は校庭を一般に解放している。",
+      "correctedSentence": "週末は校庭を一般に開放している。",
+      "wrongKanji": "解",
+      "correctKanji": "開"
+    }
+  },
+  {
+    "id": "errcor-018",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["精→清", "青→清", "晴→清", "請→清"],
+    "answer": "精→清",
+    "explain": "「清算」が正しい。「精算」は金額を細かく計算することだが、ここでは「貸し借りをすべて整理する」意味の「清算」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "彼は過去の借金をすべて精算した。",
+      "correctedSentence": "彼は過去の借金をすべて清算した。",
+      "wrongKanji": "精",
+      "correctKanji": "清"
+    }
+  },
+  {
+    "id": "errcor-019",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["証→障", "象→障", "症→障", "賞→障"],
+    "answer": "証→障",
+    "explain": "「保障」が正しい。「保証」は責任を持って間違いないと請け合うことだが、ここでは「制度によって守る」意味の「保障」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 4,
+    "payload": {
+      "originalSentence": "国の社会保証制度について学んだ。",
+      "correctedSentence": "国の社会保障制度について学んだ。",
+      "wrongKanji": "証",
+      "correctKanji": "障"
+    }
+  },
+  {
+    "id": "errcor-020",
+    "prompt": "次の文中に誤った漢字が一字ある。その誤字と正しい漢字を答えよ。",
+    "kanji": "誤字訂正",
+    "choices": ["試→施", "師→施", "視→施", "史→施"],
+    "answer": "試→施",
+    "explain": "「施行」が正しい。「試行」は試しに行うことだが、ここでは「法律などを実際に行う」意味の「施行」が適切。",
+    "kind": "errorCorrection",
+    "tags": ["誤字訂正", "同音異義", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "originalSentence": "改正された法律が来月から試行される。",
+      "correctedSentence": "改正された法律が来月から施行される。",
+      "wrongKanji": "試",
+      "correctKanji": "施"
+    }
   }
 ]

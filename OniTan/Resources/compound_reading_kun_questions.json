@@ -73,5 +73,230 @@
       "targetCompound": "紅葉",
       "targetKanjiInCompound": "紅"
     }
+  },
+  {
+    "id": "crkun-006",
+    "prompt": "「五月雨」の読みをひらがなで答えよ。",
+    "kanji": "五月雨",
+    "choices": ["さみだれ", "ごがつあめ", "さつきあめ", "ごがつう"],
+    "answer": "さみだれ",
+    "explain": "「五月雨」は熟字訓で「さみだれ」と読む。陰暦五月（現在の六月頃）に降り続く長雨、梅雨のこと。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "季語", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "五月雨",
+      "targetKanjiInCompound": "雨"
+    }
+  },
+  {
+    "id": "crkun-007",
+    "prompt": "「為替」の読みをひらがなで答えよ。",
+    "kanji": "為替",
+    "choices": ["かわせ", "ためかえ", "いたい", "いがえ"],
+    "answer": "かわせ",
+    "explain": "「為替」は熟字訓で「かわせ」と読む。隔地間の決済を現金を直接送らずに行う仕組み。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "経済", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "為替",
+      "targetKanjiInCompound": "替"
+    }
+  },
+  {
+    "id": "crkun-008",
+    "prompt": "「玄人」の読みをひらがなで答えよ。",
+    "kanji": "玄人",
+    "choices": ["くろうと", "げんじん", "げんにん", "くろにん"],
+    "answer": "くろうと",
+    "explain": "「玄人」は熟字訓で「くろうと」と読む。ある分野に熟達した専門家のこと。対義語は「素人（しろうと）」。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "玄人",
+      "targetKanjiInCompound": "玄"
+    }
+  },
+  {
+    "id": "crkun-009",
+    "prompt": "「素人」の読みをひらがなで答えよ。",
+    "kanji": "素人",
+    "choices": ["しろうと", "そじん", "すじん", "すびと"],
+    "answer": "しろうと",
+    "explain": "「素人」は熟字訓で「しろうと」と読む。専門家ではない、その道に未熟な人のこと。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "素人",
+      "targetKanjiInCompound": "素"
+    }
+  },
+  {
+    "id": "crkun-010",
+    "prompt": "「海女」の読みをひらがなで答えよ。",
+    "kanji": "海女",
+    "choices": ["あま", "かいじょ", "うみおんな", "あまめ"],
+    "answer": "あま",
+    "explain": "「海女」は熟字訓で「あま」と読む。海に潜って貝や海藻などを採る女性のこと。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "職業", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "海女",
+      "targetKanjiInCompound": "海"
+    }
+  },
+  {
+    "id": "crkun-011",
+    "prompt": "「真面目」の読みをひらがなで答えよ。",
+    "kanji": "真面目",
+    "choices": ["まじめ", "しんめんもく", "まめんもく", "しんめんぼく"],
+    "answer": "まじめ",
+    "explain": "「真面目」は熟字訓で「まじめ」と読む。誠実でひたむきな様子。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "真面目",
+      "targetKanjiInCompound": "真"
+    }
+  },
+  {
+    "id": "crkun-012",
+    "prompt": "「田舎」の読みをひらがなで答えよ。",
+    "kanji": "田舎",
+    "choices": ["いなか", "でんしゃ", "たじゃ", "たいしゃ"],
+    "answer": "いなか",
+    "explain": "「田舎」は熟字訓で「いなか」と読む。都会から離れた地方や、自分の生まれ育った土地のこと。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "田舎",
+      "targetKanjiInCompound": "舎"
+    }
+  },
+  {
+    "id": "crkun-013",
+    "prompt": "「上手」を「じょうず」と読むときの熟字訓として、正しい読みを選べ。",
+    "kanji": "上手",
+    "choices": ["じょうず", "うわて", "かみて", "じょうしゅ"],
+    "answer": "じょうず",
+    "explain": "「上手」は文脈により「じょうず」（巧みなこと）、「うわて」（優位・上の方）、「かみて」（舞台の上手側）と読み分けられる。「じょうず」は熟字訓的な当て字読み。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "読み分け", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "上手",
+      "targetKanjiInCompound": "上"
+    }
+  },
+  {
+    "id": "crkun-014",
+    "prompt": "「下手」を「へた」と読むときの熟字訓として、正しい読みを選べ。",
+    "kanji": "下手",
+    "choices": ["へた", "したて", "しもて", "げしゅ"],
+    "answer": "へた",
+    "explain": "「下手」は文脈により「へた」（不得手なこと）、「したて」（謙った態度）、「しもて」（舞台の下手側）と読み分けられる。「へた」は熟字訓的な当て字読み。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "読み分け", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "下手",
+      "targetKanjiInCompound": "下"
+    }
+  },
+  {
+    "id": "crkun-015",
+    "prompt": "「一人」の読みをひらがなで答えよ。",
+    "kanji": "一人",
+    "choices": ["ひとり", "いちにん", "いちじん", "ひとにん"],
+    "answer": "ひとり",
+    "explain": "「一人」は熟字訓で「ひとり」と読む。人数が一名であることを表す。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 1,
+    "payload": {
+      "targetCompound": "一人",
+      "targetKanjiInCompound": "一"
+    }
+  },
+  {
+    "id": "crkun-016",
+    "prompt": "「二十歳」の読みをひらがなで答えよ。",
+    "kanji": "二十歳",
+    "choices": ["はたち", "にじゅっさい", "にじっさい", "はたとせ"],
+    "answer": "はたち",
+    "explain": "「二十歳」は熟字訓で「はたち」と読む。年齢が二十であることを表す特別な読み方。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "二十歳",
+      "targetKanjiInCompound": "歳"
+    }
+  },
+  {
+    "id": "crkun-017",
+    "prompt": "「行方」の読みをひらがなで答えよ。",
+    "kanji": "行方",
+    "choices": ["ゆくえ", "ぎょうほう", "こうほう", "いきかた"],
+    "answer": "ゆくえ",
+    "explain": "「行方」は熟字訓で「ゆくえ」と読む。人や物の進んでいく先、また所在のこと。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "行方",
+      "targetKanjiInCompound": "方"
+    }
+  },
+  {
+    "id": "crkun-018",
+    "prompt": "「名残」の読みをひらがなで答えよ。",
+    "kanji": "名残",
+    "choices": ["なごり", "めいざん", "なのこり", "みょうざん"],
+    "answer": "なごり",
+    "explain": "「名残」は熟字訓で「なごり」と読む。あとに残る気配や余韻、別れを惜しむ気持ちのこと。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "名残",
+      "targetKanjiInCompound": "残"
+    }
+  },
+  {
+    "id": "crkun-019",
+    "prompt": "「仲人」の読みをひらがなで答えよ。",
+    "kanji": "仲人",
+    "choices": ["なこうど", "ちゅうじん", "なかびと", "なかうど"],
+    "answer": "なこうど",
+    "explain": "「仲人」は熟字訓で「なこうど」と読む。結婚の仲立ちをする人のこと。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 3,
+    "payload": {
+      "targetCompound": "仲人",
+      "targetKanjiInCompound": "仲"
+    }
+  },
+  {
+    "id": "crkun-020",
+    "prompt": "「浮気」の読みをひらがなで答えよ。",
+    "kanji": "浮気",
+    "choices": ["うわき", "ふき", "うきけ", "ふけ"],
+    "answer": "うわき",
+    "explain": "「浮気」は熟字訓で「うわき」と読む。心が定まらず移ろいやすいこと、特に恋愛関係において他に心が移ること。",
+    "kind": "compoundReadingKun",
+    "tags": ["熟字訓", "準1級"],
+    "difficulty": 2,
+    "payload": {
+      "targetCompound": "浮気",
+      "targetKanjiInCompound": "気"
+    }
   }
 ]
