@@ -352,7 +352,11 @@ struct HomeView: View {
 
     private func menuSection(isCompact: Bool) -> some View {
         VStack(spacing: isCompact ? 8 : 10) {
+            HomeReadinessCard()
+
             HomeTodayCard(compact: isCompact)
+
+            HomeDojoBanner(compact: isCompact)
 
             HomeMenuButton(
                 title: "ステージ選択",
@@ -750,6 +754,148 @@ private struct HomeHeaderIconButton<Destination: View>: View {
         .accessibilityLabel(accessibilityTitle)
         .accessibilityHint("タップして\(accessibilityTitle)へ進む")
         .accessibilityIdentifier("home_header_icon_\(accessibilityTitle)")
+    }
+}
+
+// MARK: - Readiness Card (Phase 2 placeholder)
+
+private struct HomeReadinessCard: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 3) {
+                Text("準1級到達度")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                Text("— 準備中")
+                    .font(.system(.subheadline, design: .rounded))
+                    .fontWeight(.black)
+                    .foregroundColor(OniTanTheme.textSecondary)
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 3) {
+                Text("推定得点")
+                    .font(.system(size: 10, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                Text("— / 100")
+                    .font(.system(.caption, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(OniTanTheme.textSecondary)
+            }
+            Image(systemName: "chart.bar.xaxis")
+                .font(.system(size: 22, weight: .semibold))
+                .foregroundColor(OniTanTheme.accentPrimary.opacity(0.35))
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 10)
+        .background(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                .fill(OniTanTheme.cardBackground.opacity(0.7))
+                .overlay(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .stroke(OniTanTheme.accentPrimary.opacity(0.18), lineWidth: 1)
+                )
+        )
+        .overlay(alignment: .bottomTrailing) {
+            Text("本番得点を保証するものではありません")
+                .font(.system(size: 9, design: .rounded))
+                .foregroundColor(OniTanTheme.textTertiary.opacity(0.5))
+                .padding(.trailing, 10)
+                .padding(.bottom, 4)
+        }
+        .accessibilityElement()
+        .accessibilityLabel("準1級到達度 準備中")
+    }
+}
+
+// MARK: - Dojo Banner
+
+private struct HomeDojoBanner: View {
+    let compact: Bool
+
+    private var featuredCategories: [CategoryEntry] {
+        guard let manifest = categoryManifest else { return CategoryEntry.fallbacks }
+        let ids = ["reading", "writing", "yojijukugo", "synonym_antonym", "sentence", "exam"]
+        let found = ids.compactMap { manifest.entry(for: $0) }
+        return found.isEmpty ? CategoryEntry.fallbacks : found
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: compact ? 6 : 8) {
+            HStack {
+                Text("道場")
+                    .font(.system(.subheadline, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(OniTanTheme.textSecondary)
+                Spacer()
+                NavigationLink(destination: CategoryTrainingView()) {
+                    HStack(spacing: 3) {
+                        Text("すべて見る")
+                        Image(systemName: "chevron.right")
+                    }
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.accentPrimary)
+                }
+                .buttonStyle(PlainButtonStyle())
+                .accessibilityLabel("すべての道場を見る")
+            }
+
+            LazyVGrid(
+                columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)],
+                spacing: 8
+            ) {
+                ForEach(featuredCategories) { entry in
+                    NavigationLink(destination: TrainingModePickerView(category: entry)) {
+                        MiniDojoCard(entry: entry, compact: compact)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .accessibilityLabel(entry.title)
+                    .accessibilityHint("タップして\(entry.title)へ進む")
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Mini Dojo Card (2-col grid cell)
+
+private struct MiniDojoCard: View {
+    let entry: CategoryEntry
+    let compact: Bool
+    @State private var isPressed = false
+
+    private var accentColor: Color { Color(hex: entry.colorHex) }
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(systemName: entry.iconName)
+                .font(.system(size: compact ? 13 : 15, weight: .semibold))
+                .foregroundColor(accentColor)
+                .frame(width: 22, alignment: .center)
+            Text(entry.title)
+                .font(.system(size: compact ? 12 : 13, weight: .semibold, design: .rounded))
+                .foregroundColor(OniTanTheme.textPrimary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, compact ? 9 : 10)
+        .background(
+            RoundedRectangle(cornerRadius: 14)
+                .fill(OniTanTheme.cardBackground)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(accentColor.opacity(0.30), lineWidth: 1)
+                )
+        )
+        .shadow(color: .black.opacity(0.18), radius: 4, y: 2)
+        .scaleEffect(isPressed ? 0.97 : 1.0)
+        .animation(.easeInOut(duration: 0.1), value: isPressed)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded   { _ in isPressed = false }
+        )
     }
 }
 

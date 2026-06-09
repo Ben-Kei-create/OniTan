@@ -61,7 +61,21 @@ let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
 /// Flat list of main-stage questions.
 let questions: [Question] = quizData.stages.flatMap { $0.questions }
 let reviewQuestions: [Question] = quizData.review_questions ?? []
-let allQuestions: [Question] = questions + reviewQuestions
+
+/// Questions from standalone kind-specific JSON files (yojijukugo, writing, etc.).
+let supplementalQuestions: [Question] = {
+    let files = [
+        "yojijukugo_questions.json",
+        "synonym_questions.json",
+        "antonym_questions.json",
+        "writing_questions.json"
+    ]
+    let loaded = files.flatMap { (loadOptional($0) as [Question]?) ?? [] }
+    logger.info("Supplemental questions loaded: \(loaded.count, privacy: .public)")
+    return loaded
+}()
+
+let allQuestions: [Question] = questions + reviewQuestions + supplementalQuestions
 
 // MARK: - Safe Loaders
 
