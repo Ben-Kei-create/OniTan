@@ -168,6 +168,13 @@ func validateQuizData(_ data: QuizData) -> [String] {
                     issues.append("⚠️ \(qtag): yojijukugo の yoji「\(yoji)」の文字数が4ではありません")
                 }
             }
+
+            // CommonKanji: blankTerms should contain □
+            if q.kind == .commonKanji, let p = q.payload, let terms = p.blankTerms, !terms.isEmpty {
+                for term in terms where !term.contains("□") {
+                    issues.append("⚠️ \(qtag): commonKanji blankTerm「\(term)」に「□」が含まれていません")
+                }
+            }
         }
     }
 
@@ -218,38 +225,26 @@ func validateQuizDataStrict(_ data: QuizData) throws {
             guard let p = q.payload else { continue }
 
             switch q.kind {
-            case .reading:
+            case .reading, .hyogaiReading:
                 if let k = p.targetKanji, k.isEmpty {
                     errors.append("\(qtag): reading payload.targetKanji が空です")
                 }
 
-            case .writing:
-                if let k = p.kana, k.isEmpty {
-                    errors.append("\(qtag): writing payload.kana が空です")
-                }
-                if let k = p.targetKanji, k.isEmpty {
-                    errors.append("\(qtag): writing payload.targetKanji が空です")
-                }
-
-            case .cloze:
-                if let sentence = p.sentence, let token = p.blankToken, !token.isEmpty {
-                    if !sentence.contains(token) {
-                        errors.append("\(qtag): cloze sentence に blankToken「\(token)」が含まれていません")
-                    }
-                }
-
-            case .errorcorrection:
+            case .errorCorrection:
                 if let wrong = p.wrongKanji, let correct = p.correctKanji,
                    !wrong.isEmpty, !correct.isEmpty, wrong == correct {
-                    errors.append("\(qtag): errorcorrection の wrongKanji と correctKanji が同じです")
+                    errors.append("\(qtag): errorCorrection の wrongKanji と correctKanji が同じです")
                 }
                 if let orig = p.originalSentence, orig.isEmpty {
-                    errors.append("\(qtag): errorcorrection の originalSentence が空です")
+                    errors.append("\(qtag): errorCorrection の originalSentence が空です")
                 }
 
-            case .composition:
-                if let st = p.structureType, !QuestionKind.validStructureTypes.contains(st) {
-                    errors.append("\(qtag): composition structureType「\(st)」が不正な値です（許可値: \(QuestionKind.validStructureTypes.sorted().joined(separator: ", "))）")
+            case .yojijukugo:
+                if let yoji = p.yoji, !yoji.isEmpty {
+                    let cleaned = yoji.replacingOccurrences(of: "□", with: "X")
+                    if cleaned.count != 4 {
+                        errors.append("\(qtag): yojijukugo の yoji「\(yoji)」の文字数が4ではありません")
+                    }
                 }
 
             default:

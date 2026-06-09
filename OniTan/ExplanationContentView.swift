@@ -2,8 +2,8 @@ import SwiftUI
 
 // MARK: - ExplanationContentView
 
-/// Kind-aware explanation body shown inside ExplanationView after a correct answer.
-/// Replaces the single-format explanation that assumed reading-only questions.
+/// Kind-aware explanation body shown after a correct answer.
+/// Covers all Kanken Pre-1 exam question formats.
 struct ExplanationContentView: View {
     let question: Question
 
@@ -17,47 +17,79 @@ struct ExplanationContentView: View {
         }
     }
 
-    // MARK: - Kind-Specific Header
+    // MARK: - Kind-specific header dispatch
 
     @ViewBuilder
     private var kindSpecificHeader: some View {
         switch question.kind {
-
-        case .reading, .jukujikun:
+        case .reading, .hyogaiReading:
             readingHeader
-
-        case .writing:
-            writingHeader
-
+        case .compoundReadingKun:
+            compoundReadingKunHeader
+        case .commonKanji:
+            commonKanjiHeader
         case .yojijukugo:
             yojijukugoHeader
-
-        case .composition:
-            compositionHeader
-
         case .synonym, .antonym:
             synonymAntonymHeader
-
-        case .okurigana:
-            okuriganaHeader
-
-        case .errorcorrection:
+        case .errorCorrection:
             errorCorrectionHeader
-
-        case .cloze, .proverb:
-            clozeProverbHeader
-
+        case .proverb:
+            proverbHeader
+        case .passageReading, .passageVocabulary:
+            passageHeader
+        case .writingSkipped:
+            writingSkippedHeader
         default:
             genericHeader
         }
     }
 
-    // Reading: large kanji + correct reading
+    // MARK: - Reading (reading, hyogaiReading)
+
     private var readingHeader: some View {
         VStack(spacing: 8) {
-            Text(question.kanji)
+            Text(question.displayPrompt.isEmpty ? question.kanji : question.kanji)
                 .font(playFontManager.font(size: 70, weight: .black))
                 .foregroundStyle(OniTanTheme.primaryGradient)
+                .minimumScaleFactor(0.4)
+                .lineLimit(1)
+
+            correctBadge(answer: question.answer)
+
+            if question.kind == .hyogaiReading {
+                Text("表外の読み")
+                    .font(playFontManager.font(size: 11, weight: .semibold))
+                    .foregroundColor(OniTanTheme.accentPrimary.opacity(0.7))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(OniTanTheme.accentPrimary.opacity(0.12))
+                    .clipShape(Capsule())
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 8)
+    }
+
+    // MARK: - Compound Reading Kun
+
+    private var compoundReadingKunHeader: some View {
+        let compound = question.payload?.targetCompound ?? question.kanji
+        let targetChar = question.payload?.targetKanjiInCompound
+
+        return VStack(spacing: 8) {
+            HStack(spacing: 2) {
+                ForEach(Array(compound.enumerated()), id: \.offset) { _, char in
+                    let charStr = String(char)
+                    let isTarget = targetChar.map { $0 == charStr } ?? false
+                    Text(charStr)
+                        .font(playFontManager.font(size: 52, weight: .black))
+                        .foregroundColor(isTarget
+                            ? OniTanTheme.accentPrimary
+                            : OniTanTheme.textSecondary)
+                }
+            }
+            .minimumScaleFactor(0.5)
 
             correctBadge(answer: question.answer)
         }
@@ -65,28 +97,42 @@ struct ExplanationContentView: View {
         .padding(.top, 8)
     }
 
-    // Writing: kana prompt → correct kanji
-    private var writingHeader: some View {
-        VStack(spacing: 8) {
-            if let kana = question.payload?.kanaPrompt ?? question.rawPrompt {
-                Text(kana)
-                    .font(playFontManager.font(size: 36, weight: .bold))
-                    .foregroundColor(OniTanTheme.textSecondary)
-            }
-            HStack(spacing: 6) {
-                Image(systemName: "arrow.down")
-                    .foregroundColor(OniTanTheme.textTertiary)
-                Text(question.answer)
-                    .font(playFontManager.font(size: 52, weight: .black))
-                    .foregroundStyle(OniTanTheme.primaryGradient)
-            }
+    // MARK: - Common Kanji
+
+    private var commonKanjiHeader: some View {
+        let terms = question.payload?.blankTerms ?? []
+
+        return VStack(spacing: 10) {
+            // Large answer kanji
+            Text(question.answer)
+                .font(playFontManager.font(size: 64, weight: .black))
+                .foregroundStyle(OniTanTheme.primaryGradient)
+
             correctBadge(answer: nil)
+
+            // Completed terms
+            if !terms.isEmpty {
+                HStack(spacing: 10) {
+                    ForEach(terms.prefix(4), id: \.self) { term in
+                        Text(term.replacingOccurrences(of: "□", with: question.answer))
+                            .font(playFontManager.font(size: 16, weight: .bold))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(OniTanTheme.cardBackground.opacity(0.6))
+                            )
+                    }
+                }
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
     }
 
-    // Yojijukugo: full idiom + meaning
+    // MARK: - Yojijukugo
+
     private var yojijukugoHeader: some View {
         VStack(spacing: 10) {
             let full: String = {
@@ -112,25 +158,8 @@ struct ExplanationContentView: View {
         .padding(.top, 8)
     }
 
-    // Composition: compound + structure type
-    private var compositionHeader: some View {
-        VStack(spacing: 8) {
-            Text(question.payload?.compound ?? question.displayPrompt)
-                .font(playFontManager.font(size: 56, weight: .black))
-                .foregroundStyle(OniTanTheme.primaryGradient)
+    // MARK: - Synonym / Antonym
 
-            HStack(spacing: 4) {
-                Image(systemName: "checkmark.circle.fill").foregroundColor(OniTanTheme.accentCorrect)
-                Text(structureTypeName(question.payload?.structureType))
-                    .font(playFontManager.font(size: 15, weight: .bold))
-                    .foregroundColor(OniTanTheme.accentCorrect)
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.top, 8)
-    }
-
-    // Synonym / Antonym
     private var synonymAntonymHeader: some View {
         VStack(spacing: 8) {
             if let target = question.payload?.targetWord {
@@ -138,7 +167,9 @@ struct ExplanationContentView: View {
                     Text(target)
                         .font(playFontManager.font(size: 40, weight: .bold))
                         .foregroundColor(OniTanTheme.textSecondary)
-                    Image(systemName: question.kind == .synonym ? "equal.circle.fill" : "arrow.left.arrow.right.circle.fill")
+                    Image(systemName: question.kind == .synonym
+                          ? "equal.circle.fill"
+                          : "arrow.left.arrow.right.circle.fill")
                         .font(.system(size: 22))
                         .foregroundColor(OniTanTheme.accentPrimary)
                     Text(question.answer)
@@ -156,58 +187,106 @@ struct ExplanationContentView: View {
         .padding(.top, 8)
     }
 
-    // Okurigana
-    private var okuriganaHeader: some View {
-        VStack(spacing: 8) {
-            Text(question.answer)
-                .font(playFontManager.font(size: 52, weight: .black))
-                .foregroundStyle(OniTanTheme.primaryGradient)
-            correctBadge(answer: nil)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.top, 8)
-    }
+    // MARK: - Error Correction
 
-    // Error Correction
     private var errorCorrectionHeader: some View {
         VStack(spacing: 10) {
             if let orig = question.payload?.originalSentence {
                 Text(orig)
-                    .font(playFontManager.font(size: 15))
-                    .foregroundColor(OniTanTheme.accentWrong.opacity(0.8))
+                    .font(playFontManager.font(size: 14))
+                    .foregroundColor(OniTanTheme.accentWrong.opacity(0.7))
                     .multilineTextAlignment(.center)
-                    .strikethrough()
+                    .strikethrough(color: OniTanTheme.accentWrong.opacity(0.5))
+                    .lineLimit(3)
             }
-            HStack(spacing: 6) {
-                Image(systemName: "xmark.circle.fill").foregroundColor(OniTanTheme.accentWrong)
-                Text(question.payload?.wrongKanji ?? "")
-                    .font(playFontManager.font(size: 28, weight: .bold))
-                    .foregroundColor(OniTanTheme.accentWrong)
+            HStack(spacing: 8) {
+                HStack(spacing: 4) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(OniTanTheme.accentWrong)
+                    Text(question.payload?.wrongKanji ?? "?")
+                        .font(playFontManager.font(size: 28, weight: .bold))
+                        .foregroundColor(OniTanTheme.accentWrong)
+                }
                 Image(systemName: "arrow.right")
                     .foregroundColor(OniTanTheme.textTertiary)
-                Image(systemName: "checkmark.circle.fill").foregroundColor(OniTanTheme.accentCorrect)
-                Text(question.answer)
-                    .font(playFontManager.font(size: 28, weight: .black))
-                    .foregroundColor(OniTanTheme.accentCorrect)
+                HStack(spacing: 4) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(OniTanTheme.accentCorrect)
+                    Text(question.answer)
+                        .font(playFontManager.font(size: 28, weight: .black))
+                        .foregroundColor(OniTanTheme.accentCorrect)
+                }
             }
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
     }
 
-    // Cloze / Proverb
-    private var clozeProverbHeader: some View {
+    // MARK: - Proverb
+
+    private var proverbHeader: some View {
         VStack(spacing: 8) {
+            Text(question.answer)
+                .font(playFontManager.font(size: 40, weight: .black))
+                .foregroundStyle(OniTanTheme.primaryGradient)
+                .minimumScaleFactor(0.5)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+
+            correctBadge(answer: nil)
+
+            if let meaning = question.payload?.proverbMeaning {
+                Text(meaning)
+                    .font(playFontManager.font(size: 13))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(3)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 8)
+    }
+
+    // MARK: - Passage
+
+    private var passageHeader: some View {
+        VStack(spacing: 8) {
+            if let targetText = question.payload?.passageTargetText {
+                Text(targetText)
+                    .font(playFontManager.font(size: 20, weight: .bold))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+
             Text(question.answer)
                 .font(playFontManager.font(size: 44, weight: .black))
                 .foregroundStyle(OniTanTheme.primaryGradient)
+                .minimumScaleFactor(0.4)
+                .lineLimit(2)
+
             correctBadge(answer: nil)
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)
     }
 
-    // Generic fallback
+    // MARK: - Writing Skipped
+
+    private var writingSkippedHeader: some View {
+        VStack(spacing: 8) {
+            Image(systemName: "pencil.slash")
+                .font(.system(size: 32))
+                .foregroundColor(OniTanTheme.textTertiary)
+            Text("書き取り問題（スキップ）")
+                .font(playFontManager.font(size: 15, weight: .semibold))
+                .foregroundColor(OniTanTheme.textSecondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 8)
+    }
+
+    // MARK: - Generic Fallback
+
     private var genericHeader: some View {
         VStack(spacing: 8) {
             Text(question.displayPrompt)
@@ -215,6 +294,7 @@ struct ExplanationContentView: View {
                 .foregroundStyle(OniTanTheme.primaryGradient)
                 .minimumScaleFactor(0.4)
                 .lineLimit(2)
+                .multilineTextAlignment(.center)
             correctBadge(answer: question.answer)
         }
         .frame(maxWidth: .infinity)
@@ -248,7 +328,7 @@ struct ExplanationContentView: View {
             // Tags
             if let tags = question.tags, !tags.isEmpty {
                 HStack(spacing: 6) {
-                    ForEach(tags.prefix(4), id: \.self) { tag in
+                    ForEach(tags.prefix(5), id: \.self) { tag in
                         Text(tag)
                             .font(playFontManager.font(size: 10, weight: .medium))
                             .foregroundColor(OniTanTheme.accentPrimary.opacity(0.8))
@@ -272,19 +352,7 @@ struct ExplanationContentView: View {
                 .foregroundColor(OniTanTheme.accentCorrect)
             Text(answer.map { "正解：\($0)" } ?? "正解！")
                 .font(playFontManager.font(size: 17, weight: .bold))
-                .fontWeight(.bold)
                 .foregroundColor(OniTanTheme.accentCorrect)
-        }
-    }
-
-    private func structureTypeName(_ type: String?) -> String {
-        switch type {
-        case "synonym_chars":     return "意味が似た字の組み合わせ"
-        case "antonym_chars":     return "意味が対の字の組み合わせ"
-        case "modifier":          return "前の字が後の字を修飾"
-        case "verb_object":       return "動詞＋目的語"
-        case "subject_predicate": return "主語＋述語"
-        default:                  return "熟語の構成"
         }
     }
 }

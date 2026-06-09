@@ -123,28 +123,39 @@ private struct CategoryRowCard: View {
 // MARK: - Fallback categories (used if categories.json fails to load)
 
 extension CategoryEntry {
-    /// Hard-coded fallbacks so the dojo screen never crashes due to a missing JSON file.
+    /// Hard-coded fallbacks matching the real Kanken Pre-1 exam structure.
+    /// Used when categories.json is absent or fails to load.
     static var fallbacks: [CategoryEntry] {
         [
             CategoryEntry(
                 id: "reading",
                 title: "読み道場",
-                description: "音読み・訓読み・熟字訓を鍛える",
-                questionKinds: [.reading, .jukujikun],
+                description: "読み・表外の読み・熟語の読みを鍛える",
+                questionKinds: [.reading, .hyogaiReading, .compoundReadingKun],
                 stageIDs: Array(1...20),
                 targetAccuracy: 0.90,
                 iconName: "character.book.closed",
                 colorHex: "#4A90D9"
             ),
             CategoryEntry(
-                id: "writing",
-                title: "書き取り道場",
-                description: "かなを正しい漢字に変換する",
-                questionKinds: [.writing],
+                id: "commonKanji",
+                title: "共通漢字道場",
+                description: "複数の語に共通する一字を選ぶ",
+                questionKinds: [.commonKanji],
                 stageIDs: [],
                 targetAccuracy: 0.90,
-                iconName: "pencil",
-                colorHex: "#E85D3A"
+                iconName: "square.on.square",
+                colorHex: "#E67E22"
+            ),
+            CategoryEntry(
+                id: "errorCorrection",
+                title: "誤字訂正道場",
+                description: "文中の誤った漢字を見つける",
+                questionKinds: [.errorCorrection],
+                stageIDs: [],
+                targetAccuracy: 0.90,
+                iconName: "checkmark.circle",
+                colorHex: "#E74C3C"
             ),
             CategoryEntry(
                 id: "yojijukugo",
@@ -165,6 +176,26 @@ extension CategoryEntry {
                 targetAccuracy: 0.90,
                 iconName: "arrow.left.arrow.right",
                 colorHex: "#27AE60"
+            ),
+            CategoryEntry(
+                id: "proverb",
+                title: "故事・ことわざ道場",
+                description: "故事成語・ことわざの意味と用法",
+                questionKinds: [.proverb],
+                stageIDs: [],
+                targetAccuracy: 0.90,
+                iconName: "quote.bubble",
+                colorHex: "#D4AC0D"
+            ),
+            CategoryEntry(
+                id: "passage",
+                title: "文章題道場",
+                description: "文章中の読みや語彙・文脈を問う",
+                questionKinds: [.passageReading, .passageVocabulary],
+                stageIDs: [],
+                targetAccuracy: 0.90,
+                iconName: "doc.text.below.ecg",
+                colorHex: "#2980B9"
             ),
         ]
     }

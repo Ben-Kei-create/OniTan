@@ -3,22 +3,32 @@
     {
       "id": "reading",
       "title": "読み道場",
-      "description": "音読み・訓読み・熟字訓を鍛える",
-      "questionKinds": ["reading", "jukujikun"],
+      "description": "読み・表外の読み・熟語の読みを鍛える",
+      "questionKinds": ["reading", "hyogaiReading", "compoundReadingKun"],
       "stageIDs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       "targetAccuracy": 0.90,
       "iconName": "character.book.closed",
       "colorHex": "#4A90D9"
     },
     {
-      "id": "writing",
-      "title": "書き取り道場",
-      "description": "かなを正しい漢字に変換する力を鍛える",
-      "questionKinds": ["writing"],
+      "id": "commonKanji",
+      "title": "共通漢字道場",
+      "description": "複数の語に共通する一字を選ぶ",
+      "questionKinds": ["commonKanji"],
       "stageIDs": [],
       "targetAccuracy": 0.90,
-      "iconName": "pencil",
-      "colorHex": "#E85D3A"
+      "iconName": "square.on.square",
+      "colorHex": "#E67E22"
+    },
+    {
+      "id": "errorCorrection",
+      "title": "誤字訂正道場",
+      "description": "文中の誤った漢字を見つける",
+      "questionKinds": ["errorCorrection"],
+      "stageIDs": [],
+      "targetAccuracy": 0.90,
+      "iconName": "checkmark.circle",
+      "colorHex": "#E74C3C"
     },
     {
       "id": "yojijukugo",
@@ -41,50 +51,35 @@
       "colorHex": "#27AE60"
     },
     {
-      "id": "composition",
-      "title": "熟語構成道場",
-      "description": "熟語の5種類の構成を理解する",
-      "questionKinds": ["composition"],
+      "id": "proverb",
+      "title": "故事・ことわざ道場",
+      "description": "故事成語・ことわざの意味と用法",
+      "questionKinds": ["proverb"],
       "stageIDs": [],
       "targetAccuracy": 0.90,
-      "iconName": "arrow.triangle.2.circlepath",
-      "colorHex": "#F39C12"
+      "iconName": "quote.bubble",
+      "colorHex": "#D4AC0D"
     },
     {
-      "id": "okurigana",
-      "title": "送り仮名道場",
-      "description": "正しい送り仮名を選ぶ力を鍛える",
-      "questionKinds": ["okurigana"],
-      "stageIDs": [],
-      "targetAccuracy": 0.90,
-      "iconName": "textformat",
-      "colorHex": "#16A085"
-    },
-    {
-      "id": "sentence",
+      "id": "passage",
       "title": "文章題道場",
-      "description": "誤字訂正・文章穴埋め・語彙用法を練習する",
-      "questionKinds": ["errorcorrection", "cloze", "usage"],
+      "description": "文章中の読みや語彙・文脈を問う",
+      "questionKinds": ["passageReading", "passageVocabulary"],
       "stageIDs": [],
       "targetAccuracy": 0.90,
       "iconName": "doc.text.below.ecg",
       "colorHex": "#2980B9"
     },
     {
-      "id": "jukujikun",
-      "title": "熟字訓・当て字道場",
-      "description": "特殊な読み方の熟字訓・当て字を覚える",
-      "questionKinds": ["jukujikun"],
-      "stageIDs": [],
-      "targetAccuracy": 0.90,
-      "iconName": "character.ja.hiragana",
-      "colorHex": "#8E44AD"
-    },
-    {
       "id": "exam",
-      "title": "模擬試験",
+      "title": "総合模試",
       "description": "全カテゴリ混合の本番形式テスト",
-      "questionKinds": ["reading", "writing", "yojijukugo", "synonym", "antonym", "composition", "okurigana", "errorcorrection", "cloze", "usage"],
+      "questionKinds": [
+        "reading", "hyogaiReading", "compoundReadingKun",
+        "commonKanji", "errorCorrection",
+        "yojijukugo", "synonym", "antonym",
+        "proverb", "passageReading", "passageVocabulary"
+      ],
       "stageIDs": [],
       "targetAccuracy": 0.70,
       "iconName": "doc.richtext.fill",

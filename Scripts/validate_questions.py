@@ -24,9 +24,23 @@ import argparse
 from pathlib import Path
 
 VALID_KINDS = {
-    "reading", "writing", "yojijukugo", "synonym", "antonym",
-    "composition", "okurigana", "errorcorrection", "cloze",
-    "usage", "radical", "jukujikun", "proverb", "examMixed"
+    # Current exam-aligned kinds
+    "reading", "hyogaiReading", "compoundReadingKun",
+    "commonKanji", "errorCorrection",
+    "yojijukugo", "synonym", "antonym",
+    "proverb", "passageReading", "passageVocabulary",
+    "writingSkipped",
+    # Legacy aliases accepted in JSON (remapped by the Swift decoder)
+    "writing", "errorcorrection", "jukujikun", "cloze",
+    "usage", "composition", "okurigana", "radical", "examMixed",
+}
+
+# Kinds that are exam-eligible (used when checking blueprints)
+EXAM_ELIGIBLE_KINDS = {
+    "reading", "hyogaiReading", "compoundReadingKun",
+    "commonKanji", "errorCorrection",
+    "yojijukugo", "synonym", "antonym",
+    "proverb", "passageReading", "passageVocabulary",
 }
 
 VALID_STRUCTURE_TYPES = {
@@ -123,7 +137,28 @@ def validate_question(q: dict, tag: str):
         if not payload.get("relationWord"):
             warn(tag, f"{kind} payload missing 'relationWord'")
 
-    elif kind == "writing":
+    elif kind == "commonKanji":
+        terms = payload.get("blankTerms", [])
+        if not terms:
+            warn(tag, "commonKanji payload missing 'blankTerms'")
+        else:
+            for term in terms:
+                if "□" not in term:
+                    warn(tag, f"commonKanji blankTerm '{term}' has no □ placeholder")
+
+    elif kind == "compoundReadingKun":
+        if not payload.get("targetCompound"):
+            warn(tag, "compoundReadingKun payload missing 'targetCompound'")
+
+    elif kind == "hyogaiReading":
+        if not payload.get("sentenceContext") and not payload.get("targetWord"):
+            warn(tag, "hyogaiReading payload should have 'sentenceContext' or 'targetWord'")
+
+    elif kind in ("passageReading", "passageVocabulary"):
+        if not payload.get("passageText"):
+            warn(tag, f"{kind} payload missing 'passageText'")
+
+    elif kind in ("writing", "writingSkipped"):
         if not payload.get("kana") and not payload.get("kanaPrompt"):
             warn(tag, "writing payload missing 'kana'/'kanaPrompt'")
 

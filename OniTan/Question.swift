@@ -36,20 +36,23 @@ struct Question: Identifiable, Codable {
             switch kind {
             case .yojijukugo:
                 if let y = p.yoji, !y.isEmpty { return y }
-            case .cloze:
-                if let s = p.sentence, !s.isEmpty { return s }
-            case .errorcorrection:
+            case .errorCorrection:
                 if let s = p.originalSentence, !s.isEmpty { return s }
-            case .synonym, .antonym, .usage:
+            case .synonym, .antonym:
                 if let w = p.targetWord, !w.isEmpty { return w }
-            case .composition:
-                if let c = p.compound, !c.isEmpty { return c }
-            case .okurigana:
-                if let b = p.baseWord, !b.isEmpty { return b }
             case .proverb:
                 if let t = p.proverbText, !t.isEmpty { return t }
-            case .writing:
-                if let k = p.kanaPrompt, !k.isEmpty { return k }
+            case .commonKanji:
+                if let terms = p.blankTerms, !terms.isEmpty {
+                    return terms.joined(separator: " ／ ")
+                }
+            case .passageReading, .passageVocabulary:
+                if let text = p.passageText, !text.isEmpty { return text }
+            case .hyogaiReading:
+                if let ctx = p.sentenceContext, !ctx.isEmpty { return ctx }
+                if let w = p.targetWord, !w.isEmpty { return w }
+            case .compoundReadingKun:
+                if let c = p.targetCompound, !c.isEmpty { return c }
             default:
                 break
             }
@@ -57,11 +60,14 @@ struct Question: Identifiable, Codable {
         return kanji
     }
 
-    /// True when the prompt is long-form text (should use sentence layout).
+    /// True when the prompt is long-form text (sentence card layout).
     var isSentenceKind: Bool {
         switch kind {
-        case .cloze, .errorcorrection, .proverb: return true
-        default: return false
+        case .errorCorrection, .proverb,
+             .passageReading, .passageVocabulary:
+            return true
+        default:
+            return false
         }
     }
 

@@ -813,10 +813,10 @@ private struct HomeDojoBanner: View {
     let compact: Bool
 
     private var featuredCategories: [CategoryEntry] {
-        guard let manifest = categoryManifest else { return CategoryEntry.fallbacks }
-        let ids = ["reading", "writing", "yojijukugo", "synonym_antonym", "sentence", "exam"]
+        guard let manifest = categoryManifest else { return Array(CategoryEntry.fallbacks.prefix(6)) }
+        let ids = ["reading", "yojijukugo", "synonym_antonym", "errorCorrection", "proverb", "exam"]
         let found = ids.compactMap { manifest.entry(for: $0) }
-        return found.isEmpty ? CategoryEntry.fallbacks : found
+        return found.isEmpty ? Array(CategoryEntry.fallbacks.prefix(6)) : found
     }
 
     var body: some View {

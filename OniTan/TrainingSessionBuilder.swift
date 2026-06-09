@@ -24,7 +24,8 @@ struct TrainingSessionBuilder {
         statsRepo: StudyStatsRepository
     ) -> Stage {
 
-        var pool = allQuestions
+        // Exclude writing-skipped questions from all training sessions
+        var pool = allQuestions.filter { $0.kind.isExamEligible }
 
         // Apply category / kind filter
         if let kind = kindFilter {

@@ -33,15 +33,17 @@ struct ExamSession {
 struct ExamBuilder {
 
     /// Assembles a randomised ExamSession from the given pool according to the blueprint.
+    /// writingSkipped questions are always excluded.
     /// Falls back to any available questions if a kind's target count can't be met.
     static func build(blueprint: ExamBlueprint, from pool: [Question]) -> ExamSession {
         var selected: [Question] = []
+        let usablePool = pool.filter { $0.kind.isExamEligible }
 
         let kindDist = blueprint.kindDistribution
 
         // Pick per kind
         for (kind, count) in kindDist.sorted(by: { $0.key.rawValue < $1.key.rawValue }) {
-            let candidates = pool
+            let candidates = usablePool
                 .filter { $0.kind == kind }
                 .shuffled()
             selected += Array(candidates.prefix(count))
@@ -51,7 +53,7 @@ struct ExamBuilder {
         let deficit = blueprint.questionCount - selected.count
         if deficit > 0 {
             let usedIDs = Set(selected.map(\.id))
-            let extras = pool
+            let extras = usablePool
                 .filter { !usedIDs.contains($0.id) }
                 .shuffled()
                 .prefix(deficit)
