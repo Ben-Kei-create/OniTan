@@ -15,6 +15,7 @@ struct TrainingSessionBuilder {
     ///   - allQuestions: Full question pool to sample from.
     ///   - masteryRepo: Used for mastery-based selection.
     ///   - statsRepo: Used for weak-point / recent-wrong selection.
+    @MainActor
     static func build(
         mode: TrainingMode,
         categoryID: String? = nil,
@@ -47,6 +48,7 @@ struct TrainingSessionBuilder {
 
     // MARK: - Selection Strategy
 
+    @MainActor
     private static func selectQuestions(
         mode: TrainingMode,
         from pool: [Question],
@@ -128,7 +130,9 @@ struct TrainingSessionBuilder {
 
 private extension QuestionKind {
     static var coreKinds: [QuestionKind] {
-        [.reading, .writing, .yojijukugo, .synonym, .antonym,
-         .composition, .okurigana, .errorcorrection, .cloze, .usage]
+        [.reading, .hyogaiReading, .compoundReadingKun,
+         .commonKanji, .errorCorrection,
+         .yojijukugo, .synonym, .antonym,
+         .proverb, .passageReading, .passageVocabulary]
     }
 }

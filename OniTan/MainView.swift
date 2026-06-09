@@ -737,8 +737,10 @@ struct ExplanationView: View {
                 .frame(maxHeight: 360)
                 .background(Color(red: 0.10, green: 0.08, blue: 0.18))
 
-                // Reading-specific note (shown for reading/jukujikun kinds)
-                if [QuestionKind.reading, .jukujikun].contains(question.kind),
+                // Reading-specific note (shown for all reading kinds)
+                if (question.kind == .reading
+                    || question.kind == .hyogaiReading
+                    || question.kind == .compoundReadingKun),
                    let note = question.readingMetadata.playerNote(for: question.answer) {
                     Text(note)
                         .font(playFontManager.font(size: 12))

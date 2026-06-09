@@ -30,18 +30,19 @@ struct ReadinessScore {
 
 struct ReadinessCalculator {
 
-    // Kanken Pre-1 content kinds and their exam weight
+    // Kanken Pre-1 content kinds and their exam weight (mirrors exam_blueprints.json full distribution)
     static let coreKinds: [(QuestionKind, Double)] = [
-        (.reading, 0.20),
-        (.writing, 0.20),
-        (.yojijukugo, 0.10),
-        (.synonym, 0.08),
-        (.antonym, 0.08),
-        (.composition, 0.08),
-        (.okurigana, 0.08),
-        (.errorcorrection, 0.08),
-        (.cloze, 0.05),
-        (.usage, 0.05),
+        (.reading,            0.25),
+        (.hyogaiReading,      0.10),
+        (.compoundReadingKun, 0.10),
+        (.commonKanji,        0.10),
+        (.errorCorrection,    0.10),
+        (.yojijukugo,         0.15),
+        (.synonym,            0.05),
+        (.antonym,            0.05),
+        (.proverb,            0.05),
+        (.passageReading,     0.025),
+        (.passageVocabulary,  0.025),
     ]
 
     private static let passingThreshold = 0.70
