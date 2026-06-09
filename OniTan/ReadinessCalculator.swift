@@ -54,6 +54,7 @@ struct ReadinessCalculator {
     ///             + 0.25 × category coverage
     ///             + 0.20 × mastery ratio
     ///             + 0.20 × mock exam average (defaults to accuracy if no exams)
+    @MainActor
     static func calculate(
         masteryRepo: MasteryRepository,
         allQuestions: [Question],
