@@ -4,7 +4,7 @@
     "title": "ミニ模試（30問）",
     "questionCount": 30,
     "distribution": {
-      "reading":            8,
+      "reading":            7,
       "hyogaiReading":      3,
       "compoundReadingKun": 3,
       "commonKanji":        3,
@@ -13,7 +13,8 @@
       "synonym":            2,
       "antonym":            2,
       "proverb":            1,
-      "passageReading":     1
+      "passageReading":     1,
+      "passageVocabulary":  1
     },
     "passingAccuracy": 0.70
   },
