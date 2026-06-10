@@ -13,12 +13,14 @@ struct MainView: View {
     @EnvironmentObject var interstitialManager: AdInterstitialManager
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
     @EnvironmentObject var appNavState: AppNavigationState
 
     private let appState: AppState
     private let statsRepo: StudyStatsRepository
     private let passedStreakRepo: StreakRepository?
     private let passedXPRepo: GamificationRepository?
+    private let passedMasteryRepo: MasteryRepository?
     private let nextStage: Stage?
     private let nextStageTitle: String?
 
@@ -28,6 +30,7 @@ struct MainView: View {
         statsRepo: StudyStatsRepository,
         streakRepo: StreakRepository? = nil,
         xpRepo: GamificationRepository? = nil,
+        masteryRepo: MasteryRepository? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
         sessionTitle: String? = nil,
@@ -38,6 +41,7 @@ struct MainView: View {
         self.statsRepo = statsRepo
         self.passedStreakRepo = streakRepo
         self.passedXPRepo = xpRepo
+        self.passedMasteryRepo = masteryRepo
         self.nextStage = nextStage
         self.nextStageTitle = nextStageTitle
         _vm = StateObject(wrappedValue: QuizSessionViewModel(
@@ -46,6 +50,7 @@ struct MainView: View {
             statsRepo: statsRepo,
             streakRepo: streakRepo,
             xpRepo: xpRepo,
+            masteryRepo: masteryRepo,
             mode: mode,
             clearTitle: clearTitle,
             sessionTitle: sessionTitle
@@ -486,6 +491,7 @@ struct MainView: View {
                             statsRepo: statsRepo,
                             streakRepo: passedStreakRepo ?? streakRepo,
                             xpRepo: passedXPRepo ?? xpRepo,
+                            masteryRepo: passedMasteryRepo ?? masteryRepo,
                             mode: .normal,
                             clearTitle: "\(displayTitle(for: next)) クリア！",
                             sessionTitle: nextStageTitle,

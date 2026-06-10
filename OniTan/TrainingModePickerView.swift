@@ -140,6 +140,7 @@ struct TrainingModePickerView: View {
                     statsRepo: statsRepo,
                     streakRepo: streakRepo,
                     xpRepo: xpRepo,
+                    masteryRepo: masteryRepo,
                     mode: mode.legacyQuizMode ?? .normal,
                     sessionTitle: sessionTitle(for: mode)
                 )

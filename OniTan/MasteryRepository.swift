@@ -122,6 +122,17 @@ final class MasteryRepository: ObservableObject {
         masteryLogger.debug("Recorded \(wasCorrect ? "✓" : "✗") for \(questionID, privacy: .public) → \(rec.masteryLevel.rawValue, privacy: .public)")
     }
 
+    /// Convenience overload for recording an answer directly from a `Question`.
+    func record(question: Question, wasCorrect: Bool) {
+        record(
+            questionID: question.id,
+            kanji: question.kanji,
+            kind: question.kind,
+            tags: question.tags ?? [],
+            wasCorrect: wasCorrect
+        )
+    }
+
     // MARK: - Queries
 
     func masteryLevel(for questionID: String) -> MasteryLevel {

@@ -543,6 +543,7 @@ private struct HomeTodayCard: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
     let compact: Bool
 
     @State private var isPressed = false
@@ -568,6 +569,7 @@ private struct HomeTodayCard: View {
                     statsRepo: statsRepo,
                     streakRepo: streakRepo,
                     xpRepo: xpRepo,
+                    masteryRepo: masteryRepo,
                     mode: .quick10,
                     clearTitle: "今日の10問 完了！"
                 )
@@ -605,6 +607,7 @@ private struct HomeTodayCard: View {
                     statsRepo: statsRepo,
                     streakRepo: streakRepo,
                     xpRepo: xpRepo,
+                    masteryRepo: masteryRepo,
                     mode: .normal,
                     sessionTitle: "苦手問題 \(weak.count)問"
                 )

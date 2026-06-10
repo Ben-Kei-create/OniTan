@@ -68,6 +68,7 @@ private struct StageCard: View {
     @ObservedObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
 
     private var isCleared: Bool  { appState.isCleared(stage.stage) }
     private var isUnlocked: Bool { appState.isUnlocked(stage.stage, orderedStageIDs: orderedStageIDs) }
@@ -86,6 +87,7 @@ private struct StageCard: View {
                         statsRepo: statsRepo,
                         streakRepo: streakRepo,
                         xpRepo: xpRepo,
+                        masteryRepo: masteryRepo,
                         mode: weakCount > 0 ? .weakFocus : .normal,
                         clearTitle: "\(sessionTitle) クリア！",
                         sessionTitle: sessionTitle,

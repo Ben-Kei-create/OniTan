@@ -70,6 +70,7 @@ final class QuizSessionViewModel: ObservableObject {
     private let statsRepo: StudyStatsRepository
     private let streakRepo: StreakRepository?
     private let xpRepo: GamificationRepository?
+    private let masteryRepo: MasteryRepository?
 
     private let sessionQuestions: [Question]
     private var pendingQueue: [Question]
@@ -85,6 +86,7 @@ final class QuizSessionViewModel: ObservableObject {
         statsRepo: StudyStatsRepository,
         streakRepo: StreakRepository? = nil,
         xpRepo: GamificationRepository? = nil,
+        masteryRepo: MasteryRepository? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
         sessionTitle: String? = nil
@@ -94,6 +96,7 @@ final class QuizSessionViewModel: ObservableObject {
         self.statsRepo = statsRepo
         self.streakRepo = streakRepo
         self.xpRepo = xpRepo
+        self.masteryRepo = masteryRepo
         self.mode = mode
         self.sessionTitle = sessionTitle
         self.clearTitle = clearTitle ?? Self.defaultClearTitle(
@@ -138,6 +141,7 @@ final class QuizSessionViewModel: ObservableObject {
             selectedAnswer: selected,
             correctAnswer: question.answer
         )
+        masteryRepo?.record(question: question, wasCorrect: isCorrect)
         pendingQueue.removeFirst()
 
         if isCorrect {

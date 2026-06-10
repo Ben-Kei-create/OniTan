@@ -114,6 +114,7 @@ private struct ModeCard: View {
 
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
 
     @State private var isPressed = false
 
@@ -131,6 +132,7 @@ private struct ModeCard: View {
                 statsRepo: statsRepo,
                 streakRepo: streakRepo,
                 xpRepo: xpRepo,
+                masteryRepo: masteryRepo,
                 mode: mode,
                 sessionTitle: sessionTitle,
                 nextStage: nextStage,
