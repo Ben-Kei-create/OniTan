@@ -15,6 +15,7 @@ struct MainView: View {
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var masteryRepo: MasteryRepository
     @EnvironmentObject var appNavState: AppNavigationState
+    @EnvironmentObject var examResultRepo: ExamResultRepository
 
     private let appState: AppState
     private let statsRepo: StudyStatsRepository
@@ -31,6 +32,8 @@ struct MainView: View {
         streakRepo: StreakRepository? = nil,
         xpRepo: GamificationRepository? = nil,
         masteryRepo: MasteryRepository? = nil,
+        examResultRepo: ExamResultRepository? = nil,
+        examBlueprintID: String? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
         sessionTitle: String? = nil,
@@ -51,6 +54,8 @@ struct MainView: View {
             streakRepo: streakRepo,
             xpRepo: xpRepo,
             masteryRepo: masteryRepo,
+            examResultRepo: examResultRepo,
+            examBlueprintID: examBlueprintID,
             mode: mode,
             clearTitle: clearTitle,
             sessionTitle: sessionTitle
@@ -78,11 +83,23 @@ struct MainView: View {
 
                             switch vm.phase {
                             case .stageCleared:
-                                stageClearedView
+                                if let result = vm.examResult {
+                                    ExamResultView(
+                                        result: result,
+                                        blueprint: examBlueprints.first(where: { $0.id == result.blueprintID })
+                                    )
+                                    .environmentObject(playFontManager)
                                     .transition(.asymmetric(
                                         insertion: .scale(scale: 0.85).combined(with: .opacity),
                                         removal: .opacity
                                     ))
+                                } else {
+                                    stageClearedView
+                                        .transition(.asymmetric(
+                                            insertion: .scale(scale: 0.85).combined(with: .opacity),
+                                            removal: .opacity
+                                        ))
+                                }
                             default:
                                 quizContentView(scale: scale)
                             }

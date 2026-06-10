@@ -32,6 +32,7 @@ final class QuizSessionViewModel: ObservableObject {
     @Published private(set) var consecutiveCorrect: Int = 0   // for combo display
     @Published private(set) var sessionXPGained: Int = 0      // shown in cleared screen
     @Published var activeAlert: OniAlert? = nil
+    @Published private(set) var examResult: ExamResult? = nil
 
     // MARK: Read-only
 
@@ -71,12 +72,15 @@ final class QuizSessionViewModel: ObservableObject {
     private let streakRepo: StreakRepository?
     private let xpRepo: GamificationRepository?
     private let masteryRepo: MasteryRepository?
+    private let examResultRepo: ExamResultRepository?
+    private let examBlueprintID: String?
 
     private let sessionQuestions: [Question]
     private var pendingQueue: [Question]
     private var reviewQueue: [Question] = []
     private var clearedKanji: Set<String> = []
     private var sessionStartTime = Date()
+    private var sessionAnswers: [String: String] = [:]
 
     // MARK: - Init
 
@@ -87,6 +91,8 @@ final class QuizSessionViewModel: ObservableObject {
         streakRepo: StreakRepository? = nil,
         xpRepo: GamificationRepository? = nil,
         masteryRepo: MasteryRepository? = nil,
+        examResultRepo: ExamResultRepository? = nil,
+        examBlueprintID: String? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
         sessionTitle: String? = nil
@@ -97,6 +103,8 @@ final class QuizSessionViewModel: ObservableObject {
         self.streakRepo = streakRepo
         self.xpRepo = xpRepo
         self.masteryRepo = masteryRepo
+        self.examResultRepo = examResultRepo
+        self.examBlueprintID = examBlueprintID
         self.mode = mode
         self.sessionTitle = sessionTitle
         self.clearTitle = clearTitle ?? Self.defaultClearTitle(
@@ -133,6 +141,7 @@ final class QuizSessionViewModel: ObservableObject {
 
         let question = currentQuestion
         let isCorrect = selected == question.answer
+        sessionAnswers[question.id] = selected
 
         statsRepo.record(
             stageNumber: stage.stage,
@@ -234,6 +243,8 @@ final class QuizSessionViewModel: ObservableObject {
         consecutiveCorrect = 0
         sessionXPGained = 0
         pendingSessionClear = false
+        sessionAnswers = [:]
+        examResult = nil
         sessionStartTime = Date()
         currentQuestion = safe[0]
         phase = .answering
@@ -262,6 +273,18 @@ final class QuizSessionViewModel: ObservableObject {
         // Record study time for streak
         let studyTime = Date().timeIntervalSince(sessionStartTime)
         streakRepo?.addStudyTime(studyTime)
+
+        if let blueprintID = examBlueprintID,
+           let blueprint = examBlueprints.first(where: { $0.id == blueprintID }) {
+            let session = ExamSession(
+                blueprint: blueprint,
+                questions: sessionQuestions,
+                startedAt: sessionStartTime
+            )
+            let result = ExamBuilder.score(session: session, answers: sessionAnswers)
+            examResult = result
+            examResultRepo?.save(result)
+        }
 
         phase = .stageCleared
     }

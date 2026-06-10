@@ -16,7 +16,7 @@
       "passageReading":     1,
       "passageVocabulary":  1
     },
-    "passingAccuracy": 0.70
+    "passingAccuracy": 0.90
   },
   {
     "id": "full",
@@ -35,6 +35,6 @@
       "passageReading":     5,
       "passageVocabulary":  5
     },
-    "passingAccuracy": 0.70
+    "passingAccuracy": 0.90
   }
 ]

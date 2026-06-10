@@ -14,6 +14,7 @@ struct TrainingModePickerView: View {
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var examResultRepo: ExamResultRepository
 
     /// Pre-built stages keyed by mode so shuffles don't re-randomise on every render.
     @State private var builtStages: [TrainingMode: Stage] = [:]
@@ -80,6 +81,14 @@ struct TrainingModePickerView: View {
         "\(category.title) — \(japaneseLabel(for: mode))"
     }
 
+    private func examBlueprintID(for mode: TrainingMode) -> String? {
+        switch mode {
+        case .examMini: return "mini"
+        case .examFull: return "full"
+        default:        return nil
+        }
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -141,6 +150,8 @@ struct TrainingModePickerView: View {
                     streakRepo: streakRepo,
                     xpRepo: xpRepo,
                     masteryRepo: masteryRepo,
+                    examResultRepo: examResultRepo,
+                    examBlueprintID: examBlueprintID(for: mode),
                     mode: mode.legacyQuizMode ?? .normal,
                     sessionTitle: sessionTitle(for: mode)
                 )
