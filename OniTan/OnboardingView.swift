@@ -41,11 +41,11 @@ struct OnboardingView: View {
                 .font(.system(size: 90, weight: .black, design: .rounded))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [Color.white, Color(red: 0.75, green: 0.55, blue: 1.0)],
+                        colors: [OniTanTheme.washiText, OniTanTheme.mutedGold],
                         startPoint: .top, endPoint: .bottom
                     )
                 )
-                .shadow(color: Color(red: 0.55, green: 0.35, blue: 1.0).opacity(0.7), radius: 20, y: 8)
+                .shadow(color: OniTanTheme.sealRed.opacity(0.35), radius: 20, y: 8)
                 .padding(.bottom, 12)
 
             Text("漢字検定準１級 対策アプリ")
@@ -55,11 +55,11 @@ struct OnboardingView: View {
                 .padding(.bottom, 32)
 
             VStack(spacing: 14) {
-                featureRow(icon: "books.vertical.fill", color: Color(red: 0.55, green: 0.40, blue: 1.0),
+                featureRow(icon: "道", color: OniTanTheme.mutedGold,
                            text: "全 \(quizData.stages.count) ステージで段階的に学習")
-                featureRow(icon: "bolt.fill", color: Color(red: 1.0, green: 0.60, blue: 0.10),
+                featureRow(icon: "十", color: OniTanTheme.sealRed,
                            text: "今日の10問で毎日の習慣づくり")
-                featureRow(icon: "star.fill", color: Color(red: 1.0, green: 0.85, blue: 0.20),
+                featureRow(icon: "段", color: OniTanTheme.mutedGold,
                            text: "XPを貯めてレベルアップ！")
             }
             .padding(.horizontal, 32)
@@ -87,25 +87,19 @@ struct OnboardingView: View {
                     number: "1",
                     title: "今日の10問",
                     desc: "ホーム画面の「今日の10問」で毎日の学習を記録。ストリークを続けよう！",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 1.0, green: 0.55, blue: 0.05), Color(red: 0.8, green: 0.30, blue: 0.0)],
-                        startPoint: .topLeading, endPoint: .bottomTrailing)
+                    gradient: OniTanTheme.primaryGradient
                 )
                 stepCard(
                     number: "2",
                     title: "ステージを攻略",
                     desc: "準１級の漢字をステージ制で完全網羅。クリアすると次のステージが解放！",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 0.40, green: 0.25, blue: 0.90), Color(red: 0.25, green: 0.10, blue: 0.65)],
-                        startPoint: .topLeading, endPoint: .bottomTrailing)
+                    gradient: OniTanTheme.goldGradient
                 )
                 stepCard(
                     number: "3",
                     title: "苦手を克服",
                     desc: "間違えた問題を自動で記録。苦手モードで集中的に復習できます。",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 0.90, green: 0.40, blue: 0.10), Color(red: 0.70, green: 0.20, blue: 0.0)],
-                        startPoint: .topLeading, endPoint: .bottomTrailing)
+                    gradient: OniTanTheme.primaryGradient
                 )
             }
             .padding(.horizontal, 24)
@@ -121,18 +115,18 @@ struct OnboardingView: View {
             VStack(spacing: 12) {
                 ZStack {
                     Circle()
-                        .fill(Color(red: 1.0, green: 0.55, blue: 0.05).opacity(0.2))
+                        .fill(OniTanTheme.mutedGold.opacity(0.2))
                         .frame(width: 100, height: 100)
                         .blur(radius: 16)
                     Image(systemName: "bell.badge.fill")
                         .font(.system(size: 56))
                         .foregroundStyle(
                             LinearGradient(
-                                colors: [Color(red: 1.0, green: 0.70, blue: 0.20), Color(red: 1.0, green: 0.40, blue: 0.0)],
+                                colors: [OniTanTheme.mutedGold, OniTanTheme.sealRed],
                                 startPoint: .top, endPoint: .bottom
                             )
                         )
-                        .shadow(color: Color(red: 1.0, green: 0.50, blue: 0.0).opacity(0.5), radius: 12)
+                        .shadow(color: OniTanTheme.mutedGold.opacity(0.35), radius: 12)
                 }
                 .padding(.bottom, 8)
 
@@ -176,8 +170,8 @@ struct OnboardingView: View {
 
     private func featureRow(icon: String, color: Color, text: String) -> some View {
         HStack(spacing: 14) {
-            Image(systemName: icon)
-                .font(.system(size: 18, weight: .semibold))
+            Text(icon)
+                .font(.system(size: 18, weight: .black, design: .serif))
                 .foregroundColor(color)
                 .frame(width: 36)
                 .accessibilityHidden(true)
@@ -240,12 +234,12 @@ struct OnboardingView: View {
             .frame(maxWidth: .infinity, minHeight: 52)
             .background(
                 LinearGradient(
-                    colors: [Color(red: 1.0, green: 0.55, blue: 0.05), Color(red: 0.8, green: 0.30, blue: 0.0)],
+                    colors: [OniTanTheme.sealRed, OniTanTheme.sealRedDark],
                     startPoint: .topLeading, endPoint: .bottomTrailing
                 )
             )
             .cornerRadius(16)
-            .shadow(color: Color(red: 1.0, green: 0.40, blue: 0.0).opacity(0.4), radius: 10, y: 4)
+            .shadow(color: OniTanTheme.sealRed.opacity(0.32), radius: 10, y: 4)
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel("毎日リマインダー通知を有効にする")
@@ -302,11 +296,11 @@ struct OnboardingView: View {
                     .background(
                         Capsule()
                             .fill(LinearGradient(
-                                colors: [Color(red: 0.55, green: 0.35, blue: 1.0), Color(red: 0.35, green: 0.15, blue: 0.75)],
+                                colors: [OniTanTheme.sealRed, OniTanTheme.sealRedDark],
                                 startPoint: .topLeading, endPoint: .bottomTrailing
                             ))
                     )
-                    .shadow(color: Color(red: 0.45, green: 0.25, blue: 0.85).opacity(0.45), radius: 8, y: 4)
+                    .shadow(color: OniTanTheme.sealRed.opacity(0.32), radius: 8, y: 4)
                 }
                 .buttonStyle(PlainButtonStyle())
                 .accessibilityLabel("次へ")
@@ -327,11 +321,11 @@ struct OnboardingView: View {
                     .background(
                         Capsule()
                             .fill(LinearGradient(
-                                colors: [Color(red: 1.0, green: 0.55, blue: 0.05), Color(red: 0.8, green: 0.30, blue: 0.0)],
+                                colors: [OniTanTheme.sealRed, OniTanTheme.sealRedDark],
                                 startPoint: .topLeading, endPoint: .bottomTrailing
                             ))
                     )
-                    .shadow(color: Color(red: 1.0, green: 0.40, blue: 0.0).opacity(0.45), radius: 8, y: 4)
+                    .shadow(color: OniTanTheme.sealRed.opacity(0.32), radius: 8, y: 4)
                 }
                 .buttonStyle(PlainButtonStyle())
                 .accessibilityLabel("オンボーディング完了、アプリを始める")
@@ -342,14 +336,7 @@ struct OnboardingView: View {
     // MARK: - Background
 
     private var backgroundGradient: some View {
-        LinearGradient(
-            colors: [
-                Color(red: 0.08, green: 0.06, blue: 0.22),
-                Color(red: 0.18, green: 0.04, blue: 0.28)
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
+        OniTanTheme.inkGradient
     }
 
     // MARK: - Actions

@@ -92,37 +92,37 @@ extension ThemePalette {
     /// "墨と朱" — OniTan dark premium (ink + oni-red, gold for highlights)
     static let current = ThemePalette(
         backgroundGradientColors: [
-            Color(hex: "08070A"),
-            Color(hex: "13090C"),
-            Color(hex: "070507")
+            OniTanTheme.inkBackground,
+            OniTanTheme.inkBackgroundSecondary,
+            OniTanTheme.inkBackgroundDeep
         ],
         correctGradientColors: [
-            Color(hex: "D8B45A"),
-            Color(hex: "8E6A2C")
+            OniTanTheme.mutedGold,
+            OniTanTheme.mutedGoldDark
         ],
         wrongGradientColors: [
-            Color(hex: "B91C2B"),
-            Color(hex: "7F101B")
+            OniTanTheme.sealRed,
+            OniTanTheme.sealRedDark
         ],
         primaryGradientColors: [
-            Color(hex: "B91C2B"),
-            Color(hex: "7F101B")
+            OniTanTheme.sealRed,
+            OniTanTheme.sealRedDark
         ],
         goldGradientColors: [
-            Color(hex: "D8B45A"),
-            Color(hex: "8E6A2C")
+            OniTanTheme.mutedGold,
+            OniTanTheme.mutedGoldDark
         ],
-        cardBackground: Color(hex: "151015").opacity(0.92),
-        cardBackgroundPressed: Color(hex: "1D1217").opacity(0.96),
-        cardBorder: Color(hex: "D8B45A").opacity(0.16),
-        textPrimary: Color(hex: "F6EFE2"),
-        textSecondary: Color(hex: "AFA393"),
+        cardBackground: OniTanTheme.inkCard.opacity(0.92),
+        cardBackgroundPressed: OniTanTheme.inkCardPressed.opacity(0.96),
+        cardBorder: OniTanTheme.mutedGold.opacity(0.16),
+        textPrimary: OniTanTheme.washiText,
+        textSecondary: OniTanTheme.washiSecondary,
         textTertiary: Color(hex: "766D64"),
-        accentCorrect: Color(hex: "D8B45A"),
-        accentWrong: Color(hex: "B91C2B"),
-        accentWeak: Color(hex: "D8B45A"),
-        accentPrimary: Color(hex: "B91C2B"),
-        shadowGlowColor: Color(hex: "B91C2B").opacity(0.28)
+        accentCorrect: OniTanTheme.mutedGold,
+        accentWrong: OniTanTheme.sealRed,
+        accentWeak: OniTanTheme.mutedGold,
+        accentPrimary: OniTanTheme.sealRed,
+        shadowGlowColor: OniTanTheme.sealRed.opacity(0.28)
     )
 
     /// "夜の道場" — deeper ink variant.

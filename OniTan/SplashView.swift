@@ -3,70 +3,43 @@ import SwiftUI
 struct SplashView: View {
     let onComplete: () -> Void
 
+    @State private var sealOpacity: Double = 0
+    @State private var sealScale: CGFloat = 1.18
+    @State private var sealRotation: Double = -2.5
     @State private var titleOpacity: Double = 0
-    @State private var titleScale: CGFloat = 0.65
     @State private var subtitleOpacity: Double = 0
-    @State private var glowOpacity: Double = 0
-    @State private var glowRadius: CGFloat = 0
-    @State private var bgKanjiOpacity: Double = 0
-    @State private var bgKanjiScale: CGFloat = 1.5
 
     var body: some View {
         ZStack {
-            OniTanTheme.backgroundGradientFallback
+            OniTanTheme.inkGradient
                 .ignoresSafeArea()
 
-            // Decorative background kanji — smouldering oni-red glow
-            Text("鬼")
-                .font(.system(size: 320, weight: .black))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "B3192B").opacity(0.22),
-                            Color(hex: "D8B45A").opacity(0.08)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+            VStack(spacing: 12) {
+                Text("鬼")
+                    .font(.system(size: 76, weight: .black, design: .serif))
+                    .foregroundColor(OniTanTheme.washiText)
+                    .frame(width: 118, height: 118)
+                    .background(
+                        RoundedRectangle(cornerRadius: 22)
+                            .fill(OniTanTheme.sealRed.opacity(0.94))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 22)
+                                    .stroke(OniTanTheme.washiText.opacity(0.26), lineWidth: 2)
+                            )
                     )
-                )
-                .blur(radius: 4)
-                .scaleEffect(bgKanjiScale)
-                .opacity(bgKanjiOpacity)
+                    .rotationEffect(.degrees(sealRotation))
+                    .scaleEffect(sealScale)
+                    .opacity(sealOpacity)
+                    .shadow(color: OniTanTheme.sealRed.opacity(0.28), radius: 18, y: 8)
 
-            // Glow bloom behind title — gold
-            Circle()
-                .fill(
-                    RadialGradient(
-                        colors: [
-                            Color(hex: "E8C66A").opacity(0.40),
-                            Color(hex: "E8C66A").opacity(0.0)
-                        ],
-                        center: .center,
-                        startRadius: 0,
-                        endRadius: 140
-                    )
-                )
-                .frame(width: 280, height: 280)
-                .blur(radius: glowRadius)
-                .opacity(glowOpacity)
-
-            VStack(spacing: 10) {
                 Text("鬼単")
-                    .font(.system(size: 44, weight: .black, design: .serif))
-                    .foregroundStyle(OniTanTheme.goldGradient)
-                    .shadow(color: Color(hex: "E8C66A").opacity(0.8), radius: 20, y: 4)
-                    .scaleEffect(titleScale)
-                    .opacity(titleOpacity)
-
-                Text("OniTan")
-                    .font(.system(size: 36, weight: .black, design: .rounded))
+                    .font(.system(size: 28, weight: .black, design: .serif))
                     .foregroundColor(OniTanTheme.textPrimary)
                     .opacity(titleOpacity)
 
-                Text("漢検準一級・鬼の修練場")
-                    .font(.system(size: 13, weight: .semibold, design: .rounded))
-                    .tracking(5)
-                    .foregroundColor(OniTanTheme.textTertiary)
+                Text("漢字検定準1級 対策")
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
                     .opacity(subtitleOpacity)
             }
         }
@@ -74,31 +47,22 @@ struct SplashView: View {
     }
 
     private func runAnimation() {
-        // Background kanji drifts in
-        withAnimation(.easeOut(duration: 1.0)) {
-            bgKanjiOpacity = 1
-            bgKanjiScale = 1.0
+        withAnimation(.spring(response: 0.26, dampingFraction: 0.58)) {
+            sealOpacity = 1
+            sealScale = 1.0
+            sealRotation = -1
         }
+        OniTanTheme.haptic(.light)
 
-        // Glow blooms
-        withAnimation(.easeOut(duration: 1.0).delay(0.1)) {
-            glowOpacity = 1
-            glowRadius = 30
-        }
-
-        // Title springs up
-        withAnimation(.spring(response: 0.55, dampingFraction: 0.68).delay(0.18)) {
+        withAnimation(.easeOut(duration: 0.35).delay(0.18)) {
             titleOpacity = 1
-            titleScale = 1.0
         }
 
-        // Subtitle fades in
-        withAnimation(.easeOut(duration: 0.45).delay(0.52)) {
+        withAnimation(.easeOut(duration: 0.35).delay(0.34)) {
             subtitleOpacity = 1
         }
 
-        // Dismiss
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.9) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.35) {
             onComplete()
         }
     }

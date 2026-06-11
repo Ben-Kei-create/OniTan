@@ -6,16 +6,16 @@ import SwiftUI
 // Avoids purple/blue; built around near-black ink, deep vermilion red and muted gold.
 
 private enum HomeInk {
-    static let background = Color(hex: "08070A")
-    static let backgroundSecondary = Color(hex: "13090C")
-    static let cardBackground = Color(hex: "151015")
-    static let cardBackgroundAlt = Color(hex: "181014")
-    static let red = Color(hex: "B91C2B")
-    static let redDark = Color(hex: "7F101B")
-    static let gold = Color(hex: "D8B45A")
-    static let textPrimary = Color(hex: "F6EFE2")
-    static let textSecondary = Color(hex: "AFA393")
-    static let border = Color(hex: "D8B45A").opacity(0.12)
+    static let background = OniTanTheme.inkBackground
+    static let backgroundSecondary = OniTanTheme.inkBackgroundSecondary
+    static let cardBackground = OniTanTheme.inkCard
+    static let cardBackgroundAlt = OniTanTheme.inkCardPressed
+    static let red = OniTanTheme.sealRed
+    static let redDark = OniTanTheme.sealRedDark
+    static let gold = OniTanTheme.mutedGold
+    static let textPrimary = OniTanTheme.washiText
+    static let textSecondary = OniTanTheme.washiSecondary
+    static let border = OniTanTheme.mutedGold.opacity(0.12)
 }
 
 struct HomeView: View {
@@ -67,7 +67,7 @@ struct HomeView: View {
 
                             footerSection
                                 .padding(.top, 14)
-                                .padding(.bottom, donationManager.hasDonated ? 16 : 12)
+                                .padding(.bottom, donationManager.hasDonated ? 18 : 28)
                         }
                         .padding(.horizontal, isCompactHeight ? 16 : 20)
                         .padding(.top, isCompactHeight ? 8 : 14)
@@ -113,6 +113,17 @@ struct HomeView: View {
 
         if !donationManager.hasDonated {
             AdBannerView()
+                .padding(.top, 10)
+                .padding(.bottom, 8)
+                .frame(maxWidth: .infinity)
+                .background(
+                    VStack(spacing: 0) {
+                        Rectangle()
+                            .fill(HomeInk.border)
+                            .frame(height: 1)
+                        HomeInk.background
+                    }
+                )
         }
         } // VStack
         .overlay {
@@ -217,14 +228,14 @@ struct HomeView: View {
             Spacer()
 
             HomeHeaderIconButton(
-                icon: "chart.bar.fill",
+                icon: "記",
                 accessibilityTitle: "統計",
                 compact: isCompact,
                 destination: StatsView()
             )
 
             HomeHeaderIconButton(
-                icon: "gearshape.fill",
+                icon: "設",
                 accessibilityTitle: "設定",
                 compact: isCompact,
                 destination: SettingsView()
@@ -279,7 +290,7 @@ struct HomeView: View {
             HomePrimaryActionCard(
                 title: "ランダム10問",
                 subtitle: "まずは10問だけ鍛える",
-                icon: "shuffle",
+                icon: "十",
                 style: .primary,
                 isCompact: isCompact,
                 destination: AnyView(
@@ -300,7 +311,7 @@ struct HomeView: View {
             HomePrimaryActionCard(
                 title: "道場選択",
                 subtitle: "分野ごとに集中して鍛える",
-                icon: "books.vertical",
+                icon: "道",
                 style: .neutral,
                 isCompact: isCompact,
                 destination: AnyView(CategoryTrainingView())
@@ -309,7 +320,7 @@ struct HomeView: View {
             HomePrimaryActionCard(
                 title: "模擬試験",
                 subtitle: "本番形式で実力をはかる",
-                icon: "doc.text.magnifyingglass",
+                icon: "試",
                 style: .gold,
                 isCompact: isCompact,
                 destination: AnyView(examDestination)
@@ -387,13 +398,13 @@ struct HomeView: View {
     private func secondaryLinks(isCompact: Bool) -> some View {
         VStack(spacing: 8) {
             HStack(spacing: 8) {
-                HomeSecondaryLink(title: "漢字一覧", icon: "square.grid.2x2", destination: AnyView(KanjiCatalogView()))
+                HomeSecondaryLink(title: "漢字一覧", icon: "字", destination: AnyView(KanjiCatalogView()))
 
                 if statsRepo.recentWrongAnswers(limit: 1).count > 0 {
-                    HomeSecondaryLink(title: "誤答ノート", icon: "note.text", destination: AnyView(WrongAnswerNoteView()))
+                    HomeSecondaryLink(title: "誤答ノート", icon: "誤", destination: AnyView(WrongAnswerNoteView()))
                 }
 
-                HomeSecondaryLink(title: "記録", icon: "chart.bar", destination: AnyView(StatsView()))
+                HomeSecondaryLink(title: "記録", icon: "記", destination: AnyView(StatsView()))
             }
 
             let showFavorites = favoriteRepo.count > 0
@@ -405,7 +416,7 @@ struct HomeView: View {
                     if showFavorites {
                         HomeSecondaryLink(
                             title: "お気に入り",
-                            icon: "star",
+                            icon: "星",
                             destination: AnyView(
                                 QuizModeSelectView(
                                     stage: FavoriteSessionBuilder.buildFavoriteStage(
@@ -420,7 +431,7 @@ struct HomeView: View {
                     if showReview {
                         HomeSecondaryLink(
                             title: "おさらい",
-                            icon: "arrow.triangle.2.circlepath",
+                            icon: "復",
                             destination: AnyView(
                                 QuizModeSelectView(
                                     stage: ReviewSessionBuilder.buildReviewStage(reviewQuestions: reviewQuestions),
@@ -434,7 +445,7 @@ struct HomeView: View {
                     if showStreakChallenge {
                         HomeSecondaryLink(
                             title: "連続鬼たん",
-                            icon: "flame",
+                            icon: "連",
                             destination: AnyView(StreakChallengeView(xpRepo: xpRepo))
                         )
                     }
@@ -453,11 +464,11 @@ struct HomeView: View {
 
         if showReviewLock || showStreakLock {
             HStack(spacing: 8) {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 11, weight: .semibold))
+                Text("予")
+                    .font(.system(size: 11, weight: .black, design: .serif))
                     .foregroundColor(HomeInk.textSecondary.opacity(0.4))
                 if showReviewLock {
-                    Text("おさらい Lv.30")
+                    Text("今後解放: おさらい")
                         .font(.system(size: 11, weight: .medium, design: .rounded))
                         .foregroundColor(HomeInk.textSecondary.opacity(0.5))
                 }
@@ -467,7 +478,7 @@ struct HomeView: View {
                         .font(.system(size: 11))
                 }
                 if showStreakLock {
-                    Text("連続鬼たん Lv.50")
+                    Text(showReviewLock ? "連続鬼たん" : "今後解放: 連続鬼たん")
                         .font(.system(size: 11, weight: .medium, design: .rounded))
                         .foregroundColor(HomeInk.textSecondary.opacity(0.5))
                 }
@@ -490,9 +501,9 @@ struct HomeView: View {
         Group {
             if statsRepo.totalCorrect > 0 {
                 HStack(spacing: 6) {
-                    Image(systemName: "bolt.fill")
+                    Text("正")
+                        .font(.system(size: 11, weight: .black, design: .serif))
                         .foregroundColor(HomeInk.gold)
-                        .font(.caption)
                     Text("通算正解 \(statsRepo.totalCorrect) 問")
                         .font(.system(.caption2, design: .rounded))
                         .foregroundColor(HomeInk.textSecondary)
@@ -508,7 +519,8 @@ struct HomeView: View {
     private func dataErrorBanner(_ error: DataLoadError) -> some View {
         VStack {
             HStack(spacing: 8) {
-                Image(systemName: "exclamationmark.triangle.fill")
+                Text("!")
+                    .font(.caption.bold())
                     .foregroundColor(HomeInk.gold)
                 Text(error.localizedDescription)
                     .font(.caption)
@@ -539,8 +551,8 @@ private struct HomeHeaderIconButton<Destination: View>: View {
 
     var body: some View {
         NavigationLink(destination: destination) {
-            Image(systemName: icon)
-                .font(.system(size: compact ? 15 : 16, weight: .semibold))
+            Text(icon)
+                .font(.system(size: compact ? 15 : 16, weight: .black, design: .serif))
                 .foregroundColor(HomeInk.textPrimary)
                 .frame(width: compact ? 36 : 38, height: compact ? 36 : 38)
                 .background(
@@ -587,14 +599,14 @@ private struct HomePrimaryActionCard: View {
     var body: some View {
         NavigationLink(destination: destination) {
             HStack(spacing: 16) {
-                Image(systemName: icon)
-                    .font(.system(size: isCompact ? 19 : 21, weight: .semibold))
-                    .foregroundColor(iconColor)
-                    .frame(width: 48, height: 48)
-                    .background(
-                        Circle().fill(iconBackground)
-                    )
-                    .accessibilityHidden(true)
+                OniSealMark(
+                    text: icon,
+                    size: 48,
+                    fontSize: isCompact ? 21 : 23,
+                    tint: iconColor,
+                    fillOpacity: style == .primary ? 0.18 : 0.12,
+                    cornerRadius: 13
+                )
 
                 VStack(alignment: .leading, spacing: 3) {
                     Text(title)
@@ -709,8 +721,8 @@ private struct HomeSecondaryLink: View {
     var body: some View {
         NavigationLink(destination: destination) {
             HStack(spacing: 6) {
-                Image(systemName: icon)
-                    .font(.system(size: 12, weight: .medium))
+                Text(icon)
+                    .font(.system(size: 12, weight: .black, design: .serif))
                 Text(title)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .lineLimit(1)

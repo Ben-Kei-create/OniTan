@@ -9,6 +9,28 @@ enum OniTanTheme {
 
     private static var p: ThemePalette { ThemeManager.shared.palette }
 
+    // MARK: - Brand Colors
+
+    static let inkBackground = Color(hex: "08070A")
+    static let inkBackgroundSecondary = Color(hex: "13090C")
+    static let inkBackgroundDeep = Color(hex: "070507")
+    static let inkCard = Color(hex: "151015")
+    static let inkCardPressed = Color(hex: "1D1217")
+    static let sealRed = Color(hex: "B91C2B")
+    static let sealRedDark = Color(hex: "7F101B")
+    static let mutedGold = Color(hex: "D8B45A")
+    static let mutedGoldDark = Color(hex: "8E6A2C")
+    static let washiText = Color(hex: "F6EFE2")
+    static let washiSecondary = Color(hex: "AFA393")
+
+    static var inkGradient: LinearGradient {
+        LinearGradient(
+            colors: [inkBackground, inkBackgroundSecondary, inkBackgroundDeep],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
     // MARK: - Gradients
 
     static var backgroundGradientFallback: LinearGradient { p.backgroundGradient }

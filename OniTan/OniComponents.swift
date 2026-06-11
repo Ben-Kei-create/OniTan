@@ -1,5 +1,101 @@
 import SwiftUI
 
+// MARK: - OniSealMark
+//
+// Square kanji seal used instead of SF Symbols for primary navigation marks.
+
+struct OniSealMark: View {
+    let text: String
+    var size: CGFloat = 48
+    var fontSize: CGFloat = 22
+    var tint: Color = OniTanTheme.accentWeak
+    var fillOpacity: Double = 0.14
+    var cornerRadius: CGFloat = 12
+
+    var body: some View {
+        Text(text)
+            .font(.system(size: fontSize, weight: .black, design: .serif))
+            .foregroundColor(tint)
+            .frame(width: size, height: size)
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(tint.opacity(fillOpacity))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: cornerRadius)
+                            .stroke(tint.opacity(0.34), lineWidth: 1)
+                    )
+            )
+            .accessibilityHidden(true)
+    }
+}
+
+extension QuizMode {
+    var sealMark: String {
+        switch self {
+        case .normal: return "道"
+        case .quick10: return "十"
+        case .exam30: return "試"
+        case .weakFocus: return "誤"
+        }
+    }
+}
+
+extension TrainingMode {
+    var sealMark: String {
+        switch self {
+        case .normal: return "道"
+        case .quick10: return "十"
+        case .categoryFocus: return "道"
+        case .weakFocus: return "弱"
+        case .mistakeReview: return "誤"
+        case .masteryReview: return "定"
+        case .examMini, .examFull: return "試"
+        case .finalBoss: return "鬼"
+        }
+    }
+}
+
+extension QuestionKind {
+    var sealMark: String {
+        switch self {
+        case .reading, .sentenceReading, .hyogaiReading, .compoundReadingKun:
+            return "読"
+        case .commonKanji:
+            return "共"
+        case .errorCorrection:
+            return "訂"
+        case .yojijukugo:
+            return "熟"
+        case .synonym, .antonym:
+            return "対"
+        case .proverb:
+            return "諺"
+        case .passageReading, .passageVocabulary:
+            return "文"
+        case .writingSkipped:
+            return "書"
+        case .unknown:
+            return "?"
+        }
+    }
+}
+
+extension CategoryEntry {
+    var sealMark: String {
+        switch id {
+        case "reading": return "読"
+        case "commonKanji": return "共"
+        case "errorCorrection": return "訂"
+        case "yojijukugo": return "熟"
+        case "synonym_antonym": return "対"
+        case "proverb": return "諺"
+        case "passage": return "文"
+        case "exam": return "試"
+        default: return String(title.prefix(1))
+        }
+    }
+}
+
 // MARK: - OniGlassCard
 //
 // Premium ink card: translucent dark fill, thin gold hairline, soft shadow.
