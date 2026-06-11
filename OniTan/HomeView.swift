@@ -813,7 +813,7 @@ private struct HomeReadinessCard: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
-        .oniGlassCard(borderColor: OniTanTheme.accentPrimary.opacity(0.18))
+        .oniCard()
         .overlay(alignment: .bottom) {
             Text("本番得点を保証するものではありません")
                 .font(.system(size: 9, design: .rounded))
@@ -867,7 +867,7 @@ private struct HomeWeakestCategoryCard: View {
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 12)
-            .oniGlassCard(borderColor: OniTanTheme.accentWrong.opacity(0.25))
+            .oniCard()
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel("最も弱いカテゴリ \(kind.displayName)、正答率\(Int((accuracy * 100).rounded()))パーセント")

@@ -226,11 +226,16 @@ struct MainView: View {
             // Stage number + pass indicator
             stageHeader(scale: scale)
 
-            OniProgressBar(
-                progress: vm.progressFraction,
-                height: scaled(6, by: scale, min: 4),
-                gradient: vm.lastAnswerResult == .wrong ? OniTanTheme.dangerGradient : OniTanTheme.goldGradient
-            )
+            GeometryReader { proxy in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(OniTanTheme.cardBackground)
+                    Capsule()
+                        .fill(vm.lastAnswerResult == .wrong ? OniTanTheme.dangerGradient : OniTanTheme.goldGradient)
+                        .frame(width: proxy.size.width * max(0, min(1, vm.progressFraction)))
+                }
+            }
+            .frame(height: scaled(6, by: scale, min: 4))
             .padding(.top, scaled(6, by: scale, min: 4))
             .accessibilityHidden(true)
 
@@ -366,12 +371,20 @@ struct MainView: View {
                        GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
-            OniBadge(
-                text: vm.currentQuestion.kind.displayName,
-                systemImage: vm.currentQuestion.kind.systemImage,
-                tint: OniTanTheme.accentWeak
-            )
-            .padding(.leading, 4)
+            Label(vm.currentQuestion.kind.displayName, systemImage: vm.currentQuestion.kind.systemImage)
+                .font(.caption.weight(.bold))
+                .foregroundStyle(OniTanTheme.accentWeak)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(
+                    Capsule()
+                        .fill(OniTanTheme.accentWeak.opacity(0.14))
+                )
+                .overlay(
+                    Capsule()
+                        .stroke(OniTanTheme.accentWeak.opacity(0.35), lineWidth: 1)
+                )
+                .padding(.leading, 4)
 
             Text(vm.currentQuestion.kind.choicePrompt)
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
@@ -804,7 +817,8 @@ struct ExplanationView: View {
                         Image(systemName: isFavorite ? "star.fill" : "star")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
-                            .frame(width: 64, minHeight: 52)
+                            .frame(width: 64)
+                            .frame(minHeight: 52)
                             .background(OniTanTheme.cardBackgroundPressed)
                     }
                     .accessibilityLabel(isFavorite ? "ノートから削除" : "ノートに追加")
