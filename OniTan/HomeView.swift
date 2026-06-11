@@ -649,7 +649,7 @@ private struct HomeTodayCard: View {
                 .padding(.vertical, 9)
                 .background(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .fill(Color(red: 0.25, green: 0.15, blue: 0.05).opacity(0.65))
+                        .fill(OniTanTheme.cardBackground)
                         .overlay(
                             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                                 .stroke(OniTanTheme.accentWeak.opacity(0.3), lineWidth: 1)
@@ -725,19 +725,9 @@ private struct HomeTodayCard: View {
 
     private var cardGradient: LinearGradient {
         if streakRepo.todayCompleted {
-            return LinearGradient(
-                colors: [Color(red: 0.10, green: 0.55, blue: 0.30),
-                         Color(red: 0.08, green: 0.40, blue: 0.22)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            return OniTanTheme.correctGradient
         }
-        return LinearGradient(
-            colors: [Color(red: 0.95, green: 0.55, blue: 0.05),
-                     Color(red: 0.80, green: 0.30, blue: 0.0)],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
+        return OniTanTheme.primaryGradient
     }
 }
 

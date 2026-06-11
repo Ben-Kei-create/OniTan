@@ -285,7 +285,7 @@ private struct StageCard: View {
 
     private var stageCardColor: Color {
         if !isUnlocked { return OniTanTheme.cardBackground.opacity(0.5) }
-        if isCleared   { return Color(red: 0.10, green: 0.35, blue: 0.20).opacity(0.7) }
+        if isCleared   { return OniTanTheme.cardBackgroundPressed }
         return OniTanTheme.cardBackground
     }
 

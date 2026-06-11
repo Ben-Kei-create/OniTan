@@ -114,6 +114,7 @@ struct MainView: View {
                                 presentProblemReport(for: vm.currentQuestion)
                             }
                             .environmentObject(playFontManager)
+                            .environmentObject(favoriteRepo)
                             .transition(.opacity)
                             .animation(.easeInOut(duration: 0.2), value: vm.phase)
                             .zIndex(10)
@@ -739,7 +740,10 @@ struct ExplanationView: View {
     let onReport: () -> Void
 
     @EnvironmentObject private var playFontManager: PlayFontManager
+    @EnvironmentObject private var favoriteRepo: FavoriteKanjiRepository
     @State private var appear = false
+
+    private var isFavorite: Bool { favoriteRepo.isFavorite(question.kanji) }
 
     var body: some View {
         ZStack {
@@ -765,7 +769,7 @@ struct ExplanationView: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
-                .background(Color(red: 0.12, green: 0.10, blue: 0.20))
+                .background(OniTanTheme.cardBackgroundPressed)
 
                 // Kind-aware header + explanation
                 ScrollView {
@@ -773,7 +777,7 @@ struct ExplanationView: View {
                         .environmentObject(playFontManager)
                 }
                 .frame(maxHeight: 360)
-                .background(Color(red: 0.10, green: 0.08, blue: 0.18))
+                .background(OniTanTheme.cardBackground)
 
                 // Reading-specific note (shown for all reading kinds)
                 if (question.kind == .reading
@@ -786,24 +790,45 @@ struct ExplanationView: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 20)
                         .padding(.vertical, 8)
-                        .background(Color(red: 0.12, green: 0.10, blue: 0.20))
+                        .background(OniTanTheme.cardBackgroundPressed)
                 }
 
-                // Dismiss button
-                Button {
-                    onDismiss()
-                    OniTanTheme.haptic(.light)
-                } label: {
-                    Text("次へ")
-                        .font(playFontManager.font(size: 17, weight: .bold))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 52)
-                        .background(OniTanTheme.primaryGradient)
+                // Bottom action row
+                HStack(spacing: 0) {
+                    Button {
+                        withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
+                            favoriteRepo.toggle(question.kanji)
+                        }
+                        OniTanTheme.haptic(.light)
+                    } label: {
+                        Image(systemName: isFavorite ? "star.fill" : "star")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
+                            .frame(width: 64, minHeight: 52)
+                            .background(OniTanTheme.cardBackgroundPressed)
+                    }
+                    .accessibilityLabel(isFavorite ? "ノートから削除" : "ノートに追加")
+                    .accessibilityIdentifier("quiz_explanation_favorite")
+
+                    Button {
+                        onDismiss()
+                        OniTanTheme.haptic(.light)
+                    } label: {
+                        Text("次の問題へ")
+                            .font(playFontManager.font(size: 17, weight: .bold))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, minHeight: 52)
+                            .background(OniTanTheme.primaryGradient)
+                    }
+                    .accessibilityIdentifier("quiz_next_explanation")
                 }
-                .accessibilityIdentifier("quiz_next_explanation")
             }
             .clipShape(RoundedRectangle(cornerRadius: 24))
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+            )
             .shadow(color: .black.opacity(0.5), radius: 30)
             .padding(.horizontal, 20)
             .scaleEffect(appear ? 1 : 0.88)

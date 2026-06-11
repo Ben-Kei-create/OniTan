@@ -261,10 +261,10 @@ private struct TrainingModeCard: View {
                     } else {
                         Text("準備中")
                             .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(Color(red: 0.70, green: 0.60, blue: 0.35))
+                            .foregroundColor(OniTanTheme.textTertiary)
                             .padding(.horizontal, 7)
                             .padding(.vertical, 2)
-                            .background(Color(red: 0.28, green: 0.22, blue: 0.08).opacity(0.7))
+                            .background(OniTanTheme.cardBackground)
                             .cornerRadius(8)
                     }
                 }

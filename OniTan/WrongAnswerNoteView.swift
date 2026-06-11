@@ -163,12 +163,12 @@ private struct WrongAnswerRow: View {
                 if showsXPBadge {
                     Text("+\(XPEvent.wrongNoteRetrieved.points) XP")
                         .font(.system(size: 9, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                        .foregroundColor(OniTanTheme.accentWeak)
                         .padding(.horizontal, 5)
                         .padding(.vertical, 2)
                         .background(
                             Capsule()
-                                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.6))
+                                .fill(OniTanTheme.accentWeak.opacity(0.15))
                         )
                         .accessibilityHidden(true)
                 }

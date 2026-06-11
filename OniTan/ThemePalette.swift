@@ -90,40 +90,40 @@ struct ThemePalette {
 
 extension ThemePalette {
 
-    /// "現在のカラー" — OniTan dark premium (deep navy/purple + gold/oni-red)
+    /// "現在のカラー" — OniTan dark premium (black + oni-red, gold for highlights)
     static let current = ThemePalette(
         backgroundGradientColors: [
             Color(hex: "05060D"),
-            Color(hex: "090B1A"),
-            Color(hex: "120A1F")
+            Color(hex: "0B0608"),
+            Color(hex: "120A0F")
         ],
         correctGradientColors: [
             Color(red: 0.20, green: 0.78, blue: 0.45),
             Color(red: 0.10, green: 0.55, blue: 0.32)
         ],
         wrongGradientColors: [
-            Color(hex: "B3192B"),
-            Color(red: 0.40, green: 0.05, blue: 0.10)
+            Color(hex: "8C0F1F"),
+            Color(red: 0.30, green: 0.04, blue: 0.08)
         ],
         primaryGradientColors: [
-            Color(hex: "8E55FF"),
-            Color(red: 0.35, green: 0.18, blue: 0.55)
+            Color(hex: "C2293D"),
+            Color(hex: "6E121F")
         ],
         goldGradientColors: [
             Color(hex: "E8C66A"),
             Color(hex: "9B7432")
         ],
-        cardBackground: Color(red: 20/255, green: 22/255, blue: 38/255).opacity(0.78),
-        cardBackgroundPressed: Color(red: 30/255, green: 32/255, blue: 52/255).opacity(0.85),
+        cardBackground: Color(red: 18/255, green: 14/255, blue: 18/255).opacity(0.78),
+        cardBackgroundPressed: Color(red: 28/255, green: 20/255, blue: 24/255).opacity(0.85),
         cardBorder: Color.white.opacity(0.10),
         textPrimary: Color(hex: "F6F0E6"),
         textSecondary: Color(hex: "B8B2A6"),
         textTertiary: Color(hex: "77717A"),
         accentCorrect: Color(red: 0.20, green: 0.78, blue: 0.45),
-        accentWrong: Color(hex: "B3192B"),
+        accentWrong: Color(hex: "8C0F1F"),
         accentWeak: Color(hex: "E8C66A"),
-        accentPrimary: Color(hex: "8E55FF"),
-        shadowGlowColor: Color(hex: "E8C66A").opacity(0.35)
+        accentPrimary: Color(hex: "C2293D"),
+        shadowGlowColor: Color(hex: "C2293D").opacity(0.35)
     )
 
     /// "カッコいい" — Cyberpunk dark theme

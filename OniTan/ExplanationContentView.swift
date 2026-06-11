@@ -305,7 +305,7 @@ struct ExplanationContentView: View {
 
     private var explanationBody: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Kind badge
+            // 出題分類
             HStack(spacing: 6) {
                 Image(systemName: question.kind.systemImage)
                     .font(.system(size: 11))
@@ -317,25 +317,58 @@ struct ExplanationContentView: View {
             .padding(.vertical, 4)
             .background(OniTanTheme.cardBackground.opacity(0.5))
             .clipShape(Capsule())
+            .overlay(
+                Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1)
+            )
 
-            // Main explanation text
-            Text(question.displayExplanation)
-                .font(playFontManager.font(size: 15))
-                .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
-                .lineSpacing(5)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-            // Tags
-            if let tags = question.tags, !tags.isEmpty {
+            // なぜ正解か
+            VStack(alignment: .leading, spacing: 6) {
                 HStack(spacing: 6) {
-                    ForEach(tags.prefix(5), id: \.self) { tag in
-                        Text(tag)
-                            .font(playFontManager.font(size: 10, weight: .medium))
-                            .foregroundColor(OniTanTheme.accentPrimary.opacity(0.8))
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(OniTanTheme.accentPrimary.opacity(0.12))
-                            .clipShape(Capsule())
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.system(size: 12))
+                        .foregroundColor(OniTanTheme.accentCorrect)
+                    Text("なぜ正解か")
+                        .font(playFontManager.font(size: 12, weight: .bold))
+                        .foregroundColor(OniTanTheme.accentCorrect)
+                }
+
+                Text(question.displayExplanation)
+                    .font(playFontManager.font(size: 15))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .lineSpacing(5)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(OniTanTheme.cardBackground)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(OniTanTheme.accentCorrect.opacity(0.25), lineWidth: 1)
+            )
+
+            // 復習タグ
+            if let tags = question.tags, !tags.isEmpty {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("復習タグ")
+                        .font(playFontManager.font(size: 12, weight: .bold))
+                        .foregroundColor(OniTanTheme.textTertiary)
+
+                    HStack(spacing: 6) {
+                        ForEach(tags.prefix(5), id: \.self) { tag in
+                            Text(tag)
+                                .font(playFontManager.font(size: 10, weight: .medium))
+                                .foregroundColor(OniTanTheme.accentPrimary.opacity(0.9))
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 2)
+                                .background(OniTanTheme.accentPrimary.opacity(0.12))
+                                .clipShape(Capsule())
+                                .overlay(
+                                    Capsule().stroke(OniTanTheme.accentPrimary.opacity(0.3), lineWidth: 1)
+                                )
+                        }
                     }
                 }
             }

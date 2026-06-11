@@ -126,10 +126,7 @@ struct StatsView: View {
                 HStack(spacing: 12) {
                     ZStack {
                         Circle()
-                            .fill(LinearGradient(
-                                colors: [Color(red: 0.55, green: 0.20, blue: 0.55), Color(red: 0.35, green: 0.08, blue: 0.38)],
-                                startPoint: .topLeading, endPoint: .bottomTrailing
-                            ))
+                            .fill(OniTanTheme.primaryGradient)
                             .frame(width: 40, height: 40)
                         Image(systemName: "note.text")
                             .font(.system(size: 17, weight: .semibold))
