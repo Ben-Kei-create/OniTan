@@ -93,7 +93,9 @@ private struct CategoryRowCard: View {
             let stageSet = Set(entry.stageIDs)
             return quizData.stages
                 .filter { stageSet.contains($0.stage) }
-                .flatMap(\.questions).count
+                .flatMap(\.questions)
+                .filter { $0.kind.isExamEligible }
+                .count
         }
         let kindSet = Set(entry.questionKinds)
         return allQuestions.filter { kindSet.contains($0.kind) }.count
@@ -208,9 +210,9 @@ extension CategoryEntry {
             CategoryEntry(
                 id: "reading",
                 title: "読み道場",
-                description: "読み・表外の読み・熟語の読みを鍛える",
-                questionKinds: [.reading, .hyogaiReading, .compoundReadingKun],
-                stageIDs: Array(1...20),
+                description: "例文中の傍線部の読みを鍛える",
+                questionKinds: [.sentenceReading],
+                stageIDs: [97, 98, 99],
                 targetAccuracy: 0.90,
                 iconName: "character.book.closed",
                 colorHex: "#D8B45A"

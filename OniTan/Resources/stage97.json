@@ -1,0 +1,285 @@
+{
+  "stage": 97,
+  "questions": [
+    {
+      "kanji": "厩舎",
+      "choices": ["きゅうしゃ", "きゅうや", "うまや", "げんしゃ"],
+      "answer": "きゅうしゃ",
+      "explain": "例文: 厩舎を毎朝掃除する。\n正解の読み: きゅうしゃ\n意味: 牛馬を飼育する小屋。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "厩舎",
+        "sentenceContext": "厩舎を毎朝掃除する。"
+      }
+    },
+    {
+      "kanji": "誰何",
+      "choices": ["すいか", "だれか", "せいか", "すいが"],
+      "answer": "すいか",
+      "explain": "例文: 警備員に誰何された。\n正解の読み: すいか\n意味: 何者か問いただすこと。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "誰何",
+        "sentenceContext": "警備員に誰何された。"
+      }
+    },
+    {
+      "kanji": "紐帯",
+      "choices": ["ちゅうたい", "じゅうたい", "にゅうたい", "こうたい"],
+      "answer": "ちゅうたい",
+      "explain": "例文: 加盟国の紐帯を強化する。\n正解の読み: ちゅうたい\n意味: 結びつき。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "紐帯",
+        "sentenceContext": "加盟国の紐帯を強化する。"
+      }
+    },
+    {
+      "kanji": "杏林",
+      "choices": ["きょうりん", "あんりん", "こうりん", "きんりん"],
+      "answer": "きょうりん",
+      "explain": "例文: 美しい杏林が広がっている。\n正解の読み: きょうりん\n意味: アンズの林。また、医者の別称。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "杏林",
+        "sentenceContext": "美しい杏林が広がっている。"
+      }
+    },
+    {
+      "kanji": "荏苒",
+      "choices": ["じんぜん", "にんぜん", "じんせん", "えんぜん"],
+      "answer": "じんぜん",
+      "explain": "例文: ただ荏苒と日々を過ごす。\n正解の読み: じんぜん\n意味: 何もせず月日が経つこと。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "荏苒",
+        "sentenceContext": "ただ荏苒と日々を過ごす。"
+      }
+    },
+    {
+      "kanji": "椿事",
+      "choices": ["ちんじ", "つばきごと", "しんじ", "ちんごと"],
+      "answer": "ちんじ",
+      "explain": "例文: 前代未聞の椿事が起こった。\n正解の読み: ちんじ\n意味: 予期せぬ重大な事件。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "椿事",
+        "sentenceContext": "前代未聞の椿事が起こった。"
+      }
+    },
+    {
+      "kanji": "彼此",
+      "choices": ["ひし", "かれこれ", "ひじ", "かし"],
+      "answer": "ひし",
+      "explain": "例文: 彼此の懸隔はごくわずかだ。\n正解の読み: ひし\n意味: あちらとこちら。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "彼此",
+        "sentenceContext": "彼此の懸隔はごくわずかだ。"
+      }
+    },
+    {
+      "kanji": "尤物",
+      "choices": ["ゆうぶつ", "ようぶつ", "ゆうもの", "ゆぶつ"],
+      "answer": "ゆうぶつ",
+      "explain": "例文: 今度の新人はかなりの尤物だ。\n正解の読み: ゆうぶつ\n意味: 特にすぐれた人物や品物。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "尤物",
+        "sentenceContext": "今度の新人はかなりの尤物だ。"
+      }
+    },
+    {
+      "kanji": "兜巾",
+      "choices": ["ときん", "とうきん", "かぶときん", "ずきん"],
+      "answer": "ときん",
+      "explain": "例文: 兜巾をつけた山伏が通った。\n正解の読み: ときん\n意味: 修験者のかぶる頭巾。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "兜巾",
+        "sentenceContext": "兜巾をつけた山伏が通った。"
+      }
+    },
+    {
+      "kanji": "萱堂",
+      "choices": ["けんどう", "かんどう", "せんどう", "けんとう"],
+      "answer": "けんどう",
+      "explain": "例文: 萱堂御不快の由、拝察した。\n正解の読み: けんどう\n意味: 母を敬っていう語。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "萱堂",
+        "sentenceContext": "萱堂御不快の由、拝察した。"
+      }
+    },
+    {
+      "kanji": "弘誓",
+      "choices": ["ぐぜい", "こうせい", "ぐせい", "ひろちかい"],
+      "answer": "ぐぜい",
+      "explain": "例文: 弘誓の船で彼岸へ渡る。\n正解の読み: ぐぜい\n意味: 衆生を救う菩薩の誓願。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "弘誓",
+        "sentenceContext": "弘誓の船で彼岸へ渡る。"
+      }
+    },
+    {
+      "kanji": "錫杖",
+      "choices": ["しゃくじょう", "すずづえ", "せきじょう", "しゃくつえ"],
+      "answer": "しゃくじょう",
+      "explain": "例文: 修験者の錫杖の音が響く。\n正解の読み: しゃくじょう\n意味: 僧侶・修験者が持つ杖。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "錫杖",
+        "sentenceContext": "修験者の錫杖の音が響く。"
+      }
+    },
+    {
+      "kanji": "禿筆",
+      "choices": ["とくひつ", "はげふで", "とくふで", "とっぴつ"],
+      "answer": "とくひつ",
+      "explain": "例文: 禿筆にて一文を草する。\n正解の読み: とくひつ\n意味: すり減った筆。自分の文章力を謙遜する語。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "禿筆",
+        "sentenceContext": "禿筆にて一文を草する。"
+      }
+    },
+    {
+      "kanji": "禰宜",
+      "choices": ["ねぎ", "ねげ", "でいぎ", "ねよし"],
+      "answer": "ねぎ",
+      "explain": "例文: 由緒ある神社の禰宜となる。\n正解の読み: ねぎ\n意味: 神職の一つで、宮司の下の位。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "禰宜",
+        "sentenceContext": "由緒ある神社の禰宜となる。"
+      }
+    },
+    {
+      "kanji": "稗史",
+      "choices": ["はいし", "ひし", "はいじ", "ひえし"],
+      "answer": "はいし",
+      "explain": "例文: 中世の風俗を稗史から知る。\n正解の読み: はいし\n意味: 民間の言い伝え、歴史書、小説。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "稗史",
+        "sentenceContext": "中世の風俗を稗史から知る。"
+      }
+    },
+    {
+      "kanji": "膝下",
+      "choices": ["しっか", "ひざした", "しつげ", "ひざもと"],
+      "answer": "しっか",
+      "explain": "例文: 父母の膝下を離れて暮らす。\n正解の読み: しっか\n意味: 親もと。庇護者のもと。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "膝下",
+        "sentenceContext": "父母の膝下を離れて暮らす。"
+      }
+    },
+    {
+      "kanji": "頁岩",
+      "choices": ["けつがん", "けついわ", "ようがん", "げつがん"],
+      "answer": "けつがん",
+      "explain": "例文: 頁岩でできた石器が多い。\n正解の読み: けつがん\n意味: 泥土が固まった堆積岩。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "頁岩",
+        "sentenceContext": "頁岩でできた石器が多い。"
+      }
+    },
+    {
+      "kanji": "輔弼",
+      "choices": ["ほひつ", "ふひつ", "ほすけ", "ふひち"],
+      "answer": "ほひつ",
+      "explain": "例文: 大臣が君主を輔弼する。\n正解の読み: ほひつ\n意味: 国政を補佐すること。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "輔弼",
+        "sentenceContext": "大臣が君主を輔弼する。"
+      }
+    },
+    {
+      "kanji": "蓑笠",
+      "choices": ["さりゅう", "みのかさ", "さりつ", "さいりゅう"],
+      "answer": "さりゅう",
+      "explain": "例文: 蓑笠の翁が釣り糸を垂れる。\n正解の読み: さりゅう\n意味: みのと、かさ。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蓑笠",
+        "sentenceContext": "蓑笠の翁が釣り糸を垂れる。"
+      }
+    },
+    {
+      "kanji": "哀咽",
+      "choices": ["あいえつ", "あいえん", "あいおつ", "あいせつ"],
+      "answer": "あいえつ",
+      "explain": "例文: 葬儀は哀咽の声であふれた。\n正解の読み: あいえつ\n意味: 悲しみむせび泣くこと。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "哀咽",
+        "sentenceContext": "葬儀は哀咽の声であふれた。"
+      }
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import SwiftUI
 ///  • commonKanji      — blank-term chips side by side
 ///  • compoundReadingKun — compound with target kanji highlighted
 ///  • hyogaiReading    — word/compound + optional context line
+///  • sentenceReading  — sentence context + target badge
 ///  • sentence kinds   — scrollable sentence text (errorCorrection, proverb, passage*)
 ///  • default          — single word/compound at large size
 struct QuestionPromptView: View {
@@ -23,6 +24,8 @@ struct QuestionPromptView: View {
 
     private var cardHeight: CGFloat {
         switch question.kind {
+        case .sentenceReading:
+            return scaled(190, min: 150)
         case .passageReading, .passageVocabulary:
             return scaled(210, min: 164)
         case .errorCorrection, .proverb:
@@ -65,6 +68,8 @@ struct QuestionPromptView: View {
                     compoundReadingKunContent
                 case .hyogaiReading:
                     hyogaiReadingContent
+                case .sentenceReading:
+                    sentenceReadingContent
                 case .errorCorrection, .proverb,
                      .passageReading, .passageVocabulary:
                     sentenceContent
@@ -230,6 +235,44 @@ struct QuestionPromptView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(16, min: 8))
+    }
+
+    // MARK: - Sentence Reading: sentence context + target
+
+    private var sentenceReadingContent: some View {
+        let context = question.payload?.sentenceContext ?? question.displayPrompt
+
+        return VStack(alignment: .leading, spacing: scaled(12, min: 8)) {
+            HStack(spacing: 6) {
+                Text("下線部")
+                    .font(playFontManager.font(size: scaled(11, min: 9), weight: .bold))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(
+                        Capsule()
+                            .fill(OniTanTheme.accentWeak.opacity(0.12))
+                            .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.28), lineWidth: 1))
+                    )
+
+                Text(question.kanji)
+                    .font(playFontManager.font(size: scaled(26, min: 20), weight: .black))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .minimumScaleFactor(0.65)
+                    .lineLimit(1)
+            }
+
+            Text(context)
+                .font(playFontManager.font(size: scaled(22, min: 17), weight: .medium))
+                .foregroundColor(OniTanTheme.textPrimary)
+                .lineSpacing(6)
+                .multilineTextAlignment(.leading)
+                .minimumScaleFactor(0.75)
+                .lineLimit(3)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .padding(scaled(18, min: 12))
     }
 
     // MARK: - Sentence Layout (errorCorrection, proverb, passage)

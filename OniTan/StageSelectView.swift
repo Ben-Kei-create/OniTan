@@ -4,7 +4,9 @@ struct StageSelectView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
-    private let stages = quizData.stages.sorted { $0.stage < $1.stage }
+    private let stages = quizData.stages
+        .filter { $0.questions.contains { $0.kind.isExamEligible } }
+        .sorted { $0.stage < $1.stage }
     private let stageManifest = (try? safeLoad("stages.json") as StageManifest)
     private var totalStages: Int { max(stages.map(\.stage).max() ?? stages.count, 1) }
     private var orderedStageIDs: [Int] { stages.map(\.stage) }
@@ -57,7 +59,8 @@ struct StageSelectView: View {
     }
 
     private var stageOverview: some View {
-        let cleared = appState.clearedStages.count
+        let visibleStageIDs = Set(stages.map(\.stage))
+        let cleared = appState.clearedStages.filter { visibleStageIDs.contains($0) }.count
         let progress = stages.isEmpty ? 0 : Double(cleared) / Double(stages.count)
 
         return VStack(alignment: .leading, spacing: 12) {
@@ -119,7 +122,7 @@ private struct StageCard: View {
 
     private var isCleared: Bool  { appState.isCleared(stage.stage) }
     private var isUnlocked: Bool { appState.isUnlocked(stage.stage, orderedStageIDs: orderedStageIDs) }
-    private var sessionTitle: String { "ステージ \(displayNumber)" }
+    private var sessionTitle: String { manifest?.title ?? "ステージ \(displayNumber)" }
     private var weakCount: Int   { statsRepo.weakQuestions(for: stage).count }
     private var accuracy: Double { statsRepo.stageStats[stage.stage]?.accuracy ?? 0 }
     private var nextStageTitle: String? { nextDisplayNumber.map { "ステージ \($0)" } }

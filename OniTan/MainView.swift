@@ -795,6 +795,7 @@ struct ExplanationView: View {
 
                 // Reading-specific note (shown for all reading kinds)
                 if (question.kind == .reading
+                    || question.kind == .sentenceReading
                     || question.kind == .hyogaiReading
                     || question.kind == .compoundReadingKun),
                    let note = question.readingMetadata.playerNote(for: question.answer) {

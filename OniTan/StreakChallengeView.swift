@@ -39,7 +39,7 @@ final class StreakChallengeViewModel: ObservableObject {
     init(xpRepo: GamificationRepository? = nil) {
         self.xpRepo = xpRepo
         self.bestStreak = UserDefaults.standard.integer(forKey: Self.bestStreakKey)
-        self.questionPool = quizData.stages.flatMap { $0.questions }.shuffled()
+        self.questionPool = Self.makeQuestionPool().shuffled()
         self.currentQuestion = questionPool[0]
     }
 
@@ -106,7 +106,7 @@ final class StreakChallengeViewModel: ObservableObject {
     }
 
     func restart() {
-        questionPool = quizData.stages.flatMap { $0.questions }.shuffled()
+        questionPool = Self.makeQuestionPool().shuffled()
         poolIndex = 0
         consecutiveCorrect = 0
         sessionXPGained = 0
@@ -122,10 +122,16 @@ final class StreakChallengeViewModel: ObservableObject {
     private func advanceQuestion() {
         poolIndex += 1
         if poolIndex >= questionPool.count {
-            questionPool = quizData.stages.flatMap { $0.questions }.shuffled()
+            questionPool = Self.makeQuestionPool().shuffled()
             poolIndex = 0
         }
         currentQuestion = questionPool[poolIndex]
+    }
+
+    private static func makeQuestionPool() -> [Question] {
+        let allLoadedQuestions = quizData.stages.flatMap { $0.questions }
+        let eligibleQuestions = allLoadedQuestions.filter { $0.kind.isExamEligible }
+        return eligibleQuestions.isEmpty ? allLoadedQuestions : eligibleQuestions
     }
 
     static func twoChoices(from choices: [String], answer: String) -> [String] {

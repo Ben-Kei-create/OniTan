@@ -22,6 +22,8 @@ struct ExplanationContentView: View {
     @ViewBuilder
     private var kindSpecificHeader: some View {
         switch question.kind {
+        case .sentenceReading:
+            sentenceReadingHeader
         case .reading, .hyogaiReading:
             readingHeader
         case .compoundReadingKun:
@@ -65,6 +67,31 @@ struct ExplanationContentView: View {
                     .padding(.vertical, 3)
                     .background(OniTanTheme.accentPrimary.opacity(0.12))
                     .clipShape(Capsule())
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 8)
+    }
+
+    // MARK: - Sentence Reading
+
+    private var sentenceReadingHeader: some View {
+        VStack(spacing: 10) {
+            Text(question.kanji)
+                .font(playFontManager.font(size: 46, weight: .black))
+                .foregroundStyle(OniTanTheme.primaryGradient)
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+
+            correctBadge(answer: question.answer)
+
+            if let sentence = question.payload?.sentenceContext {
+                Text(sentence)
+                    .font(playFontManager.font(size: 14, weight: .medium))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(3)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
         .frame(maxWidth: .infinity)

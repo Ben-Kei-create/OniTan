@@ -27,9 +27,8 @@ struct TrainingModePickerView: View {
     // MARK: - Category question pool
 
     /// Questions belonging to this category.
-    /// For categories backed by stageIDs the raw stage questions are used
-    /// (preserving legacy .unknown-kind reading questions).
-    /// For new-format categories the pool is filtered from allQuestions by kind.
+    /// For categories backed by stageIDs, the curated stage questions are used.
+    /// TrainingSessionBuilder applies the final exam-eligible filter before launch.
     private var categoryPool: [Question] {
         if !category.stageIDs.isEmpty {
             let stageSet = Set(category.stageIDs)

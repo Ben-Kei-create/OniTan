@@ -4,7 +4,13 @@ struct StatsView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
-    private let stages = quizData.stages.sorted { $0.stage < $1.stage }
+    private let stages = quizData.stages
+        .filter { $0.questions.contains { $0.kind.isExamEligible } }
+        .sorted { $0.stage < $1.stage }
+    private var visibleClearedCount: Int {
+        let visibleStageIDs = Set(stages.map(\.stage))
+        return appState.clearedStages.filter { visibleStageIDs.contains($0) }.count
+    }
 
     private func displayNumber(for stageID: Int) -> Int {
         (stages.firstIndex(where: { $0.stage == stageID }) ?? 0) + 1
@@ -67,7 +73,7 @@ struct StatsView: View {
         VStack(spacing: 16) {
             HStack(spacing: 0) {
                 summaryMetric(
-                    value: "\(appState.clearedStages.count) / \(stages.count)",
+                    value: "\(visibleClearedCount) / \(stages.count)",
                     label: "クリアステージ",
                     icon: "trophy.fill",
                     iconColor: OniTanTheme.accentWeak
@@ -97,7 +103,7 @@ struct StatsView: View {
             }
 
             VStack(spacing: 4) {
-                let p = appState.overallProgress(totalStages: stages.count)
+                let p = stages.isEmpty ? 0 : Double(visibleClearedCount) / Double(stages.count)
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
                         RoundedRectangle(cornerRadius: 3)
@@ -133,7 +139,7 @@ struct StatsView: View {
         )
         .shadow(color: .black.opacity(0.22), radius: 10, y: 5)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("総合統計: \(appState.clearedStages.count)/\(stages.count)ステージクリア 正答率\(Int(statsRepo.overallAccuracy * 100))% 総正解\(statsRepo.totalCorrect)問")
+        .accessibilityLabel("総合統計: \(visibleClearedCount)/\(stages.count)ステージクリア 正答率\(Int(statsRepo.overallAccuracy * 100))% 総正解\(statsRepo.totalCorrect)問")
     }
 
     @ViewBuilder

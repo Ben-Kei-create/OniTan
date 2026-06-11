@@ -130,7 +130,7 @@ struct TrainingSessionBuilder {
 
 private extension QuestionKind {
     static var coreKinds: [QuestionKind] {
-        [.reading, .hyogaiReading, .compoundReadingKun,
+        [.sentenceReading, .hyogaiReading, .compoundReadingKun,
          .commonKanji, .errorCorrection,
          .yojijukugo, .synonym, .antonym,
          .proverb, .passageReading, .passageVocabulary]

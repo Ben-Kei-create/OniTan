@@ -25,7 +25,7 @@ from pathlib import Path
 
 VALID_KINDS = {
     # Current exam-aligned kinds
-    "reading", "hyogaiReading", "compoundReadingKun",
+    "reading", "sentenceReading", "hyogaiReading", "compoundReadingKun",
     "commonKanji", "errorCorrection",
     "yojijukugo", "synonym", "antonym",
     "proverb", "passageReading", "passageVocabulary",
@@ -37,7 +37,7 @@ VALID_KINDS = {
 
 # Kinds that are exam-eligible (used when checking blueprints)
 EXAM_ELIGIBLE_KINDS = {
-    "reading", "hyogaiReading", "compoundReadingKun",
+    "sentenceReading", "hyogaiReading", "compoundReadingKun",
     "commonKanji", "errorCorrection",
     "yojijukugo", "synonym", "antonym",
     "proverb", "passageReading", "passageVocabulary",
@@ -150,9 +150,9 @@ def validate_question(q: dict, tag: str):
         if not payload.get("targetCompound"):
             warn(tag, "compoundReadingKun payload missing 'targetCompound'")
 
-    elif kind == "hyogaiReading":
+    elif kind in ("sentenceReading", "hyogaiReading"):
         if not payload.get("sentenceContext") and not payload.get("targetWord"):
-            warn(tag, "hyogaiReading payload should have 'sentenceContext' or 'targetWord'")
+            warn(tag, f"{kind} payload should have 'sentenceContext' or 'targetWord'")
 
     elif kind in ("passageReading", "passageVocabulary"):
         if not payload.get("passageText"):

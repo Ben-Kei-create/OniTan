@@ -1,0 +1,89 @@
+{
+  "stage": 99,
+  "questions": [
+    {
+      "kanji": "屡",
+      "choices": ["しばしば", "たびたび", "しきり", "まれ"],
+      "answer": "しばしば",
+      "explain": "例文: 仕事で屡海外へ出張する。\n正解の読み: しばしば\n意味: 何度も。たびたび。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "屡",
+        "sentenceContext": "仕事で屡海外へ出張する。"
+      }
+    },
+    {
+      "kanji": "堆く",
+      "choices": ["うずたか", "つみたか", "たか", "つか"],
+      "answer": "うずたか",
+      "explain": "例文: 土が堆く盛られている。\n正解の読み: うずたか\n意味: 堆い。積み重なって高い。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "堆",
+        "sentenceContext": "土が堆く盛られている。"
+      }
+    },
+    {
+      "kanji": "嘉し",
+      "choices": ["よみ", "よろこ", "ほ", "たの"],
+      "answer": "よみ",
+      "explain": "例文: 神々も嘉し給うことだろう。\n正解の読み: よみ\n意味: 嘉する。よしとする。ほめる。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "嘉",
+        "sentenceContext": "神々も嘉し給うことだろう。"
+      }
+    },
+    {
+      "kanji": "樫",
+      "choices": ["かし", "けやき", "なら", "くぬぎ"],
+      "answer": "かし",
+      "explain": "例文: 大きな樫が枝を広げる。\n正解の読み: かし\n意味: ブナ科の常緑高木。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "樫",
+        "sentenceContext": "大きな樫が枝を広げる。"
+      }
+    },
+    {
+      "kanji": "椛",
+      "choices": ["もみじ", "かば", "こうよう", "かえで"],
+      "answer": "もみじ",
+      "explain": "例文: 山腹を椛の赤が彩る。\n正解の読み: もみじ\n意味: 紅葉して色づいた葉。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "椛",
+        "sentenceContext": "山腹を椛の赤が彩る。"
+      }
+    },
+    {
+      "kanji": "忽せ",
+      "choices": ["ゆるが", "なおざり", "おろそ", "たちまち"],
+      "answer": "ゆるが",
+      "explain": "例文: ほんの少しも忽せにしない。\n正解の読み: ゆるが\n意味: 忽せ。おろそか。",
+      "kind": "sentenceReading",
+      "tags": ["例文読み", "準1級"],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "忽",
+        "sentenceContext": "ほんの少しも忽せにしない。"
+      }
+    }
+  ]
+}

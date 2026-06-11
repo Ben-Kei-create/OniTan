@@ -12,6 +12,7 @@ enum QuestionKind: String, Codable, CaseIterable {
 
     // MARK: 読み系
     case reading              // 読み（語・熟語・文中の読み）
+    case sentenceReading      // 例文読み（例文中の下線部の読み）
     case hyogaiReading        // 表外の読み（標準外の読み方）
     case compoundReadingKun   // 熟語の読み・一字訓（熟語中の特定漢字）
 
@@ -77,7 +78,8 @@ extension QuestionKind {
     /// Short display name for badges and stats.
     var displayName: String {
         switch self {
-        case .reading:            return "読み"
+        case .reading:            return "読み（旧）"
+        case .sentenceReading:    return "例文読み"
         case .hyogaiReading:      return "表外の読み"
         case .compoundReadingKun: return "熟語の読み"
         case .commonKanji:        return "共通漢字"
@@ -97,6 +99,7 @@ extension QuestionKind {
     var choicePrompt: String {
         switch self {
         case .reading:            return "読みをひらがなで選びなさい"
+        case .sentenceReading:    return "下線部の読みを選びなさい"
         case .hyogaiReading:      return "表外の読みを選びなさい"
         case .compoundReadingKun: return "一字の読みを選びなさい"
         case .commonKanji:        return "共通する漢字を選びなさい"
@@ -116,6 +119,7 @@ extension QuestionKind {
     var systemImage: String {
         switch self {
         case .reading:            return "character.book.closed"
+        case .sentenceReading:    return "text.quote"
         case .hyogaiReading:      return "book.pages"
         case .compoundReadingKun: return "text.magnifyingglass"
         case .commonKanji:        return "square.on.square"
@@ -135,7 +139,7 @@ extension QuestionKind {
     var isSentenceKind: Bool {
         switch self {
         case .errorCorrection, .proverb,
-             .passageReading, .passageVocabulary:
+             .sentenceReading, .passageReading, .passageVocabulary:
             return true
         default:
             return false
@@ -144,12 +148,12 @@ extension QuestionKind {
 
     /// Whether this kind is included in mock exams.
     var isExamEligible: Bool {
-        self != .writingSkipped && self != .unknown
+        self != .reading && self != .writingSkipped && self != .unknown
     }
 
     /// Kinds that appear in the real Kanken Pre-1 exam (used by ReadinessCalculator).
     static let examKinds: [QuestionKind] = [
-        .reading, .hyogaiReading, .compoundReadingKun,
+        .sentenceReading, .hyogaiReading, .compoundReadingKun,
         .commonKanji, .errorCorrection,
         .yojijukugo, .synonym, .antonym,
         .proverb, .passageReading, .passageVocabulary

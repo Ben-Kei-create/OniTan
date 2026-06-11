@@ -51,6 +51,9 @@ struct Question: Identifiable, Codable {
             case .hyogaiReading:
                 if let ctx = p.sentenceContext, !ctx.isEmpty { return ctx }
                 if let w = p.targetWord, !w.isEmpty { return w }
+            case .sentenceReading:
+                if let ctx = p.sentenceContext, !ctx.isEmpty { return ctx }
+                if let w = p.targetKanji, !w.isEmpty { return w }
             case .compoundReadingKun:
                 if let c = p.targetCompound, !c.isEmpty { return c }
             default:
@@ -63,7 +66,7 @@ struct Question: Identifiable, Codable {
     /// True when the prompt is long-form text (sentence card layout).
     var isSentenceKind: Bool {
         switch kind {
-        case .errorCorrection, .proverb,
+        case .sentenceReading, .errorCorrection, .proverb,
              .passageReading, .passageVocabulary:
             return true
         default:

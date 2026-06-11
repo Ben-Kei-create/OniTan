@@ -32,7 +32,7 @@ struct ReadinessCalculator {
 
     // Kanken Pre-1 content kinds and their exam weight (mirrors exam_blueprints.json full distribution)
     static let coreKinds: [(QuestionKind, Double)] = [
-        (.reading,            0.25),
+        (.sentenceReading,    0.25),
         (.hyogaiReading,      0.10),
         (.compoundReadingKun, 0.10),
         (.commonKanji,        0.10),
@@ -61,7 +61,9 @@ struct ReadinessCalculator {
         examResultRepo: ExamResultRepository
     ) -> ReadinessScore {
 
-        guard !allQuestions.isEmpty else { return .zero }
+        let eligibleQuestions = allQuestions.filter { $0.kind.isExamEligible }
+        guard !eligibleQuestions.isEmpty else { return .zero }
+        let eligibleIDs = Set(eligibleQuestions.map(\.id))
 
         // Per-kind accuracy
         var kindAccuracies: [QuestionKind: Double] = [:]
@@ -75,12 +77,16 @@ struct ReadinessCalculator {
         }
 
         // Component 2: category coverage (fraction of questions attempted)
-        let attempted = masteryRepo.records.values.filter { $0.attempts > 0 }.count
-        let coverage = Double(attempted) / Double(allQuestions.count)
+        let attempted = masteryRepo.records.values
+            .filter { eligibleIDs.contains($0.id) && $0.attempts > 0 }
+            .count
+        let coverage = Double(attempted) / Double(eligibleQuestions.count)
 
         // Component 3: mastery ratio
-        let mastered = Double(masteryRepo.masteredCount)
-        let masteryRatio = mastered / Double(allQuestions.count)
+        let mastered = masteryRepo.records.values
+            .filter { eligibleIDs.contains($0.id) && $0.masteryLevel == .mastered }
+            .count
+        let masteryRatio = Double(mastered) / Double(eligibleQuestions.count)
 
         // Component 4: recent exam average
         let examAvg = examResultRepo.overallAverageAccuracy() ?? weightedAccuracy

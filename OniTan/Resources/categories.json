@@ -3,12 +3,12 @@
     {
       "id": "reading",
       "title": "読み道場",
-      "description": "読み・表外の読み・熟語の読みを鍛える",
-      "questionKinds": ["reading", "hyogaiReading", "compoundReadingKun"],
-      "stageIDs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      "description": "例文中の傍線部の読みを鍛える",
+      "questionKinds": ["sentenceReading"],
+      "stageIDs": [97, 98, 99],
       "targetAccuracy": 0.90,
       "iconName": "character.book.closed",
-      "colorHex": "#4A90D9"
+      "colorHex": "#D8B45A"
     },
     {
       "id": "commonKanji",
@@ -75,7 +75,7 @@
       "title": "総合模試",
       "description": "全カテゴリ混合の本番形式テスト",
       "questionKinds": [
-        "reading", "hyogaiReading", "compoundReadingKun",
+        "sentenceReading", "hyogaiReading", "compoundReadingKun",
         "commonKanji", "errorCorrection",
         "yojijukugo", "synonym", "antonym",
         "proverb", "passageReading", "passageVocabulary"

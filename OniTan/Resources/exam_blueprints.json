@@ -4,7 +4,7 @@
     "title": "ミニ模試（30問）",
     "questionCount": 30,
     "distribution": {
-      "reading":            7,
+      "sentenceReading":    7,
       "hyogaiReading":      3,
       "compoundReadingKun": 3,
       "commonKanji":        3,
@@ -23,7 +23,7 @@
     "title": "本番模試（200問）",
     "questionCount": 200,
     "distribution": {
-      "reading":            50,
+      "sentenceReading":    50,
       "hyogaiReading":      20,
       "compoundReadingKun": 20,
       "commonKanji":        20,

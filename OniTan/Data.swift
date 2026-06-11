@@ -231,7 +231,7 @@ func validateQuizDataStrict(_ data: QuizData) throws {
             guard let p = q.payload else { continue }
 
             switch q.kind {
-            case .reading, .hyogaiReading:
+            case .reading, .sentenceReading, .hyogaiReading:
                 if let k = p.targetKanji, k.isEmpty {
                     errors.append("\(qtag): reading payload.targetKanji が空です")
                 }

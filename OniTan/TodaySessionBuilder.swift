@@ -23,11 +23,20 @@ enum TodaySessionBuilder {
         statsRepo: StudyStatsRepository,
         clearedStages: Set<Int>
     ) -> [Question] {
-        guard !allStages.isEmpty else { return [] }
+        let usableStages = allStages
+            .map { stage in
+                Stage(
+                    stage: stage.stage,
+                    questions: stage.questions.filter { $0.kind.isExamEligible }
+                )
+            }
+            .filter { !$0.questions.isEmpty }
+
+        guard !usableStages.isEmpty else { return [] }
 
         // 1. Collect weak questions across all stages
         var weakPool: [Question] = []
-        for stage in allStages {
+        for stage in usableStages {
             let weakKanji = Set(statsRepo.allWeakKanji(forStage: stage.stage))
             let stageWeak = stage.questions.filter { weakKanji.contains($0.kanji) }
             weakPool.append(contentsOf: stageWeak)
@@ -39,8 +48,8 @@ enum TodaySessionBuilder {
         let usedKanji = Set(weakPool.map { $0.kanji })
 
         // Prefer uncleared stages so learners make progress
-        let unclearedStages = allStages.filter { !clearedStages.contains($0.stage) }
-        let fillSource = unclearedStages.isEmpty ? allStages : unclearedStages
+        let unclearedStages = usableStages.filter { !clearedStages.contains($0.stage) }
+        let fillSource = unclearedStages.isEmpty ? usableStages : unclearedStages
 
         var fillPool = fillSource
             .flatMap { $0.questions }
@@ -66,7 +75,7 @@ enum TodaySessionBuilder {
 
         // Fallback: if pool is somehow empty use first stage questions
         let safePool = pool.isEmpty
-            ? Array((allStages.first?.questions ?? []).prefix(targetCount))
+            ? Array((allStages.first?.questions.filter { $0.kind.isExamEligible } ?? []).prefix(targetCount))
             : pool
 
         return Stage(stage: 0, questions: safePool)
