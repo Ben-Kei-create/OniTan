@@ -45,6 +45,7 @@ struct HomeView: View {
                         Spacer(minLength: isCompactHeight ? 8 : 14)
 
                         footerSection
+                            .padding(.bottom, donationManager.hasDonated ? 4 : 12)
 
                         Spacer(minLength: 0)
                     }
@@ -198,8 +199,26 @@ struct HomeView: View {
     // MARK: - Header
 
     private func headerSection(isCompact: Bool) -> some View {
-        VStack(spacing: isCompact ? 6 : 10) {
-            HStack(spacing: isCompact ? 8 : 10) {
+        VStack(spacing: isCompact ? 6 : 8) {
+            HStack(alignment: .center, spacing: 10) {
+                VStack(alignment: .leading, spacing: 1) {
+                    Text("鬼単")
+                        .font(.system(size: isCompact ? 26 : 30, weight: .black, design: .rounded))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [OniTanTheme.textPrimary, OniTanTheme.accentPrimary.opacity(0.7)],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                        .accessibilityLabel("鬼単アプリ")
+
+                    Text("漢字検定準1級 対策")
+                        .font(.system(size: isCompact ? 11 : 12, weight: .regular, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .accessibilityHidden(true)
+                }
+
                 Spacer()
 
                 HomeHeaderIconButton(
@@ -217,28 +236,11 @@ struct HomeView: View {
                 )
             }
 
-            Text("鬼単")
-                .font(.system(size: isCompact ? 60 : 74, weight: .black, design: .rounded))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [OniTanTheme.textPrimary, OniTanTheme.accentPrimary.opacity(0.7)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .shadow(color: OniTanTheme.shadowGlow.color, radius: 16, y: 8)
-                .accessibilityLabel("鬼単アプリ")
-
-            Text("漢字検定準1級 対策")
-                .font(.system(size: isCompact ? 14 : 16, weight: .regular, design: .rounded))
-                .foregroundColor(OniTanTheme.textSecondary)
-                .accessibilityHidden(true)
-
             HStack(spacing: 12) {
                 streakChip
                 xpChip
+                Spacer()
             }
-            .padding(.top, isCompact ? 1 : 3)
         }
     }
 
@@ -360,31 +362,69 @@ struct HomeView: View {
         )
     }
 
+    /// 「総合模試」カテゴリ（categories.jsonの"exam"エントリ）。
+    private var examCategory: CategoryEntry? {
+        categoryManifest?.categories.first { $0.id == "exam" }
+    }
+
     private func menuSection(isCompact: Bool) -> some View {
         let score = readiness
+        let weakestEntry: (kind: QuestionKind, accuracy: Double, category: CategoryEntry)? = {
+            guard let weakest = score.weakestKinds.first,
+                  let category = categoryManifest?.categories.first(where: { $0.questionKinds.contains(weakest) })
+            else { return nil }
+            return (weakest, score.byKind[weakest] ?? 0, category)
+        }()
 
         return VStack(spacing: isCompact ? 8 : 10) {
             HomeReadinessCard(readiness: score)
 
-            if let weakest = score.weakestKinds.first,
-               let category = categoryManifest?.categories.first(where: { $0.questionKinds.contains(weakest) }) {
+            // 推奨アクション: 苦手カテゴリがあればそれを最優先、なければ今日の10問
+            if let weakest = weakestEntry {
                 HomeWeakestCategoryCard(
-                    kind: weakest,
-                    accuracy: score.byKind[weakest] ?? 0,
-                    category: category
+                    kind: weakest.kind,
+                    accuracy: weakest.accuracy,
+                    category: weakest.category
                 )
+            } else {
+                HomeTodayCard(compact: isCompact, featured: true)
             }
 
-            HomeTodayCard(compact: isCompact)
+            // セカンダリアクション: コンパクトな2〜3枚のタイル
+            HStack(spacing: 8) {
+                if weakestEntry != nil {
+                    HomeTodayQuickTile()
+                }
+
+                if let exam = examCategory {
+                    HomeQuickActionTile(
+                        title: "総合模試",
+                        icon: "doc.text.magnifyingglass",
+                        tint: OniTanTheme.accentPrimary,
+                        destination: TrainingModePickerView(category: exam)
+                    )
+                }
+
+                HomeQuickActionTile(
+                    title: "ステージ選択",
+                    icon: "books.vertical.fill",
+                    tint: OniTanTheme.textSecondary,
+                    destination: StageSelectView()
+                )
+            }
 
             HomeDojoBanner(compact: isCompact)
 
             HomeMenuButton(
-                title: "ステージ選択",
-                icon: "books.vertical.fill",
-                gradient: OniTanTheme.primaryGradient,
+                title: "漢字一覧",
+                icon: "square.grid.3x3.fill",
+                gradient: LinearGradient(
+                    colors: [Color(red: 0.12, green: 0.50, blue: 0.72), Color(red: 0.08, green: 0.24, blue: 0.46)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
                 compact: isCompact,
-                destination: StageSelectView()
+                destination: KanjiCatalogView()
             )
 
             if favoriteRepo.count > 0 {
@@ -405,18 +445,6 @@ struct HomeView: View {
                     )
                 )
             }
-
-            HomeMenuButton(
-                title: "漢字一覧",
-                icon: "square.grid.3x3.fill",
-                gradient: LinearGradient(
-                    colors: [Color(red: 0.12, green: 0.50, blue: 0.72), Color(red: 0.08, green: 0.24, blue: 0.46)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ),
-                compact: isCompact,
-                destination: KanjiCatalogView()
-            )
 
             if statsRepo.recentWrongAnswers(limit: 1).count > 0 {
                 HomeMenuButton(
@@ -566,6 +594,7 @@ private struct HomeTodayCard: View {
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var masteryRepo: MasteryRepository
     let compact: Bool
+    var featured: Bool = false
 
     @State private var isPressed = false
 
@@ -582,7 +611,14 @@ private struct HomeTodayCard: View {
     }
 
     var body: some View {
-        VStack(spacing: 6) {
+        VStack(alignment: .leading, spacing: 6) {
+            if featured {
+                Text("今日やるべき一手")
+                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .padding(.horizontal, 2)
+            }
+
             NavigationLink(
                 destination: MainView(
                     stage: todayStage,
@@ -834,43 +870,46 @@ private struct HomeWeakestCategoryCard: View {
 
     var body: some View {
         NavigationLink(destination: TrainingModePickerView(category: category)) {
-            HStack(spacing: 14) {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(OniTanTheme.accentWrong)
-                    .frame(width: 40, height: 40)
-                    .background(
-                        Circle().fill(OniTanTheme.accentWrong.opacity(0.14))
-                    )
+            VStack(alignment: .leading, spacing: 10) {
+                Text("今日やるべき一手")
+                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
 
-                VStack(alignment: .leading, spacing: 3) {
-                    Text("最も弱いカテゴリ")
-                        .font(.system(size: 10, design: .rounded))
-                        .foregroundColor(OniTanTheme.textTertiary)
-                    Text(kind.displayName)
-                        .font(.system(.subheadline, design: .rounded))
-                        .fontWeight(.black)
-                        .foregroundColor(OniTanTheme.textPrimary)
-                    Text("正答率 \(Int((accuracy * 100).rounded()))%")
-                        .font(.system(size: 11, design: .rounded))
-                        .foregroundColor(OniTanTheme.accentWrong)
+                HStack(spacing: 14) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 20, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(width: 44, height: 44)
+                        .background(Circle().fill(Color.white.opacity(0.18)))
+
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("最優先: \(kind.displayName)")
+                            .font(.system(.subheadline, design: .rounded))
+                            .fontWeight(.black)
+                            .foregroundColor(.white)
+                        Text("正答率 \(Int((accuracy * 100).rounded()))%")
+                            .font(.system(size: 12, design: .rounded))
+                            .foregroundColor(.white.opacity(0.85))
+                    }
+
+                    Spacer()
+
+                    Text("ここから鍛える")
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Capsule().fill(Color.white.opacity(0.20)))
                 }
-
-                Spacer()
-
-                Text("集中トレーニングへ")
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundColor(Color(hex: "1A1308"))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Capsule().fill(OniTanTheme.goldGradient))
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
-            .oniCard()
+            .padding(.horizontal, 16)
+            .padding(.vertical, 14)
+            .background(OniTanTheme.primaryGradient)
+            .cornerRadius(OniTanTheme.radiusCard)
+            .shadow(color: OniTanTheme.shadowCard.color, radius: OniTanTheme.shadowCard.radius, y: OniTanTheme.shadowCard.y)
         }
         .buttonStyle(PlainButtonStyle())
-        .accessibilityLabel("最も弱いカテゴリ \(kind.displayName)、正答率\(Int((accuracy * 100).rounded()))パーセント")
+        .accessibilityLabel("今日やるべき一手。最優先 \(kind.displayName)、正答率\(Int((accuracy * 100).rounded()))パーセント")
         .accessibilityHint("タップして集中トレーニングを開始")
     }
 }
@@ -881,10 +920,10 @@ private struct HomeDojoBanner: View {
     let compact: Bool
 
     private var featuredCategories: [CategoryEntry] {
-        guard let manifest = categoryManifest else { return Array(CategoryEntry.fallbacks.prefix(6)) }
-        let ids = ["reading", "yojijukugo", "synonym_antonym", "errorCorrection", "proverb", "exam"]
+        guard let manifest = categoryManifest else { return Array(CategoryEntry.fallbacks.prefix(3)) }
+        let ids = ["reading", "yojijukugo", "proverb"]
         let found = ids.compactMap { manifest.entry(for: $0) }
-        return found.isEmpty ? Array(CategoryEntry.fallbacks.prefix(6)) : found
+        return found.isEmpty ? Array(CategoryEntry.fallbacks.prefix(3)) : found
     }
 
     var body: some View {
@@ -908,7 +947,7 @@ private struct HomeDojoBanner: View {
             }
 
             LazyVGrid(
-                columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)],
+                columns: [GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8), GridItem(.flexible(), spacing: 8)],
                 spacing: 8
             ) {
                 ForEach(featuredCategories) { entry in
@@ -964,6 +1003,104 @@ private struct MiniDojoCard: View {
                 .onChanged { _ in isPressed = true }
                 .onEnded   { _ in isPressed = false }
         )
+    }
+}
+
+// MARK: - Today Quick Tile (compact secondary "今日の10問")
+
+private struct HomeTodayQuickTile: View {
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
+
+    @State private var isPressed = false
+
+    private var todayStage: Stage {
+        TodaySessionBuilder.buildTodayStage(
+            allStages: quizData.stages,
+            statsRepo: statsRepo,
+            clearedStages: appState.clearedStages
+        )
+    }
+
+    var body: some View {
+        NavigationLink(
+            destination: MainView(
+                stage: todayStage,
+                appState: appState,
+                statsRepo: statsRepo,
+                streakRepo: streakRepo,
+                xpRepo: xpRepo,
+                masteryRepo: masteryRepo,
+                mode: .quick10,
+                clearTitle: "今日の10問 完了！"
+            )
+        ) {
+            VStack(spacing: 6) {
+                Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                Text("今日の10問")
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .oniCard()
+            .scaleEffect(isPressed ? 0.97 : 1.0)
+            .animation(.easeInOut(duration: 0.1), value: isPressed)
+        }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded   { _ in isPressed = false }
+        )
+        .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel(streakRepo.todayCompleted ? "今日の10問 完了済み" : "今日の10問を開始")
+        .accessibilityIdentifier("home_today_quick_tile")
+    }
+}
+
+// MARK: - Quick Action Tile (compact secondary action)
+
+private struct HomeQuickActionTile<Destination: View>: View {
+    let title: String
+    let icon: String
+    var tint: Color = OniTanTheme.accentPrimary
+    let destination: Destination
+
+    @State private var isPressed = false
+
+    var body: some View {
+        NavigationLink(destination: destination) {
+            VStack(spacing: 6) {
+                Image(systemName: icon)
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(tint)
+                Text(title)
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .oniCard()
+            .scaleEffect(isPressed ? 0.97 : 1.0)
+            .animation(.easeInOut(duration: 0.1), value: isPressed)
+        }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in isPressed = true }
+                .onEnded   { _ in isPressed = false }
+        )
+        .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel(title)
+        .accessibilityHint("タップして\(title)へ進む")
     }
 }
 
