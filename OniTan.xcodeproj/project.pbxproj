@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -78,6 +78,25 @@
 		A1A6D440E55BBCFAD3E61CD9 /* stage19.json in Resources */ = {isa = PBXBuildFile; fileRef = BB645599D38E62EF26113A89 /* stage19.json */; };
 		A1D1F660F532ED53C5ED409B /* OniTanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F463E37772E8B1F8F14EFD /* OniTanUITests.swift */; };
 		A1E320510165A8265690BDEC /* QuestionKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DAA2A72218BF205143EBB6 /* QuestionKind.swift */; };
+		A5BA441B2FDAF6C20049775C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A5BA43632FDAF6C20049775C /* PrivacyInfo.xcprivacy */; };
+		A5BA444A2FDAF6C20049775C /* ReadinessCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43652FDAF6C20049775C /* ReadinessCalculator.swift */; };
+		A5BA444B2FDAF6C20049775C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43602FDAF6C20049775C /* NotificationManager.swift */; };
+		A5BA444C2FDAF6C20049775C /* MasteryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA435F2FDAF6C20049775C /* MasteryRepository.swift */; };
+		A5BA444D2FDAF6C20049775C /* TrainingSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43D92FDAF6C20049775C /* TrainingSessionBuilder.swift */; };
+		A5BA444E2FDAF6C20049775C /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43D62FDAF6C20049775C /* SplashView.swift */; };
+		A5BA444F2FDAF6C20049775C /* QuestionPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43642FDAF6C20049775C /* QuestionPromptView.swift */; };
+		A5BA44502FDAF6C20049775C /* ExamBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA435B2FDAF6C20049775C /* ExamBuilder.swift */; };
+		A5BA44512FDAF6C20049775C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43612FDAF6C20049775C /* OnboardingView.swift */; };
+		A5BA44522FDAF6C20049775C /* TrainingModePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43D82FDAF6C20049775C /* TrainingModePickerView.swift */; };
+		A5BA44532FDAF6C20049775C /* CategoryTrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA435A2FDAF6C20049775C /* CategoryTrainingView.swift */; };
+		A5BA44542FDAF6C20049775C /* CategoryManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43592FDAF6C20049775C /* CategoryManifest.swift */; };
+		A5BA44552FDAF6C20049775C /* ExplanationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA435E2FDAF6C20049775C /* ExplanationContentView.swift */; };
+		A5BA44562FDAF6C20049775C /* TrainingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43D72FDAF6C20049775C /* TrainingMode.swift */; };
+		A5BA44572FDAF6C20049775C /* ExamResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA435D2FDAF6C20049775C /* ExamResultView.swift */; };
+		A5BA44582FDAF6C20049775C /* AdInterstitialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43572FDAF6C20049775C /* AdInterstitialManager.swift */; };
+		A5BA44592FDAF6C20049775C /* ExamResultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA435C2FDAF6C20049775C /* ExamResultRepository.swift */; };
+		A5BA445A2FDAF6C20049775C /* AppNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43582FDAF6C20049775C /* AppNavigationState.swift */; };
+		A5BA445B2FDAF6C20049775C /* OniComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43622FDAF6C20049775C /* OniComponents.swift */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
 		A9948E76FA5D5132F4E56897 /* stage17.json in Resources */ = {isa = PBXBuildFile; fileRef = B8B3017B906F3D53076A3F6A /* stage17.json */; };
 		AD5E749E79179E2C8F4DCA29 /* stage4.json in Resources */ = {isa = PBXBuildFile; fileRef = 60D557CF77C4478A77473FB1 /* stage4.json */; };
@@ -219,6 +238,25 @@
 		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
 		A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySessionBuilder.swift; sourceTree = "<group>"; };
 		A4DE4246BE167B5F67D06997 /* stage43.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage43.json; sourceTree = "<group>"; };
+		A5BA43572FDAF6C20049775C /* AdInterstitialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdInterstitialManager.swift; sourceTree = "<group>"; };
+		A5BA43582FDAF6C20049775C /* AppNavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationState.swift; sourceTree = "<group>"; };
+		A5BA43592FDAF6C20049775C /* CategoryManifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManifest.swift; sourceTree = "<group>"; };
+		A5BA435A2FDAF6C20049775C /* CategoryTrainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTrainingView.swift; sourceTree = "<group>"; };
+		A5BA435B2FDAF6C20049775C /* ExamBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamBuilder.swift; sourceTree = "<group>"; };
+		A5BA435C2FDAF6C20049775C /* ExamResultRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultRepository.swift; sourceTree = "<group>"; };
+		A5BA435D2FDAF6C20049775C /* ExamResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultView.swift; sourceTree = "<group>"; };
+		A5BA435E2FDAF6C20049775C /* ExplanationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationContentView.swift; sourceTree = "<group>"; };
+		A5BA435F2FDAF6C20049775C /* MasteryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryRepository.swift; sourceTree = "<group>"; };
+		A5BA43602FDAF6C20049775C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		A5BA43612FDAF6C20049775C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A5BA43622FDAF6C20049775C /* OniComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniComponents.swift; sourceTree = "<group>"; };
+		A5BA43632FDAF6C20049775C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A5BA43642FDAF6C20049775C /* QuestionPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPromptView.swift; sourceTree = "<group>"; };
+		A5BA43652FDAF6C20049775C /* ReadinessCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadinessCalculator.swift; sourceTree = "<group>"; };
+		A5BA43D62FDAF6C20049775C /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		A5BA43D72FDAF6C20049775C /* TrainingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingMode.swift; sourceTree = "<group>"; };
+		A5BA43D82FDAF6C20049775C /* TrainingModePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModePickerView.swift; sourceTree = "<group>"; };
+		A5BA43D92FDAF6C20049775C /* TrainingSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSessionBuilder.swift; sourceTree = "<group>"; };
 		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		A78D1BA326BF77A20284D2BF /* stage33.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage33.json; sourceTree = "<group>"; };
 		AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteKanjiRepository.swift; sourceTree = "<group>"; };
@@ -258,6 +296,10 @@
 		F778B7974DE051C0BC2CC841 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
 		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A5BA43D52FDAF6C20049775C /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7ECB131175B9A29A8D5E1216 /* Frameworks */ = {
@@ -351,6 +393,26 @@
 		3F83EF4B07D30D699F0AEABE /* OniTan */ = {
 			isa = PBXGroup;
 			children = (
+				A5BA43572FDAF6C20049775C /* AdInterstitialManager.swift */,
+				A5BA43582FDAF6C20049775C /* AppNavigationState.swift */,
+				A5BA43592FDAF6C20049775C /* CategoryManifest.swift */,
+				A5BA435A2FDAF6C20049775C /* CategoryTrainingView.swift */,
+				A5BA435B2FDAF6C20049775C /* ExamBuilder.swift */,
+				A5BA435C2FDAF6C20049775C /* ExamResultRepository.swift */,
+				A5BA435D2FDAF6C20049775C /* ExamResultView.swift */,
+				A5BA435E2FDAF6C20049775C /* ExplanationContentView.swift */,
+				A5BA435F2FDAF6C20049775C /* MasteryRepository.swift */,
+				A5BA43602FDAF6C20049775C /* NotificationManager.swift */,
+				A5BA43612FDAF6C20049775C /* OnboardingView.swift */,
+				A5BA43622FDAF6C20049775C /* OniComponents.swift */,
+				A5BA43632FDAF6C20049775C /* PrivacyInfo.xcprivacy */,
+				A5BA43642FDAF6C20049775C /* QuestionPromptView.swift */,
+				A5BA43652FDAF6C20049775C /* ReadinessCalculator.swift */,
+				A5BA43D52FDAF6C20049775C /* Resources */,
+				A5BA43D62FDAF6C20049775C /* SplashView.swift */,
+				A5BA43D72FDAF6C20049775C /* TrainingMode.swift */,
+				A5BA43D82FDAF6C20049775C /* TrainingModePickerView.swift */,
+				A5BA43D92FDAF6C20049775C /* TrainingSessionBuilder.swift */,
 				62ADB5A3C69CE326AF95624D /* AdBannerView.swift */,
 				C3D1980D10BAEB54602E12F5 /* AdConsentManager.swift */,
 				2FF720D8313B0EE232F3045F /* AppState.swift */,
@@ -467,6 +529,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				A5BA43D52FDAF6C20049775C /* Resources */,
+			);
 			name = OniTan;
 			packageProductDependencies = (
 				85377F28796EB1E2855B25B7 /* GoogleMobileAds */,
@@ -575,6 +640,7 @@
 				96E1201C8E610EB084E3310E /* stage39.json in Resources */,
 				AD5E749E79179E2C8F4DCA29 /* stage4.json in Resources */,
 				CA358D08C04C2B91F18D8460 /* stage40.json in Resources */,
+				A5BA441B2FDAF6C20049775C /* PrivacyInfo.xcprivacy in Resources */,
 				BDCCEFD93AC828B640A3DB10 /* stage41.json in Resources */,
 				0EB63EA80660FCB18BCDD13A /* stage42.json in Resources */,
 				6F5609AF03DEE4E977AD6E50 /* stage43.json in Resources */,
@@ -653,6 +719,24 @@
 				E66DB8AED4DDCC85DBD80B25 /* QuizMode.swift in Sources */,
 				B04AEA197D0D09E15FFC596A /* QuizModeSelectView.swift in Sources */,
 				EC4E8313E16CC8051466E530 /* QuizSessionViewModel.swift in Sources */,
+				A5BA444A2FDAF6C20049775C /* ReadinessCalculator.swift in Sources */,
+				A5BA444B2FDAF6C20049775C /* NotificationManager.swift in Sources */,
+				A5BA444C2FDAF6C20049775C /* MasteryRepository.swift in Sources */,
+				A5BA444D2FDAF6C20049775C /* TrainingSessionBuilder.swift in Sources */,
+				A5BA444E2FDAF6C20049775C /* SplashView.swift in Sources */,
+				A5BA444F2FDAF6C20049775C /* QuestionPromptView.swift in Sources */,
+				A5BA44502FDAF6C20049775C /* ExamBuilder.swift in Sources */,
+				A5BA44512FDAF6C20049775C /* OnboardingView.swift in Sources */,
+				A5BA44522FDAF6C20049775C /* TrainingModePickerView.swift in Sources */,
+				A5BA44532FDAF6C20049775C /* CategoryTrainingView.swift in Sources */,
+				A5BA44542FDAF6C20049775C /* CategoryManifest.swift in Sources */,
+				A5BA44552FDAF6C20049775C /* ExplanationContentView.swift in Sources */,
+				A5BA44562FDAF6C20049775C /* TrainingMode.swift in Sources */,
+				A5BA44572FDAF6C20049775C /* ExamResultView.swift in Sources */,
+				A5BA44582FDAF6C20049775C /* AdInterstitialManager.swift in Sources */,
+				A5BA44592FDAF6C20049775C /* ExamResultRepository.swift in Sources */,
+				A5BA445A2FDAF6C20049775C /* AppNavigationState.swift in Sources */,
+				A5BA445B2FDAF6C20049775C /* OniComponents.swift in Sources */,
 				92F771A218FF51A3531753B3 /* ReviewSessionBuilder.swift in Sources */,
 				9417672A2D70817B9420092C /* SettingsView.swift in Sources */,
 				C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */,
