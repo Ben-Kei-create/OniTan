@@ -130,7 +130,7 @@ struct ExamResultView: View {
         }
         .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
-        .oniGlassCard(glow: true)
+        .oniCard()
     }
 
     // MARK: - Kind Breakdown
@@ -164,7 +164,7 @@ struct ExamResultView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .oniGlassCard()
+        .oniCard()
     }
 
     // MARK: - Weak Points
@@ -199,7 +199,7 @@ struct ExamResultView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .oniGlassCard()
+        .oniCard()
     }
 
     // MARK: - Recommendation
@@ -228,7 +228,7 @@ struct ExamResultView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .oniGlassCard()
+        .oniCard()
     }
 
     // MARK: - Disclaimer
