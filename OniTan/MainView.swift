@@ -225,6 +225,14 @@ struct MainView: View {
             // Stage number + pass indicator
             stageHeader(scale: scale)
 
+            OniProgressBar(
+                progress: vm.progressFraction,
+                height: scaled(6, by: scale, min: 4),
+                gradient: vm.lastAnswerResult == .wrong ? OniTanTheme.dangerGradient : OniTanTheme.goldGradient
+            )
+            .padding(.top, scaled(6, by: scale, min: 4))
+            .accessibilityHidden(true)
+
             Spacer(minLength: scaled(10, by: scale, min: 6))
 
             // Kanji display — shrinks when showing wrong answer
@@ -357,6 +365,13 @@ struct MainView: View {
                        GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
+            OniBadge(
+                text: vm.currentQuestion.kind.displayName,
+                systemImage: vm.currentQuestion.kind.systemImage,
+                tint: OniTanTheme.accentWeak
+            )
+            .padding(.leading, 4)
+
             Text(vm.currentQuestion.kind.choicePrompt)
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
                 .foregroundColor(OniTanTheme.textTertiary)

@@ -90,39 +90,40 @@ struct ThemePalette {
 
 extension ThemePalette {
 
-    /// "現在のカラー" — The original purple gradient dark theme
+    /// "現在のカラー" — OniTan dark premium (deep navy/purple + gold/oni-red)
     static let current = ThemePalette(
         backgroundGradientColors: [
-            Color(red: 0.10, green: 0.10, blue: 0.30),
-            Color(red: 0.20, green: 0.05, blue: 0.25)
+            Color(hex: "05060D"),
+            Color(hex: "090B1A"),
+            Color(hex: "120A1F")
         ],
         correctGradientColors: [
-            Color(red: 0.13, green: 0.70, blue: 0.45),
-            Color(red: 0.10, green: 0.55, blue: 0.35)
+            Color(red: 0.20, green: 0.78, blue: 0.45),
+            Color(red: 0.10, green: 0.55, blue: 0.32)
         ],
         wrongGradientColors: [
-            Color(red: 0.85, green: 0.22, blue: 0.22),
-            Color(red: 0.70, green: 0.12, blue: 0.15)
+            Color(hex: "B3192B"),
+            Color(red: 0.40, green: 0.05, blue: 0.10)
         ],
         primaryGradientColors: [
-            Color(red: 0.38, green: 0.32, blue: 0.90),
-            Color(red: 0.60, green: 0.20, blue: 0.80)
+            Color(hex: "8E55FF"),
+            Color(red: 0.35, green: 0.18, blue: 0.55)
         ],
         goldGradientColors: [
-            Color(red: 1.0, green: 0.80, blue: 0.10),
-            Color(red: 0.95, green: 0.60, blue: 0.05)
+            Color(hex: "E8C66A"),
+            Color(hex: "9B7432")
         ],
-        cardBackground: Color.white.opacity(0.12),
-        cardBackgroundPressed: Color.white.opacity(0.22),
-        cardBorder: Color.white.opacity(0.25),
-        textPrimary: .white,
-        textSecondary: Color.white.opacity(0.70),
-        textTertiary: Color.white.opacity(0.50),
-        accentCorrect: Color(red: 0.13, green: 0.70, blue: 0.45),
-        accentWrong: Color(red: 0.85, green: 0.22, blue: 0.22),
-        accentWeak: Color(red: 1.00, green: 0.60, blue: 0.10),
-        accentPrimary: Color(red: 0.48, green: 0.38, blue: 0.95),
-        shadowGlowColor: Color.purple.opacity(0.4)
+        cardBackground: Color(red: 20/255, green: 22/255, blue: 38/255).opacity(0.78),
+        cardBackgroundPressed: Color(red: 30/255, green: 32/255, blue: 52/255).opacity(0.85),
+        cardBorder: Color.white.opacity(0.10),
+        textPrimary: Color(hex: "F6F0E6"),
+        textSecondary: Color(hex: "B8B2A6"),
+        textTertiary: Color(hex: "77717A"),
+        accentCorrect: Color(red: 0.20, green: 0.78, blue: 0.45),
+        accentWrong: Color(hex: "B3192B"),
+        accentWeak: Color(hex: "E8C66A"),
+        accentPrimary: Color(hex: "8E55FF"),
+        shadowGlowColor: Color(hex: "E8C66A").opacity(0.35)
     )
 
     /// "カッコいい" — Cyberpunk dark theme

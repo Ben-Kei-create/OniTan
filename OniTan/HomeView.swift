@@ -8,6 +8,8 @@ struct HomeView: View {
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var donationManager: DonationManager
+    @EnvironmentObject var masteryRepo: MasteryRepository
+    @EnvironmentObject var examResultRepo: ExamResultRepository
 
     @State private var freezeToastVisible = false
     @State private var lastShownFreezeID: Int = -1
@@ -350,9 +352,28 @@ struct HomeView: View {
 
     // MARK: - Menu
 
+    private var readiness: ReadinessScore {
+        ReadinessCalculator.calculate(
+            masteryRepo: masteryRepo,
+            allQuestions: allQuestions,
+            examResultRepo: examResultRepo
+        )
+    }
+
     private func menuSection(isCompact: Bool) -> some View {
-        VStack(spacing: isCompact ? 8 : 10) {
-            HomeReadinessCard()
+        let score = readiness
+
+        return VStack(spacing: isCompact ? 8 : 10) {
+            HomeReadinessCard(readiness: score)
+
+            if let weakest = score.weakestKinds.first,
+               let category = categoryManifest?.categories.first(where: { $0.questionKinds.contains(weakest) }) {
+                HomeWeakestCategoryCard(
+                    kind: weakest,
+                    accuracy: score.byKind[weakest] ?? 0,
+                    category: category
+                )
+            }
 
             HomeTodayCard(compact: isCompact)
 
@@ -763,50 +784,104 @@ private struct HomeHeaderIconButton<Destination: View>: View {
 // MARK: - Readiness Card (Phase 2 placeholder)
 
 private struct HomeReadinessCard: View {
+    let readiness: ReadinessScore
+
+    /// 漢検準1級は200点満点。
+    private var estimatedScore: Int { Int((readiness.estimatedExamScore * 200).rounded()) }
+
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 14) {
+            ProgressRingView(
+                progress: readiness.overall,
+                lineWidth: 7,
+                size: 64,
+                gradient: Gradient(colors: [OniTanTheme.accentWeak, OniTanTheme.accentPrimary]),
+                label: "\(readiness.overallPercent)%"
+            )
+
             VStack(alignment: .leading, spacing: 3) {
                 Text("準1級到達度")
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(OniTanTheme.textTertiary)
-                Text("— 準備中")
-                    .font(.system(.subheadline, design: .rounded))
+                Text("\(readiness.overallPercent)%")
+                    .font(.system(.title3, design: .rounded))
                     .fontWeight(.black)
-                    .foregroundColor(OniTanTheme.textSecondary)
+                    .foregroundColor(OniTanTheme.textPrimary)
             }
+
             Spacer()
+
             VStack(alignment: .trailing, spacing: 3) {
                 Text("推定得点")
                     .font(.system(size: 10, design: .rounded))
                     .foregroundColor(OniTanTheme.textTertiary)
-                Text("— / 100")
-                    .font(.system(.caption, design: .rounded))
+                Text("\(estimatedScore) / 200")
+                    .font(.system(.subheadline, design: .rounded))
                     .fontWeight(.bold)
-                    .foregroundColor(OniTanTheme.textSecondary)
+                    .foregroundColor(OniTanTheme.accentWeak)
             }
-            Image(systemName: "chart.bar.xaxis")
-                .font(.system(size: 22, weight: .semibold))
-                .foregroundColor(OniTanTheme.accentPrimary.opacity(0.35))
         }
         .padding(.horizontal, 14)
-        .padding(.vertical, 10)
-        .background(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground.opacity(0.7))
-                .overlay(
-                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(OniTanTheme.accentPrimary.opacity(0.18), lineWidth: 1)
-                )
-        )
-        .overlay(alignment: .bottomTrailing) {
+        .padding(.vertical, 12)
+        .oniGlassCard(borderColor: OniTanTheme.accentPrimary.opacity(0.18))
+        .overlay(alignment: .bottom) {
             Text("本番得点を保証するものではありません")
                 .font(.system(size: 9, design: .rounded))
-                .foregroundColor(OniTanTheme.textTertiary.opacity(0.5))
-                .padding(.trailing, 10)
+                .foregroundColor(OniTanTheme.textTertiary.opacity(0.6))
                 .padding(.bottom, 4)
         }
         .accessibilityElement()
-        .accessibilityLabel("準1級到達度 準備中")
+        .accessibilityLabel("準1級到達度 \(readiness.overallPercent)パーセント、推定得点 \(estimatedScore)点 / 200点")
+    }
+}
+
+// MARK: - Weakest Category Card
+
+private struct HomeWeakestCategoryCard: View {
+    let kind: QuestionKind
+    let accuracy: Double
+    let category: CategoryEntry
+
+    var body: some View {
+        NavigationLink(destination: TrainingModePickerView(category: category)) {
+            HStack(spacing: 14) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.system(size: 20, weight: .semibold))
+                    .foregroundColor(OniTanTheme.accentWrong)
+                    .frame(width: 40, height: 40)
+                    .background(
+                        Circle().fill(OniTanTheme.accentWrong.opacity(0.14))
+                    )
+
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("最も弱いカテゴリ")
+                        .font(.system(size: 10, design: .rounded))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                    Text(kind.displayName)
+                        .font(.system(.subheadline, design: .rounded))
+                        .fontWeight(.black)
+                        .foregroundColor(OniTanTheme.textPrimary)
+                    Text("正答率 \(Int((accuracy * 100).rounded()))%")
+                        .font(.system(size: 11, design: .rounded))
+                        .foregroundColor(OniTanTheme.accentWrong)
+                }
+
+                Spacer()
+
+                Text("集中トレーニングへ")
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundColor(Color(hex: "1A1308"))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(Capsule().fill(OniTanTheme.goldGradient))
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 12)
+            .oniGlassCard(borderColor: OniTanTheme.accentWrong.opacity(0.25))
+        }
+        .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel("最も弱いカテゴリ \(kind.displayName)、正答率\(Int((accuracy * 100).rounded()))パーセント")
+        .accessibilityHint("タップして集中トレーニングを開始")
     }
 }
 

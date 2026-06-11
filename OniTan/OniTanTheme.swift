@@ -21,6 +21,12 @@ enum OniTanTheme {
 
     static var goldGradient: LinearGradient { p.goldGradient }
 
+    /// Alias for the primary (purple) gradient — used for progress accents.
+    static var purpleGradient: LinearGradient { p.primaryGradient }
+
+    /// Alias for the wrong/danger (red) gradient — used for warnings & oni accents.
+    static var dangerGradient: LinearGradient { p.wrongGradient }
+
     // MARK: - Colors (semantic)
 
     static var cardBackground: Color { p.cardBackground }

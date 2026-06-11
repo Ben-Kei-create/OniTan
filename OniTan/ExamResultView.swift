@@ -92,29 +92,45 @@ struct ExamResultView: View {
     // MARK: - Score Summary
 
     private var scoreSummary: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 12) {
+            ZStack {
+                ProgressRingView(
+                    progress: result.accuracy,
+                    lineWidth: 10,
+                    size: 120,
+                    gradient: Gradient(colors: [OniTanTheme.accentWeak, Color(hex: "9B7432")])
+                )
+
+                // 90% (or blueprint passing line) target marker
+                Circle()
+                    .trim(from: 0, to: 0.003)
+                    .stroke(OniTanTheme.accentPrimary, style: StrokeStyle(lineWidth: 14, lineCap: .round))
+                    .rotationEffect(.degrees(-90 + 360 * passingAccuracy))
+                    .frame(width: 120, height: 120)
+
+                VStack(spacing: 2) {
+                    Text(formattedPercent(result.accuracy))
+                        .font(playFont(24, weight: .black))
+                        .foregroundColor(OniTanTheme.textPrimary)
+                    Text("正答率")
+                        .font(playFont(11, weight: .medium))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
+            }
+            .accessibilityElement()
+            .accessibilityLabel("正答率 \(formattedPercent(result.accuracy))、合格目安 \(formattedPercent(passingAccuracy))")
+
             Text("\(result.correctCount) / \(result.totalQuestions) 問正解")
                 .font(playFont(20, weight: .bold))
                 .foregroundColor(OniTanTheme.textPrimary)
 
-            Text("正答率 \(formattedPercent(result.accuracy))")
-                .font(playFont(15, weight: .semibold))
-                .foregroundColor(OniTanTheme.textSecondary)
-
             Text("合格目安: \(formattedPercent(passingAccuracy))")
                 .font(playFont(12, weight: .medium))
-                .foregroundColor(OniTanTheme.textTertiary)
+                .foregroundColor(OniTanTheme.accentPrimary)
         }
         .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground)
-                .overlay(
-                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
-                )
-        )
+        .oniGlassCard(glow: true)
     }
 
     // MARK: - Kind Breakdown
@@ -148,10 +164,7 @@ struct ExamResultView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground.opacity(0.7))
-        )
+        .oniGlassCard()
     }
 
     // MARK: - Weak Points
@@ -186,10 +199,7 @@ struct ExamResultView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground.opacity(0.7))
-        )
+        .oniGlassCard()
     }
 
     // MARK: - Recommendation
@@ -218,10 +228,7 @@ struct ExamResultView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground.opacity(0.7))
-        )
+        .oniGlassCard()
     }
 
     // MARK: - Disclaimer

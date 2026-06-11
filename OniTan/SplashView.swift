@@ -13,24 +13,17 @@ struct SplashView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(
-                colors: [
-                    Color(red: 0.10, green: 0.10, blue: 0.30),
-                    Color(red: 0.20, green: 0.05, blue: 0.25)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            OniTanTheme.backgroundGradientFallback
+                .ignoresSafeArea()
 
-            // Decorative background kanji
+            // Decorative background kanji — smouldering oni-red glow
             Text("鬼")
                 .font(.system(size: 320, weight: .black))
                 .foregroundStyle(
                     LinearGradient(
                         colors: [
-                            Color(red: 0.60, green: 0.20, blue: 0.80).opacity(0.18),
-                            Color(red: 0.38, green: 0.32, blue: 0.90).opacity(0.08)
+                            Color(hex: "B3192B").opacity(0.22),
+                            Color(hex: "8E55FF").opacity(0.08)
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
@@ -40,13 +33,13 @@ struct SplashView: View {
                 .scaleEffect(bgKanjiScale)
                 .opacity(bgKanjiOpacity)
 
-            // Glow bloom behind title
+            // Glow bloom behind title — gold
             Circle()
                 .fill(
                     RadialGradient(
                         colors: [
-                            Color(red: 0.48, green: 0.38, blue: 0.95).opacity(0.45),
-                            Color(red: 0.60, green: 0.20, blue: 0.80).opacity(0.0)
+                            Color(hex: "E8C66A").opacity(0.40),
+                            Color(hex: "E8C66A").opacity(0.0)
                         ],
                         center: .center,
                         startRadius: 0,
@@ -58,26 +51,22 @@ struct SplashView: View {
                 .opacity(glowOpacity)
 
             VStack(spacing: 10) {
-                Text("OniTan")
-                    .font(.system(size: 58, weight: .black, design: .rounded))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [
-                                .white,
-                                Color(red: 0.88, green: 0.82, blue: 1.0)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .shadow(color: Color(red: 0.48, green: 0.38, blue: 0.95).opacity(0.9), radius: 24, y: 4)
+                Text("鬼単")
+                    .font(.system(size: 44, weight: .black, design: .serif))
+                    .foregroundStyle(OniTanTheme.goldGradient)
+                    .shadow(color: Color(hex: "E8C66A").opacity(0.8), radius: 20, y: 4)
                     .scaleEffect(titleScale)
                     .opacity(titleOpacity)
 
-                Text("KANJI STUDY")
+                Text("OniTan")
+                    .font(.system(size: 36, weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .opacity(titleOpacity)
+
+                Text("漢検準一級・鬼の修練場")
                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                     .tracking(5)
-                    .foregroundColor(Color(red: 0.72, green: 0.62, blue: 1.0))
+                    .foregroundColor(OniTanTheme.textTertiary)
                     .opacity(subtitleOpacity)
             }
         }
