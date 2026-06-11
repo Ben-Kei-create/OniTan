@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - OniGlassCard
 //
-// Premium glassmorphism card: translucent dark fill, thin border, soft shadow.
+// Premium ink card: translucent dark fill, thin gold hairline, soft shadow.
 // Use instead of ad-hoc `.background(...)` blocks for new UI surfaces.
 
 struct OniGlassCardModifier: ViewModifier {
@@ -14,7 +14,7 @@ struct OniGlassCardModifier: ViewModifier {
         content
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(.ultraThinMaterial)
+                    .fill(Color.black.opacity(0.16))
                     .overlay(
                         RoundedRectangle(cornerRadius: cornerRadius)
                             .fill(OniTanTheme.cardBackground)
@@ -24,7 +24,7 @@ struct OniGlassCardModifier: ViewModifier {
                             .stroke(borderColor, lineWidth: 1)
                     )
             )
-            .shadow(color: Color.black.opacity(0.30), radius: 14, y: 8)
+            .shadow(color: Color.black.opacity(0.36), radius: 14, y: 8)
             .shadow(
                 color: glow ? OniTanTheme.shadowGlow.color : .clear,
                 radius: glow ? OniTanTheme.shadowGlow.radius : 0
@@ -43,7 +43,7 @@ extension View {
 
 // MARK: - OniGoldButton
 //
-// Primary call-to-action button style: gold gradient fill, dark text, soft glow.
+// Primary call-to-action button style: vermilion fill with ivory text.
 
 struct OniGoldButtonStyle: ButtonStyle {
     var fullWidth: Bool = true
@@ -51,12 +51,16 @@ struct OniGoldButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: 15, weight: .bold, design: .rounded))
-            .foregroundColor(Color(hex: "1A1308"))
+            .foregroundColor(OniTanTheme.textPrimary)
             .padding(.vertical, 14)
             .frame(maxWidth: fullWidth ? .infinity : nil)
             .background(
                 RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
-                    .fill(OniTanTheme.goldGradient)
+                    .fill(OniTanTheme.primaryGradient)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+                    .stroke(Color(hex: "D8B45A").opacity(0.20), lineWidth: 1)
             )
             .shadow(color: OniTanTheme.shadowGlow.color, radius: 10, y: 4)
             .opacity(configuration.isPressed ? 0.85 : 1.0)
@@ -72,7 +76,7 @@ extension ButtonStyle where Self == OniGoldButtonStyle {
 
 // MARK: - OniProgressBar
 //
-// Thin horizontal progress bar with a gold/purple gradient fill and a
+// Thin horizontal progress bar with a gold/vermilion gradient fill and a
 // subtle track. Used for quiz progress and exam accuracy indicators.
 
 struct OniProgressBar: View {
@@ -84,7 +88,7 @@ struct OniProgressBar: View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
                 Capsule()
-                    .fill(OniTanTheme.cardBackground)
+                    .fill(OniTanTheme.cardBackgroundPressed.opacity(0.7))
                     .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
 
                 Capsule()
@@ -120,8 +124,8 @@ struct OniBadge: View {
         .padding(.vertical, 4)
         .background(
             Capsule()
-                .fill(tint.opacity(0.14))
-                .overlay(Capsule().stroke(tint.opacity(0.35), lineWidth: 1))
+                .fill(tint.opacity(0.12))
+                .overlay(Capsule().stroke(tint.opacity(0.30), lineWidth: 1))
         )
     }
 }
@@ -139,11 +143,11 @@ struct OniSectionHeader: View {
         HStack(spacing: 8) {
             if let systemImage {
                 Image(systemName: systemImage)
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(OniTanTheme.accentWeak)
             }
             Text(title)
-                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .font(.system(size: 15, weight: .bold, design: .rounded))
                 .foregroundColor(OniTanTheme.textPrimary)
 
             Spacer()
@@ -175,7 +179,7 @@ struct OniMetricCard: View {
 
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(value)
-                    .font(.system(size: 26, weight: .black, design: .rounded))
+                .font(.system(size: 24, weight: .black, design: .rounded))
                     .foregroundColor(OniTanTheme.textPrimary)
                 if let unit {
                     Text(unit)

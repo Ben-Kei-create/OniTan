@@ -23,7 +23,7 @@ struct SplashView: View {
                     LinearGradient(
                         colors: [
                             Color(hex: "B3192B").opacity(0.22),
-                            Color(hex: "8E55FF").opacity(0.08)
+                            Color(hex: "D8B45A").opacity(0.08)
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing

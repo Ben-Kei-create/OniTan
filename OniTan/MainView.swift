@@ -172,8 +172,9 @@ struct MainView: View {
             // Combo badge (appears at 3+ consecutive correct answers)
             if vm.consecutiveCorrect >= 3 {
                 HStack(spacing: scaled(4, by: scale, min: 2)) {
-                    Text("🔥")
-                        .font(.system(size: scaled(13, by: scale, min: 10)))
+                    Image(systemName: "flame.fill")
+                        .font(.system(size: scaled(11, by: scale, min: 9), weight: .semibold))
+                        .foregroundColor(OniTanTheme.accentWeak)
                     Text("\(vm.consecutiveCorrect)連続！")
                         .font(playFont(scaled(12, by: scale, min: 10), weight: .bold))
                         .foregroundColor(OniTanTheme.accentWeak)
@@ -182,7 +183,7 @@ struct MainView: View {
                 .padding(.vertical, scaled(4, by: scale, min: 3))
                 .background(
                     Capsule()
-                        .fill(Color(red: 0.5, green: 0.25, blue: 0.0).opacity(0.55))
+                        .fill(OniTanTheme.accentWeak.opacity(0.12))
                         .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.5), lineWidth: 1))
                 )
                 .transition(.scale(scale: 0.7).combined(with: .opacity))
@@ -320,14 +321,14 @@ struct MainView: View {
         } label: {
             Image(systemName: isFavorite ? "star.fill" : "star")
                 .font(.system(size: scaled(18, by: scale, min: 15), weight: .bold))
-                .foregroundColor(isFavorite ? Color(red: 1.0, green: 0.84, blue: 0.28) : OniTanTheme.textSecondary)
+                .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
                 .overlay(
                     Circle()
                         .stroke(
                             isFavorite
-                                ? Color(red: 1.0, green: 0.84, blue: 0.28).opacity(0.5)
+                                ? OniTanTheme.accentWeak.opacity(0.5)
                                 : OniTanTheme.cardBorder,
                             lineWidth: 1
                         )
@@ -455,7 +456,7 @@ struct MainView: View {
                 Text("次へ")
                     .font(playFont(17, weight: .bold))
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(OniTanTheme.textPrimary)
                     .frame(maxWidth: .infinity, minHeight: scaled(50, by: scale, min: 44))
                     .background(
                         RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
@@ -496,7 +497,7 @@ struct MainView: View {
                 Image(systemName: "trophy.fill")
                     .font(.system(size: 44))
                     .foregroundStyle(OniTanTheme.goldGradient)
-                    .shadow(color: .yellow.opacity(0.6), radius: 10)
+                    .shadow(color: OniTanTheme.accentWeak.opacity(0.45), radius: 10)
             }
 
             VStack(spacing: 6) {
@@ -549,10 +550,10 @@ struct MainView: View {
                             Text("次のステージへ")
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(OniTanTheme.textPrimary)
                             Image(systemName: "arrow.right")
                                 .font(.system(size: 13, weight: .bold))
-                                .foregroundColor(.white.opacity(0.8))
+                                .foregroundColor(OniTanTheme.textPrimary.opacity(0.8))
                         }
                         .frame(maxWidth: .infinity, minHeight: 48)
                         .background(OniTanTheme.primaryGradient)
@@ -579,11 +580,11 @@ struct MainView: View {
                         Text("ステージ選択へ戻る")
                             .font(playFont(15, weight: .bold))
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(OniTanTheme.textPrimary)
                             .frame(maxWidth: .infinity, minHeight: 44)
-                            .background(OniTanTheme.correctGradient)
+                            .background(OniTanTheme.goldGradient)
                             .cornerRadius(OniTanTheme.radiusButton)
-                            .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 6, y: 3)
+                            .shadow(color: OniTanTheme.accentWeak.opacity(0.28), radius: 6, y: 3)
                     }
                 }
 
@@ -610,23 +611,23 @@ struct MainView: View {
         HStack(spacing: 6) {
             Image(systemName: "star.fill")
                 .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                .foregroundColor(OniTanTheme.accentWeak)
             Text("+\(xp) XP 獲得！")
                 .font(playFont(15, weight: .bold))
                 .fontWeight(.bold)
-                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                .foregroundColor(OniTanTheme.accentWeak)
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 10)
         .background(
             Capsule()
-                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.65))
+                .fill(OniTanTheme.accentWeak.opacity(0.12))
                 .overlay(
                     Capsule()
-                        .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1)
+                        .stroke(OniTanTheme.accentWeak.opacity(0.42), lineWidth: 1)
                 )
         )
-        .shadow(color: Color(red: 1.0, green: 0.75, blue: 0.0).opacity(0.3), radius: 8)
+        .shadow(color: OniTanTheme.accentWeak.opacity(0.25), radius: 8)
         .transition(.scale(scale: 0.8).combined(with: .opacity))
     }
 
@@ -775,7 +776,7 @@ struct ExplanationView: View {
                             .font(.system(size: 15, weight: .bold))
                             .foregroundColor(OniTanTheme.textSecondary)
                             .frame(width: 36, height: 36)
-                            .background(Color.white.opacity(0.08))
+                            .background(OniTanTheme.cardBackgroundPressed)
                             .clipShape(Circle())
                     }
                     .accessibilityLabel("問題を報告")
@@ -831,7 +832,7 @@ struct ExplanationView: View {
                         Text("次の問題へ")
                             .font(playFontManager.font(size: 17, weight: .bold))
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(OniTanTheme.textPrimary)
                             .frame(maxWidth: .infinity, minHeight: 52)
                             .background(OniTanTheme.primaryGradient)
                     }

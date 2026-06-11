@@ -16,7 +16,9 @@ struct CategoryTrainingView: View {
             OniTanTheme.backgroundGradientFallback.ignoresSafeArea()
 
             ScrollView {
-                LazyVStack(spacing: 12) {
+                LazyVStack(spacing: 14) {
+                    header
+
                     ForEach(categories) { entry in
                         NavigationLink(destination: TrainingModePickerView(category: entry)) {
                             CategoryRowCard(entry: entry)
@@ -27,14 +29,34 @@ struct CategoryTrainingView: View {
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 12)
-                .padding(.bottom, 32)
+                .padding(.top, 16)
+                .padding(.bottom, 36)
             }
         }
         .navigationTitle("道場選択")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
+    }
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("分野別に鍛える")
+                .font(.system(size: 24, weight: .black, design: .rounded))
+                .foregroundColor(OniTanTheme.textPrimary)
+
+            Text("弱点を一つずつ削るための、準1級専用道場。")
+                .font(.system(size: 13, weight: .medium, design: .rounded))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Rectangle()
+                .fill(OniTanTheme.goldGradient)
+                .frame(width: 44, height: 2)
+                .padding(.top, 4)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.bottom, 4)
     }
 }
 
@@ -44,7 +66,27 @@ private struct CategoryRowCard: View {
     let entry: CategoryEntry
     @State private var isPressed = false
 
-    private var accentColor: Color { Color(hex: entry.colorHex) }
+    private var accentColor: Color {
+        entry.id == "exam" ? OniTanTheme.accentPrimary : OniTanTheme.accentWeak
+    }
+
+    private var dojoMark: String {
+        switch entry.id {
+        case "reading": return "読"
+        case "commonKanji": return "共"
+        case "errorCorrection": return "訂"
+        case "yojijukugo": return "熟"
+        case "synonym_antonym": return "対"
+        case "proverb": return "諺"
+        case "passage": return "文"
+        case "exam": return "試"
+        default: return String(entry.title.prefix(1))
+        }
+    }
+
+    private var displayTitle: String {
+        entry.title.replacingOccurrences(of: "道場", with: "")
+    }
 
     private var questionCount: Int {
         if !entry.stageIDs.isEmpty {
@@ -60,63 +102,99 @@ private struct CategoryRowCard: View {
     var body: some View {
         HStack(spacing: 14) {
             ZStack {
-                Circle()
-                    .fill(accentColor.opacity(0.18))
-                    .frame(width: 52, height: 52)
-                Image(systemName: entry.iconName)
-                    .font(.system(size: 23, weight: .semibold))
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(accentColor.opacity(entry.id == "exam" ? 0.18 : 0.12))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(accentColor.opacity(0.35), lineWidth: 1)
+                    )
+                    .frame(width: 56, height: 56)
+
+                Text(dojoMark)
+                    .font(.system(size: 26, weight: .black, design: .serif))
                     .foregroundColor(accentColor)
             }
             .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(entry.title)
-                    .font(.system(.headline, design: .rounded))
-                    .fontWeight(.bold)
-                    .foregroundColor(OniTanTheme.textPrimary)
+            VStack(alignment: .leading, spacing: 7) {
+                HStack(spacing: 8) {
+                    Text(displayTitle)
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                        .foregroundColor(OniTanTheme.textPrimary)
+
+                    if entry.id == "exam" {
+                        Text("本番形式")
+                            .font(.system(size: 10, weight: .bold, design: .rounded))
+                            .foregroundColor(OniTanTheme.accentPrimary)
+                            .padding(.horizontal, 7)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule()
+                                    .fill(OniTanTheme.accentPrimary.opacity(0.12))
+                                    .overlay(Capsule().stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1))
+                            )
+                    }
+                }
 
                 Text(entry.description)
-                    .font(.system(.caption, design: .rounded))
-                    .foregroundColor(OniTanTheme.textTertiary)
-                    .lineLimit(1)
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
 
-                HStack(spacing: 8) {
-                    if questionCount > 0 {
-                        Text("\(questionCount) 問")
-                            .font(.system(size: 11, weight: .semibold))
-                            .foregroundColor(accentColor)
-                    }
-                    Text("目標 \(Int(entry.targetAccuracy * 100))%")
-                        .font(.system(size: 11))
-                        .foregroundColor(OniTanTheme.textTertiary)
+                HStack(spacing: 10) {
+                    metadataPill(text: "\(questionCount) 問")
+                    metadataPill(text: "目標 \(Int(entry.targetAccuracy * 100))%")
                 }
             }
 
-            Spacer()
+            Spacer(minLength: 8)
 
             Image(systemName: "chevron.right")
-                .font(.system(size: 13))
+                .font(.system(size: 13, weight: .semibold))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .accessibilityHidden(true)
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 14)
+        .padding(.vertical, 16)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground)
+                .fill(
+                    LinearGradient(
+                        colors: [
+                            OniTanTheme.cardBackgroundPressed.opacity(entry.id == "exam" ? 0.96 : 0.82),
+                            OniTanTheme.cardBackground.opacity(0.92)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(accentColor.opacity(0.25), lineWidth: 1)
+                        .stroke(accentColor.opacity(entry.id == "exam" ? 0.34 : 0.18), lineWidth: 1)
                 )
         )
-        .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
-        .scaleEffect(isPressed ? 0.97 : 1.0)
+        .shadow(color: .black.opacity(0.24), radius: 10, y: 5)
+        .scaleEffect(isPressed ? 0.98 : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)
         .simultaneousGesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in isPressed = true }
                 .onEnded   { _ in isPressed = false }
         )
+    }
+
+    private func metadataPill(text: String) -> some View {
+        Text(text)
+            .font(.system(size: 11, weight: .semibold, design: .rounded))
+            .foregroundColor(OniTanTheme.textTertiary)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 3)
+            .background(
+                Capsule()
+                    .fill(Color.black.opacity(0.18))
+                    .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+            )
     }
 }
 
@@ -135,7 +213,7 @@ extension CategoryEntry {
                 stageIDs: Array(1...20),
                 targetAccuracy: 0.90,
                 iconName: "character.book.closed",
-                colorHex: "#4A90D9"
+                colorHex: "#D8B45A"
             ),
             CategoryEntry(
                 id: "commonKanji",
@@ -145,7 +223,7 @@ extension CategoryEntry {
                 stageIDs: [],
                 targetAccuracy: 0.90,
                 iconName: "square.on.square",
-                colorHex: "#E67E22"
+                colorHex: "#D8B45A"
             ),
             CategoryEntry(
                 id: "errorCorrection",
@@ -155,7 +233,7 @@ extension CategoryEntry {
                 stageIDs: [],
                 targetAccuracy: 0.90,
                 iconName: "checkmark.circle",
-                colorHex: "#E74C3C"
+                colorHex: "#B91C2B"
             ),
             CategoryEntry(
                 id: "yojijukugo",
@@ -165,7 +243,7 @@ extension CategoryEntry {
                 stageIDs: [],
                 targetAccuracy: 0.90,
                 iconName: "square.grid.2x2",
-                colorHex: "#9B59B6"
+                colorHex: "#D8B45A"
             ),
             CategoryEntry(
                 id: "synonym_antonym",
@@ -175,7 +253,7 @@ extension CategoryEntry {
                 stageIDs: [],
                 targetAccuracy: 0.90,
                 iconName: "arrow.left.arrow.right",
-                colorHex: "#27AE60"
+                colorHex: "#D8B45A"
             ),
             CategoryEntry(
                 id: "proverb",
@@ -185,7 +263,7 @@ extension CategoryEntry {
                 stageIDs: [],
                 targetAccuracy: 0.90,
                 iconName: "quote.bubble",
-                colorHex: "#D4AC0D"
+                colorHex: "#D8B45A"
             ),
             CategoryEntry(
                 id: "passage",
@@ -195,7 +273,7 @@ extension CategoryEntry {
                 stageIDs: [],
                 targetAccuracy: 0.90,
                 iconName: "doc.text.below.ecg",
-                colorHex: "#2980B9"
+                colorHex: "#D8B45A"
             ),
         ]
     }

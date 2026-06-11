@@ -21,9 +21,6 @@ enum OniTanTheme {
 
     static var goldGradient: LinearGradient { p.goldGradient }
 
-    /// Alias for the primary (purple) gradient — used for progress accents.
-    static var purpleGradient: LinearGradient { p.primaryGradient }
-
     /// Alias for the wrong/danger (red) gradient — used for warnings & oni accents.
     static var dangerGradient: LinearGradient { p.wrongGradient }
 
@@ -44,17 +41,17 @@ enum OniTanTheme {
 
     // MARK: - Corner Radius
 
-    static let radiusCard: CGFloat    = 20
-    static let radiusButton: CGFloat  = 16
-    static let radiusBadge: CGFloat   = 12
+    static let radiusCard: CGFloat    = 18
+    static let radiusButton: CGFloat  = 14
+    static let radiusBadge: CGFloat   = 10
 
     // MARK: - Shadow
 
     static var shadowCard: (color: Color, radius: CGFloat, y: CGFloat) {
-        (color: Color.black.opacity(0.25), radius: 12, y: 6)
+        (color: Color.black.opacity(0.34), radius: 14, y: 7)
     }
     static var shadowGlow: (color: Color, radius: CGFloat, y: CGFloat) {
-        (color: p.shadowGlowColor, radius: 20, y: 0)
+        (color: p.shadowGlowColor, radius: 16, y: 0)
     }
 
     // MARK: - Haptics

@@ -109,7 +109,7 @@ struct TrainingModePickerView: View {
                         }
                     }
                     .padding(.horizontal, 20)
-                    .padding(.vertical, 20)
+                    .padding(.vertical, 18)
                 }
             }
         }
@@ -123,16 +123,44 @@ struct TrainingModePickerView: View {
     // MARK: - Subviews
 
     private var poolHeader: some View {
-        HStack(spacing: 16) {
-            Label("\(categoryPool.count) 問", systemImage: "doc.text")
-            Label(category.description, systemImage: "info.circle")
-                .lineLimit(1)
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Text(category.title.replacingOccurrences(of: "道場", with: ""))
+                    .font(.system(size: 24, weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
+
+                Text("\(categoryPool.count) 問")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(
+                        Capsule()
+                            .fill(OniTanTheme.accentWeak.opacity(0.12))
+                            .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.28), lineWidth: 1))
+                    )
+            }
+
+            Text(category.description)
+                .font(.system(size: 13, weight: .medium, design: .rounded))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Rectangle()
+                .fill(OniTanTheme.goldGradient)
+                .frame(width: 44, height: 2)
         }
-        .font(.system(.caption, design: .rounded))
-        .foregroundColor(OniTanTheme.textTertiary)
-        .padding(.vertical, 12)
-        .frame(maxWidth: .infinity)
-        .background(OniTanTheme.cardBackground.opacity(0.5))
+        .padding(.horizontal, 20)
+        .padding(.top, 16)
+        .padding(.bottom, 10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(
+                colors: [OniTanTheme.cardBackground.opacity(0.72), Color.black.opacity(0.02)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
     }
 
     @ViewBuilder
@@ -182,8 +210,8 @@ struct TrainingModePickerView: View {
     private var emptyPoolNote: some View {
         VStack(spacing: 8) {
             Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 24))
-                .foregroundColor(OniTanTheme.textTertiary)
+                .font(.system(size: 22, weight: .semibold))
+                .foregroundColor(OniTanTheme.accentWeak)
             Text("このカテゴリには問題データがまだありません")
                 .font(.system(.subheadline, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
@@ -197,7 +225,11 @@ struct TrainingModePickerView: View {
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(OniTanTheme.cardBackground.opacity(0.5))
+                .fill(OniTanTheme.cardBackground.opacity(0.76))
+                .overlay(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                )
         )
     }
 
@@ -230,55 +262,63 @@ private struct TrainingModeCard: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            // Icon circle
             ZStack {
-                Circle()
+                RoundedRectangle(cornerRadius: 13)
                     .fill(iconGradient)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 13)
+                            .stroke(iconStroke, lineWidth: 1)
+                    )
                     .frame(width: 48, height: 48)
-                    .opacity(enabled ? 1.0 : 0.35)
-                Image(systemName: mode.systemImage)
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(.white)
-                    .opacity(enabled ? 1.0 : 0.5)
+                    .opacity(enabled ? 1.0 : 0.38)
+
+                Text(sealMark)
+                    .font(.system(size: 20, weight: .black, design: .serif))
+                    .foregroundColor(enabled ? markColor : OniTanTheme.textTertiary.opacity(0.55))
             }
             .accessibilityHidden(true)
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 6) {
                 HStack(spacing: 8) {
                     Text(label)
-                        .font(.system(.headline, design: .rounded))
-                        .fontWeight(.bold)
+                        .font(.system(size: 17, weight: .black, design: .rounded))
                         .foregroundColor(enabled ? OniTanTheme.textPrimary : OniTanTheme.textTertiary)
 
                     if enabled {
                         Text("\(questionCount) 問")
                             .font(.system(size: 11, weight: .semibold))
-                            .foregroundColor(OniTanTheme.textTertiary)
+                            .foregroundColor(OniTanTheme.accentWeak)
                             .padding(.horizontal, 7)
-                            .padding(.vertical, 2)
-                            .background(OniTanTheme.cardBackground)
-                            .cornerRadius(8)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule()
+                                    .fill(OniTanTheme.accentWeak.opacity(0.10))
+                                    .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.22), lineWidth: 1))
+                            )
                     } else {
                         Text("準備中")
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(OniTanTheme.textTertiary)
                             .padding(.horizontal, 7)
-                            .padding(.vertical, 2)
-                            .background(OniTanTheme.cardBackground)
-                            .cornerRadius(8)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule()
+                                    .fill(OniTanTheme.cardBackgroundPressed.opacity(0.5))
+                                    .overlay(Capsule().stroke(OniTanTheme.cardBorder.opacity(0.5), lineWidth: 1))
+                            )
                     }
                 }
 
                 if let reason = disabledReason {
                     Text(reason)
-                        .font(.system(.caption2, design: .rounded))
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundColor(OniTanTheme.textTertiary.opacity(0.7))
                         .lineLimit(2)
                         .fixedSize(horizontal: false, vertical: true)
                 } else {
                     Text(mode.description)
-                        .font(.system(.caption, design: .rounded))
-                        .foregroundColor(enabled ? OniTanTheme.textTertiary : OniTanTheme.textTertiary.opacity(0.45))
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                        .foregroundColor(enabled ? OniTanTheme.textSecondary : OniTanTheme.textTertiary.opacity(0.45))
                         .lineLimit(2)
                 }
             }
@@ -287,26 +327,26 @@ private struct TrainingModeCard: View {
 
             if enabled {
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 13))
+                    .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(OniTanTheme.textTertiary)
                     .accessibilityHidden(true)
             }
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 14)
+        .padding(.vertical, 15)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(enabled ? OniTanTheme.cardBackground : OniTanTheme.cardBackground.opacity(0.45))
+                .fill(enabled ? OniTanTheme.cardBackground : OniTanTheme.cardBackground.opacity(0.46))
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                         .stroke(
-                            enabled ? OniTanTheme.cardBorder : OniTanTheme.cardBorder.opacity(0.4),
+                            enabled ? OniTanTheme.cardBorder : OniTanTheme.cardBorder.opacity(0.35),
                             lineWidth: 1
                         )
                 )
         )
-        .shadow(color: .black.opacity(enabled ? 0.22 : 0.10), radius: 8, y: 4)
-        .scaleEffect(isPressed && enabled ? 0.97 : 1.0)
+        .shadow(color: .black.opacity(enabled ? 0.24 : 0.08), radius: 9, y: 4)
+        .scaleEffect(isPressed && enabled ? 0.98 : 1.0)
         .animation(.easeInOut(duration: 0.1), value: isPressed)
         .simultaneousGesture(
             DragGesture(minimumDistance: 0)
@@ -315,32 +355,67 @@ private struct TrainingModeCard: View {
         )
     }
 
+    private var sealMark: String {
+        switch mode {
+        case .quick10: return "十"
+        case .categoryFocus: return "鍛"
+        case .weakFocus: return "弱"
+        case .mistakeReview: return "誤"
+        case .masteryReview: return "定"
+        case .examMini: return "試"
+        default: return "修"
+        }
+    }
+
+    private var markColor: Color {
+        switch mode {
+        case .quick10, .weakFocus: return OniTanTheme.accentWeak
+        case .examMini: return OniTanTheme.textPrimary
+        default: return OniTanTheme.textPrimary
+        }
+    }
+
+    private var iconStroke: Color {
+        switch mode {
+        case .quick10, .weakFocus:
+            return OniTanTheme.accentWeak.opacity(0.35)
+        case .examMini:
+            return OniTanTheme.accentPrimary.opacity(0.42)
+        default:
+            return OniTanTheme.cardBorder
+        }
+    }
+
     private var iconGradient: LinearGradient {
         switch mode {
         case .quick10:
             return LinearGradient(
-                colors: [Color(red: 1.0, green: 0.50, blue: 0.0), Color(red: 0.90, green: 0.35, blue: 0.0)],
+                colors: [OniTanTheme.accentWeak.opacity(0.22), OniTanTheme.cardBackgroundPressed],
                 startPoint: .topLeading, endPoint: .bottomTrailing)
         case .categoryFocus:
-            return OniTanTheme.primaryGradient
+            return LinearGradient(
+                colors: [OniTanTheme.accentPrimary.opacity(0.28), OniTanTheme.cardBackgroundPressed],
+                startPoint: .topLeading, endPoint: .bottomTrailing)
         case .weakFocus:
             return LinearGradient(
-                colors: [OniTanTheme.accentWeak, Color(red: 0.90, green: 0.40, blue: 0.0)],
+                colors: [OniTanTheme.accentWeak.opacity(0.24), OniTanTheme.cardBackgroundPressed],
                 startPoint: .topLeading, endPoint: .bottomTrailing)
         case .mistakeReview:
             return LinearGradient(
-                colors: [Color(red: 0.55, green: 0.20, blue: 0.55), Color(red: 0.35, green: 0.08, blue: 0.38)],
+                colors: [OniTanTheme.accentPrimary.opacity(0.24), OniTanTheme.cardBackgroundPressed],
                 startPoint: .topLeading, endPoint: .bottomTrailing)
         case .masteryReview:
             return LinearGradient(
-                colors: [Color(red: 0.20, green: 0.50, blue: 0.90), Color(red: 0.10, green: 0.35, blue: 0.70)],
+                colors: [OniTanTheme.accentWeak.opacity(0.18), OniTanTheme.cardBackgroundPressed],
                 startPoint: .topLeading, endPoint: .bottomTrailing)
         case .examMini:
             return LinearGradient(
-                colors: [Color(red: 0.70, green: 0.15, blue: 0.15), Color(red: 0.50, green: 0.05, blue: 0.05)],
+                colors: [OniTanTheme.accentPrimary.opacity(0.52), OniTanTheme.cardBackgroundPressed],
                 startPoint: .topLeading, endPoint: .bottomTrailing)
         default:
-            return OniTanTheme.primaryGradient
+            return LinearGradient(
+                colors: [OniTanTheme.accentPrimary.opacity(0.24), OniTanTheme.cardBackgroundPressed],
+                startPoint: .topLeading, endPoint: .bottomTrailing)
         }
     }
 }

@@ -15,7 +15,7 @@ private enum HomeInk {
     static let gold = Color(hex: "D8B45A")
     static let textPrimary = Color(hex: "F6EFE2")
     static let textSecondary = Color(hex: "AFA393")
-    static let border = Color.white.opacity(0.08)
+    static let border = Color(hex: "D8B45A").opacity(0.12)
 }
 
 struct HomeView: View {
@@ -475,7 +475,7 @@ struct HomeView: View {
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 7)
-            .background(Color.white.opacity(0.03))
+            .background(HomeInk.textPrimary.opacity(0.03))
             .cornerRadius(10)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -509,10 +509,10 @@ struct HomeView: View {
         VStack {
             HStack(spacing: 8) {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(.yellow)
+                    .foregroundColor(HomeInk.gold)
                 Text(error.localizedDescription)
                     .font(.caption)
-                    .foregroundColor(.white)
+                    .foregroundColor(HomeInk.textPrimary)
                     .lineLimit(2)
             }
             .padding(12)
@@ -652,15 +652,15 @@ private struct HomePrimaryActionCard: View {
 
     private var iconBackground: Color {
         switch style {
-        case .primary: return Color.white.opacity(0.18)
-        case .neutral: return Color.white.opacity(0.06)
+        case .primary: return HomeInk.textPrimary.opacity(0.18)
+        case .neutral: return HomeInk.textPrimary.opacity(0.06)
         case .gold: return HomeInk.gold.opacity(0.14)
         }
     }
 
     private var iconColor: Color {
         switch style {
-        case .primary: return .white
+        case .primary: return HomeInk.textPrimary
         case .neutral: return HomeInk.textPrimary
         case .gold: return HomeInk.gold
         }
@@ -668,21 +668,21 @@ private struct HomePrimaryActionCard: View {
 
     private var titleColor: Color {
         switch style {
-        case .primary: return .white
+        case .primary: return HomeInk.textPrimary
         case .neutral, .gold: return HomeInk.textPrimary
         }
     }
 
     private var subtitleColor: Color {
         switch style {
-        case .primary: return .white.opacity(0.78)
+        case .primary: return HomeInk.textPrimary.opacity(0.78)
         case .neutral, .gold: return HomeInk.textSecondary
         }
     }
 
     private var borderColor: Color {
         switch style {
-        case .primary: return Color.white.opacity(0.10)
+        case .primary: return HomeInk.textPrimary.opacity(0.10)
         case .neutral: return HomeInk.border
         case .gold: return HomeInk.gold.opacity(0.25)
         }

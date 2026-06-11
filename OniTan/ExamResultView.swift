@@ -70,7 +70,7 @@ struct ExamResultView: View {
         VStack(spacing: 8) {
             ZStack {
                 Circle()
-                    .fill((passed ? OniTanTheme.accentCorrect : OniTanTheme.accentWeak).opacity(0.15))
+                    .fill((passed ? OniTanTheme.accentWeak : OniTanTheme.accentWrong).opacity(0.14))
                     .frame(width: 70, height: 70)
                     .blur(radius: 12)
 
@@ -85,7 +85,7 @@ struct ExamResultView: View {
 
             Text(passed ? "合格ライン到達！" : "もう一歩！")
                 .font(playFont(13, weight: .semibold))
-                .foregroundColor(passed ? OniTanTheme.accentCorrect : OniTanTheme.accentWeak)
+                .foregroundColor(passed ? OniTanTheme.accentWeak : OniTanTheme.accentWrong)
         }
     }
 
@@ -126,7 +126,7 @@ struct ExamResultView: View {
 
             Text("合格目安: \(formattedPercent(passingAccuracy))")
                 .font(playFont(12, weight: .medium))
-                .foregroundColor(OniTanTheme.accentPrimary)
+                .foregroundColor(passed ? OniTanTheme.accentWeak : OniTanTheme.accentWrong)
         }
         .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
@@ -180,9 +180,9 @@ struct ExamResultView: View {
                     HStack(spacing: 10) {
                         Text("\(index + 1)")
                             .font(playFont(12, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(OniTanTheme.textPrimary)
                             .frame(width: 22, height: 22)
-                            .background(Circle().fill(OniTanTheme.accentWeak))
+                            .background(Circle().fill(OniTanTheme.accentWrong.opacity(0.82)))
 
                         Text(entry.kind.displayName)
                             .font(playFont(13, weight: .medium))
@@ -213,7 +213,7 @@ struct ExamResultView: View {
             HStack(spacing: 10) {
                 Image(systemName: category.iconName)
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(OniTanTheme.accentPrimary)
+                    .foregroundColor(OniTanTheme.accentWeak)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(category.title)

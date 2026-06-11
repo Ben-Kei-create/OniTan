@@ -81,7 +81,7 @@ struct StageProgressRing: View {
                 lineWidth: 5,
                 size: 48,
                 gradient: cleared
-                    ? Gradient(colors: [OniTanTheme.accentCorrect, Color(red: 0.0, green: 0.9, blue: 0.5)])
+                    ? Gradient(colors: [OniTanTheme.accentWeak, Color(hex: "8E6A2C")])
                     : Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentWeak])
             )
 

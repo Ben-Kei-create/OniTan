@@ -12,7 +12,7 @@ struct ExplanationContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             kindSpecificHeader
-            Divider().background(Color.white.opacity(0.15))
+            Divider().background(OniTanTheme.cardBorder)
             explanationBody
         }
     }

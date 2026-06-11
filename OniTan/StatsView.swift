@@ -18,6 +18,8 @@ struct StatsView: View {
 
                 ScrollView {
                     VStack(spacing: 20) {
+                        reportHeader
+
                         overallSummaryCard
 
                         wrongAnswerNoteLink
@@ -40,7 +42,23 @@ struct StatsView: View {
         .navigationTitle("学習統計")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+    }
+
+    private var reportHeader: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("稽古の記録")
+                .font(.system(size: 24, weight: .black, design: .rounded))
+                .foregroundColor(OniTanTheme.textPrimary)
+            Text("通算の進捗と、次に整えるべき弱点。")
+                .font(.system(size: 13, weight: .medium, design: .rounded))
+                .foregroundColor(OniTanTheme.textSecondary)
+            Rectangle()
+                .fill(OniTanTheme.goldGradient)
+                .frame(width: 44, height: 2)
+                .padding(.top, 4)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     // MARK: - Overall Summary
@@ -52,7 +70,7 @@ struct StatsView: View {
                     value: "\(appState.clearedStages.count) / \(stages.count)",
                     label: "クリアステージ",
                     icon: "trophy.fill",
-                    iconColor: OniTanTheme.accentCorrect
+                    iconColor: OniTanTheme.accentWeak
                 )
 
                 Divider()
@@ -63,7 +81,7 @@ struct StatsView: View {
                     value: String(format: "%.0f%%", statsRepo.overallAccuracy * 100),
                     label: "総合正答率",
                     icon: "chart.bar.fill",
-                    iconColor: OniTanTheme.accentPrimary
+                    iconColor: OniTanTheme.accentWeak
                 )
 
                 Divider()
@@ -86,7 +104,7 @@ struct StatsView: View {
                             .fill(OniTanTheme.cardBorder)
                             .frame(height: 6)
                         RoundedRectangle(cornerRadius: 3)
-                            .fill(OniTanTheme.primaryGradient)
+                            .fill(OniTanTheme.goldGradient)
                             .frame(width: geo.size.width * p, height: 6)
                             .animation(.easeInOut(duration: 0.5), value: p)
                     }
@@ -113,7 +131,7 @@ struct StatsView: View {
                         .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
-        .shadow(color: .black.opacity(0.2), radius: 10, y: 5)
+        .shadow(color: .black.opacity(0.22), radius: 10, y: 5)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("総合統計: \(appState.clearedStages.count)/\(stages.count)ステージクリア 正答率\(Int(statsRepo.overallAccuracy * 100))% 総正解\(statsRepo.totalCorrect)問")
     }
@@ -125,12 +143,16 @@ struct StatsView: View {
             NavigationLink(destination: WrongAnswerNoteView()) {
                 HStack(spacing: 12) {
                     ZStack {
-                        Circle()
-                            .fill(OniTanTheme.primaryGradient)
+                        RoundedRectangle(cornerRadius: 11)
+                            .fill(OniTanTheme.accentWrong.opacity(0.14))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 11)
+                                    .stroke(OniTanTheme.accentWrong.opacity(0.28), lineWidth: 1)
+                            )
                             .frame(width: 40, height: 40)
-                        Image(systemName: "note.text")
-                            .font(.system(size: 17, weight: .semibold))
-                            .foregroundColor(.white)
+                        Text("誤")
+                            .font(.system(size: 18, weight: .black, design: .serif))
+                            .foregroundColor(OniTanTheme.accentWrong)
                     }
                     .accessibilityHidden(true)
 
@@ -212,7 +234,7 @@ private struct StageStatCard: View {
                 if isCleared {
                     Label("クリア済み", systemImage: "checkmark.circle.fill")
                         .font(.system(.caption, design: .rounded))
-                        .foregroundColor(OniTanTheme.accentCorrect)
+                        .foregroundColor(OniTanTheme.accentWeak)
                         .accessibilityLabel("クリア済み")
                 }
             }
@@ -227,7 +249,7 @@ private struct StageStatCard: View {
                         Text(String(format: "%.0f%%", stats.accuracy * 100))
                             .font(.system(.subheadline, design: .rounded))
                             .fontWeight(.bold)
-                            .foregroundColor(stats.accuracy >= 0.8 ? OniTanTheme.accentCorrect : OniTanTheme.accentWeak)
+                            .foregroundColor(stats.accuracy >= 0.8 ? OniTanTheme.accentWeak : OniTanTheme.accentWrong)
                     }
 
                     GeometryReader { geo in
@@ -236,7 +258,7 @@ private struct StageStatCard: View {
                                 .fill(OniTanTheme.cardBorder)
                                 .frame(height: 6)
                             RoundedRectangle(cornerRadius: 3)
-                                .fill(stats.accuracy >= 0.8 ? OniTanTheme.correctGradient : OniTanTheme.primaryGradient)
+                                .fill(stats.accuracy >= 0.8 ? OniTanTheme.goldGradient : OniTanTheme.wrongGradient)
                                 .frame(width: geo.size.width * stats.accuracy, height: 6)
                                 .animation(.easeInOut(duration: 0.5), value: stats.accuracy)
                         }
@@ -256,7 +278,7 @@ private struct StageStatCard: View {
                     VStack(alignment: .leading, spacing: 6) {
                         Text("苦手な漢字")
                             .font(.system(.caption2, design: .rounded))
-                            .foregroundColor(OniTanTheme.accentWeak)
+                            .foregroundColor(OniTanTheme.accentWrong)
 
                         FlowLayout(spacing: 8) {
                             ForEach(stats.wrongKanji, id: \.self) { kanji in
@@ -267,7 +289,7 @@ private struct StageStatCard: View {
                                 } label: {
                                     Text(kanji)
                                         .font(.system(size: 22, weight: .bold, design: .rounded))
-                                        .foregroundColor(.white)
+                                        .foregroundColor(OniTanTheme.textPrimary)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 6)
                                         .background(OniTanTheme.wrongGradient)
@@ -300,7 +322,7 @@ private struct StageStatCard: View {
                 .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(isCleared ? OniTanTheme.accentCorrect.opacity(0.3) : OniTanTheme.cardBorder, lineWidth: 1)
+                        .stroke(isCleared ? OniTanTheme.accentWeak.opacity(0.28) : OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
         .shadow(color: .black.opacity(0.15), radius: 6, y: 3)
