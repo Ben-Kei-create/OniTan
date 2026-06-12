@@ -20,7 +20,7 @@ struct CategoryTrainingView: View {
                     header
 
                     ForEach(categories) { entry in
-                        NavigationLink(destination: TrainingModePickerView(category: entry)) {
+                        NavigationLink(destination: destination(for: entry)) {
                             CategoryRowCard(entry: entry)
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -37,6 +37,15 @@ struct CategoryTrainingView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
+    }
+
+    @ViewBuilder
+    private func destination(for entry: CategoryEntry) -> some View {
+        if entry.id == "exam" {
+            ExamRoundSelectionView()
+        } else {
+            TrainingModePickerView(category: entry)
+        }
     }
 
     private var header: some View {

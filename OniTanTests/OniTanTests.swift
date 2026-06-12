@@ -280,6 +280,53 @@ struct QuizProblemReportBuilderTests {
     }
 }
 
+// MARK: - Exam Round Progression Tests
+
+@MainActor
+struct ExamRoundProgressionTests {
+
+    @Test func firstRoundIsUnlockedAndSecondRequiresPreviousRoundAt80Percent() {
+        let repo = ExamResultRepository(store: InMemoryPersistenceStore())
+        let round1 = ExamRound(number: 1)
+        let round2 = ExamRound(number: 2)
+
+        #expect(round1.isUnlocked(using: repo))
+        #expect(!round2.isUnlocked(using: repo))
+
+        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 79, total: 100))
+        #expect(!repo.hasPassed(blueprintID: round1.blueprintID, threshold: ExamRound.passThreshold))
+        #expect(!round2.isUnlocked(using: repo))
+
+        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 80, total: 100))
+        #expect(repo.hasPassed(blueprintID: round1.blueprintID, threshold: ExamRound.passThreshold))
+        #expect(round2.isUnlocked(using: repo))
+    }
+
+    @Test func tenthRoundRequiresNinthRoundPass() {
+        let repo = ExamResultRepository(store: InMemoryPersistenceStore())
+        let round10 = ExamRound(number: 10)
+
+        #expect(!round10.isUnlocked(using: repo))
+
+        repo.save(Self.result(blueprintID: ExamRound.blueprintID(for: 9), correct: 8, total: 10))
+        #expect(round10.isUnlocked(using: repo))
+    }
+
+    private static func result(blueprintID: String, correct: Int, total: Int) -> ExamResult {
+        ExamResult(
+            id: UUID(),
+            date: Date(),
+            blueprintID: blueprintID,
+            totalQuestions: total,
+            correctCount: correct,
+            byKind: [
+                QuestionKind.sentenceReading.rawValue: KindScore(total: total, correct: correct)
+            ],
+            wrongQuestionIDs: []
+        )
+    }
+}
+
 // MARK: - StreakRepository Tests
 
 struct StreakRepositoryTests {

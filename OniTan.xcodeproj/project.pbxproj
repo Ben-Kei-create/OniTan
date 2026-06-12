@@ -97,6 +97,7 @@
 		A5BA44592FDAF6C20049775C /* ExamResultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA435C2FDAF6C20049775C /* ExamResultRepository.swift */; };
 		A5BA445A2FDAF6C20049775C /* AppNavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43582FDAF6C20049775C /* AppNavigationState.swift */; };
 		A5BA445B2FDAF6C20049775C /* OniComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43622FDAF6C20049775C /* OniComponents.swift */; };
+		A5BA445C2FDAF6C20049775C /* ExamRoundSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA43662FDAF6C20049775C /* ExamRoundSelectionView.swift */; };
 		A98B73A6AB9F7EABED9236E8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74745D835668D62C4F1D5954 /* Data.swift */; };
 		A9948E76FA5D5132F4E56897 /* stage17.json in Resources */ = {isa = PBXBuildFile; fileRef = B8B3017B906F3D53076A3F6A /* stage17.json */; };
 		AD5E749E79179E2C8F4DCA29 /* stage4.json in Resources */ = {isa = PBXBuildFile; fileRef = 60D557CF77C4478A77473FB1 /* stage4.json */; };
@@ -245,6 +246,7 @@
 		A5BA435B2FDAF6C20049775C /* ExamBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamBuilder.swift; sourceTree = "<group>"; };
 		A5BA435C2FDAF6C20049775C /* ExamResultRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultRepository.swift; sourceTree = "<group>"; };
 		A5BA435D2FDAF6C20049775C /* ExamResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamResultView.swift; sourceTree = "<group>"; };
+		A5BA43662FDAF6C20049775C /* ExamRoundSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamRoundSelectionView.swift; sourceTree = "<group>"; };
 		A5BA435E2FDAF6C20049775C /* ExplanationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationContentView.swift; sourceTree = "<group>"; };
 		A5BA435F2FDAF6C20049775C /* MasteryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryRepository.swift; sourceTree = "<group>"; };
 		A5BA43602FDAF6C20049775C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				A5BA435B2FDAF6C20049775C /* ExamBuilder.swift */,
 				A5BA435C2FDAF6C20049775C /* ExamResultRepository.swift */,
 				A5BA435D2FDAF6C20049775C /* ExamResultView.swift */,
+				A5BA43662FDAF6C20049775C /* ExamRoundSelectionView.swift */,
 				A5BA435E2FDAF6C20049775C /* ExplanationContentView.swift */,
 				A5BA435F2FDAF6C20049775C /* MasteryRepository.swift */,
 				A5BA43602FDAF6C20049775C /* NotificationManager.swift */,
@@ -664,6 +667,7 @@
 				A5BA44552FDAF6C20049775C /* ExplanationContentView.swift in Sources */,
 				A5BA44562FDAF6C20049775C /* TrainingMode.swift in Sources */,
 				A5BA44572FDAF6C20049775C /* ExamResultView.swift in Sources */,
+				A5BA445C2FDAF6C20049775C /* ExamRoundSelectionView.swift in Sources */,
 				A5BA44582FDAF6C20049775C /* AdInterstitialManager.swift in Sources */,
 				A5BA44592FDAF6C20049775C /* ExamResultRepository.swift in Sources */,
 				A5BA445A2FDAF6C20049775C /* AppNavigationState.swift in Sources */,

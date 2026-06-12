@@ -76,6 +76,18 @@ final class ExamResultRepository: ObservableObject {
         return recent.reduce(0.0) { $0 + $1.accuracy } / Double(recent.count)
     }
 
+    func bestAccuracy(forBlueprintID blueprintID: String) -> Double? {
+        results
+            .filter { $0.blueprintID == blueprintID }
+            .map(\.accuracy)
+            .max()
+    }
+
+    func hasPassed(blueprintID: String, threshold: Double) -> Bool {
+        guard let bestAccuracy = bestAccuracy(forBlueprintID: blueprintID) else { return false }
+        return bestAccuracy >= threshold
+    }
+
     // MARK: - Reset
 
     func reset() {

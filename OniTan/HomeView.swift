@@ -281,16 +281,7 @@ struct HomeView: View {
 
     @ViewBuilder
     private var examDestination: some View {
-        if let exam = examCategory {
-            TrainingModePickerView(category: exam)
-        } else {
-            CategoryTrainingView()
-        }
-    }
-
-    /// 「総合模試」カテゴリ（categories.jsonの"exam"エントリ）。
-    private var examCategory: CategoryEntry? {
-        categoryManifest?.categories.first { $0.id == "exam" }
+        ExamRoundSelectionView()
     }
 
     // MARK: - Secondary Links
