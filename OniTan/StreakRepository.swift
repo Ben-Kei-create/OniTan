@@ -41,6 +41,7 @@ final class StreakRepository: ObservableObject {
     private let store: PersistenceStore
     private let key = "streak_v2"
     private let legacyKey = "streak_v1"
+    private let contentVersionKey = "streakContentVersion"
     private let nowProvider: () -> Date
     private var data = StreakData()
     private var hasPendingFreezeNotice = false
@@ -53,6 +54,7 @@ final class StreakRepository: ObservableObject {
         self.store = store
         self.nowProvider = nowProvider
         load()
+        migrateContentVersionIfNeeded()
         repairForToday()
     }
 
@@ -205,5 +207,30 @@ final class StreakRepository: ObservableObject {
             return
         }
         store.set(encoded, forKey: key)
+    }
+
+    private func migrateContentVersionIfNeeded() {
+        let savedVersion = loadContentVersion()
+        guard savedVersion == quizContentVersion else {
+            data = StreakData()
+            save()
+            saveContentVersion()
+            streakLogger.info("Streak data reset for quiz content version migration")
+            return
+        }
+        saveContentVersion()
+    }
+
+    private func loadContentVersion() -> String? {
+        guard let data = store.data(forKey: contentVersionKey),
+              let decoded = try? JSONDecoder().decode(String.self, from: data) else {
+            return nil
+        }
+        return decoded
+    }
+
+    private func saveContentVersion() {
+        guard let encoded = try? JSONEncoder().encode(quizContentVersion) else { return }
+        store.set(encoded, forKey: contentVersionKey)
     }
 }

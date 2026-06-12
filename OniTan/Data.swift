@@ -253,6 +253,22 @@ func validateQuizDataStrict(_ data: QuizData) throws {
                     }
                 }
 
+            case .passageVocabulary:
+                if p.type == "cloze" {
+                    if let sentence = p.sentence,
+                       let blankToken = p.blankToken,
+                       !blankToken.isEmpty,
+                       !sentence.contains(blankToken) {
+                        errors.append("\(qtag): cloze の sentence に blankToken「\(blankToken)」が含まれていません")
+                    }
+                    if let passageText = p.passageText,
+                       let passageBlankToken = p.passageBlankToken,
+                       !passageBlankToken.isEmpty,
+                       !passageText.contains(passageBlankToken) {
+                        errors.append("\(qtag): passageVocabulary の passageText に passageBlankToken「\(passageBlankToken)」が含まれていません")
+                    }
+                }
+
             default:
                 break
             }

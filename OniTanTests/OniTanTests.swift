@@ -221,9 +221,9 @@ struct FavoriteSessionBuilderTests {
 
     @Test func favoriteStage_keepsOnlyFavoriteKanjiInSourceOrder() {
         let pool = [
-            Question(kanji: "魁", choices: ["かい", "がい"], answer: "かい", explain: ""),
-            Question(kanji: "庖", choices: ["ほう", "びょう"], answer: "ほう", explain: ""),
-            Question(kanji: "麒", choices: ["き", "ぎ"], answer: "き", explain: "")
+            Question(kanji: "魁", choices: ["かい", "がい"], answer: "かい", explain: "", kind: .sentenceReading),
+            Question(kanji: "庖", choices: ["ほう", "びょう"], answer: "ほう", explain: "", kind: .sentenceReading),
+            Question(kanji: "麒", choices: ["き", "ぎ"], answer: "き", explain: "", kind: .sentenceReading)
         ]
 
         let stage = FavoriteSessionBuilder.buildFavoriteStage(
@@ -343,6 +343,7 @@ struct StreakRepositoryTests {
 
         let store = InMemoryPersistenceStore()
         store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+        Self.seedContentVersion(store)
 
         let repo = StreakRepository(store: store, nowProvider: { now })
         #expect(repo.currentStreak == 5, "Freeze should preserve streak when there is a gap")
@@ -367,6 +368,7 @@ struct StreakRepositoryTests {
 
         let store = InMemoryPersistenceStore()
         store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+        Self.seedContentVersion(store)
 
         let repo = StreakRepository(store: store, nowProvider: { now })
         #expect(repo.currentStreak == 0, "Streak should reset when no freeze remains")
@@ -391,6 +393,7 @@ struct StreakRepositoryTests {
 
         let store = InMemoryPersistenceStore()
         store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+        Self.seedContentVersion(store)
 
         _ = StreakRepository(store: store, nowProvider: { now })
         let repoAgain = StreakRepository(store: store, nowProvider: { now })
@@ -419,6 +422,7 @@ struct StreakRepositoryTests {
 
         let store = InMemoryPersistenceStore()
         store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+        Self.seedContentVersion(store)
 
         let repo = StreakRepository(store: store, nowProvider: { now })
         #expect(repo.currentStreak == 3, "2-day gap with freeze should preserve streak")
@@ -445,6 +449,7 @@ struct StreakRepositoryTests {
 
         let store = InMemoryPersistenceStore()
         store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+        Self.seedContentVersion(store)
 
         let repo = StreakRepository(store: store, nowProvider: { now })
         #expect(repo.currentStreak == 7, "1-day gap must not break streak (played yesterday)")
@@ -471,15 +476,43 @@ struct StreakRepositoryTests {
 
         let store = InMemoryPersistenceStore()
         store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+        Self.seedContentVersion(store)
 
         let repo = StreakRepository(store: store, nowProvider: { now })
         #expect(repo.freezeConsumedNoticeID > 0,
             "freezeConsumedNoticeID should increment when freeze is consumed at init")
     }
 
+    @Test func streak_contentVersionMismatchResetsSavedData() {
+        let now = Calendar.current.startOfDay(for: Date())
+        let seed = StreakData(
+            currentStreak: 9,
+            longestStreak: 12,
+            lastStudyDate: now,
+            todayCompleted: true,
+            todayAnswerCount: 10,
+            todayStudySeconds: 240,
+            freezeCount: 0,
+            freezeGrantMonthKey: Self.monthKey(for: now)
+        )
+
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "streak_v2")
+        store.set(try! JSONEncoder().encode("old-version"), forKey: "streakContentVersion")
+
+        let repo = StreakRepository(store: store, nowProvider: { now })
+        #expect(repo.currentStreak == 0)
+        #expect(repo.todayCompleted == false)
+        #expect(repo.todayAnswerCount == 0)
+    }
+
     private static func monthKey(for date: Date) -> String {
         let comps = Calendar.current.dateComponents([.year, .month], from: date)
         return "\(comps.year ?? 0)-\(comps.month ?? 0)"
+    }
+
+    private static func seedContentVersion(_ store: InMemoryPersistenceStore) {
+        store.set(try! JSONEncoder().encode(quizContentVersion), forKey: "streakContentVersion")
     }
 }
 
@@ -602,6 +635,18 @@ struct GamificationRepositoryTests {
         repo.addXP(.sessionComplete) // +20
         #expect(repo.todayXP == 25)
     }
+
+    @Test func xp_contentVersionMismatchResetsSavedData() {
+        let seed = GamificationData(totalXP: 250, todayXP: 40, lastXPDate: Date())
+        let store = InMemoryPersistenceStore()
+        store.set(try! JSONEncoder().encode(seed), forKey: "gamification_v2")
+        store.set(try! JSONEncoder().encode("old-version"), forKey: "gamificationContentVersion")
+
+        let repo = GamificationRepository(store: store)
+        #expect(repo.totalXP == 0)
+        #expect(repo.todayXP == 0)
+        #expect(repo.level == 1)
+    }
 }
 
 // MARK: - TodaySessionBuilder Tests
@@ -610,7 +655,13 @@ struct TodaySessionBuilderTests {
 
     private func makeStage(_ n: Int, kanjiPrefix: String, count: Int) -> Stage {
         let questions = (0..<count).map { i in
-            Question(kanji: "\(kanjiPrefix)\(i)", choices: ["A", "B"], answer: "A", explain: "")
+            Question(
+                kanji: "\(kanjiPrefix)\(i)",
+                choices: ["A", "B"],
+                answer: "A",
+                explain: "",
+                kind: .sentenceReading
+            )
         }
         return Stage(stage: n, questions: questions)
     }
@@ -878,7 +929,7 @@ struct QuestionModelTests {
             blankToken: "存在しないトークン"
         )
         let q = Question(kanji: "燎", choices: ["A", "B"], answer: "A",
-                         explain: "e", kind: .cloze, payload: payload)
+                         explain: "e", kind: .passageVocabulary, payload: payload)
         #expect(throws: DataLoadError.self) {
             try validateQuizDataStrict(quizData(stage(q)))
         }
@@ -893,7 +944,7 @@ struct QuestionModelTests {
             correctKanji: "燎"
         )
         let q = Question(kanji: "燎", choices: ["A", "B"], answer: "A",
-                         explain: "e", kind: .errorcorrection, payload: payload)
+                         explain: "e", kind: .errorCorrection, payload: payload)
         #expect(throws: DataLoadError.self) {
             try validateQuizDataStrict(quizData(stage(q)))
         }

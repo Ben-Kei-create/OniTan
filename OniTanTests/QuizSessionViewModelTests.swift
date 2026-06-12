@@ -140,6 +140,8 @@ final class QuizSessionViewModelTests: XCTestCase {
         vm.answer(selected: "かがりび"); vm.proceed()
         vm.answer(selected: "たくましい"); vm.proceed()
         vm.answer(selected: "かしこい")
+        XCTAssertEqual(vm.phase, .showingExplanation)
+        vm.proceed()
         XCTAssertEqual(vm.phase, .stageCleared)
         XCTAssertTrue(appState.isCleared(1))
     }
@@ -150,6 +152,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         vm.answer(selected: vm.currentQuestion.answer)
         vm.proceed()
         vm.answer(selected: vm.currentQuestion.answer)
+        vm.proceed()
         XCTAssertEqual(vm.phase, .stageCleared, "Exam mode should reach stageCleared")
         XCTAssertFalse(appState.isCleared(1), "Exam mode should NOT mark stage cleared in AppState")
     }
@@ -248,6 +251,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         let oneQ = Stage(stage: 1, questions: [q1])
         let vm = QuizSessionViewModel(stage: oneQ, appState: appState, statsRepo: statsRepo)
         vm.answer(selected: q1.answer)
+        vm.proceed()
         XCTAssertEqual(vm.phase, .stageCleared)
         vm.requestQuit()
         XCTAssertNil(vm.activeAlert, "No quit alert needed when stage is already cleared")
@@ -260,6 +264,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         let vm = QuizSessionViewModel(stage: reviewStage, appState: appState, statsRepo: statsRepo)
         XCTAssertEqual(vm.totalGoal, 1)
         vm.answer(selected: q1.answer)
+        vm.proceed()
         XCTAssertEqual(vm.phase, .stageCleared)
     }
 
@@ -271,6 +276,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         vm.proceed()
         XCTAssertEqual(vm.currentQuestion.kanji, q1.kanji, "Wrong answer re-queued")
         vm.answer(selected: q1.answer)
+        vm.proceed()
         XCTAssertEqual(vm.phase, .stageCleared)
     }
 
@@ -329,6 +335,7 @@ final class QuizSessionViewModelTests: XCTestCase {
             xpRepo: xpRepo, mode: .normal
         )
         vm.answer(selected: q1.answer)
+        vm.proceed()
         XCTAssertEqual(vm.phase, .stageCleared)
         let expectedXP = XPEvent.correctAnswer.points + XPEvent.sessionComplete.points
         XCTAssertEqual(xpRepo.totalXP, expectedXP)
@@ -345,6 +352,7 @@ final class QuizSessionViewModelTests: XCTestCase {
         vm.answer(selected: q1.answer); vm.proceed()
         vm.answer(selected: q2.answer); vm.proceed()
         vm.answer(selected: q3.answer)
+        vm.proceed()
         // Expected: 3 * correctAnswer(5) + 1 * comboBonus(2) + sessionComplete(20) = 37
         let expected = 3 * XPEvent.correctAnswer.points
             + XPEvent.comboBonus.points
@@ -369,7 +377,7 @@ final class QuizSessionViewModelTests: XCTestCase {
     func testTodaySession_displayTitle() {
         let todayStage = Stage(stage: 0, questions: [q1, q2])
         let vm = QuizSessionViewModel(stage: todayStage, appState: appState, statsRepo: statsRepo)
-        XCTAssertEqual(vm.displayTitle, "今日の10問")
+        XCTAssertEqual(vm.displayTitle, "ランダム10問")
         XCTAssertTrue(vm.isToday)
     }
 
@@ -379,6 +387,7 @@ final class QuizSessionViewModelTests: XCTestCase {
             stage: todayStage, appState: appState, statsRepo: statsRepo, mode: .normal
         )
         vm.answer(selected: q1.answer)
+        vm.proceed()
         XCTAssertEqual(vm.phase, .stageCleared)
         XCTAssertFalse(appState.isCleared(0), "Today session should never mark stage 0 as cleared")
         XCTAssertTrue(appState.clearedStages.isEmpty, "Today session should not touch clearedStages")

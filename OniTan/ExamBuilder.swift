@@ -1,4 +1,7 @@
 import Foundation
+import OSLog
+
+private let examBuilderLogger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "OniTan", category: "ExamBuilder")
 
 // MARK: - ExamBlueprint
 
@@ -46,6 +49,11 @@ struct ExamBuilder {
             let candidates = usablePool
                 .filter { $0.kind == kind }
                 .shuffled()
+            if candidates.count < count {
+                examBuilderLogger.warning(
+                    "Exam blueprint '\(blueprint.id, privacy: .public)' requested \(count, privacy: .public) '\(kind.rawValue, privacy: .public)' questions, but only \(candidates.count, privacy: .public) are available."
+                )
+            }
             selected += Array(candidates.prefix(count))
         }
 
@@ -58,6 +66,12 @@ struct ExamBuilder {
                 .shuffled()
                 .prefix(deficit)
             selected += extras
+        }
+
+        if selected.count < blueprint.questionCount {
+            examBuilderLogger.warning(
+                "Exam blueprint '\(blueprint.id, privacy: .public)' requested \(blueprint.questionCount, privacy: .public) questions, but only \(selected.count, privacy: .public) exam-eligible questions could be assembled from \(usablePool.count, privacy: .public) available candidates."
+            )
         }
 
         return ExamSession(
