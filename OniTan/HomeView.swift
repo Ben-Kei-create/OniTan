@@ -57,9 +57,6 @@ struct HomeView: View {
                             primaryActions(isCompact: isCompactHeight)
                                 .padding(.top, isCompactHeight ? 16 : 22)
 
-                            secondaryLinks(isCompact: isCompactHeight)
-                                .padding(.top, isCompactHeight ? 16 : 20)
-
                             Color.clear
                                 .frame(height: donationManager.hasDonated ? 18 : 28)
                         }
@@ -229,8 +226,6 @@ struct HomeView: View {
             if quizData.stages.isEmpty {
                 HomePrimaryActionCard(
                     title: "ランダム10問",
-                    subtitle: "問題データを読み込めません",
-                    icon: "！",
                     style: .disabled,
                     isCompact: isCompact,
                     destination: nil
@@ -239,8 +234,6 @@ struct HomeView: View {
             } else {
                 HomePrimaryActionCard(
                     title: "ランダム10問",
-                    subtitle: "まずは10問だけ鍛える",
-                    icon: "十",
                     style: .primary,
                     isCompact: isCompact,
                     destination: AnyView(
@@ -261,8 +254,6 @@ struct HomeView: View {
 
             HomePrimaryActionCard(
                 title: "道場選択",
-                subtitle: "分野ごとに集中して鍛える",
-                icon: "道",
                 style: .neutral,
                 isCompact: isCompact,
                 destination: AnyView(CategoryTrainingView())
@@ -270,43 +261,39 @@ struct HomeView: View {
 
             HomePrimaryActionCard(
                 title: "模擬試験",
-                subtitle: "本番形式で実力をはかる",
-                icon: "試",
                 style: .gold,
                 isCompact: isCompact,
                 destination: AnyView(examDestination)
             )
+
+            HomePrimaryActionCard(
+                title: "漢字一覧",
+                style: .neutral,
+                isCompact: isCompact,
+                destination: AnyView(KanjiCatalogView())
+            )
+
+            if favoriteRepo.count > 0 {
+                HomePrimaryActionCard(
+                    title: "お気に入り",
+                    style: .neutral,
+                    isCompact: isCompact,
+                    destination: AnyView(
+                        QuizModeSelectView(
+                            stage: FavoriteSessionBuilder.buildFavoriteStage(
+                                favoriteKanji: favoriteRepo.favoriteKanji
+                            ),
+                            sessionTitle: "お気に入り"
+                        )
+                    )
+                )
+            }
         }
     }
 
     @ViewBuilder
     private var examDestination: some View {
         ExamRoundSelectionView()
-    }
-
-    // MARK: - Secondary Links
-
-    private func secondaryLinks(isCompact: Bool) -> some View {
-        VStack(spacing: 8) {
-            HStack(spacing: 8) {
-                HomeSecondaryLink(title: "漢字一覧", icon: "字", destination: AnyView(KanjiCatalogView()))
-
-                if favoriteRepo.count > 0 {
-                    HomeSecondaryLink(
-                        title: "お気に入り",
-                        icon: "星",
-                        destination: AnyView(
-                            QuizModeSelectView(
-                                stage: FavoriteSessionBuilder.buildFavoriteStage(
-                                    favoriteKanji: favoriteRepo.favoriteKanji
-                                ),
-                                sessionTitle: "お気に入り"
-                            )
-                        )
-                    )
-                }
-            }
-        }
     }
 
     // MARK: - Error Banner
@@ -384,8 +371,6 @@ private enum HomePrimaryCardStyle {
 
 private struct HomePrimaryActionCard: View {
     let title: String
-    let subtitle: String
-    let icon: String
     let style: HomePrimaryCardStyle
     let isCompact: Bool
     let destination: AnyView?
@@ -408,28 +393,14 @@ private struct HomePrimaryActionCard: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(title)
-        .accessibilityHint(destination != nil ? "タップして\(title)を開始" : subtitle)
+        .accessibilityHint(destination != nil ? "タップして\(title)を開始" : "")
     }
 
     private var cardContent: some View {
         HStack(spacing: 16) {
-            OniSealMark(
-                text: icon,
-                size: 48,
-                fontSize: isCompact ? 21 : 23,
-                tint: iconColor,
-                fillOpacity: style == .primary ? 0.18 : 0.12,
-                cornerRadius: 13
-            )
-
-            VStack(alignment: .leading, spacing: 3) {
-                Text(title)
-                    .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
-                    .foregroundColor(titleColor)
-                Text(subtitle)
-                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundColor(subtitleColor)
-            }
+            Text(title)
+                .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
+                .foregroundColor(titleColor)
 
             Spacer()
 
@@ -468,24 +439,6 @@ private struct HomePrimaryActionCard: View {
         }
     }
 
-    private var iconBackground: Color {
-        switch style {
-        case .primary: return HomeInk.textPrimary.opacity(0.18)
-        case .neutral: return HomeInk.textPrimary.opacity(0.06)
-        case .gold: return HomeInk.gold.opacity(0.14)
-        case .disabled: return HomeInk.textPrimary.opacity(0.04)
-        }
-    }
-
-    private var iconColor: Color {
-        switch style {
-        case .primary: return HomeInk.textPrimary
-        case .neutral: return HomeInk.textPrimary
-        case .gold: return HomeInk.gold
-        case .disabled: return HomeInk.textSecondary.opacity(0.5)
-        }
-    }
-
     private var titleColor: Color {
         switch style {
         case .primary: return HomeInk.textPrimary
@@ -521,46 +474,3 @@ private struct HomePrimaryActionCard: View {
     }
 }
 
-// MARK: - Secondary Link
-
-private struct HomeSecondaryLink: View {
-    let title: String
-    let icon: String
-    let destination: AnyView
-
-    @State private var isPressed = false
-
-    var body: some View {
-        NavigationLink(destination: destination) {
-            HStack(spacing: 6) {
-                Text(icon)
-                    .font(.system(size: 12, weight: .black, design: .serif))
-                Text(title)
-                    .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.85)
-            }
-            .foregroundColor(HomeInk.textSecondary)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 10)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(HomeInk.cardBackground.opacity(0.6))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(HomeInk.border, lineWidth: 1)
-                    )
-            )
-            .scaleEffect(isPressed ? 0.96 : 1.0)
-            .animation(.easeInOut(duration: 0.1), value: isPressed)
-        }
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded { _ in isPressed = false }
-        )
-        .buttonStyle(PlainButtonStyle())
-        .accessibilityLabel(title)
-        .accessibilityHint("タップして\(title)へ進む")
-    }
-}
