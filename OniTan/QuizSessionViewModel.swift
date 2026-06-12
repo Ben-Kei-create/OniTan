@@ -234,6 +234,9 @@ final class QuizSessionViewModel: ObservableObject {
             resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)
         }
         let safe = resolved.isEmpty ? stage.questions : resolved
+        guard let firstQuestion = safe.first else {
+            preconditionFailure("QuizSessionViewModel.resetGame: question pool is empty for stage \(stage.stage).")
+        }
         pendingQueue = safe
         reviewQueue = []
         clearedKanji = []
@@ -246,7 +249,7 @@ final class QuizSessionViewModel: ObservableObject {
         sessionAnswers = [:]
         examResult = nil
         sessionStartTime = Date()
-        currentQuestion = safe[0]
+        currentQuestion = firstQuestion
         phase = .answering
     }
 
