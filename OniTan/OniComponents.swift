@@ -4,7 +4,6 @@ import UIKit
 // MARK: - Artwork Assets
 
 enum OniArtworkAsset {
-    static let launch = "OniLaunchIllustration"
     static let splash = "OniSplashIllustration"
     static let home = "OniHomeIllustration"
 }

@@ -30,7 +30,7 @@ final class QuizSessionViewModel: ObservableObject {
     @Published private(set) var lastAnswerResult: AnswerResult = .none
     @Published private(set) var passNumber: Int = 1
     @Published private(set) var consecutiveCorrect: Int = 0   // for combo display
-    @Published private(set) var sessionXPGained: Int = 0      // shown in cleared screen
+    @Published private(set) var sessionXPGained: Int = 0
     @Published var activeAlert: OniAlert? = nil
     @Published private(set) var examResult: ExamResult? = nil
 
@@ -41,19 +41,19 @@ final class QuizSessionViewModel: ObservableObject {
     let clearTitle: String
     let sessionTitle: String?
 
-    /// Whether this is the cross-stage "今日の10問" session (stageNumber == 0).
+    /// Whether this is the cross-stage random 10-question session (stageNumber == 0).
     var isToday: Bool { stage.stage == 0 }
     var isSpecialSession: Bool { stage.stage <= 0 }
 
     /// Human-readable header shown in the quiz top bar.
     var displayTitle: String {
         if isToday {
-            return sessionTitle ?? "今日の10問"
+            return sessionTitle ?? "ランダム10問"
         }
         if let sessionTitle {
             return sessionTitle
         }
-        return "ステージ \(stage.stage)"
+        return "稽古 \(stage.stage)"
     }
 
     var totalGoal: Int { sessionQuestions.count }
@@ -290,15 +290,15 @@ final class QuizSessionViewModel: ObservableObject {
     }
 
     private static func defaultClearTitle(for mode: QuizMode, stageNumber: Int, sessionTitle: String?) -> String {
-        if stageNumber == 0 { return "今日の10問 完了！" }
+        if stageNumber == 0 { return "ランダム10問 完了！" }
         if stageNumber < 0 {
-            return "\(sessionTitle ?? "おさらい") 完了！"
+            return "\(sessionTitle ?? "復習") 完了！"
         }
         switch mode {
         case .quick10:   return "クイック完了！"
         case .exam30:    return "模試完了！"
         case .weakFocus: return "復習完了！"
-        default:         return "ステージ \(stageNumber) クリア！"
+        default:         return "稽古 \(stageNumber) 完了！"
         }
     }
 }

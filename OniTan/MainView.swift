@@ -156,9 +156,13 @@ struct MainView: View {
                     vm.requestQuit()
                 }
             } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: scaled(26, by: scale, min: 20)))
+                Text("閉")
+                    .font(.system(size: scaled(14, by: scale, min: 12), weight: .black, design: .serif))
                     .foregroundColor(OniTanTheme.textSecondary)
+                    .frame(width: scaled(34, by: scale, min: 30), height: scaled(34, by: scale, min: 30))
+                    .background(Color.black.opacity(0.16))
+                    .overlay(Circle().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    .clipShape(Circle())
             }
             .accessibilityLabel("終了")
             .accessibilityHint("タップすると確認ダイアログが表示されます")
@@ -168,8 +172,8 @@ struct MainView: View {
             // Combo badge (appears at 3+ consecutive correct answers)
             if vm.consecutiveCorrect >= 3 {
                 HStack(spacing: scaled(4, by: scale, min: 2)) {
-                    Image(systemName: "flame.fill")
-                        .font(.system(size: scaled(11, by: scale, min: 9), weight: .semibold))
+                    Text("連")
+                        .font(.system(size: scaled(11, by: scale, min: 9), weight: .black, design: .serif))
                         .foregroundColor(OniTanTheme.accentWeak)
                     Text("\(vm.consecutiveCorrect)連続！")
                         .font(playFont(scaled(12, by: scale, min: 10), weight: .bold))
@@ -210,15 +214,15 @@ struct MainView: View {
             .accessibilityLabel("進捗 \(vm.clearedCount)問 / \(vm.totalGoal)問")
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
-        .padding(.top, scaled(12, by: scale, min: 8))
-        .padding(.bottom, scaled(8, by: scale, min: 4))
+        .padding(.top, scaled(8, by: scale, min: 6))
+        .padding(.bottom, scaled(4, by: scale, min: 2))
     }
 
     // MARK: - Quiz Content
 
     private func quizContentView(scale: CGFloat) -> some View {
         VStack(spacing: 0) {
-            Spacer(minLength: scaled(4, by: scale, min: 2))
+            Spacer(minLength: 0)
 
             // Stage number + pass indicator
             stageHeader(scale: scale)
@@ -233,15 +237,15 @@ struct MainView: View {
                 }
             }
             .frame(height: scaled(6, by: scale, min: 4))
-            .padding(.top, scaled(6, by: scale, min: 4))
+            .padding(.top, scaled(4, by: scale, min: 3))
             .accessibilityHidden(true)
 
-            Spacer(minLength: scaled(6, by: scale, min: 3))
+            Spacer(minLength: scaled(4, by: scale, min: 2))
 
             // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
 
-            Spacer(minLength: scaled(10, by: scale, min: 6))
+            Spacer(minLength: scaled(8, by: scale, min: 4))
 
             // Choice area
             switch vm.phase {
@@ -258,7 +262,7 @@ struct MainView: View {
                 EmptyView()
             }
 
-            Spacer(minLength: scaled(14, by: scale, min: 8))
+            Spacer(minLength: scaled(10, by: scale, min: 6))
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -268,7 +272,7 @@ struct MainView: View {
         HStack {
             VStack(alignment: .leading, spacing: scaled(2, by: scale, min: 1)) {
                 Text(vm.displayTitle)
-                    .font(playFont(scaled(22, by: scale, min: 18), weight: .bold))
+                    .font(playFont(scaled(20, by: scale, min: 17), weight: .bold))
                     .fontWeight(.bold)
                     .foregroundColor(OniTanTheme.textPrimary)
                 if vm.passNumber > 1 {
@@ -318,8 +322,8 @@ struct MainView: View {
             }
             OniTanTheme.haptic(.light)
         } label: {
-            Image(systemName: isFavorite ? "star.fill" : "star")
-                .font(.system(size: scaled(18, by: scale, min: 15), weight: .bold))
+            Text("星")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
                 .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
@@ -344,8 +348,8 @@ struct MainView: View {
             presentProblemReport(for: vm.currentQuestion)
             OniTanTheme.haptic(.light)
         } label: {
-            Image(systemName: "exclamationmark.bubble")
-                .font(.system(size: scaled(17, by: scale, min: 14), weight: .bold))
+            Text("報")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
@@ -520,8 +524,8 @@ struct MainView: View {
                     .frame(width: 70, height: 70)
                     .blur(radius: 12)
 
-                Image(systemName: "trophy.fill")
-                    .font(.system(size: 44))
+                Text("完")
+                    .font(.system(size: 36, weight: .black, design: .serif))
                     .foregroundStyle(OniTanTheme.goldGradient)
                     .shadow(color: OniTanTheme.accentWeak.opacity(0.45), radius: 10)
             }
@@ -548,10 +552,6 @@ struct MainView: View {
             )
             .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 10)
 
-            if vm.sessionXPGained > 0 {
-                sessionXPBadge(vm.sessionXPGained)
-            }
-
             VStack(spacing: 8) {
                 if let next = nextStage {
                     let nextNext = stageAfter(next)
@@ -573,7 +573,7 @@ struct MainView: View {
                         )
                     ) {
                         HStack(spacing: 8) {
-                            Text("次のステージへ")
+                            Text("次の稽古へ")
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.textPrimary)
@@ -647,34 +647,7 @@ struct MainView: View {
         .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました"
-            + (vm.sessionXPGained > 0 ? " +\(vm.sessionXPGained) XP獲得" : ""))
-    }
-
-    // MARK: - XP Badge
-
-    private func sessionXPBadge(_ xp: Int) -> some View {
-        HStack(spacing: 6) {
-            Image(systemName: "star.fill")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(OniTanTheme.accentWeak)
-            Text("+\(xp) XP 獲得！")
-                .font(playFont(15, weight: .bold))
-                .fontWeight(.bold)
-                .foregroundColor(OniTanTheme.accentWeak)
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
-        .background(
-            Capsule()
-                .fill(OniTanTheme.accentWeak.opacity(0.12))
-                .overlay(
-                    Capsule()
-                        .stroke(OniTanTheme.accentWeak.opacity(0.42), lineWidth: 1)
-                )
-        )
-        .shadow(color: OniTanTheme.accentWeak.opacity(0.25), radius: 8)
-        .transition(.scale(scale: 0.8).combined(with: .opacity))
+        .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました")
     }
 
     // MARK: - Alert
@@ -723,7 +696,7 @@ struct MainView: View {
     private func displayTitle(for s: Stage) -> String {
         let sorted = quizData.stages.sorted { $0.stage < $1.stage }
         let num = (sorted.firstIndex(where: { $0.stage == s.stage }) ?? 0) + 1
-        return "ステージ \(num)"
+        return "稽古 \(num)"
     }
 
     private func presentProblemReport(for question: Question) {

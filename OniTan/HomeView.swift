@@ -31,8 +31,6 @@ struct HomeView: View {
 
     @State private var freezeToastVisible = false
     @State private var lastShownFreezeID: Int = -1
-    @State private var showLevelUpOverlay = false
-    @State private var levelUpValue: Int = 0
 
     var body: some View {
         VStack(spacing: 0) {
@@ -58,9 +56,6 @@ struct HomeView: View {
 
                             primaryActions(isCompact: isCompactHeight)
                                 .padding(.top, isCompactHeight ? 16 : 22)
-
-                            progressStrip
-                                .padding(.top, isCompactHeight ? 14 : 18)
 
                             secondaryLinks(isCompact: isCompactHeight)
                                 .padding(.top, isCompactHeight ? 16 : 20)
@@ -95,18 +90,6 @@ struct HomeView: View {
                 lastShownFreezeID = newID
                 showFreezeToast()
             }
-            .onChange(of: xpRepo.recentLevelUp) { newLevel in
-                guard let lv = newLevel else { return }
-                levelUpValue = lv
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                    showLevelUpOverlay = true
-                }
-                OniTanTheme.hapticSuccess()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    withAnimation(.easeOut(duration: 0.3)) { showLevelUpOverlay = false }
-                    xpRepo.clearLevelUpFlag()
-                }
-            }
         }
         .background(inkBackground.ignoresSafeArea())
 
@@ -125,13 +108,6 @@ struct HomeView: View {
                 )
         }
         } // VStack
-        .overlay {
-            if showLevelUpOverlay {
-                levelUpToast(level: levelUpValue)
-                    .transition(.move(edge: .top).combined(with: .opacity))
-                    .zIndex(100)
-            }
-        }
     }
 
     // MARK: - Background
@@ -142,41 +118,6 @@ struct HomeView: View {
             startPoint: .top,
             endPoint: .bottom
         )
-    }
-
-    // MARK: - Level Up Toast
-
-    private func levelUpToast(level: Int) -> some View {
-        VStack {
-            HStack(spacing: 10) {
-                Image(systemName: "star.circle.fill")
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundColor(HomeInk.gold)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("レベルアップ！")
-                        .font(.system(.caption, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundColor(HomeInk.gold)
-                    Text("Lv.\(level) に到達")
-                        .font(.system(.subheadline, design: .rounded))
-                        .fontWeight(.black)
-                        .foregroundColor(HomeInk.textPrimary)
-                }
-            }
-            .padding(.horizontal, 18)
-            .padding(.vertical, 12)
-            .background(
-                Capsule()
-                    .fill(HomeInk.cardBackgroundAlt.opacity(0.97))
-                    .overlay(
-                        Capsule()
-                            .stroke(HomeInk.gold.opacity(0.5), lineWidth: 1.5)
-                    )
-            )
-            .shadow(color: HomeInk.gold.opacity(0.30), radius: 16, y: 6)
-            .padding(.top, 60)
-            Spacer()
-        }
     }
 
     private var freezeConsumedToast: some View {
@@ -300,7 +241,7 @@ struct HomeView: View {
                         xpRepo: xpRepo,
                         masteryRepo: masteryRepo,
                         mode: .quick10,
-                        clearTitle: "今日の10問 完了！"
+                        clearTitle: "ランダム10問 完了！"
                     )
                 )
             )
@@ -331,64 +272,13 @@ struct HomeView: View {
         if let exam = examCategory {
             TrainingModePickerView(category: exam)
         } else {
-            StageSelectView()
+            CategoryTrainingView()
         }
-    }
-
-    // MARK: - Progress Strip
-
-    private var readiness: ReadinessScore {
-        ReadinessCalculator.calculate(
-            masteryRepo: masteryRepo,
-            allQuestions: allQuestions,
-            examResultRepo: examResultRepo
-        )
     }
 
     /// 「総合模試」カテゴリ（categories.jsonの"exam"エントリ）。
     private var examCategory: CategoryEntry? {
         categoryManifest?.categories.first { $0.id == "exam" }
-    }
-
-    private var progressStrip: some View {
-        let score = readiness
-        let estimatedScore = Int((score.estimatedExamScore * 200).rounded())
-
-        return HStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Lv.\(xpRepo.level)")
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundColor(HomeInk.gold)
-                Text("準1級到達度 \(score.overallPercent)%")
-                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundColor(HomeInk.textSecondary)
-            }
-
-            Spacer()
-
-            VStack(alignment: .trailing, spacing: 3) {
-                Text("推定 \(estimatedScore) / 200")
-                    .font(.system(size: 13, weight: .semibold, design: .rounded))
-                    .foregroundColor(HomeInk.textPrimary)
-                if streakRepo.currentStreak > 0 {
-                    Text("\(streakRepo.currentStreak)日連続")
-                        .font(.system(size: 11, weight: .medium, design: .rounded))
-                        .foregroundColor(HomeInk.textSecondary)
-                }
-            }
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .background(
-            RoundedRectangle(cornerRadius: 14)
-                .fill(HomeInk.cardBackground)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 14)
-                        .stroke(HomeInk.border, lineWidth: 1)
-                )
-        )
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("レベル\(xpRepo.level)、準1級到達度\(score.overallPercent)パーセント、推定得点\(estimatedScore)点 / 200点")
     }
 
     // MARK: - Secondary Links
@@ -411,35 +301,6 @@ struct HomeView: View {
                             )
                         )
                     )
-                }
-            }
-
-            let showReview = !reviewQuestions.isEmpty && xpRepo.level >= 30
-            let showStreakChallenge = xpRepo.level >= 50
-
-            if showReview || showStreakChallenge {
-                HStack(spacing: 8) {
-                    if showReview {
-                        HomeSecondaryLink(
-                            title: "おさらい",
-                            icon: "復",
-                            destination: AnyView(
-                                QuizModeSelectView(
-                                    stage: ReviewSessionBuilder.buildReviewStage(reviewQuestions: reviewQuestions),
-                                    sessionTitle: "おさらい（準１級以下）",
-                                    allowedModes: [.quick10, .exam30]
-                                )
-                            )
-                        )
-                    }
-
-                    if showStreakChallenge {
-                        HomeSecondaryLink(
-                            title: "連続鬼たん",
-                            icon: "連",
-                            destination: AnyView(StreakChallengeView(xpRepo: xpRepo))
-                        )
-                    }
                 }
             }
         }

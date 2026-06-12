@@ -16,21 +16,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OniLaunchIllustration" translatesAutoresizingMaskIntoConstraints="NO" id="W7M-h7-0lH">
-                                <rect key="frame" x="132.5" y="339" width="128" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="FSr-BS-DzL"/>
-                                    <constraint firstAttribute="width" constant="128" id="mUS-xq-JUZ"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鬼単" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxM-KV-Y9K">
-                                <rect key="frame" x="176" y="468" width="41" height="24"/>
+                                <rect key="frame" x="176" y="414" width="41" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.9725490196" green="0.9490196078" blue="0.9019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="漢字検定準1級 対策" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3F-DX-ipT">
-                                <rect key="frame" x="133" y="498" width="127" height="16"/>
+                                <rect key="frame" x="133" y="444" width="127" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <color key="textColor" red="0.6862745098" green="0.6392156863" blue="0.5764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -39,12 +32,10 @@
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.03137254902" green="0.02745098039" blue="0.03921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="W7M-h7-0lH" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1R8-fc-z3k"/>
-                            <constraint firstItem="GxM-KV-Y9K" firstAttribute="top" secondItem="W7M-h7-0lH" secondAttribute="bottom" constant="12" id="IAE-WW-5VW"/>
+                            <constraint firstItem="GxM-KV-Y9K" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="IAE-WW-5VW"/>
                             <constraint firstItem="GxM-KV-Y9K" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Leh-y5-Lpz"/>
                             <constraint firstItem="R3F-DX-ipT" firstAttribute="top" secondItem="GxM-KV-Y9K" secondAttribute="bottom" constant="6" id="d4s-Vt-8fq"/>
                             <constraint firstItem="R3F-DX-ipT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tzi-7d-oyP"/>
-                            <constraint firstItem="W7M-h7-0lH" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="fTy-Xr-v9A"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -53,7 +44,4 @@
             <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="OniLaunchIllustration" width="2048" height="2048"/>
-    </resources>
 </document>

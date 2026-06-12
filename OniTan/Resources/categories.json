@@ -5,7 +5,7 @@
       "title": "読み道場",
       "description": "例文中の傍線部の読みを鍛える",
       "questionKinds": ["sentenceReading"],
-      "stageIDs": [97, 98, 99],
+      "stageIDs": [],
       "targetAccuracy": 0.90,
       "iconName": "character.book.closed",
       "colorHex": "#D8B45A"

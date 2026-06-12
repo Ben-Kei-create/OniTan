@@ -320,14 +320,12 @@ struct SettingsView: View {
 
                 HStack(spacing: 10) {
                     ForEach(AppTheme.allCases) { theme in
-                        let locked = theme.unlockLevel.map { xpRepo.level < $0 } ?? false
                         ThemePickerCard(
                             theme: theme,
                             isSelected: themeManager.theme == theme,
-                            isLocked: locked,
-                            unlockLevel: theme.unlockLevel
+                            isLocked: false,
+                            unlockLevel: nil
                         ) {
-                            guard !locked else { return }
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 themeManager.theme = theme
                             }
@@ -347,14 +345,12 @@ struct SettingsView: View {
 
                 HStack(spacing: 10) {
                     ForEach(PlayFontStyle.allCases) { fontStyle in
-                        let locked = fontStyle.unlockLevel.map { xpRepo.level < $0 } ?? false
                         PlayFontPickerCard(
                             fontStyle: fontStyle,
                             isSelected: playFontManager.fontStyle == fontStyle,
-                            isLocked: locked,
-                            unlockLevel: fontStyle.unlockLevel
+                            isLocked: false,
+                            unlockLevel: nil
                         ) {
-                            guard !locked else { return }
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 playFontManager.fontStyle = fontStyle
                             }
@@ -371,9 +367,11 @@ struct SettingsView: View {
     private var dataSection: some View {
         SettingsCard(title: "データ管理", icon: "folder.fill", iconColor: OniTanTheme.accentWeak) {
             VStack(spacing: 12) {
-                progressSummaryRow
-
-                Divider().background(OniTanTheme.cardBorder)
+                Text("端末内に保存された学習データを初期化できます。")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 Button {
                     let hasData = !appState.clearedStages.isEmpty
@@ -400,45 +398,9 @@ struct SettingsView: View {
                     .shadow(color: OniTanTheme.accentWrong.opacity(0.3), radius: 6, y: 3)
                 }
                 .accessibilityLabel("進行状況を初期化する")
-                .accessibilityHint("全クリア情報と統計が削除されます。確認ダイアログが表示されます。")
+                .accessibilityHint("端末内の学習データが削除されます。確認ダイアログが表示されます。")
             }
         }
-    }
-
-    private var progressSummaryRow: some View {
-        HStack(spacing: 20) {
-            progressPill(
-                value: "\(appState.clearedStages.count)",
-                label: "クリア済み",
-                iconColor: OniTanTheme.accentWeak
-            )
-            progressPill(
-                value: String(format: "%.0f%%", statsRepo.overallAccuracy * 100),
-                label: "正答率",
-                iconColor: statsRepo.overallAccuracy >= 0.8 ? OniTanTheme.accentWeak : OniTanTheme.accentWrong
-            )
-            progressPill(
-                value: "\(statsRepo.totalCorrect)",
-                label: "総正解",
-                iconColor: OniTanTheme.accentWeak
-            )
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("クリア\(appState.clearedStages.count)ステージ 正答率\(Int(statsRepo.overallAccuracy * 100))% 総正解\(statsRepo.totalCorrect)問")
-    }
-
-    private func progressPill(value: String, label: String, iconColor: Color) -> some View {
-        VStack(spacing: 3) {
-            Text(value)
-                .font(.system(.headline, design: .rounded))
-                .fontWeight(.black)
-                .foregroundColor(iconColor)
-            Text(label)
-                .font(.system(size: 10, design: .rounded))
-                .foregroundColor(OniTanTheme.textTertiary)
-        }
-        .frame(maxWidth: .infinity)
-        .accessibilityHidden(true)
     }
 
     // MARK: - App Info
@@ -449,11 +411,7 @@ struct SettingsView: View {
                 infoRow(label: "バージョン", value: appVersion)
                 infoRow(label: "ビルド", value: appBuild)
                 infoRow(label: "対象範囲", value: "漢字検定準1級")
-                infoRow(label: "収録ステージ", value: "\(quizData.stages.count) ステージ")
                 infoRow(label: "準1級問題数", value: "\(questions.count)")
-                if !reviewQuestions.isEmpty {
-                    infoRow(label: "おさらい問題数", value: "\(reviewQuestions.count)")
-                }
             }
         }
     }
@@ -562,8 +520,8 @@ private struct ThemePickerCard: View {
                     }
                 }
 
-                if isLocked, let level = unlockLevel {
-                    Text("Lv.\(level)")
+                if isLocked {
+                    Text("未")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
@@ -593,7 +551,7 @@ private struct ThemePickerCard: View {
         .buttonStyle(PlainButtonStyle())
         .frame(maxWidth: .infinity)
         .accessibilityLabel(isLocked
-            ? "\(theme.displayName)テーマ レベル\(unlockLevel ?? 0)で解放"
+            ? "\(theme.displayName)テーマ 未解放"
             : "\(theme.displayName)テーマ")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
@@ -627,8 +585,8 @@ private struct PlayFontPickerCard: View {
                     }
                 }
 
-                if isLocked, let level = unlockLevel {
-                    Text("Lv.\(level)")
+                if isLocked {
+                    Text("未")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
@@ -666,7 +624,7 @@ private struct PlayFontPickerCard: View {
         .buttonStyle(PlainButtonStyle())
         .frame(maxWidth: .infinity)
         .accessibilityLabel(isLocked
-            ? "\(fontStyle.displayName)フォント レベル\(unlockLevel ?? 0)で解放"
+            ? "\(fontStyle.displayName)フォント 未解放"
             : "\(fontStyle.displayName)フォント")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
