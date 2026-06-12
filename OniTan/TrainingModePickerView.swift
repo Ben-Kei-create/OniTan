@@ -21,7 +21,11 @@ struct TrainingModePickerView: View {
 
     // Modes shown in Phase 2
     private static let displayModes: [TrainingMode] = [
-        .quick10, .categoryFocus, .weakFocus, .mistakeReview, .masteryReview, .examMini
+        .quick10, .categoryFocus, .examMini
+    ]
+
+    private static let comingSoonModes: [TrainingMode] = [
+        .weakFocus, .mistakeReview, .masteryReview
     ]
 
     // MARK: - Category question pool
@@ -88,6 +92,10 @@ struct TrainingModePickerView: View {
         }
     }
 
+    private var primaryModes: [TrainingMode] {
+        Self.displayModes.filter { isEnabled($0) }
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -99,11 +107,15 @@ struct TrainingModePickerView: View {
 
                 ScrollView {
                     VStack(spacing: 12) {
-                        ForEach(Self.displayModes) { mode in
+                        ForEach(primaryModes) { mode in
                             modeRow(for: mode)
                         }
 
-                        if categoryPool.isEmpty {
+                        if !Self.comingSoonModes.isEmpty {
+                            comingSoonLine
+                        }
+
+                        if primaryModes.isEmpty {
                             emptyPoolNote
                         }
                     }
@@ -208,8 +220,8 @@ struct TrainingModePickerView: View {
 
     private var emptyPoolNote: some View {
         VStack(spacing: 8) {
-            Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 22, weight: .semibold))
+            Text("未")
+                .font(.system(size: 22, weight: .black, design: .serif))
                 .foregroundColor(OniTanTheme.accentWeak)
             Text("このカテゴリには問題データがまだありません")
                 .font(.system(.subheadline, design: .rounded))
@@ -230,6 +242,34 @@ struct TrainingModePickerView: View {
                         .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
+    }
+
+    private var comingSoonLine: some View {
+        HStack(spacing: 8) {
+            Text("予")
+                .font(.system(size: 12, weight: .black, design: .serif))
+                .foregroundColor(OniTanTheme.textTertiary)
+            Text("近日追加")
+                .font(.system(size: 11, weight: .bold, design: .rounded))
+                .foregroundColor(OniTanTheme.textSecondary)
+            Text(Self.comingSoonModes.map { japaneseLabel(for: $0) }.joined(separator: "・"))
+                .font(.system(size: 11, weight: .medium, design: .rounded))
+                .foregroundColor(OniTanTheme.textTertiary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+            Spacer()
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 9)
+        .background(
+            RoundedRectangle(cornerRadius: 11)
+                .fill(OniTanTheme.cardBackground.opacity(0.46))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 11)
+                        .stroke(OniTanTheme.cardBorder.opacity(0.45), lineWidth: 1)
+                )
+        )
+        .accessibilityLabel("近日追加: \(Self.comingSoonModes.map { japaneseLabel(for: $0) }.joined(separator: "、"))")
     }
 
     // MARK: - Stage Building
@@ -355,15 +395,7 @@ private struct TrainingModeCard: View {
     }
 
     private var sealMark: String {
-        switch mode {
-        case .quick10: return "十"
-        case .categoryFocus: return "鍛"
-        case .weakFocus: return "弱"
-        case .mistakeReview: return "誤"
-        case .masteryReview: return "定"
-        case .examMini: return "試"
-        default: return "修"
-        }
+        mode.sealMark
     }
 
     private var markColor: Color {

@@ -1,4 +1,44 @@
 import SwiftUI
+import UIKit
+
+// MARK: - Artwork Assets
+
+enum OniArtworkAsset {
+    static let launch = "OniLaunchIllustration"
+    static let splash = "OniSplashIllustration"
+    static let home = "OniHomeIllustration"
+}
+
+struct OniOptionalArtwork<Fallback: View>: View {
+    let assetName: String
+    let width: CGFloat
+    let height: CGFloat
+    let fallback: () -> Fallback
+
+    init(
+        assetName: String,
+        width: CGFloat,
+        height: CGFloat,
+        @ViewBuilder fallback: @escaping () -> Fallback
+    ) {
+        self.assetName = assetName
+        self.width = width
+        self.height = height
+        self.fallback = fallback
+    }
+
+    var body: some View {
+        if UIImage(named: assetName) != nil {
+            Image(assetName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: width, height: height)
+                .accessibilityHidden(true)
+        } else {
+            fallback()
+        }
+    }
+}
 
 // MARK: - OniSealMark
 //

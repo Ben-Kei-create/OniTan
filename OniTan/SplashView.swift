@@ -15,18 +15,7 @@ struct SplashView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 12) {
-                Text("鬼")
-                    .font(.system(size: 76, weight: .black, design: .serif))
-                    .foregroundColor(OniTanTheme.washiText)
-                    .frame(width: 118, height: 118)
-                    .background(
-                        RoundedRectangle(cornerRadius: 22)
-                            .fill(OniTanTheme.sealRed.opacity(0.94))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 22)
-                                    .stroke(OniTanTheme.washiText.opacity(0.26), lineWidth: 2)
-                            )
-                    )
+                splashMark
                     .rotationEffect(.degrees(sealRotation))
                     .scaleEffect(sealScale)
                     .opacity(sealOpacity)
@@ -44,6 +33,27 @@ struct SplashView: View {
             }
         }
         .onAppear { runAnimation() }
+    }
+
+    private var splashMark: some View {
+        OniOptionalArtwork(
+            assetName: OniArtworkAsset.splash,
+            width: 136,
+            height: 136
+        ) {
+            Text("鬼")
+                .font(.system(size: 76, weight: .black, design: .serif))
+                .foregroundColor(OniTanTheme.washiText)
+                .frame(width: 118, height: 118)
+                .background(
+                    RoundedRectangle(cornerRadius: 22)
+                        .fill(OniTanTheme.sealRed.opacity(0.94))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 22)
+                                .stroke(OniTanTheme.washiText.opacity(0.26), lineWidth: 2)
+                        )
+                )
+        }
     }
 
     private func runAnimation() {

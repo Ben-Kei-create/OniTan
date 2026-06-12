@@ -248,18 +248,18 @@ struct OnboardingView: View {
     private var notifGrantedBadge: some View {
         HStack(spacing: 8) {
             Image(systemName: "checkmark.circle.fill")
-                .foregroundColor(Color(red: 0.20, green: 0.85, blue: 0.50))
+                .foregroundColor(OniTanTheme.mutedGold)
             Text("通知が有効になりました！")
                 .font(.system(.headline, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(.white)
         }
         .frame(maxWidth: .infinity, minHeight: 52)
-        .background(Color(red: 0.10, green: 0.40, blue: 0.20).opacity(0.7))
+        .background(OniTanTheme.mutedGold.opacity(0.16))
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color(red: 0.20, green: 0.85, blue: 0.50).opacity(0.5), lineWidth: 1.5)
+                .stroke(OniTanTheme.mutedGold.opacity(0.5), lineWidth: 1.5)
         )
     }
 

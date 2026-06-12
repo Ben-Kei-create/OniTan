@@ -74,9 +74,14 @@ struct ExamResultView: View {
                     .frame(width: 70, height: 70)
                     .blur(radius: 12)
 
-                Image(systemName: "doc.text.magnifyingglass")
-                    .font(.system(size: 40))
-                    .foregroundStyle(OniTanTheme.goldGradient)
+                OniSealMark(
+                    text: "試",
+                    size: 70,
+                    fontSize: 34,
+                    tint: OniTanTheme.accentWeak,
+                    fillOpacity: 0.16,
+                    cornerRadius: 18
+                )
             }
 
             Text(examTitle)
@@ -211,9 +216,14 @@ struct ExamResultView: View {
                 .foregroundColor(OniTanTheme.textPrimary)
 
             HStack(spacing: 10) {
-                Image(systemName: category.iconName)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(OniTanTheme.accentWeak)
+                OniSealMark(
+                    text: category.sealMark,
+                    size: 34,
+                    fontSize: 17,
+                    tint: OniTanTheme.accentWeak,
+                    fillOpacity: 0.12,
+                    cornerRadius: 9
+                )
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(category.title)

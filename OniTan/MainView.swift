@@ -5,6 +5,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject private var vm: QuizSessionViewModel
     @State private var activeReportContext: QuizProblemReportContext?
+    @State private var hasPlayedCompletionHaptic = false
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
@@ -106,19 +107,6 @@ struct MainView: View {
                         }
                         .navigationBarBackButtonHidden(true)
 
-                        // Explanation overlay
-                        if vm.phase == .showingExplanation {
-                            ExplanationView(question: vm.currentQuestion) {
-                                vm.proceed()
-                            } onReport: {
-                                presentProblemReport(for: vm.currentQuestion)
-                            }
-                            .environmentObject(playFontManager)
-                            .environmentObject(favoriteRepo)
-                            .transition(.opacity)
-                            .animation(.easeInOut(duration: 0.2), value: vm.phase)
-                            .zIndex(10)
-                        }
                     }
                     .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
@@ -140,10 +128,18 @@ struct MainView: View {
             if should { dismiss() }
         }
         .onChange(of: vm.phase) { phase in
-            if case .stageCleared = phase, !donationManager.hasDonated {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                    interstitialManager.showIfReady()
+            if case .stageCleared = phase {
+                if !hasPlayedCompletionHaptic {
+                    hasPlayedCompletionHaptic = true
+                    OniTanTheme.hapticSuccess()
                 }
+                if !donationManager.hasDonated {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        interstitialManager.showIfReady()
+                    }
+                }
+            } else {
+                hasPlayedCompletionHaptic = false
             }
         }
     }
@@ -193,8 +189,8 @@ struct MainView: View {
 
             // Mode badge
             HStack(spacing: scaled(4, by: scale, min: 2)) {
-                Image(systemName: vm.mode.systemImage)
-                    .font(.system(size: scaled(11, by: scale, min: 9)))
+                Text(vm.mode.sealMark)
+                    .font(.system(size: scaled(11, by: scale, min: 9), weight: .black, design: .serif))
                 Text(vm.mode.displayName)
                     .font(playFont(scaled(12, by: scale, min: 10), weight: .semibold))
             }
@@ -222,7 +218,7 @@ struct MainView: View {
 
     private func quizContentView(scale: CGFloat) -> some View {
         VStack(spacing: 0) {
-            Spacer(minLength: scaled(10, by: scale, min: 6))
+            Spacer(minLength: scaled(4, by: scale, min: 2))
 
             // Stage number + pass indicator
             stageHeader(scale: scale)
@@ -240,26 +236,29 @@ struct MainView: View {
             .padding(.top, scaled(6, by: scale, min: 4))
             .accessibilityHidden(true)
 
-            Spacer(minLength: scaled(10, by: scale, min: 6))
+            Spacer(minLength: scaled(6, by: scale, min: 3))
 
             // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
 
-            Spacer(minLength: scaled(14, by: scale, min: 8))
+            Spacer(minLength: scaled(10, by: scale, min: 6))
 
             // Choice area
             switch vm.phase {
             case .answering:
                 choiceStack(scale: scale)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
+            case .showingExplanation:
+                answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                    .transition(.scale(scale: 0.96).combined(with: .opacity))
             case .showingWrongAnswer(let correct):
-                wrongAnswerView(correctAnswer: correct, scale: scale)
-                    .transition(.scale(scale: 0.9).combined(with: .opacity))
+                answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                    .transition(.scale(scale: 0.96).combined(with: .opacity))
             default:
                 EmptyView()
             }
 
-            Spacer(minLength: scaled(22, by: scale, min: 14))
+            Spacer(minLength: scaled(14, by: scale, min: 8))
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -372,20 +371,24 @@ struct MainView: View {
                        GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
-            Label(vm.currentQuestion.kind.displayName, systemImage: vm.currentQuestion.kind.systemImage)
-                .font(.caption.weight(.bold))
-                .foregroundStyle(OniTanTheme.accentWeak)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
-                .background(
-                    Capsule()
-                        .fill(OniTanTheme.accentWeak.opacity(0.14))
-                )
-                .overlay(
-                    Capsule()
-                        .stroke(OniTanTheme.accentWeak.opacity(0.35), lineWidth: 1)
-                )
-                .padding(.leading, 4)
+            HStack(spacing: 5) {
+                Text(vm.currentQuestion.kind.sealMark)
+                    .font(.system(size: 12, weight: .black, design: .serif))
+                Text(vm.currentQuestion.kind.displayName)
+                    .font(.caption.weight(.bold))
+            }
+            .foregroundStyle(OniTanTheme.accentWeak)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(
+                Capsule()
+                    .fill(OniTanTheme.accentWeak.opacity(0.14))
+            )
+            .overlay(
+                Capsule()
+                    .stroke(OniTanTheme.accentWeak.opacity(0.35), lineWidth: 1)
+            )
+            .padding(.leading, 4)
 
             Text(vm.currentQuestion.kind.choicePrompt)
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
@@ -407,10 +410,11 @@ struct MainView: View {
                         scale: scale,
                         fontStyle: playFontManager.fontStyle,
                         onTap: {
+                            let wasCorrect = choice == vm.currentQuestion.answer
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                 vm.answer(selected: choice)
                             }
-                            OniTanTheme.haptic(.medium)
+                            wasCorrect ? OniTanTheme.hapticSuccess() : OniTanTheme.hapticError()
                         }
                     )
                 }
@@ -425,29 +429,48 @@ struct MainView: View {
         return pool.shuffled()
     }
 
-    // MARK: - Wrong Answer View
+    // MARK: - Answer Feedback View
 
-    private func wrongAnswerView(correctAnswer: String, scale: CGFloat) -> some View {
-        VStack(spacing: scaled(16, by: scale, min: 10)) {
-            // Compact feedback: icon + text on the same line
-            HStack(spacing: scaled(10, by: scale, min: 6)) {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: scaled(36, by: scale, min: 28)))
-                    .foregroundColor(OniTanTheme.accentWrong)
+    private func answerFeedbackView(isCorrect: Bool, correctAnswer: String, scale: CGFloat) -> some View {
+        let tint = isCorrect ? OniTanTheme.accentWeak : OniTanTheme.accentWrong
+        let title = isCorrect ? "正解" : "不正解"
+        let border = tint.opacity(isCorrect ? 0.34 : 0.42)
 
-                VStack(alignment: .leading, spacing: scaled(4, by: scale, min: 2)) {
-                    Text("不正解")
-                        .font(playFont(scaled(26, by: scale, min: 20), weight: .black))
-                        .foregroundColor(OniTanTheme.accentWrong)
+        return VStack(alignment: .leading, spacing: scaled(12, by: scale, min: 8)) {
+            HStack(alignment: .center, spacing: scaled(10, by: scale, min: 6)) {
+                Text(isCorrect ? "正" : "誤")
+                    .font(.system(size: scaled(22, by: scale, min: 18), weight: .black, design: .serif))
+                    .foregroundColor(tint)
+                    .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
+                    .background(
+                        RoundedRectangle(cornerRadius: scaled(11, by: scale, min: 9))
+                            .fill(tint.opacity(0.13))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: scaled(11, by: scale, min: 9))
+                                    .stroke(tint.opacity(0.34), lineWidth: 1)
+                            )
+                    )
+
+                VStack(alignment: .leading, spacing: scaled(3, by: scale, min: 2)) {
+                    Text(title)
+                        .font(playFont(scaled(22, by: scale, min: 18), weight: .black))
+                        .foregroundColor(tint)
 
                     Text("正解は「\(correctAnswer)」")
-                        .font(playFont(scaled(20, by: scale, min: 16), weight: .semibold))
+                        .font(playFont(scaled(17, by: scale, min: 14), weight: .semibold))
                         .foregroundColor(OniTanTheme.textPrimary)
-                        .lineLimit(2)
+                        .lineLimit(1)
                         .minimumScaleFactor(0.75)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+
+            Text(vm.currentQuestion.displayExplanation)
+                .font(playFont(scaled(13, by: scale, min: 11), weight: .regular))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .lineSpacing(4)
+                .lineLimit(4)
+                .fixedSize(horizontal: false, vertical: true)
 
             Button {
                 withAnimation { vm.proceed() }
@@ -460,25 +483,25 @@ struct MainView: View {
                     .frame(maxWidth: .infinity, minHeight: scaled(50, by: scale, min: 44))
                     .background(
                         RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
-                            .fill(OniTanTheme.wrongGradient)
+                            .fill(isCorrect ? OniTanTheme.primaryGradient : OniTanTheme.wrongGradient)
                     )
                     .shadow(
-                        color: OniTanTheme.accentWrong.opacity(0.4),
+                        color: tint.opacity(0.35),
                         radius: scaled(8, by: scale, min: 4),
                         y: scaled(4, by: scale, min: 2)
                     )
             }
             .accessibilityLabel("次の問題へ進む")
-            .accessibilityIdentifier("quiz_next_wrong")
+            .accessibilityIdentifier(isCorrect ? "quiz_next_correct" : "quiz_next_wrong")
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
-        .padding(.vertical, scaled(18, by: scale, min: 12))
+        .padding(.vertical, scaled(16, by: scale, min: 12))
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                 .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(OniTanTheme.accentWrong.opacity(0.3), lineWidth: 1)
+                        .stroke(border, lineWidth: 1)
                 )
         )
         .frame(maxWidth: .infinity)
@@ -487,7 +510,10 @@ struct MainView: View {
     // MARK: - Stage Cleared
 
     private var stageClearedView: some View {
-        VStack(spacing: 16) {
+        let weakReviewStage = (!vm.isSpecialSession && !statsRepo.weakQuestions(for: vm.stage).isEmpty) ? vm.stage : nil
+        let repeatLabel = vm.mode == .quick10 ? "もう一度10問" : "もう一度"
+
+        return VStack(spacing: 16) {
             ZStack {
                 Circle()
                     .fill(OniTanTheme.accentCorrect.opacity(0.15))
@@ -551,8 +577,8 @@ struct MainView: View {
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.textPrimary)
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 13, weight: .bold))
+                            Text("次")
+                                .font(.system(size: 12, weight: .black, design: .serif))
                                 .foregroundColor(OniTanTheme.textPrimary.opacity(0.8))
                         }
                         .frame(maxWidth: .infinity, minHeight: 48)
@@ -562,22 +588,12 @@ struct MainView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
 
-                    Button {
-                        OniTanTheme.hapticSuccess()
-                        appNavState.popToRoot()
-                        dismiss()
-                    } label: {
-                        Text("ステージ選択へ戻る")
-                            .font(playFont(13, weight: .semibold))
-                            .foregroundColor(OniTanTheme.textTertiary)
-                    }
                 } else {
                     Button {
-                        OniTanTheme.hapticSuccess()
-                        appNavState.popToRoot()
-                        dismiss()
+                        withAnimation { vm.resetGame() }
+                        OniTanTheme.haptic(.light)
                     } label: {
-                        Text("ステージ選択へ戻る")
+                        Text(repeatLabel)
                             .font(playFont(15, weight: .bold))
                             .fontWeight(.bold)
                             .foregroundColor(OniTanTheme.textPrimary)
@@ -588,10 +604,40 @@ struct MainView: View {
                     }
                 }
 
+                if let weakReviewStage {
+                    NavigationLink(
+                        destination: MainView(
+                            stage: weakReviewStage,
+                            appState: appState,
+                            statsRepo: statsRepo,
+                            streakRepo: passedStreakRepo ?? streakRepo,
+                            xpRepo: passedXPRepo ?? xpRepo,
+                            masteryRepo: passedMasteryRepo ?? masteryRepo,
+                            mode: .weakFocus,
+                            clearTitle: "苦手復習 完了！",
+                            sessionTitle: "苦手を復習"
+                        )
+                    ) {
+                        Text("苦手を復習")
+                            .font(playFont(14, weight: .bold))
+                            .foregroundColor(OniTanTheme.textPrimary)
+                            .frame(maxWidth: .infinity, minHeight: 42)
+                            .background(OniTanTheme.cardBackgroundPressed)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+                                    .stroke(OniTanTheme.accentWeak.opacity(0.28), lineWidth: 1)
+                            )
+                            .cornerRadius(OniTanTheme.radiusButton)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+
                 Button {
-                    withAnimation { vm.resetGame() }
+                    OniTanTheme.haptic(.light)
+                    appNavState.popToRoot()
+                    dismiss()
                 } label: {
-                    Text("もう一度")
+                    Text("ホームへ戻る")
                         .font(playFont(13, weight: .semibold))
                         .foregroundColor(OniTanTheme.textTertiary)
                 }
@@ -719,7 +765,7 @@ private struct ChoiceCard: View {
                 .minimumScaleFactor(0.6)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, minHeight: max(56, 72 * scale))
+                .frame(maxWidth: .infinity, minHeight: max(50, 64 * scale))
         }
         .background(
             RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))

@@ -71,17 +71,7 @@ private struct CategoryRowCard: View {
     }
 
     private var dojoMark: String {
-        switch entry.id {
-        case "reading": return "読"
-        case "commonKanji": return "共"
-        case "errorCorrection": return "訂"
-        case "yojijukugo": return "熟"
-        case "synonym_antonym": return "対"
-        case "proverb": return "諺"
-        case "passage": return "文"
-        case "exam": return "試"
-        default: return String(entry.title.prefix(1))
-        }
+        entry.sealMark
     }
 
     private var displayTitle: String {
@@ -104,16 +94,16 @@ private struct CategoryRowCard: View {
     var body: some View {
         HStack(spacing: 14) {
             ZStack {
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: 12)
                     .fill(accentColor.opacity(entry.id == "exam" ? 0.18 : 0.12))
                     .overlay(
-                        RoundedRectangle(cornerRadius: 14)
+                        RoundedRectangle(cornerRadius: 12)
                             .stroke(accentColor.opacity(0.35), lineWidth: 1)
                     )
-                    .frame(width: 56, height: 56)
+                    .frame(width: 48, height: 48)
 
                 Text(dojoMark)
-                    .font(.system(size: 26, weight: .black, design: .serif))
+                    .font(.system(size: 23, weight: .black, design: .serif))
                     .foregroundColor(accentColor)
             }
             .accessibilityHidden(true)
@@ -121,7 +111,7 @@ private struct CategoryRowCard: View {
             VStack(alignment: .leading, spacing: 7) {
                 HStack(spacing: 8) {
                     Text(displayTitle)
-                        .font(.system(size: 18, weight: .black, design: .rounded))
+                        .font(.system(size: 17, weight: .black, design: .rounded))
                         .foregroundColor(OniTanTheme.textPrimary)
 
                     if entry.id == "exam" {
@@ -139,9 +129,9 @@ private struct CategoryRowCard: View {
                 }
 
                 Text(entry.description)
-                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
                     .foregroundColor(OniTanTheme.textSecondary)
-                    .lineLimit(2)
+                    .lineLimit(1)
                     .fixedSize(horizontal: false, vertical: true)
 
                 HStack(spacing: 10) {
@@ -158,7 +148,7 @@ private struct CategoryRowCard: View {
                 .accessibilityHidden(true)
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 16)
+        .padding(.vertical, 12)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                 .fill(

@@ -25,13 +25,13 @@ struct QuestionPromptView: View {
     private var cardHeight: CGFloat {
         switch question.kind {
         case .sentenceReading:
-            return scaled(190, min: 150)
+            return scaled(174, min: 140)
         case .passageReading, .passageVocabulary:
-            return scaled(210, min: 164)
+            return scaled(190, min: 152)
         case .errorCorrection, .proverb:
-            return scaled(164, min: 130)
+            return scaled(150, min: 122)
         default:
-            return scaled(180, min: 144)
+            return scaled(164, min: 132)
         }
     }
 
@@ -100,8 +100,8 @@ struct QuestionPromptView: View {
 
     private var kindBadge: some View {
         HStack(spacing: 3) {
-            Image(systemName: question.kind.systemImage)
-                .font(.system(size: scaled(9, min: 7)))
+            Text(question.kind.sealMark)
+                .font(.system(size: scaled(9, min: 7), weight: .black, design: .serif))
             Text(question.kind.displayName)
                 .font(.system(size: scaled(9, min: 7), weight: .medium, design: .rounded))
         }

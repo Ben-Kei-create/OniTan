@@ -65,9 +65,8 @@ struct HomeView: View {
                             secondaryLinks(isCompact: isCompactHeight)
                                 .padding(.top, isCompactHeight ? 16 : 20)
 
-                            footerSection
-                                .padding(.top, 14)
-                                .padding(.bottom, donationManager.hasDonated ? 18 : 28)
+                            Color.clear
+                                .frame(height: donationManager.hasDonated ? 18 : 28)
                         }
                         .padding(.horizontal, isCompactHeight ? 16 : 20)
                         .padding(.top, isCompactHeight ? 8 : 14)
@@ -228,13 +227,6 @@ struct HomeView: View {
             Spacer()
 
             HomeHeaderIconButton(
-                icon: "記",
-                accessibilityTitle: "統計",
-                compact: isCompact,
-                destination: StatsView()
-            )
-
-            HomeHeaderIconButton(
                 icon: "設",
                 accessibilityTitle: "設定",
                 compact: isCompact,
@@ -256,15 +248,21 @@ struct HomeView: View {
                     .stroke(HomeInk.red.opacity(0.22), lineWidth: 1)
                     .frame(width: isCompact ? 92 : 108, height: isCompact ? 92 : 108)
 
-                Text("鬼")
-                    .font(.system(size: isCompact ? 38 : 46, weight: .black, design: .serif))
-                    .foregroundStyle(
-                        LinearGradient(
-                            colors: [HomeInk.gold, HomeInk.red],
-                            startPoint: .top,
-                            endPoint: .bottom
+                OniOptionalArtwork(
+                    assetName: OniArtworkAsset.home,
+                    width: isCompact ? 86 : 106,
+                    height: isCompact ? 86 : 106
+                ) {
+                    Text("鬼")
+                        .font(.system(size: isCompact ? 38 : 46, weight: .black, design: .serif))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [HomeInk.gold, HomeInk.red],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
                         )
-                    )
+                }
             }
             .padding(.top, isCompact ? 14 : 20)
 
@@ -400,34 +398,27 @@ struct HomeView: View {
             HStack(spacing: 8) {
                 HomeSecondaryLink(title: "漢字一覧", icon: "字", destination: AnyView(KanjiCatalogView()))
 
-                if statsRepo.recentWrongAnswers(limit: 1).count > 0 {
-                    HomeSecondaryLink(title: "誤答ノート", icon: "誤", destination: AnyView(WrongAnswerNoteView()))
+                if favoriteRepo.count > 0 {
+                    HomeSecondaryLink(
+                        title: "お気に入り",
+                        icon: "星",
+                        destination: AnyView(
+                            QuizModeSelectView(
+                                stage: FavoriteSessionBuilder.buildFavoriteStage(
+                                    favoriteKanji: favoriteRepo.favoriteKanji
+                                ),
+                                sessionTitle: "お気に入り"
+                            )
+                        )
+                    )
                 }
-
-                HomeSecondaryLink(title: "記録", icon: "記", destination: AnyView(StatsView()))
             }
 
-            let showFavorites = favoriteRepo.count > 0
             let showReview = !reviewQuestions.isEmpty && xpRepo.level >= 30
             let showStreakChallenge = xpRepo.level >= 50
 
-            if showFavorites || showReview || showStreakChallenge {
+            if showReview || showStreakChallenge {
                 HStack(spacing: 8) {
-                    if showFavorites {
-                        HomeSecondaryLink(
-                            title: "お気に入り",
-                            icon: "星",
-                            destination: AnyView(
-                                QuizModeSelectView(
-                                    stage: FavoriteSessionBuilder.buildFavoriteStage(
-                                        favoriteKanji: favoriteRepo.favoriteKanji
-                                    ),
-                                    sessionTitle: "お気に入り"
-                                )
-                            )
-                        )
-                    }
-
                     if showReview {
                         HomeSecondaryLink(
                             title: "おさらい",
@@ -450,66 +441,6 @@ struct HomeView: View {
                         )
                     }
                 }
-            }
-
-            lockedFeaturesRow(isCompact: isCompact)
-        }
-    }
-
-    /// 未解放機能をコンパクトな1行で表示する
-    @ViewBuilder
-    private func lockedFeaturesRow(isCompact: Bool) -> some View {
-        let showReviewLock = !reviewQuestions.isEmpty && xpRepo.level < 30
-        let showStreakLock = xpRepo.level < 50
-
-        if showReviewLock || showStreakLock {
-            HStack(spacing: 8) {
-                Text("予")
-                    .font(.system(size: 11, weight: .black, design: .serif))
-                    .foregroundColor(HomeInk.textSecondary.opacity(0.4))
-                if showReviewLock {
-                    Text("今後解放: おさらい")
-                        .font(.system(size: 11, weight: .medium, design: .rounded))
-                        .foregroundColor(HomeInk.textSecondary.opacity(0.5))
-                }
-                if showReviewLock && showStreakLock {
-                    Text("·")
-                        .foregroundColor(HomeInk.textSecondary.opacity(0.3))
-                        .font(.system(size: 11))
-                }
-                if showStreakLock {
-                    Text(showReviewLock ? "連続鬼たん" : "今後解放: 連続鬼たん")
-                        .font(.system(size: 11, weight: .medium, design: .rounded))
-                        .foregroundColor(HomeInk.textSecondary.opacity(0.5))
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 7)
-            .background(HomeInk.textPrimary.opacity(0.03))
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(HomeInk.border, lineWidth: 1)
-            )
-        }
-    }
-
-    // MARK: - Footer
-
-    private var footerSection: some View {
-        Group {
-            if statsRepo.totalCorrect > 0 {
-                HStack(spacing: 6) {
-                    Text("正")
-                        .font(.system(size: 11, weight: .black, design: .serif))
-                        .foregroundColor(HomeInk.gold)
-                    Text("通算正解 \(statsRepo.totalCorrect) 問")
-                        .font(.system(.caption2, design: .rounded))
-                        .foregroundColor(HomeInk.textSecondary)
-                }
-                .accessibilityElement()
-                .accessibilityLabel("通算正解数: \(statsRepo.totalCorrect)問")
             }
         }
     }
