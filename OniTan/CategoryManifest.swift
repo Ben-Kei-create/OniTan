@@ -1,0 +1,37 @@
+import Foundation
+
+// MARK: - CategoryEntry
+
+struct CategoryEntry: Codable, Identifiable {
+    let id: String
+    let title: String
+    let description: String
+    let questionKinds: [QuestionKind]
+    let stageIDs: [Int]
+    let targetAccuracy: Double
+    let iconName: String
+    let colorHex: String
+
+    var displayKinds: String {
+        questionKinds.map(\.displayName).joined(separator: " / ")
+    }
+}
+
+// MARK: - CategoryManifest
+
+struct CategoryManifest: Codable {
+    let categories: [CategoryEntry]
+
+    func entry(for id: String) -> CategoryEntry? {
+        categories.first { $0.id == id }
+    }
+
+    func entry(for kind: QuestionKind) -> CategoryEntry? {
+        categories.first { $0.questionKinds.contains(kind) }
+    }
+}
+
+// MARK: - Global Load
+
+/// Loaded once at app start; nil if categories.json is absent (graceful).
+let categoryManifest: CategoryManifest? = loadOptional("categories.json")

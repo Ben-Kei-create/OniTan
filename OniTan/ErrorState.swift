@@ -53,17 +53,17 @@ enum OniAlert: Identifiable, Equatable {
     var message: String {
         switch self {
         case .quitConfirmation:
-            return "途中で辞めると、ステージクリアになりません。本当に辞めますか？"
+            return "途中で辞めると、この稽古は完了になりません。本当に辞めますか？"
         case .stageAlreadyCleared(let n):
-            return "ステージ \(n) はすでにクリア済みです。"
+            return "この稽古はすでに完了しています。番号: \(n)"
         case .resetConfirmation:
-            return "進行状況を初期化しますか？\nすべてのクリア情報、統計、ストリーク、XP/レベルが失われます。"
+            return "進行状況を初期化しますか？\n端末内の学習データが削除されます。"
         case .resetFinalConfirmation:
-            return "本当にすべてのデータを初期化しますか？\nクリア情報、統計、ストリーク、XP/レベルがすべて失われます。\nこの操作は元に戻せません。"
+            return "本当にすべてのデータを初期化しますか？\nこの操作は元に戻せません。"
         case .resetComplete:
             return "進行状況が初期化されました。"
         case .nothingToReset:
-            return "まだステージをクリアしていないため、初期化できません。"
+            return "初期化できる学習データはまだありません。"
         case .dataLoadError(let msg):
             return "問題データの読み込みに失敗しました。\n\(msg)"
         case .jsonValidationError(let details):

@@ -84,9 +84,9 @@ struct QuizModeSelectView: View {
                 .foregroundColor(OniTanTheme.textPrimary)
 
             HStack(spacing: 16) {
-                Label("\(stage.questions.count) 問", systemImage: "doc.text")
+                Text("\(stage.questions.count) 問")
                 if weakCount > 0 {
-                    Label("苦手 \(weakCount) 問", systemImage: "exclamationmark.triangle.fill")
+                    Text("苦手 \(weakCount) 問")
                         .foregroundColor(OniTanTheme.accentWeak)
                 }
             }
@@ -114,6 +114,7 @@ private struct ModeCard: View {
 
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
 
     @State private var isPressed = false
 
@@ -131,6 +132,7 @@ private struct ModeCard: View {
                 statsRepo: statsRepo,
                 streakRepo: streakRepo,
                 xpRepo: xpRepo,
+                masteryRepo: masteryRepo,
                 mode: mode,
                 sessionTitle: sessionTitle,
                 nextStage: nextStage,
@@ -139,13 +141,13 @@ private struct ModeCard: View {
         ) {
             HStack(spacing: 14) {
                 ZStack {
-                    Circle()
-                        .fill(iconBackground)
-                        .frame(width: 48, height: 48)
-
-                    Image(systemName: mode.systemImage)
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(.white)
+                    OniSealMark(
+                        text: mode.sealMark,
+                        size: 48,
+                        fontSize: 22,
+                        tint: mode == .weakFocus ? OniTanTheme.accentWeak : OniTanTheme.textPrimary,
+                        fillOpacity: mode == .normal ? 0.18 : 0.14
+                    )
                 }
                 .accessibilityHidden(true)
 
@@ -205,17 +207,8 @@ private struct ModeCard: View {
         .accessibilityIdentifier("mode_card_\(mode.rawValue)")
     }
 
-    private var iconBackground: LinearGradient {
-        switch mode {
-        case .normal:    return OniTanTheme.primaryGradient
-        case .quick10:   return LinearGradient(colors: [Color(red: 1.0, green: 0.5, blue: 0.0), Color(red: 0.9, green: 0.35, blue: 0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .exam30:    return LinearGradient(colors: [Color(red: 0.2, green: 0.5, blue: 0.9), Color(red: 0.1, green: 0.35, blue: 0.7)], startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .weakFocus: return LinearGradient(colors: [OniTanTheme.accentWeak, Color(red: 0.9, green: 0.4, blue: 0.0)], startPoint: .topLeading, endPoint: .bottomTrailing)
-        }
-    }
-
     private var cardBackground: Color {
-        mode == .weakFocus ? Color(red: 0.25, green: 0.15, blue: 0.05).opacity(0.7) : OniTanTheme.cardBackground
+        mode == .weakFocus ? OniTanTheme.cardBackgroundPressed.opacity(0.82) : OniTanTheme.cardBackground
     }
 
     private var cardBorder: Color {

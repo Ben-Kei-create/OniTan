@@ -30,7 +30,7 @@ struct WrongAnswerNoteView: View {
         .navigationTitle("誤答ノート")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .sheet(item: $selectedEntry) { entry in
             WrongAnswerDetailSheet(entry: entry)
         }
@@ -39,15 +39,34 @@ struct WrongAnswerNoteView: View {
     // MARK: Entry Count Bar
 
     private var entryCountBar: some View {
-        HStack {
+        HStack(spacing: 12) {
+            Text("誤")
+                .font(.system(size: 18, weight: .black, design: .serif))
+                .foregroundColor(OniTanTheme.accentWrong)
+                .frame(width: 38, height: 38)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(OniTanTheme.accentWrong.opacity(0.12))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(OniTanTheme.accentWrong.opacity(0.28), lineWidth: 1)
+                        )
+                )
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("見直すべき記録")
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                Text("\(filteredEntries.count) 件")
+                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+            }
+
             Spacer()
-            Text("\(filteredEntries.count) 件")
-                .font(.system(.caption2, design: .rounded))
-                .foregroundColor(OniTanTheme.textTertiary)
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(OniTanTheme.cardBackground.opacity(0.5))
+        .padding(.vertical, 12)
+        .background(OniTanTheme.cardBackground.opacity(0.62))
     }
 
     // MARK: Entry List
@@ -74,7 +93,7 @@ struct WrongAnswerNoteView: View {
             Spacer()
             Image(systemName: "checkmark.seal.fill")
                 .font(.system(size: 56))
-                .foregroundColor(OniTanTheme.accentCorrect.opacity(0.6))
+                .foregroundColor(OniTanTheme.accentWeak.opacity(0.72))
 
             Text("誤答記録なし")
                 .font(.system(.title3, design: .rounded))
@@ -113,7 +132,7 @@ private struct WrongAnswerRow: View {
         HStack(spacing: 14) {
             Text(entry.kanji)
                 .font(.system(size: 38, weight: .black, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
                 .frame(width: 60, height: 60)
                 .background(OniTanTheme.wrongGradient)
                 .clipShape(RoundedRectangle(cornerRadius: 14))
@@ -138,7 +157,7 @@ private struct WrongAnswerRow: View {
                 HStack(spacing: 4) {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 11))
-                        .foregroundColor(OniTanTheme.accentCorrect)
+                        .foregroundColor(OniTanTheme.accentWeak)
                     Text("正解: \(entry.correctAnswer)")
                         .font(.system(.subheadline, design: .rounded))
                         .fontWeight(.semibold)
@@ -162,13 +181,13 @@ private struct WrongAnswerRow: View {
             VStack(alignment: .trailing, spacing: 4) {
                 if showsXPBadge {
                     Text("+\(XPEvent.wrongNoteRetrieved.points) XP")
-                        .font(.system(size: 9, weight: .bold, design: .rounded))
-                        .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                            .font(.system(size: 9, weight: .bold, design: .rounded))
+                            .foregroundColor(OniTanTheme.accentWeak)
                         .padding(.horizontal, 5)
                         .padding(.vertical, 2)
                         .background(
                             Capsule()
-                                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.6))
+                                .fill(OniTanTheme.accentWeak.opacity(0.15))
                         )
                         .accessibilityHidden(true)
                 }
@@ -227,7 +246,7 @@ struct WrongAnswerDetailSheet: View {
                         VStack(spacing: 10) {
                             infoRow(
                                 icon: "checkmark.circle.fill",
-                                iconColor: OniTanTheme.accentCorrect,
+                                iconColor: OniTanTheme.accentWeak,
                                 label: "正解",
                                 value: entry.correctAnswer
                             )

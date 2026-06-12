@@ -4,7 +4,9 @@ struct StageSelectView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var themeManager: ThemeManager
-    private let stages = quizData.stages.sorted { $0.stage < $1.stage }
+    private let stages = quizData.stages
+        .filter { $0.questions.contains { $0.kind.isExamEligible } }
+        .sorted { $0.stage < $1.stage }
     private let stageManifest = (try? safeLoad("stages.json") as StageManifest)
     private var totalStages: Int { max(stages.map(\.stage).max() ?? stages.count, 1) }
     private var orderedStageIDs: [Int] { stages.map(\.stage) }
@@ -27,6 +29,8 @@ struct StageSelectView: View {
 
                 ScrollView {
                     VStack(spacing: 16) {
+                        stageOverview
+
                         ForEach(stages, id: \.stage) { stage in
                             StageCard(
                                 stage: stage,
@@ -42,7 +46,8 @@ struct StageSelectView: View {
                         }
                     }
                     .padding(.horizontal, 16)
-                    .padding(.vertical, 20)
+                    .padding(.top, 16)
+                    .padding(.bottom, 28)
                 }
             }
 
@@ -50,7 +55,52 @@ struct StageSelectView: View {
         .navigationTitle("ステージ選択")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+    }
+
+    private var stageOverview: some View {
+        let visibleStageIDs = Set(stages.map(\.stage))
+        let cleared = appState.clearedStages.filter { visibleStageIDs.contains($0) }.count
+        let progress = stages.isEmpty ? 0 : Double(cleared) / Double(stages.count)
+
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .firstTextBaseline) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("基礎ステージ")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundColor(OniTanTheme.textPrimary)
+                    Text("一段ずつ、読みの土台を固める。")
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                }
+
+                Spacer()
+
+                Text("\(cleared)/\(stages.count)")
+                    .font(.system(size: 18, weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.accentWeak)
+            }
+
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(OniTanTheme.cardBackgroundPressed.opacity(0.65))
+                    Capsule()
+                        .fill(OniTanTheme.goldGradient)
+                        .frame(width: geo.size.width * progress)
+                }
+            }
+            .frame(height: 5)
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                .fill(OniTanTheme.cardBackground.opacity(0.82))
+                .overlay(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                )
+        )
     }
 }
 
@@ -68,10 +118,11 @@ private struct StageCard: View {
     @ObservedObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
 
     private var isCleared: Bool  { appState.isCleared(stage.stage) }
     private var isUnlocked: Bool { appState.isUnlocked(stage.stage, orderedStageIDs: orderedStageIDs) }
-    private var sessionTitle: String { "ステージ \(displayNumber)" }
+    private var sessionTitle: String { manifest?.title ?? "ステージ \(displayNumber)" }
     private var weakCount: Int   { statsRepo.weakQuestions(for: stage).count }
     private var accuracy: Double { statsRepo.stageStats[stage.stage]?.accuracy ?? 0 }
     private var nextStageTitle: String? { nextDisplayNumber.map { "ステージ \($0)" } }
@@ -86,7 +137,9 @@ private struct StageCard: View {
                         statsRepo: statsRepo,
                         streakRepo: streakRepo,
                         xpRepo: xpRepo,
+                        masteryRepo: masteryRepo,
                         mode: weakCount > 0 ? .weakFocus : .normal,
+                        clearTitle: "\(sessionTitle) クリア！",
                         sessionTitle: sessionTitle,
                         nextStage: nextStage,
                         nextStageTitle: nextStageTitle
@@ -156,9 +209,9 @@ private struct StageCard: View {
             Spacer()
 
             if isUnlocked {
-                Image(systemName: weakCount > 0 ? "exclamationmark.triangle.fill" : "play.circle.fill")
-                    .font(.system(size: weakCount > 0 ? 20 : 28))
-                    .foregroundColor(weakCount > 0 ? OniTanTheme.accentWeak : OniTanTheme.accentPrimary.opacity(0.8))
+                Image(systemName: weakCount > 0 ? "exclamationmark.triangle.fill" : "chevron.right")
+                    .font(.system(size: weakCount > 0 ? 18 : 14, weight: .semibold))
+                    .foregroundColor(weakCount > 0 ? OniTanTheme.accentWrong : OniTanTheme.textTertiary)
                     .accessibilityHidden(true)
             } else {
                 Image(systemName: "lock.fill")
@@ -182,27 +235,27 @@ private struct StageCard: View {
             HStack(spacing: 5) {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .font(.system(size: 10, weight: .semibold))
-                    .foregroundColor(OniTanTheme.accentWeak)
+                    .foregroundColor(OniTanTheme.accentWrong)
                 Text("苦手 \(weakCount) 問")
                     .font(.system(.caption, design: .rounded))
                     .fontWeight(.semibold)
-                    .foregroundColor(OniTanTheme.accentWeak)
+                    .foregroundColor(OniTanTheme.accentWrong)
                 Text("→ 苦手モードで開始")
                     .font(.system(size: 10, design: .rounded))
-                    .foregroundColor(OniTanTheme.accentWeak.opacity(0.7))
+                    .foregroundColor(OniTanTheme.textTertiary)
             }
             .padding(.horizontal, 7)
             .padding(.vertical, 3)
-            .background(OniTanTheme.accentWeak.opacity(0.12))
+            .background(OniTanTheme.accentWrong.opacity(0.10))
             .cornerRadius(6)
         } else if isCleared {
             HStack(spacing: 4) {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 10))
-                    .foregroundColor(OniTanTheme.accentCorrect)
+                    .foregroundColor(OniTanTheme.accentWeak)
                 Text("クリア済み")
                     .font(.system(.caption, design: .rounded))
-                    .foregroundColor(OniTanTheme.accentCorrect)
+                    .foregroundColor(OniTanTheme.accentWeak)
             }
         } else {
             Text("\(stage.questions.count) 問")
@@ -226,7 +279,7 @@ private struct StageCard: View {
                         .frame(height: 6)
 
                     RoundedRectangle(cornerRadius: 3)
-                        .fill(isCleared ? OniTanTheme.correctGradient : OniTanTheme.primaryGradient)
+                        .fill(OniTanTheme.goldGradient)
                         .frame(width: geo.size.width * fraction, height: 6)
                         .animation(.easeInOut(duration: 0.4), value: fraction)
                 }
@@ -256,17 +309,17 @@ private struct StageCard: View {
     private var modeSelectBadge: some View {
         HStack(spacing: 6) {
             Image(systemName: "slider.horizontal.3")
-                .font(.system(size: 11, weight: .semibold))
+                .font(.system(size: 10, weight: .semibold))
             Text("他のモードで学ぶ")
-                .font(.system(size: 12, weight: .semibold, design: .rounded))
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
             Spacer()
             Image(systemName: "chevron.right")
                 .font(.system(size: 11))
         }
         .foregroundColor(OniTanTheme.textTertiary)
         .padding(.horizontal, 16)
-        .padding(.vertical, 9)
-        .background(OniTanTheme.cardBackground.opacity(0.6))
+        .padding(.vertical, 8)
+        .background(Color.black.opacity(0.16))
         .cornerRadius(0)
         .clipShape(
             .rect(
@@ -282,12 +335,12 @@ private struct StageCard: View {
 
     private var stageCardColor: Color {
         if !isUnlocked { return OniTanTheme.cardBackground.opacity(0.5) }
-        if isCleared   { return Color(red: 0.10, green: 0.35, blue: 0.20).opacity(0.7) }
+        if isCleared   { return OniTanTheme.cardBackgroundPressed }
         return OniTanTheme.cardBackground
     }
 
     private var stageCardBorder: Color {
-        if isCleared    { return OniTanTheme.accentCorrect.opacity(0.4) }
+        if isCleared    { return OniTanTheme.accentWeak.opacity(0.34) }
         if !isUnlocked  { return OniTanTheme.cardBorder.opacity(0.5) }
         return OniTanTheme.cardBorder
     }
@@ -329,7 +382,7 @@ private struct DifficultyBadge: View {
             ForEach(0..<flameCount, id: \.self) { _ in
                 Image(systemName: "flame.fill")
                     .font(.system(size: flameSize))
-                    .foregroundColor(OniTanTheme.accentWeak)
+                    .foregroundColor(OniTanTheme.accentWeak.opacity(0.78))
             }
         }
         .accessibilityLabel("難易度レベル\(stageNumber)")

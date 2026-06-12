@@ -2,7 +2,6 @@ import SwiftUI
 
 private struct KanjiCatalogEntry: Identifiable {
     let question: Question
-    let stageNumber: Int
 
     var id: String { question.kanji }
 }
@@ -11,23 +10,40 @@ struct KanjiCatalogView: View {
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @State private var selectedEntry: KanjiCatalogEntry?
+    @State private var searchText = ""
+    @State private var favoritesOnly = false
 
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 5)
+    private let columns = [GridItem(.adaptive(minimum: 58), spacing: 10)]
 
     private var favoriteEntryCount: Int {
-        entries.filter { favoriteRepo.isFavorite($0.question.kanji) }.count
+        baseEntries.filter { favoriteRepo.isFavorite($0.question.kanji) }.count
     }
 
-    private var entries: [KanjiCatalogEntry] {
+    private var baseEntries: [KanjiCatalogEntry] {
         var seen = Set<String>()
         var result: [KanjiCatalogEntry] = []
 
-        for stage in quizData.stages.sorted(by: { $0.stage < $1.stage }) {
-            for question in stage.questions where seen.insert(question.kanji).inserted {
-                result.append(KanjiCatalogEntry(question: question, stageNumber: stage.stage))
-            }
+        for question in questions where seen.insert(question.kanji).inserted {
+            result.append(KanjiCatalogEntry(question: question))
         }
 
+        return result
+    }
+
+    private var entries: [KanjiCatalogEntry] {
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let filtered = baseEntries.filter { entry in
+            let question = entry.question
+            let matchesFavorite = !favoritesOnly || favoriteRepo.isFavorite(question.kanji)
+            let matchesQuery = query.isEmpty
+                || question.kanji.localizedStandardContains(query)
+                || question.answer.localizedStandardContains(query)
+                || question.displayPrompt.localizedStandardContains(query)
+                || question.displayExplanation.localizedStandardContains(query)
+            return matchesFavorite && matchesQuery
+        }
+
+        let result = filtered
         let favorites = result.filter { favoriteRepo.isFavorite($0.question.kanji) }
         let others = result.filter { !favoriteRepo.isFavorite($0.question.kanji) }
         return favorites + others
@@ -42,17 +58,22 @@ struct KanjiCatalogView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
                         summaryCard
+                        catalogControls
 
-                        LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(entries) { entry in
-                                Button {
-                                    selectedEntry = entry
-                                } label: {
-                                    KanjiCatalogCell(entry: entry)
+                        if entries.isEmpty {
+                            emptyResultCard
+                        } else {
+                            LazyVGrid(columns: columns, spacing: 10) {
+                                ForEach(entries) { entry in
+                                    Button {
+                                        selectedEntry = entry
+                                    } label: {
+                                        KanjiCatalogCell(entry: entry)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .accessibilityLabel("\(entry.question.kanji) の詳細")
+                                    .accessibilityHint("タップして読みと解説を見る")
                                 }
-                                .buttonStyle(.plain)
-                                .accessibilityLabel("\(entry.question.kanji) の詳細")
-                                .accessibilityHint("タップして読みと解説を見る")
                             }
                         }
                     }
@@ -73,7 +94,7 @@ struct KanjiCatalogView: View {
 
     private var summaryCard: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("収録漢字 \(entries.count) 字")
+            Text("収録漢字 \(baseEntries.count) 字")
                 .font(.system(.title3, design: .rounded))
                 .fontWeight(.black)
                 .foregroundColor(OniTanTheme.textPrimary)
@@ -85,7 +106,7 @@ struct KanjiCatalogView: View {
                     .foregroundColor(OniTanTheme.accentWeak)
             }
 
-            Text("5列の一覧から漢字を選ぶと、読みと解説を確認できます。お気に入りはホームからまとめて学習できます。")
+            Text("一覧から漢字を選ぶと、読みと解説を確認できます。お気に入りはホームからまとめて学習できます。")
                 .font(.system(.subheadline, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -93,6 +114,90 @@ struct KanjiCatalogView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
         .oniCard()
+    }
+
+    private var catalogControls: some View {
+        VStack(spacing: 10) {
+            HStack(spacing: 10) {
+                Text("探")
+                    .font(.system(size: 16, weight: .black, design: .serif))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .frame(width: 34, height: 34)
+                    .background(
+                        RoundedRectangle(cornerRadius: 9)
+                            .fill(OniTanTheme.cardBackgroundPressed)
+                    )
+                    .accessibilityHidden(true)
+
+                TextField("漢字・読み・解説で検索", text: $searchText)
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled(true)
+
+                if !searchText.isEmpty {
+                    Button {
+                        searchText = ""
+                    } label: {
+                        Text("消")
+                            .font(.system(size: 13, weight: .black, design: .serif))
+                            .foregroundColor(OniTanTheme.textTertiary)
+                            .frame(width: 30, height: 30)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("検索語を消去")
+                }
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 9)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(OniTanTheme.cardBackground)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                    )
+            )
+
+            Button {
+                favoritesOnly.toggle()
+            } label: {
+                HStack(spacing: 8) {
+                    Text("星")
+                        .font(.system(size: 13, weight: .black, design: .serif))
+                        .foregroundColor(favoritesOnly ? OniTanTheme.cardBackground : OniTanTheme.accentWeak)
+                    Text(favoritesOnly ? "お気に入りのみ表示中" : "お気に入りのみ")
+                        .font(.system(.caption, design: .rounded))
+                        .fontWeight(.bold)
+                    Spacer()
+                    Text("\(favoriteEntryCount) 字")
+                        .font(.system(.caption, design: .rounded))
+                        .fontWeight(.semibold)
+                }
+                .foregroundColor(favoritesOnly ? OniTanTheme.cardBackground : OniTanTheme.textSecondary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(favoritesOnly ? OniTanTheme.accentWeak : OniTanTheme.cardBackground)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                        )
+                )
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(favoritesOnly ? "お気に入りのみ表示中" : "お気に入りのみ表示")
+        }
+    }
+
+    private var emptyResultCard: some View {
+        Text("該当する漢字がありません")
+            .font(.system(.subheadline, design: .rounded))
+            .fontWeight(.semibold)
+            .foregroundColor(OniTanTheme.textSecondary)
+            .frame(maxWidth: .infinity, minHeight: 72)
+            .oniCard()
     }
 }
 
@@ -112,8 +217,8 @@ private struct KanjiCatalogCell: View {
 
             if favoriteRepo.isFavorite(entry.question.kanji) {
                 HStack {
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 10, weight: .bold))
+                    Text("星")
+                        .font(.system(size: 10, weight: .black, design: .serif))
                         .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.28))
                         .padding(7)
                         .background(Color.black.opacity(0.16))
@@ -122,15 +227,6 @@ private struct KanjiCatalogCell: View {
                 }
                 .padding(6)
             }
-
-            Text("S\(entry.stageNumber)")
-                .font(.system(size: 9, weight: .bold, design: .rounded))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .padding(.horizontal, 6)
-                .padding(.vertical, 4)
-                .background(Color.black.opacity(0.16))
-                .clipShape(Capsule())
-                .padding(6)
 
             Text(entry.question.kanji)
                 .font(.system(size: 28, weight: .black, design: .rounded))
@@ -198,7 +294,6 @@ private struct KanjiCatalogDetailView: View {
 
             HStack(spacing: 8) {
                 detailPill(title: "正解", value: entry.question.answer)
-                detailPill(title: "収録", value: "Stage \(entry.stageNumber)")
             }
         }
         .frame(maxWidth: .infinity)

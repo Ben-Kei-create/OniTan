@@ -14,7 +14,14 @@ let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
         var loadedStages: [Stage] = []
         for entry in manifest.stages {
             let stage: Stage = try safeLoad(entry.file)
-            loadedStages.append(stage)
+            // Stamp deterministic IDs: "{stageNumber}-{index}-{kanji}-{answer}"
+            let stamped = Stage(
+                stage: stage.stage,
+                questions: stage.questions.enumerated().map { idx, q in
+                    q.stamped(stageNumber: stage.stage, index: idx)
+                }
+            )
+            loadedStages.append(stamped)
         }
         let reviewQuestions: [Question]? = try? safeLoad("review_questions.json")
         let unusedQuestions: [Question]? = try? safeLoad("unused_questions.json")
@@ -54,7 +61,27 @@ let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
 /// Flat list of main-stage questions.
 let questions: [Question] = quizData.stages.flatMap { $0.questions }
 let reviewQuestions: [Question] = quizData.review_questions ?? []
-let allQuestions: [Question] = questions + reviewQuestions
+
+/// Questions from standalone kind-specific JSON files (yojijukugo, writing, etc.).
+let supplementalQuestions: [Question] = {
+    let files = [
+        "yojijukugo_questions.json",
+        "synonym_questions.json",
+        "antonym_questions.json",
+        "writing_questions.json",
+        "hyogai_reading_questions.json",
+        "compound_reading_kun_questions.json",
+        "common_kanji_questions.json",
+        "error_correction_questions.json",
+        "proverb_questions.json",
+        "passage_questions.json",
+    ]
+    let loaded = files.flatMap { (loadOptional($0) as [Question]?) ?? [] }
+    logger.info("Supplemental questions loaded: \(loaded.count, privacy: .public)")
+    return loaded
+}()
+
+let allQuestions: [Question] = questions + reviewQuestions + supplementalQuestions
 
 // MARK: - Safe Loaders
 
@@ -147,6 +174,13 @@ func validateQuizData(_ data: QuizData) -> [String] {
                     issues.append("⚠️ \(qtag): yojijukugo の yoji「\(yoji)」の文字数が4ではありません")
                 }
             }
+
+            // CommonKanji: blankTerms should contain □
+            if q.kind == .commonKanji, let p = q.payload, let terms = p.blankTerms, !terms.isEmpty {
+                for term in terms where !term.contains("□") {
+                    issues.append("⚠️ \(qtag): commonKanji blankTerm「\(term)」に「□」が含まれていません")
+                }
+            }
         }
     }
 
@@ -197,38 +231,42 @@ func validateQuizDataStrict(_ data: QuizData) throws {
             guard let p = q.payload else { continue }
 
             switch q.kind {
-            case .reading:
+            case .reading, .sentenceReading, .hyogaiReading:
                 if let k = p.targetKanji, k.isEmpty {
                     errors.append("\(qtag): reading payload.targetKanji が空です")
                 }
 
-            case .writing:
-                if let k = p.kana, k.isEmpty {
-                    errors.append("\(qtag): writing payload.kana が空です")
+            case .errorCorrection:
+                if let wrong = p.wrongKanji, let correct = p.correctKanji,
+                   !wrong.isEmpty, !correct.isEmpty, wrong == correct {
+                    errors.append("\(qtag): errorCorrection の wrongKanji と correctKanji が同じです")
                 }
-                if let k = p.targetKanji, k.isEmpty {
-                    errors.append("\(qtag): writing payload.targetKanji が空です")
+                if let orig = p.originalSentence, orig.isEmpty {
+                    errors.append("\(qtag): errorCorrection の originalSentence が空です")
                 }
 
-            case .cloze:
-                if let sentence = p.sentence, let token = p.blankToken, !token.isEmpty {
-                    if !sentence.contains(token) {
-                        errors.append("\(qtag): cloze sentence に blankToken「\(token)」が含まれていません")
+            case .yojijukugo:
+                if let yoji = p.yoji, !yoji.isEmpty {
+                    let cleaned = yoji.replacingOccurrences(of: "□", with: "X")
+                    if cleaned.count != 4 {
+                        errors.append("\(qtag): yojijukugo の yoji「\(yoji)」の文字数が4ではありません")
                     }
                 }
 
-            case .errorcorrection:
-                if let wrong = p.wrongKanji, let correct = p.correctKanji,
-                   !wrong.isEmpty, !correct.isEmpty, wrong == correct {
-                    errors.append("\(qtag): errorcorrection の wrongKanji と correctKanji が同じです")
-                }
-                if let orig = p.originalSentence, orig.isEmpty {
-                    errors.append("\(qtag): errorcorrection の originalSentence が空です")
-                }
-
-            case .composition:
-                if let st = p.structureType, !QuestionKind.validStructureTypes.contains(st) {
-                    errors.append("\(qtag): composition structureType「\(st)」が不正な値です（許可値: \(QuestionKind.validStructureTypes.sorted().joined(separator: ", "))）")
+            case .passageVocabulary:
+                if p.type == "cloze" {
+                    if let sentence = p.sentence,
+                       let blankToken = p.blankToken,
+                       !blankToken.isEmpty,
+                       !sentence.contains(blankToken) {
+                        errors.append("\(qtag): cloze の sentence に blankToken「\(blankToken)」が含まれていません")
+                    }
+                    if let passageText = p.passageText,
+                       let passageBlankToken = p.passageBlankToken,
+                       !passageBlankToken.isEmpty,
+                       !passageText.contains(passageBlankToken) {
+                        errors.append("\(qtag): passageVocabulary の passageText に passageBlankToken「\(passageBlankToken)」が含まれていません")
+                    }
                 }
 
             default:

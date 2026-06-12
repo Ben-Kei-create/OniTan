@@ -6,127 +6,297 @@ private let kindLogger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "OniT
 
 // MARK: - QuestionKind
 
-/// All question categories that appear in 漢字検定準1級 exams.
-/// Unknown raw values map to `.unknown` so future kinds never crash the app.
+/// Canonical question types matching the actual Kanken Pre-1 exam format.
+/// Legacy kind strings from old JSON are remapped via the custom decoder below.
 enum QuestionKind: String, Codable, CaseIterable {
-    case reading          // 読み（音読み・訓読み・熟字訓）
-    case writing          // 書き取り（かな→漢字）
-    case composition      // 熟語の構成（5分類）
-    case yojijukugo       // 四字熟語
-    case synonym          // 類義語
-    case antonym          // 対義語
-    case okurigana        // 送り仮名
-    case errorcorrection  // 誤字訂正
-    case cloze            // 文章穴埋め
-    case usage            // 語彙用法
-    case unknown          // catch-all for forward compatibility
+
+    // MARK: 読み系
+    case reading              // 読み（語・熟語・文中の読み）
+    case sentenceReading      // 例文読み（例文中の下線部の読み）
+    case hyogaiReading        // 表外の読み（標準外の読み方）
+    case compoundReadingKun   // 熟語の読み・一字訓（熟語中の特定漢字）
+
+    // MARK: 漢字選択
+    case commonKanji          // 共通漢字（複数語に共通する一字）
+
+    // MARK: 訂正
+    case errorCorrection      // 誤字訂正（文中の誤字を選ぶ）
+
+    // MARK: 熟語・成語
+    case yojijukugo           // 四字熟語（欠字・意味照合）
+    case synonym              // 類義語
+    case antonym              // 対義語
+    case proverb              // 故事・成語・ことわざ
+
+    // MARK: 文章題
+    case passageReading       // 文章題（文中の読み問題）
+    case passageVocabulary    // 文章題（語彙・文脈・文章穴埋め）
+
+    // MARK: スキップ
+    case writingSkipped       // 書き取り（多肢選択では未対応、模試から除外）
+
+    // MARK: フォールバック
+    case unknown              // 前方互換用キャッチオール
+
+    // MARK: - Decoding with legacy rawValue aliases
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let raw = try container.decode(String.self)
+
+        // Direct match first
         if let matched = QuestionKind(rawValue: raw) {
             self = matched
-        } else {
+            return
+        }
+
+        // Legacy rawValue → new case
+        switch raw {
+        case "errorcorrection":
+            self = .errorCorrection
+        case "writing":
+            self = .writingSkipped
+        case "jukujikun":
+            // 熟字訓 is closest to 読み in exam terms
+            self = .reading
+        case "cloze", "usage":
+            self = .passageVocabulary
+        case "composition", "okurigana", "radical", "examMixed":
+            // Deprecated — no direct exam equivalent in Pre-1
+            self = .unknown
+        default:
             kindLogger.warning("Unknown QuestionKind '\(raw, privacy: .public)' — mapped to .unknown")
             self = .unknown
         }
     }
 }
 
+// MARK: - UI Labels
+
 extension QuestionKind {
-    /// Whitelist for `QuestionPayload.structureType` when kind == .composition.
-    /// Based on the standard 漢字検定 5-category classification:
-    ///   synonymChars  — 類義（岩石）
-    ///   antonymChars  — 対義（高低）
-    ///   modifier      — 修飾（美女）
-    ///   verbObject    — 動目（着席）
-    ///   subjectPredicate — 主述（地震）
-    static let validStructureTypes: Set<String> = [
-        "synonym_chars",
-        "antonym_chars",
-        "modifier",
-        "verb_object",
-        "subject_predicate"
+
+    /// Short display name for badges and stats.
+    var displayName: String {
+        switch self {
+        case .reading:            return "読み（旧）"
+        case .sentenceReading:    return "例文読み"
+        case .hyogaiReading:      return "表外の読み"
+        case .compoundReadingKun: return "熟語の読み"
+        case .commonKanji:        return "共通漢字"
+        case .errorCorrection:    return "誤字訂正"
+        case .yojijukugo:         return "四字熟語"
+        case .synonym:            return "類義語"
+        case .antonym:            return "対義語"
+        case .proverb:            return "故事・ことわざ"
+        case .passageReading:     return "文章題（読み）"
+        case .passageVocabulary:  return "文章題（語彙）"
+        case .writingSkipped:     return "書き取り"
+        case .unknown:            return "その他"
+        }
+    }
+
+    /// Instruction label shown above the answer choices.
+    var choicePrompt: String {
+        switch self {
+        case .reading:            return "読みをひらがなで選びなさい"
+        case .sentenceReading:    return "下線部の読みを選びなさい"
+        case .hyogaiReading:      return "表外の読みを選びなさい"
+        case .compoundReadingKun: return "一字の読みを選びなさい"
+        case .commonKanji:        return "共通する漢字を選びなさい"
+        case .errorCorrection:    return "誤っている漢字を選びなさい"
+        case .yojijukugo:         return "□に入る漢字を選びなさい"
+        case .synonym:            return "類義語を選びなさい"
+        case .antonym:            return "対義語を選びなさい"
+        case .proverb:            return "正しい語句を選びなさい"
+        case .passageReading:     return "下線部の読みを選びなさい"
+        case .passageVocabulary:  return "□に入る語句を選びなさい"
+        case .writingSkipped:     return "答えを選びなさい"
+        case .unknown:            return "答えを選びなさい"
+        }
+    }
+
+    /// SF Symbol for this kind.
+    var systemImage: String {
+        switch self {
+        case .reading:            return "character.book.closed"
+        case .sentenceReading:    return "text.quote"
+        case .hyogaiReading:      return "book.pages"
+        case .compoundReadingKun: return "text.magnifyingglass"
+        case .commonKanji:        return "square.on.square"
+        case .errorCorrection:    return "checkmark.circle"
+        case .yojijukugo:         return "square.grid.2x2"
+        case .synonym:            return "equal.circle"
+        case .antonym:            return "arrow.left.arrow.right"
+        case .proverb:            return "quote.bubble"
+        case .passageReading:     return "doc.text.below.ecg"
+        case .passageVocabulary:  return "doc.text"
+        case .writingSkipped:     return "pencil.slash"
+        case .unknown:            return "questionmark.circle"
+        }
+    }
+
+    /// Whether this kind should use a full-sentence card layout.
+    var isSentenceKind: Bool {
+        switch self {
+        case .errorCorrection, .proverb,
+             .sentenceReading, .passageReading, .passageVocabulary:
+            return true
+        default:
+            return false
+        }
+    }
+
+    /// Whether this kind is included in mock exams.
+    var isExamEligible: Bool {
+        self != .reading && self != .writingSkipped && self != .unknown
+    }
+
+    /// Kinds that appear in the real Kanken Pre-1 exam (used by ReadinessCalculator).
+    static let examKinds: [QuestionKind] = [
+        .sentenceReading, .hyogaiReading, .compoundReadingKun,
+        .commonKanji, .errorCorrection,
+        .yojijukugo, .synonym, .antonym,
+        .proverb, .passageReading, .passageVocabulary
     ]
 }
 
 // MARK: - QuestionPayload
 
-/// Supplementary metadata for kind-specific questions.
-/// All fields are optional at the struct level; required fields are enforced
-/// per-kind by `validateQuizDataStrict()`.
 struct QuestionPayload: Codable {
-    /// Discriminator — should match `QuestionKind.rawValue`.
-    /// Optional to be lenient on decoding; validated by validateQuizDataStrict.
+
+    // MARK: Discriminator
     let type: String?
 
-    // MARK: reading / writing
+    // MARK: Common overrides
+    let title: String?        // optional section title shown in explanation
+    let instruction: String?  // overrides choicePrompt if present
+
+    // MARK: reading / hyogaiReading
     let targetKanji: String?
     let kana: String?
-    /// "on" | "kun" | "mixed" | "jukujikun"
-    let readingType: String?
+    let readingType: String?       // "on" | "kun" | "mixed" | "hyogai"
+    let sentenceContext: String?   // sentence showing the kanji in context
 
-    // MARK: composition (熟語の構成5分類)
-    /// Must be one of `QuestionKind.validStructureTypes` when present.
-    let structureType: String?
-    let compound: String?
+    // MARK: compoundReadingKun
+    let targetCompound: String?         // the compound word (e.g. "山河")
+    let targetKanjiInCompound: String?  // which kanji is asked (e.g. "山")
+
+    // MARK: commonKanji
+    let blankTerms: [String]?   // e.g. ["□国", "□王", "□族"]
 
     // MARK: yojijukugo
-    /// 4-character string; may contain "□" for the blank to fill.
-    let yoji: String?
-    /// Index (0–3) of the missing character.
-    let missingIndex: Int?
+    let yoji: String?         // 4-char string with "□" for the blank
+    let missingIndex: Int?    // 0–3
     let meaning: String?
 
-    // MARK: cloze
-    let sentence: String?
-    /// The token that appears in choices and must also appear in `sentence`.
-    let blankToken: String?
+    // MARK: synonym / antonym
+    let targetWord: String?
+    let relationWord: String?
 
-    // MARK: errorcorrection
+    // MARK: errorCorrection
     let originalSentence: String?
     let wrongKanji: String?
     let correctKanji: String?
+    let correctedSentence: String?
 
-    // MARK: usage / okurigana
-    let targetWord: String?
-    let ruleTag: String?
+    // MARK: proverb
+    let proverbText: String?
+    let proverbMeaning: String?
 
-    // MARK: - Convenience init (all fields default to nil)
-    // Explicit defaults let call sites omit unused fields cleanly (tests, builders).
+    // MARK: passageReading / passageVocabulary
+    let passageText: String?         // the full passage text
+    let passageTarget: Int?          // which numbered blank/underline (1-based)
+    let passageTargetText: String?   // the specific text being asked about
+    let passageBlankToken: String?   // the token to replace in the passage
+
+    // MARK: legacy / deprecated (kept for backward compatibility)
+    let kanaPrompt: String?
+    let baseWord: String?
+    let okuriganaRule: String?
+    let sentence: String?
+    let blankToken: String?
+    let compound: String?
+    let structureType: String?
+    let radical: String?
+    let radicalName: String?
+    let jukujikunWord: String?
+    let jukujikunReading: String?
+
+    // MARK: - Convenience init
+
     init(
         type: String? = nil,
+        title: String? = nil,
+        instruction: String? = nil,
         targetKanji: String? = nil,
         kana: String? = nil,
         readingType: String? = nil,
-        structureType: String? = nil,
-        compound: String? = nil,
+        sentenceContext: String? = nil,
+        targetCompound: String? = nil,
+        targetKanjiInCompound: String? = nil,
+        blankTerms: [String]? = nil,
         yoji: String? = nil,
         missingIndex: Int? = nil,
         meaning: String? = nil,
-        sentence: String? = nil,
-        blankToken: String? = nil,
+        targetWord: String? = nil,
+        relationWord: String? = nil,
         originalSentence: String? = nil,
         wrongKanji: String? = nil,
         correctKanji: String? = nil,
-        targetWord: String? = nil,
-        ruleTag: String? = nil
+        correctedSentence: String? = nil,
+        proverbText: String? = nil,
+        proverbMeaning: String? = nil,
+        passageText: String? = nil,
+        passageTarget: Int? = nil,
+        passageTargetText: String? = nil,
+        passageBlankToken: String? = nil,
+        kanaPrompt: String? = nil,
+        baseWord: String? = nil,
+        okuriganaRule: String? = nil,
+        sentence: String? = nil,
+        blankToken: String? = nil,
+        compound: String? = nil,
+        structureType: String? = nil,
+        radical: String? = nil,
+        radicalName: String? = nil,
+        jukujikunWord: String? = nil,
+        jukujikunReading: String? = nil
     ) {
         self.type = type
+        self.title = title
+        self.instruction = instruction
         self.targetKanji = targetKanji
         self.kana = kana
         self.readingType = readingType
-        self.structureType = structureType
-        self.compound = compound
+        self.sentenceContext = sentenceContext
+        self.targetCompound = targetCompound
+        self.targetKanjiInCompound = targetKanjiInCompound
+        self.blankTerms = blankTerms
         self.yoji = yoji
         self.missingIndex = missingIndex
         self.meaning = meaning
-        self.sentence = sentence
-        self.blankToken = blankToken
+        self.targetWord = targetWord
+        self.relationWord = relationWord
         self.originalSentence = originalSentence
         self.wrongKanji = wrongKanji
         self.correctKanji = correctKanji
-        self.targetWord = targetWord
-        self.ruleTag = ruleTag
+        self.correctedSentence = correctedSentence
+        self.proverbText = proverbText
+        self.proverbMeaning = proverbMeaning
+        self.passageText = passageText
+        self.passageTarget = passageTarget
+        self.passageTargetText = passageTargetText
+        self.passageBlankToken = passageBlankToken
+        self.kanaPrompt = kanaPrompt
+        self.baseWord = baseWord
+        self.okuriganaRule = okuriganaRule
+        self.sentence = sentence
+        self.blankToken = blankToken
+        self.compound = compound
+        self.structureType = structureType
+        self.radical = radical
+        self.radicalName = radicalName
+        self.jukujikunWord = jukujikunWord
+        self.jukujikunReading = jukujikunReading
     }
 }

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "mini",
+    "title": "ミニ模試（30問）",
+    "questionCount": 30,
+    "distribution": {
+      "sentenceReading":    7,
+      "hyogaiReading":      3,
+      "compoundReadingKun": 3,
+      "commonKanji":        3,
+      "errorCorrection":    3,
+      "yojijukugo":         4,
+      "synonym":            2,
+      "antonym":            2,
+      "proverb":            1,
+      "passageReading":     1,
+      "passageVocabulary":  1
+    },
+    "passingAccuracy": 0.90
+  },
+  {
+    "id": "full",
+    "title": "本番模試（200問）",
+    "questionCount": 200,
+    "distribution": {
+      "sentenceReading":    50,
+      "hyogaiReading":      20,
+      "compoundReadingKun": 20,
+      "commonKanji":        20,
+      "errorCorrection":    20,
+      "yojijukugo":         30,
+      "synonym":            10,
+      "antonym":            10,
+      "proverb":            10,
+      "passageReading":     5,
+      "passageVocabulary":  5
+    },
+    "passingAccuracy": 0.90
+  }
+]

@@ -34,7 +34,7 @@ struct SettingsView: View {
         .navigationTitle("設定")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .alert(item: $activeAlert) { alert in
             buildAlert(for: alert)
         }
@@ -48,7 +48,7 @@ struct SettingsView: View {
         SettingsCard(
             title: "通知",
             icon: "bell.badge.fill",
-            iconColor: Color(red: 1.0, green: 0.65, blue: 0.15)
+            iconColor: OniTanTheme.accentWeak
         ) {
             VStack(alignment: .leading, spacing: 12) {
                 switch notificationManager.authStatus {
@@ -69,8 +69,8 @@ struct SettingsView: View {
             HStack(spacing: 8) {
                 Image(systemName: notificationManager.isReminderScheduled
                       ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(notificationManager.isReminderScheduled
-                                     ? OniTanTheme.accentCorrect : OniTanTheme.textTertiary)
+                                    .foregroundColor(notificationManager.isReminderScheduled
+                                     ? OniTanTheme.accentWeak : OniTanTheme.textTertiary)
                     .font(.system(size: 17))
                 VStack(alignment: .leading, spacing: 2) {
                     Text("毎日リマインダー")
@@ -135,7 +135,7 @@ struct SettingsView: View {
                         .fontWeight(.bold)
                 }
                 .font(.system(.subheadline, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
                 .frame(maxWidth: .infinity, minHeight: 44)
                 .background(OniTanTheme.primaryGradient)
                 .cornerRadius(OniTanTheme.radiusButton)
@@ -162,17 +162,11 @@ struct SettingsView: View {
                         .fontWeight(.bold)
                 }
                 .font(.system(.subheadline, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(OniTanTheme.textPrimary)
                 .frame(maxWidth: .infinity, minHeight: 44)
-                .background(
-                    LinearGradient(
-                        colors: [Color(red: 1.0, green: 0.55, blue: 0.05),
-                                 Color(red: 0.8, green: 0.30, blue: 0.0)],
-                        startPoint: .topLeading, endPoint: .bottomTrailing
-                    )
-                )
+                .background(OniTanTheme.primaryGradient)
                 .cornerRadius(OniTanTheme.radiusButton)
-                .shadow(color: Color(red: 1.0, green: 0.40, blue: 0.0).opacity(0.3), radius: 6, y: 3)
+                .shadow(color: OniTanTheme.shadowGlow.color, radius: 6, y: 3)
             }
         }
     }
@@ -183,7 +177,7 @@ struct SettingsView: View {
         SettingsCard(
             title: "広告とプライバシー",
             icon: "hand.raised.fill",
-            iconColor: Color(red: 0.95, green: 0.72, blue: 0.14)
+            iconColor: OniTanTheme.accentWeak
         ) {
             VStack(alignment: .leading, spacing: 12) {
                 Text("広告表示のため、初回起動時に Google の同意確認が行われる場合があります。必要な地域では、ここから広告のプライバシー設定を開けます。")
@@ -204,7 +198,7 @@ struct SettingsView: View {
                                 .font(.system(.headline, design: .rounded))
                                 .fontWeight(.bold)
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(OniTanTheme.textPrimary)
                         .frame(maxWidth: .infinity, minHeight: 48)
                         .background(OniTanTheme.primaryGradient)
                         .cornerRadius(OniTanTheme.radiusButton)
@@ -229,7 +223,7 @@ struct SettingsView: View {
         SettingsCard(
             title: "開発者への寄付",
             icon: "heart.fill",
-            iconColor: Color(red: 1.0, green: 0.3, blue: 0.4)
+            iconColor: OniTanTheme.accentPrimary
         ) {
             VStack(spacing: 12) {
                 if donationManager.hasDonated {
@@ -237,7 +231,7 @@ struct SettingsView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "star.fill")
                             .font(.system(size: 28))
-                            .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                            .foregroundColor(OniTanTheme.accentWeak)
 
                         Text("Thank you!")
                             .font(.system(.title3, design: .rounded))
@@ -272,7 +266,7 @@ struct SettingsView: View {
                             if donationManager.isPurchasing || donationManager.isLoadingProduct {
                                 ProgressView()
                                     .progressViewStyle(.circular)
-                                    .tint(.white)
+                                    .tint(OniTanTheme.textPrimary)
                                     .scaleEffect(0.8)
                             } else {
                                 Image(systemName: donationManager.product == nil ? "arrow.clockwise" : "heart.fill")
@@ -283,18 +277,11 @@ struct SettingsView: View {
                                 .font(.system(.headline, design: .rounded))
                                 .fontWeight(.bold)
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(OniTanTheme.textPrimary)
                         .frame(maxWidth: .infinity, minHeight: 48)
-                        .background(
-                            LinearGradient(
-                                colors: [Color(red: 1.0, green: 0.3, blue: 0.5),
-                                         Color(red: 0.8, green: 0.1, blue: 0.3)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                        .background(OniTanTheme.primaryGradient)
                         .cornerRadius(OniTanTheme.radiusButton)
-                        .shadow(color: Color(red: 1.0, green: 0.3, blue: 0.4).opacity(0.3), radius: 6, y: 3)
+                        .shadow(color: OniTanTheme.shadowGlow.color, radius: 6, y: 3)
                     }
                     .disabled(donationManager.isPurchasing || donationManager.isLoadingProduct)
                     .accessibilityLabel("開発者に寄付する")
@@ -333,14 +320,12 @@ struct SettingsView: View {
 
                 HStack(spacing: 10) {
                     ForEach(AppTheme.allCases) { theme in
-                        let locked = theme.unlockLevel.map { xpRepo.level < $0 } ?? false
                         ThemePickerCard(
                             theme: theme,
                             isSelected: themeManager.theme == theme,
-                            isLocked: locked,
-                            unlockLevel: theme.unlockLevel
+                            isLocked: false,
+                            unlockLevel: nil
                         ) {
-                            guard !locked else { return }
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 themeManager.theme = theme
                             }
@@ -360,14 +345,12 @@ struct SettingsView: View {
 
                 HStack(spacing: 10) {
                     ForEach(PlayFontStyle.allCases) { fontStyle in
-                        let locked = fontStyle.unlockLevel.map { xpRepo.level < $0 } ?? false
                         PlayFontPickerCard(
                             fontStyle: fontStyle,
                             isSelected: playFontManager.fontStyle == fontStyle,
-                            isLocked: locked,
-                            unlockLevel: fontStyle.unlockLevel
+                            isLocked: false,
+                            unlockLevel: nil
                         ) {
-                            guard !locked else { return }
                             withAnimation(.easeInOut(duration: 0.2)) {
                                 playFontManager.fontStyle = fontStyle
                             }
@@ -384,9 +367,11 @@ struct SettingsView: View {
     private var dataSection: some View {
         SettingsCard(title: "データ管理", icon: "folder.fill", iconColor: OniTanTheme.accentWeak) {
             VStack(spacing: 12) {
-                progressSummaryRow
-
-                Divider().background(OniTanTheme.cardBorder)
+                Text("端末内に保存された学習データを初期化できます。")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 Button {
                     let hasData = !appState.clearedStages.isEmpty
@@ -406,67 +391,27 @@ struct SettingsView: View {
                             .font(.system(.headline, design: .rounded))
                             .fontWeight(.bold)
                     }
-                    .foregroundColor(.white)
+                    .foregroundColor(OniTanTheme.textPrimary)
                     .frame(maxWidth: .infinity, minHeight: 48)
                     .background(OniTanTheme.wrongGradient)
                     .cornerRadius(OniTanTheme.radiusButton)
                     .shadow(color: OniTanTheme.accentWrong.opacity(0.3), radius: 6, y: 3)
                 }
                 .accessibilityLabel("進行状況を初期化する")
-                .accessibilityHint("全クリア情報と統計が削除されます。確認ダイアログが表示されます。")
+                .accessibilityHint("端末内の学習データが削除されます。確認ダイアログが表示されます。")
             }
         }
-    }
-
-    private var progressSummaryRow: some View {
-        HStack(spacing: 20) {
-            progressPill(
-                value: "\(appState.clearedStages.count)",
-                label: "クリア済み",
-                iconColor: OniTanTheme.accentCorrect
-            )
-            progressPill(
-                value: String(format: "%.0f%%", statsRepo.overallAccuracy * 100),
-                label: "正答率",
-                iconColor: OniTanTheme.accentPrimary
-            )
-            progressPill(
-                value: "\(statsRepo.totalCorrect)",
-                label: "総正解",
-                iconColor: OniTanTheme.accentWeak
-            )
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("クリア\(appState.clearedStages.count)ステージ 正答率\(Int(statsRepo.overallAccuracy * 100))% 総正解\(statsRepo.totalCorrect)問")
-    }
-
-    private func progressPill(value: String, label: String, iconColor: Color) -> some View {
-        VStack(spacing: 3) {
-            Text(value)
-                .font(.system(.headline, design: .rounded))
-                .fontWeight(.black)
-                .foregroundColor(iconColor)
-            Text(label)
-                .font(.system(size: 10, design: .rounded))
-                .foregroundColor(OniTanTheme.textTertiary)
-        }
-        .frame(maxWidth: .infinity)
-        .accessibilityHidden(true)
     }
 
     // MARK: - App Info
 
     private var appInfoSection: some View {
-        SettingsCard(title: "アプリ情報", icon: "info.circle.fill", iconColor: Color(red: 0.3, green: 0.5, blue: 0.9)) {
+        SettingsCard(title: "アプリ情報", icon: "info.circle.fill", iconColor: OniTanTheme.textTertiary) {
             VStack(spacing: 10) {
                 infoRow(label: "バージョン", value: appVersion)
                 infoRow(label: "ビルド", value: appBuild)
                 infoRow(label: "対象範囲", value: "漢字検定準1級")
-                infoRow(label: "収録ステージ", value: "\(quizData.stages.count) ステージ")
                 infoRow(label: "準1級問題数", value: "\(questions.count)")
-                if !reviewQuestions.isEmpty {
-                    infoRow(label: "おさらい問題数", value: "\(reviewQuestions.count)")
-                }
             }
         }
     }
@@ -571,12 +516,12 @@ private struct ThemePickerCard: View {
                     if isLocked {
                         Image(systemName: "lock.fill")
                             .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(OniTanTheme.textPrimary)
                     }
                 }
 
-                if isLocked, let level = unlockLevel {
-                    Text("Lv.\(level)")
+                if isLocked {
+                    Text("未")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
@@ -606,7 +551,7 @@ private struct ThemePickerCard: View {
         .buttonStyle(PlainButtonStyle())
         .frame(maxWidth: .infinity)
         .accessibilityLabel(isLocked
-            ? "\(theme.displayName)テーマ レベル\(unlockLevel ?? 0)で解放"
+            ? "\(theme.displayName)テーマ 未解放"
             : "\(theme.displayName)テーマ")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
@@ -636,12 +581,12 @@ private struct PlayFontPickerCard: View {
                     if isLocked {
                         Image(systemName: "lock.fill")
                             .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(OniTanTheme.textPrimary)
                     }
                 }
 
-                if isLocked, let level = unlockLevel {
-                    Text("Lv.\(level)")
+                if isLocked {
+                    Text("未")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
@@ -679,7 +624,7 @@ private struct PlayFontPickerCard: View {
         .buttonStyle(PlainButtonStyle())
         .frame(maxWidth: .infinity)
         .accessibilityLabel(isLocked
-            ? "\(fontStyle.displayName)フォント レベル\(unlockLevel ?? 0)で解放"
+            ? "\(fontStyle.displayName)フォント 未解放"
             : "\(fontStyle.displayName)フォント")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }

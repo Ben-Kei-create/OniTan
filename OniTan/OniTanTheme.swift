@@ -9,6 +9,28 @@ enum OniTanTheme {
 
     private static var p: ThemePalette { ThemeManager.shared.palette }
 
+    // MARK: - Brand Colors
+
+    static let inkBackground = Color(hex: "08070A")
+    static let inkBackgroundSecondary = Color(hex: "13090C")
+    static let inkBackgroundDeep = Color(hex: "070507")
+    static let inkCard = Color(hex: "151015")
+    static let inkCardPressed = Color(hex: "1D1217")
+    static let sealRed = Color(hex: "B91C2B")
+    static let sealRedDark = Color(hex: "7F101B")
+    static let mutedGold = Color(hex: "D8B45A")
+    static let mutedGoldDark = Color(hex: "8E6A2C")
+    static let washiText = Color(hex: "F6EFE2")
+    static let washiSecondary = Color(hex: "AFA393")
+
+    static var inkGradient: LinearGradient {
+        LinearGradient(
+            colors: [inkBackground, inkBackgroundSecondary, inkBackgroundDeep],
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
     // MARK: - Gradients
 
     static var backgroundGradientFallback: LinearGradient { p.backgroundGradient }
@@ -20,6 +42,9 @@ enum OniTanTheme {
     static var primaryGradient: LinearGradient { p.primaryGradient }
 
     static var goldGradient: LinearGradient { p.goldGradient }
+
+    /// Alias for the wrong/danger (red) gradient — used for warnings & oni accents.
+    static var dangerGradient: LinearGradient { p.wrongGradient }
 
     // MARK: - Colors (semantic)
 
@@ -38,17 +63,17 @@ enum OniTanTheme {
 
     // MARK: - Corner Radius
 
-    static let radiusCard: CGFloat    = 20
-    static let radiusButton: CGFloat  = 16
-    static let radiusBadge: CGFloat   = 12
+    static let radiusCard: CGFloat    = 18
+    static let radiusButton: CGFloat  = 14
+    static let radiusBadge: CGFloat   = 10
 
     // MARK: - Shadow
 
     static var shadowCard: (color: Color, radius: CGFloat, y: CGFloat) {
-        (color: Color.black.opacity(0.25), radius: 12, y: 6)
+        (color: Color.black.opacity(0.34), radius: 14, y: 7)
     }
     static var shadowGlow: (color: Color, radius: CGFloat, y: CGFloat) {
-        (color: p.shadowGlowColor, radius: 20, y: 0)
+        (color: p.shadowGlowColor, radius: 16, y: 0)
     }
 
     // MARK: - Haptics
@@ -110,5 +135,20 @@ struct OniBackgroundModifier: ViewModifier {
 extension View {
     func oniBackground() -> some View {
         modifier(OniBackgroundModifier())
+    }
+}
+
+// MARK: - Color Hex Init
+
+extension Color {
+    init(hex: String) {
+        var cleaned = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        if cleaned.isEmpty { cleaned = "888888" }
+        var int: UInt64 = 0
+        Scanner(string: cleaned).scanHexInt64(&int)
+        let r = Double((int >> 16) & 0xFF) / 255
+        let g = Double((int >> 8) & 0xFF) / 255
+        let b = Double(int & 0xFF) / 255
+        self.init(red: r, green: g, blue: b)
     }
 }

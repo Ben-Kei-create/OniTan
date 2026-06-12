@@ -39,7 +39,7 @@ final class StreakChallengeViewModel: ObservableObject {
     init(xpRepo: GamificationRepository? = nil) {
         self.xpRepo = xpRepo
         self.bestStreak = UserDefaults.standard.integer(forKey: Self.bestStreakKey)
-        self.questionPool = quizData.stages.flatMap { $0.questions }.shuffled()
+        self.questionPool = Self.makeQuestionPool().shuffled()
         self.currentQuestion = questionPool[0]
     }
 
@@ -106,7 +106,7 @@ final class StreakChallengeViewModel: ObservableObject {
     }
 
     func restart() {
-        questionPool = quizData.stages.flatMap { $0.questions }.shuffled()
+        questionPool = Self.makeQuestionPool().shuffled()
         poolIndex = 0
         consecutiveCorrect = 0
         sessionXPGained = 0
@@ -122,10 +122,16 @@ final class StreakChallengeViewModel: ObservableObject {
     private func advanceQuestion() {
         poolIndex += 1
         if poolIndex >= questionPool.count {
-            questionPool = quizData.stages.flatMap { $0.questions }.shuffled()
+            questionPool = Self.makeQuestionPool().shuffled()
             poolIndex = 0
         }
         currentQuestion = questionPool[poolIndex]
+    }
+
+    private static func makeQuestionPool() -> [Question] {
+        let allLoadedQuestions = quizData.stages.flatMap { $0.questions }
+        let eligibleQuestions = allLoadedQuestions.filter { $0.kind.isExamEligible }
+        return eligibleQuestions.isEmpty ? allLoadedQuestions : eligibleQuestions
     }
 
     static func twoChoices(from choices: [String], answer: String) -> [String] {
@@ -231,11 +237,11 @@ struct StreakChallengeView: View {
 
     private var timerGradient: LinearGradient {
         if vm.timerProgress > 0.7 {
-            return LinearGradient(colors: [OniTanTheme.accentWrong, Color.red], startPoint: .leading, endPoint: .trailing)
+            return OniTanTheme.wrongGradient
         } else if vm.timerProgress > 0.4 {
-            return LinearGradient(colors: [OniTanTheme.accentWeak, Color.orange], startPoint: .leading, endPoint: .trailing)
+            return OniTanTheme.goldGradient
         }
-        return LinearGradient(colors: [OniTanTheme.accentCorrect, Color.green], startPoint: .leading, endPoint: .trailing)
+        return OniTanTheme.goldGradient
     }
 
     // MARK: - Top Bar
@@ -274,12 +280,12 @@ struct StreakChallengeView: View {
             // Best streak
             VStack(alignment: .trailing, spacing: 1) {
                 HStack(spacing: 3) {
-                    Image(systemName: "crown.fill")
-                        .font(.system(size: scaled(11, by: scale, min: 10)))
-                        .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                    Text("冠")
+                        .font(.system(size: scaled(10, by: scale, min: 9), weight: .black, design: .serif))
+                        .foregroundColor(OniTanTheme.accentWeak)
                     Text("\(vm.bestStreak)")
                         .font(playFont(scaled(16, by: scale, min: 13), weight: .black))
-                        .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                        .foregroundColor(OniTanTheme.accentWeak)
                 }
                 Text("ベスト")
                     .font(playFont(scaled(10, by: scale, min: 9), weight: .regular))
@@ -407,10 +413,11 @@ struct StreakChallengeView: View {
                         scale: scale,
                         fontStyle: playFontManager.fontStyle,
                         onTap: {
+                            let wasCorrect = choice == vm.currentQuestion.answer
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                 vm.answer(selected: choice)
                             }
-                            OniTanTheme.haptic(.medium)
+                            wasCorrect ? OniTanTheme.hapticSuccess() : OniTanTheme.hapticError()
                         }
                     )
                 }
@@ -451,19 +458,20 @@ struct StreakChallengeView: View {
 
                     if vm.isNewBest {
                         HStack(spacing: 6) {
-                            Image(systemName: "crown.fill")
-                                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                            Text("冠")
+                                .font(.system(size: 13, weight: .black, design: .serif))
+                                .foregroundColor(OniTanTheme.accentWeak)
                             Text("新記録達成！")
                                 .font(playFont(17, weight: .bold))
                                 .fontWeight(.bold)
-                                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                                .foregroundColor(OniTanTheme.accentWeak)
                         }
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                         .background(
                             Capsule()
-                                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.65))
-                                .overlay(Capsule().stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1))
+                                .fill(OniTanTheme.accentWeak.opacity(0.14))
+                                .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.5), lineWidth: 1))
                         )
                     } else {
                         Text("ベスト: \(vm.bestStreak) 連続")
@@ -474,20 +482,20 @@ struct StreakChallengeView: View {
 
                 if vm.sessionXPGained > 0 {
                     HStack(spacing: 6) {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                        Text("星")
+                            .font(.system(size: 13, weight: .black, design: .serif))
+                            .foregroundColor(OniTanTheme.accentWeak)
                         Text("+\(vm.sessionXPGained) XP 獲得！")
                             .font(playFont(15, weight: .bold))
                             .fontWeight(.bold)
-                            .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
+                            .foregroundColor(OniTanTheme.accentWeak)
                     }
                     .padding(.horizontal, 20)
                     .padding(.vertical, 10)
                     .background(
                         Capsule()
-                            .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.65))
-                            .overlay(Capsule().stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1))
+                            .fill(OniTanTheme.accentWeak.opacity(0.14))
+                            .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.5), lineWidth: 1))
                     )
                 }
 
@@ -505,14 +513,10 @@ struct StreakChallengeView: View {
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, minHeight: 50)
                         .background(
-                            LinearGradient(
-                                colors: [Color(red: 0.8, green: 0.15, blue: 0.15), Color(red: 0.6, green: 0.05, blue: 0.05)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
+                            OniTanTheme.primaryGradient
                         )
                         .cornerRadius(OniTanTheme.radiusButton)
-                        .shadow(color: Color(red: 0.7, green: 0.1, blue: 0.1).opacity(0.4), radius: 8, y: 4)
+                        .shadow(color: OniTanTheme.accentPrimary.opacity(0.34), radius: 8, y: 4)
                     }
 
                     Button {
@@ -676,20 +680,20 @@ struct StreakExplanationView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.bottom, 24)
-                .background(Color(red: 0.12, green: 0.10, blue: 0.20))
+                .background(OniTanTheme.cardBackgroundPressed)
 
                 Divider().background(Color.white.opacity(0.15))
 
                 ScrollView {
                     Text(question.displayExplanation)
                         .font(playFontManager.font(size: 17))
-                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
+                        .foregroundColor(OniTanTheme.textSecondary)
                         .lineSpacing(6)
                         .padding(20)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .frame(maxHeight: 200)
-                .background(Color(red: 0.10, green: 0.08, blue: 0.18))
+                .background(OniTanTheme.cardBackground)
 
                 Button {
                     onDismiss()

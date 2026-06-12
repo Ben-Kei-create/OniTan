@@ -401,6 +401,24 @@
       "file": "stage96.json",
       "title": "レベル96",
       "difficulty": 2
+    },
+    {
+      "id": 97,
+      "file": "stage97.json",
+      "title": "例文読み 1",
+      "difficulty": 4
+    },
+    {
+      "id": 98,
+      "file": "stage98.json",
+      "title": "例文読み 2",
+      "difficulty": 4
+    },
+    {
+      "id": 99,
+      "file": "stage99.json",
+      "title": "例文読み 3",
+      "difficulty": 4
     }
   ]
 }

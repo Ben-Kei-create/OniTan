@@ -1,0 +1,322 @@
+[
+  {
+    "id": "ant-001",
+    "kanji": "集合",
+    "prompt": "「集合」の対義語は？",
+    "choices": ["解散", "集中", "団結", "結集"],
+    "answer": "解散",
+    "kind": "antonym",
+    "tags": ["対義語", "集団", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 集合⇔解散\n正解: 解散（かいさん）\n解説: 「集合」は一か所に集まること。「解散」はそれと反対に、集まっていたものがばらばらになること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "集合",
+      "relationWord": "解散"
+    }
+  },
+  {
+    "id": "ant-002",
+    "kanji": "緊張",
+    "prompt": "「緊張」の対義語は？",
+    "choices": ["弛緩", "興奮", "緊迫", "張り詰め"],
+    "answer": "弛緩",
+    "kind": "antonym",
+    "tags": ["対義語", "状態", "準1級"],
+    "difficulty": 4,
+    "explain": "意味: 緊張⇔弛緩\n正解: 弛緩（しかん）\n解説: 「緊張」は心身が張りつめた状態。「弛緩」はゆるんでたるんだ状態を指す。「弛」「緩」ともに「ゆるむ」という意味。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "緊張",
+      "relationWord": "弛緩"
+    }
+  },
+  {
+    "id": "ant-003",
+    "kanji": "栄転",
+    "prompt": "「栄転」の対義語は？",
+    "choices": ["左遷", "昇進", "出世", "躍進"],
+    "answer": "左遷",
+    "kind": "antonym",
+    "tags": ["対義語", "職位", "準1級"],
+    "difficulty": 3,
+    "explain": "意味: 栄転⇔左遷\n正解: 左遷（させん）\n解説: 「栄転」は名誉ある異動や昇進。「左遷」は低い地位や閑職へ追いやられること。古代中国で右が上位・左が下位とされた習慣から。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "栄転",
+      "relationWord": "左遷"
+    }
+  },
+  {
+    "id": "ant-004",
+    "kanji": "抽象",
+    "prompt": "「抽象」の対義語は？",
+    "choices": ["具体", "観念", "概念", "理念"],
+    "answer": "具体",
+    "kind": "antonym",
+    "tags": ["対義語", "概念", "準1級"],
+    "difficulty": 3,
+    "explain": "意味: 抽象⇔具体\n正解: 具体（ぐたい）\n解説: 「抽象」は形のない概念的なもの。「具体」は実際の形や内容を伴っていること。「具体的」の対義語が「抽象的」。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "抽象",
+      "relationWord": "具体"
+    }
+  },
+  {
+    "id": "ant-005",
+    "kanji": "悲観",
+    "prompt": "「悲観」の対義語は？",
+    "choices": ["楽観", "希望", "喜悦", "満悦"],
+    "answer": "楽観",
+    "kind": "antonym",
+    "tags": ["対義語", "心理", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 悲観⇔楽観\n正解: 楽観（らっかん）\n解説: 「悲観」は物事を悲しく・否定的に考えること。「楽観」は物事を楽しく・肯定的に見ること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "悲観",
+      "relationWord": "楽観"
+    }
+  },
+  {
+    "id": "ant-006",
+    "kanji": "攻撃",
+    "prompt": "「攻撃」の対義語は？",
+    "choices": ["防御", "突撃", "侵攻", "猛攻"],
+    "answer": "防御",
+    "kind": "antonym",
+    "tags": ["対義語", "戦い", "準1級"],
+    "difficulty": 1,
+    "explain": "意味: 攻撃⇔防御\n正解: 防御（ぼうぎょ）\n解説: 「攻撃」は相手を攻め込むこと。「防御」は相手の攻撃を防ぎ守ること。スポーツや軍事など幅広い分野で使われる対義語。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "攻撃",
+      "relationWord": "防御"
+    }
+  },
+  {
+    "id": "ant-007",
+    "kanji": "質素",
+    "prompt": "「質素」の対義語は？",
+    "choices": ["華美", "簡素", "倹約", "地味"],
+    "answer": "華美",
+    "kind": "antonym",
+    "tags": ["対義語", "様子", "準1級"],
+    "difficulty": 3,
+    "explain": "意味: 質素⇔華美\n正解: 華美（かび）\n解説: 「質素」は飾り気がなく地味なこと。「華美」は華やかで派手なこと。「簡素」「地味」は「質素」に近い意味で対義語にはならない。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "質素",
+      "relationWord": "華美"
+    }
+  },
+  {
+    "id": "ant-008",
+    "kanji": "模倣",
+    "prompt": "「模倣」の対義語は？",
+    "choices": ["創造", "踏襲", "模写", "追随"],
+    "answer": "創造",
+    "kind": "antonym",
+    "tags": ["対義語", "芸術", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 模倣⇔創造\n正解: 創造（そうぞう）\n解説: 「模倣」は既にあるものをまねること。「創造」は新しいものを初めて作り出すこと。「踏襲」「追随」は「模倣」に近い意味。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "模倣",
+      "relationWord": "創造"
+    }
+  },
+  {
+    "id": "ant-009",
+    "kanji": "統合",
+    "prompt": "「統合」の対義語は？",
+    "choices": ["分裂", "統一", "結合", "融合"],
+    "answer": "分裂",
+    "kind": "antonym",
+    "tags": ["対義語", "組織", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 統合⇔分裂\n正解: 分裂（ぶんれつ）\n解説: 「統合」は複数のものを一つにまとめること。「分裂」は一つのものが分かれてばらばらになること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "統合",
+      "relationWord": "分裂"
+    }
+  },
+  {
+    "id": "ant-010",
+    "kanji": "倹約",
+    "prompt": "「倹約」の対義語は？",
+    "choices": ["浪費", "節約", "貯蓄", "節制"],
+    "answer": "浪費",
+    "kind": "antonym",
+    "tags": ["対義語", "経済", "準1級"],
+    "difficulty": 1,
+    "explain": "意味: 倹約⇔浪費\n正解: 浪費（ろうひ）\n解説: 「倹約」は無駄を省いて費用を切り詰めること。「浪費」はお金や時間を無駄に使うこと。「節約」「節制」「貯蓄」は「倹約」に近い意味。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "倹約",
+      "relationWord": "浪費"
+    }
+  },
+  {
+    "id": "ant-011",
+    "kanji": "強硬",
+    "prompt": "「強硬」の対義語は？",
+    "choices": ["軟弱", "頑強", "強固", "強靭"],
+    "answer": "軟弱",
+    "kind": "antonym",
+    "tags": ["対義語", "態度", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 強硬⇔軟弱\n正解: 軟弱（なんじゃく）\n解説: 「強硬」は自分の主張や態度を強く押し通すこと。「軟弱」は意志や態度が弱々しいこと。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "強硬",
+      "relationWord": "軟弱"
+    }
+  },
+  {
+    "id": "ant-012",
+    "kanji": "謙虚",
+    "prompt": "「謙虚」の対義語は？",
+    "choices": ["傲慢", "謙遜", "卑下", "恭順"],
+    "answer": "傲慢",
+    "kind": "antonym",
+    "tags": ["対義語", "性格", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 謙虚⇔傲慢\n正解: 傲慢（ごうまん）\n解説: 「謙虚」は控えめで素直な態度。「傲慢」は驕り高ぶって人を見下す態度。「謙遜」「卑下」「恭順」は「謙虚」に近い意味。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "謙虚",
+      "relationWord": "傲慢"
+    }
+  },
+  {
+    "id": "ant-013",
+    "kanji": "巧妙",
+    "prompt": "「巧妙」の対義語は？",
+    "choices": ["拙劣", "精巧", "卓越", "熟達"],
+    "answer": "拙劣",
+    "kind": "antonym",
+    "tags": ["対義語", "技術", "準1級"],
+    "difficulty": 4,
+    "explain": "意味: 巧妙⇔拙劣\n正解: 拙劣（せつれつ）\n解説: 「巧妙」は技術や方法が非常に優れて巧みなこと。「拙劣」は技術や出来栄えが下手で劣っていること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "巧妙",
+      "relationWord": "拙劣"
+    }
+  },
+  {
+    "id": "ant-014",
+    "kanji": "詳細",
+    "prompt": "「詳細」の対義語は？",
+    "choices": ["概略", "克明", "詳述", "委細"],
+    "answer": "概略",
+    "kind": "antonym",
+    "tags": ["対義語", "説明", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 詳細⇔概略\n正解: 概略（がいりゃく）\n解説: 「詳細」は細かい点まで詳しいこと。「概略」は物事のあらまし、大まかな内容のこと。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "詳細",
+      "relationWord": "概略"
+    }
+  },
+  {
+    "id": "ant-015",
+    "kanji": "興奮",
+    "prompt": "「興奮」の対義語は？",
+    "choices": ["沈静", "高揚", "激高", "熱狂"],
+    "answer": "沈静",
+    "kind": "antonym",
+    "tags": ["対義語", "心理", "準1級"],
+    "difficulty": 3,
+    "explain": "意味: 興奮⇔沈静\n正解: 沈静（ちんせい）\n解説: 「興奮」は感情が高ぶり気持ちが乱れること。「沈静」は気持ちや状況が落ち着いて静まること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "興奮",
+      "relationWord": "沈静"
+    }
+  },
+  {
+    "id": "ant-016",
+    "kanji": "勤勉",
+    "prompt": "「勤勉」の対義語は？",
+    "choices": ["怠惰", "勤労", "精励", "誠実"],
+    "answer": "怠惰",
+    "kind": "antonym",
+    "tags": ["対義語", "態度", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 勤勉⇔怠惰\n正解: 怠惰（たいだ）\n解説: 「勤勉」は仕事や勉強に真面目に励むこと。「怠惰」は怠けてだらしないこと。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "勤勉",
+      "relationWord": "怠惰"
+    }
+  },
+  {
+    "id": "ant-017",
+    "kanji": "拡大",
+    "prompt": "「拡大」の対義語は？",
+    "choices": ["縮小", "拡張", "膨張", "増大"],
+    "answer": "縮小",
+    "kind": "antonym",
+    "tags": ["対義語", "規模", "準1級"],
+    "difficulty": 1,
+    "explain": "意味: 拡大⇔縮小\n正解: 縮小（しゅくしょう）\n解説: 「拡大」は範囲や規模を大きく広げること。「縮小」は範囲や規模を小さく縮めること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "拡大",
+      "relationWord": "縮小"
+    }
+  },
+  {
+    "id": "ant-018",
+    "kanji": "需要",
+    "prompt": "「需要」の対義語は？",
+    "choices": ["供給", "消費", "購買", "欲求"],
+    "answer": "供給",
+    "kind": "antonym",
+    "tags": ["対義語", "経済", "準1級"],
+    "difficulty": 2,
+    "explain": "意味: 需要⇔供給\n正解: 供給（きょうきゅう）\n解説: 「需要」は商品やサービスを求めること。「供給」はそれを市場に提供すること。経済学の基本用語の対義語。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "需要",
+      "relationWord": "供給"
+    }
+  },
+  {
+    "id": "ant-019",
+    "kanji": "濃厚",
+    "prompt": "「濃厚」の対義語は？",
+    "choices": ["希薄", "濃密", "濃縮", "深濃"],
+    "answer": "希薄",
+    "kind": "antonym",
+    "tags": ["対義語", "状態", "準1級"],
+    "difficulty": 3,
+    "explain": "意味: 濃厚⇔希薄\n正解: 希薄（きはく）\n解説: 「濃厚」は味・色・気体などの密度や程度が濃いこと。「希薄」はそれが薄く少ないこと。比喩的に「関心が希薄だ」のようにも使う。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "濃厚",
+      "relationWord": "希薄"
+    }
+  },
+  {
+    "id": "ant-020",
+    "kanji": "慎重",
+    "prompt": "「慎重」の対義語は？",
+    "choices": ["軽率", "周到", "用心", "熟慮"],
+    "answer": "軽率",
+    "kind": "antonym",
+    "tags": ["対義語", "態度", "準1級"],
+    "difficulty": 1,
+    "explain": "意味: 慎重⇔軽率\n正解: 軽率（けいそつ）\n解説: 「慎重」は注意深く物事を考えて行動すること。「軽率」は深く考えずに軽はずみに行動すること。\n出典: 漢検準一級",
+    "payload": {
+      "type": "antonym",
+      "targetWord": "慎重",
+      "relationWord": "軽率"
+    }
+  }
+]

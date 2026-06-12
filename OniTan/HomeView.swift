@@ -1,5 +1,23 @@
 import SwiftUI
 
+// MARK: - Ink Palette
+//
+// Premium dark "ink & seal" palette for the Home screen.
+// Avoids purple/blue; built around near-black ink, deep vermilion red and muted gold.
+
+private enum HomeInk {
+    static let background = OniTanTheme.inkBackground
+    static let backgroundSecondary = OniTanTheme.inkBackgroundSecondary
+    static let cardBackground = OniTanTheme.inkCard
+    static let cardBackgroundAlt = OniTanTheme.inkCardPressed
+    static let red = OniTanTheme.sealRed
+    static let redDark = OniTanTheme.sealRedDark
+    static let gold = OniTanTheme.mutedGold
+    static let textPrimary = OniTanTheme.washiText
+    static let textSecondary = OniTanTheme.washiSecondary
+    static let border = OniTanTheme.mutedGold.opacity(0.12)
+}
+
 struct HomeView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var statsRepo: StudyStatsRepository
@@ -8,12 +26,11 @@ struct HomeView: View {
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var donationManager: DonationManager
+    @EnvironmentObject var masteryRepo: MasteryRepository
+    @EnvironmentObject var examResultRepo: ExamResultRepository
 
     @State private var freezeToastVisible = false
     @State private var lastShownFreezeID: Int = -1
-    @State private var bgAnimPhase = false
-    @State private var showLevelUpOverlay = false
-    @State private var levelUpValue: Int = 0
 
     var body: some View {
         VStack(spacing: 0) {
@@ -24,30 +41,33 @@ struct HomeView: View {
                 let contentWidth = max(0, min(proxy.size.width - (isCompactHeight ? 16 : 20), 560))
 
                 ZStack {
-                    animatedBackground
+                    inkBackground
                         .ignoresSafeArea()
 
                     if let loadError = dataLoadError {
                         dataErrorBanner(loadError)
                     }
 
-                    VStack(spacing: 0) {
-                        Spacer(minLength: 0)
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            headerSection(isCompact: isCompactHeight)
 
-                        headerSection(isCompact: isCompactHeight)
+                            heroEmblem(isCompact: isCompactHeight)
 
-                        Spacer(minLength: isCompactHeight ? 12 : 20)
+                            primaryActions(isCompact: isCompactHeight)
+                                .padding(.top, isCompactHeight ? 16 : 22)
 
-                        menuSection(isCompact: isCompactHeight)
+                            secondaryLinks(isCompact: isCompactHeight)
+                                .padding(.top, isCompactHeight ? 16 : 20)
 
-                        Spacer(minLength: isCompactHeight ? 8 : 14)
-
-                        footerSection
-
-                        Spacer(minLength: 0)
+                            Color.clear
+                                .frame(height: donationManager.hasDonated ? 18 : 28)
+                        }
+                        .padding(.horizontal, isCompactHeight ? 16 : 20)
+                        .padding(.top, isCompactHeight ? 8 : 14)
+                        .frame(maxWidth: contentWidth)
+                        .frame(maxWidth: .infinity)
                     }
-                    .frame(maxWidth: contentWidth)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             .navigationBarHidden(true)
@@ -70,114 +90,50 @@ struct HomeView: View {
                 lastShownFreezeID = newID
                 showFreezeToast()
             }
-            .onChange(of: xpRepo.recentLevelUp) { newLevel in
-                guard let lv = newLevel else { return }
-                levelUpValue = lv
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                    showLevelUpOverlay = true
-                }
-                OniTanTheme.hapticSuccess()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    withAnimation(.easeOut(duration: 0.3)) { showLevelUpOverlay = false }
-                    xpRepo.clearLevelUpFlag()
-                }
-            }
         }
-        .background(animatedBackground.ignoresSafeArea())
+        .background(inkBackground.ignoresSafeArea())
 
         if !donationManager.hasDonated {
             AdBannerView()
+                .padding(.top, 10)
+                .padding(.bottom, 8)
+                .frame(maxWidth: .infinity)
+                .background(
+                    VStack(spacing: 0) {
+                        Rectangle()
+                            .fill(HomeInk.border)
+                            .frame(height: 1)
+                        HomeInk.background
+                    }
+                )
         }
         } // VStack
-        .overlay {
-            if showLevelUpOverlay {
-                levelUpToast(level: levelUpValue)
-                    .transition(.move(edge: .top).combined(with: .opacity))
-                    .zIndex(100)
-            }
-        }
     }
 
-    // MARK: - Level Up Toast
+    // MARK: - Background
 
-    private func levelUpToast(level: Int) -> some View {
-        VStack {
-            HStack(spacing: 10) {
-                Image(systemName: "star.circle.fill")
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundStyle(LinearGradient(
-                        colors: [Color(red: 1.0, green: 0.85, blue: 0.2), Color(red: 1.0, green: 0.55, blue: 0.0)],
-                        startPoint: .top, endPoint: .bottom
-                    ))
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("レベルアップ！")
-                        .font(.system(.caption, design: .rounded))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
-                    Text("Lv.\(level) に到達")
-                        .font(.system(.subheadline, design: .rounded))
-                        .fontWeight(.black)
-                        .foregroundColor(OniTanTheme.textPrimary)
-                }
-            }
-            .padding(.horizontal, 18)
-            .padding(.vertical, 12)
-            .background(
-                Capsule()
-                    .fill(Color(red: 0.15, green: 0.12, blue: 0.30).opacity(0.95))
-                    .overlay(
-                        Capsule()
-                            .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1.5)
-                    )
-            )
-            .shadow(color: Color(red: 1.0, green: 0.75, blue: 0.0).opacity(0.35), radius: 16, y: 6)
-            .padding(.top, 60)
-            Spacer()
-        }
+    private var inkBackground: some View {
+        LinearGradient(
+            colors: [HomeInk.background, HomeInk.backgroundSecondary],
+            startPoint: .top,
+            endPoint: .bottom
+        )
     }
-
-    private var animatedBackground: some View {
-        ZStack {
-            LinearGradient(
-                colors: [
-                    Color(red: 0.10, green: 0.10, blue: 0.30),
-                    Color(red: 0.20, green: 0.05, blue: 0.25)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            LinearGradient(
-                colors: [
-                    Color(red: 0.16, green: 0.08, blue: 0.38),
-                    Color(red: 0.10, green: 0.02, blue: 0.18)
-                ],
-                startPoint: .topTrailing,
-                endPoint: .bottomLeading
-            )
-            .opacity(bgAnimPhase ? 1 : 0)
-        }
-        .onAppear {
-            withAnimation(.easeInOut(duration: 5).repeatForever(autoreverses: true)) {
-                bgAnimPhase = true
-            }
-        }
-    }
-
 
     private var freezeConsumedToast: some View {
         HStack(spacing: 8) {
             Image(systemName: "snowflake")
-                .foregroundColor(OniTanTheme.accentPrimary)
+                .foregroundColor(HomeInk.red)
             Text("ストリーク保護を使って継続しました")
                 .font(.system(.caption, design: .rounded))
-                .foregroundColor(OniTanTheme.textPrimary)
+                .foregroundColor(HomeInk.textPrimary)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(
             Capsule()
                 .fill(Color.black.opacity(0.45))
-                .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                .overlay(Capsule().stroke(HomeInk.border, lineWidth: 1))
         )
         .accessibilityLabel("ストリーク保護を使用しました")
     }
@@ -196,314 +152,168 @@ struct HomeView: View {
     // MARK: - Header
 
     private func headerSection(isCompact: Bool) -> some View {
-        VStack(spacing: isCompact ? 6 : 10) {
-            HStack(spacing: isCompact ? 8 : 10) {
-                Spacer()
+        HStack(alignment: .center, spacing: 10) {
+            VStack(alignment: .leading, spacing: 1) {
+                Text("鬼単")
+                    .font(.system(size: isCompact ? 24 : 28, weight: .black, design: .rounded))
+                    .foregroundColor(HomeInk.textPrimary)
+                    .accessibilityLabel("鬼単アプリ")
 
-                HomeHeaderIconButton(
-                    icon: "chart.bar.fill",
-                    accessibilityTitle: "統計",
-                    compact: isCompact,
-                    destination: StatsView()
-                )
-
-                HomeHeaderIconButton(
-                    icon: "gearshape.fill",
-                    accessibilityTitle: "設定",
-                    compact: isCompact,
-                    destination: SettingsView()
-                )
+                Text("漢字検定準1級 対策")
+                    .font(.system(size: isCompact ? 11 : 12, weight: .regular, design: .rounded))
+                    .foregroundColor(HomeInk.textSecondary)
+                    .accessibilityHidden(true)
             }
 
-            Text("鬼単")
-                .font(.system(size: isCompact ? 60 : 74, weight: .black, design: .rounded))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [OniTanTheme.textPrimary, OniTanTheme.accentPrimary.opacity(0.7)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .shadow(color: OniTanTheme.shadowGlow.color, radius: 16, y: 8)
-                .accessibilityLabel("鬼単アプリ")
+            Spacer()
 
-            Text("漢字検定準1級 対策")
-                .font(.system(size: isCompact ? 14 : 16, weight: .regular, design: .rounded))
-                .foregroundColor(OniTanTheme.textSecondary)
-                .accessibilityHidden(true)
-
-            HStack(spacing: 12) {
-                streakChip
-                xpChip
-            }
-            .padding(.top, isCompact ? 1 : 3)
+            HomeHeaderIconButton(
+                icon: "設",
+                accessibilityTitle: "設定",
+                compact: isCompact,
+                destination: SettingsView()
+            )
         }
     }
 
-    // MARK: - Streak Chip
+    // MARK: - Hero Emblem
 
-    private var streakChip: some View {
-        HStack(spacing: 5) {
-            if #available(iOS 17.0, *) {
-                Image(systemName: streakRepo.todayCompleted ? "flame.fill" : "flame")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(streakRepo.currentStreak > 0
-                        ? OniTanTheme.accentWeak
-                        : OniTanTheme.textTertiary)
-                    .symbolEffect(.bounce, value: streakRepo.todayCompleted)
-            } else {
-                Image(systemName: streakRepo.todayCompleted ? "flame.fill" : "flame")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(streakRepo.currentStreak > 0
-                        ? OniTanTheme.accentWeak
-                        : OniTanTheme.textTertiary)
-            }
+    private func heroEmblem(isCompact: Bool) -> some View {
+        VStack(spacing: 8) {
+            ZStack {
+                Circle()
+                    .stroke(HomeInk.gold.opacity(0.18), lineWidth: 1.2)
+                    .frame(width: isCompact ? 78 : 92, height: isCompact ? 78 : 92)
 
-            if streakRepo.currentStreak > 0 {
-                Text("\(streakRepo.currentStreak)日連続")
-                    .font(.system(.caption, design: .rounded))
-                    .fontWeight(.bold)
-                    .foregroundColor(streakRepo.todayCompleted
-                        ? OniTanTheme.accentWeak
-                        : OniTanTheme.textSecondary)
+                Circle()
+                    .stroke(HomeInk.red.opacity(0.22), lineWidth: 1)
+                    .frame(width: isCompact ? 92 : 108, height: isCompact ? 92 : 108)
 
-                Text("🧊\(streakRepo.freezeCount)")
-                    .font(.system(size: 10, weight: .bold, design: .rounded))
-                    .foregroundColor(OniTanTheme.textSecondary)
-            } else {
-                Text("記録を作ろう")
-                    .font(.system(.caption, design: .rounded))
-                    .foregroundColor(OniTanTheme.textTertiary)
-            }
-        }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
-        .background(
-            Capsule()
-                .fill(streakRepo.todayCompleted
-                    ? Color(red: 0.5, green: 0.25, blue: 0.0).opacity(0.55)
-                    : OniTanTheme.cardBackground)
-                .overlay(
-                    Capsule()
-                        .stroke(
-                            streakRepo.currentStreak > 0
-                                ? OniTanTheme.accentWeak.opacity(0.4)
-                                : OniTanTheme.cardBorder,
-                            lineWidth: 1
+                OniOptionalArtwork(
+                    assetName: OniArtworkAsset.home,
+                    width: isCompact ? 86 : 106,
+                    height: isCompact ? 86 : 106
+                ) {
+                    Text("鬼")
+                        .font(.system(size: isCompact ? 38 : 46, weight: .black, design: .serif))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [HomeInk.gold, HomeInk.red],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
                         )
-                )
-        )
-        .accessibilityElement()
-        .accessibilityLabel(streakRepo.currentStreak > 0
-            ? "\(streakRepo.currentStreak)日連続学習中。保護\(streakRepo.freezeCount)"
-            : "ストリーク未記録。保護\(streakRepo.freezeCount)")
-    }
-
-    // MARK: - XP Chip
-
-    private var xpChip: some View {
-        HStack(spacing: 5) {
-            Image(systemName: "star.fill")
-                .font(.system(size: 11, weight: .semibold))
-                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
-
-            Text("Lv.\(xpRepo.level)")
-                .font(.system(.caption, design: .rounded))
-                .fontWeight(.bold)
-                .foregroundColor(OniTanTheme.textPrimary)
-
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(OniTanTheme.cardBorder)
-                        .frame(height: 4)
-
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(LinearGradient(
-                            colors: [Color(red: 1.0, green: 0.85, blue: 0.2),
-                                     Color(red: 1.0, green: 0.55, blue: 0.0)],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        ))
-                        .frame(
-                            width: geo.size.width * CGFloat(xpRepo.levelProgress),
-                            height: 4
-                        )
-                        .animation(.easeInOut(duration: 0.4), value: xpRepo.levelProgress)
                 }
             }
-            .frame(width: 44, height: 4)
+            .padding(.top, isCompact ? 14 : 20)
+
+            Text("準1級を、毎日少しずつ。")
+                .font(.system(size: 12, weight: .medium, design: .rounded))
+                .foregroundColor(HomeInk.textSecondary)
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
-        .background(
-            Capsule()
-                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.55))
-                .overlay(
-                    Capsule()
-                        .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.35), lineWidth: 1)
-                )
-        )
-        .accessibilityElement()
-        .accessibilityLabel("レベル\(xpRepo.level)、XP\(xpRepo.xpInCurrentLevel)/\(xpRepo.xpToNextLevel)")
+        .accessibilityHidden(true)
     }
 
-    // MARK: - Menu
+    // MARK: - Primary Actions
 
-    private func menuSection(isCompact: Bool) -> some View {
-        VStack(spacing: isCompact ? 8 : 10) {
-            HomeTodayCard(compact: isCompact)
+    private var todayStage: Stage {
+        TodaySessionBuilder.buildTodayStage(
+            allStages: quizData.stages,
+            statsRepo: statsRepo,
+            clearedStages: appState.clearedStages
+        )
+    }
 
-            HomeMenuButton(
-                title: "ステージ選択",
-                icon: "books.vertical.fill",
-                gradient: OniTanTheme.primaryGradient,
-                compact: isCompact,
-                destination: StageSelectView()
-            )
-
-            if favoriteRepo.count > 0 {
-                HomeMenuButton(
-                    title: "お気に入りから学習",
-                    icon: "star.fill",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 0.95, green: 0.72, blue: 0.14), Color(red: 0.72, green: 0.42, blue: 0.04)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    compact: isCompact,
-                    destination: QuizModeSelectView(
-                        stage: FavoriteSessionBuilder.buildFavoriteStage(
-                            favoriteKanji: favoriteRepo.favoriteKanji
-                        ),
-                        sessionTitle: "お気に入り"
+    private func primaryActions(isCompact: Bool) -> some View {
+        VStack(spacing: isCompact ? 10 : 12) {
+            if quizData.stages.isEmpty {
+                HomePrimaryActionCard(
+                    title: "ランダム10問",
+                    subtitle: "問題データを読み込めません",
+                    icon: "！",
+                    style: .disabled,
+                    isCompact: isCompact,
+                    destination: nil
+                )
+                .accessibilityIdentifier("home_today_card")
+            } else {
+                HomePrimaryActionCard(
+                    title: "ランダム10問",
+                    subtitle: "まずは10問だけ鍛える",
+                    icon: "十",
+                    style: .primary,
+                    isCompact: isCompact,
+                    destination: AnyView(
+                        MainView(
+                            stage: todayStage,
+                            appState: appState,
+                            statsRepo: statsRepo,
+                            streakRepo: streakRepo,
+                            xpRepo: xpRepo,
+                            masteryRepo: masteryRepo,
+                            mode: .quick10,
+                            clearTitle: "ランダム10問 完了！"
+                        )
                     )
                 )
+                .accessibilityIdentifier("home_today_card")
             }
 
-            HomeMenuButton(
-                title: "漢字一覧",
-                icon: "square.grid.3x3.fill",
-                gradient: LinearGradient(
-                    colors: [Color(red: 0.12, green: 0.50, blue: 0.72), Color(red: 0.08, green: 0.24, blue: 0.46)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ),
-                compact: isCompact,
-                destination: KanjiCatalogView()
+            HomePrimaryActionCard(
+                title: "道場選択",
+                subtitle: "分野ごとに集中して鍛える",
+                icon: "道",
+                style: .neutral,
+                isCompact: isCompact,
+                destination: AnyView(CategoryTrainingView())
             )
 
-            if statsRepo.recentWrongAnswers(limit: 1).count > 0 {
-                HomeMenuButton(
-                    title: "誤答ノート",
-                    icon: "note.text",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 0.55, green: 0.20, blue: 0.55), Color(red: 0.35, green: 0.08, blue: 0.38)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    compact: isCompact,
-                    destination: WrongAnswerNoteView()
-                )
-            }
-
-            if !reviewQuestions.isEmpty {
-                if xpRepo.level >= 30 {
-                    reviewMenuButton(isCompact: isCompact)
-                }
-            }
-
-            if xpRepo.level >= 50 {
-                HomeMenuButton(
-                    title: "連続鬼たん",
-                    icon: "flame.fill",
-                    gradient: LinearGradient(
-                        colors: [Color(red: 0.85, green: 0.15, blue: 0.15), Color(red: 0.55, green: 0.05, blue: 0.05)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    compact: isCompact,
-                    destination: StreakChallengeView(xpRepo: xpRepo)
-                )
-            }
-
-            lockedFeaturesRow(isCompact: isCompact)
-
+            HomePrimaryActionCard(
+                title: "模擬試験",
+                subtitle: "本番形式で実力をはかる",
+                icon: "試",
+                style: .gold,
+                isCompact: isCompact,
+                destination: AnyView(examDestination)
+            )
         }
     }
 
-    private func reviewMenuButton(isCompact: Bool) -> some View {
-        HomeMenuButton(
-            title: "おさらい（準１級以下）",
-            icon: "arrow.triangle.2.circlepath.circle.fill",
-            gradient: LinearGradient(
-                colors: [Color(red: 0.78, green: 0.44, blue: 0.10), Color(red: 0.48, green: 0.20, blue: 0.05)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            ),
-            compact: isCompact,
-            destination: QuizModeSelectView(
-                stage: ReviewSessionBuilder.buildReviewStage(reviewQuestions: reviewQuestions),
-                sessionTitle: "おさらい（準１級以下）",
-                allowedModes: [.quick10, .exam30]
-            )
-        )
-    }
-
-    /// 未解放機能をコンパクトな1行で表示する
     @ViewBuilder
-    private func lockedFeaturesRow(isCompact: Bool) -> some View {
-        let showReviewLock = !reviewQuestions.isEmpty && xpRepo.level < 30
-        let showStreakLock = xpRepo.level < 50
-
-        if showReviewLock || showStreakLock {
-            HStack(spacing: 8) {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 11, weight: .semibold))
-                    .foregroundColor(.white.opacity(0.25))
-                if showReviewLock {
-                    Text("おさらい Lv.30")
-                        .font(.system(size: 11, weight: .medium, design: .rounded))
-                        .foregroundColor(.white.opacity(0.3))
-                }
-                if showReviewLock && showStreakLock {
-                    Text("·")
-                        .foregroundColor(.white.opacity(0.2))
-                        .font(.system(size: 11))
-                }
-                if showStreakLock {
-                    Text("連続鬼たん Lv.50")
-                        .font(.system(size: 11, weight: .medium, design: .rounded))
-                        .foregroundColor(.white.opacity(0.3))
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 7)
-            .background(Color.white.opacity(0.04))
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.white.opacity(0.07), lineWidth: 1)
-            )
+    private var examDestination: some View {
+        if let exam = examCategory {
+            TrainingModePickerView(category: exam)
+        } else {
+            CategoryTrainingView()
         }
     }
 
-    // MARK: - Footer
+    /// 「総合模試」カテゴリ（categories.jsonの"exam"エントリ）。
+    private var examCategory: CategoryEntry? {
+        categoryManifest?.categories.first { $0.id == "exam" }
+    }
 
-    private var footerSection: some View {
-        Group {
-            if statsRepo.totalCorrect > 0 {
-                HStack(spacing: 6) {
-                    Image(systemName: "bolt.fill")
-                        .foregroundColor(OniTanTheme.accentWeak)
-                        .font(.caption)
-                    Text("通算正解 \(statsRepo.totalCorrect) 問")
-                        .font(.system(.caption2, design: .rounded))
-                        .foregroundColor(OniTanTheme.textTertiary)
+    // MARK: - Secondary Links
+
+    private func secondaryLinks(isCompact: Bool) -> some View {
+        VStack(spacing: 8) {
+            HStack(spacing: 8) {
+                HomeSecondaryLink(title: "漢字一覧", icon: "字", destination: AnyView(KanjiCatalogView()))
+
+                if favoriteRepo.count > 0 {
+                    HomeSecondaryLink(
+                        title: "お気に入り",
+                        icon: "星",
+                        destination: AnyView(
+                            QuizModeSelectView(
+                                stage: FavoriteSessionBuilder.buildFavoriteStage(
+                                    favoriteKanji: favoriteRepo.favoriteKanji
+                                ),
+                                sessionTitle: "お気に入り"
+                            )
+                        )
+                    )
                 }
-                .accessibilityElement()
-                .accessibilityLabel("通算正解数: \(statsRepo.totalCorrect)問")
             }
         }
     }
@@ -513,11 +323,12 @@ struct HomeView: View {
     private func dataErrorBanner(_ error: DataLoadError) -> some View {
         VStack {
             HStack(spacing: 8) {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(.yellow)
+                Text("!")
+                    .font(.caption.bold())
+                    .foregroundColor(HomeInk.gold)
                 Text(error.localizedDescription)
                     .font(.caption)
-                    .foregroundColor(.white)
+                    .foregroundColor(HomeInk.textPrimary)
                     .lineLimit(2)
             }
             .padding(12)
@@ -529,187 +340,6 @@ struct HomeView: View {
         }
         .padding(.top, 8)
         .zIndex(1)
-    }
-}
-
-// MARK: - Today Card
-
-private struct HomeTodayCard: View {
-    @EnvironmentObject var appState: AppState
-    @EnvironmentObject var statsRepo: StudyStatsRepository
-    @EnvironmentObject var streakRepo: StreakRepository
-    @EnvironmentObject var xpRepo: GamificationRepository
-    let compact: Bool
-
-    @State private var isPressed = false
-
-    private var todayStage: Stage {
-        TodaySessionBuilder.buildTodayStage(
-            allStages: quizData.stages,
-            statsRepo: statsRepo,
-            clearedStages: appState.clearedStages
-        )
-    }
-
-    private var allWeakQuestions: [Question] {
-        quizData.stages.flatMap { statsRepo.weakQuestions(for: $0) }
-    }
-
-    var body: some View {
-        VStack(spacing: 6) {
-            NavigationLink(
-                destination: MainView(
-                    stage: todayStage,
-                    appState: appState,
-                    statsRepo: statsRepo,
-                    streakRepo: streakRepo,
-                    xpRepo: xpRepo,
-                    mode: .quick10,
-                    clearTitle: "今日の10問 完了！"
-                )
-            ) {
-                cardContent
-            }
-            .simultaneousGesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { _ in isPressed = true }
-                    .onEnded   { _ in isPressed = false }
-            )
-            .buttonStyle(PlainButtonStyle())
-            .accessibilityElement(children: .combine)
-            .accessibilityLabel(streakRepo.todayCompleted
-                ? "今日の10問 完了済み。もう一度挑戦できます"
-                : "今日の10問を開始")
-            .accessibilityHint("タップして今日の10問を開始")
-            .accessibilityIdentifier("home_today_card")
-
-            if streakRepo.todayCompleted {
-                weakFocusCTA
-            }
-        }
-    }
-
-    @ViewBuilder
-    private var weakFocusCTA: some View {
-        let weak = allWeakQuestions
-        if !weak.isEmpty {
-            let weakStage = Stage(stage: -99, questions: weak)
-            NavigationLink(
-                destination: MainView(
-                    stage: weakStage,
-                    appState: appState,
-                    statsRepo: statsRepo,
-                    streakRepo: streakRepo,
-                    xpRepo: xpRepo,
-                    mode: .normal,
-                    sessionTitle: "苦手問題 \(weak.count)問"
-                )
-            ) {
-                HStack(spacing: 8) {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(OniTanTheme.accentWeak)
-                    Text("苦手問題を続けて解く（\(weak.count) 問）")
-                        .font(.system(size: 12, weight: .semibold, design: .rounded))
-                        .foregroundColor(OniTanTheme.textSecondary)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 11))
-                        .foregroundColor(OniTanTheme.textTertiary)
-                }
-                .padding(.horizontal, 14)
-                .padding(.vertical, 9)
-                .background(
-                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .fill(Color(red: 0.25, green: 0.15, blue: 0.05).opacity(0.65))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                                .stroke(OniTanTheme.accentWeak.opacity(0.3), lineWidth: 1)
-                        )
-                )
-            }
-            .buttonStyle(PlainButtonStyle())
-            .accessibilityLabel("苦手問題\(weak.count)問に挑戦")
-        }
-    }
-
-    private var cardContent: some View {
-        HStack(spacing: compact ? 10 : 12) {
-            ZStack {
-                Circle()
-                    .fill(Color.white.opacity(0.18))
-                    .frame(width: compact ? 38 : 42, height: compact ? 38 : 42)
-
-                if #available(iOS 17.0, *) {
-                    Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: compact ? 16 : 18, weight: .semibold))
-                        .foregroundColor(.white)
-                        .symbolEffect(.bounce, value: streakRepo.todayCompleted)
-                } else {
-                    Image(systemName: streakRepo.todayCompleted ? "checkmark.seal.fill" : "bolt.fill")
-                        .font(.system(size: compact ? 16 : 18, weight: .semibold))
-                        .foregroundColor(.white)
-                }
-            }
-            .accessibilityHidden(true)
-
-            HStack(spacing: 6) {
-                Text("今日の10問")
-                    .font(.system(size: compact ? 15 : 16, weight: .black, design: .rounded))
-                    .fontWeight(.black)
-                    .foregroundColor(.white)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.85)
-
-                if streakRepo.todayCompleted {
-                    Text("達成！")
-                        .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(Color.white.opacity(0.25))
-                        .cornerRadius(6)
-                }
-            }
-
-            Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(.system(size: compact ? 12 : 13, weight: .semibold))
-                .foregroundColor(.white.opacity(0.65))
-                .accessibilityHidden(true)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, compact ? 13 : 15)
-        .padding(.vertical, compact ? 9 : 11)
-        .background(cardGradient)
-        .cornerRadius(OniTanTheme.radiusCard)
-        .shadow(
-            color: (streakRepo.todayCompleted
-                ? OniTanTheme.accentCorrect
-                : OniTanTheme.accentWeak).opacity(0.45),
-            radius: 14,
-            y: 6
-        )
-        .scaleEffect(isPressed ? 0.97 : 1.0)
-        .animation(.easeInOut(duration: 0.12), value: isPressed)
-    }
-
-    private var cardGradient: LinearGradient {
-        if streakRepo.todayCompleted {
-            return LinearGradient(
-                colors: [Color(red: 0.10, green: 0.55, blue: 0.30),
-                         Color(red: 0.08, green: 0.40, blue: 0.22)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        }
-        return LinearGradient(
-            colors: [Color(red: 0.95, green: 0.55, blue: 0.05),
-                     Color(red: 0.80, green: 0.30, blue: 0.0)],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
     }
 }
 
@@ -725,19 +355,18 @@ private struct HomeHeaderIconButton<Destination: View>: View {
 
     var body: some View {
         NavigationLink(destination: destination) {
-            Image(systemName: icon)
-                .font(.system(size: compact ? 16 : 17, weight: .semibold))
-                .foregroundColor(OniTanTheme.textPrimary)
-                .frame(width: compact ? 38 : 40, height: compact ? 38 : 40)
+            Text(icon)
+                .font(.system(size: compact ? 15 : 16, weight: .black, design: .serif))
+                .foregroundColor(HomeInk.textPrimary)
+                .frame(width: compact ? 36 : 38, height: compact ? 36 : 38)
                 .background(
                     Circle()
-                        .fill(isPressed ? OniTanTheme.cardBackgroundPressed : OniTanTheme.cardBackground)
+                        .fill(HomeInk.cardBackground)
                         .overlay(
                             Circle()
-                                .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                                .stroke(HomeInk.border, lineWidth: 1)
                         )
                 )
-                .shadow(color: .black.opacity(0.24), radius: 6, y: 3)
                 .scaleEffect(isPressed ? 0.95 : 1.0)
                 .animation(.easeInOut(duration: 0.12), value: isPressed)
         }
@@ -753,64 +382,194 @@ private struct HomeHeaderIconButton<Destination: View>: View {
     }
 }
 
-// MARK: - Home Menu Button
+// MARK: - Primary Action Card
 
-struct HomeMenuButton<Destination: View>: View {
+private enum HomePrimaryCardStyle {
+    case primary   // ランダム10問: 深い紅のグラデーション
+    case neutral   // 道場選択: ダークカード
+    case gold      // 模擬試験: ダークカード + 金アクセント
+    case disabled  // データ読み込み失敗時のプレースホルダー
+}
+
+private struct HomePrimaryActionCard: View {
+    let title: String
+    let subtitle: String
+    let icon: String
+    let style: HomePrimaryCardStyle
+    let isCompact: Bool
+    let destination: AnyView?
+
+    @State private var isPressed = false
+
+    var body: some View {
+        Group {
+            if let destination {
+                NavigationLink(destination: destination) { cardContent }
+                    .simultaneousGesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { _ in isPressed = true }
+                            .onEnded { _ in isPressed = false }
+                    )
+                    .buttonStyle(PlainButtonStyle())
+            } else {
+                cardContent
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(title)
+        .accessibilityHint(destination != nil ? "タップして\(title)を開始" : subtitle)
+    }
+
+    private var cardContent: some View {
+        HStack(spacing: 16) {
+            OniSealMark(
+                text: icon,
+                size: 48,
+                fontSize: isCompact ? 21 : 23,
+                tint: iconColor,
+                fillOpacity: style == .primary ? 0.18 : 0.12,
+                cornerRadius: 13
+            )
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(title)
+                    .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
+                    .foregroundColor(titleColor)
+                Text(subtitle)
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundColor(subtitleColor)
+            }
+
+            Spacer()
+
+            if destination != nil {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(subtitleColor)
+                    .accessibilityHidden(true)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.vertical, isCompact ? 16 : 20)
+        .background(cardBackground)
+        .overlay(
+            RoundedRectangle(cornerRadius: 18)
+                .stroke(borderColor, lineWidth: 1)
+        )
+        .cornerRadius(18)
+        .shadow(color: shadowColor, radius: style == .primary ? 16 : 6, y: 6)
+        .scaleEffect(isPressed ? 0.98 : 1.0)
+        .animation(.easeInOut(duration: 0.12), value: isPressed)
+    }
+
+    private var cardBackground: AnyView {
+        switch style {
+        case .primary:
+            return AnyView(
+                LinearGradient(
+                    colors: [HomeInk.red, HomeInk.redDark],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            )
+        case .neutral, .gold, .disabled:
+            return AnyView(HomeInk.cardBackground)
+        }
+    }
+
+    private var iconBackground: Color {
+        switch style {
+        case .primary: return HomeInk.textPrimary.opacity(0.18)
+        case .neutral: return HomeInk.textPrimary.opacity(0.06)
+        case .gold: return HomeInk.gold.opacity(0.14)
+        case .disabled: return HomeInk.textPrimary.opacity(0.04)
+        }
+    }
+
+    private var iconColor: Color {
+        switch style {
+        case .primary: return HomeInk.textPrimary
+        case .neutral: return HomeInk.textPrimary
+        case .gold: return HomeInk.gold
+        case .disabled: return HomeInk.textSecondary.opacity(0.5)
+        }
+    }
+
+    private var titleColor: Color {
+        switch style {
+        case .primary: return HomeInk.textPrimary
+        case .neutral, .gold: return HomeInk.textPrimary
+        case .disabled: return HomeInk.textSecondary
+        }
+    }
+
+    private var subtitleColor: Color {
+        switch style {
+        case .primary: return HomeInk.textPrimary.opacity(0.78)
+        case .neutral, .gold: return HomeInk.textSecondary
+        case .disabled: return HomeInk.textSecondary.opacity(0.6)
+        }
+    }
+
+    private var borderColor: Color {
+        switch style {
+        case .primary: return HomeInk.textPrimary.opacity(0.10)
+        case .neutral: return HomeInk.border
+        case .gold: return HomeInk.gold.opacity(0.25)
+        case .disabled: return HomeInk.border
+        }
+    }
+
+    private var shadowColor: Color {
+        switch style {
+        case .primary: return HomeInk.red.opacity(0.40)
+        case .neutral: return Color.black.opacity(0.30)
+        case .gold: return HomeInk.gold.opacity(0.12)
+        case .disabled: return Color.clear
+        }
+    }
+}
+
+// MARK: - Secondary Link
+
+private struct HomeSecondaryLink: View {
     let title: String
     let icon: String
-    let gradient: LinearGradient
-    let compact: Bool
-    let destination: Destination
+    let destination: AnyView
 
     @State private var isPressed = false
 
     var body: some View {
         NavigationLink(destination: destination) {
-            HStack(spacing: compact ? 10 : 12) {
-                Image(systemName: icon)
-                    .font(.system(size: compact ? 16 : 17, weight: .semibold))
-                    .foregroundColor(.white)
-                    .frame(width: compact ? 34 : 36, height: compact ? 34 : 36)
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(Circle())
-                    .accessibilityHidden(true)
-
+            HStack(spacing: 6) {
+                Text(icon)
+                    .font(.system(size: 12, weight: .black, design: .serif))
                 Text(title)
-                    .font(.system(size: compact ? 15 : 16, weight: .bold, design: .rounded))
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .lineLimit(1)
                     .minimumScaleFactor(0.85)
-
-                Spacer()
-
-                Image(systemName: "chevron.right")
-                    .font(.system(size: compact ? 12 : 13, weight: .semibold))
-                    .foregroundColor(.white.opacity(0.6))
-                    .accessibilityHidden(true)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, compact ? 13 : 15)
-            .padding(.vertical, compact ? 9 : 11)
-            .background(gradient)
-            .cornerRadius(OniTanTheme.radiusCard)
-            .shadow(
-                color: OniTanTheme.shadowCard.color,
-                radius: OniTanTheme.shadowCard.radius,
-                y: OniTanTheme.shadowCard.y
+            .foregroundColor(HomeInk.textSecondary)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(HomeInk.cardBackground.opacity(0.6))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(HomeInk.border, lineWidth: 1)
+                    )
             )
-            .scaleEffect(isPressed ? 0.97 : 1.0)
-            .animation(.easeInOut(duration: 0.12), value: isPressed)
+            .scaleEffect(isPressed ? 0.96 : 1.0)
+            .animation(.easeInOut(duration: 0.1), value: isPressed)
         }
         .simultaneousGesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in isPressed = true }
-                .onEnded   { _ in isPressed = false }
+                .onEnded { _ in isPressed = false }
         )
         .buttonStyle(PlainButtonStyle())
-        .accessibilityElement(children: .combine)
         .accessibilityLabel(title)
         .accessibilityHint("タップして\(title)へ進む")
-        .accessibilityIdentifier("home_menu_\(title)")
     }
 }

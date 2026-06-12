@@ -3,17 +3,17 @@ import SwiftUI
 // MARK: - App Theme
 
 enum AppTheme: String, CaseIterable, Identifiable {
-    case current  // 現在のカラー — existing purple gradient dark theme
-    case cool     // カッコいい — cyberpunk dark
-    case cute     // 可愛い — pastel light
+    case current  // 墨と朱 — primary OniTan premium theme
+    case cool     // 夜の道場 — deeper ink variant
+    case cute     // 和紙の灯 — warmer dark variant
 
     var id: String { rawValue }
 
     var displayName: String {
         switch self {
-        case .current: return "現在のカラー"
-        case .cool:    return "カッコいい"
-        case .cute:    return "可愛い"
+        case .current: return "墨と朱"
+        case .cool:    return "夜の道場"
+        case .cute:    return "和紙の灯"
         }
     }
 
@@ -28,8 +28,7 @@ enum AppTheme: String, CaseIterable, Identifiable {
 
     var preferredColorScheme: ColorScheme {
         switch self {
-        case .current, .cool: return .dark
-        case .cute:           return .light
+        case .current, .cool, .cute: return .dark
         }
     }
 }
@@ -90,108 +89,111 @@ struct ThemePalette {
 
 extension ThemePalette {
 
-    /// "現在のカラー" — The original purple gradient dark theme
+    /// "墨と朱" — OniTan dark premium (ink + oni-red, gold for highlights)
     static let current = ThemePalette(
         backgroundGradientColors: [
-            Color(red: 0.10, green: 0.10, blue: 0.30),
-            Color(red: 0.20, green: 0.05, blue: 0.25)
+            OniTanTheme.inkBackground,
+            OniTanTheme.inkBackgroundSecondary,
+            OniTanTheme.inkBackgroundDeep
         ],
         correctGradientColors: [
-            Color(red: 0.13, green: 0.70, blue: 0.45),
-            Color(red: 0.10, green: 0.55, blue: 0.35)
+            OniTanTheme.mutedGold,
+            OniTanTheme.mutedGoldDark
         ],
         wrongGradientColors: [
-            Color(red: 0.85, green: 0.22, blue: 0.22),
-            Color(red: 0.70, green: 0.12, blue: 0.15)
+            OniTanTheme.sealRed,
+            OniTanTheme.sealRedDark
         ],
         primaryGradientColors: [
-            Color(red: 0.38, green: 0.32, blue: 0.90),
-            Color(red: 0.60, green: 0.20, blue: 0.80)
+            OniTanTheme.sealRed,
+            OniTanTheme.sealRedDark
         ],
         goldGradientColors: [
-            Color(red: 1.0, green: 0.80, blue: 0.10),
-            Color(red: 0.95, green: 0.60, blue: 0.05)
+            OniTanTheme.mutedGold,
+            OniTanTheme.mutedGoldDark
         ],
-        cardBackground: Color.white.opacity(0.12),
-        cardBackgroundPressed: Color.white.opacity(0.22),
-        cardBorder: Color.white.opacity(0.25),
-        textPrimary: .white,
-        textSecondary: Color.white.opacity(0.70),
-        textTertiary: Color.white.opacity(0.50),
-        accentCorrect: Color(red: 0.13, green: 0.70, blue: 0.45),
-        accentWrong: Color(red: 0.85, green: 0.22, blue: 0.22),
-        accentWeak: Color(red: 1.00, green: 0.60, blue: 0.10),
-        accentPrimary: Color(red: 0.48, green: 0.38, blue: 0.95),
-        shadowGlowColor: Color.purple.opacity(0.4)
+        cardBackground: OniTanTheme.inkCard.opacity(0.92),
+        cardBackgroundPressed: OniTanTheme.inkCardPressed.opacity(0.96),
+        cardBorder: OniTanTheme.mutedGold.opacity(0.16),
+        textPrimary: OniTanTheme.washiText,
+        textSecondary: OniTanTheme.washiSecondary,
+        textTertiary: Color(hex: "766D64"),
+        accentCorrect: OniTanTheme.mutedGold,
+        accentWrong: OniTanTheme.sealRed,
+        accentWeak: OniTanTheme.mutedGold,
+        accentPrimary: OniTanTheme.sealRed,
+        shadowGlowColor: OniTanTheme.sealRed.opacity(0.28)
     )
 
-    /// "カッコいい" — Cyberpunk dark theme
+    /// "夜の道場" — deeper ink variant.
     static let cool = ThemePalette(
         backgroundGradientColors: [
-            Color(red: 0.008, green: 0.008, blue: 0.03),   // #020208
-            Color(red: 0.0, green: 0.06, blue: 0.16)       // #000F28
+            Color(hex: "040305"),
+            Color(hex: "0B0709"),
+            Color(hex: "17080D")
         ],
         correctGradientColors: [
-            Color(red: 0.0, green: 0.85, blue: 0.55),
-            Color(red: 0.0, green: 0.65, blue: 0.40)
+            Color(hex: "E0BD62"),
+            Color(hex: "927037")
         ],
         wrongGradientColors: [
-            Color(red: 1.0, green: 0.15, blue: 0.25),
-            Color(red: 0.75, green: 0.08, blue: 0.15)
+            Color(hex: "A81624"),
+            Color(hex: "650D17")
         ],
         primaryGradientColors: [
-            Color(red: 0.0, green: 0.90, blue: 1.0),       // #00E5FF
-            Color(red: 0.0, green: 0.55, blue: 0.85)
+            Color(hex: "A81624"),
+            Color(hex: "650D17")
         ],
         goldGradientColors: [
-            Color(red: 1.0, green: 0.85, blue: 0.0),
-            Color(red: 1.0, green: 0.65, blue: 0.0)
+            Color(hex: "E0BD62"),
+            Color(hex: "927037")
         ],
-        cardBackground: Color.white.opacity(0.08),
-        cardBackgroundPressed: Color.white.opacity(0.16),
-        cardBorder: Color(red: 0.0, green: 0.90, blue: 1.0).opacity(0.20),
-        textPrimary: .white,
-        textSecondary: Color.white.opacity(0.70),
-        textTertiary: Color.white.opacity(0.50),
-        accentCorrect: Color(red: 0.0, green: 0.85, blue: 0.55),
-        accentWrong: Color(red: 1.0, green: 0.15, blue: 0.25),
-        accentWeak: Color(red: 1.0, green: 0.65, blue: 0.0),
-        accentPrimary: Color(red: 0.0, green: 0.90, blue: 1.0),
-        shadowGlowColor: Color(red: 0.0, green: 0.90, blue: 1.0).opacity(0.4)
+        cardBackground: Color(hex: "100D10").opacity(0.94),
+        cardBackgroundPressed: Color(hex: "1B1115").opacity(0.96),
+        cardBorder: Color(hex: "E0BD62").opacity(0.14),
+        textPrimary: Color(hex: "F7F0E6"),
+        textSecondary: Color(hex: "B4A898"),
+        textTertiary: Color(hex: "716961"),
+        accentCorrect: Color(hex: "E0BD62"),
+        accentWrong: Color(hex: "A81624"),
+        accentWeak: Color(hex: "E0BD62"),
+        accentPrimary: Color(hex: "A81624"),
+        shadowGlowColor: Color(hex: "A81624").opacity(0.25)
     )
 
-    /// "可愛い" — Pastel light theme
+    /// "和紙の灯" — warmer premium variant while staying in the dojo identity.
     static let cute = ThemePalette(
         backgroundGradientColors: [
-            Color(red: 1.0, green: 0.90, blue: 0.94),      // #FFE6F0
-            Color(red: 0.90, green: 0.855, blue: 1.0)      // #E6DAFF
+            Color(hex: "100A08"),
+            Color(hex: "170D09"),
+            Color(hex: "090606")
         ],
         correctGradientColors: [
-            Color(red: 0.40, green: 0.78, blue: 0.55),
-            Color(red: 0.30, green: 0.65, blue: 0.45)
+            Color(hex: "DCC06F"),
+            Color(hex: "9C7938")
         ],
         wrongGradientColors: [
-            Color(red: 0.90, green: 0.35, blue: 0.40),
-            Color(red: 0.78, green: 0.25, blue: 0.30)
+            Color(hex: "B72630"),
+            Color(hex: "7D1519")
         ],
         primaryGradientColors: [
-            Color(red: 0.85, green: 0.50, blue: 0.75),     // sakura pink
-            Color(red: 0.65, green: 0.40, blue: 0.80)
+            Color(hex: "B72630"),
+            Color(hex: "7D1519")
         ],
         goldGradientColors: [
-            Color(red: 1.0, green: 0.80, blue: 0.30),
-            Color(red: 0.95, green: 0.65, blue: 0.20)
+            Color(hex: "DCC06F"),
+            Color(hex: "9C7938")
         ],
-        cardBackground: Color(red: 0.24, green: 0.16, blue: 0.31).opacity(0.08),
-        cardBackgroundPressed: Color(red: 0.24, green: 0.16, blue: 0.31).opacity(0.14),
-        cardBorder: Color(red: 0.24, green: 0.16, blue: 0.31).opacity(0.15),
-        textPrimary: Color(red: 0.24, green: 0.16, blue: 0.31),    // #3D2850
-        textSecondary: Color(red: 0.24, green: 0.16, blue: 0.31).opacity(0.65),
-        textTertiary: Color(red: 0.24, green: 0.16, blue: 0.31).opacity(0.45),
-        accentCorrect: Color(red: 0.25, green: 0.68, blue: 0.42),
-        accentWrong: Color(red: 0.85, green: 0.30, blue: 0.35),
-        accentWeak: Color(red: 0.90, green: 0.55, blue: 0.15),
-        accentPrimary: Color(red: 0.75, green: 0.40, blue: 0.70),
-        shadowGlowColor: Color(red: 0.75, green: 0.40, blue: 0.70).opacity(0.3)
+        cardBackground: Color(hex: "1A1110").opacity(0.93),
+        cardBackgroundPressed: Color(hex: "241715").opacity(0.96),
+        cardBorder: Color(hex: "DCC06F").opacity(0.16),
+        textPrimary: Color(hex: "F8EEDC"),
+        textSecondary: Color(hex: "B9A991"),
+        textTertiary: Color(hex: "7A6F61"),
+        accentCorrect: Color(hex: "DCC06F"),
+        accentWrong: Color(hex: "B72630"),
+        accentWeak: Color(hex: "DCC06F"),
+        accentPrimary: Color(hex: "B72630"),
+        shadowGlowColor: Color(hex: "B72630").opacity(0.25)
     )
 }

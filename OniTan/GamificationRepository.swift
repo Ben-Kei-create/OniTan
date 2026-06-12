@@ -98,6 +98,7 @@ final class GamificationRepository: ObservableObject {
     private let store: PersistenceStore
     private let key = "gamification_v2"
     private let legacyKey = "gamification_v1"
+    private let contentVersionKey = "gamificationContentVersion"
     private let levelCurve: LevelCurve
     private let nowProvider: () -> Date
     private var data = GamificationData()
@@ -115,6 +116,7 @@ final class GamificationRepository: ObservableObject {
         self.levelCurve = levelCurve
         self.nowProvider = nowProvider
         load()
+        migrateContentVersionIfNeeded()
         resetTodayXPIfNewDay()
         publish()
     }
@@ -209,5 +211,30 @@ final class GamificationRepository: ObservableObject {
             return
         }
         store.set(encoded, forKey: key)
+    }
+
+    private func migrateContentVersionIfNeeded() {
+        let savedVersion = loadContentVersion()
+        guard savedVersion == quizContentVersion else {
+            data = GamificationData()
+            save()
+            saveContentVersion()
+            xpLogger.info("Gamification data reset for quiz content version migration")
+            return
+        }
+        saveContentVersion()
+    }
+
+    private func loadContentVersion() -> String? {
+        guard let data = store.data(forKey: contentVersionKey),
+              let decoded = try? JSONDecoder().decode(String.self, from: data) else {
+            return nil
+        }
+        return decoded
+    }
+
+    private func saveContentVersion() {
+        guard let encoded = try? JSONEncoder().encode(quizContentVersion) else { return }
+        store.set(encoded, forKey: contentVersionKey)
     }
 }

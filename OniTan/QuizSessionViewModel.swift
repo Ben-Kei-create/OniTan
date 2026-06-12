@@ -26,11 +26,13 @@ final class QuizSessionViewModel: ObservableObject {
     @Published private(set) var currentQuestion: Question
     @Published private(set) var clearedCount: Int = 0
     @Published private(set) var phase: QuizPhase = .answering
+    private var pendingSessionClear = false
     @Published private(set) var lastAnswerResult: AnswerResult = .none
     @Published private(set) var passNumber: Int = 1
     @Published private(set) var consecutiveCorrect: Int = 0   // for combo display
-    @Published private(set) var sessionXPGained: Int = 0      // shown in cleared screen
+    @Published private(set) var sessionXPGained: Int = 0
     @Published var activeAlert: OniAlert? = nil
+    @Published private(set) var examResult: ExamResult? = nil
 
     // MARK: Read-only
 
@@ -39,19 +41,19 @@ final class QuizSessionViewModel: ObservableObject {
     let clearTitle: String
     let sessionTitle: String?
 
-    /// Whether this is the cross-stage "今日の10問" session (stageNumber == 0).
+    /// Whether this is the cross-stage random 10-question session (stageNumber == 0).
     var isToday: Bool { stage.stage == 0 }
     var isSpecialSession: Bool { stage.stage <= 0 }
 
     /// Human-readable header shown in the quiz top bar.
     var displayTitle: String {
         if isToday {
-            return sessionTitle ?? "今日の10問"
+            return sessionTitle ?? "ランダム10問"
         }
         if let sessionTitle {
             return sessionTitle
         }
-        return "ステージ \(stage.stage)"
+        return "稽古 \(stage.stage)"
     }
 
     var totalGoal: Int { sessionQuestions.count }
@@ -69,12 +71,16 @@ final class QuizSessionViewModel: ObservableObject {
     private let statsRepo: StudyStatsRepository
     private let streakRepo: StreakRepository?
     private let xpRepo: GamificationRepository?
+    private let masteryRepo: MasteryRepository?
+    private let examResultRepo: ExamResultRepository?
+    private let examBlueprintID: String?
 
     private let sessionQuestions: [Question]
     private var pendingQueue: [Question]
     private var reviewQueue: [Question] = []
     private var clearedKanji: Set<String> = []
     private var sessionStartTime = Date()
+    private var sessionAnswers: [String: String] = [:]
 
     // MARK: - Init
 
@@ -84,6 +90,9 @@ final class QuizSessionViewModel: ObservableObject {
         statsRepo: StudyStatsRepository,
         streakRepo: StreakRepository? = nil,
         xpRepo: GamificationRepository? = nil,
+        masteryRepo: MasteryRepository? = nil,
+        examResultRepo: ExamResultRepository? = nil,
+        examBlueprintID: String? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
         sessionTitle: String? = nil
@@ -93,6 +102,9 @@ final class QuizSessionViewModel: ObservableObject {
         self.statsRepo = statsRepo
         self.streakRepo = streakRepo
         self.xpRepo = xpRepo
+        self.masteryRepo = masteryRepo
+        self.examResultRepo = examResultRepo
+        self.examBlueprintID = examBlueprintID
         self.mode = mode
         self.sessionTitle = sessionTitle
         self.clearTitle = clearTitle ?? Self.defaultClearTitle(
@@ -129,6 +141,7 @@ final class QuizSessionViewModel: ObservableObject {
 
         let question = currentQuestion
         let isCorrect = selected == question.answer
+        sessionAnswers[question.id] = selected
 
         statsRepo.record(
             stageNumber: stage.stage,
@@ -137,6 +150,7 @@ final class QuizSessionViewModel: ObservableObject {
             selectedAnswer: selected,
             correctAnswer: question.answer
         )
+        masteryRepo?.record(question: question, wasCorrect: isCorrect)
         pendingQueue.removeFirst()
 
         if isCorrect {
@@ -161,15 +175,13 @@ final class QuizSessionViewModel: ObservableObject {
                 // normal/weakFocus: count unique mastered kanji
                 clearedCount = clearedKanji.count
                 if clearedKanji.count >= totalGoal {
-                    onSessionCleared()
-                    return
+                    pendingSessionClear = true
                 }
             } else {
                 // quick10/exam30: count total answered (correct + wrong)
                 clearedCount += 1
                 if pendingQueue.isEmpty {
-                    onSessionCleared()
-                    return
+                    pendingSessionClear = true
                 }
             }
             phase = .showingExplanation
@@ -190,6 +202,12 @@ final class QuizSessionViewModel: ObservableObject {
     func proceed() {
         guard phase != .answering, phase != .stageCleared else { return }
         lastAnswerResult = .none
+
+        if pendingSessionClear {
+            pendingSessionClear = false
+            onSessionCleared()
+            return
+        }
 
         if pendingQueue.isEmpty {
             if reviewQueue.isEmpty || !mode.usesReviewQueue {
@@ -216,6 +234,9 @@ final class QuizSessionViewModel: ObservableObject {
             resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)
         }
         let safe = resolved.isEmpty ? stage.questions : resolved
+        guard let firstQuestion = safe.first else {
+            preconditionFailure("QuizSessionViewModel.resetGame: question pool is empty for stage \(stage.stage).")
+        }
         pendingQueue = safe
         reviewQueue = []
         clearedKanji = []
@@ -224,8 +245,11 @@ final class QuizSessionViewModel: ObservableObject {
         lastAnswerResult = .none
         consecutiveCorrect = 0
         sessionXPGained = 0
+        pendingSessionClear = false
+        sessionAnswers = [:]
+        examResult = nil
         sessionStartTime = Date()
-        currentQuestion = safe[0]
+        currentQuestion = firstQuestion
         phase = .answering
     }
 
@@ -253,19 +277,31 @@ final class QuizSessionViewModel: ObservableObject {
         let studyTime = Date().timeIntervalSince(sessionStartTime)
         streakRepo?.addStudyTime(studyTime)
 
+        if let blueprintID = examBlueprintID,
+           let blueprint = examBlueprints.first(where: { $0.id == blueprintID }) {
+            let session = ExamSession(
+                blueprint: blueprint,
+                questions: sessionQuestions,
+                startedAt: sessionStartTime
+            )
+            let result = ExamBuilder.score(session: session, answers: sessionAnswers)
+            examResult = result
+            examResultRepo?.save(result)
+        }
+
         phase = .stageCleared
     }
 
     private static func defaultClearTitle(for mode: QuizMode, stageNumber: Int, sessionTitle: String?) -> String {
-        if stageNumber == 0 { return "今日の10問 完了！" }
+        if stageNumber == 0 { return "ランダム10問 完了！" }
         if stageNumber < 0 {
-            return "\(sessionTitle ?? "おさらい") 完了！"
+            return "\(sessionTitle ?? "復習") 完了！"
         }
         switch mode {
         case .quick10:   return "クイック完了！"
         case .exam30:    return "模試完了！"
         case .weakFocus: return "復習完了！"
-        default:         return "ステージ \(stageNumber) クリア！"
+        default:         return "稽古 \(stageNumber) 完了！"
         }
     }
 }

@@ -5,6 +5,7 @@ import SwiftUI
 struct MainView: View {
     @StateObject private var vm: QuizSessionViewModel
     @State private var activeReportContext: QuizProblemReportContext?
+    @State private var hasPlayedCompletionHaptic = false
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
@@ -13,11 +14,15 @@ struct MainView: View {
     @EnvironmentObject var interstitialManager: AdInterstitialManager
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
+    @EnvironmentObject var appNavState: AppNavigationState
+    @EnvironmentObject var examResultRepo: ExamResultRepository
 
     private let appState: AppState
     private let statsRepo: StudyStatsRepository
     private let passedStreakRepo: StreakRepository?
     private let passedXPRepo: GamificationRepository?
+    private let passedMasteryRepo: MasteryRepository?
     private let nextStage: Stage?
     private let nextStageTitle: String?
 
@@ -27,6 +32,9 @@ struct MainView: View {
         statsRepo: StudyStatsRepository,
         streakRepo: StreakRepository? = nil,
         xpRepo: GamificationRepository? = nil,
+        masteryRepo: MasteryRepository? = nil,
+        examResultRepo: ExamResultRepository? = nil,
+        examBlueprintID: String? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
         sessionTitle: String? = nil,
@@ -37,6 +45,7 @@ struct MainView: View {
         self.statsRepo = statsRepo
         self.passedStreakRepo = streakRepo
         self.passedXPRepo = xpRepo
+        self.passedMasteryRepo = masteryRepo
         self.nextStage = nextStage
         self.nextStageTitle = nextStageTitle
         _vm = StateObject(wrappedValue: QuizSessionViewModel(
@@ -45,6 +54,9 @@ struct MainView: View {
             statsRepo: statsRepo,
             streakRepo: streakRepo,
             xpRepo: xpRepo,
+            masteryRepo: masteryRepo,
+            examResultRepo: examResultRepo,
+            examBlueprintID: examBlueprintID,
             mode: mode,
             clearTitle: clearTitle,
             sessionTitle: sessionTitle
@@ -72,29 +84,29 @@ struct MainView: View {
 
                             switch vm.phase {
                             case .stageCleared:
-                                stageClearedView
+                                if let result = vm.examResult {
+                                    ExamResultView(
+                                        result: result,
+                                        blueprint: examBlueprints.first(where: { $0.id == result.blueprintID })
+                                    )
+                                    .environmentObject(playFontManager)
                                     .transition(.asymmetric(
                                         insertion: .scale(scale: 0.85).combined(with: .opacity),
                                         removal: .opacity
                                     ))
+                                } else {
+                                    stageClearedView
+                                        .transition(.asymmetric(
+                                            insertion: .scale(scale: 0.85).combined(with: .opacity),
+                                            removal: .opacity
+                                        ))
+                                }
                             default:
                                 quizContentView(scale: scale)
                             }
                         }
                         .navigationBarBackButtonHidden(true)
 
-                        // Explanation overlay
-                        if vm.phase == .showingExplanation {
-                            ExplanationView(question: vm.currentQuestion) {
-                                vm.proceed()
-                            } onReport: {
-                                presentProblemReport(for: vm.currentQuestion)
-                            }
-                            .environmentObject(playFontManager)
-                            .transition(.opacity)
-                            .animation(.easeInOut(duration: 0.2), value: vm.phase)
-                            .zIndex(10)
-                        }
                     }
                     .animation(.easeInOut(duration: 0.25), value: vm.phase)
                 }
@@ -112,11 +124,22 @@ struct MainView: View {
                 interstitialManager.loadIfNeeded(canRequestAds: adConsentManager.canRequestAds)
             }
         }
+        .onChange(of: appNavState.shouldPopToRoot) { should in
+            if should { dismiss() }
+        }
         .onChange(of: vm.phase) { phase in
-            if case .stageCleared = phase, !donationManager.hasDonated {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                    interstitialManager.showIfReady()
+            if case .stageCleared = phase {
+                if !hasPlayedCompletionHaptic {
+                    hasPlayedCompletionHaptic = true
+                    OniTanTheme.hapticSuccess()
                 }
+                if !donationManager.hasDonated {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        interstitialManager.showIfReady()
+                    }
+                }
+            } else {
+                hasPlayedCompletionHaptic = false
             }
         }
     }
@@ -133,9 +156,13 @@ struct MainView: View {
                     vm.requestQuit()
                 }
             } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: scaled(26, by: scale, min: 20)))
+                Text("閉")
+                    .font(.system(size: scaled(14, by: scale, min: 12), weight: .black, design: .serif))
                     .foregroundColor(OniTanTheme.textSecondary)
+                    .frame(width: scaled(34, by: scale, min: 30), height: scaled(34, by: scale, min: 30))
+                    .background(Color.black.opacity(0.16))
+                    .overlay(Circle().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    .clipShape(Circle())
             }
             .accessibilityLabel("終了")
             .accessibilityHint("タップすると確認ダイアログが表示されます")
@@ -145,8 +172,9 @@ struct MainView: View {
             // Combo badge (appears at 3+ consecutive correct answers)
             if vm.consecutiveCorrect >= 3 {
                 HStack(spacing: scaled(4, by: scale, min: 2)) {
-                    Text("🔥")
-                        .font(.system(size: scaled(13, by: scale, min: 10)))
+                    Text("連")
+                        .font(.system(size: scaled(11, by: scale, min: 9), weight: .black, design: .serif))
+                        .foregroundColor(OniTanTheme.accentWeak)
                     Text("\(vm.consecutiveCorrect)連続！")
                         .font(playFont(scaled(12, by: scale, min: 10), weight: .bold))
                         .foregroundColor(OniTanTheme.accentWeak)
@@ -155,7 +183,7 @@ struct MainView: View {
                 .padding(.vertical, scaled(4, by: scale, min: 3))
                 .background(
                     Capsule()
-                        .fill(Color(red: 0.5, green: 0.25, blue: 0.0).opacity(0.55))
+                        .fill(OniTanTheme.accentWeak.opacity(0.12))
                         .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.5), lineWidth: 1))
                 )
                 .transition(.scale(scale: 0.7).combined(with: .opacity))
@@ -165,8 +193,8 @@ struct MainView: View {
 
             // Mode badge
             HStack(spacing: scaled(4, by: scale, min: 2)) {
-                Image(systemName: vm.mode.systemImage)
-                    .font(.system(size: scaled(11, by: scale, min: 9)))
+                Text(vm.mode.sealMark)
+                    .font(.system(size: scaled(11, by: scale, min: 9), weight: .black, design: .serif))
                 Text(vm.mode.displayName)
                     .font(playFont(scaled(12, by: scale, min: 10), weight: .semibold))
             }
@@ -186,39 +214,55 @@ struct MainView: View {
             .accessibilityLabel("進捗 \(vm.clearedCount)問 / \(vm.totalGoal)問")
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
-        .padding(.top, scaled(12, by: scale, min: 8))
-        .padding(.bottom, scaled(8, by: scale, min: 4))
+        .padding(.top, scaled(8, by: scale, min: 6))
+        .padding(.bottom, scaled(4, by: scale, min: 2))
     }
 
     // MARK: - Quiz Content
 
     private func quizContentView(scale: CGFloat) -> some View {
         VStack(spacing: 0) {
-            Spacer(minLength: scaled(10, by: scale, min: 6))
+            Spacer(minLength: 0)
 
             // Stage number + pass indicator
             stageHeader(scale: scale)
 
-            Spacer(minLength: scaled(14, by: scale, min: 10))
+            GeometryReader { proxy in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(OniTanTheme.cardBackground)
+                    Capsule()
+                        .fill(vm.lastAnswerResult == .wrong ? OniTanTheme.dangerGradient : OniTanTheme.goldGradient)
+                        .frame(width: proxy.size.width * max(0, min(1, vm.progressFraction)))
+                }
+            }
+            .frame(height: scaled(6, by: scale, min: 4))
+            .padding(.top, scaled(4, by: scale, min: 3))
+            .accessibilityHidden(true)
+
+            Spacer(minLength: scaled(4, by: scale, min: 2))
 
             // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
 
-            Spacer(minLength: scaled(18, by: scale, min: 12))
+            Spacer(minLength: scaled(8, by: scale, min: 4))
 
             // Choice area
             switch vm.phase {
             case .answering:
                 choiceStack(scale: scale)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
+            case .showingExplanation:
+                answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                    .transition(.scale(scale: 0.96).combined(with: .opacity))
             case .showingWrongAnswer(let correct):
-                wrongAnswerView(correctAnswer: correct, scale: scale)
-                    .transition(.scale(scale: 0.9).combined(with: .opacity))
+                answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                    .transition(.scale(scale: 0.96).combined(with: .opacity))
             default:
                 EmptyView()
             }
 
-            Spacer(minLength: scaled(22, by: scale, min: 14))
+            Spacer(minLength: scaled(10, by: scale, min: 6))
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -228,7 +272,7 @@ struct MainView: View {
         HStack {
             VStack(alignment: .leading, spacing: scaled(2, by: scale, min: 1)) {
                 Text(vm.displayTitle)
-                    .font(playFont(scaled(22, by: scale, min: 18), weight: .bold))
+                    .font(playFont(scaled(20, by: scale, min: 17), weight: .bold))
                     .fontWeight(.bold)
                     .foregroundColor(OniTanTheme.textPrimary)
                 if vm.passNumber > 1 {
@@ -248,49 +292,15 @@ struct MainView: View {
         .accessibilityLabel("\(vm.displayTitle) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
     }
 
-    // MARK: - Kanji Display
+    // MARK: - Kanji / Prompt Display
 
     private func kanjiDisplay(scale: CGFloat) -> some View {
-        let corner = scaled(24, by: scale, min: 16)
-        let kanjiHeight: CGFloat = scaled(208, by: scale, min: 164)
-        let kanjiFont: CGFloat = scaled(122, by: scale, min: 88)
-
-        return ZStack {
-            // Background card
-            RoundedRectangle(cornerRadius: corner)
-                .fill(OniTanTheme.cardBackground)
-                .overlay(
-                    RoundedRectangle(cornerRadius: corner)
-                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
-                )
-                .shadow(color: .black.opacity(0.2), radius: scaled(16, by: scale, min: 8), y: scaled(8, by: scale, min: 4))
-
-            // Flash on answer
-            if vm.lastAnswerResult == .correct {
-                RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentCorrect.opacity(0.25))
-                    .transition(.opacity)
-            } else if vm.lastAnswerResult == .wrong {
-                RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentWrong.opacity(0.25))
-                    .transition(.opacity)
-            }
-
-            Text(vm.currentQuestion.kanji)
-                .font(playFont(kanjiFont, weight: .black))
-                .foregroundColor(OniTanTheme.textPrimary)
-                .minimumScaleFactor(0.4)
-                .lineLimit(1)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .shadow(color: .black.opacity(0.3), radius: 4)
-                .id(vm.currentQuestion.id)
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing).combined(with: .opacity),
-                    removal: .move(edge: .leading).combined(with: .opacity)
-                ))
-                .padding(scaled(16, by: scale, min: 8))
-        }
-        .frame(height: kanjiHeight)
+        QuestionPromptView(
+            question: vm.currentQuestion,
+            scale: scale,
+            isCorrect: vm.lastAnswerResult == .correct,
+            isWrong:   vm.lastAnswerResult == .wrong
+        )
         .overlay(alignment: .topTrailing) {
             VStack(spacing: scaled(8, by: scale, min: 6)) {
                 favoriteButton(scale: scale)
@@ -312,16 +322,16 @@ struct MainView: View {
             }
             OniTanTheme.haptic(.light)
         } label: {
-            Image(systemName: isFavorite ? "star.fill" : "star")
-                .font(.system(size: scaled(18, by: scale, min: 15), weight: .bold))
-                .foregroundColor(isFavorite ? Color(red: 1.0, green: 0.84, blue: 0.28) : OniTanTheme.textSecondary)
+            Text("星")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
+                .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
                 .overlay(
                     Circle()
                         .stroke(
                             isFavorite
-                                ? Color(red: 1.0, green: 0.84, blue: 0.28).opacity(0.5)
+                                ? OniTanTheme.accentWeak.opacity(0.5)
                                 : OniTanTheme.cardBorder,
                             lineWidth: 1
                         )
@@ -338,8 +348,8 @@ struct MainView: View {
             presentProblemReport(for: vm.currentQuestion)
             OniTanTheme.haptic(.light)
         } label: {
-            Image(systemName: "exclamationmark.bubble")
-                .font(.system(size: scaled(17, by: scale, min: 14), weight: .bold))
+            Text("報")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
@@ -354,16 +364,37 @@ struct MainView: View {
         .accessibilityIdentifier("quiz_problem_report")
     }
 
-    // MARK: - 2-Choice Stack
+    // MARK: - Choice Grid
 
     private func choiceStack(scale: CGFloat) -> some View {
-        let twoChoices = Self.twoChoices(
+        let shuffled = Self.shuffledChoices(
             from: vm.currentQuestion.choices,
             answer: vm.currentQuestion.answer
         )
+        let columns = [GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8)),
+                       GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
-            Text("読みを選ぶ")
+            HStack(spacing: 5) {
+                Text(vm.currentQuestion.kind.sealMark)
+                    .font(.system(size: 12, weight: .black, design: .serif))
+                Text(vm.currentQuestion.kind.displayName)
+                    .font(.caption.weight(.bold))
+            }
+            .foregroundStyle(OniTanTheme.accentWeak)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(
+                Capsule()
+                    .fill(OniTanTheme.accentWeak.opacity(0.14))
+            )
+            .overlay(
+                Capsule()
+                    .stroke(OniTanTheme.accentWeak.opacity(0.35), lineWidth: 1)
+            )
+            .padding(.leading, 4)
+
+            Text(vm.currentQuestion.kind.choicePrompt)
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .padding(.leading, 4)
@@ -376,52 +407,74 @@ struct MainView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            ForEach(Array(twoChoices.enumerated()), id: \.offset) { _, choice in
-                ChoiceCard(
-                    text: choice,
-                    scale: scale,
-                    fontStyle: playFontManager.fontStyle,
-                    onTap: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                            vm.answer(selected: choice)
+            LazyVGrid(columns: columns, spacing: scaled(10, by: scale, min: 8)) {
+                ForEach(Array(shuffled.enumerated()), id: \.offset) { _, choice in
+                    ChoiceCard(
+                        text: choice,
+                        scale: scale,
+                        fontStyle: playFontManager.fontStyle,
+                        onTap: {
+                            let wasCorrect = choice == vm.currentQuestion.answer
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                vm.answer(selected: choice)
+                            }
+                            wasCorrect ? OniTanTheme.hapticSuccess() : OniTanTheme.hapticError()
                         }
-                        OniTanTheme.haptic(.medium)
-                    }
-                )
+                    )
+                }
             }
         }
     }
 
-    /// Returns exactly 2 choices: the correct answer + 1 wrong choice, in random order.
-    private static func twoChoices(from choices: [String], answer: String) -> [String] {
-        let wrongs = choices.filter { $0 != answer }
-        guard let firstWrong = wrongs.first else { return [answer] }
-        return [answer, firstWrong].shuffled()
+    /// Returns all choices (up to 4) in random order, ensuring the correct answer is included.
+    private static func shuffledChoices(from choices: [String], answer: String) -> [String] {
+        var pool = choices
+        if !pool.contains(answer) { pool.append(answer) }
+        return pool.shuffled()
     }
 
-    // MARK: - Wrong Answer View
+    // MARK: - Answer Feedback View
 
-    private func wrongAnswerView(correctAnswer: String, scale: CGFloat) -> some View {
-        VStack(spacing: scaled(16, by: scale, min: 10)) {
-            // Compact feedback: icon + text on the same line
-            HStack(spacing: scaled(10, by: scale, min: 6)) {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: scaled(36, by: scale, min: 28)))
-                    .foregroundColor(OniTanTheme.accentWrong)
+    private func answerFeedbackView(isCorrect: Bool, correctAnswer: String, scale: CGFloat) -> some View {
+        let tint = isCorrect ? OniTanTheme.accentWeak : OniTanTheme.accentWrong
+        let title = isCorrect ? "正解" : "不正解"
+        let border = tint.opacity(isCorrect ? 0.34 : 0.42)
 
-                VStack(alignment: .leading, spacing: scaled(4, by: scale, min: 2)) {
-                    Text("不正解")
-                        .font(playFont(scaled(26, by: scale, min: 20), weight: .black))
-                        .foregroundColor(OniTanTheme.accentWrong)
+        return VStack(alignment: .leading, spacing: scaled(12, by: scale, min: 8)) {
+            HStack(alignment: .center, spacing: scaled(10, by: scale, min: 6)) {
+                Text(isCorrect ? "正" : "誤")
+                    .font(.system(size: scaled(22, by: scale, min: 18), weight: .black, design: .serif))
+                    .foregroundColor(tint)
+                    .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
+                    .background(
+                        RoundedRectangle(cornerRadius: scaled(11, by: scale, min: 9))
+                            .fill(tint.opacity(0.13))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: scaled(11, by: scale, min: 9))
+                                    .stroke(tint.opacity(0.34), lineWidth: 1)
+                            )
+                    )
+
+                VStack(alignment: .leading, spacing: scaled(3, by: scale, min: 2)) {
+                    Text(title)
+                        .font(playFont(scaled(22, by: scale, min: 18), weight: .black))
+                        .foregroundColor(tint)
 
                     Text("正解は「\(correctAnswer)」")
-                        .font(playFont(scaled(20, by: scale, min: 16), weight: .semibold))
+                        .font(playFont(scaled(17, by: scale, min: 14), weight: .semibold))
                         .foregroundColor(OniTanTheme.textPrimary)
-                        .lineLimit(2)
+                        .lineLimit(1)
                         .minimumScaleFactor(0.75)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+
+            Text(vm.currentQuestion.displayExplanation)
+                .font(playFont(scaled(13, by: scale, min: 11), weight: .regular))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .lineSpacing(4)
+                .lineLimit(4)
+                .fixedSize(horizontal: false, vertical: true)
 
             Button {
                 withAnimation { vm.proceed() }
@@ -430,29 +483,29 @@ struct MainView: View {
                 Text("次へ")
                     .font(playFont(17, weight: .bold))
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(OniTanTheme.textPrimary)
                     .frame(maxWidth: .infinity, minHeight: scaled(50, by: scale, min: 44))
                     .background(
                         RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
-                            .fill(OniTanTheme.wrongGradient)
+                            .fill(isCorrect ? OniTanTheme.primaryGradient : OniTanTheme.wrongGradient)
                     )
                     .shadow(
-                        color: OniTanTheme.accentWrong.opacity(0.4),
+                        color: tint.opacity(0.35),
                         radius: scaled(8, by: scale, min: 4),
                         y: scaled(4, by: scale, min: 2)
                     )
             }
             .accessibilityLabel("次の問題へ進む")
-            .accessibilityIdentifier("quiz_next_wrong")
+            .accessibilityIdentifier(isCorrect ? "quiz_next_correct" : "quiz_next_wrong")
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
-        .padding(.vertical, scaled(18, by: scale, min: 12))
+        .padding(.vertical, scaled(16, by: scale, min: 12))
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
                 .fill(OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(OniTanTheme.accentWrong.opacity(0.3), lineWidth: 1)
+                        .stroke(border, lineWidth: 1)
                 )
         )
         .frame(maxWidth: .infinity)
@@ -461,17 +514,20 @@ struct MainView: View {
     // MARK: - Stage Cleared
 
     private var stageClearedView: some View {
-        VStack(spacing: 16) {
+        let weakReviewStage = (!vm.isSpecialSession && !statsRepo.weakQuestions(for: vm.stage).isEmpty) ? vm.stage : nil
+        let repeatLabel = vm.mode == .quick10 ? "もう一度10問" : "もう一度"
+
+        return VStack(spacing: 16) {
             ZStack {
                 Circle()
                     .fill(OniTanTheme.accentCorrect.opacity(0.15))
                     .frame(width: 70, height: 70)
                     .blur(radius: 12)
 
-                Image(systemName: "trophy.fill")
-                    .font(.system(size: 44))
+                Text("完")
+                    .font(.system(size: 36, weight: .black, design: .serif))
                     .foregroundStyle(OniTanTheme.goldGradient)
-                    .shadow(color: .yellow.opacity(0.6), radius: 10)
+                    .shadow(color: OniTanTheme.accentWeak.opacity(0.45), radius: 10)
             }
 
             VStack(spacing: 6) {
@@ -496,12 +552,11 @@ struct MainView: View {
             )
             .shadow(color: OniTanTheme.accentCorrect.opacity(0.5), radius: 10)
 
-            if vm.sessionXPGained > 0 {
-                sessionXPBadge(vm.sessionXPGained)
-            }
-
             VStack(spacing: 8) {
                 if let next = nextStage {
+                    let nextNext = stageAfter(next)
+                    let nextNextTitle = nextNext.map { displayTitle(for: $0) }
+
                     NavigationLink(
                         destination: MainView(
                             stage: next,
@@ -509,18 +564,22 @@ struct MainView: View {
                             statsRepo: statsRepo,
                             streakRepo: passedStreakRepo ?? streakRepo,
                             xpRepo: passedXPRepo ?? xpRepo,
+                            masteryRepo: passedMasteryRepo ?? masteryRepo,
                             mode: .normal,
-                            sessionTitle: nextStageTitle
+                            clearTitle: "\(displayTitle(for: next)) クリア！",
+                            sessionTitle: nextStageTitle,
+                            nextStage: nextNext,
+                            nextStageTitle: nextNextTitle
                         )
                     ) {
                         HStack(spacing: 8) {
-                            Text("次のステージへ")
+                            Text("次の稽古へ")
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 13, weight: .bold))
-                                .foregroundColor(.white.opacity(0.8))
+                                .foregroundColor(OniTanTheme.textPrimary)
+                            Text("次")
+                                .font(.system(size: 12, weight: .black, design: .serif))
+                                .foregroundColor(OniTanTheme.textPrimary.opacity(0.8))
                         }
                         .frame(maxWidth: .infinity, minHeight: 48)
                         .background(OniTanTheme.primaryGradient)
@@ -529,34 +588,56 @@ struct MainView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
 
-                    Button {
-                        OniTanTheme.hapticSuccess()
-                        dismiss()
-                    } label: {
-                        Text("ステージ選択へ戻る")
-                            .font(playFont(13, weight: .semibold))
-                            .foregroundColor(OniTanTheme.textTertiary)
-                    }
                 } else {
                     Button {
-                        OniTanTheme.hapticSuccess()
-                        dismiss()
+                        withAnimation { vm.resetGame() }
+                        OniTanTheme.haptic(.light)
                     } label: {
-                        Text("ステージ選択へ戻る")
+                        Text(repeatLabel)
                             .font(playFont(15, weight: .bold))
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(OniTanTheme.textPrimary)
                             .frame(maxWidth: .infinity, minHeight: 44)
-                            .background(OniTanTheme.correctGradient)
+                            .background(OniTanTheme.goldGradient)
                             .cornerRadius(OniTanTheme.radiusButton)
-                            .shadow(color: OniTanTheme.accentCorrect.opacity(0.4), radius: 6, y: 3)
+                            .shadow(color: OniTanTheme.accentWeak.opacity(0.28), radius: 6, y: 3)
                     }
                 }
 
+                if let weakReviewStage {
+                    NavigationLink(
+                        destination: MainView(
+                            stage: weakReviewStage,
+                            appState: appState,
+                            statsRepo: statsRepo,
+                            streakRepo: passedStreakRepo ?? streakRepo,
+                            xpRepo: passedXPRepo ?? xpRepo,
+                            masteryRepo: passedMasteryRepo ?? masteryRepo,
+                            mode: .weakFocus,
+                            clearTitle: "苦手復習 完了！",
+                            sessionTitle: "苦手を復習"
+                        )
+                    ) {
+                        Text("苦手を復習")
+                            .font(playFont(14, weight: .bold))
+                            .foregroundColor(OniTanTheme.textPrimary)
+                            .frame(maxWidth: .infinity, minHeight: 42)
+                            .background(OniTanTheme.cardBackgroundPressed)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
+                                    .stroke(OniTanTheme.accentWeak.opacity(0.28), lineWidth: 1)
+                            )
+                            .cornerRadius(OniTanTheme.radiusButton)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+
                 Button {
-                    withAnimation { vm.resetGame() }
+                    OniTanTheme.haptic(.light)
+                    appNavState.popToRoot()
+                    dismiss()
                 } label: {
-                    Text("もう一度")
+                    Text("ホームへ戻る")
                         .font(playFont(13, weight: .semibold))
                         .foregroundColor(OniTanTheme.textTertiary)
                 }
@@ -566,34 +647,7 @@ struct MainView: View {
         .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました"
-            + (vm.sessionXPGained > 0 ? " +\(vm.sessionXPGained) XP獲得" : ""))
-    }
-
-    // MARK: - XP Badge
-
-    private func sessionXPBadge(_ xp: Int) -> some View {
-        HStack(spacing: 6) {
-            Image(systemName: "star.fill")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
-            Text("+\(xp) XP 獲得！")
-                .font(playFont(15, weight: .bold))
-                .fontWeight(.bold)
-                .foregroundColor(Color(red: 1.0, green: 0.85, blue: 0.2))
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
-        .background(
-            Capsule()
-                .fill(Color(red: 0.35, green: 0.28, blue: 0.05).opacity(0.65))
-                .overlay(
-                    Capsule()
-                        .stroke(Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.5), lineWidth: 1)
-                )
-        )
-        .shadow(color: Color(red: 1.0, green: 0.75, blue: 0.0).opacity(0.3), radius: 8)
-        .transition(.scale(scale: 0.8).combined(with: .opacity))
+        .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました")
     }
 
     // MARK: - Alert
@@ -628,6 +682,21 @@ struct MainView: View {
 
     private func playFont(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
         playFontManager.font(size: size, weight: weight)
+    }
+
+    // MARK: - Stage Navigation Helpers
+
+    private func stageAfter(_ s: Stage) -> Stage? {
+        let sorted = quizData.stages.sorted { $0.stage < $1.stage }
+        guard let idx = sorted.firstIndex(where: { $0.stage == s.stage }),
+              idx + 1 < sorted.count else { return nil }
+        return sorted[idx + 1]
+    }
+
+    private func displayTitle(for s: Stage) -> String {
+        let sorted = quizData.stages.sorted { $0.stage < $1.stage }
+        let num = (sorted.firstIndex(where: { $0.stage == s.stage }) ?? 0) + 1
+        return "稽古 \(num)"
     }
 
     private func presentProblemReport(for question: Question) {
@@ -669,7 +738,7 @@ private struct ChoiceCard: View {
                 .minimumScaleFactor(0.6)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, minHeight: max(56, 72 * scale))
+                .frame(maxWidth: .infinity, minHeight: max(50, 64 * scale))
         }
         .background(
             RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
@@ -704,7 +773,10 @@ struct ExplanationView: View {
     let onReport: () -> Void
 
     @EnvironmentObject private var playFontManager: PlayFontManager
+    @EnvironmentObject private var favoriteRepo: FavoriteKanjiRepository
     @State private var appear = false
+
+    private var isFavorite: Bool { favoriteRepo.isFavorite(question.kanji) }
 
     var body: some View {
         ZStack {
@@ -713,80 +785,85 @@ struct ExplanationView: View {
                 .onTapGesture { onDismiss() }
 
             VStack(spacing: 0) {
-                // Kanji header
-                VStack(spacing: 8) {
-                    HStack {
-                        Spacer()
-
-                        Button {
-                            onReport()
-                        } label: {
-                            Image(systemName: "exclamationmark.bubble")
-                                .font(.system(size: 15, weight: .bold))
-                                .foregroundColor(OniTanTheme.textSecondary)
-                                .frame(width: 36, height: 36)
-                                .background(Color.white.opacity(0.08))
-                                .clipShape(Circle())
-                        }
-                        .accessibilityLabel("問題を報告")
+                // Report button row
+                HStack {
+                    Spacer()
+                    Button {
+                        onReport()
+                    } label: {
+                        Image(systemName: "exclamationmark.bubble")
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .frame(width: 36, height: 36)
+                            .background(OniTanTheme.cardBackgroundPressed)
+                            .clipShape(Circle())
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 16)
+                    .accessibilityLabel("問題を報告")
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .background(OniTanTheme.cardBackgroundPressed)
 
-                    Text(question.kanji)
-                        .font(playFontManager.font(size: 70, weight: .black))
-                        .foregroundStyle(OniTanTheme.primaryGradient)
+                // Kind-aware header + explanation
+                ScrollView {
+                    ExplanationContentView(question: question)
+                        .environmentObject(playFontManager)
+                }
+                .frame(maxHeight: 360)
+                .background(OniTanTheme.cardBackground)
 
-                    HStack(spacing: 4) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(OniTanTheme.accentCorrect)
-                        Text("正解！")
+                // Reading-specific note (shown for all reading kinds)
+                if (question.kind == .reading
+                    || question.kind == .sentenceReading
+                    || question.kind == .hyogaiReading
+                    || question.kind == .compoundReadingKun),
+                   let note = question.readingMetadata.playerNote(for: question.answer) {
+                    Text(note)
+                        .font(playFontManager.font(size: 12))
+                        .foregroundColor(OniTanTheme.accentWeak)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                        .background(OniTanTheme.cardBackgroundPressed)
+                }
+
+                // Bottom action row
+                HStack(spacing: 0) {
+                    Button {
+                        withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
+                            favoriteRepo.toggle(question.kanji)
+                        }
+                        OniTanTheme.haptic(.light)
+                    } label: {
+                        Image(systemName: isFavorite ? "star.fill" : "star")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
+                            .frame(width: 64)
+                            .frame(minHeight: 52)
+                            .background(OniTanTheme.cardBackgroundPressed)
+                    }
+                    .accessibilityLabel(isFavorite ? "ノートから削除" : "ノートに追加")
+                    .accessibilityIdentifier("quiz_explanation_favorite")
+
+                    Button {
+                        onDismiss()
+                        OniTanTheme.haptic(.light)
+                    } label: {
+                        Text("次の問題へ")
                             .font(playFontManager.font(size: 17, weight: .bold))
                             .fontWeight(.bold)
-                            .foregroundColor(OniTanTheme.accentCorrect)
+                            .foregroundColor(OniTanTheme.textPrimary)
+                            .frame(maxWidth: .infinity, minHeight: 52)
+                            .background(OniTanTheme.primaryGradient)
                     }
-
-                    if let note = question.readingMetadata.playerNote(for: question.answer) {
-                        Text(note)
-                            .font(playFontManager.font(size: 12))
-                            .foregroundColor(OniTanTheme.accentWeak)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 20)
-                    }
+                    .accessibilityIdentifier("quiz_next_explanation")
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.bottom, 24)
-                .background(Color(red: 0.12, green: 0.10, blue: 0.20))
-
-                Divider().background(Color.white.opacity(0.15))
-
-                // Explanation body
-                ScrollView {
-                    Text(question.displayExplanation)
-                        .font(playFontManager.font(size: 17))
-                        .foregroundColor(Color(red: 0.85, green: 0.85, blue: 0.95))
-                        .lineSpacing(6)
-                        .padding(20)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                .frame(maxHeight: 260)
-                .background(Color(red: 0.10, green: 0.08, blue: 0.18))
-
-                // Dismiss button
-                Button {
-                    onDismiss()
-                    OniTanTheme.haptic(.light)
-                } label: {
-                    Text("次へ")
-                        .font(playFontManager.font(size: 17, weight: .bold))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 52)
-                        .background(OniTanTheme.primaryGradient)
-                }
-                .accessibilityIdentifier("quiz_next_explanation")
             }
             .clipShape(RoundedRectangle(cornerRadius: 24))
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+            )
             .shadow(color: .black.opacity(0.5), radius: 30)
             .padding(.horizontal, 20)
             .scaleEffect(appear ? 1 : 0.88)
