@@ -20,7 +20,7 @@ struct CategoryTrainingView: View {
                     header
 
                     ForEach(categories) { entry in
-                        NavigationLink(destination: destination(for: entry)) {
+                        NavigationLink(destination: TrainingModePickerView(category: entry)) {
                             CategoryRowCard(entry: entry)
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -37,15 +37,6 @@ struct CategoryTrainingView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
-    }
-
-    @ViewBuilder
-    private func destination(for entry: CategoryEntry) -> some View {
-        if entry.id == "exam" {
-            ExamRoundSelectionView()
-        } else {
-            TrainingModePickerView(category: entry)
-        }
     }
 
     private var header: some View {
@@ -76,7 +67,7 @@ private struct CategoryRowCard: View {
     @State private var isPressed = false
 
     private var accentColor: Color {
-        entry.id == "exam" ? OniTanTheme.accentPrimary : OniTanTheme.accentWeak
+        OniTanTheme.accentWeak
     }
 
     private var dojoMark: String {
@@ -104,7 +95,7 @@ private struct CategoryRowCard: View {
         HStack(spacing: 14) {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(accentColor.opacity(entry.id == "exam" ? 0.18 : 0.12))
+                    .fill(accentColor.opacity(0.12))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(accentColor.opacity(0.35), lineWidth: 1)
@@ -118,24 +109,9 @@ private struct CategoryRowCard: View {
             .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 7) {
-                HStack(spacing: 8) {
-                    Text(displayTitle)
-                        .font(.system(size: 17, weight: .black, design: .rounded))
-                        .foregroundColor(OniTanTheme.textPrimary)
-
-                    if entry.id == "exam" {
-                        Text("本番形式")
-                            .font(.system(size: 10, weight: .bold, design: .rounded))
-                            .foregroundColor(OniTanTheme.accentPrimary)
-                            .padding(.horizontal, 7)
-                            .padding(.vertical, 3)
-                            .background(
-                                Capsule()
-                                    .fill(OniTanTheme.accentPrimary.opacity(0.12))
-                                    .overlay(Capsule().stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1))
-                            )
-                    }
-                }
+                Text(displayTitle)
+                    .font(.system(size: 17, weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
 
                 Text(entry.description)
                     .font(.system(size: 11, weight: .medium, design: .rounded))
@@ -163,7 +139,7 @@ private struct CategoryRowCard: View {
                 .fill(
                     LinearGradient(
                         colors: [
-                            OniTanTheme.cardBackgroundPressed.opacity(entry.id == "exam" ? 0.96 : 0.82),
+                            OniTanTheme.cardBackgroundPressed.opacity(0.82),
                             OniTanTheme.cardBackground.opacity(0.92)
                         ],
                         startPoint: .topLeading,
@@ -172,7 +148,7 @@ private struct CategoryRowCard: View {
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(accentColor.opacity(entry.id == "exam" ? 0.34 : 0.18), lineWidth: 1)
+                        .stroke(accentColor.opacity(0.18), lineWidth: 1)
                 )
         )
         .shadow(color: .black.opacity(0.24), radius: 10, y: 5)

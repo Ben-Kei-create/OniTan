@@ -69,21 +69,6 @@
       "targetAccuracy": 0.90,
       "iconName": "doc.text.below.ecg",
       "colorHex": "#2980B9"
-    },
-    {
-      "id": "exam",
-      "title": "総合模試",
-      "description": "全カテゴリ混合の本番形式テスト",
-      "questionKinds": [
-        "sentenceReading", "hyogaiReading", "compoundReadingKun",
-        "commonKanji", "errorCorrection",
-        "yojijukugo", "synonym", "antonym",
-        "proverb", "passageReading", "passageVocabulary"
-      ],
-      "stageIDs": [],
-      "targetAccuracy": 0.70,
-      "iconName": "doc.richtext.fill",
-      "colorHex": "#C0392B"
     }
   ]
 }

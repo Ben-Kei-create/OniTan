@@ -163,8 +163,8 @@ struct KanjiCatalogView: View {
                 favoritesOnly.toggle()
             } label: {
                 HStack(spacing: 8) {
-                    Text("星")
-                        .font(.system(size: 13, weight: .black, design: .serif))
+                    Image(systemName: favoritesOnly ? "star.fill" : "star")
+                        .font(.system(size: 13, weight: .bold))
                         .foregroundColor(favoritesOnly ? OniTanTheme.cardBackground : OniTanTheme.accentWeak)
                     Text(favoritesOnly ? "お気に入りのみ表示中" : "お気に入りのみ")
                         .font(.system(.caption, design: .rounded))
@@ -217,8 +217,8 @@ private struct KanjiCatalogCell: View {
 
             if favoriteRepo.isFavorite(entry.question.kanji) {
                 HStack {
-                    Text("星")
-                        .font(.system(size: 10, weight: .black, design: .serif))
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 10, weight: .bold))
                         .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.28))
                         .padding(7)
                         .background(Color.black.opacity(0.16))

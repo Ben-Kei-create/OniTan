@@ -129,7 +129,6 @@ extension CategoryEntry {
         case "synonym_antonym": return "対"
         case "proverb": return "諺"
         case "passage": return "文"
-        case "exam": return "試"
         default: return String(title.prefix(1))
         }
     }

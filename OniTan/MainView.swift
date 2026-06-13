@@ -156,8 +156,8 @@ struct MainView: View {
                     vm.requestQuit()
                 }
             } label: {
-                Text("閉")
-                    .font(.system(size: scaled(14, by: scale, min: 12), weight: .black, design: .serif))
+                Image(systemName: "xmark")
+                    .font(.system(size: scaled(14, by: scale, min: 12), weight: .bold))
                     .foregroundColor(OniTanTheme.textSecondary)
                     .frame(width: scaled(34, by: scale, min: 30), height: scaled(34, by: scale, min: 30))
                     .background(Color.black.opacity(0.16))
@@ -322,8 +322,8 @@ struct MainView: View {
             }
             OniTanTheme.haptic(.light)
         } label: {
-            Text("星")
-                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
+            Image(systemName: isFavorite ? "star.fill" : "star")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
                 .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
@@ -348,8 +348,8 @@ struct MainView: View {
             presentProblemReport(for: vm.currentQuestion)
             OniTanTheme.haptic(.light)
         } label: {
-            Text("報")
-                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
+            Image(systemName: "exclamationmark.bubble")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
