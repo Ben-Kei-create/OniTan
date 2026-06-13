@@ -191,7 +191,7 @@ struct ExamRoundSelectionView: View {
     private func examSessionView(for round: ExamRound) -> some View {
         if let blueprint = examBlueprints.first(where: { $0.id == round.blueprintID }) {
             let pool = allQuestions.filter { $0.kind.isExamEligible }
-            let questions = ExamBuilder.build(blueprint: blueprint, from: pool).questions
+            let questions = ExamBuilder.build(blueprint: blueprint, from: pool, fixedSet: true).questions
             MainView(
                 stage: Stage(stage: 0, questions: questions),
                 appState: appState,

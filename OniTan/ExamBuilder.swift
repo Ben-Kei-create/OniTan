@@ -35,10 +35,14 @@ struct ExamSession {
 
 struct ExamBuilder {
 
-    /// Assembles a randomised ExamSession from the given pool according to the blueprint.
+    /// Assembles an ExamSession from the given pool according to the blueprint.
     /// writingSkipped questions are always excluded.
     /// Falls back to any available questions if a kind's target count can't be met.
-    static func build(blueprint: ExamBlueprint, from pool: [Question]) -> ExamSession {
+    ///
+    /// - Parameter fixedSet: When `true`, selection is deterministic (sorted by question ID
+    ///   rather than shuffled) and the resulting question order is stable, so repeat
+    ///   attempts present the same fixed question set. Used for numbered exam rounds.
+    static func build(blueprint: ExamBlueprint, from pool: [Question], fixedSet: Bool = false) -> ExamSession {
         var selected: [Question] = []
         let usablePool = pool.filter { $0.kind.isExamEligible }
 
@@ -46,9 +50,8 @@ struct ExamBuilder {
 
         // Pick per kind
         for (kind, count) in kindDist.sorted(by: { $0.key.rawValue < $1.key.rawValue }) {
-            let candidates = usablePool
-                .filter { $0.kind == kind }
-                .shuffled()
+            var candidates = usablePool.filter { $0.kind == kind }
+            candidates = fixedSet ? candidates.sorted(by: { $0.id < $1.id }) : candidates.shuffled()
             if candidates.count < count {
                 examBuilderLogger.warning(
                     "Exam blueprint '\(blueprint.id, privacy: .public)' requested \(count, privacy: .public) '\(kind.rawValue, privacy: .public)' questions, but only \(candidates.count, privacy: .public) are available."
@@ -61,11 +64,9 @@ struct ExamBuilder {
         let deficit = blueprint.questionCount - selected.count
         if deficit > 0 {
             let usedIDs = Set(selected.map(\.id))
-            let extras = usablePool
-                .filter { !usedIDs.contains($0.id) }
-                .shuffled()
-                .prefix(deficit)
-            selected += extras
+            var extras = usablePool.filter { !usedIDs.contains($0.id) }
+            extras = fixedSet ? extras.sorted(by: { $0.id < $1.id }) : extras.shuffled()
+            selected += extras.prefix(deficit)
         }
 
         if selected.count < blueprint.questionCount {
@@ -76,7 +77,7 @@ struct ExamBuilder {
 
         return ExamSession(
             blueprint: blueprint,
-            questions: selected.shuffled(),
+            questions: fixedSet ? selected : selected.shuffled(),
             startedAt: Date()
         )
     }
