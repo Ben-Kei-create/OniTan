@@ -521,10 +521,11 @@ private struct ThemePickerCard: View {
                 }
 
                 if isLocked {
-                    Text("未")
+                    Text("未解放")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 } else {
                     Text(theme.displayName)
                         .font(.system(size: 10, weight: .semibold, design: .rounded))
@@ -586,10 +587,11 @@ private struct PlayFontPickerCard: View {
                 }
 
                 if isLocked {
-                    Text("未")
+                    Text("未解放")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 } else {
                     VStack(spacing: 1) {
                         Text(fontStyle.displayName)

@@ -156,8 +156,8 @@ struct StatsView: View {
                                     .stroke(OniTanTheme.accentWrong.opacity(0.28), lineWidth: 1)
                             )
                             .frame(width: 40, height: 40)
-                        Text("誤")
-                            .font(.system(size: 18, weight: .black, design: .serif))
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 18, weight: .bold))
                             .foregroundColor(OniTanTheme.accentWrong)
                     }
                     .accessibilityHidden(true)

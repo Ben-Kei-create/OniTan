@@ -119,8 +119,8 @@ struct KanjiCatalogView: View {
     private var catalogControls: some View {
         VStack(spacing: 10) {
             HStack(spacing: 10) {
-                Text("探")
-                    .font(.system(size: 16, weight: .black, design: .serif))
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(OniTanTheme.accentWeak)
                     .frame(width: 34, height: 34)
                     .background(
@@ -139,8 +139,8 @@ struct KanjiCatalogView: View {
                     Button {
                         searchText = ""
                     } label: {
-                        Text("消")
-                            .font(.system(size: 13, weight: .black, design: .serif))
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 13, weight: .bold))
                             .foregroundColor(OniTanTheme.textTertiary)
                             .frame(width: 30, height: 30)
                     }

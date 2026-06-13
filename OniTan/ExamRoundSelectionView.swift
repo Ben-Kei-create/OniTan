@@ -118,8 +118,8 @@ struct ExamRoundSelectionView: View {
 
     private var footnote: some View {
         HStack(spacing: 8) {
-            Text("未")
-                .font(.system(size: 13, weight: .black, design: .serif))
+            Image(systemName: "info.circle")
+                .font(.system(size: 13, weight: .bold))
                 .foregroundColor(OniTanTheme.textTertiary)
 
             Text("各回の問題セット追加後に開始できます")

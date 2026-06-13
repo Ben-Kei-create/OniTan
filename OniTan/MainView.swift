@@ -524,8 +524,8 @@ struct MainView: View {
                     .frame(width: 70, height: 70)
                     .blur(radius: 12)
 
-                Text("完")
-                    .font(.system(size: 36, weight: .black, design: .serif))
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(OniTanTheme.goldGradient)
                     .shadow(color: OniTanTheme.accentWeak.opacity(0.45), radius: 10)
             }
@@ -577,8 +577,8 @@ struct MainView: View {
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.textPrimary)
-                            Text("次")
-                                .font(.system(size: 12, weight: .black, design: .serif))
+                            Image(systemName: "arrow.right")
+                                .font(.system(size: 12, weight: .bold))
                                 .foregroundColor(OniTanTheme.textPrimary.opacity(0.8))
                         }
                         .frame(maxWidth: .infinity, minHeight: 48)

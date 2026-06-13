@@ -40,8 +40,8 @@ struct WrongAnswerNoteView: View {
 
     private var entryCountBar: some View {
         HStack(spacing: 12) {
-            Text("誤")
-                .font(.system(size: 18, weight: .black, design: .serif))
+            Image(systemName: "xmark.circle.fill")
+                .font(.system(size: 18, weight: .bold))
                 .foregroundColor(OniTanTheme.accentWrong)
                 .frame(width: 38, height: 38)
                 .background(

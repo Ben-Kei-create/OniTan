@@ -220,8 +220,8 @@ struct TrainingModePickerView: View {
 
     private var emptyPoolNote: some View {
         VStack(spacing: 8) {
-            Text("未")
-                .font(.system(size: 22, weight: .black, design: .serif))
+            Image(systemName: "tray")
+                .font(.system(size: 22, weight: .bold))
                 .foregroundColor(OniTanTheme.accentWeak)
             Text("このカテゴリには問題データがまだありません")
                 .font(.system(.subheadline, design: .rounded))
@@ -246,8 +246,8 @@ struct TrainingModePickerView: View {
 
     private var comingSoonLine: some View {
         HStack(spacing: 8) {
-            Text("予")
-                .font(.system(size: 12, weight: .black, design: .serif))
+            Image(systemName: "clock")
+                .font(.system(size: 12, weight: .bold))
                 .foregroundColor(OniTanTheme.textTertiary)
             Text("近日追加")
                 .font(.system(size: 11, weight: .bold, design: .rounded))

@@ -280,8 +280,8 @@ struct StreakChallengeView: View {
             // Best streak
             VStack(alignment: .trailing, spacing: 1) {
                 HStack(spacing: 3) {
-                    Text("冠")
-                        .font(.system(size: scaled(10, by: scale, min: 9), weight: .black, design: .serif))
+                    Image(systemName: "crown.fill")
+                        .font(.system(size: scaled(10, by: scale, min: 9), weight: .bold))
                         .foregroundColor(OniTanTheme.accentWeak)
                     Text("\(vm.bestStreak)")
                         .font(playFont(scaled(16, by: scale, min: 13), weight: .black))
@@ -458,8 +458,8 @@ struct StreakChallengeView: View {
 
                     if vm.isNewBest {
                         HStack(spacing: 6) {
-                            Text("冠")
-                                .font(.system(size: 13, weight: .black, design: .serif))
+                            Image(systemName: "crown.fill")
+                                .font(.system(size: 13, weight: .bold))
                                 .foregroundColor(OniTanTheme.accentWeak)
                             Text("新記録達成！")
                                 .font(playFont(17, weight: .bold))
@@ -482,8 +482,8 @@ struct StreakChallengeView: View {
 
                 if vm.sessionXPGained > 0 {
                     HStack(spacing: 6) {
-                        Text("星")
-                            .font(.system(size: 13, weight: .black, design: .serif))
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 13, weight: .bold))
                             .foregroundColor(OniTanTheme.accentWeak)
                         Text("+\(vm.sessionXPGained) XP 獲得！")
                             .font(playFont(15, weight: .bold))
