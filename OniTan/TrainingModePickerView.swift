@@ -77,7 +77,7 @@ struct TrainingModePickerView: View {
 
     private func japaneseLabel(for mode: TrainingMode) -> String {
         switch mode {
-        case .quick10:       return "10問クイック"
+        case .quick10:       return "カテゴリ10問"
         case .categoryFocus: return "道場集中"
         case .weakFocus:     return "弱点集中"
         case .mistakeReview: return "ミス復習"

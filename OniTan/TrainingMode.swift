@@ -20,7 +20,7 @@ enum TrainingMode: String, CaseIterable, Identifiable, Codable {
     var displayName: String {
         switch self {
         case .normal:        return "ノーマル"
-        case .quick10:       return "クイック10問"
+        case .quick10:       return "カテゴリ10問"
         case .categoryFocus: return "カテゴリ集中"
         case .weakFocus:     return "苦手集中"
         case .mistakeReview: return "まちがいノート"
