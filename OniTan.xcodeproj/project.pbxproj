@@ -112,7 +112,6 @@
 		BDCCEFD93AC828B640A3DB10 /* stage41.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEF3A3C073ABEFCF8560B6C /* stage41.json */; };
 		C098C8F3828C706A747AE058 /* stage6.json in Resources */ = {isa = PBXBuildFile; fileRef = 7ECADE603B1AA8F3235D668F /* stage6.json */; };
 		C1DE81A2D0FF3777FCC58BDD /* stage45.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA00CF2349275E0A068CDF0 /* stage45.json */; };
-		C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C22BCB83C026070FB98DC8 /* StageSelectView.swift */; };
 		C472E87234C3226CE340D16E /* stage62.json in Resources */ = {isa = PBXBuildFile; fileRef = 81706BE1C66194C70273C674 /* stage62.json */; };
 		C9309DFC5403D64C2A0FC330 /* stage63.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC0FE5B2CB3598B9C57A6C /* stage63.json */; };
 		CA358D08C04C2B91F18D8460 /* stage40.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B898B27B9FFADD4D3C05B93 /* stage40.json */; };
@@ -205,7 +204,6 @@
 		52D6A196EE4F84341DD6A63D /* stage55.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage55.json; sourceTree = "<group>"; };
 		555098B4DDEA6BBB35FF5380 /* stage26.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage26.json; sourceTree = "<group>"; };
 		577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		59C22BCB83C026070FB98DC8 /* StageSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSelectView.swift; sourceTree = "<group>"; };
 		5DEF3A3C073ABEFCF8560B6C /* stage41.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage41.json; sourceTree = "<group>"; };
 		5E606BAFCD7E20931EFDF248 /* PlayFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFontManager.swift; sourceTree = "<group>"; };
 		5F1395D0735D685DEED95EEC /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
@@ -449,7 +447,6 @@
 				29076909A8310033010EC721 /* QuizSessionViewModel.swift */,
 				6BD8F1B92B2A5C902D978FC9 /* ReviewSessionBuilder.swift */,
 				99F5A6A484C73AF85F7810F4 /* SettingsView.swift */,
-				59C22BCB83C026070FB98DC8 /* StageSelectView.swift */,
 				A709DAD0107E879561BB3203 /* StatsView.swift */,
 				3C69667D30FCCC04E86D11AE /* StreakChallengeView.swift */,
 				00F33F3E41355E6617E24291 /* StreakRepository.swift */,
@@ -680,7 +677,6 @@
 				A5BA445B2FDAF6C20049775C /* OniComponents.swift in Sources */,
 				92F771A218FF51A3531753B3 /* ReviewSessionBuilder.swift in Sources */,
 				9417672A2D70817B9420092C /* SettingsView.swift in Sources */,
-				C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */,
 				06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */,
 				9BF1CE3A3A6B54E6083B7A90 /* StreakChallengeView.swift in Sources */,
 				EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */,
