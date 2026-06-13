@@ -213,15 +213,6 @@ struct MainView: View {
             .padding(.vertical, scaled(4, by: scale, min: 3))
             .background(OniTanTheme.cardBackground)
             .cornerRadius(20)
-
-            // Progress ring
-            ProgressRingView(
-                progress: vm.progressFraction,
-                lineWidth: scaled(5, by: scale, min: 4),
-                size: scaled(44, by: scale, min: 36),
-                gradient: Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentCorrect])
-            )
-            .accessibilityLabel("進捗 \(vm.clearedCount)問 / \(vm.totalGoal)問")
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .padding(.top, scaled(8, by: scale, min: 6))
