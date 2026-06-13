@@ -297,8 +297,8 @@ struct HomeView: View {
                             clearTitle: "ランダム10問 完了！"
                         )
                     ),
-                    icon: "shuffle",
                     subtitle: "全カテゴリからランダムに10問",
+                    icon: "shuffle",
                     trailingBadge: streakRepo.todayCompleted ? "達成済み" : nil
                 )
                 .accessibilityIdentifier("home_today_card")
