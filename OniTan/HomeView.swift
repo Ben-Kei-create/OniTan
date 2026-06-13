@@ -217,7 +217,9 @@ struct HomeView: View {
     // MARK: - Streak Section
 
     private func streakSection(isCompact: Bool) -> some View {
-        VStack(spacing: 10) {
+        let state = xpRepo.levelState(for: xpRepo.totalXP)
+
+        return VStack(spacing: 10) {
             HStack(spacing: 6) {
                 Image(systemName: "flame.fill")
                     .font(.system(size: 14, weight: .bold))
@@ -238,6 +240,20 @@ struct HomeView: View {
             }
 
             StreakCalendarStrip(streakRepo: streakRepo)
+
+            HStack(spacing: 8) {
+                Text("Lv.\(state.level)")
+                    .font(.system(size: 12, weight: .black, design: .rounded))
+                    .foregroundColor(HomeInk.gold)
+
+                OniProgressBar(progress: state.progress, height: 5)
+
+                Text("\(state.xpInLevel)/\(state.xpToNext) XP")
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
+                    .foregroundColor(HomeInk.textSecondary)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("レベル\(state.level)、次のレベルまで\(state.xpToNext - state.xpInLevel)経験値")
         }
         .padding(14)
         .oniGlassCard()
