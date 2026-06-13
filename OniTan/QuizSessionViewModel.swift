@@ -24,6 +24,9 @@ final class QuizSessionViewModel: ObservableObject {
 
     // MARK: Published State
     @Published private(set) var currentQuestion: Question
+    /// Choices for `currentQuestion`, shuffled once per question so the layout
+    /// stays stable across re-renders (e.g. opening/closing the meaning sheet).
+    @Published private(set) var currentChoices: [String] = []
     @Published private(set) var clearedCount: Int = 0
     @Published private(set) var phase: QuizPhase = .answering
     private var pendingSessionClear = false
@@ -132,6 +135,7 @@ final class QuizSessionViewModel: ObservableObject {
         self.sessionQuestions = safeResolved
         self.pendingQueue = safeResolved
         self.currentQuestion = firstQuestion
+        self.currentChoices = Self.shuffledChoices(from: firstQuestion.choices, answer: firstQuestion.answer)
     }
 
     // MARK: - Actions
@@ -217,10 +221,12 @@ final class QuizSessionViewModel: ObservableObject {
                 pendingQueue = reviewQueue
                 reviewQueue = []
                 currentQuestion = pendingQueue[0]
+                currentChoices = Self.shuffledChoices(from: currentQuestion.choices, answer: currentQuestion.answer)
                 phase = .answering
             }
         } else {
             currentQuestion = pendingQueue[0]
+            currentChoices = Self.shuffledChoices(from: currentQuestion.choices, answer: currentQuestion.answer)
             phase = .answering
         }
     }
@@ -250,6 +256,7 @@ final class QuizSessionViewModel: ObservableObject {
         examResult = nil
         sessionStartTime = Date()
         currentQuestion = firstQuestion
+        currentChoices = Self.shuffledChoices(from: firstQuestion.choices, answer: firstQuestion.answer)
         phase = .answering
     }
 
@@ -290,6 +297,13 @@ final class QuizSessionViewModel: ObservableObject {
         }
 
         phase = .stageCleared
+    }
+
+    /// Returns all choices (up to 4) in random order, ensuring the correct answer is included.
+    private static func shuffledChoices(from choices: [String], answer: String) -> [String] {
+        var pool = choices
+        if !pool.contains(answer) { pool.append(answer) }
+        return pool.shuffled()
     }
 
     private static func defaultClearTitle(for mode: QuizMode, stageNumber: Int, sessionTitle: String?) -> String {

@@ -369,10 +369,7 @@ struct MainView: View {
     // MARK: - Choice Grid
 
     private func choiceStack(scale: CGFloat) -> some View {
-        let shuffled = Self.shuffledChoices(
-            from: vm.currentQuestion.choices,
-            answer: vm.currentQuestion.answer
-        )
+        let shuffled = vm.currentChoices
         let columns = [GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8)),
                        GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
@@ -407,13 +404,6 @@ struct MainView: View {
                 }
             }
         }
-    }
-
-    /// Returns all choices (up to 4) in random order, ensuring the correct answer is included.
-    private static func shuffledChoices(from choices: [String], answer: String) -> [String] {
-        var pool = choices
-        if !pool.contains(answer) { pool.append(answer) }
-        return pool.shuffled()
     }
 
     // MARK: - Answer Feedback View
