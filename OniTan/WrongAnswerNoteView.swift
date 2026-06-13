@@ -116,7 +116,6 @@ struct WrongAnswerNoteView: View {
 
 private struct WrongAnswerRow: View {
     let entry: WrongAnswerEntry
-    var showsXPBadge: Bool = true
 
     private var relativeDate: String {
         let formatter = RelativeDateTimeFormatter()
@@ -180,19 +179,6 @@ private struct WrongAnswerRow: View {
             Spacer()
 
             VStack(alignment: .trailing, spacing: 4) {
-                if showsXPBadge {
-                    Text("+\(XPEvent.wrongNoteRetrieved.points) XP")
-                            .font(.system(size: 9, weight: .bold, design: .rounded))
-                            .foregroundColor(OniTanTheme.accentWeak)
-                        .padding(.horizontal, 5)
-                        .padding(.vertical, 2)
-                        .background(
-                            Capsule()
-                                .fill(OniTanTheme.accentWeak.opacity(0.15))
-                        )
-                        .accessibilityHidden(true)
-                }
-
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12))
                     .foregroundColor(OniTanTheme.textTertiary)

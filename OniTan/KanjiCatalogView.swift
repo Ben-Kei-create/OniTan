@@ -337,7 +337,7 @@ private struct KanjiCatalogDetailView: View {
                 .lineLimit(1)
 
             HStack(spacing: 8) {
-                detailPill(title: "正解", value: entry.question.answer)
+                detailPill(title: "分野", value: entry.question.kind.displayName)
             }
         }
         .frame(maxWidth: .infinity)
