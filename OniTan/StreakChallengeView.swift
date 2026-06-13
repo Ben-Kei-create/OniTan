@@ -4,6 +4,8 @@ import SwiftUI
 
 enum StreakChallengePhase: Equatable {
     case answering
+    /// Brief pause after a correct answer before auto-advancing to the next question.
+    case correctTransition
     case showingExplanation
     case gameOver
 }
@@ -23,6 +25,7 @@ final class StreakChallengeViewModel: ObservableObject {
     @Published private(set) var bestStreak: Int
     @Published private(set) var isNewBest: Bool = false
     @Published private(set) var timerProgress: Double = 0  // 0→1, game over at 1
+    @Published private(set) var lastSelectedAnswer: String? = nil
 
     // MARK: Private
 
@@ -30,7 +33,10 @@ final class StreakChallengeViewModel: ObservableObject {
     private var questionPool: [Question]
     private var poolIndex: Int = 0
     private var timerTask: Task<Void, Never>?
+    private var advanceTask: Task<Void, Never>?
     static let timeLimit: Double = 8.0  // seconds per question
+    /// Pause before auto-advancing past a correct answer.
+    static let correctTransitionDelay: Double = 0.45
 
     static let bestStreakKey = "streakChallenge_bestStreak_v1"
 
@@ -64,6 +70,8 @@ final class StreakChallengeViewModel: ObservableObject {
     func stopTimer() {
         timerTask?.cancel()
         timerTask = nil
+        advanceTask?.cancel()
+        advanceTask = nil
     }
 
     // MARK: - Actions
@@ -74,6 +82,7 @@ final class StreakChallengeViewModel: ObservableObject {
 
         let isCorrect = selected == currentQuestion.answer
         lastAnswerResult = isCorrect ? .correct : .wrong
+        lastSelectedAnswer = selected
 
         if isCorrect {
             consecutiveCorrect += 1
@@ -91,18 +100,26 @@ final class StreakChallengeViewModel: ObservableObject {
                 sessionXPGained += xpRepo?.addXP(.comboBonus) ?? 0
             }
 
-            phase = .showingExplanation
+            // Correct: briefly flash the result, then move straight on to the next question.
+            phase = .correctTransition
+            advanceTask = Task { @MainActor [weak self] in
+                try? await Task.sleep(nanoseconds: UInt64(Self.correctTransitionDelay * 1_000_000_000))
+                guard let self, !Task.isCancelled, self.phase == .correctTransition else { return }
+                self.lastAnswerResult = .none
+                self.lastSelectedAnswer = nil
+                self.advanceQuestion()
+                self.phase = .answering
+                self.startTimer()
+            }
         } else {
-            phase = .gameOver
+            // Wrong: show the explanation, then end the run once dismissed.
+            phase = .showingExplanation
         }
     }
 
     func proceedAfterExplanation() {
         guard phase == .showingExplanation else { return }
-        lastAnswerResult = .none
-        advanceQuestion()
-        phase = .answering
-        startTimer()
+        phase = .gameOver
     }
 
     func restart() {
@@ -111,6 +128,7 @@ final class StreakChallengeViewModel: ObservableObject {
         consecutiveCorrect = 0
         sessionXPGained = 0
         lastAnswerResult = .none
+        lastSelectedAnswer = nil
         isNewBest = false
         currentQuestion = questionPool[0]
         phase = .answering
@@ -189,6 +207,7 @@ struct StreakChallengeView: View {
                         if vm.phase == .showingExplanation {
                             StreakExplanationView(
                                 question: vm.currentQuestion,
+                                selectedAnswer: vm.lastSelectedAnswer,
                                 streak: vm.consecutiveCorrect
                             ) {
                                 vm.proceedAfterExplanation()
@@ -349,6 +368,10 @@ struct StreakChallengeView: View {
             if vm.lastAnswerResult == .correct {
                 RoundedRectangle(cornerRadius: corner)
                     .fill(OniTanTheme.accentCorrect.opacity(0.25))
+                    .transition(.opacity)
+            } else if vm.lastAnswerResult == .wrong {
+                RoundedRectangle(cornerRadius: corner)
+                    .fill(OniTanTheme.accentWrong.opacity(0.25))
                     .transition(.opacity)
             }
 
@@ -629,6 +652,7 @@ private struct StreakChoiceCard: View {
 
 struct StreakExplanationView: View {
     let question: Question
+    let selectedAnswer: String?
     let streak: Int
     let onDismiss: () -> Void
     let onReport: () -> Void
@@ -667,19 +691,29 @@ struct StreakExplanationView: View {
                         .foregroundStyle(OniTanTheme.primaryGradient)
 
                     HStack(spacing: 6) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(OniTanTheme.accentCorrect)
-                        Text("正解！")
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(OniTanTheme.accentWrong)
+                        Text("不正解")
                             .font(playFontManager.font(size: 17, weight: .bold))
                             .fontWeight(.bold)
-                            .foregroundColor(OniTanTheme.accentCorrect)
+                            .foregroundColor(OniTanTheme.accentWrong)
 
                         if streak >= 3 {
-                            Text("🔥 \(streak)連続！")
+                            Text("🔥 \(streak)連続でストップ")
                                 .font(playFontManager.font(size: 17, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.accentWeak)
                         }
+                    }
+
+                    if let selectedAnswer {
+                        HStack(spacing: 6) {
+                            Text("あなたの解答: \(selectedAnswer)")
+                                .foregroundColor(OniTanTheme.textSecondary)
+                            Text("正解: \(question.answer)")
+                                .foregroundColor(OniTanTheme.accentCorrect)
+                        }
+                        .font(playFontManager.font(size: 14, weight: .semibold))
                     }
 
                     if let note = question.readingMetadata.playerNote(for: question.answer) {
@@ -712,7 +746,7 @@ struct StreakExplanationView: View {
                     OniTanTheme.haptic(.light)
                 } label: {
                     HStack(spacing: 6) {
-                        Text("次の問題へ")
+                        Text("結果を見る")
                         Image(systemName: "arrow.right")
                     }
                     .font(playFontManager.font(size: 17, weight: .bold))
@@ -732,10 +766,10 @@ struct StreakExplanationView: View {
                 withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
                     appear = true
                 }
-                OniTanTheme.hapticSuccess()
+                OniTanTheme.hapticError()
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("正解の解説: \(question.kanji). \(question.displayExplanation)")
+        .accessibilityLabel("不正解の解説: \(question.kanji). \(question.displayExplanation)")
     }
 }
