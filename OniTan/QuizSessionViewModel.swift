@@ -298,7 +298,7 @@ final class QuizSessionViewModel: ObservableObject {
             return "\(sessionTitle ?? "復習") 完了！"
         }
         switch mode {
-        case .quick10:   return "クイック完了！"
+        case .quick10:   return "ランダム10問 完了！"
         case .exam30:    return "模試完了！"
         case .weakFocus: return "復習完了！"
         default:         return "稽古 \(stageNumber) 完了！"

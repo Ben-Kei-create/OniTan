@@ -287,6 +287,14 @@ struct HomeView: View {
                         )
                     )
                 )
+            } else {
+                HomePrimaryActionCard(
+                    title: "お気に入り",
+                    style: .disabled,
+                    isCompact: isCompact,
+                    destination: AnyView(KanjiCatalogView()),
+                    subtitle: "漢字一覧で☆登録すると使えます"
+                )
             }
         }
     }
@@ -374,6 +382,7 @@ private struct HomePrimaryActionCard: View {
     let style: HomePrimaryCardStyle
     let isCompact: Bool
     let destination: AnyView?
+    var subtitle: String? = nil
 
     @State private var isPressed = false
 
@@ -392,15 +401,23 @@ private struct HomePrimaryActionCard: View {
             }
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
+        .accessibilityLabel(subtitle.map { "\(title) \($0)" } ?? title)
         .accessibilityHint(destination != nil ? "タップして\(title)を開始" : "")
     }
 
     private var cardContent: some View {
         HStack(spacing: 16) {
-            Text(title)
-                .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
-                .foregroundColor(titleColor)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
+                    .foregroundColor(titleColor)
+
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundColor(subtitleColor)
+                }
+            }
 
             Spacer()
 

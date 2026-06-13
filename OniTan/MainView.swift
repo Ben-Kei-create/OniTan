@@ -375,25 +375,6 @@ struct MainView: View {
                        GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
-            HStack(spacing: 5) {
-                Text(vm.currentQuestion.kind.sealMark)
-                    .font(.system(size: 12, weight: .black, design: .serif))
-                Text(vm.currentQuestion.kind.displayName)
-                    .font(.caption.weight(.bold))
-            }
-            .foregroundStyle(OniTanTheme.accentWeak)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
-            .background(
-                Capsule()
-                    .fill(OniTanTheme.accentWeak.opacity(0.14))
-            )
-            .overlay(
-                Capsule()
-                    .stroke(OniTanTheme.accentWeak.opacity(0.35), lineWidth: 1)
-            )
-            .padding(.leading, 4)
-
             Text(vm.currentQuestion.kind.choicePrompt)
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
                 .foregroundColor(OniTanTheme.textTertiary)

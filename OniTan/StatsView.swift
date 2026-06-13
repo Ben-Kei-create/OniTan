@@ -145,55 +145,62 @@ struct StatsView: View {
     @ViewBuilder
     private var wrongAnswerNoteLink: some View {
         let count = statsRepo.recentWrongAnswers(limit: 200).count
+        let row = HStack(spacing: 12) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 11)
+                    .fill(OniTanTheme.accentWrong.opacity(count > 0 ? 0.14 : 0.08))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 11)
+                            .stroke(OniTanTheme.accentWrong.opacity(count > 0 ? 0.28 : 0.16), lineWidth: 1)
+                    )
+                    .frame(width: 40, height: 40)
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(OniTanTheme.accentWrong.opacity(count > 0 ? 1.0 : 0.5))
+            }
+            .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("誤答ノート")
+                    .font(.system(.headline, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(count > 0 ? OniTanTheme.textPrimary : OniTanTheme.textTertiary)
+                Text(count > 0 ? "直近 \(count) 件の誤答記録" : "まだ記録がありません。学習を始めるとここに苦手な漢字が集まります。")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+            }
+
+            Spacer()
+
+            if count > 0 {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .accessibilityHidden(true)
+            }
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .background(
+            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                .fill(OniTanTheme.cardBackground)
+                .overlay(
+                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
+                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                )
+        )
+        .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
+
         if count > 0 {
             NavigationLink(destination: WrongAnswerNoteView()) {
-                HStack(spacing: 12) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 11)
-                            .fill(OniTanTheme.accentWrong.opacity(0.14))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 11)
-                                    .stroke(OniTanTheme.accentWrong.opacity(0.28), lineWidth: 1)
-                            )
-                            .frame(width: 40, height: 40)
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(OniTanTheme.accentWrong)
-                    }
-                    .accessibilityHidden(true)
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("誤答ノート")
-                            .font(.system(.headline, design: .rounded))
-                            .fontWeight(.bold)
-                            .foregroundColor(OniTanTheme.textPrimary)
-                        Text("直近 \(count) 件の誤答記録")
-                            .font(.system(.caption, design: .rounded))
-                            .foregroundColor(OniTanTheme.textTertiary)
-                    }
-
-                    Spacer()
-
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 13))
-                        .foregroundColor(OniTanTheme.textTertiary)
-                        .accessibilityHidden(true)
-                }
-                .padding(.horizontal, 14)
-                .padding(.vertical, 12)
-                .background(
-                    RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .fill(OniTanTheme.cardBackground)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                                .stroke(OniTanTheme.cardBorder, lineWidth: 1)
-                        )
-                )
-                .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
+                row
             }
             .buttonStyle(PlainButtonStyle())
             .accessibilityLabel("誤答ノート \(count)件")
             .accessibilityHint("タップして誤答ノートを開く")
+        } else {
+            row
+                .accessibilityLabel("誤答ノート まだ記録がありません")
         }
     }
 

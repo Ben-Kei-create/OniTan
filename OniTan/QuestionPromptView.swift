@@ -241,35 +241,41 @@ struct QuestionPromptView: View {
 
     private var sentenceReadingContent: some View {
         let context = question.payload?.sentenceContext ?? question.displayPrompt
+        let target = question.kanji
+        let bodyFont = playFontManager.font(size: scaled(22, min: 17), weight: .medium)
 
         return VStack(alignment: .leading, spacing: scaled(12, min: 8)) {
-            HStack(spacing: 6) {
-                Text("下線部")
-                    .font(playFontManager.font(size: scaled(11, min: 9), weight: .bold))
-                    .foregroundColor(OniTanTheme.accentWeak)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(
-                        Capsule()
-                            .fill(OniTanTheme.accentWeak.opacity(0.12))
-                            .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.28), lineWidth: 1))
-                    )
-
-                Text(question.kanji)
-                    .font(playFontManager.font(size: scaled(26, min: 20), weight: .black))
-                    .foregroundColor(OniTanTheme.textPrimary)
-                    .minimumScaleFactor(0.65)
-                    .lineLimit(1)
-            }
-
-            Text(context)
-                .font(playFontManager.font(size: scaled(22, min: 17), weight: .medium))
+            if let range = context.range(of: target) {
+                (
+                    Text(String(context[context.startIndex..<range.lowerBound])).font(bodyFont)
+                    + Text(String(context[range]))
+                        .font(playFontManager.font(size: scaled(22, min: 17), weight: .black))
+                        .underline()
+                        .foregroundColor(OniTanTheme.accentWeak)
+                    + Text(String(context[range.upperBound...])).font(bodyFont)
+                )
                 .foregroundColor(OniTanTheme.textPrimary)
                 .lineSpacing(6)
                 .multilineTextAlignment(.leading)
                 .minimumScaleFactor(0.75)
                 .lineLimit(3)
                 .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                Text(target)
+                    .font(playFontManager.font(size: scaled(26, min: 20), weight: .black))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .minimumScaleFactor(0.65)
+                    .lineLimit(1)
+
+                Text(context)
+                    .font(bodyFont)
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.leading)
+                    .minimumScaleFactor(0.75)
+                    .lineLimit(3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(18, min: 12))
