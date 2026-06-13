@@ -121,6 +121,7 @@ struct ExamRoundSelectionView: View {
             Image(systemName: "info.circle")
                 .font(.system(size: 13, weight: .bold))
                 .foregroundColor(OniTanTheme.textTertiary)
+                .accessibilityHidden(true)
 
             Text("各回の問題セット追加後に開始できます")
                 .font(.system(size: 12, weight: .semibold, design: .rounded))

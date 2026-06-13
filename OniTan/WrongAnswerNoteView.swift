@@ -52,6 +52,7 @@ struct WrongAnswerNoteView: View {
                                 .stroke(OniTanTheme.accentWrong.opacity(0.28), lineWidth: 1)
                         )
                 )
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("見直すべき記録")

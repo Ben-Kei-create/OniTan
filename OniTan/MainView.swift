@@ -528,6 +528,7 @@ struct MainView: View {
                     .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(OniTanTheme.goldGradient)
                     .shadow(color: OniTanTheme.accentWeak.opacity(0.45), radius: 10)
+                    .accessibilityHidden(true)
             }
 
             VStack(spacing: 6) {
@@ -580,6 +581,7 @@ struct MainView: View {
                             Image(systemName: "arrow.right")
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundColor(OniTanTheme.textPrimary.opacity(0.8))
+                                .accessibilityHidden(true)
                         }
                         .frame(maxWidth: .infinity, minHeight: 48)
                         .background(OniTanTheme.primaryGradient)
