@@ -19,6 +19,7 @@ struct QuestionPromptView: View {
     let isWrong: Bool
 
     @EnvironmentObject private var playFontManager: PlayFontManager
+    @State private var meaningPopoverTerm: TermMeaningInfo? = nil
 
     private var corner: CGFloat { scaled(24, min: 16) }
 
@@ -261,23 +262,27 @@ struct QuestionPromptView: View {
         let context = question.payload?.sentenceContext ?? question.displayPrompt
         let target = question.kanji
         let bodyFont = playFontManager.font(size: scaled(22, min: 17), weight: .medium)
+        let meaning = question.termMeaning
 
         return VStack(alignment: .leading, spacing: scaled(12, min: 8)) {
             if let range = context.range(of: target) {
-                (
-                    Text(String(context[context.startIndex..<range.lowerBound])).font(bodyFont)
-                    + Text(String(context[range]))
-                        .font(playFontManager.font(size: scaled(22, min: 17), weight: .black))
-                        .underline()
-                        .foregroundColor(OniTanTheme.accentWeak)
-                    + Text(String(context[range.upperBound...])).font(bodyFont)
-                )
-                .foregroundColor(OniTanTheme.textPrimary)
-                .lineSpacing(6)
-                .multilineTextAlignment(.leading)
-                .minimumScaleFactor(0.75)
-                .lineLimit(3)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                Text(attributedSentence(context: context, targetRange: range, bodyFont: bodyFont, linkable: meaning != nil))
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.leading)
+                    .minimumScaleFactor(0.75)
+                    .lineLimit(3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .environment(\.openURL, OpenURLAction { url in
+                        guard url.scheme == "onitan-meaning", let meaning else { return .systemAction }
+                        meaningPopoverTerm = TermMeaningInfo(word: target, meaning: meaning)
+                        return .handled
+                    })
+
+                if meaning != nil {
+                    Text("下線部をタップすると意味を表示します")
+                        .font(playFontManager.font(size: scaled(11, min: 9), weight: .medium))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
             } else {
                 Text(target)
                     .font(playFontManager.font(size: scaled(26, min: 20), weight: .black))
@@ -297,6 +302,47 @@ struct QuestionPromptView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(18, min: 12))
+        .popover(item: $meaningPopoverTerm) { item in
+            meaningPopoverContent(word: item.word, meaning: item.meaning)
+        }
+    }
+
+    /// Builds an AttributedString for the sentence with the target compound underlined
+    /// and styled, optionally wired as a tappable link to reveal its meaning.
+    private func attributedSentence(context: String, targetRange: Range<String.Index>, bodyFont: Font, linkable: Bool) -> AttributedString {
+        var result = AttributedString(String(context[context.startIndex..<targetRange.lowerBound]))
+        result.font = bodyFont
+        result.foregroundColor = OniTanTheme.textPrimary
+
+        var targetAttr = AttributedString(String(context[targetRange]))
+        targetAttr.font = playFontManager.font(size: scaled(22, min: 17), weight: .black)
+        targetAttr.foregroundColor = OniTanTheme.accentWeak
+        targetAttr.underlineStyle = .single
+        if linkable {
+            targetAttr.link = URL(string: "onitan-meaning:///term")
+        }
+        result += targetAttr
+
+        var trailing = AttributedString(String(context[targetRange.upperBound...]))
+        trailing.font = bodyFont
+        trailing.foregroundColor = OniTanTheme.textPrimary
+        result += trailing
+
+        return result
+    }
+
+    private func meaningPopoverContent(word: String, meaning: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(word)
+                .font(playFontManager.font(size: 18, weight: .black))
+                .foregroundColor(OniTanTheme.accentWeak)
+            Text(meaning)
+                .font(playFontManager.font(size: 14, weight: .regular))
+                .foregroundColor(OniTanTheme.textPrimary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(16)
+        .frame(maxWidth: 280, alignment: .leading)
     }
 
     // MARK: - Sentence Layout (errorCorrection, proverb, passage)
@@ -333,4 +379,13 @@ struct QuestionPromptView: View {
     private func scaled(_ value: CGFloat, min minValue: CGFloat) -> CGFloat {
         max(minValue, value * scale)
     }
+}
+
+// MARK: - TermMeaningInfo
+
+/// Identifiable wrapper for showing a term's meaning in a popover.
+struct TermMeaningInfo: Identifiable {
+    let id = UUID()
+    let word: String
+    let meaning: String
 }
