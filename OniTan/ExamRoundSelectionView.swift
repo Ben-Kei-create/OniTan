@@ -3,7 +3,9 @@ import SwiftUI
 // MARK: - Exam Round
 
 struct ExamRound: Identifiable, Equatable {
-    static let passThreshold = 0.80
+    /// Matches the default passing accuracy shown on ExamResultView so that
+    /// the "合格" banner and the next-round unlock condition stay in sync.
+    static let passThreshold = 0.90
     static let totalRounds = 10
     static let all = (1...totalRounds).map { ExamRound(number: $0) }
 
