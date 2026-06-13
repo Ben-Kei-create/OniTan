@@ -337,14 +337,6 @@ struct HomeView: View {
                 icon: "bolt.fill"
             )
 
-            HomePrimaryActionCard(
-                title: "学習記録",
-                style: .neutral,
-                isCompact: isCompact,
-                destination: AnyView(StatsView()),
-                icon: "chart.bar.fill"
-            )
-
             if favoriteRepo.count > 0 {
                 HomePrimaryActionCard(
                     title: "お気に入り",
