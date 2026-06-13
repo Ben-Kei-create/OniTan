@@ -525,6 +525,10 @@ struct MainView: View {
                     .foregroundColor(OniTanTheme.textSecondary)
             }
 
+            if let newLevel = (passedXPRepo ?? xpRepo).recentLevelUp {
+                LevelUpBanner(level: newLevel)
+            }
+
             ProgressRingView(
                 progress: 1.0,
                 lineWidth: 8,
@@ -631,6 +635,9 @@ struct MainView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました")
+        .onDisappear {
+            (passedXPRepo ?? xpRepo).clearLevelUpFlag()
+        }
     }
 
     // MARK: - Alert

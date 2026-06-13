@@ -149,7 +149,9 @@ struct StreakChallengeView: View {
     @State private var activeReportContext: QuizProblemReportContext?
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var playFontManager: PlayFontManager
+    private let xpRepo: GamificationRepository?
     init(xpRepo: GamificationRepository? = nil) {
+        self.xpRepo = xpRepo
         _vm = StateObject(wrappedValue: StreakChallengeViewModel(xpRepo: xpRepo))
     }
 
@@ -502,6 +504,10 @@ struct StreakChallengeView: View {
                     )
                 }
 
+                if let newLevel = xpRepo?.recentLevelUp {
+                    LevelUpBanner(level: newLevel)
+                }
+
                 VStack(spacing: 10) {
                     Button {
                         withAnimation { vm.restart() }
@@ -536,6 +542,9 @@ struct StreakChallengeView: View {
             .padding(.vertical, 20)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onDisappear {
+            xpRepo?.clearLevelUpFlag()
+        }
     }
 
     // MARK: - Helpers

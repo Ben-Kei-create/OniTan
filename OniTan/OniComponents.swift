@@ -235,6 +235,35 @@ struct OniProgressBar: View {
     }
 }
 
+// MARK: - LevelUpBanner
+//
+// Celebratory badge shown when the player reaches a new XP level.
+
+struct LevelUpBanner: View {
+    let level: Int
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "arrow.up.circle.fill")
+                .font(.system(size: 16, weight: .bold))
+                .foregroundColor(OniTanTheme.cardBackground)
+                .accessibilityHidden(true)
+            Text("レベルアップ！ Lv.\(level)")
+                .font(.system(size: 15, weight: .black, design: .rounded))
+                .foregroundColor(OniTanTheme.cardBackground)
+        }
+        .padding(.horizontal, 18)
+        .padding(.vertical, 10)
+        .background(
+            Capsule()
+                .fill(OniTanTheme.goldGradient)
+        )
+        .shadow(color: OniTanTheme.shadowGlow.color, radius: 10)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("レベルアップ！ レベル\(level)になりました")
+    }
+}
+
 // MARK: - OniBadge
 //
 // Small rounded capsule badge for question kind / category tags.
