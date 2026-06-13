@@ -235,6 +235,75 @@ struct OniProgressBar: View {
     }
 }
 
+// MARK: - StreakCalendarStrip
+//
+// Compact 7-day calendar strip showing recent daily-goal completion,
+// used to visualize the study streak on the home screen.
+
+struct StreakCalendarStrip: View {
+    let streakRepo: StreakRepository
+    var dayCount: Int = 7
+
+    private var calendar: Calendar { Calendar.current }
+
+    private var days: [Date] {
+        let today = calendar.startOfDay(for: Date())
+        return (0..<dayCount).reversed().map { offset in
+            calendar.date(byAdding: .day, value: -offset, to: today) ?? today
+        }
+    }
+
+    private func weekdaySymbol(for date: Date) -> String {
+        let symbols = ["日", "月", "火", "水", "木", "金", "土"]
+        let weekday = calendar.component(.weekday, from: date) - 1
+        return symbols[weekday]
+    }
+
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach(days, id: \.self) { day in
+                let completed = streakRepo.isCompleted(on: day)
+                let isToday = calendar.isDateInToday(day)
+
+                VStack(spacing: 4) {
+                    Text(weekdaySymbol(for: day))
+                        .font(.system(size: 10, weight: .medium, design: .rounded))
+                        .foregroundColor(OniTanTheme.textTertiary)
+
+                    ZStack {
+                        Circle()
+                            .fill(completed ? OniTanTheme.goldGradient : LinearGradient(
+                                colors: [OniTanTheme.cardBackgroundPressed, OniTanTheme.cardBackgroundPressed],
+                                startPoint: .top, endPoint: .bottom
+                            ))
+                            .overlay(
+                                Circle().stroke(
+                                    isToday ? OniTanTheme.accentPrimary : OniTanTheme.cardBorder,
+                                    lineWidth: isToday ? 1.5 : 1
+                                )
+                            )
+                            .frame(width: 28, height: 28)
+
+                        if completed {
+                            Image(systemName: "flame.fill")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundColor(OniTanTheme.cardBackground)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilitySummary)
+    }
+
+    private var accessibilitySummary: String {
+        let completedCount = days.filter { streakRepo.isCompleted(on: $0) }.count
+        return "直近\(dayCount)日間のうち\(completedCount)日、目標を達成しました"
+    }
+}
+
 // MARK: - LevelUpBanner
 //
 // Celebratory badge shown when the player reaches a new XP level.

@@ -19,6 +19,8 @@ struct StreakData: Codable {
     var freezeCount: Int = 1
     /// Month marker for monthly freeze grant.
     var freezeGrantMonthKey: String? = nil
+    /// Day-keys ("yyyy-MM-dd") on which the daily goal was completed, for calendar visualization.
+    var completedDayKeys: Set<String> = []
 }
 
 // MARK: - StreakRepository
@@ -32,6 +34,7 @@ final class StreakRepository: ObservableObject {
     @Published private(set) var todayStudySeconds: Double = 0
     @Published private(set) var freezeCount: Int = 1
     @Published private(set) var freezeConsumedNoticeID: Int = 0
+    @Published private(set) var completedDayKeys: Set<String> = []
 
     /// Number of correct answers required to satisfy today's goal.
     static let dailyGoalQuestions = 10
@@ -120,7 +123,20 @@ final class StreakRepository: ObservableObject {
 
         data.lastStudyDate = nowProvider()
         data.longestStreak = max(data.longestStreak, data.currentStreak)
+        data.completedDayKeys.insert(Self.dayKey(for: today))
         streakLogger.info("Streak updated to \(self.data.currentStreak, privacy: .public)")
+    }
+
+    /// Day-key string ("yyyy-MM-dd") for the given date, used for calendar visualization.
+    static func dayKey(for date: Date) -> String {
+        let cal = Calendar.current
+        let comps = cal.dateComponents([.year, .month, .day], from: date)
+        return String(format: "%04d-%02d-%02d", comps.year ?? 0, comps.month ?? 0, comps.day ?? 0)
+    }
+
+    /// Whether the daily goal was completed on the given date.
+    func isCompleted(on date: Date) -> Bool {
+        completedDayKeys.contains(Self.dayKey(for: date))
     }
 
     /// Called at init: resets daily counters if it's a new day, breaks streak if gap > 1 day.
@@ -182,6 +198,7 @@ final class StreakRepository: ObservableObject {
         todayAnswerCount = data.todayAnswerCount
         todayStudySeconds = data.todayStudySeconds
         freezeCount = data.freezeCount
+        completedDayKeys = data.completedDayKeys
         if hasPendingFreezeNotice {
             freezeConsumedNoticeID += 1
             hasPendingFreezeNotice = false

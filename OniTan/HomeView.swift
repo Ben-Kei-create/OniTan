@@ -54,6 +54,9 @@ struct HomeView: View {
 
                             heroEmblem(isCompact: isCompactHeight)
 
+                            streakSection(isCompact: isCompactHeight)
+                                .padding(.top, isCompactHeight ? 14 : 18)
+
                             primaryActions(isCompact: isCompactHeight)
                                 .padding(.top, isCompactHeight ? 16 : 22)
 
@@ -209,6 +212,35 @@ struct HomeView: View {
                 .foregroundColor(HomeInk.textSecondary)
         }
         .accessibilityHidden(true)
+    }
+
+    // MARK: - Streak Section
+
+    private func streakSection(isCompact: Bool) -> some View {
+        VStack(spacing: 10) {
+            HStack(spacing: 6) {
+                Image(systemName: "flame.fill")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(HomeInk.gold)
+                    .accessibilityHidden(true)
+
+                Text(streakRepo.currentStreak > 0 ? "\(streakRepo.currentStreak)日連続" : "今日から始めよう")
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundColor(HomeInk.textPrimary)
+
+                Spacer()
+
+                if streakRepo.longestStreak > 0 {
+                    Text("最長 \(streakRepo.longestStreak)日")
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundColor(HomeInk.textSecondary)
+                }
+            }
+
+            StreakCalendarStrip(streakRepo: streakRepo)
+        }
+        .padding(14)
+        .oniGlassCard()
     }
 
     // MARK: - Primary Actions
