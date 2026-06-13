@@ -137,11 +137,13 @@ struct MainView: View {
                 }
                 if !donationManager.hasDonated {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        interstitialManager.showIfReady()
+                        guard !appState.isDailySummaryPresented else { return }
+                        interstitialManager.showIfReady(canRequestAds: adConsentManager.canRequestAds)
                     }
                 }
                 if reviewPromptManager.sessionCompleted(currentStreak: streakRepo.currentStreak) {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                        guard !appState.isDailySummaryPresented else { return }
                         requestReview()
                     }
                 }
@@ -308,6 +310,7 @@ struct MainView: View {
             isCorrect: vm.lastAnswerResult == .correct,
             isWrong:   vm.lastAnswerResult == .wrong
         )
+        .id(vm.currentQuestion.id)
         .overlay(alignment: .topTrailing) {
             VStack(spacing: scaled(8, by: scale, min: 6)) {
                 favoriteButton(scale: scale)

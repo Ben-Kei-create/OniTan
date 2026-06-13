@@ -35,6 +35,8 @@ final class StreakRepository: ObservableObject {
     @Published private(set) var freezeCount: Int = 1
     @Published private(set) var freezeConsumedNoticeID: Int = 0
     @Published private(set) var completedDayKeys: Set<String> = []
+    /// Whether the most recent `incrementStreak()` set a new personal-best streak.
+    @Published private(set) var lastCompletionWasNewRecord: Bool = false
 
     /// Number of correct answers required to satisfy today's goal.
     static let dailyGoalQuestions = 10
@@ -122,6 +124,7 @@ final class StreakRepository: ObservableObject {
         }
 
         data.lastStudyDate = nowProvider()
+        lastCompletionWasNewRecord = data.currentStreak > data.longestStreak
         data.longestStreak = max(data.longestStreak, data.currentStreak)
         data.completedDayKeys.insert(Self.dayKey(for: today))
         streakLogger.info("Streak updated to \(self.data.currentStreak, privacy: .public)")
