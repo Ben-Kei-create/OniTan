@@ -359,15 +359,6 @@ struct HomeView: View {
                     ),
                     icon: "star.fill"
                 )
-            } else {
-                HomePrimaryActionCard(
-                    title: "お気に入り登録へ",
-                    style: .neutral,
-                    isCompact: isCompact,
-                    destination: AnyView(KanjiCatalogView()),
-                    subtitle: "漢字一覧で☆登録すると、ここから集中学習できます",
-                    icon: "star"
-                )
             }
         }
     }
