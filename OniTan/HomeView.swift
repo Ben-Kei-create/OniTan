@@ -168,7 +168,7 @@ struct HomeView: View {
             Spacer()
 
             HomeHeaderIconButton(
-                icon: "設",
+                icon: "gearshape.fill",
                 accessibilityTitle: "設定",
                 compact: isCompact,
                 destination: SettingsView()
@@ -276,7 +276,8 @@ struct HomeView: View {
                     title: "ランダム10問",
                     style: .disabled,
                     isCompact: isCompact,
-                    destination: nil
+                    destination: nil,
+                    icon: "shuffle"
                 )
                 .accessibilityIdentifier("home_today_card")
             } else {
@@ -295,7 +296,9 @@ struct HomeView: View {
                             mode: .quick10,
                             clearTitle: "ランダム10問 完了！"
                         )
-                    )
+                    ),
+                    icon: "shuffle",
+                    trailingBadge: streakRepo.todayCompleted ? "達成済み" : nil
                 )
                 .accessibilityIdentifier("home_today_card")
             }
@@ -304,21 +307,24 @@ struct HomeView: View {
                 title: "道場選択",
                 style: .neutral,
                 isCompact: isCompact,
-                destination: AnyView(CategoryTrainingView())
+                destination: AnyView(CategoryTrainingView()),
+                icon: "building.columns.fill"
             )
 
             HomePrimaryActionCard(
                 title: "模擬試験",
                 style: .gold,
                 isCompact: isCompact,
-                destination: AnyView(examDestination)
+                destination: AnyView(examDestination),
+                icon: "doc.text.fill"
             )
 
             HomePrimaryActionCard(
                 title: "漢字一覧",
                 style: .neutral,
                 isCompact: isCompact,
-                destination: AnyView(KanjiCatalogView())
+                destination: AnyView(KanjiCatalogView()),
+                icon: "books.vertical.fill"
             )
 
             if favoriteRepo.count > 0 {
@@ -333,7 +339,8 @@ struct HomeView: View {
                             ),
                             sessionTitle: "お気に入り"
                         )
-                    )
+                    ),
+                    icon: "star.fill"
                 )
             } else {
                 HomePrimaryActionCard(
@@ -341,7 +348,8 @@ struct HomeView: View {
                     style: .disabled,
                     isCompact: isCompact,
                     destination: AnyView(KanjiCatalogView()),
-                    subtitle: "漢字一覧で☆登録すると使えます"
+                    subtitle: "漢字一覧で☆登録すると使えます",
+                    icon: "star.fill"
                 )
             }
         }
@@ -357,9 +365,10 @@ struct HomeView: View {
     private func dataErrorBanner(_ error: DataLoadError) -> some View {
         VStack {
             HStack(spacing: 8) {
-                Text("!")
+                Image(systemName: "exclamationmark.triangle.fill")
                     .font(.caption.bold())
                     .foregroundColor(HomeInk.gold)
+                    .accessibilityHidden(true)
                 Text(error.localizedDescription)
                     .font(.caption)
                     .foregroundColor(HomeInk.textPrimary)
@@ -389,8 +398,8 @@ private struct HomeHeaderIconButton<Destination: View>: View {
 
     var body: some View {
         NavigationLink(destination: destination) {
-            Text(icon)
-                .font(.system(size: compact ? 15 : 16, weight: .black, design: .serif))
+            Image(systemName: icon)
+                .font(.system(size: compact ? 15 : 16, weight: .bold))
                 .foregroundColor(HomeInk.textPrimary)
                 .frame(width: compact ? 36 : 38, height: compact ? 36 : 38)
                 .background(
@@ -431,6 +440,8 @@ private struct HomePrimaryActionCard: View {
     let isCompact: Bool
     let destination: AnyView?
     var subtitle: String? = nil
+    var icon: String? = nil
+    var trailingBadge: String? = nil
 
     @State private var isPressed = false
 
@@ -454,7 +465,15 @@ private struct HomePrimaryActionCard: View {
     }
 
     private var cardContent: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 14) {
+            if let icon {
+                Image(systemName: icon)
+                    .font(.system(size: isCompact ? 17 : 19, weight: .bold))
+                    .foregroundColor(titleColor)
+                    .frame(width: isCompact ? 28 : 32)
+                    .accessibilityHidden(true)
+            }
+
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
                     .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
@@ -468,6 +487,21 @@ private struct HomePrimaryActionCard: View {
             }
 
             Spacer()
+
+            if let trailingBadge {
+                HStack(spacing: 3) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 11, weight: .bold))
+                    Text(trailingBadge)
+                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                }
+                .foregroundColor(OniTanTheme.accentCorrect)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(
+                    Capsule().fill(OniTanTheme.accentCorrect.opacity(0.16))
+                )
+            }
 
             if destination != nil {
                 Image(systemName: "chevron.right")
