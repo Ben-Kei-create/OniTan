@@ -21,6 +21,7 @@ struct OniTanApp: App {
     @AppStorage("onboarding_v1_complete") private var onboardingComplete = false
     @State private var showOnboarding = false
     @State private var showSplash = true
+    @State private var showDailySummary = false
 
     init() {
         let appearance = UINavigationBarAppearance()
@@ -69,7 +70,19 @@ struct OniTanApp: App {
                     .onChange(of: streakRepo.todayCompleted) { completed in
                         if completed {
                             notificationManager.handleTodayCompleted()
+                            if !showOnboarding {
+                                showDailySummary = true
+                            }
                         }
+                    }
+                    .fullScreenCover(isPresented: $showDailySummary) {
+                        DailySummaryView(
+                            streak: streakRepo.currentStreak,
+                            isNewLongestStreak: streakRepo.currentStreak >= streakRepo.longestStreak,
+                            answeredToday: streakRepo.todayAnswerCount,
+                            xpEarnedToday: xpRepo.todayXP,
+                            onDismiss: { showDailySummary = false }
+                        )
                     }
                     .onChange(of: showOnboarding) { showing in
                         if !showing {
