@@ -141,6 +141,8 @@
 		FBFAC18715D43EFEB9C14142 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = D3A9974F2CF764CE1DD79C22 /* stage56.json */; };
 		FC72599E1B883C0D36F60464 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = ED0575009408B143BF71B4D0 /* stage21.json */; };
 		FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43FC022C83E344ABEE7C03 /* ErrorState.swift */; };
+		820AABDD9792CF9002E9C104 /* DailySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33FF4F788B33DFE9764C8A /* DailySummaryView.swift */; };
+		CDD266BD8453C3A9ECC902B6 /* ReviewPromptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9AD5CCBF5E79FFD4C281ED /* ReviewPromptManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +299,8 @@
 		F47BC5CFCD73435ACF5AF71A /* stage53.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage53.json; sourceTree = "<group>"; };
 		F778B7974DE051C0BC2CC841 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
 		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
+		FF33FF4F788B33DFE9764C8A /* DailySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryView.swift; sourceTree = "<group>"; };
+		0C9AD5CCBF5E79FFD4C281ED /* ReviewPromptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -449,6 +453,8 @@
 				A709DAD0107E879561BB3203 /* StatsView.swift */,
 				3C69667D30FCCC04E86D11AE /* StreakChallengeView.swift */,
 				00F33F3E41355E6617E24291 /* StreakRepository.swift */,
+				FF33FF4F788B33DFE9764C8A /* DailySummaryView.swift */,
+				0C9AD5CCBF5E79FFD4C281ED /* ReviewPromptManager.swift */,
 				42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */,
 				82790558D967BDF74A396745 /* ThemeManager.swift */,
 				8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */,
@@ -678,6 +684,8 @@
 				06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */,
 				9BF1CE3A3A6B54E6083B7A90 /* StreakChallengeView.swift in Sources */,
 				EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */,
+				820AABDD9792CF9002E9C104 /* DailySummaryView.swift in Sources */,
+				CDD266BD8453C3A9ECC902B6 /* ReviewPromptManager.swift in Sources */,
 				88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */,
 				362516D45E32453B490BDA12 /* ThemeManager.swift in Sources */,
 				F2D12E25938A256A24A3A9F0 /* ThemePalette.swift in Sources */,
