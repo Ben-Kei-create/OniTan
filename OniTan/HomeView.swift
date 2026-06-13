@@ -344,12 +344,12 @@ struct HomeView: View {
                 )
             } else {
                 HomePrimaryActionCard(
-                    title: "お気に入り",
-                    style: .disabled,
+                    title: "お気に入り登録へ",
+                    style: .neutral,
                     isCompact: isCompact,
                     destination: AnyView(KanjiCatalogView()),
-                    subtitle: "漢字一覧で☆登録すると使えます",
-                    icon: "star.fill"
+                    subtitle: "漢字一覧で☆登録すると、ここから集中学習できます",
+                    icon: "star"
                 )
             }
         }
