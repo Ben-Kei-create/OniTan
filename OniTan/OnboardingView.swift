@@ -61,6 +61,10 @@ struct OnboardingView: View {
                            text: "ランダム10問で短く続ける")
                 featureRow(icon: "試", color: OniTanTheme.mutedGold,
                            text: "ミニ模試で本番感覚を確認")
+                featureRow(icon: "誤", color: OniTanTheme.sealRed,
+                           text: "間違えた漢字は誤答ノートで自動的に復習")
+                featureRow(icon: "★", color: OniTanTheme.mutedGold,
+                           text: "漢字一覧で気になる漢字を☆お気に入り登録")
             }
             .padding(.horizontal, 32)
 
