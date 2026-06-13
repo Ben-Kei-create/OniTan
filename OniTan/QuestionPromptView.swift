@@ -174,29 +174,24 @@ struct QuestionPromptView: View {
         let terms = question.payload?.blankTerms ?? [question.displayPrompt]
         let fontSize = scaled(34, min: 24)
 
-        return VStack(spacing: scaled(6, min: 4)) {
-            HStack(spacing: scaled(12, min: 8)) {
-                ForEach(terms.prefix(4), id: \.self) { term in
-                    Text(term)
-                        .font(playFontManager.font(size: fontSize, weight: .black))
-                        .foregroundColor(OniTanTheme.textPrimary)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
-                        .padding(.horizontal, scaled(8, min: 5))
-                        .padding(.vertical, scaled(5, min: 3))
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(OniTanTheme.accentPrimary.opacity(0.10))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1)
-                                )
-                        )
-                }
+        return HStack(spacing: scaled(12, min: 8)) {
+            ForEach(terms.prefix(4), id: \.self) { term in
+                Text(term)
+                    .font(playFontManager.font(size: fontSize, weight: .black))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .padding(.horizontal, scaled(8, min: 5))
+                    .padding(.vertical, scaled(5, min: 3))
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(OniTanTheme.accentPrimary.opacity(0.10))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1)
+                            )
+                    )
             }
-            Text("共通する漢字は？")
-                .font(playFontManager.font(size: scaled(12, min: 10), weight: .medium))
-                .foregroundColor(OniTanTheme.textTertiary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(14, min: 8))
@@ -209,25 +204,17 @@ struct QuestionPromptView: View {
         let targetChar = question.payload?.targetKanjiInCompound
         let fontSize = scaled(68, min: 52)
 
-        return VStack(spacing: scaled(6, min: 4)) {
-            HStack(spacing: 2) {
-                ForEach(Array(compound.enumerated()), id: \.offset) { _, char in
-                    let charStr = String(char)
-                    let isTarget = targetChar.map { $0 == charStr } ?? false
-                    Text(charStr)
-                        .font(playFontManager.font(size: fontSize, weight: .black))
-                        .foregroundColor(isTarget ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
-                        .shadow(color: .black.opacity(0.3), radius: 3)
-                }
-            }
-            .minimumScaleFactor(0.4)
-
-            if targetChar != nil {
-                Text("下線の漢字の読みは？")
-                    .font(playFontManager.font(size: scaled(12, min: 10), weight: .medium))
-                    .foregroundColor(OniTanTheme.textTertiary)
+        return HStack(spacing: 2) {
+            ForEach(Array(compound.enumerated()), id: \.offset) { _, char in
+                let charStr = String(char)
+                let isTarget = targetChar.map { $0 == charStr } ?? false
+                Text(charStr)
+                    .font(playFontManager.font(size: fontSize, weight: .black))
+                    .foregroundColor(isTarget ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
+                    .shadow(color: .black.opacity(0.3), radius: 3)
             }
         }
+        .minimumScaleFactor(0.4)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(16, min: 8))
     }
@@ -277,12 +264,6 @@ struct QuestionPromptView: View {
                         meaningPopoverTerm = TermMeaningInfo(word: target, meaning: meaning)
                         return .handled
                     })
-
-                if meaning != nil {
-                    Text("下線部をタップすると意味を表示します")
-                        .font(playFontManager.font(size: scaled(11, min: 9), weight: .medium))
-                        .foregroundColor(OniTanTheme.textTertiary)
-                }
             } else {
                 Text(target)
                     .font(playFontManager.font(size: scaled(30, min: 23), weight: .black))
