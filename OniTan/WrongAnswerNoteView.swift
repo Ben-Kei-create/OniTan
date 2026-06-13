@@ -55,7 +55,7 @@ struct WrongAnswerNoteView: View {
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("見直すべき記録")
+                Text("誤答記録")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(OniTanTheme.textPrimary)
                 Text("\(filteredEntries.count) 件")
