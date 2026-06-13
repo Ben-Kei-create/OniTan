@@ -7,6 +7,8 @@ struct MainView: View {
     @State private var activeReportContext: QuizProblemReportContext?
     @State private var hasPlayedCompletionHaptic = false
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.requestReview) private var requestReview
+    @EnvironmentObject var reviewPromptManager: ReviewPromptManager
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
@@ -136,6 +138,11 @@ struct MainView: View {
                 if !donationManager.hasDonated {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
                         interstitialManager.showIfReady()
+                    }
+                }
+                if reviewPromptManager.sessionCompleted(currentStreak: streakRepo.currentStreak) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                        requestReview()
                     }
                 }
             } else {
