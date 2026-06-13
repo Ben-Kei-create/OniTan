@@ -261,7 +261,7 @@ struct QuestionPromptView: View {
     private var sentenceReadingContent: some View {
         let context = question.payload?.sentenceContext ?? question.displayPrompt
         let target = question.kanji
-        let bodyFont = playFontManager.font(size: scaled(22, min: 17), weight: .medium)
+        let bodyFont = playFontManager.font(size: scaled(24, min: 19), weight: .medium)
         let meaning = question.termMeaning
 
         return VStack(alignment: .leading, spacing: scaled(12, min: 8)) {
@@ -285,7 +285,7 @@ struct QuestionPromptView: View {
                 }
             } else {
                 Text(target)
-                    .font(playFontManager.font(size: scaled(26, min: 20), weight: .black))
+                    .font(playFontManager.font(size: scaled(30, min: 23), weight: .black))
                     .foregroundColor(OniTanTheme.accentWeak)
                     .minimumScaleFactor(0.65)
                     .lineLimit(1)
@@ -302,8 +302,8 @@ struct QuestionPromptView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(18, min: 12))
-        .popover(item: $meaningPopoverTerm) { item in
-            meaningPopoverContent(word: item.word, meaning: item.meaning)
+        .sheet(item: $meaningPopoverTerm) { item in
+            meaningSheetContent(word: item.word, meaning: item.meaning)
         }
     }
 
@@ -315,7 +315,7 @@ struct QuestionPromptView: View {
         result.foregroundColor = OniTanTheme.textPrimary
 
         var targetAttr = AttributedString(String(context[targetRange]))
-        targetAttr.font = playFontManager.font(size: scaled(22, min: 17), weight: .black)
+        targetAttr.font = playFontManager.font(size: scaled(28, min: 22), weight: .black)
         targetAttr.foregroundColor = OniTanTheme.accentWeak
         targetAttr.underlineStyle = .single
         if linkable {
@@ -331,18 +331,47 @@ struct QuestionPromptView: View {
         return result
     }
 
-    private func meaningPopoverContent(word: String, meaning: String) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(word)
-                .font(playFontManager.font(size: 18, weight: .black))
-                .foregroundColor(OniTanTheme.accentWeak)
-            Text(meaning)
-                .font(playFontManager.font(size: 14, weight: .regular))
-                .foregroundColor(OniTanTheme.textPrimary)
-                .fixedSize(horizontal: false, vertical: true)
+    private func meaningSheetContent(word: String, meaning: String) -> some View {
+        NavigationStack {
+            ZStack {
+                OniTanTheme.backgroundGradientFallback.ignoresSafeArea()
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(word)
+                        .font(playFontManager.font(size: 30, weight: .black))
+                        .foregroundColor(OniTanTheme.accentWeak)
+
+                    Text(meaning)
+                        .font(playFontManager.font(size: 17, weight: .regular))
+                        .foregroundColor(OniTanTheme.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Spacer()
+                }
+                .padding(20)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .navigationTitle("意味")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        meaningPopoverTerm = nil
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .frame(width: 34, height: 34)
+                            .background(Color.black.opacity(0.16))
+                            .overlay(Circle().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                            .clipShape(Circle())
+                    }
+                    .accessibilityLabel("閉じる")
+                }
+            }
         }
-        .padding(16)
-        .frame(maxWidth: 280, alignment: .leading)
+        .presentationDetents([.fraction(0.35), .medium])
     }
 
     // MARK: - Sentence Layout (errorCorrection, proverb, passage)
