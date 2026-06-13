@@ -423,8 +423,8 @@ struct MainView: View {
 
         return VStack(alignment: .leading, spacing: scaled(12, by: scale, min: 8)) {
             HStack(alignment: .center, spacing: scaled(10, by: scale, min: 6)) {
-                Text(isCorrect ? "正" : "誤")
-                    .font(.system(size: scaled(22, by: scale, min: 18), weight: .black, design: .serif))
+                Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .font(.system(size: scaled(22, by: scale, min: 18), weight: .bold))
                     .foregroundColor(tint)
                     .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                     .background(
@@ -435,6 +435,7 @@ struct MainView: View {
                                     .stroke(tint.opacity(0.34), lineWidth: 1)
                             )
                     )
+                    .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: scaled(3, by: scale, min: 2)) {
                     Text(title)

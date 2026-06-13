@@ -57,6 +57,24 @@ struct QuestionPromptView: View {
                     .transition(.opacity)
             }
 
+            // Animated feedback icon (checkmark / xmark) for clearer correct/incorrect cues
+            if isCorrect || isWrong {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                            .font(.system(size: scaled(54, min: 38), weight: .bold))
+                            .foregroundColor(isCorrect ? OniTanTheme.accentCorrect : OniTanTheme.accentWrong)
+                            .shadow(color: .black.opacity(0.25), radius: 6)
+                            .accessibilityHidden(true)
+                    }
+                    Spacer()
+                }
+                .padding(scaled(14, min: 10))
+                .transition(.scale(scale: 0.4).combined(with: .opacity))
+                .animation(.spring(response: 0.35, dampingFraction: 0.55), value: isCorrect)
+            }
+
             // Prompt content (lazy-switch on kind)
             Group {
                 switch question.kind {
