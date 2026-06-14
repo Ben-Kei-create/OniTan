@@ -22,7 +22,8 @@ final class NotificationManager: ObservableObject {
     var reminderHour: Int {
         get {
             let v = UserDefaults.standard.integer(forKey: reminderHourKey)
-            return v == 0 ? 20 : v   // default 20:00
+            guard (0...23).contains(v) else { return 20 }   // default 20:00
+            return v == 0 ? 20 : v
         }
         set {
             UserDefaults.standard.set(newValue, forKey: reminderHourKey)

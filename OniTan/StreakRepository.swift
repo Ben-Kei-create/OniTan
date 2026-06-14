@@ -108,7 +108,7 @@ final class StreakRepository: ObservableObject {
 
         if let last = data.lastStudyDate {
             let lastDay = cal.startOfDay(for: last)
-            let yesterday = cal.date(byAdding: .day, value: -1, to: today)!
+            let yesterday = cal.date(byAdding: .day, value: -1, to: today) ?? today
             if lastDay == yesterday {
                 // Played yesterday → extend streak
                 data.currentStreak += 1
@@ -152,7 +152,7 @@ final class StreakRepository: ObservableObject {
         let cal = Calendar.current
         let today = cal.startOfDay(for: nowProvider())
         let lastDay = cal.startOfDay(for: last)
-        let yesterday = cal.date(byAdding: .day, value: -1, to: today)!
+        let yesterday = cal.date(byAdding: .day, value: -1, to: today) ?? today
 
         if lastDay < yesterday {
             handleStreakGap(today: today)
