@@ -7,6 +7,7 @@ import SwiftUI
 struct CategoryTrainingView: View {
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
 
     private var categories: [CategoryEntry] {
         categoryManifest?.categories ?? CategoryEntry.fallbacks
@@ -35,6 +36,11 @@ struct CategoryTrainingView: View {
         }
     }
 
+    private func isUnlocked(_ entry: CategoryEntry) -> Bool {
+        guard let requiredLevel = entry.unlockLevel else { return true }
+        return xpRepo.level >= requiredLevel
+    }
+
     var body: some View {
         ZStack {
             OniTanTheme.backgroundGradientFallback.ignoresSafeArea()
@@ -44,17 +50,31 @@ struct CategoryTrainingView: View {
                     header
 
                     ForEach(sortedCategories) { entry in
-                        let acc = accuracy(for: entry)
-                        NavigationLink(destination: TrainingModePickerView(category: entry)) {
+                        if isUnlocked(entry) {
+                            let acc = accuracy(for: entry)
+                            NavigationLink(destination: TrainingModePickerView(category: entry)) {
+                                CategoryRowCard(
+                                    entry: entry,
+                                    accuracy: acc,
+                                    needsReview: acc.map { $0 < entry.targetAccuracy } ?? false,
+                                    isLocked: false,
+                                    requiredLevel: nil
+                                )
+                            }
+                            .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.98, animationDuration: 0.1))
+                            .accessibilityLabel("\(entry.title) — \(entry.description)")
+                            .accessibilityHint("タップして\(entry.title)のモードを選択")
+                        } else {
                             CategoryRowCard(
                                 entry: entry,
-                                accuracy: acc,
-                                needsReview: acc.map { $0 < entry.targetAccuracy } ?? false
+                                accuracy: nil,
+                                needsReview: false,
+                                isLocked: true,
+                                requiredLevel: entry.unlockLevel
                             )
+                            .accessibilityLabel("\(entry.title) — ロック中")
+                            .accessibilityHint("Lv.\(entry.unlockLevel ?? 0)で解放されます")
                         }
-                        .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.98, animationDuration: 0.1))
-                        .accessibilityLabel("\(entry.title) — \(entry.description)")
-                        .accessibilityHint("タップして\(entry.title)のモードを選択")
                     }
                 }
                 .padding(.horizontal, 20)
@@ -95,9 +115,12 @@ private struct CategoryRowCard: View {
     let entry: CategoryEntry
     let accuracy: Double?
     let needsReview: Bool
+    let isLocked: Bool
+    let requiredLevel: Int?
 
     private var accentColor: Color {
-        needsReview ? OniTanTheme.sealRed : OniTanTheme.accentWeak
+        if isLocked { return OniTanTheme.textTertiary }
+        return needsReview ? OniTanTheme.sealRed : OniTanTheme.accentWeak
     }
 
     private var displayTitle: String {
@@ -128,7 +151,7 @@ private struct CategoryRowCard: View {
                     )
                     .frame(width: 48, height: 48)
 
-                Image(systemName: entry.iconName)
+                Image(systemName: isLocked ? "lock.fill" : entry.iconName)
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(accentColor)
             }
@@ -137,44 +160,61 @@ private struct CategoryRowCard: View {
             VStack(alignment: .leading, spacing: 7) {
                 Text(displayTitle)
                     .font(.system(size: 17, weight: .black, design: .rounded))
-                    .foregroundColor(OniTanTheme.textPrimary)
+                    .foregroundColor(isLocked ? OniTanTheme.textTertiary : OniTanTheme.textPrimary)
 
-                Text(entry.description)
+                Text(isLocked ? "Lv.\(requiredLevel ?? 0) で解放されます" : entry.description)
                     .font(.system(size: 11, weight: .medium, design: .rounded))
-                    .foregroundColor(OniTanTheme.textSecondary)
+                    .foregroundColor(isLocked ? OniTanTheme.textTertiary.opacity(0.8) : OniTanTheme.textSecondary)
                     .lineLimit(1)
                     .fixedSize(horizontal: false, vertical: true)
 
-                HStack(spacing: 10) {
-                    metadataPill(text: "\(questionCount) 問")
-                    metadataPill(text: "目標 \(Int(entry.targetAccuracy * 100))%")
-                    if let accuracy {
-                        metadataPill(
-                            text: "正答率 \(Int(accuracy * 100))%",
-                            color: needsReview ? OniTanTheme.sealRed : OniTanTheme.textTertiary
-                        )
-                    }
-                    if needsReview {
-                        Text("要復習")
-                            .font(.system(size: 11, weight: .bold, design: .rounded))
-                            .foregroundColor(OniTanTheme.sealRed)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(
-                                Capsule()
-                                    .fill(OniTanTheme.sealRed.opacity(0.16))
-                                    .overlay(Capsule().stroke(OniTanTheme.sealRed.opacity(0.4), lineWidth: 1))
+                if isLocked {
+                    metadataPill(text: "ロック中")
+                } else {
+                    HStack(spacing: 10) {
+                        metadataPill(text: "\(questionCount) 問")
+                        metadataPill(text: "目標 \(Int(entry.targetAccuracy * 100))%")
+                        if let accuracy {
+                            metadataPill(
+                                text: "正答率 \(Int(accuracy * 100))%",
+                                color: needsReview ? OniTanTheme.sealRed : OniTanTheme.textTertiary
                             )
+                        }
+                        if needsReview {
+                            Text("要復習")
+                                .font(.system(size: 11, weight: .bold, design: .rounded))
+                                .foregroundColor(OniTanTheme.sealRed)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(
+                                    Capsule()
+                                        .fill(OniTanTheme.sealRed.opacity(0.16))
+                                        .overlay(Capsule().stroke(OniTanTheme.sealRed.opacity(0.4), lineWidth: 1))
+                                )
+                        }
                     }
                 }
             }
 
             Spacer(minLength: 8)
 
-            Image(systemName: "chevron.right")
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .accessibilityHidden(true)
+            if isLocked {
+                Text("ロック")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(
+                        Capsule()
+                            .fill(OniTanTheme.cardBackgroundPressed)
+                            .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    )
+            } else {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .accessibilityHidden(true)
+            }
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
@@ -195,6 +235,7 @@ private struct CategoryRowCard: View {
                         .stroke(accentColor.opacity(0.18), lineWidth: 1)
                 )
         )
+        .opacity(isLocked ? 0.56 : 1)
         .shadow(color: .black.opacity(0.24), radius: 10, y: 5)
     }
 

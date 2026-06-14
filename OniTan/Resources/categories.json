@@ -4,9 +4,11 @@
       "id": "reading",
       "title": "読み道場",
       "description": "例文中の傍線部の読みを鍛える",
-      "questionKinds": ["sentenceReading"],
+      "questionKinds": [
+        "sentenceReading"
+      ],
       "stageIDs": [],
-      "targetAccuracy": 0.90,
+      "targetAccuracy": 0.9,
       "iconName": "character.book.closed",
       "colorHex": "#D8B45A"
     },
@@ -14,9 +16,11 @@
       "id": "commonKanji",
       "title": "共通漢字道場",
       "description": "複数の語に共通する一字を選ぶ",
-      "questionKinds": ["commonKanji"],
+      "questionKinds": [
+        "commonKanji"
+      ],
       "stageIDs": [],
-      "targetAccuracy": 0.90,
+      "targetAccuracy": 0.9,
       "iconName": "square.on.square",
       "colorHex": "#E67E22"
     },
@@ -24,9 +28,11 @@
       "id": "errorCorrection",
       "title": "誤字訂正道場",
       "description": "文中の誤った漢字を見つける",
-      "questionKinds": ["errorCorrection"],
+      "questionKinds": [
+        "errorCorrection"
+      ],
       "stageIDs": [],
-      "targetAccuracy": 0.90,
+      "targetAccuracy": 0.9,
       "iconName": "checkmark.circle",
       "colorHex": "#E74C3C"
     },
@@ -34,41 +40,55 @@
       "id": "yojijukugo",
       "title": "四字熟語道場",
       "description": "四字熟語の意味と欠けた文字を覚える",
-      "questionKinds": ["yojijukugo"],
+      "questionKinds": [
+        "yojijukugo"
+      ],
       "stageIDs": [],
-      "targetAccuracy": 0.90,
+      "targetAccuracy": 0.9,
       "iconName": "square.grid.2x2",
-      "colorHex": "#9B59B6"
+      "colorHex": "#9B59B6",
+      "unlockLevel": 5
     },
     {
       "id": "synonym_antonym",
       "title": "類義語・対義語道場",
       "description": "意味が近い・反対の語を覚える",
-      "questionKinds": ["synonym", "antonym"],
+      "questionKinds": [
+        "synonym",
+        "antonym"
+      ],
       "stageIDs": [],
-      "targetAccuracy": 0.90,
+      "targetAccuracy": 0.9,
       "iconName": "arrow.left.arrow.right",
-      "colorHex": "#27AE60"
+      "colorHex": "#27AE60",
+      "unlockLevel": 6
     },
     {
       "id": "proverb",
       "title": "故事・ことわざ道場",
       "description": "故事成語・ことわざの意味と用法",
-      "questionKinds": ["proverb"],
+      "questionKinds": [
+        "proverb"
+      ],
       "stageIDs": [],
-      "targetAccuracy": 0.90,
+      "targetAccuracy": 0.9,
       "iconName": "quote.bubble",
-      "colorHex": "#D4AC0D"
+      "colorHex": "#D4AC0D",
+      "unlockLevel": 7
     },
     {
       "id": "passage",
       "title": "文章題道場",
       "description": "文章中の読みや語彙・文脈を問う",
-      "questionKinds": ["passageReading", "passageVocabulary"],
+      "questionKinds": [
+        "passageReading",
+        "passageVocabulary"
+      ],
       "stageIDs": [],
-      "targetAccuracy": 0.90,
+      "targetAccuracy": 0.9,
       "iconName": "doc.text.below.ecg",
-      "colorHex": "#2980B9"
+      "colorHex": "#2980B9",
+      "unlockLevel": 15
     }
   ]
 }

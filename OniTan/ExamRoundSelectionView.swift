@@ -3,11 +3,16 @@ import SwiftUI
 // MARK: - Exam Round
 
 struct ExamRound: Identifiable, Equatable {
-    /// Matches the default passing accuracy shown on ExamResultView so that
-    /// the "合格" banner and the next-round unlock condition stay in sync.
-    static let passThreshold = 0.90
-    static let totalRounds = 10
+    /// A hidden 11th round appears once round 10 is cleared at its 95% threshold.
+    static let hiddenRound = 11
+    static let totalRounds = hiddenRound
     static let all = (1...totalRounds).map { ExamRound(number: $0) }
+
+    /// Rounds 1-3 are available from the start. From round 4 onward, every
+    /// dojo category must be unlocked (i.e. the player has reached the
+    /// level required for 文章題道場, the last category to unlock).
+    static let freeRounds = 3
+    static let allCategoriesUnlockedLevel = 15
 
     let number: Int
 
@@ -19,12 +24,30 @@ struct ExamRound: Identifiable, Equatable {
         String(format: "exam_round_%02d", number)
     }
 
+    /// Accuracy required to clear this round and unlock the next one.
+    /// 第1〜4回: 80% / 第5〜7回: 85% / 第8〜9回: 90% / 第10回: 95% / 第11回(隠し): 100%
+    static func passThreshold(for number: Int) -> Double {
+        switch number {
+        case 1...4: return 0.80
+        case 5...7: return 0.85
+        case 8...9: return 0.90
+        case 10: return 0.95
+        default: return 1.0
+        }
+    }
+
+    var passThreshold: Double { Self.passThreshold(for: number) }
+
     @MainActor
-    func isUnlocked(using repo: ExamResultRepository) -> Bool {
-        guard number > 1 else { return true }
+    func isUnlocked(using repo: ExamResultRepository, xpRepo: GamificationRepository) -> Bool {
+        if number <= Self.freeRounds { return true }
+
+        guard xpRepo.level >= Self.allCategoriesUnlockedLevel else { return false }
+
+        let previous = number - 1
         return repo.hasPassed(
-            blueprintID: Self.blueprintID(for: number - 1),
-            threshold: Self.passThreshold
+            blueprintID: Self.blueprintID(for: previous),
+            threshold: Self.passThreshold(for: previous)
         )
     }
 
@@ -60,7 +83,7 @@ struct ExamRoundSelectionView: View {
                     header
 
                     LazyVGrid(columns: columns, spacing: 12) {
-                        ForEach(ExamRound.all) { round in
+                        ForEach(visibleRounds) { round in
                             let state = roundState(for: round)
 
                             if state.canStart {
@@ -73,7 +96,7 @@ struct ExamRoundSelectionView: View {
                                 }
                                 .buttonStyle(.plain)
                                 .accessibilityLabel(accessibilityLabel(for: round, state: state))
-                                .accessibilityHint(state.accessibilityHint)
+                                .accessibilityHint(state.accessibilityHint(for: round))
                             } else {
                                 Button {
                                     OniTanTheme.haptic(.light)
@@ -87,7 +110,7 @@ struct ExamRoundSelectionView: View {
                                 .buttonStyle(.plain)
                                 .disabled(true)
                                 .accessibilityLabel(accessibilityLabel(for: round, state: state))
-                                .accessibilityHint(state.accessibilityHint)
+                                .accessibilityHint(state.accessibilityHint(for: round))
                             }
                         }
                     }
@@ -123,13 +146,13 @@ struct ExamRoundSelectionView: View {
                         .foregroundColor(OniTanTheme.textPrimary)
 
                     HStack(spacing: 7) {
-                        badge("全10回")
-                        badge("90%解放")
+                        badge("全10回+隠し1回")
+                        badge("第1〜3回は解放済み")
                     }
                 }
             }
 
-            Text("第1回から順に、本番形式の問題を固定セットで受ける。")
+            Text("第1回から順に、本番形式の問題を固定セットで受ける。第4回以降は全道場解放後、前回の合格ライン突破で解放。")
                 .font(.system(size: 13, weight: .medium, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -149,7 +172,7 @@ struct ExamRoundSelectionView: View {
                 .foregroundColor(OniTanTheme.textTertiary)
                 .accessibilityHidden(true)
 
-            Text("第2回以降は問題セット追加後に解放されます")
+            Text("第4回以降は全道場解放後・問題セット追加後に解放されます")
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .lineLimit(1)
@@ -182,8 +205,16 @@ struct ExamRoundSelectionView: View {
             )
     }
 
+    /// Rounds 1-10 are always shown (locked/preparing as appropriate). The hidden
+    /// 11th round only appears once it is actually unlocked (round 10 cleared at 95%).
+    private var visibleRounds: [ExamRound] {
+        ExamRound.all.filter { round in
+            round.number < ExamRound.hiddenRound || round.isUnlocked(using: examResultRepo, xpRepo: xpRepo)
+        }
+    }
+
     private func roundState(for round: ExamRound) -> ExamRoundButtonState {
-        guard round.isUnlocked(using: examResultRepo) else { return .locked }
+        guard round.isUnlocked(using: examResultRepo, xpRepo: xpRepo) else { return .locked }
         return round.hasContent ? .available : .preparing
     }
 
@@ -225,22 +256,34 @@ private enum ExamRoundButtonState {
         }
     }
 
-    var detail: String {
+    func detail(for round: ExamRound) -> String {
         switch self {
         case .available: return "タップして開始"
         case .preparing: return "問題セット待ち"
-        case .locked: return "前回90%以上で解放"
+        case .locked: return ExamRoundButtonState.lockedReason(for: round)
         }
     }
 
     var canStart: Bool { self == .available }
 
-    var accessibilityHint: String {
+    func accessibilityHint(for round: ExamRound) -> String {
         switch self {
         case .available: return "タップして模擬試験を開始します"
         case .preparing: return "問題セット追加後に開始できます"
-        case .locked: return "直前の回を90%以上でクリアすると解放されます"
+        case .locked: return ExamRoundButtonState.lockedReason(for: round)
         }
+    }
+
+    /// Human-readable explanation of why a round is still locked.
+    static func lockedReason(for round: ExamRound) -> String {
+        if round.number == ExamRound.hiddenRound {
+            return "第10回を95%以上でクリアすると解放"
+        }
+        if round.number > ExamRound.freeRounds {
+            let previousThreshold = Int(ExamRound.passThreshold(for: round.number - 1) * 100)
+            return "全道場解放後、前回\(previousThreshold)%以上で解放"
+        }
+        return "未解放"
     }
 }
 
@@ -289,7 +332,7 @@ private struct ExamRoundButtonCard: View {
                     .font(.system(size: 18, weight: .black, design: .rounded))
                     .foregroundColor(isLocked ? OniTanTheme.textTertiary : OniTanTheme.textPrimary)
 
-                Text(state.detail)
+                Text(state.detail(for: round))
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .foregroundColor(isLocked ? OniTanTheme.textTertiary.opacity(0.72) : OniTanTheme.textSecondary)
                     .lineLimit(1)

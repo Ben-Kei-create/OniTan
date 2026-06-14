@@ -11,6 +11,8 @@ struct CategoryEntry: Codable, Identifiable {
     let targetAccuracy: Double
     let iconName: String
     let colorHex: String
+    /// Minimum player level required to access this category. `nil` means unlocked from the start.
+    let unlockLevel: Int? = nil
 
     var displayKinds: String {
         questionKinds.map(\.displayName).joined(separator: " / ")
