@@ -1,9 +1,22 @@
 import SwiftUI
 
 private struct KanjiCatalogEntry: Identifiable {
-    let question: Question
+    let kanji: String
+    let questions: [Question]
 
-    var id: String { question.kanji }
+    var id: String { kanji }
+
+    /// Distinct readings for this kanji, each paired with its explanation.
+    /// A single kanji may have multiple readings (音読み・訓読み・熟字訓 etc.)
+    /// scattered across different stages — all of them are preserved here.
+    var readingEntries: [(reading: String, explanation: String)] {
+        var seen = Set<String>()
+        var result: [(reading: String, explanation: String)] = []
+        for question in questions where seen.insert(question.answer).inserted {
+            result.append((reading: question.answer, explanation: question.displayExplanation))
+        }
+        return result
+    }
 }
 
 struct KanjiCatalogView: View {
@@ -16,36 +29,47 @@ struct KanjiCatalogView: View {
     private let columns = [GridItem(.adaptive(minimum: 58), spacing: 10)]
 
     private var favoriteEntryCount: Int {
-        baseEntries.filter { favoriteRepo.isFavorite($0.question.kanji) }.count
+        baseEntries.filter { favoriteRepo.isFavorite($0.kanji) }.count
     }
 
+    /// Catalog entries are restricted to single-character kanji.
+    /// Multi-character compounds (熟語・四字熟語・文章題など) come from other
+    /// training modes and don't belong in a "kanji" reference list — but a
+    /// single kanji may have several reading questions (音読み・訓読み・熟字訓)
+    /// spread across stages, so those are grouped together here.
     private var baseEntries: [KanjiCatalogEntry] {
-        var seen = Set<String>()
-        var result: [KanjiCatalogEntry] = []
+        var order: [String] = []
+        var grouped: [String: [Question]] = [:]
 
-        for question in questions where seen.insert(question.kanji).inserted {
-            result.append(KanjiCatalogEntry(question: question))
+        for question in questions where question.kanji.count == 1 {
+            let kanji = question.kanji
+            if grouped[kanji] == nil {
+                order.append(kanji)
+                grouped[kanji] = []
+            }
+            grouped[kanji]?.append(question)
         }
 
-        return result
+        return order.map { KanjiCatalogEntry(kanji: $0, questions: grouped[$0] ?? []) }
     }
 
     private var entries: [KanjiCatalogEntry] {
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         let filtered = baseEntries.filter { entry in
-            let question = entry.question
-            let matchesFavorite = !favoritesOnly || favoriteRepo.isFavorite(question.kanji)
+            let matchesFavorite = !favoritesOnly || favoriteRepo.isFavorite(entry.kanji)
             let matchesQuery = query.isEmpty
-                || question.kanji.localizedStandardContains(query)
-                || question.answer.localizedStandardContains(query)
-                || question.displayPrompt.localizedStandardContains(query)
-                || question.displayExplanation.localizedStandardContains(query)
+                || entry.kanji.localizedStandardContains(query)
+                || entry.questions.contains {
+                    $0.answer.localizedStandardContains(query)
+                        || $0.displayPrompt.localizedStandardContains(query)
+                        || $0.displayExplanation.localizedStandardContains(query)
+                }
             return matchesFavorite && matchesQuery
         }
 
         let result = filtered
-        let favorites = result.filter { favoriteRepo.isFavorite($0.question.kanji) }
-        let others = result.filter { !favoriteRepo.isFavorite($0.question.kanji) }
+        let favorites = result.filter { favoriteRepo.isFavorite($0.kanji) }
+        let others = result.filter { !favoriteRepo.isFavorite($0.kanji) }
         return favorites + others
     }
 
@@ -71,7 +95,7 @@ struct KanjiCatalogView: View {
                                         KanjiCatalogCell(entry: entry)
                                     }
                                     .buttonStyle(.plain)
-                                    .accessibilityLabel("\(entry.question.kanji) の詳細")
+                                    .accessibilityLabel("\(entry.kanji) の詳細")
                                     .accessibilityHint("タップして読みと解説を見る")
                                 }
                             }
@@ -250,7 +274,7 @@ private struct KanjiCatalogCell: View {
                         .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                 )
 
-            if favoriteRepo.isFavorite(entry.question.kanji) {
+            if favoriteRepo.isFavorite(entry.kanji) {
                 HStack {
                     Image(systemName: "star.fill")
                         .font(.system(size: 10, weight: .bold))
@@ -263,7 +287,7 @@ private struct KanjiCatalogCell: View {
                 .padding(6)
             }
 
-            Text(entry.question.kanji)
+            Text(entry.kanji)
                 .font(.system(size: 28, weight: .black, design: .rounded))
                 .foregroundColor(OniTanTheme.textPrimary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -282,13 +306,6 @@ private struct KanjiCatalogDetailView: View {
 
     let entry: KanjiCatalogEntry
 
-    private var explanationLines: [String] {
-        entry.question.displayExplanation
-            .split(separator: "\n")
-            .map(String.init)
-            .filter { !$0.isEmpty }
-    }
-
     var body: some View {
         NavigationStack {
             ZStack {
@@ -298,8 +315,10 @@ private struct KanjiCatalogDetailView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         heroCard
-                        answerCard
-                        explanationCard
+
+                        ForEach(Array(entry.readingEntries.enumerated()), id: \.offset) { _, reading in
+                            readingCard(reading: reading.reading, explanation: reading.explanation)
+                        }
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 20)
@@ -330,14 +349,16 @@ private struct KanjiCatalogDetailView: View {
 
     private var heroCard: some View {
         VStack(spacing: 14) {
-            Text(entry.question.kanji)
+            Text(entry.kanji)
                 .font(.system(size: 96, weight: .black, design: .rounded))
                 .foregroundColor(OniTanTheme.textPrimary)
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
 
-            HStack(spacing: 8) {
-                detailPill(title: "分野", value: entry.question.kind.displayName)
+            if entry.readingEntries.count > 1 {
+                HStack(spacing: 8) {
+                    detailPill(title: "読み", value: "\(entry.readingEntries.count) 種")
+                }
             }
         }
         .frame(maxWidth: .infinity)
@@ -345,33 +366,37 @@ private struct KanjiCatalogDetailView: View {
         .oniCard()
     }
 
-    private var answerCard: some View {
-        VStack(alignment: .leading, spacing: 10) {
+    /// Each reading gets its own card pairing the reading with its explanation —
+    /// a single kanji can have multiple readings (音読み・訓読み・熟字訓 など).
+    private func readingCard(reading: String, explanation: String) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
             cardTitle("読み")
 
-            Text(entry.question.answer)
+            Text(reading)
                 .font(.system(size: 28, weight: .black, design: .rounded))
                 .foregroundColor(OniTanTheme.accentPrimary)
+
+            if !explanation.isEmpty {
+                Divider()
+
+                ForEach(explanationLines(explanation), id: \.self) { line in
+                    Text(line)
+                        .font(.system(.body, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
         .oniCard()
     }
 
-    private var explanationCard: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            cardTitle("解説")
-
-            ForEach(explanationLines, id: \.self) { line in
-                Text(line)
-                    .font(.system(.body, design: .rounded))
-                    .foregroundColor(OniTanTheme.textSecondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .oniCard()
+    private func explanationLines(_ explanation: String) -> [String] {
+        explanation
+            .split(separator: "\n")
+            .map(String.init)
+            .filter { !$0.isEmpty }
     }
 
     private func cardTitle(_ title: String) -> some View {
