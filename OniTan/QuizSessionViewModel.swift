@@ -150,6 +150,8 @@ final class QuizSessionViewModel: ObservableObject {
         statsRepo.record(
             stageNumber: stage.stage,
             kanji: question.kanji,
+            questionID: question.id,
+            questionKind: question.kind,
             wasCorrect: isCorrect,
             selectedAnswer: selected,
             correctAnswer: question.answer

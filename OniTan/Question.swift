@@ -191,4 +191,116 @@ extension Question {
         }
         return nil
     }
+
+    /// Single-kanji dictionary/catalog keys related to this question.
+    ///
+    /// `kanji` is kept as the legacy prompt/tracking field, but modern catalog
+    /// surfaces should use this derived list so compounds, labels, and sentence
+    /// prompts do not masquerade as standalone kanji entries.
+    var catalogKanjiCharacters: [String] {
+        var candidates: [String] = []
+
+        func appendSingle(_ value: String?) {
+            guard let value = value?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  value.isSingleKanjiCharacter else { return }
+            candidates.append(value)
+        }
+
+        func appendCharacters(from value: String?) {
+            guard let value = value?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+            candidates.append(contentsOf: value.kanjiCharacters)
+        }
+
+        switch kind {
+        case .reading, .sentenceReading, .hyogaiReading:
+            appendCharacters(from: payload?.targetKanji)
+            appendCharacters(from: kanji)
+        case .compoundReadingKun:
+            appendSingle(payload?.targetKanjiInCompound)
+            appendCharacters(from: payload?.targetCompound)
+            appendCharacters(from: kanji)
+        case .commonKanji:
+            appendSingle(answer)
+        case .errorCorrection:
+            appendSingle(payload?.wrongKanji)
+            appendSingle(payload?.correctKanji)
+        case .yojijukugo:
+            appendSingle(answer)
+            appendCharacters(from: payload?.yoji?.replacingOccurrences(of: "□", with: ""))
+        case .writing:
+            appendCharacters(from: payload?.targetKanji)
+            appendCharacters(from: answer)
+            appendCharacters(from: kanji)
+        default:
+            appendSingle(kanji)
+            appendSingle(answer)
+        }
+
+        var seen = Set<String>()
+        return candidates.filter { candidate in
+            seen.insert(candidate).inserted
+        }
+    }
+
+    /// Single kanji that can be safely used for favorite actions.
+    ///
+    /// Some question kinds are word- or phrase-based, so they should contribute
+    /// multiple catalog entries but should not pretend to have one favorite key.
+    var favoriteKanjiCharacter: String? {
+        func single(_ value: String?) -> String? {
+            guard let value = value?.trimmingCharacters(in: .whitespacesAndNewlines),
+                  value.isSingleKanjiCharacter else { return nil }
+            return value
+        }
+
+        func onlyCatalogCharacter() -> String? {
+            let characters = catalogKanjiCharacters
+            return characters.count == 1 ? characters[0] : nil
+        }
+
+        switch kind {
+        case .compoundReadingKun:
+            return single(payload?.targetKanjiInCompound) ?? onlyCatalogCharacter()
+        case .errorCorrection:
+            return single(payload?.correctKanji)
+        case .yojijukugo:
+            return single(answer)
+        case .reading, .sentenceReading, .hyogaiReading, .commonKanji:
+            return single(payload?.targetKanji) ?? single(kanji) ?? single(answer) ?? onlyCatalogCharacter()
+        case .writing:
+            return single(payload?.targetKanji) ?? onlyCatalogCharacter()
+        default:
+            return single(kanji) ?? single(answer) ?? onlyCatalogCharacter()
+        }
+    }
+}
+
+extension String {
+    var isSingleKanjiCharacter: Bool {
+        guard count == 1, let firstScalar = unicodeScalars.first else { return false }
+        return firstScalar.isCJKIdeograph
+    }
+
+    var containsKanjiCharacter: Bool {
+        unicodeScalars.contains { $0.isCJKIdeograph }
+    }
+
+    var kanjiCharacters: [String] {
+        map(String.init).filter(\.isSingleKanjiCharacter)
+    }
+}
+
+private extension UnicodeScalar {
+    var isCJKIdeograph: Bool {
+        let scalarValue = Int(value)
+        return (0x3400...0x4DBF).contains(scalarValue)
+            || (0x4E00...0x9FFF).contains(scalarValue)
+            || (0xF900...0xFAFF).contains(scalarValue)
+            || (0x20000...0x2A6DF).contains(scalarValue)
+            || (0x2A700...0x2B73F).contains(scalarValue)
+            || (0x2B740...0x2B81F).contains(scalarValue)
+            || (0x2B820...0x2CEAF).contains(scalarValue)
+            || (0x2CEB0...0x2EBEF).contains(scalarValue)
+            || (0x30000...0x3134F).contains(scalarValue)
+    }
 }

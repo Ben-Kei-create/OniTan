@@ -211,17 +211,37 @@ struct WrongAnswerDetailSheet: View {
     @State private var showPractice = false
 
     private var fullQuestion: Question? {
-        allQuestions.first { $0.kanji == entry.kanji }
+        if let questionID = entry.questionID,
+           let exactMatch = allQuestions.first(where: { $0.id == questionID }) {
+            return exactMatch
+        }
+
+        return allQuestions.first {
+            $0.kanji == entry.kanji && $0.answer == entry.correctAnswer
+        } ?? allQuestions.first {
+            $0.kanji == entry.kanji
+        }
     }
 
     /// A single-kanji practice session built from every exam-eligible
     /// question matching this entry's kanji.
     private var practiceStage: Stage {
-        let questions = allQuestions.filter {
-            $0.kanji == entry.kanji && $0.kind.isExamEligible
+        let questions: [Question]
+        if entry.kanji.isSingleKanjiCharacter {
+            questions = allQuestions.filter {
+                $0.catalogKanjiCharacters.contains(entry.kanji) && $0.kind.isExamEligible
+            }
+        } else if let fullQuestion {
+            questions = [fullQuestion]
+        } else {
+            questions = []
         }
         let fallback = fullQuestion.map { [$0] } ?? []
         return Stage(stage: -4, questions: questions.isEmpty ? fallback : questions)
+    }
+
+    private var practiceButtonTitle: String {
+        entry.kanji.isSingleKanjiCharacter ? "この漢字を復習する" : "この問題を復習する"
     }
 
     var body: some View {
@@ -279,7 +299,7 @@ struct WrongAnswerDetailSheet: View {
                                 HStack(spacing: 8) {
                                     Image(systemName: "arrow.clockwise")
                                         .font(.system(size: 14, weight: .bold))
-                                    Text("この漢字を復習する")
+                                    Text(practiceButtonTitle)
                                         .font(.system(.headline, design: .rounded))
                                         .fontWeight(.bold)
                                 }

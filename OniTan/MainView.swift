@@ -315,34 +315,37 @@ struct MainView: View {
         .accessibilityIdentifier("quiz_kanji")
     }
 
+    @ViewBuilder
     private func favoriteButton(scale: CGFloat) -> some View {
-        let isFavorite = favoriteRepo.isFavorite(vm.currentQuestion.kanji)
+        if let favoriteKanji = vm.currentQuestion.favoriteKanjiCharacter {
+            let isFavorite = favoriteRepo.isFavorite(favoriteKanji)
 
-        return Button {
-            withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
-                favoriteRepo.toggle(vm.currentQuestion.kanji)
+            Button {
+                withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
+                    favoriteRepo.toggle(favoriteKanji)
+                }
+                OniTanTheme.haptic(.light)
+            } label: {
+                Image(systemName: isFavorite ? "star.fill" : "star")
+                    .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
+                    .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
+                    .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
+                    .background(Color.black.opacity(0.18))
+                    .overlay(
+                        Circle()
+                            .stroke(
+                                isFavorite
+                                    ? OniTanTheme.accentWeak.opacity(0.5)
+                                    : OniTanTheme.cardBorder,
+                                lineWidth: 1
+                            )
+                    )
+                    .clipShape(Circle())
             }
-            OniTanTheme.haptic(.light)
-        } label: {
-            Image(systemName: isFavorite ? "star.fill" : "star")
-                .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
-                .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
-                .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
-                .background(Color.black.opacity(0.18))
-                .overlay(
-                    Circle()
-                        .stroke(
-                            isFavorite
-                                ? OniTanTheme.accentWeak.opacity(0.5)
-                                : OniTanTheme.cardBorder,
-                            lineWidth: 1
-                        )
-                )
-                .clipShape(Circle())
+            .accessibilityLabel(isFavorite ? "お気に入り解除" : "お気に入り追加")
+            .accessibilityHint(isFavorite ? "この漢字をお気に入りから外します" : "この漢字をお気に入りに登録します")
+            .accessibilityIdentifier("quiz_favorite_toggle")
         }
-        .accessibilityLabel(isFavorite ? "お気に入り解除" : "お気に入り追加")
-        .accessibilityHint(isFavorite ? "この漢字をお気に入りから外します" : "この漢字をお気に入りに登録します")
-        .accessibilityIdentifier("quiz_favorite_toggle")
     }
 
     private func reportButton(scale: CGFloat) -> some View {
@@ -759,7 +762,10 @@ struct ExplanationView: View {
     @EnvironmentObject private var favoriteRepo: FavoriteKanjiRepository
     @State private var appear = false
 
-    private var isFavorite: Bool { favoriteRepo.isFavorite(question.kanji) }
+    private var favoriteKanjiCharacter: String? { question.favoriteKanjiCharacter }
+    private var isFavorite: Bool {
+        favoriteKanjiCharacter.map { favoriteRepo.isFavorite($0) } ?? false
+    }
 
     var body: some View {
         ZStack {
@@ -812,21 +818,23 @@ struct ExplanationView: View {
 
                 // Bottom action row
                 HStack(spacing: 0) {
-                    Button {
-                        withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
-                            favoriteRepo.toggle(question.kanji)
+                    if let favoriteKanjiCharacter {
+                        Button {
+                            withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
+                                favoriteRepo.toggle(favoriteKanjiCharacter)
+                            }
+                            OniTanTheme.haptic(.light)
+                        } label: {
+                            Image(systemName: isFavorite ? "star.fill" : "star")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
+                                .frame(width: 64)
+                                .frame(minHeight: 52)
+                                .background(OniTanTheme.cardBackgroundPressed)
                         }
-                        OniTanTheme.haptic(.light)
-                    } label: {
-                        Image(systemName: isFavorite ? "star.fill" : "star")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
-                            .frame(width: 64)
-                            .frame(minHeight: 52)
-                            .background(OniTanTheme.cardBackgroundPressed)
+                        .accessibilityLabel(isFavorite ? "お気に入り解除" : "お気に入り追加")
+                        .accessibilityIdentifier("quiz_explanation_favorite")
                     }
-                    .accessibilityLabel(isFavorite ? "ノートから削除" : "ノートに追加")
-                    .accessibilityIdentifier("quiz_explanation_favorite")
 
                     Button {
                         onDismiss()

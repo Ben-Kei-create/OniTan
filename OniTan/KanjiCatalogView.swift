@@ -1,9 +1,10 @@
 import SwiftUI
 
 private struct KanjiCatalogEntry: Identifiable {
-    let question: Question
+    let character: String
+    let questions: [Question]
 
-    var id: String { question.kanji }
+    var id: String { character }
 }
 
 struct KanjiCatalogView: View {
@@ -16,36 +17,43 @@ struct KanjiCatalogView: View {
     private let columns = [GridItem(.adaptive(minimum: 58), spacing: 10)]
 
     private var favoriteEntryCount: Int {
-        baseEntries.filter { favoriteRepo.isFavorite($0.question.kanji) }.count
+        baseEntries.filter { favoriteRepo.isFavorite($0.character) }.count
     }
 
     private var baseEntries: [KanjiCatalogEntry] {
-        var seen = Set<String>()
-        var result: [KanjiCatalogEntry] = []
+        var grouped: [String: [Question]] = [:]
 
-        for question in questions where seen.insert(question.kanji).inserted {
-            result.append(KanjiCatalogEntry(question: question))
+        for question in allQuestions {
+            for character in question.catalogKanjiCharacters {
+                grouped[character, default: []].append(question)
+            }
         }
 
-        return result
+        return grouped.keys
+            .sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+            .map { character in
+                KanjiCatalogEntry(character: character, questions: grouped[character] ?? [])
+            }
     }
 
     private var entries: [KanjiCatalogEntry] {
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         let filtered = baseEntries.filter { entry in
-            let question = entry.question
-            let matchesFavorite = !favoritesOnly || favoriteRepo.isFavorite(question.kanji)
+            let matchesFavorite = !favoritesOnly || favoriteRepo.isFavorite(entry.character)
             let matchesQuery = query.isEmpty
-                || question.kanji.localizedStandardContains(query)
-                || question.answer.localizedStandardContains(query)
-                || question.displayPrompt.localizedStandardContains(query)
-                || question.displayExplanation.localizedStandardContains(query)
+                || entry.character.localizedStandardContains(query)
+                || entry.questions.contains { question in
+                    question.answer.localizedStandardContains(query)
+                        || question.displayPrompt.localizedStandardContains(query)
+                        || question.displayExplanation.localizedStandardContains(query)
+                        || question.kind.displayName.localizedStandardContains(query)
+                }
             return matchesFavorite && matchesQuery
         }
 
         let result = filtered
-        let favorites = result.filter { favoriteRepo.isFavorite($0.question.kanji) }
-        let others = result.filter { !favoriteRepo.isFavorite($0.question.kanji) }
+        let favorites = result.filter { favoriteRepo.isFavorite($0.character) }
+        let others = result.filter { !favoriteRepo.isFavorite($0.character) }
         return favorites + others
     }
 
@@ -71,7 +79,7 @@ struct KanjiCatalogView: View {
                                         KanjiCatalogCell(entry: entry)
                                     }
                                     .buttonStyle(.plain)
-                                    .accessibilityLabel("\(entry.question.kanji) の詳細")
+                                    .accessibilityLabel("\(entry.character) の詳細")
                                     .accessibilityHint("タップして読みと解説を見る")
                                 }
                             }
@@ -106,7 +114,7 @@ struct KanjiCatalogView: View {
                     .foregroundColor(OniTanTheme.accentWeak)
             }
 
-            Text("一覧から漢字を選ぶと、読みと解説を確認できます。お気に入りはホームからまとめて学習できます。")
+            Text("一覧は漢字1文字のみを表示します。詳細では読み・意味・関連する出題例を確認できます。")
                 .font(.system(.subheadline, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -250,7 +258,7 @@ private struct KanjiCatalogCell: View {
                         .stroke(OniTanTheme.cardBorder, lineWidth: 1)
                 )
 
-            if favoriteRepo.isFavorite(entry.question.kanji) {
+            if favoriteRepo.isFavorite(entry.character) {
                 HStack {
                     Image(systemName: "star.fill")
                         .font(.system(size: 10, weight: .bold))
@@ -263,7 +271,7 @@ private struct KanjiCatalogCell: View {
                 .padding(6)
             }
 
-            Text(entry.question.kanji)
+            Text(entry.character)
                 .font(.system(size: 28, weight: .black, design: .rounded))
                 .foregroundColor(OniTanTheme.textPrimary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -279,14 +287,54 @@ private struct KanjiCatalogCell: View {
 private struct KanjiCatalogDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
 
     let entry: KanjiCatalogEntry
 
-    private var explanationLines: [String] {
-        entry.question.displayExplanation
-            .split(separator: "\n")
-            .map(String.init)
-            .filter { !$0.isEmpty }
+    private var answerReadings: [String] {
+        let readingKinds: Set<QuestionKind> = [
+            .reading, .sentenceReading, .hyogaiReading, .compoundReadingKun, .passageReading
+        ]
+        return unique(
+            entry.questions
+                .filter { readingKinds.contains($0.kind) }
+                .map(\.answer)
+                .filter { !$0.isEmpty && !$0.containsKanjiCharacter && !$0.contains("→") }
+        )
+    }
+
+    private var onyomi: [String] {
+        unique(entry.questions.flatMap { $0.readingMetadata.onyomi })
+    }
+
+    private var kunyomi: [String] {
+        unique(entry.questions.flatMap { $0.readingMetadata.kunyomi })
+    }
+
+    private var meanings: [String] {
+        unique(
+            entry.questions.flatMap { question in
+                question.displayExplanation
+                    .split(separator: "\n")
+                    .map(String.init)
+                    .compactMap { line in
+                        trimmedValue(from: line, prefixes: ["意味:", "意味："])
+                    }
+            }
+        )
+    }
+
+    private var relatedQuestions: [Question] {
+        var seen = Set<String>()
+        return entry.questions.filter { seen.insert($0.id).inserted }
+    }
+
+    private var kindSummary: String {
+        unique(relatedQuestions.map(\.kind.displayName)).joined(separator: " / ")
+    }
+
+    private var isFavorite: Bool {
+        favoriteRepo.isFavorite(entry.character)
     }
 
     var body: some View {
@@ -298,8 +346,13 @@ private struct KanjiCatalogDetailView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         heroCard
-                        answerCard
-                        explanationCard
+                        if !answerReadings.isEmpty || !onyomi.isEmpty || !kunyomi.isEmpty {
+                            readingCard
+                        }
+                        if !meanings.isEmpty {
+                            meaningCard
+                        }
+                        relatedQuestionCard
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 20)
@@ -310,7 +363,21 @@ private struct KanjiCatalogDetailView: View {
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
+                        favoriteRepo.toggle(entry.character)
+                        OniTanTheme.haptic(.light)
+                    } label: {
+                        Image(systemName: isFavorite ? "star.fill" : "star")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
+                            .frame(width: 34, height: 34)
+                            .background(Color.black.opacity(0.16))
+                            .overlay(Circle().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                            .clipShape(Circle())
+                    }
+                    .accessibilityLabel(isFavorite ? "お気に入り解除" : "お気に入り追加")
+
                     Button {
                         dismiss()
                     } label: {
@@ -330,14 +397,17 @@ private struct KanjiCatalogDetailView: View {
 
     private var heroCard: some View {
         VStack(spacing: 14) {
-            Text(entry.question.kanji)
+            Text(entry.character)
                 .font(.system(size: 96, weight: .black, design: .rounded))
                 .foregroundColor(OniTanTheme.textPrimary)
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
 
             HStack(spacing: 8) {
-                detailPill(title: "分野", value: entry.question.kind.displayName)
+                detailPill(title: "出題", value: "\(relatedQuestions.count) 問")
+                if !kindSummary.isEmpty {
+                    detailPill(title: "形式", value: kindSummary)
+                }
             }
         }
         .frame(maxWidth: .infinity)
@@ -345,28 +415,82 @@ private struct KanjiCatalogDetailView: View {
         .oniCard()
     }
 
-    private var answerCard: some View {
-        VStack(alignment: .leading, spacing: 10) {
+    private var readingCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
             cardTitle("読み")
 
-            Text(entry.question.answer)
-                .font(.system(size: 28, weight: .black, design: .rounded))
-                .foregroundColor(OniTanTheme.accentPrimary)
+            if !answerReadings.isEmpty {
+                readingGroup(title: "正解として出た読み", values: answerReadings)
+            }
+            if !onyomi.isEmpty {
+                readingGroup(title: "音読み", values: onyomi)
+            }
+            if !kunyomi.isEmpty {
+                readingGroup(title: "訓読み", values: kunyomi)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
         .oniCard()
     }
 
-    private var explanationCard: some View {
+    private var meaningCard: some View {
         VStack(alignment: .leading, spacing: 12) {
-            cardTitle("解説")
+            cardTitle("意味")
 
-            ForEach(explanationLines, id: \.self) { line in
-                Text(line)
+            ForEach(meanings.prefix(6), id: \.self) { meaning in
+                Text(meaning)
                     .font(.system(.body, design: .rounded))
                     .foregroundColor(OniTanTheme.textSecondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(16)
+        .oniCard()
+    }
+
+    private var relatedQuestionCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            cardTitle("出題例")
+
+            ForEach(Array(relatedQuestions.prefix(8).enumerated()), id: \.element.id) { index, question in
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 8) {
+                        Text("\(index + 1)")
+                            .font(.system(size: 11, weight: .black, design: .rounded))
+                            .foregroundColor(OniTanTheme.cardBackground)
+                            .frame(width: 22, height: 22)
+                            .background(Circle().fill(OniTanTheme.accentWeak))
+
+                        Text(question.kind.displayName)
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundColor(OniTanTheme.textTertiary)
+
+                        Spacer()
+
+                        Text(question.answer)
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundColor(OniTanTheme.accentWeak)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                    }
+
+                    Text(question.displayPrompt)
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(OniTanTheme.cardBackgroundPressed)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                        )
+                )
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -381,6 +505,19 @@ private struct KanjiCatalogDetailView: View {
             .foregroundColor(OniTanTheme.textPrimary)
     }
 
+    private func readingGroup(title: String, values: [String]) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .font(.system(size: 11, weight: .bold, design: .rounded))
+                .foregroundColor(OniTanTheme.textTertiary)
+
+            Text(values.joined(separator: "・"))
+                .font(.system(size: 18, weight: .black, design: .rounded))
+                .foregroundColor(OniTanTheme.accentWeak)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
     private func detailPill(title: String, value: String) -> some View {
         VStack(spacing: 4) {
             Text(title)
@@ -390,10 +527,26 @@ private struct KanjiCatalogDetailView: View {
                 .font(.system(.subheadline, design: .rounded))
                 .fontWeight(.bold)
                 .foregroundColor(OniTanTheme.textPrimary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
         .background(OniTanTheme.cardBackgroundPressed)
         .clipShape(RoundedRectangle(cornerRadius: 14))
+    }
+
+    private func trimmedValue(from line: String, prefixes: [String]) -> String? {
+        let trimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let prefix = prefixes.first(where: { trimmed.hasPrefix($0) }) else { return nil }
+        let value = trimmed
+            .replacingOccurrences(of: prefix, with: "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return value.isEmpty ? nil : value
+    }
+
+    private func unique(_ values: [String]) -> [String] {
+        var seen = Set<String>()
+        return values.filter { seen.insert($0).inserted }
     }
 }

@@ -246,7 +246,7 @@ struct HomeView: View {
                     .font(.system(size: 12, weight: .black, design: .rounded))
                     .foregroundColor(HomeInk.gold)
 
-                OniProgressBar(progress: state.progress, height: 5)
+                HomeInlineProgressBar(progress: state.progress)
 
                 Text("\(state.xpInLevel)/\(state.xpToNext) XP")
                     .font(.system(size: 11, weight: .medium, design: .rounded))
@@ -481,6 +481,24 @@ private enum HomePrimaryCardStyle {
     case disabled  // データ読み込み失敗時のプレースホルダー
 }
 
+private struct HomeInlineProgressBar: View {
+    let progress: Double
+
+    var body: some View {
+        GeometryReader { proxy in
+            ZStack(alignment: .leading) {
+                Capsule()
+                    .fill(HomeInk.border)
+
+                Capsule()
+                    .fill(HomeInk.gold)
+                    .frame(width: max(0, min(proxy.size.width, proxy.size.width * progress)))
+            }
+        }
+        .frame(height: 5)
+    }
+}
+
 private struct HomePrimaryActionCard: View {
     let title: String
     let style: HomePrimaryCardStyle
@@ -619,4 +637,3 @@ private struct HomePrimaryActionCard: View {
         }
     }
 }
-

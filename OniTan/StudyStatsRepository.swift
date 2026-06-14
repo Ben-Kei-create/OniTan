@@ -11,6 +11,8 @@ struct StageStats: Codable {
     var correctAttempts: Int
     /// Kanji answered incorrectly at least once (not yet mastered).
     var wrongKanji: [String]
+    /// Exact question IDs answered incorrectly at least once.
+    var wrongQuestionIDs: [String]
     /// Full wrong-answer log with timestamps for the notebook view.
     var wrongAnswerLog: [WrongAnswerEntry]
 
@@ -24,7 +26,37 @@ struct StageStats: Codable {
         self.totalAttempts = 0
         self.correctAttempts = 0
         self.wrongKanji = []
+        self.wrongQuestionIDs = []
         self.wrongAnswerLog = []
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case stageNumber
+        case totalAttempts
+        case correctAttempts
+        case wrongKanji
+        case wrongQuestionIDs
+        case wrongAnswerLog
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        stageNumber = try container.decode(Int.self, forKey: .stageNumber)
+        totalAttempts = try container.decode(Int.self, forKey: .totalAttempts)
+        correctAttempts = try container.decode(Int.self, forKey: .correctAttempts)
+        wrongKanji = try container.decodeIfPresent([String].self, forKey: .wrongKanji) ?? []
+        wrongQuestionIDs = try container.decodeIfPresent([String].self, forKey: .wrongQuestionIDs) ?? []
+        wrongAnswerLog = try container.decodeIfPresent([WrongAnswerEntry].self, forKey: .wrongAnswerLog) ?? []
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(stageNumber, forKey: .stageNumber)
+        try container.encode(totalAttempts, forKey: .totalAttempts)
+        try container.encode(correctAttempts, forKey: .correctAttempts)
+        try container.encode(wrongKanji, forKey: .wrongKanji)
+        try container.encode(wrongQuestionIDs, forKey: .wrongQuestionIDs)
+        try container.encode(wrongAnswerLog, forKey: .wrongAnswerLog)
     }
 }
 
@@ -32,15 +64,26 @@ struct StageStats: Codable {
 
 struct WrongAnswerEntry: Codable, Identifiable {
     let id: UUID
+    let questionID: String?
     let kanji: String
+    let questionKind: QuestionKind?
     let selectedAnswer: String    // what the user chose (empty string if not captured)
     let correctAnswer: String
     let stageNumber: Int
     let date: Date
 
-    init(kanji: String, selectedAnswer: String = "", correctAnswer: String, stageNumber: Int) {
+    init(
+        questionID: String? = nil,
+        kanji: String,
+        questionKind: QuestionKind? = nil,
+        selectedAnswer: String = "",
+        correctAnswer: String,
+        stageNumber: Int
+    ) {
         self.id = UUID()
+        self.questionID = questionID
         self.kanji = kanji
+        self.questionKind = questionKind
         self.selectedAnswer = selectedAnswer
         self.correctAnswer = correctAnswer
         self.stageNumber = stageNumber
@@ -76,6 +119,8 @@ final class StudyStatsRepository: ObservableObject {
     func record(
         stageNumber: Int,
         kanji: String,
+        questionID: String? = nil,
+        questionKind: QuestionKind? = nil,
         wasCorrect: Bool,
         selectedAnswer: String = "",
         correctAnswer: String = ""
@@ -86,13 +131,21 @@ final class StudyStatsRepository: ObservableObject {
         if wasCorrect {
             stats.correctAttempts += 1
             stats.wrongKanji.removeAll { $0 == kanji }
+            if let questionID {
+                stats.wrongQuestionIDs.removeAll { $0 == questionID }
+            }
         } else {
             if !stats.wrongKanji.contains(kanji) {
                 stats.wrongKanji.append(kanji)
             }
+            if let questionID, !stats.wrongQuestionIDs.contains(questionID) {
+                stats.wrongQuestionIDs.append(questionID)
+            }
             // Append to wrong-answer log (cap at 200 per stage to avoid bloat)
             let entry = WrongAnswerEntry(
+                questionID: questionID,
                 kanji: kanji,
+                questionKind: questionKind,
                 selectedAnswer: selectedAnswer,
                 correctAnswer: correctAnswer,
                 stageNumber: stageNumber
@@ -111,12 +164,21 @@ final class StudyStatsRepository: ObservableObject {
 
     func weakQuestions(for stage: Stage) -> [Question] {
         guard let stats = stageStats[stage.stage] else { return [] }
+        let wrongQuestionIDs = Set(stats.wrongQuestionIDs)
+        if !wrongQuestionIDs.isEmpty {
+            return stage.questions.filter { wrongQuestionIDs.contains($0.id) }
+        }
         return stage.questions.filter { stats.wrongKanji.contains($0.kanji) }
     }
 
     /// All weak kanji for a given stage (used by QuizSessionViewModel).
     func allWeakKanji(forStage stageNumber: Int) -> [String] {
         stageStats[stageNumber]?.wrongKanji ?? []
+    }
+
+    /// Exact weak question IDs for a given stage.
+    func allWeakQuestionIDs(forStage stageNumber: Int) -> [String] {
+        stageStats[stageNumber]?.wrongQuestionIDs ?? []
     }
 
     /// Recent wrong-answer log entries across all stages, newest first.
@@ -163,6 +225,7 @@ final class StudyStatsRepository: ObservableObject {
         for stageNumber in stageStats.keys {
             var stats = stageStats[stageNumber]!
             let before = stats.wrongKanji.count
+            let beforeQuestionIDCount = stats.wrongQuestionIDs.count
             stats.wrongKanji.removeAll { kanji in
                 let lastWrong = stats.wrongAnswerLog
                     .filter { $0.kanji == kanji }
@@ -172,7 +235,15 @@ final class StudyStatsRepository: ObservableObject {
                 guard let lastDate = lastWrong else { return true }
                 return lastDate < cutoff
             }
-            if stats.wrongKanji.count != before {
+            stats.wrongQuestionIDs.removeAll { questionID in
+                let lastWrong = stats.wrongAnswerLog
+                    .filter { $0.questionID == questionID }
+                    .map { $0.date }
+                    .max()
+                guard let lastDate = lastWrong else { return true }
+                return lastDate < cutoff
+            }
+            if stats.wrongKanji.count != before || stats.wrongQuestionIDs.count != beforeQuestionIDCount {
                 stageStats[stageNumber] = stats
                 changed = true
             }

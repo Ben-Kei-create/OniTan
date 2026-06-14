@@ -6,11 +6,13 @@ enum FavoriteSessionBuilder {
         favoriteKanji: Set<String>,
         questions: [Question] = allQuestions
     ) -> Stage {
+        let favoriteCharacters = Set(favoriteKanji.filter(\.isSingleKanjiCharacter))
         var seen = Set<String>()
         let filtered = questions.filter { question in
-            question.kind.isExamEligible
-                && favoriteKanji.contains(question.kanji)
-                && seen.insert(question.kanji).inserted
+            let relatedCharacters = Set(question.catalogKanjiCharacters)
+            return question.kind.isExamEligible
+                && !relatedCharacters.isDisjoint(with: favoriteCharacters)
+                && seen.insert(question.id).inserted
         }
         return Stage(stage: -2, questions: filtered)
     }

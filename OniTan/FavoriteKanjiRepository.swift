@@ -9,7 +9,7 @@ final class FavoriteKanjiRepository: ObservableObject {
     convenience init() {
         self.init(
             store: UserDefaults.standard,
-            availableKanji: Set(allQuestions.map(\.kanji))
+            availableKanji: Set(allQuestions.flatMap(\.catalogKanjiCharacters))
         )
     }
 
@@ -22,10 +22,11 @@ final class FavoriteKanjiRepository: ObservableObject {
     var count: Int { favoriteKanji.count }
 
     func isFavorite(_ kanji: String) -> Bool {
-        favoriteKanji.contains(kanji)
+        kanji.isSingleKanjiCharacter && favoriteKanji.contains(kanji)
     }
 
     func toggle(_ kanji: String) {
+        guard kanji.isSingleKanjiCharacter else { return }
         if favoriteKanji.contains(kanji) {
             favoriteKanji.remove(kanji)
         } else {
@@ -35,7 +36,10 @@ final class FavoriteKanjiRepository: ObservableObject {
     }
 
     func syncAvailableKanji(_ availableKanji: Set<String>) {
-        let filtered = favoriteKanji.filter { availableKanji.contains($0) }
+        let singleAvailableKanji = availableKanji.filter(\.isSingleKanjiCharacter)
+        let filtered = favoriteKanji.filter { kanji in
+            kanji.isSingleKanjiCharacter && singleAvailableKanji.contains(kanji)
+        }
         guard filtered != favoriteKanji else { return }
         favoriteKanji = filtered
         save()

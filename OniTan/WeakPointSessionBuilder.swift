@@ -11,14 +11,20 @@ enum WeakPointSessionBuilder {
         questions: [Question] = allQuestions
     ) -> Stage {
         var weakKanji = Set<String>()
+        var weakQuestionIDs = Set<String>()
         for stage in allStages {
             weakKanji.formUnion(statsRepo.allWeakKanji(forStage: stage.stage))
+            weakQuestionIDs.formUnion(statsRepo.allWeakQuestionIDs(forStage: stage.stage))
         }
 
         var seen = Set<String>()
         let filtered = questions.filter { question in
-            question.kind.isExamEligible
-                && weakKanji.contains(question.kanji)
+            guard question.kind.isExamEligible else { return false }
+            if !weakQuestionIDs.isEmpty {
+                return weakQuestionIDs.contains(question.id)
+                    && seen.insert(question.id).inserted
+            }
+            return weakKanji.contains(question.kanji)
                 && seen.insert(question.kanji).inserted
         }
         return Stage(stage: -3, questions: filtered)

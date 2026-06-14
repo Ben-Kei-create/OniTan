@@ -192,6 +192,20 @@ struct FavoriteKanjiRepositoryTests {
         #expect(!repo.isFavorite("庖"))
         #expect(repo.count == 1)
     }
+
+    @Test func favorites_rejectsNonSingleKanjiKeys() {
+        let store = InMemoryPersistenceStore()
+        let repo = FavoriteKanjiRepository(store: store, availableKanji: ["魁", "庖", "補"])
+
+        repo.toggle("誤字訂正")
+        repo.toggle("魁庖")
+        repo.toggle("補")
+
+        #expect(!repo.isFavorite("誤字訂正"))
+        #expect(!repo.isFavorite("魁庖"))
+        #expect(repo.isFavorite("補"))
+        #expect(repo.count == 1)
+    }
 }
 
 struct PlayFontManagerTests {
@@ -233,6 +247,78 @@ struct FavoriteSessionBuilderTests {
 
         #expect(stage.stage == -2)
         #expect(stage.questions.map(\.kanji) == ["魁", "麒"])
+    }
+
+    @Test func favoriteStage_matchesCatalogCharactersInsteadOfLegacyKanjiField() {
+        let pool = [
+            Question(
+                id: "errcor-test",
+                kanji: "誤字訂正",
+                choices: ["捕→補", "報→補"],
+                answer: "捕→補",
+                explain: "",
+                kind: .errorCorrection,
+                payload: QuestionPayload(wrongKanji: "捕", correctKanji: "補")
+            ),
+            Question(
+                id: "hyogai-test",
+                kanji: "憂鬱",
+                choices: ["ゆううつ", "ゆうゆう"],
+                answer: "ゆううつ",
+                explain: "",
+                kind: .hyogaiReading,
+                payload: QuestionPayload(targetKanji: "憂鬱")
+            ),
+            Question(
+                id: "plain-test",
+                kanji: "庖",
+                choices: ["ほう", "びょう"],
+                answer: "ほう",
+                explain: "",
+                kind: .sentenceReading
+            )
+        ]
+
+        let stage = FavoriteSessionBuilder.buildFavoriteStage(
+            favoriteKanji: ["補", "鬱"],
+            questions: pool
+        )
+
+        #expect(stage.questions.map(\.id) == ["errcor-test", "hyogai-test"])
+    }
+}
+
+struct QuestionKeyDesignTests {
+
+    @Test func favoriteKanjiCharacter_prefersTheSingleTargetOnlyWhenUnambiguous() {
+        let yoji = Question(
+            kanji: "疑心暗鬼",
+            choices: ["心", "念"],
+            answer: "心",
+            explain: "",
+            kind: .yojijukugo,
+            payload: QuestionPayload(yoji: "疑□暗鬼")
+        )
+        let writing = Question(
+            kanji: "憂鬱",
+            choices: ["憂鬱", "憂欝"],
+            answer: "憂鬱",
+            explain: "",
+            kind: .writing,
+            payload: QuestionPayload(targetKanji: "憂鬱")
+        )
+        let errorCorrection = Question(
+            kanji: "誤字訂正",
+            choices: ["捕→補", "報→補"],
+            answer: "捕→補",
+            explain: "",
+            kind: .errorCorrection,
+            payload: QuestionPayload(wrongKanji: "捕", correctKanji: "補")
+        )
+
+        #expect(yoji.favoriteKanjiCharacter == "心")
+        #expect(writing.favoriteKanjiCharacter == nil)
+        #expect(errorCorrection.favoriteKanjiCharacter == "補")
     }
 }
 
@@ -285,7 +371,7 @@ struct QuizProblemReportBuilderTests {
 @MainActor
 struct ExamRoundProgressionTests {
 
-    @Test func firstRoundIsUnlockedAndSecondRequiresPreviousRoundAt80Percent() {
+    @Test func firstRoundIsUnlockedAndSecondRequiresPreviousRoundAt90Percent() {
         let repo = ExamResultRepository(store: InMemoryPersistenceStore())
         let round1 = ExamRound(number: 1)
         let round2 = ExamRound(number: 2)
@@ -293,11 +379,11 @@ struct ExamRoundProgressionTests {
         #expect(round1.isUnlocked(using: repo))
         #expect(!round2.isUnlocked(using: repo))
 
-        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 79, total: 100))
+        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 89, total: 100))
         #expect(!repo.hasPassed(blueprintID: round1.blueprintID, threshold: ExamRound.passThreshold))
         #expect(!round2.isUnlocked(using: repo))
 
-        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 80, total: 100))
+        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 90, total: 100))
         #expect(repo.hasPassed(blueprintID: round1.blueprintID, threshold: ExamRound.passThreshold))
         #expect(round2.isUnlocked(using: repo))
     }
@@ -308,7 +394,7 @@ struct ExamRoundProgressionTests {
 
         #expect(!round10.isUnlocked(using: repo))
 
-        repo.save(Self.result(blueprintID: ExamRound.blueprintID(for: 9), correct: 8, total: 10))
+        repo.save(Self.result(blueprintID: ExamRound.blueprintID(for: 9), correct: 9, total: 10))
         #expect(round10.isUnlocked(using: repo))
     }
 
