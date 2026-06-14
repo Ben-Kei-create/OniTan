@@ -258,7 +258,7 @@ struct QuestionPromptView: View {
     private var contextReadingContent: some View {
         let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
         let target = contextReadingTarget
-        let bodyFont = playFontManager.font(size: scaled(21, min: 17), weight: .medium)
+        let bodyFont = playFontManager.font(size: scaled(28, min: 22), weight: .semibold)
         let meaning = question.termMeaning
 
         return VStack(alignment: .leading, spacing: scaled(10, min: 7)) {
