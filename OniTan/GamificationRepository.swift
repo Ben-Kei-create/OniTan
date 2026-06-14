@@ -71,6 +71,19 @@ final class GamificationRepository: ObservableObject {
     @Published private(set) var levelProgress: Double = 0
     /// Set to the new level when a level-up occurs; cleared by `clearLevelUpFlag()`.
     @Published private(set) var recentLevelUp: Int? = nil
+    /// Queued "解放" messages produced when a level-up crosses an unlock threshold.
+    /// Cleared by `clearUnlockNotices()` once the UI has displayed them.
+    @Published private(set) var unlockNotices: [String] = []
+
+    /// Level thresholds at which new content becomes available, paired with the
+    /// message shown to the player once they cross them.
+    private static let unlockThresholds: [(level: Int, message: String)] = [
+        (5, "「四字熟語道場」が解放されました！"),
+        (6, "「類義語・対義語道場」が解放されました！"),
+        (7, "「故事・ことわざ道場」が解放されました！"),
+        (10, "「連続鬼たん」が解放されました！"),
+        (15, "「文章題道場」が解放されました！")
+    ]
 
     private var publishedOnce = false
 
@@ -184,6 +197,8 @@ final class GamificationRepository: ObservableObject {
 
     func clearLevelUpFlag() { recentLevelUp = nil }
 
+    func clearUnlockNotices() { unlockNotices = [] }
+
     private func publish() {
         totalXP = data.totalXP
         todayXP = data.todayXP
@@ -191,6 +206,10 @@ final class GamificationRepository: ObservableObject {
         let newLevel = state.level
         if publishedOnce && newLevel > level {
             recentLevelUp = newLevel
+            let newNotices = Self.unlockThresholds
+                .filter { $0.level > level && $0.level <= newLevel }
+                .map { $0.message }
+            unlockNotices.append(contentsOf: newNotices)
         }
         level = newLevel
         xpInCurrentLevel = state.xpInLevel

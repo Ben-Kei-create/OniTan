@@ -28,8 +28,12 @@ struct HomeView: View {
     @EnvironmentObject var masteryRepo: MasteryRepository
     @EnvironmentObject var examResultRepo: ExamResultRepository
 
+    static let streakChallengeUnlockLevel = 10
+
     @State private var freezeToastVisible = false
     @State private var lastShownFreezeID: Int = -1
+    @State private var unlockToastMessage: String? = nil
+    @State private var unlockToastQueue: [String] = []
 
     var body: some View {
         VStack(spacing: 0) {
@@ -75,6 +79,10 @@ struct HomeView: View {
                     freezeConsumedToast
                         .padding(.top, 12)
                         .transition(.move(edge: .top).combined(with: .opacity))
+                } else if let unlockToastMessage {
+                    unlockToast(unlockToastMessage)
+                        .padding(.top, 12)
+                        .transition(.move(edge: .top).combined(with: .opacity))
                 }
             }
             .onAppear {
@@ -83,11 +91,15 @@ struct HomeView: View {
                     lastShownFreezeID = current
                     if current > 0 { showFreezeToast() }
                 }
+                showNextUnlockToastIfNeeded()
             }
             .onChange(of: streakRepo.freezeConsumedNoticeID) { newID in
                 guard newID != lastShownFreezeID else { return }
                 lastShownFreezeID = newID
                 showFreezeToast()
+            }
+            .onChange(of: xpRepo.unlockNotices) { _ in
+                showNextUnlockToastIfNeeded()
             }
         }
         .background(inkBackground.ignoresSafeArea())
@@ -144,6 +156,47 @@ struct HomeView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             withAnimation(.easeInOut(duration: 0.2)) {
                 freezeToastVisible = false
+            }
+        }
+    }
+
+    private func unlockToast(_ message: String) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: "lock.open.fill")
+                .foregroundColor(HomeInk.gold)
+            Text(message)
+                .font(.system(.caption, design: .rounded))
+                .foregroundColor(HomeInk.textPrimary)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(
+            Capsule()
+                .fill(Color.black.opacity(0.45))
+                .overlay(Capsule().stroke(HomeInk.border, lineWidth: 1))
+        )
+        .accessibilityLabel(message)
+    }
+
+    private func showNextUnlockToastIfNeeded() {
+        if !xpRepo.unlockNotices.isEmpty {
+            unlockToastQueue.append(contentsOf: xpRepo.unlockNotices)
+            xpRepo.clearUnlockNotices()
+        }
+
+        guard unlockToastMessage == nil, !freezeToastVisible, !unlockToastQueue.isEmpty else { return }
+
+        let next = unlockToastQueue.removeFirst()
+        withAnimation(.easeInOut(duration: 0.2)) {
+            unlockToastMessage = next
+        }
+        OniTanTheme.hapticSuccess()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.4) {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                unlockToastMessage = nil
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                showNextUnlockToastIfNeeded()
             }
         }
     }
@@ -363,14 +416,25 @@ struct HomeView: View {
                 icon: "books.vertical.fill"
             )
 
-            HomePrimaryActionCard(
-                title: "連続鬼たん",
-                style: .neutral,
-                isCompact: isCompact,
-                destination: AnyView(StreakChallengeView(xpRepo: xpRepo)),
-                subtitle: "1問8秒・ミスで終了のタイムアタック",
-                icon: "bolt.fill"
-            )
+            if xpRepo.level >= Self.streakChallengeUnlockLevel {
+                HomePrimaryActionCard(
+                    title: "連続鬼たん",
+                    style: .neutral,
+                    isCompact: isCompact,
+                    destination: AnyView(StreakChallengeView(xpRepo: xpRepo)),
+                    subtitle: "1問8秒・ミスで終了のタイムアタック",
+                    icon: "bolt.fill"
+                )
+            } else {
+                HomePrimaryActionCard(
+                    title: "連続鬼たん",
+                    style: .disabled,
+                    isCompact: isCompact,
+                    destination: nil,
+                    subtitle: "Lv.\(Self.streakChallengeUnlockLevel) で解放されます",
+                    icon: "lock.fill"
+                )
+            }
         }
     }
 
