@@ -2004,7 +2004,7 @@
       }
     },
     {
-      "kanji": "誣いた",
+      "kanji": "詑いた",
       "choices": [
         "あざむいた",
         "あなどった",
@@ -2021,7 +2021,7 @@
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
-        "targetKanji": "誣",
+        "targetKanji": "詑",
         "sentenceContext": "敵ばかりか味方をも誣いた。"
       }
     },
