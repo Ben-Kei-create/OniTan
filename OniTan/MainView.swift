@@ -254,19 +254,20 @@ struct MainView: View {
             Spacer(minLength: scaled(8, by: scale, min: 4))
 
             // Choice area
-            switch vm.phase {
-            case .answering:
-                choiceStack(scale: scale)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-            case .showingExplanation:
-                answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
-                    .transition(.scale(scale: 0.96).combined(with: .opacity))
-            case .showingWrongAnswer(let correct):
-                answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
-                    .transition(.scale(scale: 0.96).combined(with: .opacity))
-            default:
-                EmptyView()
+            Group {
+                switch vm.phase {
+                case .answering:
+                    choiceStack(scale: scale)
+                case .showingExplanation:
+                    answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                case .showingWrongAnswer(let correct):
+                    answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                default:
+                    EmptyView()
+                }
             }
+            .transition(.opacity)
+            .animation(.easeInOut(duration: 0.22), value: vm.phase)
 
             Spacer(minLength: scaled(10, by: scale, min: 6))
         }
