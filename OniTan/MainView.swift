@@ -722,7 +722,9 @@ struct MainView: View {
                 } label: {
                     Text("ホームへ戻る")
                         .font(playFont(13, weight: .semibold))
-                        .foregroundColor(OniTanTheme.textTertiary)
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .contentShape(Rectangle())
                 }
             }
             .padding(.horizontal, 20)

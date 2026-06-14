@@ -208,7 +208,7 @@ struct SettingsView: View {
                 } else {
                     Text("現在は追加の広告プライバシー操作は不要です。")
                         .font(.system(.caption, design: .rounded))
-                        .foregroundColor(OniTanTheme.textTertiary)
+                        .foregroundColor(OniTanTheme.textSecondary)
                 }
 
                 if let error = adConsentManager.lastErrorMessage {
@@ -294,6 +294,8 @@ struct SettingsView: View {
                             .font(.system(.caption, design: .rounded))
                             .foregroundColor(OniTanTheme.textTertiary)
                             .underline()
+                            .padding(.vertical, 6)
+                            .contentShape(Rectangle())
                     }
                     .disabled(donationManager.isPurchasing)
                     .frame(maxWidth: .infinity)

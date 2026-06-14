@@ -299,7 +299,7 @@ private struct CategoryStageCard: View {
 
                 Text(isLocked ? "前のStageをクリアすると解放されます" : detail)
                     .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundColor(isLocked ? OniTanTheme.textTertiary.opacity(0.72) : OniTanTheme.textSecondary)
+                    .foregroundColor(isLocked ? OniTanTheme.textTertiary : OniTanTheme.textSecondary)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -328,6 +328,13 @@ private struct CategoryStageCard: View {
                 Text("\(Int(accuracy * 100))%")
                     .font(.system(size: 11, weight: .bold, design: .rounded))
                     .foregroundColor(OniTanTheme.textTertiary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(
+                        Capsule()
+                            .fill(OniTanTheme.cardBackgroundPressed)
+                            .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    )
             }
 
             if !isLocked {

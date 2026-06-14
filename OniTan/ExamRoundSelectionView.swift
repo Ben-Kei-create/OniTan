@@ -319,7 +319,7 @@ private struct ExamRoundButtonCard: View {
                     .padding(.vertical, 3)
                     .background(
                         Capsule()
-                            .fill((isLocked ? OniTanTheme.cardBackgroundPressed : OniTanTheme.accentPrimary).opacity(isLocked ? 0.5 : 0.12))
+                            .fill((isLocked ? OniTanTheme.cardBackgroundPressed : OniTanTheme.accentPrimary).opacity(isLocked ? 0.18 : 0.12))
                             .overlay(
                                 Capsule()
                                     .stroke((isLocked ? OniTanTheme.cardBorder : OniTanTheme.accentPrimary).opacity(0.25), lineWidth: 1)

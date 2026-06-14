@@ -158,7 +158,7 @@ private struct ModeCard: View {
 
                         Text("\(questionCount) 問")
                             .font(.system(size: 11, weight: .semibold))
-                            .foregroundColor(OniTanTheme.textTertiary)
+                            .foregroundColor(OniTanTheme.textSecondary)
                             .padding(.horizontal, 7)
                             .padding(.vertical, 2)
                             .background(OniTanTheme.cardBackground)
@@ -167,7 +167,7 @@ private struct ModeCard: View {
 
                     Text(mode.description)
                         .font(.system(.caption, design: .rounded))
-                        .foregroundColor(OniTanTheme.textTertiary)
+                        .foregroundColor(OniTanTheme.textSecondary)
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
                 }
