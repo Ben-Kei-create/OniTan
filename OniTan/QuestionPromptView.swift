@@ -87,24 +87,6 @@ struct QuestionPromptView: View {
                     .transition(.opacity)
             }
 
-            // Animated feedback icon (checkmark / xmark) for clearer correct/incorrect cues
-            if isCorrect || isWrong {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
-                            .font(.system(size: scaled(54, min: 38), weight: .bold))
-                            .foregroundColor(isCorrect ? OniTanTheme.feedbackCorrect : OniTanTheme.accentWrong)
-                            .shadow(color: .black.opacity(0.25), radius: 6)
-                            .accessibilityHidden(true)
-                    }
-                    Spacer()
-                }
-                .padding(scaled(14, min: 10))
-                .transition(.scale(scale: 0.4).combined(with: .opacity))
-                .animation(.spring(response: 0.35, dampingFraction: 0.55), value: isCorrect)
-            }
-
             // Prompt content (lazy-switch on kind)
             Group {
                 switch question.kind {
@@ -130,42 +112,8 @@ struct QuestionPromptView: View {
                 insertion: .move(edge: .trailing).combined(with: .opacity),
                 removal:   .move(edge: .leading).combined(with: .opacity)
             ))
-
-            // Kind label badge (top-left, subtle)
-            VStack {
-                HStack {
-                    kindBadge
-                    Spacer()
-                }
-                Spacer()
-            }
-            .padding(scaled(10, min: 7))
         }
         .frame(height: cardHeight)
-    }
-
-    // MARK: - Kind Badge
-
-    private var kindBadge: some View {
-        HStack(spacing: 3) {
-            Image(systemName: question.kind.systemImage)
-                .font(.system(size: scaled(8, min: 7), weight: .bold))
-            Text(question.kind.displayName)
-                .font(.system(
-                    size: scaled(isRelationKind ? 10 : 9, min: isRelationKind ? 8 : 7),
-                    weight: isRelationKind ? .bold : .medium,
-                    design: .rounded
-                ))
-        }
-        .foregroundColor(isRelationKind ? relationAccent : OniTanTheme.textTertiary.opacity(0.6))
-        .padding(.horizontal, isRelationKind ? 8 : 6)
-        .padding(.vertical, isRelationKind ? 4 : 3)
-        .background(isRelationKind ? relationAccent.opacity(0.14) : OniTanTheme.cardBackground.opacity(0.5))
-        .overlay(
-            Capsule()
-                .stroke(isRelationKind ? relationAccent.opacity(0.3) : Color.clear, lineWidth: 1)
-        )
-        .clipShape(Capsule())
     }
 
     // MARK: - Default: Single Word / Compound
@@ -235,25 +183,48 @@ struct QuestionPromptView: View {
 
     private var commonKanjiContent: some View {
         let terms = question.payload?.blankTerms ?? [question.displayPrompt]
-        let fontSize = scaled(34, min: 24)
+        let fontSize = scaled(46, min: 32)
 
-        return HStack(spacing: scaled(12, min: 8)) {
-            ForEach(terms.prefix(4), id: \.self) { term in
-                Text(term)
-                    .font(playFontManager.font(size: fontSize, weight: .black))
-                    .foregroundColor(OniTanTheme.textPrimary)
-                    .minimumScaleFactor(0.5)
+        return VStack(spacing: scaled(14, min: 10)) {
+            HStack(spacing: scaled(6, min: 4)) {
+                Image(systemName: "square.dashed")
+                    .font(.system(size: scaled(12, min: 10), weight: .bold))
+                    .foregroundColor(OniTanTheme.accentPrimary)
+                    .accessibilityHidden(true)
+
+                Text("□に共通して入る漢字は？")
+                    .font(.system(size: scaled(12, min: 10), weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.accentPrimary)
+            }
+            .opacity(0.85)
+
+            HStack(spacing: scaled(14, min: 9)) {
+                ForEach(terms.prefix(4), id: \.self) { term in
+                    HStack(spacing: 1) {
+                        ForEach(Array(term.enumerated()), id: \.offset) { _, char in
+                            Text(String(char))
+                                .font(playFontManager.font(size: fontSize, weight: .black))
+                                .foregroundColor(
+                                    String(char) == "□"
+                                        ? OniTanTheme.accentPrimary
+                                        : OniTanTheme.textPrimary
+                                )
+                                .shadow(color: .black.opacity(0.3), radius: 3)
+                        }
+                    }
+                    .minimumScaleFactor(0.6)
                     .lineLimit(1)
-                    .padding(.horizontal, scaled(8, min: 5))
-                    .padding(.vertical, scaled(5, min: 3))
+                    .padding(.horizontal, scaled(14, min: 9))
+                    .padding(.vertical, scaled(10, min: 7))
                     .background(
-                        RoundedRectangle(cornerRadius: 8)
+                        RoundedRectangle(cornerRadius: scaled(14, min: 10))
                             .fill(OniTanTheme.accentPrimary.opacity(0.10))
                             .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1)
+                                RoundedRectangle(cornerRadius: scaled(14, min: 10))
+                                    .stroke(OniTanTheme.accentPrimary.opacity(0.28), lineWidth: 1)
                             )
                     )
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -302,14 +273,6 @@ struct QuestionPromptView: View {
                     .foregroundColor(OniTanTheme.accentWeak)
 
                 Spacer()
-
-                Text("下線部")
-                    .font(.system(size: scaled(10, min: 9), weight: .bold, design: .rounded))
-                    .foregroundColor(OniTanTheme.textTertiary)
-                    .padding(.horizontal, 7)
-                    .padding(.vertical, 3)
-                    .background(OniTanTheme.cardBackgroundPressed.opacity(0.72))
-                    .clipShape(Capsule())
             }
 
             if let range = context.range(of: target) {

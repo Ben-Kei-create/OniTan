@@ -351,10 +351,6 @@ private struct KanjiCatalogDetailView: View {
         return entry.questions.filter { seen.insert($0.id).inserted }
     }
 
-    private var kindSummary: String {
-        unique(relatedQuestions.map(\.kind.displayName)).joined(separator: " / ")
-    }
-
     private var isFavorite: Bool {
         favoriteRepo.isFavorite(entry.character)
     }
@@ -424,13 +420,6 @@ private struct KanjiCatalogDetailView: View {
                 .foregroundColor(OniTanTheme.textPrimary)
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
-
-            HStack(spacing: 8) {
-                detailPill(title: "出題", value: "\(relatedQuestions.count) 問")
-                if !kindSummary.isEmpty {
-                    detailPill(title: "形式", value: kindSummary)
-                }
-            }
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 24)
@@ -538,24 +527,6 @@ private struct KanjiCatalogDetailView: View {
                 .foregroundColor(OniTanTheme.accentWeak)
                 .fixedSize(horizontal: false, vertical: true)
         }
-    }
-
-    private func detailPill(title: String, value: String) -> some View {
-        VStack(spacing: 4) {
-            Text(title)
-                .font(.system(size: 11, weight: .medium, design: .rounded))
-                .foregroundColor(OniTanTheme.textTertiary)
-            Text(value)
-                .font(.system(.subheadline, design: .rounded))
-                .fontWeight(.bold)
-                .foregroundColor(OniTanTheme.textPrimary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
-        .background(OniTanTheme.cardBackgroundPressed)
-        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 
     private func trimmedValue(from line: String, prefixes: [String]) -> String? {

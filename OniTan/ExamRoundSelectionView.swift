@@ -146,7 +146,7 @@ struct ExamRoundSelectionView: View {
                         .foregroundColor(OniTanTheme.textPrimary)
 
                     HStack(spacing: 7) {
-                        badge("全10回+隠し1回")
+                        badge("全10回")
                         badge("第1〜3回は解放済み")
                     }
                 }

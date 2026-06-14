@@ -228,8 +228,6 @@ struct MainView: View {
 
     private func quizContentView(scale: CGFloat) -> some View {
         VStack(spacing: 0) {
-            Spacer(minLength: 0)
-
             // Stage number + pass indicator
             stageHeader(scale: scale)
 
@@ -254,19 +252,20 @@ struct MainView: View {
             Spacer(minLength: scaled(8, by: scale, min: 4))
 
             // Choice area
-            switch vm.phase {
-            case .answering:
-                choiceStack(scale: scale)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-            case .showingExplanation:
-                answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
-                    .transition(.scale(scale: 0.96).combined(with: .opacity))
-            case .showingWrongAnswer(let correct):
-                answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
-                    .transition(.scale(scale: 0.96).combined(with: .opacity))
-            default:
-                EmptyView()
+            Group {
+                switch vm.phase {
+                case .answering:
+                    choiceStack(scale: scale)
+                case .showingExplanation:
+                    answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                case .showingWrongAnswer(let correct):
+                    answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                default:
+                    EmptyView()
+                }
             }
+            .transition(.opacity)
+            .animation(.easeInOut(duration: 0.22), value: vm.phase)
 
             Spacer(minLength: scaled(10, by: scale, min: 6))
         }
@@ -432,10 +431,25 @@ struct MainView: View {
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(label)を選びなさい")
         } else {
-            Text(vm.currentQuestion.kind.choicePrompt)
-                .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .padding(.leading, 4)
+            HStack(spacing: scaled(6, by: scale, min: 4)) {
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: scaled(12, by: scale, min: 10), weight: .bold))
+                    .accessibilityHidden(true)
+
+                Text(vm.currentQuestion.kind.choicePrompt)
+                    .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
+            }
+            .foregroundColor(OniTanTheme.textSecondary)
+            .padding(.horizontal, scaled(11, by: scale, min: 9))
+            .padding(.vertical, scaled(6, by: scale, min: 5))
+            .background(
+                Capsule()
+                    .fill(OniTanTheme.textTertiary.opacity(0.1))
+                    .overlay(
+                        Capsule()
+                            .stroke(OniTanTheme.textTertiary.opacity(0.24), lineWidth: 1)
+                    )
+            )
         }
     }
 
@@ -829,6 +843,7 @@ private struct ChoiceCard: View {
                     minHeight: minHeight,
                     alignment: isMeaningLayout ? .leading : .center
                 )
+                .contentShape(Rectangle())
         }
         .background(
             RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
