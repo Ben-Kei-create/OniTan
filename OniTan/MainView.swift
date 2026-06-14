@@ -447,7 +447,7 @@ struct MainView: View {
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .regular))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .lineSpacing(4)
-                .lineLimit(4)
+                .lineLimit(8)
                 .fixedSize(horizontal: false, vertical: true)
 
             Button {
