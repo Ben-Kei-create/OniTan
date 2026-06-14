@@ -235,25 +235,48 @@ struct QuestionPromptView: View {
 
     private var commonKanjiContent: some View {
         let terms = question.payload?.blankTerms ?? [question.displayPrompt]
-        let fontSize = scaled(34, min: 24)
+        let fontSize = scaled(46, min: 32)
 
-        return HStack(spacing: scaled(12, min: 8)) {
-            ForEach(terms.prefix(4), id: \.self) { term in
-                Text(term)
-                    .font(playFontManager.font(size: fontSize, weight: .black))
-                    .foregroundColor(OniTanTheme.textPrimary)
-                    .minimumScaleFactor(0.5)
+        return VStack(spacing: scaled(14, min: 10)) {
+            HStack(spacing: scaled(6, min: 4)) {
+                Image(systemName: "square.dashed")
+                    .font(.system(size: scaled(12, min: 10), weight: .bold))
+                    .foregroundColor(OniTanTheme.accentPrimary)
+                    .accessibilityHidden(true)
+
+                Text("□に共通して入る漢字は？")
+                    .font(.system(size: scaled(12, min: 10), weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.accentPrimary)
+            }
+            .opacity(0.85)
+
+            HStack(spacing: scaled(14, min: 9)) {
+                ForEach(terms.prefix(4), id: \.self) { term in
+                    HStack(spacing: 1) {
+                        ForEach(Array(term.enumerated()), id: \.offset) { _, char in
+                            Text(String(char))
+                                .font(playFontManager.font(size: fontSize, weight: .black))
+                                .foregroundColor(
+                                    String(char) == "□"
+                                        ? OniTanTheme.accentPrimary
+                                        : OniTanTheme.textPrimary
+                                )
+                                .shadow(color: .black.opacity(0.3), radius: 3)
+                        }
+                    }
+                    .minimumScaleFactor(0.6)
                     .lineLimit(1)
-                    .padding(.horizontal, scaled(8, min: 5))
-                    .padding(.vertical, scaled(5, min: 3))
+                    .padding(.horizontal, scaled(14, min: 9))
+                    .padding(.vertical, scaled(10, min: 7))
                     .background(
-                        RoundedRectangle(cornerRadius: 8)
+                        RoundedRectangle(cornerRadius: scaled(14, min: 10))
                             .fill(OniTanTheme.accentPrimary.opacity(0.10))
                             .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1)
+                                RoundedRectangle(cornerRadius: scaled(14, min: 10))
+                                    .stroke(OniTanTheme.accentPrimary.opacity(0.28), lineWidth: 1)
                             )
                     )
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
