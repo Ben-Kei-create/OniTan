@@ -27,6 +27,14 @@ struct QuestionPromptView: View {
         question.kind == .synonym || question.kind == .antonym
     }
     private var isFeedbackVisible: Bool { isCorrect || isWrong }
+    private var isSentenceKind: Bool {
+        switch question.kind {
+        case .errorCorrection, .proverb, .passageReading, .passageVocabulary:
+            return true
+        default:
+            return false
+        }
+    }
 
     private var relationAccent: Color {
         question.kind == .antonym ? Color(hex: "F87171") : Color(hex: "60A5FA")
@@ -87,24 +95,6 @@ struct QuestionPromptView: View {
                     .transition(.opacity)
             }
 
-            // Animated feedback icon (checkmark / xmark) for clearer correct/incorrect cues
-            if isCorrect || isWrong {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
-                            .font(.system(size: scaled(54, min: 38), weight: .bold))
-                            .foregroundColor(isCorrect ? OniTanTheme.feedbackCorrect : OniTanTheme.accentWrong)
-                            .shadow(color: .black.opacity(0.25), radius: 6)
-                            .accessibilityHidden(true)
-                    }
-                    Spacer()
-                }
-                .padding(scaled(14, min: 10))
-                .transition(.scale(scale: 0.4).combined(with: .opacity))
-                .animation(.spring(response: 0.35, dampingFraction: 0.55), value: isCorrect)
-            }
-
             // Prompt content (lazy-switch on kind)
             Group {
                 switch question.kind {
@@ -131,15 +121,18 @@ struct QuestionPromptView: View {
                 removal:   .move(edge: .leading).combined(with: .opacity)
             ))
 
-            // Kind label badge (top-left, subtle)
-            VStack {
-                HStack {
-                    kindBadge
+            // Kind label badge (top-left, subtle). Omitted for sentence-style kinds,
+            // which already show a "第N問" indicator in the same corner.
+            if !isSentenceKind {
+                VStack {
+                    HStack {
+                        kindBadge
+                        Spacer()
+                    }
                     Spacer()
                 }
-                Spacer()
+                .padding(scaled(10, min: 7))
             }
-            .padding(scaled(10, min: 7))
         }
         .frame(height: cardHeight)
     }

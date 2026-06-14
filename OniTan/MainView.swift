@@ -432,10 +432,25 @@ struct MainView: View {
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(label)を選びなさい")
         } else {
-            Text(vm.currentQuestion.kind.choicePrompt)
-                .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .padding(.leading, 4)
+            HStack(spacing: scaled(6, by: scale, min: 4)) {
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: scaled(12, by: scale, min: 10), weight: .bold))
+                    .accessibilityHidden(true)
+
+                Text(vm.currentQuestion.kind.choicePrompt)
+                    .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
+            }
+            .foregroundColor(OniTanTheme.textSecondary)
+            .padding(.horizontal, scaled(11, by: scale, min: 9))
+            .padding(.vertical, scaled(6, by: scale, min: 5))
+            .background(
+                Capsule()
+                    .fill(OniTanTheme.textTertiary.opacity(0.1))
+                    .overlay(
+                        Capsule()
+                            .stroke(OniTanTheme.textTertiary.opacity(0.24), lineWidth: 1)
+                    )
+            )
         }
     }
 
