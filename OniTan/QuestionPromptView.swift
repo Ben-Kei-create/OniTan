@@ -27,14 +27,6 @@ struct QuestionPromptView: View {
         question.kind == .synonym || question.kind == .antonym
     }
     private var isFeedbackVisible: Bool { isCorrect || isWrong }
-    private var isSentenceKind: Bool {
-        switch question.kind {
-        case .errorCorrection, .proverb, .passageReading, .passageVocabulary:
-            return true
-        default:
-            return false
-        }
-    }
 
     private var relationAccent: Color {
         question.kind == .antonym ? Color(hex: "F87171") : Color(hex: "60A5FA")
@@ -120,45 +112,8 @@ struct QuestionPromptView: View {
                 insertion: .move(edge: .trailing).combined(with: .opacity),
                 removal:   .move(edge: .leading).combined(with: .opacity)
             ))
-
-            // Kind label badge (top-left, subtle). Omitted for sentence-style kinds,
-            // which already show a "第N問" indicator in the same corner.
-            if !isSentenceKind {
-                VStack {
-                    HStack {
-                        kindBadge
-                        Spacer()
-                    }
-                    Spacer()
-                }
-                .padding(scaled(10, min: 7))
-            }
         }
         .frame(height: cardHeight)
-    }
-
-    // MARK: - Kind Badge
-
-    private var kindBadge: some View {
-        HStack(spacing: 3) {
-            Image(systemName: question.kind.systemImage)
-                .font(.system(size: scaled(8, min: 7), weight: .bold))
-            Text(question.kind.displayName)
-                .font(.system(
-                    size: scaled(isRelationKind ? 10 : 9, min: isRelationKind ? 8 : 7),
-                    weight: isRelationKind ? .bold : .medium,
-                    design: .rounded
-                ))
-        }
-        .foregroundColor(isRelationKind ? relationAccent : OniTanTheme.textTertiary.opacity(0.6))
-        .padding(.horizontal, isRelationKind ? 8 : 6)
-        .padding(.vertical, isRelationKind ? 4 : 3)
-        .background(isRelationKind ? relationAccent.opacity(0.14) : OniTanTheme.cardBackground.opacity(0.5))
-        .overlay(
-            Capsule()
-                .stroke(isRelationKind ? relationAccent.opacity(0.3) : Color.clear, lineWidth: 1)
-        )
-        .clipShape(Capsule())
     }
 
     // MARK: - Default: Single Word / Compound
@@ -318,14 +273,6 @@ struct QuestionPromptView: View {
                     .foregroundColor(OniTanTheme.accentWeak)
 
                 Spacer()
-
-                Text("下線部")
-                    .font(.system(size: scaled(10, min: 9), weight: .bold, design: .rounded))
-                    .foregroundColor(OniTanTheme.textTertiary)
-                    .padding(.horizontal, 7)
-                    .padding(.vertical, 3)
-                    .background(OniTanTheme.cardBackgroundPressed.opacity(0.72))
-                    .clipShape(Capsule())
             }
 
             if let range = context.range(of: target) {
