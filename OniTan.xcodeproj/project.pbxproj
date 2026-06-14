@@ -136,6 +136,7 @@
 		F40F0785505722F2F5B3C568 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A30C74AFCC83BC81240FE8B /* stage14.json */; };
 		F44478D44E2B9D89E37BFB73 /* stage44.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B3D54D4915B729AAC99851 /* stage44.json */; };
 		F53C4B342E9FB51D2FBFB233 /* FavoriteSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */; };
+		C4C1F5E2DD54880E6D949B4F /* WeakPointSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3E3BDF57F4AAC9CE2C027 /* WeakPointSessionBuilder.swift */; };
 		FBFAC18715D43EFEB9C14142 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = D3A9974F2CF764CE1DD79C22 /* stage56.json */; };
 		FC72599E1B883C0D36F60464 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = ED0575009408B143BF71B4D0 /* stage21.json */; };
 		FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43FC022C83E344ABEE7C03 /* ErrorState.swift */; };
@@ -233,6 +234,7 @@
 		975C66663EB0052137ECFD37 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSessionBuilder.swift; sourceTree = "<group>"; };
+		71F3E3BDF57F4AAC9CE2C027 /* WeakPointSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakPointSessionBuilder.swift; sourceTree = "<group>"; };
 		9B898B27B9FFADD4D3C05B93 /* stage40.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage40.json; sourceTree = "<group>"; };
 		9C8316098825221F61FACA61 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
 		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				4B43FC022C83E344ABEE7C03 /* ErrorState.swift */,
 				AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */,
 				9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */,
+				71F3E3BDF57F4AAC9CE2C027 /* WeakPointSessionBuilder.swift */,
 				878ED351D8C0E69141C83475 /* GamificationRepository.swift */,
 				860301C6672CBF8DF84E8AA2 /* HomeView.swift */,
 				46DD1A5A4E1BFAB1F2920AEF /* Info.plist */,
@@ -636,6 +639,7 @@
 				FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */,
 				58C912EFDBECD011F49C3272 /* FavoriteKanjiRepository.swift in Sources */,
 				F53C4B342E9FB51D2FBFB233 /* FavoriteSessionBuilder.swift in Sources */,
+				C4C1F5E2DD54880E6D949B4F /* WeakPointSessionBuilder.swift in Sources */,
 				1D666F77A86DFCC0C51A2267 /* GamificationRepository.swift in Sources */,
 				99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */,
 				41021FB5B9FE659C37411DFC /* IssueReportSupport.swift in Sources */,
