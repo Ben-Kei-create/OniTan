@@ -9,6 +9,7 @@ struct DailySummaryView: View {
     let isNewLongestStreak: Bool
     let answeredToday: Int
     let xpEarnedToday: Int
+    var weakKanjiCount: Int = 0
     let onDismiss: () -> Void
 
     @State private var sealOpacity: Double = 0
@@ -60,6 +61,15 @@ struct DailySummaryView: View {
                     Text("自己最長記録を更新中！")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
+                        .opacity(contentOpacity)
+                }
+
+                if weakKanjiCount > 0 {
+                    Text("苦手な漢字が\(weakKanjiCount)個あります。ホームの「弱点復習」で集中的に克服しましょう。")
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 12)
                         .opacity(contentOpacity)
                 }
 

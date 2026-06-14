@@ -304,19 +304,40 @@ struct HomeView: View {
                 .accessibilityIdentifier("home_today_card")
             }
 
+            if statsRepo.hasWeakPoints {
+                HomePrimaryActionCard(
+                    title: "弱点復習",
+                    style: .neutral,
+                    isCompact: isCompact,
+                    destination: AnyView(
+                        QuizModeSelectView(
+                            stage: WeakPointSessionBuilder.buildWeakStage(
+                                statsRepo: statsRepo,
+                                allStages: quizData.stages
+                            ),
+                            sessionTitle: "弱点復習"
+                        )
+                    ),
+                    subtitle: "間違えた漢字を集中的に復習",
+                    icon: "exclamationmark.triangle.fill"
+                )
+            }
+
             HomePrimaryActionCard(
                 title: "道場選択",
                 style: .neutral,
                 isCompact: isCompact,
                 destination: AnyView(CategoryTrainingView()),
+                subtitle: "ステージを選んで集中練習",
                 icon: "building.columns.fill"
             )
 
             HomePrimaryActionCard(
                 title: "模擬試験",
-                style: .gold,
+                style: .neutral,
                 isCompact: isCompact,
                 destination: AnyView(examDestination),
+                subtitle: "本番形式で実力を確認",
                 icon: "doc.text.fill"
             )
 
@@ -325,6 +346,7 @@ struct HomeView: View {
                 style: .neutral,
                 isCompact: isCompact,
                 destination: AnyView(KanjiCatalogView()),
+                subtitle: "全漢字をチェック",
                 icon: "books.vertical.fill"
             )
 
@@ -350,7 +372,17 @@ struct HomeView: View {
                             sessionTitle: "お気に入り"
                         )
                     ),
+                    subtitle: "保存した漢字を復習",
                     icon: "star.fill"
+                )
+            } else {
+                HomePrimaryActionCard(
+                    title: "お気に入り",
+                    style: .disabled,
+                    isCompact: isCompact,
+                    destination: nil,
+                    subtitle: "問題画面の★で漢字を保存できます",
+                    icon: "star"
                 )
             }
         }
