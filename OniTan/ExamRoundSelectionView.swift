@@ -3,7 +3,9 @@ import SwiftUI
 // MARK: - Exam Round
 
 struct ExamRound: Identifiable, Equatable {
-    static let passThreshold = 0.80
+    /// Matches the default passing accuracy shown on ExamResultView so that
+    /// the "合格" banner and the next-round unlock condition stay in sync.
+    static let passThreshold = 0.90
     static let totalRounds = 10
     static let all = (1...totalRounds).map { ExamRound(number: $0) }
 
@@ -25,6 +27,12 @@ struct ExamRound: Identifiable, Equatable {
             threshold: Self.passThreshold
         )
     }
+
+    /// Whether a fixed question set exists for this round yet.
+    /// Only round 1 ships with content for now; later rounds remain "準備中".
+    var hasContent: Bool {
+        examBlueprints.contains { $0.id == blueprintID }
+    }
 }
 
 // MARK: - Exam Round Selection View
@@ -32,6 +40,11 @@ struct ExamRound: Identifiable, Equatable {
 struct ExamRoundSelectionView: View {
     @EnvironmentObject var examResultRepo: ExamResultRepository
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var statsRepo: StudyStatsRepository
+    @EnvironmentObject var streakRepo: StreakRepository
+    @EnvironmentObject var xpRepo: GamificationRepository
+    @EnvironmentObject var masteryRepo: MasteryRepository
 
     private let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -50,19 +63,32 @@ struct ExamRoundSelectionView: View {
                         ForEach(ExamRound.all) { round in
                             let state = roundState(for: round)
 
-                            Button {
-                                OniTanTheme.haptic(.light)
-                            } label: {
-                                ExamRoundButtonCard(
-                                    round: round,
-                                    state: state,
-                                    bestAccuracy: examResultRepo.bestAccuracy(forBlueprintID: round.blueprintID)
-                                )
+                            if state.canStart {
+                                NavigationLink(destination: examSessionView(for: round)) {
+                                    ExamRoundButtonCard(
+                                        round: round,
+                                        state: state,
+                                        bestAccuracy: examResultRepo.bestAccuracy(forBlueprintID: round.blueprintID)
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel(accessibilityLabel(for: round, state: state))
+                                .accessibilityHint(state.accessibilityHint)
+                            } else {
+                                Button {
+                                    OniTanTheme.haptic(.light)
+                                } label: {
+                                    ExamRoundButtonCard(
+                                        round: round,
+                                        state: state,
+                                        bestAccuracy: examResultRepo.bestAccuracy(forBlueprintID: round.blueprintID)
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                .disabled(true)
+                                .accessibilityLabel(accessibilityLabel(for: round, state: state))
+                                .accessibilityHint(state.accessibilityHint)
                             }
-                            .buttonStyle(.plain)
-                            .disabled(!state.canStart)
-                            .accessibilityLabel(accessibilityLabel(for: round, state: state))
-                            .accessibilityHint(state.accessibilityHint)
                         }
                     }
 
@@ -98,7 +124,7 @@ struct ExamRoundSelectionView: View {
 
                     HStack(spacing: 7) {
                         badge("全10回")
-                        badge("80%解放")
+                        badge("90%解放")
                     }
                 }
             }
@@ -118,11 +144,12 @@ struct ExamRoundSelectionView: View {
 
     private var footnote: some View {
         HStack(spacing: 8) {
-            Text("未")
-                .font(.system(size: 13, weight: .black, design: .serif))
+            Image(systemName: "info.circle")
+                .font(.system(size: 13, weight: .bold))
                 .foregroundColor(OniTanTheme.textTertiary)
+                .accessibilityHidden(true)
 
-            Text("各回の問題セット追加後に開始できます")
+            Text("第2回以降は問題セット追加後に解放されます")
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .lineLimit(1)
@@ -157,7 +184,27 @@ struct ExamRoundSelectionView: View {
 
     private func roundState(for round: ExamRound) -> ExamRoundButtonState {
         guard round.isUnlocked(using: examResultRepo) else { return .locked }
-        return .preparing
+        return round.hasContent ? .available : .preparing
+    }
+
+    @ViewBuilder
+    private func examSessionView(for round: ExamRound) -> some View {
+        if let blueprint = examBlueprints.first(where: { $0.id == round.blueprintID }) {
+            let pool = allQuestions.filter { $0.kind.isExamEligible }
+            let questions = ExamBuilder.build(blueprint: blueprint, from: pool, fixedSet: true).questions
+            MainView(
+                stage: Stage(stage: 0, questions: questions),
+                appState: appState,
+                statsRepo: statsRepo,
+                streakRepo: streakRepo,
+                xpRepo: xpRepo,
+                masteryRepo: masteryRepo,
+                examResultRepo: examResultRepo,
+                examBlueprintID: blueprint.id,
+                mode: .exam30,
+                sessionTitle: round.title
+            )
+        }
     }
 
     private func accessibilityLabel(for round: ExamRound, state: ExamRoundButtonState) -> String {
@@ -166,11 +213,13 @@ struct ExamRoundSelectionView: View {
 }
 
 private enum ExamRoundButtonState {
+    case available
     case preparing
     case locked
 
     var label: String {
         switch self {
+        case .available: return "挑戦できる"
         case .preparing: return "準備中"
         case .locked: return "未解放"
         }
@@ -178,17 +227,19 @@ private enum ExamRoundButtonState {
 
     var detail: String {
         switch self {
+        case .available: return "タップして開始"
         case .preparing: return "問題セット待ち"
-        case .locked: return "前回80%以上で解放"
+        case .locked: return "前回90%以上で解放"
         }
     }
 
-    var canStart: Bool { false }
+    var canStart: Bool { self == .available }
 
     var accessibilityHint: String {
         switch self {
+        case .available: return "タップして模擬試験を開始します"
         case .preparing: return "問題セット追加後に開始できます"
-        case .locked: return "直前の回を80%以上でクリアすると解放されます"
+        case .locked: return "直前の回を90%以上でクリアすると解放されます"
         }
     }
 }

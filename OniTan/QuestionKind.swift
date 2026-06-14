@@ -32,8 +32,8 @@ enum QuestionKind: String, Codable, CaseIterable {
     case passageReading       // 文章題（文中の読み問題）
     case passageVocabulary    // 文章題（語彙・文脈・文章穴埋め）
 
-    // MARK: スキップ
-    case writingSkipped       // 書き取り（多肢選択では未対応、模試から除外）
+    // MARK: 書き取り
+    case writing              // 書き取り（4択形式・模試からは除外）
 
     // MARK: フォールバック
     case unknown              // 前方互換用キャッチオール
@@ -54,8 +54,6 @@ enum QuestionKind: String, Codable, CaseIterable {
         switch raw {
         case "errorcorrection":
             self = .errorCorrection
-        case "writing":
-            self = .writingSkipped
         case "jukujikun":
             // 熟字訓 is closest to 読み in exam terms
             self = .reading
@@ -90,7 +88,7 @@ extension QuestionKind {
         case .proverb:            return "故事・ことわざ"
         case .passageReading:     return "文章題（読み）"
         case .passageVocabulary:  return "文章題（語彙）"
-        case .writingSkipped:     return "書き取り"
+        case .writing:            return "書き取り"
         case .unknown:            return "その他"
         }
     }
@@ -110,7 +108,7 @@ extension QuestionKind {
         case .proverb:            return "正しい語句を選びなさい"
         case .passageReading:     return "下線部の読みを選びなさい"
         case .passageVocabulary:  return "□に入る語句を選びなさい"
-        case .writingSkipped:     return "答えを選びなさい"
+        case .writing:            return "正しい書き取りを選びなさい"
         case .unknown:            return "答えを選びなさい"
         }
     }
@@ -130,7 +128,7 @@ extension QuestionKind {
         case .proverb:            return "quote.bubble"
         case .passageReading:     return "doc.text.below.ecg"
         case .passageVocabulary:  return "doc.text"
-        case .writingSkipped:     return "pencil.slash"
+        case .writing:            return "pencil.and.outline"
         case .unknown:            return "questionmark.circle"
         }
     }
@@ -148,7 +146,7 @@ extension QuestionKind {
 
     /// Whether this kind is included in mock exams.
     var isExamEligible: Bool {
-        self != .reading && self != .writingSkipped && self != .unknown
+        self != .reading && self != .writing && self != .unknown
     }
 
     /// Kinds that appear in the real Kanken Pre-1 exam (used by ReadinessCalculator).

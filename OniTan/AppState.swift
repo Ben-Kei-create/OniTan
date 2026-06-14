@@ -52,6 +52,10 @@ final class AppState: ObservableObject {
         didSet { saveClearedStages() }
     }
 
+    /// True while the full-screen daily summary celebration is presented,
+    /// used to avoid showing an interstitial ad or review prompt on top of it.
+    @Published var isDailySummaryPresented = false
+
     private let store: PersistenceStore
     private let clearedKey = "clearedStages"
     private let contentVersionKey = "clearedStagesContentVersion"

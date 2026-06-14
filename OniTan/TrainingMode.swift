@@ -20,7 +20,7 @@ enum TrainingMode: String, CaseIterable, Identifiable, Codable {
     var displayName: String {
         switch self {
         case .normal:        return "ノーマル"
-        case .quick10:       return "クイック10問"
+        case .quick10:       return "カテゴリ10問"
         case .categoryFocus: return "カテゴリ集中"
         case .weakFocus:     return "苦手集中"
         case .mistakeReview: return "まちがいノート"
@@ -36,7 +36,7 @@ enum TrainingMode: String, CaseIterable, Identifiable, Codable {
         case .normal:
             return "全問正解を目指す標準モード。誤答は繰り返し出題されます。"
         case .quick10:
-            return "ランダムな10問を素早く解く短時間モード。"
+            return "この道場のカテゴリからランダムに10問。短時間で取り組めます。"
         case .categoryFocus:
             return "選択したカテゴリの問題だけを集中的に練習します。"
         case .weakFocus:

@@ -21,6 +21,7 @@ struct SettingsView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     appearanceSection
+                    learningRecordSection
                     notificationSection
                     adPrivacySection
                     donationSection
@@ -362,6 +363,32 @@ struct SettingsView: View {
         }
     }
 
+    // MARK: - Learning Record
+
+    private var learningRecordSection: some View {
+        SettingsCard(title: "学習記録", icon: "note.text", iconColor: OniTanTheme.accentWrong) {
+            NavigationLink(destination: WrongAnswerNoteView()) {
+                HStack(spacing: 10) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 14, weight: .semibold))
+                    Text("誤答ノートを見る")
+                        .font(.system(.headline, design: .rounded))
+                        .fontWeight(.bold)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 13, weight: .semibold))
+                }
+                .foregroundColor(OniTanTheme.textPrimary)
+                .frame(maxWidth: .infinity, minHeight: 48)
+                .padding(.horizontal, 14)
+                .background(OniTanTheme.inkCard)
+                .cornerRadius(OniTanTheme.radiusButton)
+            }
+            .accessibilityLabel("誤答ノートを見る")
+            .accessibilityHint("タップして、間違えた問題の一覧を確認")
+        }
+    }
+
     // MARK: - Data
 
     private var dataSection: some View {
@@ -521,10 +548,11 @@ private struct ThemePickerCard: View {
                 }
 
                 if isLocked {
-                    Text("未")
+                    Text("未解放")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 } else {
                     Text(theme.displayName)
                         .font(.system(size: 10, weight: .semibold, design: .rounded))
@@ -586,10 +614,11 @@ private struct PlayFontPickerCard: View {
                 }
 
                 if isLocked {
-                    Text("未")
+                    Text("未解放")
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundColor(OniTanTheme.accentWeak)
                         .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 } else {
                     VStack(spacing: 1) {
                         Text(fontStyle.displayName)

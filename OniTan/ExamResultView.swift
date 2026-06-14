@@ -10,6 +10,7 @@ struct ExamResultView: View {
     let blueprint: ExamBlueprint?
 
     @EnvironmentObject var playFontManager: PlayFontManager
+    @State private var showRecommendedTraining = false
 
     private var passingAccuracy: Double { blueprint?.passingAccuracy ?? 0.90 }
 
@@ -62,6 +63,13 @@ struct ExamResultView: View {
             .padding(.vertical, 20)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .sheet(isPresented: $showRecommendedTraining) {
+            if let recommended = recommendedCategory {
+                NavigationStack {
+                    TrainingModePickerView(category: recommended)
+                }
+            }
+        }
     }
 
     // MARK: - Header
@@ -210,35 +218,47 @@ struct ExamResultView: View {
     // MARK: - Recommendation
 
     private func recommendationSection(_ category: CategoryEntry) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("次にやるべき道場")
-                .font(playFont(14, weight: .bold))
-                .foregroundColor(OniTanTheme.textPrimary)
+        Button {
+            showRecommendedTraining = true
+        } label: {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("次にやるべき道場")
+                    .font(playFont(14, weight: .bold))
+                    .foregroundColor(OniTanTheme.textPrimary)
 
-            HStack(spacing: 10) {
-                OniSealMark(
-                    text: category.sealMark,
-                    size: 34,
-                    fontSize: 17,
-                    tint: OniTanTheme.accentWeak,
-                    fillOpacity: 0.12,
-                    cornerRadius: 9
-                )
+                HStack(spacing: 10) {
+                    OniSealMark(
+                        text: category.sealMark,
+                        size: 34,
+                        fontSize: 17,
+                        tint: OniTanTheme.accentWeak,
+                        fillOpacity: 0.12,
+                        cornerRadius: 9
+                    )
 
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(category.title)
-                        .font(playFont(14, weight: .bold))
-                        .foregroundColor(OniTanTheme.textPrimary)
-                    Text(category.description)
-                        .font(playFont(11, weight: .regular))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(category.title)
+                            .font(playFont(14, weight: .bold))
+                            .foregroundColor(OniTanTheme.textPrimary)
+                        Text(category.description)
+                            .font(playFont(11, weight: .regular))
+                            .foregroundColor(OniTanTheme.textTertiary)
+                            .lineLimit(2)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 13, weight: .bold))
                         .foregroundColor(OniTanTheme.textTertiary)
-                        .lineLimit(2)
                 }
             }
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .oniCard()
         }
-        .padding(16)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .oniCard()
+        .buttonStyle(.plain)
+        .accessibilityHint("タップして次の道場へ進む")
     }
 
     // MARK: - Disclaimer

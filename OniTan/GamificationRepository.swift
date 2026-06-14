@@ -151,11 +151,15 @@ final class GamificationRepository: ObservableObject {
         max(1, levelCurve.requiredXP(max(1, level)))
     }
 
+    /// Levels above this never occur via normal play; caps the search to avoid
+    /// `Int(pow(...))` overflowing once the exponential curve exceeds Int64 range.
+    private static let maxLevel = 100
+
     func levelState(for totalXP: Int) -> (level: Int, xpInLevel: Int, xpToNext: Int, progress: Double) {
         var remaining = max(0, totalXP)
         var currentLevel = 1
 
-        while true {
+        while currentLevel < Self.maxLevel {
             let required = requiredXP(for: currentLevel)
             if remaining < required {
                 let progress = Double(remaining) / Double(required)
@@ -164,6 +168,9 @@ final class GamificationRepository: ObservableObject {
             remaining -= required
             currentLevel += 1
         }
+
+        let required = requiredXP(for: currentLevel)
+        return (currentLevel, min(remaining, required), required, 1)
     }
 
     private func resetTodayXPIfNewDay() {

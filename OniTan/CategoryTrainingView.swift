@@ -6,9 +6,33 @@ import SwiftUI
 /// Falls back to hard-coded entries if the file is absent.
 struct CategoryTrainingView: View {
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var statsRepo: StudyStatsRepository
 
     private var categories: [CategoryEntry] {
         categoryManifest?.categories ?? CategoryEntry.fallbacks
+    }
+
+    /// Accuracy across all stages belonging to this category, or `nil` if no attempts yet.
+    private func accuracy(for entry: CategoryEntry) -> Double? {
+        guard !entry.stageIDs.isEmpty else { return nil }
+        let stats = entry.stageIDs.compactMap { statsRepo.stageStats[$0] }
+        let total = stats.reduce(0) { $0 + $1.totalAttempts }
+        guard total > 0 else { return nil }
+        let correct = stats.reduce(0) { $0 + $1.correctAttempts }
+        return Double(correct) / Double(total)
+    }
+
+    /// Categories sorted so the weakest (lowest accuracy) come first; categories
+    /// with no attempts yet keep their original order at the end.
+    private var sortedCategories: [CategoryEntry] {
+        categories.sorted { a, b in
+            switch (accuracy(for: a), accuracy(for: b)) {
+            case let (accA?, accB?): return accA < accB
+            case (.some, nil): return true
+            case (nil, .some): return false
+            case (nil, nil): return false
+            }
+        }
     }
 
     var body: some View {
@@ -19,9 +43,14 @@ struct CategoryTrainingView: View {
                 LazyVStack(spacing: 14) {
                     header
 
-                    ForEach(categories) { entry in
-                        NavigationLink(destination: destination(for: entry)) {
-                            CategoryRowCard(entry: entry)
+                    ForEach(sortedCategories) { entry in
+                        let acc = accuracy(for: entry)
+                        NavigationLink(destination: TrainingModePickerView(category: entry)) {
+                            CategoryRowCard(
+                                entry: entry,
+                                accuracy: acc,
+                                needsReview: acc.map { $0 < entry.targetAccuracy } ?? false
+                            )
                         }
                         .buttonStyle(PlainButtonStyle())
                         .accessibilityLabel("\(entry.title) — \(entry.description)")
@@ -37,15 +66,6 @@ struct CategoryTrainingView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
-    }
-
-    @ViewBuilder
-    private func destination(for entry: CategoryEntry) -> some View {
-        if entry.id == "exam" {
-            ExamRoundSelectionView()
-        } else {
-            TrainingModePickerView(category: entry)
-        }
     }
 
     private var header: some View {
@@ -73,10 +93,12 @@ struct CategoryTrainingView: View {
 
 private struct CategoryRowCard: View {
     let entry: CategoryEntry
+    let accuracy: Double?
+    let needsReview: Bool
     @State private var isPressed = false
 
     private var accentColor: Color {
-        entry.id == "exam" ? OniTanTheme.accentPrimary : OniTanTheme.accentWeak
+        needsReview ? OniTanTheme.sealRed : OniTanTheme.accentWeak
     }
 
     private var dojoMark: String {
@@ -104,7 +126,7 @@ private struct CategoryRowCard: View {
         HStack(spacing: 14) {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(accentColor.opacity(entry.id == "exam" ? 0.18 : 0.12))
+                    .fill(accentColor.opacity(0.12))
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(accentColor.opacity(0.35), lineWidth: 1)
@@ -118,24 +140,9 @@ private struct CategoryRowCard: View {
             .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 7) {
-                HStack(spacing: 8) {
-                    Text(displayTitle)
-                        .font(.system(size: 17, weight: .black, design: .rounded))
-                        .foregroundColor(OniTanTheme.textPrimary)
-
-                    if entry.id == "exam" {
-                        Text("本番形式")
-                            .font(.system(size: 10, weight: .bold, design: .rounded))
-                            .foregroundColor(OniTanTheme.accentPrimary)
-                            .padding(.horizontal, 7)
-                            .padding(.vertical, 3)
-                            .background(
-                                Capsule()
-                                    .fill(OniTanTheme.accentPrimary.opacity(0.12))
-                                    .overlay(Capsule().stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1))
-                            )
-                    }
-                }
+                Text(displayTitle)
+                    .font(.system(size: 17, weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.textPrimary)
 
                 Text(entry.description)
                     .font(.system(size: 11, weight: .medium, design: .rounded))
@@ -146,6 +153,24 @@ private struct CategoryRowCard: View {
                 HStack(spacing: 10) {
                     metadataPill(text: "\(questionCount) 問")
                     metadataPill(text: "目標 \(Int(entry.targetAccuracy * 100))%")
+                    if let accuracy {
+                        metadataPill(
+                            text: "正答率 \(Int(accuracy * 100))%",
+                            color: needsReview ? OniTanTheme.sealRed : OniTanTheme.textTertiary
+                        )
+                    }
+                    if needsReview {
+                        Text("要復習")
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .foregroundColor(OniTanTheme.sealRed)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule()
+                                    .fill(OniTanTheme.sealRed.opacity(0.16))
+                                    .overlay(Capsule().stroke(OniTanTheme.sealRed.opacity(0.4), lineWidth: 1))
+                            )
+                    }
                 }
             }
 
@@ -163,7 +188,7 @@ private struct CategoryRowCard: View {
                 .fill(
                     LinearGradient(
                         colors: [
-                            OniTanTheme.cardBackgroundPressed.opacity(entry.id == "exam" ? 0.96 : 0.82),
+                            OniTanTheme.cardBackgroundPressed.opacity(0.82),
                             OniTanTheme.cardBackground.opacity(0.92)
                         ],
                         startPoint: .topLeading,
@@ -172,7 +197,7 @@ private struct CategoryRowCard: View {
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(accentColor.opacity(entry.id == "exam" ? 0.34 : 0.18), lineWidth: 1)
+                        .stroke(accentColor.opacity(0.18), lineWidth: 1)
                 )
         )
         .shadow(color: .black.opacity(0.24), radius: 10, y: 5)
@@ -185,10 +210,10 @@ private struct CategoryRowCard: View {
         )
     }
 
-    private func metadataPill(text: String) -> some View {
+    private func metadataPill(text: String, color: Color = OniTanTheme.textTertiary) -> some View {
         Text(text)
             .font(.system(size: 11, weight: .semibold, design: .rounded))
-            .foregroundColor(OniTanTheme.textTertiary)
+            .foregroundColor(color)
             .padding(.horizontal, 8)
             .padding(.vertical, 3)
             .background(

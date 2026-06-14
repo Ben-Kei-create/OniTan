@@ -13,7 +13,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
     var displayName: String {
         switch self {
         case .normal:    return "ノーマル"
-        case .quick10:   return "クイック10問"
+        case .quick10:   return "ランダム10問"
         case .exam30:    return "模試30問"
         case .weakFocus: return "苦手集中"
         }

@@ -48,6 +48,11 @@ struct TrainingModePickerView: View {
         return allQuestions.filter { kindSet.contains($0.kind) }
     }
 
+    /// Exam-eligible question count, matching the figure shown on the category-select screen.
+    private var eligiblePoolCount: Int {
+        categoryPool.filter { $0.kind.isExamEligible }.count
+    }
+
     // MARK: - Mode helpers
 
     private func isEnabled(_ mode: TrainingMode) -> Bool {
@@ -64,13 +69,15 @@ struct TrainingModePickerView: View {
         case .weakFocus:     return "弱点トレーニングは次フェーズで有効になります"
         case .mistakeReview: return "ミス復習は次フェーズで有効になります"
         case .masteryReview: return "定着復習は次フェーズで有効になります"
+        case .examMini where !categoryPool.isEmpty:
+            return "ミニ模試には10問以上の問題が必要です"
         default:             return nil
         }
     }
 
     private func japaneseLabel(for mode: TrainingMode) -> String {
         switch mode {
-        case .quick10:       return "10問クイック"
+        case .quick10:       return "カテゴリ10問"
         case .categoryFocus: return "道場集中"
         case .weakFocus:     return "弱点集中"
         case .mistakeReview: return "ミス復習"
@@ -140,7 +147,7 @@ struct TrainingModePickerView: View {
                     .font(.system(size: 24, weight: .black, design: .rounded))
                     .foregroundColor(OniTanTheme.textPrimary)
 
-                Text("\(categoryPool.count) 問")
+                Text("\(eligiblePoolCount) 問")
                     .font(.system(size: 11, weight: .bold, design: .rounded))
                     .foregroundColor(OniTanTheme.accentWeak)
                     .padding(.horizontal, 8)
@@ -206,6 +213,17 @@ struct TrainingModePickerView: View {
             .buttonStyle(PlainButtonStyle())
             .accessibilityLabel("\(japaneseLabel(for: mode)) \(count)問")
             .accessibilityHint("タップして\(japaneseLabel(for: mode))を開始")
+        } else if enabled {
+            // Stage not built yet (first render before onAppear runs) — show the
+            // enabled appearance without navigation to avoid a disabled-state flash.
+            TrainingModeCard(
+                mode: mode,
+                label: japaneseLabel(for: mode),
+                questionCount: count,
+                enabled: true,
+                disabledReason: nil
+            )
+            .accessibilityLabel("\(japaneseLabel(for: mode)) \(count)問")
         } else {
             TrainingModeCard(
                 mode: mode,
@@ -220,14 +238,15 @@ struct TrainingModePickerView: View {
 
     private var emptyPoolNote: some View {
         VStack(spacing: 8) {
-            Text("未")
-                .font(.system(size: 22, weight: .black, design: .serif))
+            Image(systemName: "tray")
+                .font(.system(size: 22, weight: .bold))
                 .foregroundColor(OniTanTheme.accentWeak)
+                .accessibilityHidden(true)
             Text("このカテゴリには問題データがまだありません")
                 .font(.system(.subheadline, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .multilineTextAlignment(.center)
-            Text("今後のアップデートで追加される予定です")
+            Text("今後のアップデートで追加される予定です。他の道場で学習を進めましょう。")
                 .font(.system(.caption, design: .rounded))
                 .foregroundColor(OniTanTheme.textTertiary)
                 .multilineTextAlignment(.center)
@@ -246,9 +265,10 @@ struct TrainingModePickerView: View {
 
     private var comingSoonLine: some View {
         HStack(spacing: 8) {
-            Text("予")
-                .font(.system(size: 12, weight: .black, design: .serif))
+            Image(systemName: "clock")
+                .font(.system(size: 12, weight: .bold))
                 .foregroundColor(OniTanTheme.textTertiary)
+                .accessibilityHidden(true)
             Text("近日追加")
                 .font(.system(size: 11, weight: .bold, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
@@ -392,6 +412,7 @@ private struct TrainingModeCard: View {
                 .onChanged { _ in isPressed = true }
                 .onEnded   { _ in isPressed = false }
         )
+        .accessibilityElement(children: .ignore)
     }
 
     private var sealMark: String {

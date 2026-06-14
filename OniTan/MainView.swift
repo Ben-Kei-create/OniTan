@@ -1,4 +1,5 @@
 import SwiftUI
+import StoreKit
 
 // MARK: - Main Quiz View
 
@@ -7,6 +8,8 @@ struct MainView: View {
     @State private var activeReportContext: QuizProblemReportContext?
     @State private var hasPlayedCompletionHaptic = false
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.requestReview) private var requestReview
+    @EnvironmentObject var reviewPromptManager: ReviewPromptManager
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
     @EnvironmentObject var donationManager: DonationManager
@@ -135,7 +138,14 @@ struct MainView: View {
                 }
                 if !donationManager.hasDonated {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                        interstitialManager.showIfReady()
+                        guard !appState.isDailySummaryPresented else { return }
+                        interstitialManager.showIfReady(canRequestAds: adConsentManager.canRequestAds)
+                    }
+                }
+                if reviewPromptManager.sessionCompleted(currentStreak: streakRepo.currentStreak) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                        guard !appState.isDailySummaryPresented else { return }
+                        requestReview()
                     }
                 }
             } else {
@@ -156,8 +166,8 @@ struct MainView: View {
                     vm.requestQuit()
                 }
             } label: {
-                Text("閉")
-                    .font(.system(size: scaled(14, by: scale, min: 12), weight: .black, design: .serif))
+                Image(systemName: "xmark")
+                    .font(.system(size: scaled(14, by: scale, min: 12), weight: .bold))
                     .foregroundColor(OniTanTheme.textSecondary)
                     .frame(width: scaled(34, by: scale, min: 30), height: scaled(34, by: scale, min: 30))
                     .background(Color.black.opacity(0.16))
@@ -203,15 +213,6 @@ struct MainView: View {
             .padding(.vertical, scaled(4, by: scale, min: 3))
             .background(OniTanTheme.cardBackground)
             .cornerRadius(20)
-
-            // Progress ring
-            ProgressRingView(
-                progress: vm.progressFraction,
-                lineWidth: scaled(5, by: scale, min: 4),
-                size: scaled(44, by: scale, min: 36),
-                gradient: Gradient(colors: [OniTanTheme.accentPrimary, OniTanTheme.accentCorrect])
-            )
-            .accessibilityLabel("進捗 \(vm.clearedCount)問 / \(vm.totalGoal)問")
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .padding(.top, scaled(8, by: scale, min: 6))
@@ -301,6 +302,7 @@ struct MainView: View {
             isCorrect: vm.lastAnswerResult == .correct,
             isWrong:   vm.lastAnswerResult == .wrong
         )
+        .id(vm.currentQuestion.id)
         .overlay(alignment: .topTrailing) {
             VStack(spacing: scaled(8, by: scale, min: 6)) {
                 favoriteButton(scale: scale)
@@ -322,8 +324,8 @@ struct MainView: View {
             }
             OniTanTheme.haptic(.light)
         } label: {
-            Text("星")
-                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
+            Image(systemName: isFavorite ? "star.fill" : "star")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
                 .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
@@ -348,8 +350,8 @@ struct MainView: View {
             presentProblemReport(for: vm.currentQuestion)
             OniTanTheme.haptic(.light)
         } label: {
-            Text("報")
-                .font(.system(size: scaled(15, by: scale, min: 13), weight: .black, design: .serif))
+            Image(systemName: "exclamationmark.bubble")
+                .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                 .background(Color.black.opacity(0.18))
@@ -367,33 +369,11 @@ struct MainView: View {
     // MARK: - Choice Grid
 
     private func choiceStack(scale: CGFloat) -> some View {
-        let shuffled = Self.shuffledChoices(
-            from: vm.currentQuestion.choices,
-            answer: vm.currentQuestion.answer
-        )
+        let shuffled = vm.currentChoices
         let columns = [GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8)),
                        GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
-            HStack(spacing: 5) {
-                Text(vm.currentQuestion.kind.sealMark)
-                    .font(.system(size: 12, weight: .black, design: .serif))
-                Text(vm.currentQuestion.kind.displayName)
-                    .font(.caption.weight(.bold))
-            }
-            .foregroundStyle(OniTanTheme.accentWeak)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
-            .background(
-                Capsule()
-                    .fill(OniTanTheme.accentWeak.opacity(0.14))
-            )
-            .overlay(
-                Capsule()
-                    .stroke(OniTanTheme.accentWeak.opacity(0.35), lineWidth: 1)
-            )
-            .padding(.leading, 4)
-
             Text(vm.currentQuestion.kind.choicePrompt)
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
                 .foregroundColor(OniTanTheme.textTertiary)
@@ -426,13 +406,6 @@ struct MainView: View {
         }
     }
 
-    /// Returns all choices (up to 4) in random order, ensuring the correct answer is included.
-    private static func shuffledChoices(from choices: [String], answer: String) -> [String] {
-        var pool = choices
-        if !pool.contains(answer) { pool.append(answer) }
-        return pool.shuffled()
-    }
-
     // MARK: - Answer Feedback View
 
     private func answerFeedbackView(isCorrect: Bool, correctAnswer: String, scale: CGFloat) -> some View {
@@ -442,8 +415,8 @@ struct MainView: View {
 
         return VStack(alignment: .leading, spacing: scaled(12, by: scale, min: 8)) {
             HStack(alignment: .center, spacing: scaled(10, by: scale, min: 6)) {
-                Text(isCorrect ? "正" : "誤")
-                    .font(.system(size: scaled(22, by: scale, min: 18), weight: .black, design: .serif))
+                Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .font(.system(size: scaled(22, by: scale, min: 18), weight: .bold))
                     .foregroundColor(tint)
                     .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
                     .background(
@@ -454,6 +427,7 @@ struct MainView: View {
                                     .stroke(tint.opacity(0.34), lineWidth: 1)
                             )
                     )
+                    .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: scaled(3, by: scale, min: 2)) {
                     Text(title)
@@ -473,7 +447,7 @@ struct MainView: View {
                 .font(playFont(scaled(13, by: scale, min: 11), weight: .regular))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .lineSpacing(4)
-                .lineLimit(4)
+                .lineLimit(8)
                 .fixedSize(horizontal: false, vertical: true)
 
             Button {
@@ -524,10 +498,11 @@ struct MainView: View {
                     .frame(width: 70, height: 70)
                     .blur(radius: 12)
 
-                Text("完")
-                    .font(.system(size: 36, weight: .black, design: .serif))
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(OniTanTheme.goldGradient)
                     .shadow(color: OniTanTheme.accentWeak.opacity(0.45), radius: 10)
+                    .accessibilityHidden(true)
             }
 
             VStack(spacing: 6) {
@@ -541,6 +516,10 @@ struct MainView: View {
                 Text("全 \(vm.totalGoal) 問クリア！")
                     .font(playFont(13, weight: .semibold))
                     .foregroundColor(OniTanTheme.textSecondary)
+            }
+
+            if let newLevel = (passedXPRepo ?? xpRepo).recentLevelUp {
+                LevelUpBanner(level: newLevel)
             }
 
             ProgressRingView(
@@ -577,9 +556,10 @@ struct MainView: View {
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.textPrimary)
-                            Text("次")
-                                .font(.system(size: 12, weight: .black, design: .serif))
+                            Image(systemName: "arrow.right")
+                                .font(.system(size: 12, weight: .bold))
                                 .foregroundColor(OniTanTheme.textPrimary.opacity(0.8))
+                                .accessibilityHidden(true)
                         }
                         .frame(maxWidth: .infinity, minHeight: 48)
                         .background(OniTanTheme.primaryGradient)
@@ -648,6 +628,9 @@ struct MainView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました")
+        .onDisappear {
+            (passedXPRepo ?? xpRepo).clearLevelUpFlag()
+        }
     }
 
     // MARK: - Alert

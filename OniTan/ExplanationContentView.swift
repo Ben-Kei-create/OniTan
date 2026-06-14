@@ -40,8 +40,8 @@ struct ExplanationContentView: View {
             proverbHeader
         case .passageReading, .passageVocabulary:
             passageHeader
-        case .writingSkipped:
-            writingSkippedHeader
+        case .writing:
+            writingHeader
         default:
             genericHeader
         }
@@ -297,16 +297,17 @@ struct ExplanationContentView: View {
         .padding(.top, 8)
     }
 
-    // MARK: - Writing Skipped
+    // MARK: - Writing (書き取り)
 
-    private var writingSkippedHeader: some View {
+    private var writingHeader: some View {
         VStack(spacing: 8) {
-            Image(systemName: "pencil.slash")
-                .font(.system(size: 32))
-                .foregroundColor(OniTanTheme.textTertiary)
-            Text("書き取り問題（スキップ）")
-                .font(playFontManager.font(size: 15, weight: .semibold))
-                .foregroundColor(OniTanTheme.textSecondary)
+            Text(question.payload?.kana ?? question.answer)
+                .font(playFontManager.font(size: 56, weight: .black))
+                .foregroundStyle(OniTanTheme.primaryGradient)
+                .minimumScaleFactor(0.4)
+                .lineLimit(1)
+
+            correctBadge(answer: question.answer)
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 8)

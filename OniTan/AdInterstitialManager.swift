@@ -33,14 +33,18 @@ final class AdInterstitialManager: NSObject, ObservableObject {
         }
     }
 
-    func showIfReady() {
-        guard let ad = interstitial,
+    func showIfReady(canRequestAds: Bool) {
+        guard canRequestAds,
+              let ad = interstitial,
               let rootVC = UIApplication.shared.connectedScenes
                 .compactMap({ $0 as? UIWindowScene })
                 .flatMap({ $0.windows })
                 .first(where: { $0.isKeyWindow })?
                 .rootViewController
-        else { return }
+        else {
+            if !canRequestAds { interstitial = nil }
+            return
+        }
 
         interstitial = nil
         ad.present(from: rootVC)
@@ -49,7 +53,7 @@ final class AdInterstitialManager: NSObject, ObservableObject {
 
 extension AdInterstitialManager: FullScreenContentDelegate {
     nonisolated func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
-        // 次のステージに備えて再ロード（consent状態は次回showIfReady前に確認済みのはず）
+        // 次のステージに備えて再ロード（consent状態はshowIfReady呼び出し時に再確認される）
         Task { @MainActor in self.interstitial = nil }
     }
 
@@ -64,7 +68,7 @@ extension AdInterstitialManager: FullScreenContentDelegate {
 final class AdInterstitialManager: NSObject, ObservableObject {
     override init() {}
     func loadIfNeeded(canRequestAds: Bool) {}
-    func showIfReady() {}
+    func showIfReady(canRequestAds: Bool) {}
 }
 
 #endif

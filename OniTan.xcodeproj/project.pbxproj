@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0197D2685D3AEBB237D9F940 /* StageManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F823A6137158BA416E060C /* StageManifestTests.swift */; };
-		06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709DAD0107E879561BB3203 /* StatsView.swift */; };
 		077D89097C5A3C5A70A0C559 /* TodaySessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372FC94DA91BFC23C7AAC22 /* TodaySessionBuilder.swift */; };
 		0B8919B7874D575269C2710E /* stage49.json in Resources */ = {isa = PBXBuildFile; fileRef = 46D33B8FDDD0434828F5675C /* stage49.json */; };
 		0E5D1729659D9E844A6C7FF7 /* stage12.json in Resources */ = {isa = PBXBuildFile; fileRef = B5C1C7C0F6E1088848DD4749 /* stage12.json */; };
@@ -112,7 +111,6 @@
 		BDCCEFD93AC828B640A3DB10 /* stage41.json in Resources */ = {isa = PBXBuildFile; fileRef = 5DEF3A3C073ABEFCF8560B6C /* stage41.json */; };
 		C098C8F3828C706A747AE058 /* stage6.json in Resources */ = {isa = PBXBuildFile; fileRef = 7ECADE603B1AA8F3235D668F /* stage6.json */; };
 		C1DE81A2D0FF3777FCC58BDD /* stage45.json in Resources */ = {isa = PBXBuildFile; fileRef = DDA00CF2349275E0A068CDF0 /* stage45.json */; };
-		C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C22BCB83C026070FB98DC8 /* StageSelectView.swift */; };
 		C472E87234C3226CE340D16E /* stage62.json in Resources */ = {isa = PBXBuildFile; fileRef = 81706BE1C66194C70273C674 /* stage62.json */; };
 		C9309DFC5403D64C2A0FC330 /* stage63.json in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC0FE5B2CB3598B9C57A6C /* stage63.json */; };
 		CA358D08C04C2B91F18D8460 /* stage40.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B898B27B9FFADD4D3C05B93 /* stage40.json */; };
@@ -138,9 +136,13 @@
 		F40F0785505722F2F5B3C568 /* stage14.json in Resources */ = {isa = PBXBuildFile; fileRef = 6A30C74AFCC83BC81240FE8B /* stage14.json */; };
 		F44478D44E2B9D89E37BFB73 /* stage44.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B3D54D4915B729AAC99851 /* stage44.json */; };
 		F53C4B342E9FB51D2FBFB233 /* FavoriteSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */; };
+		C4C1F5E2DD54880E6D949B4F /* WeakPointSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3E3BDF57F4AAC9CE2C027 /* WeakPointSessionBuilder.swift */; };
+		D1E2F3A4B5C6D7E8F9A0B1C2 /* WritingSessionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C /* WritingSessionBuilder.swift */; };
 		FBFAC18715D43EFEB9C14142 /* stage56.json in Resources */ = {isa = PBXBuildFile; fileRef = D3A9974F2CF764CE1DD79C22 /* stage56.json */; };
 		FC72599E1B883C0D36F60464 /* stage21.json in Resources */ = {isa = PBXBuildFile; fileRef = ED0575009408B143BF71B4D0 /* stage21.json */; };
 		FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B43FC022C83E344ABEE7C03 /* ErrorState.swift */; };
+		820AABDD9792CF9002E9C104 /* DailySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33FF4F788B33DFE9764C8A /* DailySummaryView.swift */; };
+		CDD266BD8453C3A9ECC902B6 /* ReviewPromptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9AD5CCBF5E79FFD4C281ED /* ReviewPromptManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,7 +205,6 @@
 		52D6A196EE4F84341DD6A63D /* stage55.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage55.json; sourceTree = "<group>"; };
 		555098B4DDEA6BBB35FF5380 /* stage26.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage26.json; sourceTree = "<group>"; };
 		577044429CF4281C3A58E83C /* OniTanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		59C22BCB83C026070FB98DC8 /* StageSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageSelectView.swift; sourceTree = "<group>"; };
 		5DEF3A3C073ABEFCF8560B6C /* stage41.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage41.json; sourceTree = "<group>"; };
 		5E606BAFCD7E20931EFDF248 /* PlayFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFontManager.swift; sourceTree = "<group>"; };
 		5F1395D0735D685DEED95EEC /* stages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stages.json; sourceTree = "<group>"; };
@@ -234,6 +235,8 @@
 		975C66663EB0052137ECFD37 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99F5A6A484C73AF85F7810F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSessionBuilder.swift; sourceTree = "<group>"; };
+		71F3E3BDF57F4AAC9CE2C027 /* WeakPointSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakPointSessionBuilder.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B5C /* WritingSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingSessionBuilder.swift; sourceTree = "<group>"; };
 		9B898B27B9FFADD4D3C05B93 /* stage40.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage40.json; sourceTree = "<group>"; };
 		9C8316098825221F61FACA61 /* stage61.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage61.json; sourceTree = "<group>"; };
 		9D288AA65B825BCF1787D8AA /* OniTanTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTheme.swift; sourceTree = "<group>"; };
@@ -259,7 +262,6 @@
 		A5BA43D72FDAF6C20049775C /* TrainingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingMode.swift; sourceTree = "<group>"; };
 		A5BA43D82FDAF6C20049775C /* TrainingModePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModePickerView.swift; sourceTree = "<group>"; };
 		A5BA43D92FDAF6C20049775C /* TrainingSessionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSessionBuilder.swift; sourceTree = "<group>"; };
-		A709DAD0107E879561BB3203 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		A78D1BA326BF77A20284D2BF /* stage33.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage33.json; sourceTree = "<group>"; };
 		AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteKanjiRepository.swift; sourceTree = "<group>"; };
 		AC8E8B43BAF081399475C0C0 /* stage39.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage39.json; sourceTree = "<group>"; };
@@ -297,6 +299,8 @@
 		F47BC5CFCD73435ACF5AF71A /* stage53.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage53.json; sourceTree = "<group>"; };
 		F778B7974DE051C0BC2CC841 /* stage59.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stage59.json; sourceTree = "<group>"; };
 		FA294C1CA7D71C03F4EB5FB9 /* OniTanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OniTanTests.swift; sourceTree = "<group>"; };
+		FF33FF4F788B33DFE9764C8A /* DailySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryView.swift; sourceTree = "<group>"; };
+		0C9AD5CCBF5E79FFD4C281ED /* ReviewPromptManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPromptManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -425,6 +429,8 @@
 				4B43FC022C83E344ABEE7C03 /* ErrorState.swift */,
 				AA7FA6BC0071A214428C8146 /* FavoriteKanjiRepository.swift */,
 				9AC57D6839CB30A12A26F634 /* FavoriteSessionBuilder.swift */,
+				71F3E3BDF57F4AAC9CE2C027 /* WeakPointSessionBuilder.swift */,
+				A1B2C3D4E5F60718293A4B5C /* WritingSessionBuilder.swift */,
 				878ED351D8C0E69141C83475 /* GamificationRepository.swift */,
 				860301C6672CBF8DF84E8AA2 /* HomeView.swift */,
 				46DD1A5A4E1BFAB1F2920AEF /* Info.plist */,
@@ -445,10 +451,10 @@
 				29076909A8310033010EC721 /* QuizSessionViewModel.swift */,
 				6BD8F1B92B2A5C902D978FC9 /* ReviewSessionBuilder.swift */,
 				99F5A6A484C73AF85F7810F4 /* SettingsView.swift */,
-				59C22BCB83C026070FB98DC8 /* StageSelectView.swift */,
-				A709DAD0107E879561BB3203 /* StatsView.swift */,
 				3C69667D30FCCC04E86D11AE /* StreakChallengeView.swift */,
 				00F33F3E41355E6617E24291 /* StreakRepository.swift */,
+				FF33FF4F788B33DFE9764C8A /* DailySummaryView.swift */,
+				0C9AD5CCBF5E79FFD4C281ED /* ReviewPromptManager.swift */,
 				42D8951A18B78B7D4496B2FA /* StudyStatsRepository.swift */,
 				82790558D967BDF74A396745 /* ThemeManager.swift */,
 				8297D8F6FAE9B00CA53CD894 /* ThemePalette.swift */,
@@ -636,6 +642,8 @@
 				FE0219854EACF64A601E7CBD /* ErrorState.swift in Sources */,
 				58C912EFDBECD011F49C3272 /* FavoriteKanjiRepository.swift in Sources */,
 				F53C4B342E9FB51D2FBFB233 /* FavoriteSessionBuilder.swift in Sources */,
+				C4C1F5E2DD54880E6D949B4F /* WeakPointSessionBuilder.swift in Sources */,
+				D1E2F3A4B5C6D7E8F9A0B1C2 /* WritingSessionBuilder.swift in Sources */,
 				1D666F77A86DFCC0C51A2267 /* GamificationRepository.swift in Sources */,
 				99CE55FA17A38D03B18A9476 /* HomeView.swift in Sources */,
 				41021FB5B9FE659C37411DFC /* IssueReportSupport.swift in Sources */,
@@ -674,10 +682,10 @@
 				A5BA445B2FDAF6C20049775C /* OniComponents.swift in Sources */,
 				92F771A218FF51A3531753B3 /* ReviewSessionBuilder.swift in Sources */,
 				9417672A2D70817B9420092C /* SettingsView.swift in Sources */,
-				C2F0544FC44015C22D3B3A25 /* StageSelectView.swift in Sources */,
-				06F33DCC41AB6E2B4D421BCC /* StatsView.swift in Sources */,
 				9BF1CE3A3A6B54E6083B7A90 /* StreakChallengeView.swift in Sources */,
 				EDDBDCADD43E42AC2A3150ED /* StreakRepository.swift in Sources */,
+				820AABDD9792CF9002E9C104 /* DailySummaryView.swift in Sources */,
+				CDD266BD8453C3A9ECC902B6 /* ReviewPromptManager.swift in Sources */,
 				88E9882A3AB90A4D473B4D03 /* StudyStatsRepository.swift in Sources */,
 				362516D45E32453B490BDA12 /* ThemeManager.swift in Sources */,
 				F2D12E25938A256A24A3A9F0 /* ThemePalette.swift in Sources */,

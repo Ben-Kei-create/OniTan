@@ -177,4 +177,18 @@ extension Question {
             .joined(separator: "\n")
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
+
+    /// Extracts the term's meaning (the line beginning with "意味:") from the explanation, if present.
+    var termMeaning: String? {
+        for line in explain.split(separator: "\n") {
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed.hasPrefix("意味:") || trimmed.hasPrefix("意味：") {
+                return trimmed
+                    .replacingOccurrences(of: "意味:", with: "")
+                    .replacingOccurrences(of: "意味：", with: "")
+                    .trimmingCharacters(in: .whitespaces)
+            }
+        }
+        return nil
+    }
 }

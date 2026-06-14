@@ -119,8 +119,8 @@ struct KanjiCatalogView: View {
     private var catalogControls: some View {
         VStack(spacing: 10) {
             HStack(spacing: 10) {
-                Text("探")
-                    .font(.system(size: 16, weight: .black, design: .serif))
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(OniTanTheme.accentWeak)
                     .frame(width: 34, height: 34)
                     .background(
@@ -139,8 +139,8 @@ struct KanjiCatalogView: View {
                     Button {
                         searchText = ""
                     } label: {
-                        Text("消")
-                            .font(.system(size: 13, weight: .black, design: .serif))
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 13, weight: .bold))
                             .foregroundColor(OniTanTheme.textTertiary)
                             .frame(width: 30, height: 30)
                     }
@@ -163,8 +163,8 @@ struct KanjiCatalogView: View {
                 favoritesOnly.toggle()
             } label: {
                 HStack(spacing: 8) {
-                    Text("星")
-                        .font(.system(size: 13, weight: .black, design: .serif))
+                    Image(systemName: favoritesOnly ? "star.fill" : "star")
+                        .font(.system(size: 13, weight: .bold))
                         .foregroundColor(favoritesOnly ? OniTanTheme.cardBackground : OniTanTheme.accentWeak)
                     Text(favoritesOnly ? "お気に入りのみ表示中" : "お気に入りのみ")
                         .font(.system(.caption, design: .rounded))
@@ -192,12 +192,47 @@ struct KanjiCatalogView: View {
     }
 
     private var emptyResultCard: some View {
-        Text("該当する漢字がありません")
-            .font(.system(.subheadline, design: .rounded))
-            .fontWeight(.semibold)
-            .foregroundColor(OniTanTheme.textSecondary)
-            .frame(maxWidth: .infinity, minHeight: 72)
-            .oniCard()
+        VStack(spacing: 12) {
+            if favoritesOnly && searchText.isEmpty {
+                Text("お気に入りに登録された漢字がありません")
+                    .font(.system(.subheadline, design: .rounded))
+                    .fontWeight(.semibold)
+                    .foregroundColor(OniTanTheme.textSecondary)
+                Text("漢字をタップして詳細を開き、星マークでお気に入りに追加できます")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .multilineTextAlignment(.center)
+            } else {
+                Text("該当する漢字がありません")
+                    .font(.system(.subheadline, design: .rounded))
+                    .fontWeight(.semibold)
+                    .foregroundColor(OniTanTheme.textSecondary)
+                Text("検索語を変えるか、条件をクリアしてみてください")
+                    .font(.system(.caption, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+            }
+
+            Button {
+                searchText = ""
+                favoritesOnly = false
+            } label: {
+                Text("検索条件をクリア")
+                    .font(.system(.caption, design: .rounded))
+                    .fontWeight(.bold)
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(
+                        Capsule()
+                            .fill(OniTanTheme.cardBackgroundPressed)
+                            .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    )
+            }
+            .buttonStyle(.plain)
+        }
+        .frame(maxWidth: .infinity, minHeight: 72)
+        .padding(.vertical, 8)
+        .oniCard()
     }
 }
 
@@ -217,8 +252,8 @@ private struct KanjiCatalogCell: View {
 
             if favoriteRepo.isFavorite(entry.question.kanji) {
                 HStack {
-                    Text("星")
-                        .font(.system(size: 10, weight: .black, design: .serif))
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 10, weight: .bold))
                         .foregroundColor(Color(red: 1.0, green: 0.84, blue: 0.28))
                         .padding(7)
                         .background(Color.black.opacity(0.16))
@@ -276,9 +311,18 @@ private struct KanjiCatalogDetailView: View {
             .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("閉じる") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .frame(width: 34, height: 34)
+                            .background(Color.black.opacity(0.16))
+                            .overlay(Circle().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                            .clipShape(Circle())
                     }
+                    .accessibilityLabel("閉じる")
                 }
             }
         }
@@ -293,7 +337,7 @@ private struct KanjiCatalogDetailView: View {
                 .lineLimit(1)
 
             HStack(spacing: 8) {
-                detailPill(title: "正解", value: entry.question.answer)
+                detailPill(title: "分野", value: entry.question.kind.displayName)
             }
         }
         .frame(maxWidth: .infinity)

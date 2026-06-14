@@ -54,6 +54,9 @@ struct HomeView: View {
 
                             heroEmblem(isCompact: isCompactHeight)
 
+                            streakSection(isCompact: isCompactHeight)
+                                .padding(.top, isCompactHeight ? 14 : 18)
+
                             primaryActions(isCompact: isCompactHeight)
                                 .padding(.top, isCompactHeight ? 16 : 22)
 
@@ -165,7 +168,7 @@ struct HomeView: View {
             Spacer()
 
             HomeHeaderIconButton(
-                icon: "設",
+                icon: "gearshape.fill",
                 accessibilityTitle: "設定",
                 compact: isCompact,
                 destination: SettingsView()
@@ -211,6 +214,51 @@ struct HomeView: View {
         .accessibilityHidden(true)
     }
 
+    // MARK: - Streak Section
+
+    private func streakSection(isCompact: Bool) -> some View {
+        let state = xpRepo.levelState(for: xpRepo.totalXP)
+
+        return VStack(spacing: 10) {
+            HStack(spacing: 6) {
+                Image(systemName: "flame.fill")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(HomeInk.gold)
+                    .accessibilityHidden(true)
+
+                Text(streakRepo.currentStreak > 0 ? "\(streakRepo.currentStreak)日連続" : "今日から始めよう")
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundColor(HomeInk.textPrimary)
+
+                Spacer()
+
+                if streakRepo.longestStreak > 0 {
+                    Text("最長 \(streakRepo.longestStreak)日")
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundColor(HomeInk.textSecondary)
+                }
+            }
+
+            StreakCalendarStrip(streakRepo: streakRepo)
+
+            HStack(spacing: 8) {
+                Text("Lv.\(state.level)")
+                    .font(.system(size: 12, weight: .black, design: .rounded))
+                    .foregroundColor(HomeInk.gold)
+
+                OniProgressBar(progress: state.progress, height: 5)
+
+                Text("\(state.xpInLevel)/\(state.xpToNext) XP")
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
+                    .foregroundColor(HomeInk.textSecondary)
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("レベル\(state.level)、次のレベルまで\(state.xpToNext - state.xpInLevel)経験値")
+        }
+        .padding(14)
+        .oniGlassCard()
+    }
+
     // MARK: - Primary Actions
 
     private var todayStage: Stage {
@@ -228,7 +276,8 @@ struct HomeView: View {
                     title: "ランダム10問",
                     style: .disabled,
                     isCompact: isCompact,
-                    destination: nil
+                    destination: nil,
+                    icon: "shuffle"
                 )
                 .accessibilityIdentifier("home_today_card")
             } else {
@@ -247,30 +296,81 @@ struct HomeView: View {
                             mode: .quick10,
                             clearTitle: "ランダム10問 完了！"
                         )
-                    )
+                    ),
+                    subtitle: "全カテゴリからランダムに10問",
+                    icon: "shuffle",
+                    trailingBadge: streakRepo.todayCompleted ? "達成済み" : nil
                 )
                 .accessibilityIdentifier("home_today_card")
+            }
+
+            if statsRepo.hasWeakPoints {
+                HomePrimaryActionCard(
+                    title: "弱点復習",
+                    style: .neutral,
+                    isCompact: isCompact,
+                    destination: AnyView(
+                        QuizModeSelectView(
+                            stage: WeakPointSessionBuilder.buildWeakStage(
+                                statsRepo: statsRepo,
+                                allStages: quizData.stages
+                            ),
+                            sessionTitle: "弱点復習"
+                        )
+                    ),
+                    subtitle: "間違えた漢字を集中的に復習",
+                    icon: "exclamationmark.triangle.fill"
+                )
             }
 
             HomePrimaryActionCard(
                 title: "道場選択",
                 style: .neutral,
                 isCompact: isCompact,
-                destination: AnyView(CategoryTrainingView())
+                destination: AnyView(CategoryTrainingView()),
+                subtitle: "ステージを選んで集中練習",
+                icon: "building.columns.fill"
             )
 
             HomePrimaryActionCard(
                 title: "模擬試験",
-                style: .gold,
+                style: .neutral,
                 isCompact: isCompact,
-                destination: AnyView(examDestination)
+                destination: AnyView(examDestination),
+                subtitle: "本番形式で実力を確認",
+                icon: "doc.text.fill"
             )
 
             HomePrimaryActionCard(
                 title: "漢字一覧",
                 style: .neutral,
                 isCompact: isCompact,
-                destination: AnyView(KanjiCatalogView())
+                destination: AnyView(KanjiCatalogView()),
+                subtitle: "全漢字をチェック",
+                icon: "books.vertical.fill"
+            )
+
+            HomePrimaryActionCard(
+                title: "連続鬼たん",
+                style: .neutral,
+                isCompact: isCompact,
+                destination: AnyView(StreakChallengeView(xpRepo: xpRepo)),
+                subtitle: "1問8秒・ミスで終了のタイムアタック",
+                icon: "bolt.fill"
+            )
+
+            HomePrimaryActionCard(
+                title: "書き取り訓練",
+                style: .neutral,
+                isCompact: isCompact,
+                destination: AnyView(
+                    QuizModeSelectView(
+                        stage: WritingSessionBuilder.buildWritingStage(),
+                        sessionTitle: "書き取り訓練"
+                    )
+                ),
+                subtitle: "漢字を書く力を多肢選択で確認",
+                icon: "pencil.and.outline"
             )
 
             if favoriteRepo.count > 0 {
@@ -285,7 +385,18 @@ struct HomeView: View {
                             ),
                             sessionTitle: "お気に入り"
                         )
-                    )
+                    ),
+                    subtitle: "保存した漢字を復習",
+                    icon: "star.fill"
+                )
+            } else {
+                HomePrimaryActionCard(
+                    title: "お気に入り",
+                    style: .disabled,
+                    isCompact: isCompact,
+                    destination: nil,
+                    subtitle: "問題画面の★で漢字を保存できます",
+                    icon: "star"
                 )
             }
         }
@@ -301,9 +412,10 @@ struct HomeView: View {
     private func dataErrorBanner(_ error: DataLoadError) -> some View {
         VStack {
             HStack(spacing: 8) {
-                Text("!")
+                Image(systemName: "exclamationmark.triangle.fill")
                     .font(.caption.bold())
                     .foregroundColor(HomeInk.gold)
+                    .accessibilityHidden(true)
                 Text(error.localizedDescription)
                     .font(.caption)
                     .foregroundColor(HomeInk.textPrimary)
@@ -333,8 +445,8 @@ private struct HomeHeaderIconButton<Destination: View>: View {
 
     var body: some View {
         NavigationLink(destination: destination) {
-            Text(icon)
-                .font(.system(size: compact ? 15 : 16, weight: .black, design: .serif))
+            Image(systemName: icon)
+                .font(.system(size: compact ? 15 : 16, weight: .bold))
                 .foregroundColor(HomeInk.textPrimary)
                 .frame(width: compact ? 36 : 38, height: compact ? 36 : 38)
                 .background(
@@ -374,6 +486,9 @@ private struct HomePrimaryActionCard: View {
     let style: HomePrimaryCardStyle
     let isCompact: Bool
     let destination: AnyView?
+    var subtitle: String? = nil
+    var icon: String? = nil
+    var trailingBadge: String? = nil
 
     @State private var isPressed = false
 
@@ -392,17 +507,48 @@ private struct HomePrimaryActionCard: View {
             }
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
+        .accessibilityLabel(subtitle.map { "\(title) \($0)" } ?? title)
         .accessibilityHint(destination != nil ? "タップして\(title)を開始" : "")
     }
 
     private var cardContent: some View {
-        HStack(spacing: 16) {
-            Text(title)
-                .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
-                .foregroundColor(titleColor)
+        HStack(spacing: 14) {
+            if let icon {
+                Image(systemName: icon)
+                    .font(.system(size: isCompact ? 17 : 19, weight: .bold))
+                    .foregroundColor(titleColor)
+                    .frame(width: isCompact ? 28 : 32)
+                    .accessibilityHidden(true)
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: isCompact ? 17 : 19, weight: .black, design: .rounded))
+                    .foregroundColor(titleColor)
+
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundColor(subtitleColor)
+                }
+            }
 
             Spacer()
+
+            if let trailingBadge {
+                HStack(spacing: 3) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 11, weight: .bold))
+                    Text(trailingBadge)
+                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                }
+                .foregroundColor(OniTanTheme.accentCorrect)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(
+                    Capsule().fill(OniTanTheme.accentCorrect.opacity(0.16))
+                )
+            }
 
             if destination != nil {
                 Image(systemName: "chevron.right")

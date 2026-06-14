@@ -19,6 +19,7 @@ struct QuestionPromptView: View {
     let isWrong: Bool
 
     @EnvironmentObject private var playFontManager: PlayFontManager
+    @State private var meaningPopoverTerm: TermMeaningInfo? = nil
 
     private var corner: CGFloat { scaled(24, min: 16) }
 
@@ -55,6 +56,24 @@ struct QuestionPromptView: View {
                 RoundedRectangle(cornerRadius: corner)
                     .fill(OniTanTheme.accentWrong.opacity(0.25))
                     .transition(.opacity)
+            }
+
+            // Animated feedback icon (checkmark / xmark) for clearer correct/incorrect cues
+            if isCorrect || isWrong {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
+                            .font(.system(size: scaled(54, min: 38), weight: .bold))
+                            .foregroundColor(isCorrect ? OniTanTheme.accentCorrect : OniTanTheme.accentWrong)
+                            .shadow(color: .black.opacity(0.25), radius: 6)
+                            .accessibilityHidden(true)
+                    }
+                    Spacer()
+                }
+                .padding(scaled(14, min: 10))
+                .transition(.scale(scale: 0.4).combined(with: .opacity))
+                .animation(.spring(response: 0.35, dampingFraction: 0.55), value: isCorrect)
             }
 
             // Prompt content (lazy-switch on kind)
@@ -155,29 +174,24 @@ struct QuestionPromptView: View {
         let terms = question.payload?.blankTerms ?? [question.displayPrompt]
         let fontSize = scaled(34, min: 24)
 
-        return VStack(spacing: scaled(6, min: 4)) {
-            HStack(spacing: scaled(12, min: 8)) {
-                ForEach(terms.prefix(4), id: \.self) { term in
-                    Text(term)
-                        .font(playFontManager.font(size: fontSize, weight: .black))
-                        .foregroundColor(OniTanTheme.textPrimary)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(1)
-                        .padding(.horizontal, scaled(8, min: 5))
-                        .padding(.vertical, scaled(5, min: 3))
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(OniTanTheme.accentPrimary.opacity(0.10))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1)
-                                )
-                        )
-                }
+        return HStack(spacing: scaled(12, min: 8)) {
+            ForEach(terms.prefix(4), id: \.self) { term in
+                Text(term)
+                    .font(playFontManager.font(size: fontSize, weight: .black))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .padding(.horizontal, scaled(8, min: 5))
+                    .padding(.vertical, scaled(5, min: 3))
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(OniTanTheme.accentPrimary.opacity(0.10))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(OniTanTheme.accentPrimary.opacity(0.25), lineWidth: 1)
+                            )
+                    )
             }
-            Text("共通する漢字は？")
-                .font(playFontManager.font(size: scaled(12, min: 10), weight: .medium))
-                .foregroundColor(OniTanTheme.textTertiary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(14, min: 8))
@@ -190,25 +204,17 @@ struct QuestionPromptView: View {
         let targetChar = question.payload?.targetKanjiInCompound
         let fontSize = scaled(68, min: 52)
 
-        return VStack(spacing: scaled(6, min: 4)) {
-            HStack(spacing: 2) {
-                ForEach(Array(compound.enumerated()), id: \.offset) { _, char in
-                    let charStr = String(char)
-                    let isTarget = targetChar.map { $0 == charStr } ?? false
-                    Text(charStr)
-                        .font(playFontManager.font(size: fontSize, weight: .black))
-                        .foregroundColor(isTarget ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
-                        .shadow(color: .black.opacity(0.3), radius: 3)
-                }
-            }
-            .minimumScaleFactor(0.4)
-
-            if targetChar != nil {
-                Text("下線の漢字の読みは？")
-                    .font(playFontManager.font(size: scaled(12, min: 10), weight: .medium))
-                    .foregroundColor(OniTanTheme.textTertiary)
+        return HStack(spacing: 2) {
+            ForEach(Array(compound.enumerated()), id: \.offset) { _, char in
+                let charStr = String(char)
+                let isTarget = targetChar.map { $0 == charStr } ?? false
+                Text(charStr)
+                    .font(playFontManager.font(size: fontSize, weight: .black))
+                    .foregroundColor(isTarget ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
+                    .shadow(color: .black.opacity(0.3), radius: 3)
             }
         }
+        .minimumScaleFactor(0.4)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(16, min: 8))
     }
@@ -241,38 +247,112 @@ struct QuestionPromptView: View {
 
     private var sentenceReadingContent: some View {
         let context = question.payload?.sentenceContext ?? question.displayPrompt
+        let target = question.kanji
+        let bodyFont = playFontManager.font(size: scaled(24, min: 19), weight: .medium)
+        let meaning = question.termMeaning
 
         return VStack(alignment: .leading, spacing: scaled(12, min: 8)) {
-            HStack(spacing: 6) {
-                Text("下線部")
-                    .font(playFontManager.font(size: scaled(11, min: 9), weight: .bold))
+            if let range = context.range(of: target) {
+                Text(attributedSentence(context: context, targetRange: range, bodyFont: bodyFont, linkable: meaning != nil))
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.leading)
+                    .minimumScaleFactor(0.75)
+                    .lineLimit(3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .environment(\.openURL, OpenURLAction { url in
+                        guard url.scheme == "onitan-meaning", let meaning else { return .systemAction }
+                        meaningPopoverTerm = TermMeaningInfo(word: target, meaning: meaning)
+                        return .handled
+                    })
+            } else {
+                Text(target)
+                    .font(playFontManager.font(size: scaled(30, min: 23), weight: .black))
                     .foregroundColor(OniTanTheme.accentWeak)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(
-                        Capsule()
-                            .fill(OniTanTheme.accentWeak.opacity(0.12))
-                            .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.28), lineWidth: 1))
-                    )
-
-                Text(question.kanji)
-                    .font(playFontManager.font(size: scaled(26, min: 20), weight: .black))
-                    .foregroundColor(OniTanTheme.textPrimary)
                     .minimumScaleFactor(0.65)
                     .lineLimit(1)
-            }
 
-            Text(context)
-                .font(playFontManager.font(size: scaled(22, min: 17), weight: .medium))
-                .foregroundColor(OniTanTheme.textPrimary)
-                .lineSpacing(6)
-                .multilineTextAlignment(.leading)
-                .minimumScaleFactor(0.75)
-                .lineLimit(3)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                Text(context)
+                    .font(bodyFont)
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.leading)
+                    .minimumScaleFactor(0.75)
+                    .lineLimit(3)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .padding(scaled(18, min: 12))
+        .sheet(item: $meaningPopoverTerm) { item in
+            meaningSheetContent(word: item.word, meaning: item.meaning)
+        }
+    }
+
+    /// Builds an AttributedString for the sentence with the target compound underlined
+    /// and styled, optionally wired as a tappable link to reveal its meaning.
+    private func attributedSentence(context: String, targetRange: Range<String.Index>, bodyFont: Font, linkable: Bool) -> AttributedString {
+        var result = AttributedString(String(context[context.startIndex..<targetRange.lowerBound]))
+        result.font = bodyFont
+        result.foregroundColor = OniTanTheme.textPrimary
+
+        var targetAttr = AttributedString(String(context[targetRange]))
+        targetAttr.font = playFontManager.font(size: scaled(28, min: 22), weight: .black)
+        targetAttr.foregroundColor = OniTanTheme.accentWeak
+        targetAttr.underlineStyle = .single
+        if linkable {
+            targetAttr.link = URL(string: "onitan-meaning:///term")
+        }
+        result += targetAttr
+
+        var trailing = AttributedString(String(context[targetRange.upperBound...]))
+        trailing.font = bodyFont
+        trailing.foregroundColor = OniTanTheme.textPrimary
+        result += trailing
+
+        return result
+    }
+
+    private func meaningSheetContent(word: String, meaning: String) -> some View {
+        NavigationStack {
+            ZStack {
+                OniTanTheme.backgroundGradientFallback.ignoresSafeArea()
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(word)
+                        .font(playFontManager.font(size: 30, weight: .black))
+                        .foregroundColor(OniTanTheme.accentWeak)
+
+                    Text(meaning)
+                        .font(playFontManager.font(size: 17, weight: .regular))
+                        .foregroundColor(OniTanTheme.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Spacer()
+                }
+                .padding(20)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .navigationTitle("意味")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        meaningPopoverTerm = nil
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .frame(width: 34, height: 34)
+                            .background(Color.black.opacity(0.16))
+                            .overlay(Circle().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                            .clipShape(Circle())
+                    }
+                    .accessibilityLabel("閉じる")
+                }
+            }
+        }
+        .presentationDetents([.fraction(0.35), .medium])
     }
 
     // MARK: - Sentence Layout (errorCorrection, proverb, passage)
@@ -309,4 +389,13 @@ struct QuestionPromptView: View {
     private func scaled(_ value: CGFloat, min minValue: CGFloat) -> CGFloat {
         max(minValue, value * scale)
     }
+}
+
+// MARK: - TermMeaningInfo
+
+/// Identifiable wrapper for showing a term's meaning in a popover.
+struct TermMeaningInfo: Identifiable {
+    let id = UUID()
+    let word: String
+    let meaning: String
 }

@@ -83,7 +83,8 @@ struct TrainingSessionBuilder {
         case .examMini, .examFull:
             // For exam modes, use ExamBuilder with a matching blueprint
             let targetCount = mode.questionLimit ?? 30
-            let blueprint = examBlueprints.first ?? ExamBlueprint(
+            let blueprintID = mode == .examFull ? "full" : "mini"
+            let blueprint = examBlueprints.first(where: { $0.id == blueprintID }) ?? ExamBlueprint(
                 id: "fallback",
                 title: "模試",
                 questionCount: targetCount,

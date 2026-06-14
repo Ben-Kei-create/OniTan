@@ -16,10 +16,13 @@ struct OniTanApp: App {
     @StateObject private var appNavState = AppNavigationState()
     @StateObject private var masteryRepo = MasteryRepository()
     @StateObject private var examResultRepo = ExamResultRepository()
+    @StateObject private var reviewPromptManager = ReviewPromptManager()
 
     @AppStorage("onboarding_v1_complete") private var onboardingComplete = false
     @State private var showOnboarding = false
     @State private var showSplash = true
+    @State private var showDailySummary = false
+    @AppStorage("dailySummary_lastShownDayKey") private var dailySummaryLastShownDayKey = ""
 
     init() {
         let appearance = UINavigationBarAppearance()
@@ -47,6 +50,7 @@ struct OniTanApp: App {
                     .environmentObject(appNavState)
                     .environmentObject(masteryRepo)
                     .environmentObject(examResultRepo)
+                    .environmentObject(reviewPromptManager)
                     .preferredColorScheme(themeManager.preferredColorScheme)
                     .fullScreenCover(isPresented: $showOnboarding) {
                         OnboardingView(isPresented: $showOnboarding)
@@ -67,7 +71,25 @@ struct OniTanApp: App {
                     .onChange(of: streakRepo.todayCompleted) { completed in
                         if completed {
                             notificationManager.handleTodayCompleted()
+                            let todayKey = StreakRepository.dayKey(for: Date())
+                            if !showOnboarding && dailySummaryLastShownDayKey != todayKey {
+                                dailySummaryLastShownDayKey = todayKey
+                                showDailySummary = true
+                            }
                         }
+                    }
+                    .onChange(of: showDailySummary) { presented in
+                        appState.isDailySummaryPresented = presented
+                    }
+                    .fullScreenCover(isPresented: $showDailySummary) {
+                        DailySummaryView(
+                            streak: streakRepo.currentStreak,
+                            isNewLongestStreak: streakRepo.lastCompletionWasNewRecord,
+                            answeredToday: streakRepo.todayAnswerCount,
+                            xpEarnedToday: xpRepo.todayXP,
+                            weakKanjiCount: Set(quizData.stages.flatMap { statsRepo.allWeakKanji(forStage: $0.stage) }).count,
+                            onDismiss: { showDailySummary = false }
+                        )
                     }
                     .onChange(of: showOnboarding) { showing in
                         if !showing {

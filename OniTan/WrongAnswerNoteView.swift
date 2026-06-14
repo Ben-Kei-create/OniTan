@@ -40,8 +40,8 @@ struct WrongAnswerNoteView: View {
 
     private var entryCountBar: some View {
         HStack(spacing: 12) {
-            Text("誤")
-                .font(.system(size: 18, weight: .black, design: .serif))
+            Image(systemName: "xmark.circle.fill")
+                .font(.system(size: 18, weight: .bold))
                 .foregroundColor(OniTanTheme.accentWrong)
                 .frame(width: 38, height: 38)
                 .background(
@@ -52,9 +52,10 @@ struct WrongAnswerNoteView: View {
                                 .stroke(OniTanTheme.accentWrong.opacity(0.28), lineWidth: 1)
                         )
                 )
+                .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("見直すべき記録")
+                Text("誤答記録")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(OniTanTheme.textPrimary)
                 Text("\(filteredEntries.count) 件")
@@ -115,7 +116,6 @@ struct WrongAnswerNoteView: View {
 
 private struct WrongAnswerRow: View {
     let entry: WrongAnswerEntry
-    var showsXPBadge: Bool = true
 
     private var relativeDate: String {
         let formatter = RelativeDateTimeFormatter()
@@ -179,19 +179,6 @@ private struct WrongAnswerRow: View {
             Spacer()
 
             VStack(alignment: .trailing, spacing: 4) {
-                if showsXPBadge {
-                    Text("+\(XPEvent.wrongNoteRetrieved.points) XP")
-                            .font(.system(size: 9, weight: .bold, design: .rounded))
-                            .foregroundColor(OniTanTheme.accentWeak)
-                        .padding(.horizontal, 5)
-                        .padding(.vertical, 2)
-                        .background(
-                            Capsule()
-                                .fill(OniTanTheme.accentWeak.opacity(0.15))
-                        )
-                        .accessibilityHidden(true)
-                }
-
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12))
                     .foregroundColor(OniTanTheme.textTertiary)
@@ -218,9 +205,23 @@ private struct WrongAnswerRow: View {
 struct WrongAnswerDetailSheet: View {
     let entry: WrongAnswerEntry
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var statsRepo: StudyStatsRepository
+
+    @State private var showPractice = false
 
     private var fullQuestion: Question? {
         allQuestions.first { $0.kanji == entry.kanji }
+    }
+
+    /// A single-kanji practice session built from every exam-eligible
+    /// question matching this entry's kanji.
+    private var practiceStage: Stage {
+        let questions = allQuestions.filter {
+            $0.kanji == entry.kanji && $0.kind.isExamEligible
+        }
+        let fallback = fullQuestion.map { [$0] } ?? []
+        return Stage(stage: -4, questions: questions.isEmpty ? fallback : questions)
     }
 
     var body: some View {
@@ -270,6 +271,28 @@ struct WrongAnswerDetailSheet: View {
                         .cornerRadius(OniTanTheme.radiusCard)
                         .padding(.horizontal, 20)
 
+                        if !practiceStage.questions.isEmpty {
+                            Button {
+                                OniTanTheme.haptic(.light)
+                                showPractice = true
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Image(systemName: "arrow.clockwise")
+                                        .font(.system(size: 14, weight: .bold))
+                                    Text("この漢字を復習する")
+                                        .font(.system(.headline, design: .rounded))
+                                        .fontWeight(.bold)
+                                }
+                                .foregroundColor(OniTanTheme.textPrimary)
+                                .frame(maxWidth: .infinity, minHeight: 50)
+                                .background(OniTanTheme.primaryGradient)
+                                .cornerRadius(OniTanTheme.radiusButton)
+                                .shadow(color: OniTanTheme.shadowGlow.color, radius: 8, y: 4)
+                            }
+                            .padding(.horizontal, 20)
+                            .accessibilityHint("タップして、この漢字の問題に再挑戦")
+                        }
+
                         if let q = fullQuestion {
                             VStack(alignment: .leading, spacing: 10) {
                                 Text("解説")
@@ -299,6 +322,15 @@ struct WrongAnswerDetailSheet: View {
         .presentationDragIndicator(.hidden)
         .onAppear {
             OniTanTheme.haptic(.light)
+        }
+        .fullScreenCover(isPresented: $showPractice) {
+            MainView(
+                stage: practiceStage,
+                appState: appState,
+                statsRepo: statsRepo,
+                mode: .quick10,
+                clearTitle: "復習 完了！"
+            )
         }
     }
 

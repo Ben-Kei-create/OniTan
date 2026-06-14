@@ -19,6 +19,25 @@
     "passingAccuracy": 0.90
   },
   {
+    "id": "exam_round_01",
+    "title": "総合模試 第1回（30問）",
+    "questionCount": 30,
+    "distribution": {
+      "sentenceReading":    7,
+      "hyogaiReading":      3,
+      "compoundReadingKun": 3,
+      "commonKanji":        3,
+      "errorCorrection":    3,
+      "yojijukugo":         4,
+      "synonym":            2,
+      "antonym":            2,
+      "proverb":            1,
+      "passageReading":     1,
+      "passageVocabulary":  1
+    },
+    "passingAccuracy": 0.90
+  },
+  {
     "id": "full",
     "title": "本番模試（200問）",
     "questionCount": 200,
