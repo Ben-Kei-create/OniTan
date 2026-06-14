@@ -105,7 +105,7 @@ extension QuestionKind {
         case .yojijukugo:         return "□に入る漢字を選びなさい"
         case .synonym:            return "類義語を選びなさい"
         case .antonym:            return "対義語を選びなさい"
-        case .proverb:            return "正しい語句を選びなさい"
+        case .proverb:            return "意味として最も適切なものを選びなさい"
         case .passageReading:     return "下線部の読みを選びなさい"
         case .passageVocabulary:  return "□に入る語句を選びなさい"
         case .writing:            return "正しい書き取りを選びなさい"

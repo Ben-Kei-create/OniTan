@@ -61,6 +61,17 @@ enum OniTanTheme {
     static var accentWeak: Color { p.accentWeak }
     static var accentPrimary: Color { p.accentPrimary }
 
+    static let feedbackCorrect = Color(hex: "22C55E")
+    static let feedbackCorrectDark = Color(hex: "15803D")
+
+    static var feedbackCorrectGradient: LinearGradient {
+        LinearGradient(
+            colors: [feedbackCorrect, feedbackCorrectDark],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+    }
+
     // MARK: - Corner Radius
 
     static let radiusCard: CGFloat    = 18

@@ -156,6 +156,9 @@ final class QuizSessionViewModel: ObservableObject {
             selectedAnswer: selected,
             correctAnswer: question.answer
         )
+        if stage.stage == -3, isCorrect {
+            statsRepo.removeFromWeakStock(question: question)
+        }
         masteryRepo?.record(question: question, wasCorrect: isCorrect)
         pendingQueue.removeFirst()
 

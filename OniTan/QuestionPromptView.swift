@@ -8,9 +8,9 @@ import SwiftUI
 ///  • yojijukugo       — 4-char HStack, □ in accent colour
 ///  • commonKanji      — blank-term chips side by side
 ///  • compoundReadingKun — compound with target kanji highlighted
-///  • hyogaiReading    — word/compound + optional context line
+///  • hyogaiReading    — context sentence card with target underline
 ///  • synonym/antonym  — target word only, with relation-coloured frame
-///  • sentenceReading  — sentence context + target badge
+///  • sentenceReading  — context sentence card with target underline
 ///  • sentence kinds   — scrollable sentence text (errorCorrection, proverb, passage*)
 ///  • default          — single word/compound at large size
 struct QuestionPromptView: View {
@@ -26,15 +26,20 @@ struct QuestionPromptView: View {
     private var isRelationKind: Bool {
         question.kind == .synonym || question.kind == .antonym
     }
+    private var isFeedbackVisible: Bool { isCorrect || isWrong }
 
     private var relationAccent: Color {
         question.kind == .antonym ? Color(hex: "F87171") : Color(hex: "60A5FA")
     }
 
+    private var feedbackAccent: Color {
+        isCorrect ? OniTanTheme.feedbackCorrect : OniTanTheme.accentWrong
+    }
+
     private var cardHeight: CGFloat {
         switch question.kind {
-        case .sentenceReading:
-            return scaled(174, min: 140)
+        case .sentenceReading, .hyogaiReading:
+            return scaled(192, min: 156)
         case .passageReading, .passageVocabulary:
             return scaled(190, min: 152)
         case .errorCorrection, .proverb:
@@ -58,8 +63,10 @@ struct QuestionPromptView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: corner)
                         .stroke(
-                            isRelationKind ? relationAccent.opacity(0.5) : OniTanTheme.cardBorder,
-                            lineWidth: isRelationKind ? 1.5 : 1
+                            isFeedbackVisible
+                                ? feedbackAccent.opacity(0.64)
+                                : (isRelationKind ? relationAccent.opacity(0.5) : OniTanTheme.cardBorder),
+                            lineWidth: isFeedbackVisible || isRelationKind ? 1.5 : 1
                         )
                 )
                 .shadow(color: .black.opacity(0.2), radius: scaled(16, min: 8), y: scaled(8, min: 4))
@@ -72,11 +79,11 @@ struct QuestionPromptView: View {
             // Answer feedback flash
             if isCorrect {
                 RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentCorrect.opacity(0.25))
+                    .fill(OniTanTheme.feedbackCorrect.opacity(0.18))
                     .transition(.opacity)
             } else if isWrong {
                 RoundedRectangle(cornerRadius: corner)
-                    .fill(OniTanTheme.accentWrong.opacity(0.25))
+                    .fill(OniTanTheme.accentWrong.opacity(0.2))
                     .transition(.opacity)
             }
 
@@ -87,7 +94,7 @@ struct QuestionPromptView: View {
                         Spacer()
                         Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                             .font(.system(size: scaled(54, min: 38), weight: .bold))
-                            .foregroundColor(isCorrect ? OniTanTheme.accentCorrect : OniTanTheme.accentWrong)
+                            .foregroundColor(isCorrect ? OniTanTheme.feedbackCorrect : OniTanTheme.accentWrong)
                             .shadow(color: .black.opacity(0.25), radius: 6)
                             .accessibilityHidden(true)
                     }
@@ -109,10 +116,8 @@ struct QuestionPromptView: View {
                     compoundReadingKunContent
                 case .synonym, .antonym:
                     synonymAntonymContent
-                case .hyogaiReading:
-                    hyogaiReadingContent
-                case .sentenceReading:
-                    sentenceReadingContent
+                case .hyogaiReading, .sentenceReading:
+                    contextReadingContent
                 case .errorCorrection, .proverb,
                      .passageReading, .passageVocabulary:
                     sentenceContent
@@ -174,7 +179,7 @@ struct QuestionPromptView: View {
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .shadow(color: .black.opacity(0.3), radius: 4)
-        .padding(scaled(16, min: 8))
+            .padding(scaled(16, min: 8))
     }
 
     // MARK: - Synonym / Antonym: target word only
@@ -277,46 +282,53 @@ struct QuestionPromptView: View {
         .padding(scaled(16, min: 8))
     }
 
-    // MARK: - Hyogai Reading: word + optional context
+    // MARK: - Context Reading: sentence card + target
 
-    private var hyogaiReadingContent: some View {
-        VStack(spacing: scaled(6, min: 4)) {
-            Text(question.kanji)
-                .font(playFontManager.font(size: scaled(80, min: 60), weight: .black))
-                .foregroundColor(OniTanTheme.textPrimary)
-                .minimumScaleFactor(0.3)
-                .lineLimit(1)
-                .shadow(color: .black.opacity(0.3), radius: 4)
-
-            if let ctx = question.payload?.sentenceContext, !ctx.isEmpty {
-                Text(ctx)
-                    .font(playFontManager.font(size: scaled(14, min: 11), weight: .regular))
-                    .foregroundColor(OniTanTheme.textSecondary)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(3)
-                    .minimumScaleFactor(0.7)
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding(scaled(16, min: 8))
-    }
-
-    // MARK: - Sentence Reading: sentence context + target
-
-    private var sentenceReadingContent: some View {
-        let context = question.payload?.sentenceContext ?? question.displayPrompt
-        let target = question.kanji
-        let bodyFont = playFontManager.font(size: scaled(24, min: 19), weight: .medium)
+    private var contextReadingContent: some View {
+        let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
+        let target = contextReadingTarget
+        let bodyFont = playFontManager.font(size: scaled(21, min: 17), weight: .medium)
         let meaning = question.termMeaning
 
-        return VStack(alignment: .leading, spacing: scaled(12, min: 8)) {
+        return VStack(alignment: .leading, spacing: scaled(10, min: 7)) {
+            HStack(spacing: scaled(6, min: 4)) {
+                Image(systemName: "text.magnifyingglass")
+                    .font(.system(size: scaled(12, min: 10), weight: .bold))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .accessibilityHidden(true)
+
+                Text(question.kind == .hyogaiReading ? "表外の読み" : "文中の読み")
+                    .font(.system(size: scaled(12, min: 10), weight: .black, design: .rounded))
+                    .foregroundColor(OniTanTheme.accentWeak)
+
+                Spacer()
+
+                Text("下線部")
+                    .font(.system(size: scaled(10, min: 9), weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .padding(.horizontal, 7)
+                    .padding(.vertical, 3)
+                    .background(OniTanTheme.cardBackgroundPressed.opacity(0.72))
+                    .clipShape(Capsule())
+            }
+
             if let range = context.range(of: target) {
                 Text(attributedSentence(context: context, targetRange: range, bodyFont: bodyFont, linkable: meaning != nil))
-                    .lineSpacing(6)
+                    .lineSpacing(7)
                     .multilineTextAlignment(.leading)
                     .minimumScaleFactor(0.75)
-                    .lineLimit(3)
+                    .lineLimit(4)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, scaled(13, min: 10))
+                    .padding(.vertical, scaled(13, min: 10))
+                    .background(
+                        RoundedRectangle(cornerRadius: scaled(14, min: 11))
+                            .fill(Color.black.opacity(0.14))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: scaled(14, min: 11))
+                                    .stroke(OniTanTheme.accentWeak.opacity(0.18), lineWidth: 1)
+                            )
+                    )
                     .environment(\.openURL, OpenURLAction { url in
                         guard url.scheme == "onitan-meaning", let meaning else { return .systemAction }
                         meaningPopoverTerm = TermMeaningInfo(word: target, meaning: meaning)
@@ -332,11 +344,21 @@ struct QuestionPromptView: View {
                 Text(context)
                     .font(bodyFont)
                     .foregroundColor(OniTanTheme.textPrimary)
-                    .lineSpacing(6)
+                    .lineSpacing(7)
                     .multilineTextAlignment(.leading)
                     .minimumScaleFactor(0.75)
-                    .lineLimit(3)
+                    .lineLimit(4)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, scaled(13, min: 10))
+                    .padding(.vertical, scaled(13, min: 10))
+                    .background(
+                        RoundedRectangle(cornerRadius: scaled(14, min: 11))
+                            .fill(Color.black.opacity(0.14))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: scaled(14, min: 11))
+                                    .stroke(OniTanTheme.accentWeak.opacity(0.18), lineWidth: 1)
+                            )
+                    )
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -354,7 +376,7 @@ struct QuestionPromptView: View {
         result.foregroundColor = OniTanTheme.textPrimary
 
         var targetAttr = AttributedString(String(context[targetRange]))
-        targetAttr.font = playFontManager.font(size: scaled(28, min: 22), weight: .black)
+        targetAttr.font = playFontManager.font(size: scaled(25, min: 20), weight: .black)
         targetAttr.foregroundColor = OniTanTheme.accentWeak
         targetAttr.underlineStyle = .single
         if linkable {
@@ -446,6 +468,27 @@ struct QuestionPromptView: View {
 
     private func scaled(_ value: CGFloat, min minValue: CGFloat) -> CGFloat {
         max(minValue, value * scale)
+    }
+
+    private func nonEmpty(_ value: String?) -> String? {
+        guard let trimmed = value?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !trimmed.isEmpty else { return nil }
+        return trimmed
+    }
+
+    private var contextReadingTarget: String {
+        let candidates = [
+            question.payload?.targetWord,
+            question.payload?.targetKanji,
+            question.kanji
+        ]
+
+        for candidate in candidates {
+            if let value = nonEmpty(candidate) {
+                return value
+            }
+        }
+        return question.displayPrompt
     }
 }
 

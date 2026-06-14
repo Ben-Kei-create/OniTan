@@ -37,8 +37,7 @@ enum TodaySessionBuilder {
         // 1. Collect weak questions across all stages
         var weakPool: [Question] = []
         for stage in usableStages {
-            let weakKanji = Set(statsRepo.allWeakKanji(forStage: stage.stage))
-            let stageWeak = stage.questions.filter { weakKanji.contains($0.kanji) }
+            let stageWeak = statsRepo.weakQuestions(for: stage)
             weakPool.append(contentsOf: stageWeak)
         }
         // Shuffle and cap at maxWeakSlots

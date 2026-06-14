@@ -196,9 +196,38 @@ final class StudyStatsRepository: ObservableObject {
         return Array(entries.prefix(limit))
     }
 
-    /// Whether there are any weak kanji in any stage.
+    var weakPointCount: Int {
+        let questionIDs = Set(stageStats.values.flatMap(\.wrongQuestionIDs))
+        if !questionIDs.isEmpty { return questionIDs.count }
+        return Set(stageStats.values.flatMap(\.wrongKanji)).count
+    }
+
+    /// Whether there are any currently stocked weak questions.
     var hasWeakPoints: Bool {
-        stageStats.values.contains { !$0.wrongKanji.isEmpty }
+        weakPointCount > 0
+    }
+
+    /// Removes a solved question from every weak-point stock. Used by synthetic
+    /// cross-stage review sessions whose stage number does not match the
+    /// original stage that first stored the mistake.
+    func removeFromWeakStock(question: Question) {
+        var changed = false
+
+        for stageNumber in Array(stageStats.keys) {
+            guard var stats = stageStats[stageNumber] else { continue }
+            let beforeIDs = stats.wrongQuestionIDs.count
+            let beforeKanji = stats.wrongKanji.count
+
+            stats.wrongQuestionIDs.removeAll { $0 == question.id }
+            stats.wrongKanji.removeAll { $0 == question.kanji }
+
+            if stats.wrongQuestionIDs.count != beforeIDs || stats.wrongKanji.count != beforeKanji {
+                stageStats[stageNumber] = stats
+                changed = true
+            }
+        }
+
+        if changed { save() }
     }
 
     /// Total correct answers across all stages.

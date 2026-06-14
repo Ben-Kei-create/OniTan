@@ -358,8 +358,14 @@ struct MainView: View {
 
     private func choiceStack(scale: CGFloat) -> some View {
         let shuffled = vm.currentChoices
-        let columns = [GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8)),
-                       GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
+        let usesMeaningChoices = vm.currentQuestion.kind == .proverb
+        let gridSpacing = scaled(usesMeaningChoices ? 8 : 10, by: scale, min: 6)
+        let columns = usesMeaningChoices
+            ? [GridItem(.flexible(), spacing: gridSpacing)]
+            : [
+                GridItem(.flexible(), spacing: gridSpacing),
+                GridItem(.flexible(), spacing: gridSpacing)
+            ]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
             yojijukugoMeaningHint(scale: scale)
@@ -374,12 +380,13 @@ struct MainView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
 
-            LazyVGrid(columns: columns, spacing: scaled(10, by: scale, min: 8)) {
+            LazyVGrid(columns: columns, spacing: gridSpacing) {
                 ForEach(Array(shuffled.enumerated()), id: \.offset) { _, choice in
                     ChoiceCard(
                         text: choice,
                         scale: scale,
                         fontStyle: playFontManager.fontStyle,
+                        layout: usesMeaningChoices ? .meaning : .standard,
                         onTap: {
                             let wasCorrect = choice == vm.currentQuestion.answer
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
@@ -491,7 +498,7 @@ struct MainView: View {
     // MARK: - Answer Feedback View
 
     private func answerFeedbackView(isCorrect: Bool, correctAnswer: String, scale: CGFloat) -> some View {
-        let tint = isCorrect ? OniTanTheme.accentWeak : OniTanTheme.accentWrong
+        let tint = isCorrect ? OniTanTheme.feedbackCorrect : OniTanTheme.accentWrong
         let title = isCorrect ? "正解" : "不正解"
         let border = tint.opacity(isCorrect ? 0.34 : 0.42)
 
@@ -543,7 +550,7 @@ struct MainView: View {
                     .frame(maxWidth: .infinity, minHeight: scaled(50, by: scale, min: 44))
                     .background(
                         RoundedRectangle(cornerRadius: OniTanTheme.radiusButton)
-                            .fill(isCorrect ? OniTanTheme.primaryGradient : OniTanTheme.wrongGradient)
+                            .fill(isCorrect ? OniTanTheme.feedbackCorrectGradient : OniTanTheme.wrongGradient)
                     )
                     .shadow(
                         color: tint.opacity(0.35),
@@ -776,13 +783,25 @@ struct MainView: View {
 
 // MARK: - Choice Card
 
+private enum ChoiceCardLayout {
+    case standard
+    case meaning
+}
+
 private struct ChoiceCard: View {
     let text: String
     let scale: CGFloat
     let fontStyle: PlayFontStyle
+    let layout: ChoiceCardLayout
     let onTap: () -> Void
 
     @State private var isPressed = false
+
+    private var isMeaningLayout: Bool { layout == .meaning }
+    private var textSize: CGFloat { isMeaningLayout ? max(14, 16 * scale) : max(18, 24 * scale) }
+    private var minHeight: CGFloat { isMeaningLayout ? max(58, 64 * scale) : max(50, 64 * scale) }
+    private var horizontalPadding: CGFloat { isMeaningLayout ? max(14, 16 * scale) : 0 }
+    private var verticalPadding: CGFloat { isMeaningLayout ? max(8, 10 * scale) : 0 }
 
     var body: some View {
         Button(action: {
@@ -797,13 +816,19 @@ private struct ChoiceCard: View {
             onTap()
         }) {
             Text(text)
-                .font(fontStyle.font(size: max(18, 24 * scale), weight: .bold))
+                .font(fontStyle.font(size: textSize, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(OniTanTheme.textPrimary)
-                .minimumScaleFactor(0.6)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, minHeight: max(50, 64 * scale))
+                .minimumScaleFactor(isMeaningLayout ? 0.78 : 0.6)
+                .lineLimit(isMeaningLayout ? 3 : 2)
+                .multilineTextAlignment(isMeaningLayout ? .leading : .center)
+                .padding(.horizontal, horizontalPadding)
+                .padding(.vertical, verticalPadding)
+                .frame(
+                    maxWidth: .infinity,
+                    minHeight: minHeight,
+                    alignment: isMeaningLayout ? .leading : .center
+                )
         }
         .background(
             RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))

@@ -1,10 +1,10 @@
 import Foundation
 
 enum WeakPointSessionBuilder {
+    static let targetCount = 10
 
-    /// Builds a cross-stage session containing every kanji the user has
-    /// currently marked as weak (not yet mastered), for the home screen's
-    /// "弱点復習" entry point.
+    /// Builds a cross-stage random session containing currently stocked weak
+    /// questions for the home screen's "弱点復習" entry point.
     static func buildWeakStage(
         statsRepo: StudyStatsRepository,
         allStages: [Stage],
@@ -28,6 +28,8 @@ enum WeakPointSessionBuilder {
             return weakKanji.contains(question.kanji)
                 && seen.insert(question.kanji).inserted
         }
-        return Stage(stage: -3, questions: filtered)
+        .shuffled()
+
+        return Stage(stage: -3, questions: Array(filtered.prefix(targetCount)))
     }
 }

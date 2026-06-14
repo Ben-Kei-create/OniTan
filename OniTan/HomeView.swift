@@ -268,8 +268,17 @@ struct HomeView: View {
         )
     }
 
+    private var weakReviewStage: Stage {
+        WeakPointSessionBuilder.buildWeakStage(
+            statsRepo: statsRepo,
+            allStages: quizData.stages
+        )
+    }
+
     private func primaryActions(isCompact: Bool) -> some View {
-        VStack(spacing: isCompact ? 10 : 12) {
+        let weakStage = weakReviewStage
+
+        return VStack(spacing: isCompact ? 10 : 12) {
             if quizData.stages.isEmpty {
                 HomePrimaryActionCard(
                     title: "ランダム10問",
@@ -303,22 +312,27 @@ struct HomeView: View {
                 .accessibilityIdentifier("home_today_card")
             }
 
-            if statsRepo.hasWeakPoints {
+            if !weakStage.questions.isEmpty {
                 HomePrimaryActionCard(
                     title: "弱点復習",
                     style: .neutral,
                     isCompact: isCompact,
                     destination: AnyView(
-                        QuizModeSelectView(
-                            stage: WeakPointSessionBuilder.buildWeakStage(
-                                statsRepo: statsRepo,
-                                allStages: quizData.stages
-                            ),
+                        MainView(
+                            stage: weakStage,
+                            appState: appState,
+                            statsRepo: statsRepo,
+                            streakRepo: streakRepo,
+                            xpRepo: xpRepo,
+                            masteryRepo: masteryRepo,
+                            mode: .quick10,
+                            clearTitle: "弱点復習 完了！",
                             sessionTitle: "弱点復習"
                         )
                     ),
-                    subtitle: "間違えた漢字を集中的に復習",
-                    icon: "exclamationmark.triangle.fill"
+                    subtitle: "間違えた問題からランダムに復習",
+                    icon: "exclamationmark.triangle.fill",
+                    trailingBadge: "\(weakStage.questions.count)問"
                 )
             }
 

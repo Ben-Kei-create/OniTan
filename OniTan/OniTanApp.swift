@@ -87,7 +87,7 @@ struct OniTanApp: App {
                             isNewLongestStreak: streakRepo.lastCompletionWasNewRecord,
                             answeredToday: streakRepo.todayAnswerCount,
                             xpEarnedToday: xpRepo.todayXP,
-                            weakKanjiCount: Set(quizData.stages.flatMap { statsRepo.allWeakKanji(forStage: $0.stage) }).count,
+                            weakKanjiCount: statsRepo.weakPointCount,
                             onDismiss: { showDailySummary = false }
                         )
                     }
