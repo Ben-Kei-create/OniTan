@@ -359,6 +359,20 @@ struct HomeView: View {
                 icon: "bolt.fill"
             )
 
+            HomePrimaryActionCard(
+                title: "書き取り訓練",
+                style: .neutral,
+                isCompact: isCompact,
+                destination: AnyView(
+                    QuizModeSelectView(
+                        stage: WritingSessionBuilder.buildWritingStage(),
+                        sessionTitle: "書き取り訓練"
+                    )
+                ),
+                subtitle: "漢字を書く力を多肢選択で確認",
+                icon: "pencil.and.outline"
+            )
+
             if favoriteRepo.count > 0 {
                 HomePrimaryActionCard(
                     title: "お気に入り",

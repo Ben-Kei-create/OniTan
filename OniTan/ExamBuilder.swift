@@ -36,7 +36,7 @@ struct ExamSession {
 struct ExamBuilder {
 
     /// Assembles an ExamSession from the given pool according to the blueprint.
-    /// writingSkipped questions are always excluded.
+    /// .writing questions are always excluded.
     /// Falls back to any available questions if a kind's target count can't be met.
     ///
     /// - Parameter fixedSet: When `true`, selection is deterministic (sorted by question ID

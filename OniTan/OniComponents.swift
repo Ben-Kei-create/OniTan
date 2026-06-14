@@ -111,7 +111,7 @@ extension QuestionKind {
             return "諺"
         case .passageReading, .passageVocabulary:
             return "文"
-        case .writingSkipped:
+        case .writing:
             return "書"
         case .unknown:
             return "?"
