@@ -228,8 +228,6 @@ struct MainView: View {
 
     private func quizContentView(scale: CGFloat) -> some View {
         VStack(spacing: 0) {
-            Spacer(minLength: 0)
-
             // Stage number + pass indicator
             stageHeader(scale: scale)
 
