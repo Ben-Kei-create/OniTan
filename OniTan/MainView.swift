@@ -714,7 +714,7 @@ struct MainView: View {
             .padding(.horizontal, 20)
         }
         .padding(.horizontal, 20)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(vm.clearTitle) 全\(vm.totalGoal)問クリアしました")
         .onDisappear {
