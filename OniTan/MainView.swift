@@ -829,6 +829,7 @@ private struct ChoiceCard: View {
                     minHeight: minHeight,
                     alignment: isMeaningLayout ? .leading : .center
                 )
+                .contentShape(Rectangle())
         }
         .background(
             RoundedRectangle(cornerRadius: max(12, OniTanTheme.radiusButton * scale))
