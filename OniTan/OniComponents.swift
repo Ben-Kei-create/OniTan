@@ -39,12 +39,10 @@ struct OniOptionalArtwork<Fallback: View>: View {
     }
 }
 
-// MARK: - OniSealMark
-//
-// Square kanji seal used instead of SF Symbols for primary navigation marks.
+// MARK: - OniSymbolMark
 
-struct OniSealMark: View {
-    let text: String
+struct OniSymbolMark: View {
+    let systemName: String
     var size: CGFloat = 48
     var fontSize: CGFloat = 22
     var tint: Color = OniTanTheme.accentWeak
@@ -52,8 +50,8 @@ struct OniSealMark: View {
     var cornerRadius: CGFloat = 12
 
     var body: some View {
-        Text(text)
-            .font(.system(size: fontSize, weight: .black, design: .serif))
+        Image(systemName: systemName)
+            .font(.system(size: fontSize, weight: .bold))
             .foregroundColor(tint)
             .frame(width: size, height: size)
             .background(
@@ -65,72 +63,6 @@ struct OniSealMark: View {
                     )
             )
             .accessibilityHidden(true)
-    }
-}
-
-extension QuizMode {
-    var sealMark: String {
-        switch self {
-        case .normal: return "道"
-        case .quick10: return "十"
-        case .exam30: return "試"
-        case .weakFocus: return "誤"
-        }
-    }
-}
-
-extension TrainingMode {
-    var sealMark: String {
-        switch self {
-        case .normal: return "道"
-        case .quick10: return "十"
-        case .categoryFocus: return "道"
-        case .weakFocus: return "弱"
-        case .mistakeReview: return "誤"
-        case .masteryReview: return "定"
-        case .examMini, .examFull: return "試"
-        case .finalBoss: return "鬼"
-        }
-    }
-}
-
-extension QuestionKind {
-    var sealMark: String {
-        switch self {
-        case .reading, .sentenceReading, .hyogaiReading, .compoundReadingKun:
-            return "読"
-        case .commonKanji:
-            return "共"
-        case .errorCorrection:
-            return "訂"
-        case .yojijukugo:
-            return "熟"
-        case .synonym, .antonym:
-            return "対"
-        case .proverb:
-            return "諺"
-        case .passageReading, .passageVocabulary:
-            return "文"
-        case .writing:
-            return "書"
-        case .unknown:
-            return "?"
-        }
-    }
-}
-
-extension CategoryEntry {
-    var sealMark: String {
-        switch id {
-        case "reading": return "読"
-        case "commonKanji": return "共"
-        case "errorCorrection": return "訂"
-        case "yojijukugo": return "熟"
-        case "synonym_antonym": return "対"
-        case "proverb": return "諺"
-        case "passage": return "文"
-        default: return String(title.prefix(1))
-        }
     }
 }
 
@@ -206,6 +138,19 @@ struct OniGoldButtonStyle: ButtonStyle {
 extension ButtonStyle where Self == OniGoldButtonStyle {
     static var oniGold: OniGoldButtonStyle { OniGoldButtonStyle() }
     static func oniGold(fullWidth: Bool) -> OniGoldButtonStyle { OniGoldButtonStyle(fullWidth: fullWidth) }
+}
+
+// MARK: - OniPressScaleButtonStyle
+
+struct OniPressScaleButtonStyle: ButtonStyle {
+    var pressedScale: CGFloat = 0.98
+    var animationDuration: Double = 0.12
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? pressedScale : 1.0)
+            .animation(.easeInOut(duration: animationDuration), value: configuration.isPressed)
+    }
 }
 
 // MARK: - OniProgressBar

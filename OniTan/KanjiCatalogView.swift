@@ -42,12 +42,7 @@ struct KanjiCatalogView: View {
             let matchesFavorite = !favoritesOnly || favoriteRepo.isFavorite(entry.character)
             let matchesQuery = query.isEmpty
                 || entry.character.localizedStandardContains(query)
-                || entry.questions.contains { question in
-                    question.answer.localizedStandardContains(query)
-                        || question.displayPrompt.localizedStandardContains(query)
-                        || question.displayExplanation.localizedStandardContains(query)
-                        || question.kind.displayName.localizedStandardContains(query)
-                }
+                || entry.questions.contains { questionMatches($0, query: query) }
             return matchesFavorite && matchesQuery
         }
 
@@ -55,6 +50,32 @@ struct KanjiCatalogView: View {
         let favorites = result.filter { favoriteRepo.isFavorite($0.character) }
         let others = result.filter { !favoriteRepo.isFavorite($0.character) }
         return favorites + others
+    }
+
+    private func questionMatches(_ question: Question, query: String) -> Bool {
+        let payload = question.payload
+        let fields: [String?] = [
+            question.kanji,
+            question.answer,
+            question.displayPrompt,
+            question.displayExplanation,
+            question.kind.displayName,
+            payload?.targetKanji,
+            payload?.kana,
+            payload?.targetCompound,
+            payload?.targetKanjiInCompound,
+            payload?.targetWord,
+            payload?.relationWord,
+            payload?.meaning,
+            payload?.proverbText,
+            payload?.proverbMeaning,
+            payload?.passageText,
+            payload?.passageTargetText
+        ]
+
+        return fields.contains { $0?.localizedStandardContains(query) == true }
+            || question.choices.contains { $0.localizedStandardContains(query) }
+            || (question.tags?.contains { $0.localizedStandardContains(query) } ?? false)
     }
 
     var body: some View {
@@ -142,6 +163,7 @@ struct KanjiCatalogView: View {
                     .foregroundColor(OniTanTheme.textPrimary)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled(true)
+                    .submitLabel(.search)
 
                 if !searchText.isEmpty {
                     Button {

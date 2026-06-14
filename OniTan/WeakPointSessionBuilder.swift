@@ -12,9 +12,10 @@ enum WeakPointSessionBuilder {
     ) -> Stage {
         var weakKanji = Set<String>()
         var weakQuestionIDs = Set<String>()
-        for stage in allStages {
-            weakKanji.formUnion(statsRepo.allWeakKanji(forStage: stage.stage))
-            weakQuestionIDs.formUnion(statsRepo.allWeakQuestionIDs(forStage: stage.stage))
+        let trackedStageNumbers = Set(allStages.map(\.stage)).union(statsRepo.stageStats.keys)
+        for stageNumber in trackedStageNumbers {
+            weakKanji.formUnion(statsRepo.allWeakKanji(forStage: stageNumber))
+            weakQuestionIDs.formUnion(statsRepo.allWeakQuestionIDs(forStage: stageNumber))
         }
 
         var seen = Set<String>()

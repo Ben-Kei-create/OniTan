@@ -108,10 +108,10 @@ struct ExamRoundSelectionView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 10) {
-                OniSealMark(
-                    text: "試",
+                OniSymbolMark(
+                    systemName: "doc.text.fill",
                     size: 46,
-                    fontSize: 22,
+                    fontSize: 20,
                     tint: OniTanTheme.accentPrimary,
                     fillOpacity: 0.16,
                     cornerRadius: 12

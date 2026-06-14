@@ -23,7 +23,6 @@ struct HomeView: View {
     @EnvironmentObject var statsRepo: StudyStatsRepository
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
-    @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var donationManager: DonationManager
     @EnvironmentObject var masteryRepo: MasteryRepository
@@ -358,47 +357,6 @@ struct HomeView: View {
                 subtitle: "1問8秒・ミスで終了のタイムアタック",
                 icon: "bolt.fill"
             )
-
-            HomePrimaryActionCard(
-                title: "書き取り訓練",
-                style: .neutral,
-                isCompact: isCompact,
-                destination: AnyView(
-                    QuizModeSelectView(
-                        stage: WritingSessionBuilder.buildWritingStage(),
-                        sessionTitle: "書き取り訓練"
-                    )
-                ),
-                subtitle: "漢字を書く力を多肢選択で確認",
-                icon: "pencil.and.outline"
-            )
-
-            if favoriteRepo.count > 0 {
-                HomePrimaryActionCard(
-                    title: "お気に入り",
-                    style: .neutral,
-                    isCompact: isCompact,
-                    destination: AnyView(
-                        QuizModeSelectView(
-                            stage: FavoriteSessionBuilder.buildFavoriteStage(
-                                favoriteKanji: favoriteRepo.favoriteKanji
-                            ),
-                            sessionTitle: "お気に入り"
-                        )
-                    ),
-                    subtitle: "保存した漢字を復習",
-                    icon: "star.fill"
-                )
-            } else {
-                HomePrimaryActionCard(
-                    title: "お気に入り",
-                    style: .disabled,
-                    isCompact: isCompact,
-                    destination: nil,
-                    subtitle: "問題画面の★で漢字を保存できます",
-                    icon: "star"
-                )
-            }
         }
     }
 
@@ -441,8 +399,6 @@ private struct HomeHeaderIconButton<Destination: View>: View {
     let compact: Bool
     let destination: Destination
 
-    @State private var isPressed = false
-
     var body: some View {
         NavigationLink(destination: destination) {
             Image(systemName: icon)
@@ -457,15 +413,8 @@ private struct HomeHeaderIconButton<Destination: View>: View {
                                 .stroke(HomeInk.border, lineWidth: 1)
                         )
                 )
-                .scaleEffect(isPressed ? 0.95 : 1.0)
-                .animation(.easeInOut(duration: 0.12), value: isPressed)
         }
-        .buttonStyle(PlainButtonStyle())
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded { _ in isPressed = false }
-        )
+        .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.95))
         .accessibilityLabel(accessibilityTitle)
         .accessibilityHint("タップして\(accessibilityTitle)へ進む")
         .accessibilityIdentifier("home_header_icon_\(accessibilityTitle)")
@@ -508,18 +457,11 @@ private struct HomePrimaryActionCard: View {
     var icon: String? = nil
     var trailingBadge: String? = nil
 
-    @State private var isPressed = false
-
     var body: some View {
         Group {
             if let destination {
                 NavigationLink(destination: destination) { cardContent }
-                    .simultaneousGesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { _ in isPressed = true }
-                            .onEnded { _ in isPressed = false }
-                    )
-                    .buttonStyle(PlainButtonStyle())
+                    .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.98))
             } else {
                 cardContent
             }
@@ -584,8 +526,6 @@ private struct HomePrimaryActionCard: View {
         )
         .cornerRadius(18)
         .shadow(color: shadowColor, radius: style == .primary ? 16 : 6, y: 6)
-        .scaleEffect(isPressed ? 0.98 : 1.0)
-        .animation(.easeInOut(duration: 0.12), value: isPressed)
     }
 
     private var cardBackground: AnyView {

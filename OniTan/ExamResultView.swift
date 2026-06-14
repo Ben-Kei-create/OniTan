@@ -82,10 +82,10 @@ struct ExamResultView: View {
                     .frame(width: 70, height: 70)
                     .blur(radius: 12)
 
-                OniSealMark(
-                    text: "試",
+                OniSymbolMark(
+                    systemName: passed ? "checkmark.seal.fill" : "doc.text.fill",
                     size: 70,
-                    fontSize: 34,
+                    fontSize: 30,
                     tint: OniTanTheme.accentWeak,
                     fillOpacity: 0.16,
                     cornerRadius: 18
@@ -227,10 +227,10 @@ struct ExamResultView: View {
                     .foregroundColor(OniTanTheme.textPrimary)
 
                 HStack(spacing: 10) {
-                    OniSealMark(
-                        text: category.sealMark,
+                    OniSymbolMark(
+                        systemName: category.iconName,
                         size: 34,
-                        fontSize: 17,
+                        fontSize: 15,
                         tint: OniTanTheme.accentWeak,
                         fillOpacity: 0.12,
                         cornerRadius: 9

@@ -116,8 +116,6 @@ private struct ModeCard: View {
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var masteryRepo: MasteryRepository
 
-    @State private var isPressed = false
-
     private var questionCount: Int {
         if mode == .weakFocus { return weakCount }
         let limit = mode.questionLimit ?? stage.questions.count
@@ -141,10 +139,10 @@ private struct ModeCard: View {
         ) {
             HStack(spacing: 14) {
                 ZStack {
-                    OniSealMark(
-                        text: mode.sealMark,
+                    OniSymbolMark(
+                        systemName: mode.systemImage,
                         size: 48,
-                        fontSize: 22,
+                        fontSize: 20,
                         tint: mode == .weakFocus ? OniTanTheme.accentWeak : OniTanTheme.textPrimary,
                         fillOpacity: mode == .normal ? 0.18 : 0.14
                     )
@@ -192,15 +190,8 @@ private struct ModeCard: View {
                     )
             )
             .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
-            .scaleEffect(isPressed ? 0.97 : 1.0)
-            .animation(.easeInOut(duration: 0.1), value: isPressed)
         }
-        .buttonStyle(PlainButtonStyle())
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded   { _ in isPressed = false }
-        )
+        .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.97, animationDuration: 0.1))
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(mode.displayName) \(questionCount)問 \(mode.description)")
         .accessibilityHint("タップして\(mode.displayName)で開始")

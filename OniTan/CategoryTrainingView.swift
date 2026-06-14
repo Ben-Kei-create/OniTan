@@ -52,7 +52,7 @@ struct CategoryTrainingView: View {
                                 needsReview: acc.map { $0 < entry.targetAccuracy } ?? false
                             )
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.98, animationDuration: 0.1))
                         .accessibilityLabel("\(entry.title) — \(entry.description)")
                         .accessibilityHint("タップして\(entry.title)のモードを選択")
                     }
@@ -95,14 +95,9 @@ private struct CategoryRowCard: View {
     let entry: CategoryEntry
     let accuracy: Double?
     let needsReview: Bool
-    @State private var isPressed = false
 
     private var accentColor: Color {
         needsReview ? OniTanTheme.sealRed : OniTanTheme.accentWeak
-    }
-
-    private var dojoMark: String {
-        entry.sealMark
     }
 
     private var displayTitle: String {
@@ -133,8 +128,8 @@ private struct CategoryRowCard: View {
                     )
                     .frame(width: 48, height: 48)
 
-                Text(dojoMark)
-                    .font(.system(size: 23, weight: .black, design: .serif))
+                Image(systemName: entry.iconName)
+                    .font(.system(size: 20, weight: .bold))
                     .foregroundColor(accentColor)
             }
             .accessibilityHidden(true)
@@ -201,13 +196,6 @@ private struct CategoryRowCard: View {
                 )
         )
         .shadow(color: .black.opacity(0.24), radius: 10, y: 5)
-        .scaleEffect(isPressed ? 0.98 : 1.0)
-        .animation(.easeInOut(duration: 0.1), value: isPressed)
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded   { _ in isPressed = false }
-        )
     }
 
     private func metadataPill(text: String, color: Color = OniTanTheme.textTertiary) -> some View {

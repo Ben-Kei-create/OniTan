@@ -177,13 +177,13 @@ struct MainView: View {
             .accessibilityLabel("終了")
             .accessibilityHint("タップすると確認ダイアログが表示されます")
 
+            // Combo badge (appears at 3+ consecutive correct answers)
             Spacer()
 
-            // Combo badge (appears at 3+ consecutive correct answers)
             if vm.consecutiveCorrect >= 3 {
                 HStack(spacing: scaled(4, by: scale, min: 2)) {
-                    Text("連")
-                        .font(.system(size: scaled(11, by: scale, min: 9), weight: .black, design: .serif))
+                    Image(systemName: "flame.fill")
+                        .font(.system(size: scaled(10, by: scale, min: 8), weight: .bold))
                         .foregroundColor(OniTanTheme.accentWeak)
                     Text("\(vm.consecutiveCorrect)連続！")
                         .font(playFont(scaled(12, by: scale, min: 10), weight: .bold))
@@ -201,22 +201,27 @@ struct MainView: View {
                 .accessibilityLabel("\(vm.consecutiveCorrect)連続正解")
             }
 
-            // Mode badge
-            HStack(spacing: scaled(4, by: scale, min: 2)) {
-                Text(vm.mode.sealMark)
-                    .font(.system(size: scaled(11, by: scale, min: 9), weight: .black, design: .serif))
-                Text(vm.mode.displayName)
-                    .font(playFont(scaled(12, by: scale, min: 10), weight: .semibold))
+            if vm.phase != .stageCleared {
+                quizUtilityCluster(scale: scale)
             }
-            .foregroundColor(OniTanTheme.textTertiary)
-            .padding(.horizontal, scaled(10, by: scale, min: 8))
-            .padding(.vertical, scaled(4, by: scale, min: 3))
-            .background(OniTanTheme.cardBackground)
-            .cornerRadius(20)
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .padding(.top, scaled(8, by: scale, min: 6))
         .padding(.bottom, scaled(4, by: scale, min: 2))
+    }
+
+    private func quizUtilityCluster(scale: CGFloat) -> some View {
+        HStack(spacing: 2) {
+            favoriteButton(scale: scale)
+            reportButton(scale: scale)
+        }
+        .padding(3)
+        .background(
+            Capsule()
+                .fill(Color.black.opacity(0.18))
+                .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+        )
+        .accessibilityElement(children: .contain)
     }
 
     // MARK: - Quiz Content
@@ -303,13 +308,6 @@ struct MainView: View {
             isWrong:   vm.lastAnswerResult == .wrong
         )
         .id(vm.currentQuestion.id)
-        .overlay(alignment: .topTrailing) {
-            VStack(spacing: scaled(8, by: scale, min: 6)) {
-                favoriteButton(scale: scale)
-                reportButton(scale: scale)
-            }
-            .padding(scaled(14, by: scale, min: 10))
-        }
         .animation(.easeInOut(duration: 0.25), value: isShowingWrong)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("quiz_kanji")
@@ -327,19 +325,10 @@ struct MainView: View {
                 OniTanTheme.haptic(.light)
             } label: {
                 Image(systemName: isFavorite ? "star.fill" : "star")
-                    .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
+                    .font(.system(size: scaled(14, by: scale, min: 12), weight: .bold))
                     .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
-                    .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
-                    .background(Color.black.opacity(0.18))
-                    .overlay(
-                        Circle()
-                            .stroke(
-                                isFavorite
-                                    ? OniTanTheme.accentWeak.opacity(0.5)
-                                    : OniTanTheme.cardBorder,
-                                lineWidth: 1
-                            )
-                    )
+                    .frame(width: scaled(32, by: scale, min: 28), height: scaled(32, by: scale, min: 28))
+                    .background(isFavorite ? OniTanTheme.accentWeak.opacity(0.12) : Color.clear)
                     .clipShape(Circle())
             }
             .accessibilityLabel(isFavorite ? "お気に入り解除" : "お気に入り追加")
@@ -354,14 +343,10 @@ struct MainView: View {
             OniTanTheme.haptic(.light)
         } label: {
             Image(systemName: "exclamationmark.bubble")
-                .font(.system(size: scaled(15, by: scale, min: 13), weight: .bold))
+                .font(.system(size: scaled(14, by: scale, min: 12), weight: .bold))
                 .foregroundColor(OniTanTheme.textSecondary)
-                .frame(width: scaled(40, by: scale, min: 34), height: scaled(40, by: scale, min: 34))
-                .background(Color.black.opacity(0.18))
-                .overlay(
-                    Circle()
-                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
-                )
+                .frame(width: scaled(32, by: scale, min: 28), height: scaled(32, by: scale, min: 28))
+                .background(Color.clear)
                 .clipShape(Circle())
         }
         .accessibilityLabel("問題を報告")
@@ -377,10 +362,9 @@ struct MainView: View {
                        GridItem(.flexible(), spacing: scaled(10, by: scale, min: 8))]
 
         return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
-            Text(vm.currentQuestion.kind.choicePrompt)
-                .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .padding(.leading, 4)
+            yojijukugoMeaningHint(scale: scale)
+
+            choicePromptLabel(scale: scale)
 
             if let note = vm.currentQuestion.readingMetadata.playerNote(for: vm.currentQuestion.answer) {
                 Text(note)
@@ -407,6 +391,101 @@ struct MainView: View {
                 }
             }
         }
+    }
+
+    @ViewBuilder
+    private func choicePromptLabel(scale: CGFloat) -> some View {
+        if vm.currentQuestion.kind == .synonym || vm.currentQuestion.kind == .antonym {
+            let accent = relationAccent(for: vm.currentQuestion.kind)
+            let label = vm.currentQuestion.kind.displayName
+
+            HStack(spacing: scaled(6, by: scale, min: 4)) {
+                Image(systemName: vm.currentQuestion.kind.systemImage)
+                    .font(.system(size: scaled(12, by: scale, min: 10), weight: .bold))
+                    .accessibilityHidden(true)
+
+                Text(label)
+                    .font(playFont(scaled(14, by: scale, min: 12), weight: .black))
+
+                Text("を選びなさい")
+                    .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
+                    .foregroundColor(OniTanTheme.textSecondary)
+            }
+            .foregroundColor(accent)
+            .padding(.horizontal, scaled(11, by: scale, min: 9))
+            .padding(.vertical, scaled(6, by: scale, min: 5))
+            .background(
+                Capsule()
+                    .fill(accent.opacity(0.13))
+                    .overlay(
+                        Capsule()
+                            .stroke(accent.opacity(0.32), lineWidth: 1)
+                    )
+            )
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(label)を選びなさい")
+        } else {
+            Text(vm.currentQuestion.kind.choicePrompt)
+                .font(playFont(scaled(13, by: scale, min: 11), weight: .semibold))
+                .foregroundColor(OniTanTheme.textTertiary)
+                .padding(.leading, 4)
+        }
+    }
+
+    private func relationAccent(for kind: QuestionKind) -> Color {
+        kind == .antonym ? Color(hex: "F87171") : Color(hex: "60A5FA")
+    }
+
+    @ViewBuilder
+    private func yojijukugoMeaningHint(scale: CGFloat) -> some View {
+        if vm.currentQuestion.kind == .yojijukugo,
+           let meaning = yojijukugoMeaningText(for: vm.currentQuestion) {
+            HStack(alignment: .top, spacing: scaled(9, by: scale, min: 7)) {
+                Image(systemName: "book.closed.fill")
+                    .font(.system(size: scaled(13, by: scale, min: 11), weight: .bold))
+                    .foregroundColor(OniTanTheme.accentWeak)
+                    .frame(width: scaled(22, by: scale, min: 18), height: scaled(22, by: scale, min: 18))
+                    .background(OniTanTheme.accentWeak.opacity(0.12))
+                    .clipShape(Circle())
+                    .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: scaled(3, by: scale, min: 2)) {
+                    Text("意味")
+                        .font(playFont(scaled(11, by: scale, min: 9), weight: .bold))
+                        .foregroundColor(OniTanTheme.accentWeak)
+
+                    Text(meaning)
+                        .font(playFont(scaled(13, by: scale, min: 11), weight: .regular))
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .lineSpacing(2)
+                        .lineLimit(3)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding(.horizontal, scaled(12, by: scale, min: 10))
+            .padding(.vertical, scaled(10, by: scale, min: 8))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: scaled(14, by: scale, min: 12))
+                    .fill(OniTanTheme.cardBackground.opacity(0.72))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: scaled(14, by: scale, min: 12))
+                            .stroke(OniTanTheme.accentWeak.opacity(0.22), lineWidth: 1)
+                    )
+            )
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("四字熟語の意味: \(meaning)")
+        }
+    }
+
+    private func yojijukugoMeaningText(for question: Question) -> String? {
+        [question.payload?.meaning, question.termMeaning]
+            .compactMap { value -> String? in
+                guard let value else { return nil }
+                let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
+                return trimmed.isEmpty ? nil : trimmed
+            }
+            .first
     }
 
     // MARK: - Answer Feedback View
@@ -774,20 +853,44 @@ struct ExplanationView: View {
                 .onTapGesture { onDismiss() }
 
             VStack(spacing: 0) {
-                // Report button row
+                // Utility button row
                 HStack {
                     Spacer()
-                    Button {
-                        onReport()
-                    } label: {
-                        Image(systemName: "exclamationmark.bubble")
-                            .font(.system(size: 15, weight: .bold))
-                            .foregroundColor(OniTanTheme.textSecondary)
-                            .frame(width: 36, height: 36)
-                            .background(OniTanTheme.cardBackgroundPressed)
-                            .clipShape(Circle())
+                    HStack(spacing: 2) {
+                        if let favoriteKanjiCharacter {
+                            Button {
+                                withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
+                                    favoriteRepo.toggle(favoriteKanjiCharacter)
+                                }
+                                OniTanTheme.haptic(.light)
+                            } label: {
+                                Image(systemName: isFavorite ? "star.fill" : "star")
+                                    .font(.system(size: 14, weight: .bold))
+                                    .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
+                                    .frame(width: 32, height: 32)
+                                    .background(isFavorite ? OniTanTheme.accentWeak.opacity(0.12) : Color.clear)
+                                    .clipShape(Circle())
+                            }
+                            .accessibilityLabel(isFavorite ? "お気に入り解除" : "お気に入り追加")
+                            .accessibilityIdentifier("quiz_explanation_favorite")
+                        }
+
+                        Button {
+                            onReport()
+                        } label: {
+                            Image(systemName: "exclamationmark.bubble")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(OniTanTheme.textSecondary)
+                                .frame(width: 32, height: 32)
+                        }
+                        .accessibilityLabel("問題を報告")
                     }
-                    .accessibilityLabel("問題を報告")
+                    .padding(3)
+                    .background(
+                        Capsule()
+                            .fill(Color.black.opacity(0.18))
+                            .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    )
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 16)
@@ -818,24 +921,6 @@ struct ExplanationView: View {
 
                 // Bottom action row
                 HStack(spacing: 0) {
-                    if let favoriteKanjiCharacter {
-                        Button {
-                            withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
-                                favoriteRepo.toggle(favoriteKanjiCharacter)
-                            }
-                            OniTanTheme.haptic(.light)
-                        } label: {
-                            Image(systemName: isFavorite ? "star.fill" : "star")
-                                .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(isFavorite ? OniTanTheme.accentWeak : OniTanTheme.textSecondary)
-                                .frame(width: 64)
-                                .frame(minHeight: 52)
-                                .background(OniTanTheme.cardBackgroundPressed)
-                        }
-                        .accessibilityLabel(isFavorite ? "お気に入り解除" : "お気に入り追加")
-                        .accessibilityIdentifier("quiz_explanation_favorite")
-                    }
-
                     Button {
                         onDismiss()
                         OniTanTheme.haptic(.light)

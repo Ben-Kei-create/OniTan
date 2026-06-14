@@ -9,6 +9,7 @@ import SwiftUI
 ///  • commonKanji      — blank-term chips side by side
 ///  • compoundReadingKun — compound with target kanji highlighted
 ///  • hyogaiReading    — word/compound + optional context line
+///  • synonym/antonym  — target word only, with relation-coloured frame
 ///  • sentenceReading  — sentence context + target badge
 ///  • sentence kinds   — scrollable sentence text (errorCorrection, proverb, passage*)
 ///  • default          — single word/compound at large size
@@ -22,6 +23,13 @@ struct QuestionPromptView: View {
     @State private var meaningPopoverTerm: TermMeaningInfo? = nil
 
     private var corner: CGFloat { scaled(24, min: 16) }
+    private var isRelationKind: Bool {
+        question.kind == .synonym || question.kind == .antonym
+    }
+
+    private var relationAccent: Color {
+        question.kind == .antonym ? Color(hex: "F87171") : Color(hex: "60A5FA")
+    }
 
     private var cardHeight: CGFloat {
         switch question.kind {
@@ -41,11 +49,25 @@ struct QuestionPromptView: View {
             // Background card
             RoundedRectangle(cornerRadius: corner)
                 .fill(OniTanTheme.cardBackground)
+                .overlay {
+                    if isRelationKind {
+                        RoundedRectangle(cornerRadius: corner)
+                            .fill(relationAccent.opacity(0.06))
+                    }
+                }
                 .overlay(
                     RoundedRectangle(cornerRadius: corner)
-                        .stroke(OniTanTheme.cardBorder, lineWidth: 1)
+                        .stroke(
+                            isRelationKind ? relationAccent.opacity(0.5) : OniTanTheme.cardBorder,
+                            lineWidth: isRelationKind ? 1.5 : 1
+                        )
                 )
                 .shadow(color: .black.opacity(0.2), radius: scaled(16, min: 8), y: scaled(8, min: 4))
+                .shadow(
+                    color: isRelationKind ? relationAccent.opacity(0.14) : .clear,
+                    radius: scaled(12, min: 6),
+                    y: 0
+                )
 
             // Answer feedback flash
             if isCorrect {
@@ -85,6 +107,8 @@ struct QuestionPromptView: View {
                     commonKanjiContent
                 case .compoundReadingKun:
                     compoundReadingKunContent
+                case .synonym, .antonym:
+                    synonymAntonymContent
                 case .hyogaiReading:
                     hyogaiReadingContent
                 case .sentenceReading:
@@ -119,15 +143,23 @@ struct QuestionPromptView: View {
 
     private var kindBadge: some View {
         HStack(spacing: 3) {
-            Text(question.kind.sealMark)
-                .font(.system(size: scaled(9, min: 7), weight: .black, design: .serif))
+            Image(systemName: question.kind.systemImage)
+                .font(.system(size: scaled(8, min: 7), weight: .bold))
             Text(question.kind.displayName)
-                .font(.system(size: scaled(9, min: 7), weight: .medium, design: .rounded))
+                .font(.system(
+                    size: scaled(isRelationKind ? 10 : 9, min: isRelationKind ? 8 : 7),
+                    weight: isRelationKind ? .bold : .medium,
+                    design: .rounded
+                ))
         }
-        .foregroundColor(OniTanTheme.textTertiary.opacity(0.6))
-        .padding(.horizontal, 6)
-        .padding(.vertical, 3)
-        .background(OniTanTheme.cardBackground.opacity(0.5))
+        .foregroundColor(isRelationKind ? relationAccent : OniTanTheme.textTertiary.opacity(0.6))
+        .padding(.horizontal, isRelationKind ? 8 : 6)
+        .padding(.vertical, isRelationKind ? 4 : 3)
+        .background(isRelationKind ? relationAccent.opacity(0.14) : OniTanTheme.cardBackground.opacity(0.5))
+        .overlay(
+            Capsule()
+                .stroke(isRelationKind ? relationAccent.opacity(0.3) : Color.clear, lineWidth: 1)
+        )
         .clipShape(Capsule())
     }
 
@@ -142,7 +174,33 @@ struct QuestionPromptView: View {
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .shadow(color: .black.opacity(0.3), radius: 4)
-            .padding(scaled(16, min: 8))
+        .padding(scaled(16, min: 8))
+    }
+
+    // MARK: - Synonym / Antonym: target word only
+
+    private var synonymAntonymContent: some View {
+        let target = relationTargetWord
+
+        return Text(target)
+            .font(playFontManager.font(size: scaled(88, min: 66), weight: .black))
+            .foregroundColor(OniTanTheme.textPrimary)
+            .minimumScaleFactor(0.35)
+            .lineLimit(1)
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .shadow(color: relationAccent.opacity(0.24), radius: 10)
+            .padding(scaled(18, min: 10))
+            .accessibilityLabel("\(question.kind.displayName)の対象語: \(target)")
+    }
+
+    private var relationTargetWord: String {
+        if let target = question.payload?.targetWord?.trimmingCharacters(in: .whitespacesAndNewlines),
+           !target.isEmpty {
+            return target
+        }
+        let kanji = question.kanji.trimmingCharacters(in: .whitespacesAndNewlines)
+        return kanji.isEmpty ? question.displayPrompt : kanji
     }
 
     // MARK: - Yojijukugo: 4-char HStack, □ highlighted

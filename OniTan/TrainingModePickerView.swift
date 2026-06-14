@@ -1,10 +1,10 @@
 import SwiftUI
 
-// MARK: - Training Mode Picker View
+// MARK: - Training Stage Picker View
 
-/// Shows available training modes for a chosen CategoryEntry.
-/// Enabled modes launch directly into MainView via a pre-built Stage.
-/// Disabled modes (Phase 3+) are shown with a "coming soon" note.
+/// Shows category-specific stages for a chosen CategoryEntry.
+/// Each stage launches directly into MainView; intermediate training modes are
+/// intentionally omitted so the user can pick a focused block and start.
 struct TrainingModePickerView: View {
     let category: CategoryEntry
 
@@ -14,96 +14,63 @@ struct TrainingModePickerView: View {
     @EnvironmentObject var streakRepo: StreakRepository
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var themeManager: ThemeManager
-    @EnvironmentObject var examResultRepo: ExamResultRepository
 
-    /// Pre-built stages keyed by mode so shuffles don't re-randomise on every render.
-    @State private var builtStages: [TrainingMode: Stage] = [:]
+    private static let stageSize = 20
 
-    // Modes shown in Phase 2
-    private static let displayModes: [TrainingMode] = [
-        .quick10, .categoryFocus, .examMini
-    ]
+    private var categoryTitle: String {
+        category.title.replacingOccurrences(of: "道場", with: "")
+    }
 
-    private static let comingSoonModes: [TrainingMode] = [
-        .weakFocus, .mistakeReview, .masteryReview
-    ]
+    private var accentColor: Color {
+        Color(hex: category.colorHex)
+    }
 
-    // MARK: - Category question pool
-
-    /// Questions belonging to this category.
-    /// For categories backed by stageIDs, the curated stage questions are used.
-    /// TrainingSessionBuilder applies the final exam-eligible filter before launch.
-    private var categoryPool: [Question] {
-        if !category.stageIDs.isEmpty {
-            let stageSet = Set(category.stageIDs)
-            let stageQs = quizData.stages
-                .filter { stageSet.contains($0.stage) }
-                .flatMap(\.questions)
-            // Also include explicitly-typed supplemental questions matching this category
-            let kindSet = Set(category.questionKinds)
-            let supplemental = supplementalQuestions.filter { kindSet.contains($0.kind) }
-            return stageQs + supplemental
-        }
+    private var categoryQuestionPool: [Question] {
         let kindSet = Set(category.questionKinds)
-        return allQuestions.filter { kindSet.contains($0.kind) }
+        var seen = Set<String>()
+        return allQuestions
+            .filter { kindSet.contains($0.kind) && $0.kind.isExamEligible }
+            .filter { seen.insert($0.id).inserted }
     }
 
-    /// Exam-eligible question count, matching the figure shown on the category-select screen.
-    private var eligiblePoolCount: Int {
-        categoryPool.filter { $0.kind.isExamEligible }.count
+    private var stageEntries: [CategoryStageEntry] {
+        guard !categoryQuestionPool.isEmpty else { return [] }
+
+        return stride(from: 0, to: categoryQuestionPool.count, by: Self.stageSize)
+            .enumerated()
+            .map { index, start in
+                let end = min(start + Self.stageSize, categoryQuestionPool.count)
+                let questions = Array(categoryQuestionPool[start..<end])
+                let stageNumber = syntheticStageBase + index + 1
+                let displayNumber = index + 1
+
+                return CategoryStageEntry(
+                    id: stageNumber,
+                    stage: Stage(stage: stageNumber, questions: questions),
+                    title: "Stage \(displayNumber)",
+                    detail: stageDetail(for: questions)
+                )
+            }
     }
 
-    // MARK: - Mode helpers
-
-    private func isEnabled(_ mode: TrainingMode) -> Bool {
-        switch mode {
-        case .quick10:       return !categoryPool.isEmpty
-        case .categoryFocus: return !categoryPool.isEmpty
-        case .examMini:      return categoryPool.count >= 10
-        default:             return false   // Phase 3+
+    private var syntheticStageBase: Int {
+        switch category.id {
+        case "reading": return 10_000
+        case "commonKanji": return 11_000
+        case "errorCorrection": return 12_000
+        case "yojijukugo": return 13_000
+        case "synonym_antonym": return 14_000
+        case "proverb": return 15_000
+        case "passage": return 16_000
+        default:
+            let stableOffset = category.id.unicodeScalars.reduce(0) { $0 + Int($1.value) }
+            return 20_000 + stableOffset
         }
     }
 
-    private func disabledReason(for mode: TrainingMode) -> String? {
-        switch mode {
-        case .weakFocus:     return "弱点トレーニングは次フェーズで有効になります"
-        case .mistakeReview: return "ミス復習は次フェーズで有効になります"
-        case .masteryReview: return "定着復習は次フェーズで有効になります"
-        case .examMini where !categoryPool.isEmpty:
-            return "ミニ模試には10問以上の問題が必要です"
-        default:             return nil
-        }
+    private var totalQuestionCount: Int {
+        categoryQuestionPool.count
     }
-
-    private func japaneseLabel(for mode: TrainingMode) -> String {
-        switch mode {
-        case .quick10:       return "カテゴリ10問"
-        case .categoryFocus: return "道場集中"
-        case .weakFocus:     return "弱点集中"
-        case .mistakeReview: return "ミス復習"
-        case .masteryReview: return "定着復習"
-        case .examMini:      return "ミニ模試"
-        default:             return mode.displayName
-        }
-    }
-
-    private func sessionTitle(for mode: TrainingMode) -> String {
-        "\(category.title) — \(japaneseLabel(for: mode))"
-    }
-
-    private func examBlueprintID(for mode: TrainingMode) -> String? {
-        switch mode {
-        case .examMini: return "mini"
-        case .examFull: return "full"
-        default:        return nil
-        }
-    }
-
-    private var primaryModes: [TrainingMode] {
-        Self.displayModes.filter { isEnabled($0) }
-    }
-
-    // MARK: - Body
 
     var body: some View {
         ZStack {
@@ -113,17 +80,16 @@ struct TrainingModePickerView: View {
                 poolHeader
 
                 ScrollView {
-                    VStack(spacing: 12) {
-                        ForEach(primaryModes) { mode in
-                            modeRow(for: mode)
-                        }
-
-                        if !Self.comingSoonModes.isEmpty {
-                            comingSoonLine
-                        }
-
-                        if primaryModes.isEmpty {
+                    LazyVStack(spacing: 12) {
+                        if stageEntries.isEmpty {
                             emptyPoolNote
+                        } else {
+                            ForEach(Array(stageEntries.enumerated()), id: \.element.id) { index, entry in
+                                stageRow(
+                                    entry: entry,
+                                    isUnlocked: isStageUnlocked(at: index)
+                                )
+                            }
                         }
                     }
                     .padding(.horizontal, 20)
@@ -134,8 +100,7 @@ struct TrainingModePickerView: View {
         .navigationTitle(category.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .onAppear { buildStages() }
+        .toolbarColorScheme(themeManager.preferredColorScheme == .dark ? .dark : .light, for: .navigationBar)
     }
 
     // MARK: - Subviews
@@ -143,19 +108,19 @@ struct TrainingModePickerView: View {
     private var poolHeader: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .firstTextBaseline, spacing: 10) {
-                Text(category.title.replacingOccurrences(of: "道場", with: ""))
+                Text(categoryTitle)
                     .font(.system(size: 24, weight: .black, design: .rounded))
                     .foregroundColor(OniTanTheme.textPrimary)
 
-                Text("\(eligiblePoolCount) 問")
+                Text("\(totalQuestionCount) 問")
                     .font(.system(size: 11, weight: .bold, design: .rounded))
-                    .foregroundColor(OniTanTheme.accentWeak)
+                    .foregroundColor(accentColor)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 3)
                     .background(
                         Capsule()
-                            .fill(OniTanTheme.accentWeak.opacity(0.12))
-                            .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.28), lineWidth: 1))
+                            .fill(accentColor.opacity(0.12))
+                            .overlay(Capsule().stroke(accentColor.opacity(0.28), lineWidth: 1))
                     )
             }
 
@@ -182,57 +147,48 @@ struct TrainingModePickerView: View {
     }
 
     @ViewBuilder
-    private func modeRow(for mode: TrainingMode) -> some View {
-        let enabled = isEnabled(mode)
-        let stage = builtStages[mode]
-        let count = stage?.questions.count ?? (enabled ? min(mode.questionLimit ?? categoryPool.count, categoryPool.count) : 0)
-
-        if enabled, let stage = stage, !stage.questions.isEmpty {
+    private func stageRow(entry: CategoryStageEntry, isUnlocked: Bool) -> some View {
+        if isUnlocked {
             NavigationLink(
                 destination: MainView(
-                    stage: stage,
+                    stage: entry.stage,
                     appState: appState,
                     statsRepo: statsRepo,
                     streakRepo: streakRepo,
                     xpRepo: xpRepo,
                     masteryRepo: masteryRepo,
-                    examResultRepo: examResultRepo,
-                    examBlueprintID: examBlueprintID(for: mode),
-                    mode: mode.legacyQuizMode ?? .normal,
-                    sessionTitle: sessionTitle(for: mode)
+                    mode: .normal,
+                    clearTitle: "\(categoryTitle) \(entry.title) クリア！",
+                    sessionTitle: "\(categoryTitle) \(entry.title)"
                 )
             ) {
-                TrainingModeCard(
-                    mode: mode,
-                    label: japaneseLabel(for: mode),
-                    questionCount: count,
-                    enabled: true,
-                    disabledReason: nil
+                CategoryStageCard(
+                    title: entry.title,
+                    detail: entry.detail,
+                    questionCount: entry.stage.questions.count,
+                    systemImage: category.iconName,
+                    accentColor: accentColor,
+                    isCleared: appState.isCleared(entry.stage.stage),
+                    isLocked: false,
+                    accuracy: accuracy(for: entry)
                 )
             }
-            .buttonStyle(PlainButtonStyle())
-            .accessibilityLabel("\(japaneseLabel(for: mode)) \(count)問")
-            .accessibilityHint("タップして\(japaneseLabel(for: mode))を開始")
-        } else if enabled {
-            // Stage not built yet (first render before onAppear runs) — show the
-            // enabled appearance without navigation to avoid a disabled-state flash.
-            TrainingModeCard(
-                mode: mode,
-                label: japaneseLabel(for: mode),
-                questionCount: count,
-                enabled: true,
-                disabledReason: nil
-            )
-            .accessibilityLabel("\(japaneseLabel(for: mode)) \(count)問")
+            .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.98, animationDuration: 0.1))
+            .accessibilityLabel("\(categoryTitle) \(entry.title) \(entry.stage.questions.count)問")
+            .accessibilityHint("タップして\(entry.title)を開始")
         } else {
-            TrainingModeCard(
-                mode: mode,
-                label: japaneseLabel(for: mode),
-                questionCount: count,
-                enabled: false,
-                disabledReason: disabledReason(for: mode)
+            CategoryStageCard(
+                title: entry.title,
+                detail: entry.detail,
+                questionCount: entry.stage.questions.count,
+                systemImage: "lock.fill",
+                accentColor: accentColor,
+                isCleared: false,
+                isLocked: true,
+                accuracy: accuracy(for: entry)
             )
-            .accessibilityLabel("\(japaneseLabel(for: mode)) — 現在利用不可")
+            .accessibilityLabel("\(categoryTitle) \(entry.title) ロック中")
+            .accessibilityHint("前のStageをクリアすると解放されます")
         }
     }
 
@@ -240,12 +196,14 @@ struct TrainingModePickerView: View {
         VStack(spacing: 8) {
             Image(systemName: "tray")
                 .font(.system(size: 22, weight: .bold))
-                .foregroundColor(OniTanTheme.accentWeak)
+                .foregroundColor(accentColor)
                 .accessibilityHidden(true)
-            Text("このカテゴリには問題データがまだありません")
+
+            Text("この道場には問題データがまだありません")
                 .font(.system(.subheadline, design: .rounded))
                 .foregroundColor(OniTanTheme.textSecondary)
                 .multilineTextAlignment(.center)
+
             Text("今後のアップデートで追加される予定です。他の道場で学習を進めましょう。")
                 .font(.system(.caption, design: .rounded))
                 .foregroundColor(OniTanTheme.textTertiary)
@@ -263,128 +221,116 @@ struct TrainingModePickerView: View {
         )
     }
 
-    private var comingSoonLine: some View {
-        HStack(spacing: 8) {
-            Image(systemName: "clock")
-                .font(.system(size: 12, weight: .bold))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .accessibilityHidden(true)
-            Text("近日追加")
-                .font(.system(size: 11, weight: .bold, design: .rounded))
-                .foregroundColor(OniTanTheme.textSecondary)
-            Text(Self.comingSoonModes.map { japaneseLabel(for: $0) }.joined(separator: "・"))
-                .font(.system(size: 11, weight: .medium, design: .rounded))
-                .foregroundColor(OniTanTheme.textTertiary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-            Spacer()
-        }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 9)
-        .background(
-            RoundedRectangle(cornerRadius: 11)
-                .fill(OniTanTheme.cardBackground.opacity(0.46))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 11)
-                        .stroke(OniTanTheme.cardBorder.opacity(0.45), lineWidth: 1)
-                )
-        )
-        .accessibilityLabel("近日追加: \(Self.comingSoonModes.map { japaneseLabel(for: $0) }.joined(separator: "、"))")
+    private func accuracy(for entry: CategoryStageEntry) -> Double? {
+        guard let stats = statsRepo.stageStats[entry.stage.stage],
+              stats.totalAttempts > 0 else { return nil }
+        return stats.accuracy
     }
 
-    // MARK: - Stage Building
+    private func isStageUnlocked(at index: Int) -> Bool {
+        guard index > 0 else { return true }
+        return appState.isCleared(stageEntries[index - 1].stage.stage)
+    }
 
-    private func buildStages() {
-        let pool = categoryPool
-        guard !pool.isEmpty else { return }
-        for mode in Self.displayModes where isEnabled(mode) {
-            builtStages[mode] = TrainingSessionBuilder.build(
-                mode: mode,
-                allQuestions: pool,
-                masteryRepo: masteryRepo,
-                statsRepo: statsRepo
-            )
+    private func stageDetail(for questions: [Question]) -> String {
+        var seen = Set<String>()
+        let names = questions
+            .map(\.kind.displayName)
+            .filter { seen.insert($0).inserted }
+
+        if names.isEmpty {
+            return category.description
         }
+        return names.joined(separator: " / ")
     }
 }
 
-// MARK: - Training Mode Card
+// MARK: - Category Stage Entry
 
-private struct TrainingModeCard: View {
-    let mode: TrainingMode
-    let label: String
+private struct CategoryStageEntry: Identifiable {
+    let id: Int
+    let stage: Stage
+    let title: String
+    let detail: String
+}
+
+// MARK: - Category Stage Card
+
+private struct CategoryStageCard: View {
+    let title: String
+    let detail: String
     let questionCount: Int
-    let enabled: Bool
-    let disabledReason: String?
-
-    @State private var isPressed = false
+    let systemImage: String
+    let accentColor: Color
+    let isCleared: Bool
+    let isLocked: Bool
+    let accuracy: Double?
 
     var body: some View {
         HStack(spacing: 14) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 13)
-                    .fill(iconGradient)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 13)
-                            .stroke(iconStroke, lineWidth: 1)
-                    )
-                    .frame(width: 48, height: 48)
-                    .opacity(enabled ? 1.0 : 0.38)
-
-                Text(sealMark)
-                    .font(.system(size: 20, weight: .black, design: .serif))
-                    .foregroundColor(enabled ? markColor : OniTanTheme.textTertiary.opacity(0.55))
-            }
-            .accessibilityHidden(true)
+            OniSymbolMark(
+                systemName: isLocked ? "lock.fill" : systemImage,
+                size: 48,
+                fontSize: isLocked ? 18 : 20,
+                tint: isLocked ? OniTanTheme.textTertiary : accentColor,
+                fillOpacity: isLocked ? 0.10 : 0.14
+            )
 
             VStack(alignment: .leading, spacing: 6) {
                 HStack(spacing: 8) {
-                    Text(label)
+                    Text(title)
                         .font(.system(size: 17, weight: .black, design: .rounded))
-                        .foregroundColor(enabled ? OniTanTheme.textPrimary : OniTanTheme.textTertiary)
+                        .foregroundColor(isLocked ? OniTanTheme.textTertiary : OniTanTheme.textPrimary)
 
-                    if enabled {
-                        Text("\(questionCount) 問")
-                            .font(.system(size: 11, weight: .semibold))
-                            .foregroundColor(OniTanTheme.accentWeak)
-                            .padding(.horizontal, 7)
-                            .padding(.vertical, 3)
-                            .background(
-                                Capsule()
-                                    .fill(OniTanTheme.accentWeak.opacity(0.10))
-                                    .overlay(Capsule().stroke(OniTanTheme.accentWeak.opacity(0.22), lineWidth: 1))
-                            )
-                    } else {
-                        Text("準備中")
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundColor(OniTanTheme.textTertiary)
-                            .padding(.horizontal, 7)
-                            .padding(.vertical, 3)
-                            .background(
-                                Capsule()
-                                    .fill(OniTanTheme.cardBackgroundPressed.opacity(0.5))
-                                    .overlay(Capsule().stroke(OniTanTheme.cardBorder.opacity(0.5), lineWidth: 1))
-                            )
-                    }
+                    Text("\(questionCount) 問")
+                        .font(.system(size: 11, weight: .semibold))
+                        .foregroundColor(isLocked ? OniTanTheme.textTertiary : accentColor)
+                        .padding(.horizontal, 7)
+                        .padding(.vertical, 3)
+                        .background(
+                            Capsule()
+                                .fill((isLocked ? OniTanTheme.textTertiary : accentColor).opacity(0.10))
+                                .overlay(
+                                    Capsule()
+                                        .stroke((isLocked ? OniTanTheme.textTertiary : accentColor).opacity(0.22), lineWidth: 1)
+                                )
+                        )
                 }
 
-                if let reason = disabledReason {
-                    Text(reason)
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundColor(OniTanTheme.textTertiary.opacity(0.7))
-                        .lineLimit(2)
-                        .fixedSize(horizontal: false, vertical: true)
-                } else {
-                    Text(mode.description)
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundColor(enabled ? OniTanTheme.textSecondary : OniTanTheme.textTertiary.opacity(0.45))
-                        .lineLimit(2)
-                }
+                Text(isLocked ? "前のStageをクリアすると解放されます" : detail)
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundColor(isLocked ? OniTanTheme.textTertiary.opacity(0.72) : OniTanTheme.textSecondary)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
-            Spacer()
+            Spacer(minLength: 8)
 
-            if enabled {
+            if isLocked {
+                Text("ロック")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(
+                        Capsule()
+                            .fill(OniTanTheme.cardBackgroundPressed)
+                            .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    )
+            } else if isCleared {
+                Text("完了")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.cardBackground)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Capsule().fill(OniTanTheme.accentCorrect))
+            } else if let accuracy {
+                Text("\(Int(accuracy * 100))%")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textTertiary)
+            }
+
+            if !isLocked {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(OniTanTheme.textTertiary)
@@ -395,79 +341,12 @@ private struct TrainingModeCard: View {
         .padding(.vertical, 15)
         .background(
             RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                .fill(enabled ? OniTanTheme.cardBackground : OniTanTheme.cardBackground.opacity(0.46))
+                .fill(isLocked ? OniTanTheme.cardBackground.opacity(0.56) : OniTanTheme.cardBackground)
                 .overlay(
                     RoundedRectangle(cornerRadius: OniTanTheme.radiusCard)
-                        .stroke(
-                            enabled ? OniTanTheme.cardBorder : OniTanTheme.cardBorder.opacity(0.35),
-                            lineWidth: 1
-                        )
+                        .stroke(isLocked ? OniTanTheme.cardBorder.opacity(0.55) : OniTanTheme.cardBorder, lineWidth: 1)
                 )
         )
-        .shadow(color: .black.opacity(enabled ? 0.24 : 0.08), radius: 9, y: 4)
-        .scaleEffect(isPressed && enabled ? 0.98 : 1.0)
-        .animation(.easeInOut(duration: 0.1), value: isPressed)
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in isPressed = true }
-                .onEnded   { _ in isPressed = false }
-        )
-        .accessibilityElement(children: .ignore)
-    }
-
-    private var sealMark: String {
-        mode.sealMark
-    }
-
-    private var markColor: Color {
-        switch mode {
-        case .quick10, .weakFocus: return OniTanTheme.accentWeak
-        case .examMini: return OniTanTheme.textPrimary
-        default: return OniTanTheme.textPrimary
-        }
-    }
-
-    private var iconStroke: Color {
-        switch mode {
-        case .quick10, .weakFocus:
-            return OniTanTheme.accentWeak.opacity(0.35)
-        case .examMini:
-            return OniTanTheme.accentPrimary.opacity(0.42)
-        default:
-            return OniTanTheme.cardBorder
-        }
-    }
-
-    private var iconGradient: LinearGradient {
-        switch mode {
-        case .quick10:
-            return LinearGradient(
-                colors: [OniTanTheme.accentWeak.opacity(0.22), OniTanTheme.cardBackgroundPressed],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .categoryFocus:
-            return LinearGradient(
-                colors: [OniTanTheme.accentPrimary.opacity(0.28), OniTanTheme.cardBackgroundPressed],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .weakFocus:
-            return LinearGradient(
-                colors: [OniTanTheme.accentWeak.opacity(0.24), OniTanTheme.cardBackgroundPressed],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .mistakeReview:
-            return LinearGradient(
-                colors: [OniTanTheme.accentPrimary.opacity(0.24), OniTanTheme.cardBackgroundPressed],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .masteryReview:
-            return LinearGradient(
-                colors: [OniTanTheme.accentWeak.opacity(0.18), OniTanTheme.cardBackgroundPressed],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-        case .examMini:
-            return LinearGradient(
-                colors: [OniTanTheme.accentPrimary.opacity(0.52), OniTanTheme.cardBackgroundPressed],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-        default:
-            return LinearGradient(
-                colors: [OniTanTheme.accentPrimary.opacity(0.24), OniTanTheme.cardBackgroundPressed],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-        }
+        .shadow(color: .black.opacity(isLocked ? 0.10 : 0.24), radius: 9, y: 4)
     }
 }
