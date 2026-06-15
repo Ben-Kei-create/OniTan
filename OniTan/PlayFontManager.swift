@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum PlayFontStyle: String, CaseIterable, Identifiable {
     case `default`
@@ -47,8 +48,44 @@ enum PlayFontStyle: String, CaseIterable, Identifiable {
         }
     }
 
+    fileprivate var uiKitDesign: UIFontDescriptor.SystemDesign {
+        switch self {
+        case .default: return .rounded
+        case .mincho: return .serif
+        case .monospaced: return .monospaced
+        }
+    }
+
+    /// Returns a font that honors the user's Dynamic Type setting while keeping
+    /// `size` as the baseline at the default content size category.
+    /// The scaled size is capped at 1.6x to avoid breaking layouts at the
+    /// largest accessibility text sizes.
     func font(size: CGFloat, weight: Font.Weight = .regular) -> Font {
-        .system(size: size, weight: weight, design: design)
+        let baseFont = UIFont.systemFont(ofSize: size, weight: weight.uiKitWeight)
+        let descriptor = baseFont.fontDescriptor.withDesign(uiKitDesign) ?? baseFont.fontDescriptor
+        let designedFont = UIFont(descriptor: descriptor, size: size)
+        let scaledFont = UIFontMetrics(forTextStyle: .body).scaledFont(
+            for: designedFont,
+            maximumPointSize: size * 1.6
+        )
+        return Font(scaledFont)
+    }
+}
+
+private extension Font.Weight {
+    var uiKitWeight: UIFont.Weight {
+        switch self {
+        case .ultraLight: return .ultraLight
+        case .thin: return .thin
+        case .light: return .light
+        case .regular: return .regular
+        case .medium: return .medium
+        case .semibold: return .semibold
+        case .bold: return .bold
+        case .heavy: return .heavy
+        case .black: return .black
+        default: return .regular
+        }
     }
 }
 
