@@ -168,6 +168,7 @@ struct ExamResultView: View {
         return HStack(spacing: 6) {
             if diff > 0.0001 {
                 Image(systemName: "arrow.up.circle.fill")
+                    .accessibilityHidden(true)
             }
             Text(text)
         }
@@ -287,6 +288,7 @@ struct ExamResultView: View {
                     Image(systemName: "chevron.right")
                         .font(.system(size: 13, weight: .bold))
                         .foregroundColor(OniTanTheme.textTertiary)
+                        .accessibilityHidden(true)
                 }
             }
             .padding(16)
