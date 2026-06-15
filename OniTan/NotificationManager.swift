@@ -111,8 +111,8 @@ final class NotificationManager: ObservableObject {
         let content = UNMutableNotificationContent()
         content.title = "今週の振り返り"
         content.body = weakCount > 0
-            ? "苦手な漢字が\(weakCount)問たまっています。週末にまとめて復習しよう！"
-            : "今週も苦手なし！この調子で続けよう。"
+            ? "苦手な漢字が\(weakCount)問たまっています。週末にまとめて復習しよう！📚"
+            : "今週も苦手なし！この調子で続けよう。🔥"
         content.sound = .default
         content.categoryIdentifier = "WEEKLY_SUMMARY"
 
