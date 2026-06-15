@@ -1,13 +1,21 @@
 {
-  "stage": 98,
+  "stage": 2,
   "questions": [
     {
       "kanji": "絢飾",
-      "choices": ["けんしょく", "じゅんしょく", "けんしき", "こうしょく"],
+      "choices": [
+        "けんしょく",
+        "じゅんしょく",
+        "けんしき",
+        "こうしょく"
+      ],
       "answer": "けんしょく",
       "explain": "例文: 絢飾豪華な宮殿を訪れる。\n正解の読み: けんしょく\n意味: 美しく飾ること。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -17,11 +25,19 @@
     },
     {
       "kanji": "蔚蔚",
-      "choices": ["うつうつ", "いきいき", "ういうい", "うつぼつ"],
+      "choices": [
+        "うつうつ",
+        "いきいき",
+        "ういうい",
+        "うつぼつ"
+      ],
       "answer": "うつうつ",
       "explain": "例文: 蔚蔚たる森を散策する。\n正解の読み: うつうつ\n意味: 草木の生い茂るさま。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -31,11 +47,19 @@
     },
     {
       "kanji": "云為",
-      "choices": ["うんい", "うんじ", "いんい", "うんし"],
+      "choices": [
+        "うんい",
+        "うんじ",
+        "いんい",
+        "うんし"
+      ],
       "answer": "うんい",
       "explain": "例文: 他者の云為をあげつらう。\n正解の読み: うんい\n意味: 言葉と行為。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -45,11 +69,19 @@
     },
     {
       "kanji": "甥姪",
-      "choices": ["せいてつ", "しょうてつ", "おいめい", "せいちつ"],
+      "choices": [
+        "せいてつ",
+        "しょうてつ",
+        "おいめい",
+        "せいちつ"
+      ],
       "answer": "せいてつ",
       "explain": "例文: 親族の集いで甥姪に会う。\n正解の読み: せいてつ\n意味: 兄弟姉妹の息子と娘。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -59,11 +91,19 @@
     },
     {
       "kanji": "荻花",
-      "choices": ["てきか", "おぎばな", "てっか", "せきか"],
+      "choices": [
+        "てきか",
+        "おぎばな",
+        "てっか",
+        "せきか"
+      ],
       "answer": "てきか",
       "explain": "例文: 楓葉荻花、秋瑟瑟たり。\n正解の読み: てきか\n意味: オギ。イネ科の多年草。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -73,11 +113,19 @@
     },
     {
       "kanji": "禾穂",
-      "choices": ["かすい", "わほ", "かほ", "のぎほ"],
+      "choices": [
+        "かすい",
+        "わほ",
+        "かほ",
+        "のぎほ"
+      ],
       "answer": "かすい",
       "explain": "例文: 黄金色の禾穂が頭を垂れる。\n正解の読み: かすい\n意味: 稲の穂。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -87,11 +135,19 @@
     },
     {
       "kanji": "赫灼",
-      "choices": ["かくしゃく", "かくやく", "かっしゃく", "こうしゃく"],
+      "choices": [
+        "かくしゃく",
+        "かくやく",
+        "かっしゃく",
+        "こうしゃく"
+      ],
       "answer": "かくしゃく",
       "explain": "例文: 太陽が赫灼と照りつける。\n正解の読み: かくしゃく\n意味: 光り輝いているさま。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -101,11 +157,19 @@
     },
     {
       "kanji": "茅屋",
-      "choices": ["ぼうおく", "かやや", "ぼうや", "かやおく"],
+      "choices": [
+        "ぼうおく",
+        "かやや",
+        "ぼうや",
+        "かやおく"
+      ],
       "answer": "ぼうおく",
       "explain": "例文: 兄が茅屋にやってきた。\n正解の読み: ぼうおく\n意味: 自宅の謙称。かやぶきの家。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -115,11 +179,19 @@
     },
     {
       "kanji": "澱",
-      "choices": ["おり", "よど", "でん", "にごり"],
+      "choices": [
+        "おり",
+        "よど",
+        "でん",
+        "にごり"
+      ],
       "answer": "おり",
       "explain": "例文: 心の中の澱を吐き出す。\n正解の読み: おり\n意味: 液体の底に溜まったかす。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -129,11 +201,19 @@
     },
     {
       "kanji": "谿",
-      "choices": ["はざま", "たに", "けい", "かい"],
+      "choices": [
+        "はざま",
+        "たに",
+        "けい",
+        "かい"
+      ],
       "answer": "はざま",
       "explain": "例文: 山の谿に人家がある。\n正解の読み: はざま\n意味: 谷あい。谷間。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -143,11 +223,19 @@
     },
     {
       "kanji": "鴫",
-      "choices": ["しぎ", "かも", "さぎ", "ちどり"],
+      "choices": [
+        "しぎ",
+        "かも",
+        "さぎ",
+        "ちどり"
+      ],
       "answer": "しぎ",
       "explain": "例文: 鴫の一群が飛び立つ。\n正解の読み: しぎ\n意味: チドリ目シギ科の鳥。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -157,11 +245,19 @@
     },
     {
       "kanji": "鑓",
-      "choices": ["やり", "かね", "きり", "つるぎ"],
+      "choices": [
+        "やり",
+        "かね",
+        "きり",
+        "つるぎ"
+      ],
       "answer": "やり",
       "explain": "例文: 見事な鑓の遣い手だ。\n正解の読み: やり\n意味: 長い柄に剣を付けた武器。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -171,11 +267,19 @@
     },
     {
       "kanji": "苛む",
-      "choices": ["さいな", "いじ", "せめ", "なや"],
+      "choices": [
+        "さいな",
+        "いじ",
+        "せめ",
+        "なや"
+      ],
       "answer": "さいな",
       "explain": "例文: 我と我が身を苛む。\n正解の読み: さいな\n意味: 苛む。苦しめる。いじめる。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -185,11 +289,19 @@
     },
     {
       "kanji": "柵",
-      "choices": ["しがらみ", "さく", "ませ", "くい"],
+      "choices": [
+        "しがらみ",
+        "さく",
+        "ませ",
+        "くい"
+      ],
       "answer": "しがらみ",
       "explain": "例文: 浮き世の柵がつきまとう。\n正解の読み: しがらみ\n意味: まとわりつく邪魔なもの。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -199,11 +311,19 @@
     },
     {
       "kanji": "饗した",
-      "choices": ["もてな", "きょう", "あえ", "すすめ"],
+      "choices": [
+        "もてな",
+        "きょう",
+        "あえ",
+        "すすめ"
+      ],
       "answer": "もてな",
       "explain": "例文: 賓客を手厚く饗した。\n正解の読み: もてな\n意味: 饗す。客を接待する。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -213,11 +333,19 @@
     },
     {
       "kanji": "艮",
-      "choices": ["うしとら", "こん", "ごん", "うしお"],
+      "choices": [
+        "うしとら",
+        "こん",
+        "ごん",
+        "うしお"
+      ],
       "answer": "うしとら",
       "explain": "例文: 艮の方角は鬼門と避ける。\n正解の読み: うしとら\n意味: 北東の方角。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -227,11 +355,19 @@
     },
     {
       "kanji": "蔀",
-      "choices": ["しとみ", "しとり", "ひさし", "とばり"],
+      "choices": [
+        "しとみ",
+        "しとり",
+        "ひさし",
+        "とばり"
+      ],
       "answer": "しとみ",
       "explain": "例文: 蔀を上げて月を眺める。\n正解の読み: しとみ\n意味: 格子付きの板戸。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -241,11 +377,19 @@
     },
     {
       "kanji": "鐙",
-      "choices": ["あぶみ", "とう", "たづな", "くら"],
+      "choices": [
+        "あぶみ",
+        "とう",
+        "たづな",
+        "くら"
+      ],
       "answer": "あぶみ",
       "explain": "例文: 馬上で鐙に足を掛ける。\n正解の読み: あぶみ\n意味: 馬の乗り手が足を置く馬具。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -255,11 +399,19 @@
     },
     {
       "kanji": "誹る",
-      "choices": ["そし", "ひぼう", "しか", "ののし"],
+      "choices": [
+        "そし",
+        "ひぼう",
+        "しか",
+        "ののし"
+      ],
       "answer": "そし",
       "explain": "例文: 陰でこっそり他人を誹る。\n正解の読み: そし\n意味: 誹る。けなす。非難する。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",
@@ -269,11 +421,19 @@
     },
     {
       "kanji": "籾",
-      "choices": ["もみ", "ぬか", "こめ", "いね"],
+      "choices": [
+        "もみ",
+        "ぬか",
+        "こめ",
+        "いね"
+      ],
       "answer": "もみ",
       "explain": "例文: 収穫した籾を貯える。\n正解の読み: もみ\n意味: 外皮がついたままの米。",
       "kind": "sentenceReading",
-      "tags": ["例文読み", "準1級"],
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
       "difficulty": 4,
       "payload": {
         "type": "sentenceReading",

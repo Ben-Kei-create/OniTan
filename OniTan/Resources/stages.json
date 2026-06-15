@@ -1,20 +1,20 @@
 {
   "stages": [
     {
-      "id": 97,
-      "file": "stage97.json",
+      "id": 1,
+      "file": "stage1.json",
       "title": "例文読み 1",
       "difficulty": 4
     },
     {
-      "id": 98,
-      "file": "stage98.json",
+      "id": 2,
+      "file": "stage2.json",
       "title": "例文読み 2",
       "difficulty": 4
     },
     {
-      "id": 99,
-      "file": "stage99.json",
+      "id": 3,
+      "file": "stage3.json",
       "title": "例文読み 3",
       "difficulty": 4
     }
