@@ -1,0 +1,335 @@
+{
+  "stage": 9,
+  "questions": [
+    {
+      "kanji": "叶和",
+      "choices": [
+        "きょうわ",
+        "きょうあ",
+        "こうわ",
+        "きょうが"
+      ],
+      "answer": "きょうわ",
+      "explain": "例文: 経に万国叶和すと言えり。\n正解の読み: きょうわ\n意味: 意見を異にしながらも協力すること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "叶和",
+        "sentenceContext": "経に万国叶和すと言えり。"
+      }
+    },
+    {
+      "kanji": "乙骸",
+      "choices": [
+        "おつがい",
+        "いつがい",
+        "おつかい",
+        "おつごう"
+      ],
+      "answer": "おつがい",
+      "explain": "例文: 乙骸の書を置く。\n正解の読み: おつがい\n意味: 辞表。願い出る文書。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "乙骸",
+        "sentenceContext": "乙骸の書を置く。"
+      }
+    },
+    {
+      "kanji": "豊稔",
+      "choices": [
+        "ほうじん",
+        "ほうじょう",
+        "ふうじん",
+        "ほうねん"
+      ],
+      "answer": "ほうじん",
+      "explain": "例文: 豊稔を祈願する祭りだ。\n正解の読み: ほうじん\n意味: 穀物が豊かに実ること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "豊稔",
+        "sentenceContext": "豊稔を祈願する祭りだ。"
+      }
+    },
+    {
+      "kanji": "未稼",
+      "choices": [
+        "かか",
+        "びか",
+        "みか",
+        "がか"
+      ],
+      "answer": "かか",
+      "explain": "例文: 豊かな未稼の蓄えがある。\n正解の読み: かか\n意味: 穀物。「未」は穀類、「稼」は穀物。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "未稼",
+        "sentenceContext": "豊かな未稼の蓄えがある。"
+      }
+    },
+    {
+      "kanji": "胡乱げ",
+      "choices": [
+        "うろん",
+        "こらん",
+        "うろう",
+        "ころん"
+      ],
+      "answer": "うろん",
+      "explain": "例文: 胡乱げに一瞥された。\n正解の読み: うろん\n意味: こけおどし。正体が怪しいこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "胡乱",
+        "sentenceContext": "胡乱げに一瞥された。"
+      }
+    },
+    {
+      "kanji": "審訊",
+      "choices": [
+        "しんじん",
+        "しんもん",
+        "しんきん",
+        "さいじん"
+      ],
+      "answer": "しんじん",
+      "explain": "例文: 被告が審訊された。\n正解の読み: しんじん\n意味: 罪状について問いただすこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "審訊",
+        "sentenceContext": "被告が審訊された。"
+      }
+    },
+    {
+      "kanji": "鎮咳剤",
+      "choices": [
+        "ちんがいざい",
+        "ちんかいざい",
+        "しんがいざい",
+        "ちんがいさい"
+      ],
+      "answer": "ちんがいざい",
+      "explain": "例文: 鎮咳剤を飲んで就寝した。\n正解の読み: ちんがいざい\n意味: 咳を鎮める薬。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鎮咳剤",
+        "sentenceContext": "鎮咳剤を飲んで就寝した。"
+      }
+    },
+    {
+      "kanji": "芳馨",
+      "choices": [
+        "ほうけい",
+        "ほうき",
+        "ほうきょう",
+        "ほうけん"
+      ],
+      "answer": "ほうけい",
+      "explain": "例文: 部屋に果実の芳馨が満ちた。\n正解の読み: ほうけい\n意味: かぐわしいかおり。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "芳馨",
+        "sentenceContext": "部屋に果実の芳馨が満ちた。"
+      }
+    },
+    {
+      "kanji": "廻向",
+      "choices": [
+        "えこう",
+        "かいこう",
+        "かいきょう",
+        "えこ"
+      ],
+      "answer": "えこう",
+      "explain": "例文: 廻向の花を手向ける。\n正解の読み: えこう\n意味: 死者の冥福を祈って読経などをすること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "廻向",
+        "sentenceContext": "廻向の花を手向ける。"
+      }
+    },
+    {
+      "kanji": "献芹",
+      "choices": [
+        "けんきん",
+        "けんごん",
+        "げんきん",
+        "こんきん"
+      ],
+      "answer": "けんきん",
+      "explain": "例文: 歳暮の品を献芹する。\n正解の読み: けんきん\n意味: 物を贈ることを表す謙譲語。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "献芹",
+        "sentenceContext": "歳暮の品を献芹する。"
+      }
+    },
+    {
+      "kanji": "城砦",
+      "choices": [
+        "じょうさい",
+        "じょうさく",
+        "せいさい",
+        "じょうしつ"
+      ],
+      "answer": "じょうさい",
+      "explain": "例文: 山上に堅固な城砦を築く。\n正解の読み: じょうさい\n意味: 城やとりで。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "城砦",
+        "sentenceContext": "山上に堅固な城砦を築く。"
+      }
+    },
+    {
+      "kanji": "鶏肋",
+      "choices": [
+        "けいろく",
+        "けいきょう",
+        "とりろく",
+        "けいにく"
+      ],
+      "answer": "けいろく",
+      "explain": "例文: 鶏肋なれば棄つるに惜しむべし。\n正解の読み: けいろく\n意味: 大して役に立たないが、捨てるには惜しいもの。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鶏肋",
+        "sentenceContext": "鶏肋なれば棄つるに惜しむべし。"
+      }
+    },
+    {
+      "kanji": "喋喋",
+      "choices": [
+        "ちょうちょう",
+        "じょうじょう",
+        "ちょうちゅう",
+        "とうとう"
+      ],
+      "answer": "ちょうちょう",
+      "explain": "例文: 愚夫の犬を喋喋と語る。\n正解の読み: ちょうちょう\n意味: 口数が多くしゃべること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "喋喋",
+        "sentenceContext": "愚夫の犬を喋喋と語る。"
+      }
+    },
+    {
+      "kanji": "庖厨",
+      "choices": [
+        "ほうちゅう",
+        "ほうじゅ",
+        "はいちゅう",
+        "ほうそう"
+      ],
+      "answer": "ほうちゅう",
+      "explain": "例文: 君子は庖厨を遠ざく。\n正解の読み: ほうちゅう\n意味: 台所。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "庖厨",
+        "sentenceContext": "君子は庖厨を遠ざく。"
+      }
+    },
+    {
+      "kanji": "花蕊",
+      "choices": [
+        "かずい",
+        "かしん",
+        "かずう",
+        "かじん"
+      ],
+      "answer": "かずい",
+      "explain": "例文: 蜂は花蕊から蜜を集める。\n正解の読み: かずい\n意味: 花のしべ。花心。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "花蕊",
+        "sentenceContext": "蜂は花蕊から蜜を集める。"
+      }
+    }
+  ]
+}

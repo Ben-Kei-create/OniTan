@@ -1,0 +1,181 @@
+{
+  "stage": 11,
+  "questions": [
+    {
+      "kanji": "鋭く",
+      "choices": [
+        "するどく",
+        "えいく",
+        "とがく",
+        "さときく"
+      ],
+      "answer": "するどく",
+      "explain": "例文: 出足も鋭く攻め込んでいく。\n正解の読み: するどく\n意味: 激しくて強いこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鋭",
+        "sentenceContext": "出足も鋭く攻め込んでいく。"
+      }
+    },
+    {
+      "kanji": "叛く",
+      "choices": [
+        "そむく",
+        "はんく",
+        "さからく",
+        "たがく"
+      ],
+      "answer": "そむく",
+      "explain": "例文: 朝廷に叛いて兵を挙げる。\n正解の読み: そむく\n意味: 裏切る。はむかうこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "叛",
+        "sentenceContext": "朝廷に叛いて兵を挙げる。"
+      }
+    },
+    {
+      "kanji": "真菰",
+      "choices": [
+        "まこも",
+        "しんこ",
+        "まこ",
+        "しんごも"
+      ],
+      "answer": "まこも",
+      "explain": "例文: 真菰が沼地に群生する。\n正解の読み: まこも\n意味: イネ科の多年草。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "真菰",
+        "sentenceContext": "真菰が沼地に群生する。"
+      }
+    },
+    {
+      "kanji": "旺ん",
+      "choices": [
+        "さかん",
+        "おうん",
+        "さかい",
+        "さこん"
+      ],
+      "answer": "さかん",
+      "explain": "例文: 意気旺んで闘志がみなぎる。\n正解の読み: さかん\n意味: 勢いがいい様子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "旺",
+        "sentenceContext": "意気旺んで闘志がみなぎる。"
+      }
+    },
+    {
+      "kanji": "怯んだ",
+      "choices": [
+        "ひるんだ",
+        "きょうんだ",
+        "おびえんだ",
+        "ひそんだ"
+      ],
+      "answer": "ひるんだ",
+      "explain": "例文: 威嚇射撃に一瞬怯んだ。\n正解の読み: ひるんだ\n意味: 気後れすること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "怯",
+        "sentenceContext": "威嚇射撃に一瞬怯んだ。"
+      }
+    },
+    {
+      "kanji": "葎",
+      "choices": [
+        "むぐら",
+        "りつ",
+        "しん",
+        "むくら"
+      ],
+      "answer": "むぐら",
+      "explain": "例文: 庭に葎が生い茂る。\n正解の読み: むぐら\n意味: 生い茂っている雑草。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "葎",
+        "sentenceContext": "庭に葎が生い茂る。"
+      }
+    },
+    {
+      "kanji": "筏",
+      "choices": [
+        "いかだ",
+        "ばつ",
+        "いかた",
+        "さお"
+      ],
+      "answer": "いかだ",
+      "explain": "例文: 材木を筏で組んで運ぶ。\n正解の読み: いかだ\n意味: 木材を並べて結んだ簡易な船。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "筏",
+        "sentenceContext": "材木を筏で組んで運ぶ。"
+      }
+    },
+    {
+      "kanji": "潤目鰮",
+      "choices": [
+        "うるめいわし",
+        "うるめざかな",
+        "じゅんもくいわし",
+        "うるめざめ"
+      ],
+      "answer": "うるめいわし",
+      "explain": "例文: 潤目鰮の丸干しが並ぶ。\n正解の読み: うるめいわし\n意味: イワシの一種。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "潤目鰮",
+        "sentenceContext": "潤目鰮の丸干しが並ぶ。"
+      }
+    }
+  ]
+}
