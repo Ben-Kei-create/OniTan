@@ -2,191 +2,444 @@
   "stage": 1,
   "questions": [
     {
-      "kanji": "乃",
+      "kanji": "厩舎",
       "choices": [
-        "だん",
-        "だち",
-        "だつ",
-        "だい"
+        "きゅうしゃ",
+        "きゅうや",
+        "うまや",
+        "げんしゃ"
       ],
-      "answer": "だい",
-      "explain": "意味: すなわち／そこで／漸く\n正解の読み: だい\n音読み: の・だい・ない\n訓読み: すなわち・なんじ\n出典: モジナビ"
+      "answer": "きゅうしゃ",
+      "explain": "例文: 厩舎を毎朝掃除する。\n正解の読み: きゅうしゃ\n意味: 牛馬を飼育する小屋。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "厩舎",
+        "sentenceContext": "厩舎を毎朝掃除する。"
+      }
     },
     {
-      "kanji": "卜",
+      "kanji": "誰何",
       "choices": [
-        "ぼん",
-        "ぼく",
-        "ぼっ",
-        "ぼつ"
+        "すいか",
+        "だれか",
+        "せいか",
+        "すいが"
       ],
-      "answer": "ぼく",
-      "explain": "意味: うらなう／うらない\n正解の読み: ぼく\n音読み: ぼく・ほく\n訓読み: うらない・うらなう\n出典: モジナビ"
+      "answer": "すいか",
+      "explain": "例文: 警備員に誰何された。\n正解の読み: すいか\n意味: 何者か問いただすこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "誰何",
+        "sentenceContext": "警備員に誰何された。"
+      }
     },
     {
-      "kanji": "也",
+      "kanji": "紐帯",
       "choices": [
-        "と",
-        "む",
-        "や",
-        "た"
+        "ちゅうたい",
+        "じゅうたい",
+        "にゅうたい",
+        "こうたい"
       ],
-      "answer": "や",
-      "explain": "意味: 呼びかけの意\n正解の読み: や\n音読み: や・え・い\n訓読み: か・なり・また・や\n出典: モジナビ"
+      "answer": "ちゅうたい",
+      "explain": "例文: 加盟国の紐帯を強化する。\n正解の読み: ちゅうたい\n意味: 結びつき。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "紐帯",
+        "sentenceContext": "加盟国の紐帯を強化する。"
+      }
     },
     {
-      "kanji": "勺",
+      "kanji": "杏林",
       "choices": [
-        "しゃく",
-        "じゃく",
-        "てき",
-        "いき"
+        "きょうりん",
+        "あんりん",
+        "こうりん",
+        "きんりん"
       ],
-      "answer": "しゃく",
-      "explain": "意味: 体積、面積の単位／くむ／すくい取る／ひしゃく\n正解の読み: しゃく\n音読み: しゃく\n出典: モジナビ"
+      "answer": "きょうりん",
+      "explain": "例文: 美しい杏林が広がっている。\n正解の読み: きょうりん\n意味: アンズの林。また、医者の別称。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "杏林",
+        "sentenceContext": "美しい杏林が広がっている。"
+      }
     },
     {
-      "kanji": "叉",
+      "kanji": "荏苒",
       "choices": [
-        "さ",
-        "じゃ",
-        "ひ",
-        "き"
+        "じんぜん",
+        "にんぜん",
+        "じんせん",
+        "えんぜん"
       ],
-      "answer": "さ",
-      "explain": "意味: また／ふたまた\n正解の読み: さ\n音読み: さ・しゃ\n訓読み: こまぬく・こまねく・さす・また\n出典: モジナビ"
+      "answer": "じんぜん",
+      "explain": "例文: ただ荏苒と日々を過ごす。\n正解の読み: じんぜん\n意味: 何もせず月日が経つこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "荏苒",
+        "sentenceContext": "ただ荏苒と日々を過ごす。"
+      }
     },
     {
-      "kanji": "巳",
+      "kanji": "椿事",
       "choices": [
-        "ぐ",
-        "し",
-        "に",
-        "う"
+        "ちんじ",
+        "つばきごと",
+        "しんじ",
+        "ちんごと"
       ],
-      "answer": "し",
-      "explain": "意味: み／動物の蛇／十二支の第六番／方角では南南東、時刻では午前１０時、および午前９時から１１時までの間を指す\n正解の読み: し\n音読み: し・じ\n訓読み: み\n出典: モジナビ"
+      "answer": "ちんじ",
+      "explain": "例文: 前代未聞の椿事が起こった。\n正解の読み: ちんじ\n意味: 予期せぬ重大な事件。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "椿事",
+        "sentenceContext": "前代未聞の椿事が起こった。"
+      }
     },
     {
-      "kanji": "丑",
+      "kanji": "彼此",
       "choices": [
-        "ちゅう",
-        "じゅう",
-        "き",
-        "し"
+        "ひし",
+        "かれこれ",
+        "ひじ",
+        "かし"
       ],
-      "answer": "ちゅう",
-      "explain": "意味: うし／動物の牛／十二支の第二番／方角では北北東、時刻では午前２時、および午前１時から３時までの間を指す\n正解の読み: ちゅう\n音読み: ちゅう・ちゅ\n訓読み: うし\n出典: モジナビ"
+      "answer": "ひし",
+      "explain": "例文: 彼此の懸隔はごくわずかだ。\n正解の読み: ひし\n意味: あちらとこちら。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "彼此",
+        "sentenceContext": "彼此の懸隔はごくわずかだ。"
+      }
     },
     {
-      "kanji": "之",
+      "kanji": "尤物",
       "choices": [
-        "き",
-        "し",
-        "げ",
-        "つ"
+        "ゆうぶつ",
+        "ようぶつ",
+        "ゆうもの",
+        "ゆぶつ"
       ],
-      "answer": "し",
-      "explain": "意味: 近称の指示代名詞／この／これ\n正解の読み: し\n音読み: し\n訓読み: この・これ・の・ゆく\n出典: モジナビ"
+      "answer": "ゆうぶつ",
+      "explain": "例文: 今度の新人はかなりの尤物だ。\n正解の読み: ゆうぶつ\n意味: 特にすぐれた人物や品物。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "尤物",
+        "sentenceContext": "今度の新人はかなりの尤物だ。"
+      }
     },
     {
-      "kanji": "云",
+      "kanji": "兜巾",
       "choices": [
-        "うい",
-        "うつ",
-        "うん",
-        "げい"
+        "ときん",
+        "とうきん",
+        "かぶときん",
+        "ずきん"
       ],
-      "answer": "うん",
-      "explain": "意味: ここに／いう\n正解の読み: うん\n音読み: うん\n訓読み: いう\n出典: モジナビ"
+      "answer": "ときん",
+      "explain": "例文: 兜巾をつけた山伏が通った。\n正解の読み: ときん\n意味: 修験者のかぶる頭巾。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "兜巾",
+        "sentenceContext": "兜巾をつけた山伏が通った。"
+      }
     },
     {
-      "kanji": "什",
+      "kanji": "萱堂",
       "choices": [
-        "じゃく",
-        "じゅん",
-        "じょく",
-        "じゅう"
+        "けんどう",
+        "かんどう",
+        "せんどう",
+        "けんとう"
       ],
-      "answer": "じゅう",
-      "explain": "意味: 詩編／日常で使用する器物／十人組\n正解の読み: じゅう\n音読み: じゅう・しゅう\n訓読み: とお\n出典: モジナビ"
+      "answer": "けんどう",
+      "explain": "例文: 萱堂御不快の由、拝察した。\n正解の読み: けんどう\n意味: 母を敬っていう語。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "萱堂",
+        "sentenceContext": "萱堂御不快の由、拝察した。"
+      }
     },
     {
-      "kanji": "仇",
+      "kanji": "弘誓",
       "choices": [
-        "きょく",
-        "きゅう",
-        "きゃく",
-        "きょう"
+        "ぐぜい",
+        "こうせい",
+        "ぐせい",
+        "ひろちかい"
       ],
-      "answer": "きゅう",
-      "explain": "意味: つれあい／あだする／あだ／かたき\n正解の読み: きゅう\n音読み: きゅう・く\n訓読み: あだ・かたき・つれあい\n出典: モジナビ"
+      "answer": "ぐぜい",
+      "explain": "例文: 弘誓の船で彼岸へ渡る。\n正解の読み: ぐぜい\n意味: 衆生を救う菩薩の誓願。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "弘誓",
+        "sentenceContext": "弘誓の船で彼岸へ渡る。"
+      }
     },
     {
-      "kanji": "允",
+      "kanji": "錫杖",
       "choices": [
-        "いき",
-        "いん",
-        "いつ",
-        "いく"
+        "しゃくじょう",
+        "すずづえ",
+        "せきじょう",
+        "しゃくつえ"
       ],
-      "answer": "いん",
-      "explain": "意味: まこと／まことに\n正解の読み: いん\n音読み: いん・えん\n訓読み: じょう・まこと・まことに・ゆるす\n出典: モジナビ"
+      "answer": "しゃくじょう",
+      "explain": "例文: 修験者の錫杖の音が響く。\n正解の読み: しゃくじょう\n意味: 僧侶・修験者が持つ杖。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "錫杖",
+        "sentenceContext": "修験者の錫杖の音が響く。"
+      }
     },
     {
-      "kanji": "勿",
+      "kanji": "禿筆",
       "choices": [
-        "もつ",
-        "もち",
-        "もく",
-        "もう"
+        "とくひつ",
+        "はげふで",
+        "とくふで",
+        "とっぴつ"
       ],
-      "answer": "もち",
-      "explain": "意味: なかれ／なし\n正解の読み: もち\n音読み: もち・ぶつ・ぼつ\n訓読み: なかれ\n出典: モジナビ"
+      "answer": "とくひつ",
+      "explain": "例文: 禿筆にて一文を草する。\n正解の読み: とくひつ\n意味: すり減った筆。自分の文章力を謙遜する語。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "禿筆",
+        "sentenceContext": "禿筆にて一文を草する。"
+      }
     },
     {
-      "kanji": "匁",
+      "kanji": "禰宜",
       "choices": [
-        "もんめ",
-        "もがさ",
-        "もやし",
-        "もとめ"
+        "ねぎ",
+        "ねげ",
+        "でいぎ",
+        "ねよし"
       ],
-      "answer": "もんめ",
-      "explain": "意味: 昔の貨幣の単位／重さの単位\n正解の読み: もんめ\n訓読み: め・もんめ\n出典: モジナビ"
+      "answer": "ねぎ",
+      "explain": "例文: 由緒ある神社の禰宜となる。\n正解の読み: ねぎ\n意味: 神職の一つで、宮司の下の位。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "禰宜",
+        "sentenceContext": "由緒ある神社の禰宜となる。"
+      }
     },
     {
-      "kanji": "壬",
+      "kanji": "稗史",
       "choices": [
-        "じん",
-        "じく",
-        "じゃ",
-        "じき"
+        "はいし",
+        "ひし",
+        "はいじ",
+        "ひえし"
       ],
-      "answer": "じん",
-      "explain": "意味: ▼十干一覧みずのえ／十干の第九番目\n正解の読み: じん\n音読み: じん・にん\n訓読み: みずのえ\n出典: モジナビ"
+      "answer": "はいし",
+      "explain": "例文: 中世の風俗を稗史から知る。\n正解の読み: はいし\n意味: 民間の言い伝え、歴史書、小説。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "稗史",
+        "sentenceContext": "中世の風俗を稗史から知る。"
+      }
     },
     {
-      "kanji": "尤",
+      "kanji": "膝下",
       "choices": [
-        "ぜち",
-        "こう",
-        "ゆう",
-        "ゆい"
+        "しっか",
+        "ひざした",
+        "しつげ",
+        "ひざもと"
       ],
-      "answer": "ゆう",
-      "explain": "意味: もっとも／とがめる／とが\n正解の読み: ゆう\n音読み: ゆう・う\n訓読み: すぐれる・とがめる・もっとも\n出典: モジナビ"
+      "answer": "しっか",
+      "explain": "例文: 父母の膝下を離れて暮らす。\n正解の読み: しっか\n意味: 親もと。庇護者のもと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "膝下",
+        "sentenceContext": "父母の膝下を離れて暮らす。"
+      }
     },
     {
-      "kanji": "巴",
+      "kanji": "頁岩",
       "choices": [
-        "は",
-        "お",
-        "た",
-        "ず"
+        "けつがん",
+        "けついわ",
+        "ようがん",
+        "げつがん"
       ],
-      "answer": "は",
-      "explain": "意味: ともえ／鞆に描いた絵模様／うずまきを象った模様\n正解の読み: は\n音読み: は・へ\n訓読み: うずまき・ともえ\n出典: モジナビ"
+      "answer": "けつがん",
+      "explain": "例文: 頁岩でできた石器が多い。\n正解の読み: けつがん\n意味: 泥土が固まった堆積岩。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "頁岩",
+        "sentenceContext": "頁岩でできた石器が多い。"
+      }
+    },
+    {
+      "kanji": "輔弼",
+      "choices": [
+        "ほひつ",
+        "ふひつ",
+        "ほすけ",
+        "ふひち"
+      ],
+      "answer": "ほひつ",
+      "explain": "例文: 大臣が君主を輔弼する。\n正解の読み: ほひつ\n意味: 国政を補佐すること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "輔弼",
+        "sentenceContext": "大臣が君主を輔弼する。"
+      }
+    },
+    {
+      "kanji": "蓑笠",
+      "choices": [
+        "さりゅう",
+        "みのかさ",
+        "さりつ",
+        "さいりゅう"
+      ],
+      "answer": "さりゅう",
+      "explain": "例文: 蓑笠の翁が釣り糸を垂れる。\n正解の読み: さりゅう\n意味: みのと、かさ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蓑笠",
+        "sentenceContext": "蓑笠の翁が釣り糸を垂れる。"
+      }
+    },
+    {
+      "kanji": "哀咽",
+      "choices": [
+        "あいえつ",
+        "あいえん",
+        "あいおつ",
+        "あいせつ"
+      ],
+      "answer": "あいえつ",
+      "explain": "例文: 葬儀は哀咽の声であふれた。\n正解の読み: あいえつ\n意味: 悲しみむせび泣くこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "哀咽",
+        "sentenceContext": "葬儀は哀咽の声であふれた。"
+      }
     }
   ]
 }

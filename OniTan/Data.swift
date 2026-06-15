@@ -65,6 +65,7 @@ let reviewQuestions: [Question] = quizData.review_questions ?? []
 /// Questions from standalone kind-specific JSON files (yojijukugo, writing, etc.).
 let supplementalQuestions: [Question] = {
     let files = [
+        "kanji_catalog_questions.json",
         "yojijukugo_questions.json",
         "synonym_questions.json",
         "antonym_questions.json",

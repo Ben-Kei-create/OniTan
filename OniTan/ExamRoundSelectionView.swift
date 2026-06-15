@@ -56,6 +56,25 @@ struct ExamRound: Identifiable, Equatable {
     var hasContent: Bool {
         examBlueprints.contains { $0.id == blueprintID }
     }
+
+    /// Concrete, numeric explanation of what's still needed to unlock this round.
+    @MainActor
+    func unlockRequirementDetail(using repo: ExamResultRepository, xpRepo: GamificationRepository) -> String {
+        if number == Self.hiddenRound {
+            let best = repo.bestAccuracy(forBlueprintID: Self.blueprintID(for: 10)) ?? 0
+            return "第10回 \(Int((best * 100).rounded()))% → 95%以上で解放"
+        }
+
+        if xpRepo.level < Self.allCategoriesUnlockedLevel {
+            let remaining = Self.allCategoriesUnlockedLevel - xpRepo.level
+            return "全道場解放まで Lv.\(xpRepo.level)/\(Self.allCategoriesUnlockedLevel)（あと\(remaining)）"
+        }
+
+        let previous = number - 1
+        let previousThreshold = Self.passThreshold(for: previous)
+        let best = repo.bestAccuracy(forBlueprintID: Self.blueprintID(for: previous)) ?? 0
+        return "第\(previous)回 \(Int((best * 100).rounded()))% → \(Int(previousThreshold * 100))%以上で解放"
+    }
 }
 
 // MARK: - Exam Round Selection View
@@ -85,18 +104,20 @@ struct ExamRoundSelectionView: View {
                     LazyVGrid(columns: columns, spacing: 12) {
                         ForEach(visibleRounds) { round in
                             let state = roundState(for: round)
+                            let lockedDetail = round.unlockRequirementDetail(using: examResultRepo, xpRepo: xpRepo)
 
                             if state.canStart {
                                 NavigationLink(destination: examSessionView(for: round)) {
                                     ExamRoundButtonCard(
                                         round: round,
                                         state: state,
-                                        bestAccuracy: examResultRepo.bestAccuracy(forBlueprintID: round.blueprintID)
+                                        bestAccuracy: examResultRepo.bestAccuracy(forBlueprintID: round.blueprintID),
+                                        lockedDetail: lockedDetail
                                     )
                                 }
                                 .buttonStyle(.plain)
                                 .accessibilityLabel(accessibilityLabel(for: round, state: state))
-                                .accessibilityHint(state.accessibilityHint(for: round))
+                                .accessibilityHint(state.accessibilityHint(for: round, lockedDetail: lockedDetail))
                             } else {
                                 Button {
                                     OniTanTheme.haptic(.light)
@@ -104,13 +125,14 @@ struct ExamRoundSelectionView: View {
                                     ExamRoundButtonCard(
                                         round: round,
                                         state: state,
-                                        bestAccuracy: examResultRepo.bestAccuracy(forBlueprintID: round.blueprintID)
+                                        bestAccuracy: examResultRepo.bestAccuracy(forBlueprintID: round.blueprintID),
+                                        lockedDetail: lockedDetail
                                     )
                                 }
                                 .buttonStyle(.plain)
                                 .disabled(true)
                                 .accessibilityLabel(accessibilityLabel(for: round, state: state))
-                                .accessibilityHint(state.accessibilityHint(for: round))
+                                .accessibilityHint(state.accessibilityHint(for: round, lockedDetail: lockedDetail))
                             }
                         }
                     }
@@ -122,7 +144,7 @@ struct ExamRoundSelectionView: View {
                 .padding(.bottom, 36)
             }
         }
-        .navigationTitle("模擬試験")
+        .navigationTitle("総合模試")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
@@ -147,7 +169,7 @@ struct ExamRoundSelectionView: View {
 
                     HStack(spacing: 7) {
                         badge("全10回")
-                        badge("第1〜3回は解放済み")
+                        badge("\(unlockedRoundCount)/10回 解放済み")
                     }
                 }
             }
@@ -207,6 +229,13 @@ struct ExamRoundSelectionView: View {
 
     /// Rounds 1-10 are always shown (locked/preparing as appropriate). The hidden
     /// 11th round only appears once it is actually unlocked (round 10 cleared at 95%).
+    private var unlockedRoundCount: Int {
+        ExamRound.all
+            .filter { $0.number <= 10 }
+            .filter { $0.isUnlocked(using: examResultRepo, xpRepo: xpRepo) }
+            .count
+    }
+
     private var visibleRounds: [ExamRound] {
         ExamRound.all.filter { round in
             round.number < ExamRound.hiddenRound || round.isUnlocked(using: examResultRepo, xpRepo: xpRepo)
@@ -256,34 +285,22 @@ private enum ExamRoundButtonState {
         }
     }
 
-    func detail(for round: ExamRound) -> String {
+    func detail(for round: ExamRound, lockedDetail: String) -> String {
         switch self {
         case .available: return "タップして開始"
         case .preparing: return "問題セット待ち"
-        case .locked: return ExamRoundButtonState.lockedReason(for: round)
+        case .locked: return lockedDetail
         }
     }
 
     var canStart: Bool { self == .available }
 
-    func accessibilityHint(for round: ExamRound) -> String {
+    func accessibilityHint(for round: ExamRound, lockedDetail: String) -> String {
         switch self {
-        case .available: return "タップして模擬試験を開始します"
+        case .available: return "タップして総合模試を開始します"
         case .preparing: return "問題セット追加後に開始できます"
-        case .locked: return ExamRoundButtonState.lockedReason(for: round)
+        case .locked: return lockedDetail
         }
-    }
-
-    /// Human-readable explanation of why a round is still locked.
-    static func lockedReason(for round: ExamRound) -> String {
-        if round.number == ExamRound.hiddenRound {
-            return "第10回を95%以上でクリアすると解放"
-        }
-        if round.number > ExamRound.freeRounds {
-            let previousThreshold = Int(ExamRound.passThreshold(for: round.number - 1) * 100)
-            return "全道場解放後、前回\(previousThreshold)%以上で解放"
-        }
-        return "未解放"
     }
 }
 
@@ -291,6 +308,7 @@ private struct ExamRoundButtonCard: View {
     let round: ExamRound
     let state: ExamRoundButtonState
     let bestAccuracy: Double?
+    let lockedDetail: String
 
     private var isLocked: Bool { state == .locked }
 
@@ -319,7 +337,7 @@ private struct ExamRoundButtonCard: View {
                     .padding(.vertical, 3)
                     .background(
                         Capsule()
-                            .fill((isLocked ? OniTanTheme.cardBackgroundPressed : OniTanTheme.accentPrimary).opacity(isLocked ? 0.5 : 0.12))
+                            .fill((isLocked ? OniTanTheme.cardBackgroundPressed : OniTanTheme.accentPrimary).opacity(isLocked ? 0.18 : 0.12))
                             .overlay(
                                 Capsule()
                                     .stroke((isLocked ? OniTanTheme.cardBorder : OniTanTheme.accentPrimary).opacity(0.25), lineWidth: 1)
@@ -332,11 +350,11 @@ private struct ExamRoundButtonCard: View {
                     .font(.system(size: 18, weight: .black, design: .rounded))
                     .foregroundColor(isLocked ? OniTanTheme.textTertiary : OniTanTheme.textPrimary)
 
-                Text(state.detail(for: round))
+                Text(state.detail(for: round, lockedDetail: lockedDetail))
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .foregroundColor(isLocked ? OniTanTheme.textTertiary.opacity(0.72) : OniTanTheme.textSecondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                    .lineLimit(isLocked ? 2 : 1)
+                    .minimumScaleFactor(0.7)
             }
 
             Spacer(minLength: 0)

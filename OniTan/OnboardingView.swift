@@ -60,7 +60,7 @@ struct OnboardingView: View {
                 featureRow(icon: "十", color: OniTanTheme.sealRed,
                            text: "ランダム10問で短く続ける")
                 featureRow(icon: "試", color: OniTanTheme.mutedGold,
-                           text: "ミニ模試で本番感覚を確認")
+                           text: "模試30問で本番感覚を確認")
                 featureRow(icon: "誤", color: OniTanTheme.sealRed,
                            text: "間違えた漢字は誤答ノートで自動的に復習")
                 featureRow(icon: "★", color: OniTanTheme.mutedGold,
@@ -90,18 +90,18 @@ struct OnboardingView: View {
                 stepCard(
                     number: "1",
                     title: "ランダム10問",
-                    desc: "短い稽古で読みと語彙を毎日少しずつ積み上げる。",
+                    desc: "短いステージで読みと語彙を毎日少しずつ積み上げる。",
                     gradient: OniTanTheme.primaryGradient
                 )
                 stepCard(
                     number: "2",
-                    title: "道場集中",
+                    title: "分野別道場",
                     desc: "読み・共通漢字・四字熟語など、形式ごとに集中して鍛える。",
                     gradient: OniTanTheme.goldGradient
                 )
                 stepCard(
                     number: "3",
-                    title: "ミニ模試",
+                    title: "模試30問",
                     desc: "混合問題で仕上がりを確認し、次に鍛える分野を見つける。",
                     gradient: OniTanTheme.primaryGradient
                 )
@@ -139,7 +139,7 @@ struct OnboardingView: View {
                     .fontWeight(.black)
                     .foregroundColor(.white)
 
-                Text("毎晩 20:00 に今日の稽古を\n忘れないよう通知します")
+                Text("毎晩 20:00 に今日のステージを\n忘れないよう通知します")
                     .font(.system(.subheadline, design: .rounded))
                     .foregroundColor(.white.opacity(0.70))
                     .multilineTextAlignment(.center)

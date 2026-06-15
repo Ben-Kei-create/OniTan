@@ -23,7 +23,7 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
         switch self {
         case .normal:    return "全問正解を目指す標準モード。誤答は繰り返し出題されます。"
         case .quick10:   return "ランダムな10問を素早く解く短時間モード。"
-        case .exam30:    return "ランダム30問。誤答の再出題なし。実力をテストします。"
+        case .exam30:    return "ランダム30問。本番同様、正誤は表示せず最後にまとめて結果を確認します。"
         case .weakFocus: return "苦手な問題だけを集中的に練習します。"
         }
     }
@@ -64,6 +64,13 @@ enum QuizMode: String, CaseIterable, Identifiable, Codable {
 
     var isAvailableWithoutWeakPoints: Bool {
         self != .weakFocus
+    }
+
+    /// Whether per-question correct/incorrect feedback is withheld until the
+    /// session ends, to mimic real exam conditions. Only the exam mode defers
+    /// feedback; results are shown all at once in ExamResultView.
+    var deferredFeedback: Bool {
+        self == .exam30
     }
 }
 

@@ -90,7 +90,8 @@ struct MainView: View {
                                 if let result = vm.examResult {
                                     ExamResultView(
                                         result: result,
-                                        blueprint: examBlueprints.first(where: { $0.id == result.blueprintID })
+                                        blueprint: examBlueprints.first(where: { $0.id == result.blueprintID }),
+                                        previousBestAccuracy: vm.previousBestAccuracy
                                     )
                                     .environmentObject(playFontManager)
                                     .transition(.asymmetric(
@@ -137,7 +138,9 @@ struct MainView: View {
                     OniTanTheme.hapticSuccess()
                 }
                 if !donationManager.hasDonated {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    // Give the user a moment to enjoy the clear celebration (XP/level-up
+                    // animations) before an interstitial ad can interrupt it.
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                         guard !appState.isDailySummaryPresented else { return }
                         interstitialManager.showIfReady(canRequestAds: adConsentManager.canRequestAds)
                     }
@@ -180,7 +183,7 @@ struct MainView: View {
             // Combo badge (appears at 3+ consecutive correct answers)
             Spacer()
 
-            if vm.consecutiveCorrect >= 3 {
+            if !vm.mode.deferredFeedback, vm.consecutiveCorrect >= 3 {
                 HStack(spacing: scaled(4, by: scale, min: 2)) {
                     Image(systemName: "flame.fill")
                         .font(.system(size: scaled(10, by: scale, min: 8), weight: .bold))
@@ -244,12 +247,12 @@ struct MainView: View {
             .padding(.top, scaled(4, by: scale, min: 3))
             .accessibilityHidden(true)
 
-            Spacer(minLength: scaled(4, by: scale, min: 2))
+            Spacer().frame(height: scaled(4, by: scale, min: 2))
 
             // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
 
-            Spacer(minLength: scaled(8, by: scale, min: 4))
+            Spacer().frame(height: scaled(8, by: scale, min: 4))
 
             // Choice area
             Group {
@@ -257,9 +260,17 @@ struct MainView: View {
                 case .answering:
                     choiceStack(scale: scale)
                 case .showingExplanation:
-                    answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                    if vm.mode.deferredFeedback {
+                        choiceStack(scale: scale)
+                    } else {
+                        answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                    }
                 case .showingWrongAnswer(let correct):
-                    answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                    if vm.mode.deferredFeedback {
+                        choiceStack(scale: scale)
+                    } else {
+                        answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                    }
                 default:
                     EmptyView()
                 }
@@ -391,7 +402,12 @@ struct MainView: View {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                 vm.answer(selected: choice)
                             }
-                            wasCorrect ? OniTanTheme.hapticSuccess() : OniTanTheme.hapticError()
+                            if vm.mode.deferredFeedback {
+                                // Exam mode: neutral feedback only — don't reveal correctness.
+                                OniTanTheme.haptic(.light)
+                            } else {
+                                wasCorrect ? OniTanTheme.hapticSuccess() : OniTanTheme.hapticError()
+                            }
                         }
                     )
                 }
@@ -655,7 +671,7 @@ struct MainView: View {
                         )
                     ) {
                         HStack(spacing: 8) {
-                            Text("次の稽古へ")
+                            Text("次のステージへ")
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.textPrimary)
@@ -722,7 +738,9 @@ struct MainView: View {
                 } label: {
                     Text("ホームへ戻る")
                         .font(playFont(13, weight: .semibold))
-                        .foregroundColor(OniTanTheme.textTertiary)
+                        .foregroundColor(OniTanTheme.textSecondary)
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .contentShape(Rectangle())
                 }
             }
             .padding(.horizontal, 20)
@@ -782,7 +800,7 @@ struct MainView: View {
     private func displayTitle(for s: Stage) -> String {
         let sorted = quizData.stages.sorted { $0.stage < $1.stage }
         let num = (sorted.firstIndex(where: { $0.stage == s.stage }) ?? 0) + 1
-        return "稽古 \(num)"
+        return "ステージ \(num)"
     }
 
     private func presentProblemReport(for question: Question) {

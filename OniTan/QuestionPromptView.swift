@@ -39,7 +39,7 @@ struct QuestionPromptView: View {
     private var cardHeight: CGFloat {
         switch question.kind {
         case .sentenceReading, .hyogaiReading:
-            return scaled(192, min: 156)
+            return scaled(208, min: 168)
         case .passageReading, .passageVocabulary:
             return scaled(190, min: 152)
         case .errorCorrection, .proverb:
@@ -258,7 +258,7 @@ struct QuestionPromptView: View {
     private var contextReadingContent: some View {
         let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
         let target = contextReadingTarget
-        let bodyFont = playFontManager.font(size: scaled(21, min: 17), weight: .medium)
+        let bodyFont = playFontManager.font(size: scaled(34, min: 27), weight: .bold)
         let meaning = question.termMeaning
 
         return VStack(alignment: .leading, spacing: scaled(10, min: 7)) {

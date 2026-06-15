@@ -15,7 +15,7 @@ struct TrainingModePickerView: View {
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var themeManager: ThemeManager
 
-    private static let stageSize = 20
+    private static let stageSize = 15
 
     private var categoryTitle: String {
         category.title.replacingOccurrences(of: "道場", with: "")
@@ -28,9 +28,21 @@ struct TrainingModePickerView: View {
     private var categoryQuestionPool: [Question] {
         let kindSet = Set(category.questionKinds)
         var seen = Set<String>()
-        return allQuestions
+        let filtered = allQuestions
             .filter { kindSet.contains($0.kind) && $0.kind.isExamEligible }
             .filter { seen.insert($0.id).inserted }
+
+        // Sort by difficulty ascending so early stages start with easier
+        // questions, keeping original relative order within the same difficulty.
+        return filtered
+            .enumerated()
+            .sorted { lhs, rhs in
+                let lhsDifficulty = lhs.element.difficulty ?? Int.max
+                let rhsDifficulty = rhs.element.difficulty ?? Int.max
+                if lhsDifficulty != rhsDifficulty { return lhsDifficulty < rhsDifficulty }
+                return lhs.offset < rhs.offset
+            }
+            .map(\.element)
     }
 
     private var stageEntries: [CategoryStageEntry] {
@@ -47,7 +59,7 @@ struct TrainingModePickerView: View {
                 return CategoryStageEntry(
                     id: stageNumber,
                     stage: Stage(stage: stageNumber, questions: questions),
-                    title: "Stage \(displayNumber)",
+                    title: "ステージ \(displayNumber)",
                     detail: stageDetail(for: questions)
                 )
             }
@@ -70,6 +82,19 @@ struct TrainingModePickerView: View {
 
     private var totalQuestionCount: Int {
         categoryQuestionPool.count
+    }
+
+    private var clearedStageCount: Int {
+        stageEntries.filter { appState.isCleared($0.stage.stage) }.count
+    }
+
+    private var totalStageCount: Int {
+        stageEntries.count
+    }
+
+    private var stageProgress: Double {
+        guard totalStageCount > 0 else { return 0 }
+        return Double(clearedStageCount) / Double(totalStageCount)
     }
 
     var body: some View {
@@ -129,6 +154,10 @@ struct TrainingModePickerView: View {
                 .foregroundColor(OniTanTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
 
+            if totalStageCount > 0 {
+                stageProgressView
+            }
+
             Rectangle()
                 .fill(OniTanTheme.goldGradient)
                 .frame(width: 44, height: 2)
@@ -144,6 +173,32 @@ struct TrainingModePickerView: View {
                 endPoint: .bottom
             )
         )
+    }
+
+    private var stageProgressView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 6) {
+                Text("進捗")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+
+                Text("ステージ \(clearedStageCount)/\(totalStageCount) クリア")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(accentColor)
+            }
+
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(OniTanTheme.cardBackgroundPressed)
+
+                    Capsule()
+                        .fill(accentColor)
+                        .frame(width: geometry.size.width * stageProgress)
+                }
+            }
+            .frame(height: 6)
+        }
     }
 
     @ViewBuilder
@@ -299,7 +354,7 @@ private struct CategoryStageCard: View {
 
                 Text(isLocked ? "前のStageをクリアすると解放されます" : detail)
                     .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundColor(isLocked ? OniTanTheme.textTertiary.opacity(0.72) : OniTanTheme.textSecondary)
+                    .foregroundColor(isLocked ? OniTanTheme.textTertiary : OniTanTheme.textSecondary)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -328,6 +383,13 @@ private struct CategoryStageCard: View {
                 Text("\(Int(accuracy * 100))%")
                     .font(.system(size: 11, weight: .bold, design: .rounded))
                     .foregroundColor(OniTanTheme.textTertiary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(
+                        Capsule()
+                            .fill(OniTanTheme.cardBackgroundPressed)
+                            .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                    )
             }
 
             if !isLocked {

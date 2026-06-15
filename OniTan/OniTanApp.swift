@@ -63,6 +63,7 @@ struct OniTanApp: App {
                         notificationManager.ensureScheduledIfNeeded(
                             todayCompleted: streakRepo.todayCompleted
                         )
+                        notificationManager.scheduleWeeklySummary(weakCount: statsRepo.weakPointCount)
                         if !onboardingComplete {
                             onboardingComplete = true
                             showOnboarding = true
@@ -71,6 +72,7 @@ struct OniTanApp: App {
                     .onChange(of: streakRepo.todayCompleted) { completed in
                         if completed {
                             notificationManager.handleTodayCompleted()
+                            notificationManager.scheduleWeeklySummary(weakCount: statsRepo.weakPointCount)
                             let todayKey = StreakRepository.dayKey(for: Date())
                             if !showOnboarding && dailySummaryLastShownDayKey != todayKey {
                                 dailySummaryLastShownDayKey = todayKey

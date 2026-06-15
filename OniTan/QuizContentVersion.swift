@@ -1,3 +1,3 @@
 import Foundation
 
-let quizContentVersion = "2026-05-30-stage-reorg-v1"
+let quizContentVersion = "2026-06-15-kanji-catalog-consolidation-v1"

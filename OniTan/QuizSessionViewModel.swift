@@ -36,6 +36,7 @@ final class QuizSessionViewModel: ObservableObject {
     @Published private(set) var sessionXPGained: Int = 0
     @Published var activeAlert: OniAlert? = nil
     @Published private(set) var examResult: ExamResult? = nil
+    @Published private(set) var previousBestAccuracy: Double? = nil
 
     // MARK: Read-only
 
@@ -56,7 +57,7 @@ final class QuizSessionViewModel: ObservableObject {
         if let sessionTitle {
             return sessionTitle
         }
-        return "稽古 \(stage.stage)"
+        return "ステージ \(stage.stage)"
     }
 
     var totalGoal: Int { sessionQuestions.count }
@@ -206,12 +207,27 @@ final class QuizSessionViewModel: ObservableObject {
             }
             phase = .showingWrongAnswer(correct: question.answer)
         }
+
+        // Exam mode: withhold per-question feedback (real exam conditions) and
+        // move straight to the next question; results are revealed all at once
+        // afterward in ExamResultView. `phase` stays non-.answering briefly
+        // (MainView keeps showing the choice grid) so a rapid double-tap
+        // can't re-trigger `answer()` before we advance.
+        if mode.deferredFeedback {
+            lastAnswerResult = .none
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+                self?.advanceToNextQuestion()
+            }
+        }
     }
 
     func proceed() {
         guard phase != .answering, phase != .stageCleared else { return }
         lastAnswerResult = .none
+        advanceToNextQuestion()
+    }
 
+    private func advanceToNextQuestion() {
         if pendingSessionClear {
             pendingSessionClear = false
             onSessionCleared()
@@ -297,8 +313,17 @@ final class QuizSessionViewModel: ObservableObject {
                 startedAt: sessionStartTime
             )
             let result = ExamBuilder.score(session: session, answers: sessionAnswers)
+            previousBestAccuracy = examResultRepo?.bestAccuracy(forBlueprintID: blueprintID)
             examResult = result
             examResultRepo?.save(result)
+
+            // Celebrate unlocking the hidden 11th round when round 10 is
+            // newly cleared at its 95% threshold.
+            if blueprintID == ExamRound.blueprintID(for: 10),
+               result.accuracy >= ExamRound.passThreshold(for: 10),
+               (previousBestAccuracy ?? 0) < ExamRound.passThreshold(for: 10) {
+                xpRepo?.addUnlockNotice("隠し第11回が解放されました！")
+            }
         }
 
         phase = .stageCleared
@@ -319,7 +344,7 @@ final class QuizSessionViewModel: ObservableObject {
         case .quick10:   return "ランダム10問 完了！"
         case .exam30:    return "模試完了！"
         case .weakFocus: return "復習完了！"
-        default:         return stageNumber == 0 ? "ランダム10問 完了！" : "稽古 \(stageNumber) 完了！"
+        default:         return stageNumber == 0 ? "ランダム10問 完了！" : "ステージ \(stageNumber) 完了！"
         }
     }
 }

@@ -340,10 +340,9 @@ struct StreakChallengeView: View {
 
             Spacer(minLength: 4)
 
-            if vm.phase == .answering {
-                streakChoiceGrid(scale: scale)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
+            streakChoiceGrid(scale: scale)
+                .opacity(vm.phase == .answering ? 1 : 0)
+                .allowsHitTesting(vm.phase == .answering)
 
             Spacer(minLength: scaled(12, by: scale, min: 6))
         }
