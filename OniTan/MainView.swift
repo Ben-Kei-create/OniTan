@@ -138,7 +138,9 @@ struct MainView: View {
                     OniTanTheme.hapticSuccess()
                 }
                 if !donationManager.hasDonated {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    // Give the user a moment to enjoy the clear celebration (XP/level-up
+                    // animations) before an interstitial ad can interrupt it.
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                         guard !appState.isDailySummaryPresented else { return }
                         interstitialManager.showIfReady(canRequestAds: adConsentManager.canRequestAds)
                     }

@@ -301,6 +301,14 @@ final class QuizSessionViewModel: ObservableObject {
             previousBestAccuracy = examResultRepo?.bestAccuracy(forBlueprintID: blueprintID)
             examResult = result
             examResultRepo?.save(result)
+
+            // Celebrate unlocking the hidden 11th round when round 10 is
+            // newly cleared at its 95% threshold.
+            if blueprintID == ExamRound.blueprintID(for: 10),
+               result.accuracy >= ExamRound.passThreshold(for: 10),
+               (previousBestAccuracy ?? 0) < ExamRound.passThreshold(for: 10) {
+                xpRepo?.addUnlockNotice("隠し第11回が解放されました！")
+            }
         }
 
         phase = .stageCleared

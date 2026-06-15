@@ -199,6 +199,10 @@ final class GamificationRepository: ObservableObject {
 
     func clearUnlockNotices() { unlockNotices = [] }
 
+    func addUnlockNotice(_ message: String) {
+        unlockNotices.append(message)
+    }
+
     private func publish() {
         totalXP = data.totalXP
         todayXP = data.todayXP

@@ -28,9 +28,21 @@ struct TrainingModePickerView: View {
     private var categoryQuestionPool: [Question] {
         let kindSet = Set(category.questionKinds)
         var seen = Set<String>()
-        return allQuestions
+        let filtered = allQuestions
             .filter { kindSet.contains($0.kind) && $0.kind.isExamEligible }
             .filter { seen.insert($0.id).inserted }
+
+        // Sort by difficulty ascending so early stages start with easier
+        // questions, keeping original relative order within the same difficulty.
+        return filtered
+            .enumerated()
+            .sorted { lhs, rhs in
+                let lhsDifficulty = lhs.element.difficulty ?? Int.max
+                let rhsDifficulty = rhs.element.difficulty ?? Int.max
+                if lhsDifficulty != rhsDifficulty { return lhsDifficulty < rhsDifficulty }
+                return lhs.offset < rhs.offset
+            }
+            .map(\.element)
     }
 
     private var stageEntries: [CategoryStageEntry] {

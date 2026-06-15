@@ -16,6 +16,7 @@ final class NotificationManager: ObservableObject {
 
     private let center = UNUserNotificationCenter.current()
     private let reminderID = "onitan_daily_reminder_v1"
+    private let weeklySummaryID = "onitan_weekly_summary_v1"
 
     // UserDefaults key for reminder hour (0-23), -1 = disabled
     private let reminderHourKey = "onitan_reminder_hour"
@@ -94,6 +95,41 @@ final class NotificationManager: ObservableObject {
         guard isReminderScheduled else { return }
         // Re-schedule so the next trigger is tomorrow (cancels any queued "today" delivery)
         scheduleReminder()
+    }
+
+    /// Schedule (or re-schedule) a weekly summary notification for Sunday at `reminderHour`:00,
+    /// reflecting the current count of weak (often-missed) questions.
+    func scheduleWeeklySummary(weakCount: Int) {
+        guard authStatus == .authorized else { return }
+        center.removePendingNotificationRequests(withIdentifiers: [weeklySummaryID])
+
+        var comps = DateComponents()
+        comps.weekday = 1   // Sunday
+        comps.hour = reminderHour
+        comps.minute = 0
+
+        let content = UNMutableNotificationContent()
+        content.title = "今週の振り返り"
+        content.body = weakCount > 0
+            ? "苦手な漢字が\(weakCount)問たまっています。週末にまとめて復習しよう！"
+            : "今週も苦手なし！この調子で続けよう。"
+        content.sound = .default
+        content.categoryIdentifier = "WEEKLY_SUMMARY"
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: true)
+        let request = UNNotificationRequest(identifier: weeklySummaryID, content: content, trigger: trigger)
+
+        center.add(request) { error in
+            if let error {
+                notifLogger.error("Failed to schedule weekly summary: \(error, privacy: .public)")
+            } else {
+                notifLogger.info("Weekly summary scheduled for Sunday \(comps.hour ?? -1):00")
+            }
+        }
+    }
+
+    func cancelWeeklySummary() {
+        center.removePendingNotificationRequests(withIdentifiers: [weeklySummaryID])
     }
 
     /// Call on app foreground if the user hasn't studied yet today.
