@@ -15,7 +15,7 @@ struct TrainingModePickerView: View {
     @EnvironmentObject var xpRepo: GamificationRepository
     @EnvironmentObject var themeManager: ThemeManager
 
-    private static let stageSize = 20
+    private static let stageSize = 15
 
     private var categoryTitle: String {
         category.title.replacingOccurrences(of: "道場", with: "")
