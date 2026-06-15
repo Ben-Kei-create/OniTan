@@ -207,12 +207,27 @@ final class QuizSessionViewModel: ObservableObject {
             }
             phase = .showingWrongAnswer(correct: question.answer)
         }
+
+        // Exam mode: withhold per-question feedback (real exam conditions) and
+        // move straight to the next question; results are revealed all at once
+        // afterward in ExamResultView. `phase` stays non-.answering briefly
+        // (MainView keeps showing the choice grid) so a rapid double-tap
+        // can't re-trigger `answer()` before we advance.
+        if mode.deferredFeedback {
+            lastAnswerResult = .none
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+                self?.advanceToNextQuestion()
+            }
+        }
     }
 
     func proceed() {
         guard phase != .answering, phase != .stageCleared else { return }
         lastAnswerResult = .none
+        advanceToNextQuestion()
+    }
 
+    private func advanceToNextQuestion() {
         if pendingSessionClear {
             pendingSessionClear = false
             onSessionCleared()

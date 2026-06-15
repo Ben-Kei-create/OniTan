@@ -183,7 +183,7 @@ struct MainView: View {
             // Combo badge (appears at 3+ consecutive correct answers)
             Spacer()
 
-            if vm.consecutiveCorrect >= 3 {
+            if !vm.mode.deferredFeedback, vm.consecutiveCorrect >= 3 {
                 HStack(spacing: scaled(4, by: scale, min: 2)) {
                     Image(systemName: "flame.fill")
                         .font(.system(size: scaled(10, by: scale, min: 8), weight: .bold))
@@ -260,9 +260,17 @@ struct MainView: View {
                 case .answering:
                     choiceStack(scale: scale)
                 case .showingExplanation:
-                    answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                    if vm.mode.deferredFeedback {
+                        choiceStack(scale: scale)
+                    } else {
+                        answerFeedbackView(isCorrect: true, correctAnswer: vm.currentQuestion.answer, scale: scale)
+                    }
                 case .showingWrongAnswer(let correct):
-                    answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                    if vm.mode.deferredFeedback {
+                        choiceStack(scale: scale)
+                    } else {
+                        answerFeedbackView(isCorrect: false, correctAnswer: correct, scale: scale)
+                    }
                 default:
                     EmptyView()
                 }
@@ -394,7 +402,12 @@ struct MainView: View {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                 vm.answer(selected: choice)
                             }
-                            wasCorrect ? OniTanTheme.hapticSuccess() : OniTanTheme.hapticError()
+                            if vm.mode.deferredFeedback {
+                                // Exam mode: neutral feedback only — don't reveal correctness.
+                                OniTanTheme.haptic(.light)
+                            } else {
+                                wasCorrect ? OniTanTheme.hapticSuccess() : OniTanTheme.hapticError()
+                            }
                         }
                     )
                 }
