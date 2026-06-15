@@ -72,6 +72,19 @@ struct TrainingModePickerView: View {
         categoryQuestionPool.count
     }
 
+    private var clearedStageCount: Int {
+        stageEntries.filter { appState.isCleared($0.stage.stage) }.count
+    }
+
+    private var totalStageCount: Int {
+        stageEntries.count
+    }
+
+    private var stageProgress: Double {
+        guard totalStageCount > 0 else { return 0 }
+        return Double(clearedStageCount) / Double(totalStageCount)
+    }
+
     var body: some View {
         ZStack {
             OniTanTheme.backgroundGradientFallback.ignoresSafeArea()
@@ -129,6 +142,10 @@ struct TrainingModePickerView: View {
                 .foregroundColor(OniTanTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
 
+            if totalStageCount > 0 {
+                stageProgressView
+            }
+
             Rectangle()
                 .fill(OniTanTheme.goldGradient)
                 .frame(width: 44, height: 2)
@@ -144,6 +161,32 @@ struct TrainingModePickerView: View {
                 endPoint: .bottom
             )
         )
+    }
+
+    private var stageProgressView: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 6) {
+                Text("進捗")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(OniTanTheme.textSecondary)
+
+                Text("Stage \(clearedStageCount)/\(totalStageCount) クリア")
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(accentColor)
+            }
+
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(OniTanTheme.cardBackgroundPressed)
+
+                    Capsule()
+                        .fill(accentColor)
+                        .frame(width: geometry.size.width * stageProgress)
+                }
+            }
+            .frame(height: 6)
+        }
     }
 
     @ViewBuilder

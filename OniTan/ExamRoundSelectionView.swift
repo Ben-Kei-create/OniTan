@@ -147,7 +147,7 @@ struct ExamRoundSelectionView: View {
 
                     HStack(spacing: 7) {
                         badge("全10回")
-                        badge("第1〜3回は解放済み")
+                        badge("\(unlockedRoundCount)/10回 解放済み")
                     }
                 }
             }
@@ -207,6 +207,13 @@ struct ExamRoundSelectionView: View {
 
     /// Rounds 1-10 are always shown (locked/preparing as appropriate). The hidden
     /// 11th round only appears once it is actually unlocked (round 10 cleared at 95%).
+    private var unlockedRoundCount: Int {
+        ExamRound.all
+            .filter { $0.number <= 10 }
+            .filter { $0.isUnlocked(using: examResultRepo, xpRepo: xpRepo) }
+            .count
+    }
+
     private var visibleRounds: [ExamRound] {
         ExamRound.all.filter { round in
             round.number < ExamRound.hiddenRound || round.isUnlocked(using: examResultRepo, xpRepo: xpRepo)
