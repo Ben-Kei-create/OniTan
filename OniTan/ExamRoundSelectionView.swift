@@ -144,7 +144,7 @@ struct ExamRoundSelectionView: View {
                 .padding(.bottom, 36)
             }
         }
-        .navigationTitle("模擬試験")
+        .navigationTitle("総合模試")
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
@@ -297,7 +297,7 @@ private enum ExamRoundButtonState {
 
     func accessibilityHint(for round: ExamRound, lockedDetail: String) -> String {
         switch self {
-        case .available: return "タップして模擬試験を開始します"
+        case .available: return "タップして総合模試を開始します"
         case .preparing: return "問題セット追加後に開始できます"
         case .locked: return lockedDetail
         }

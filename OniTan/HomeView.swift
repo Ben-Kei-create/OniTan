@@ -402,7 +402,7 @@ struct HomeView: View {
             )
 
             HomePrimaryActionCard(
-                title: "模擬試験",
+                title: "総合模試",
                 style: .neutral,
                 isCompact: isCompact,
                 destination: AnyView(examDestination),
@@ -507,7 +507,7 @@ private struct HomeHeaderIconButton<Destination: View>: View {
 private enum HomePrimaryCardStyle {
     case primary   // ランダム10問: 深い紅のグラデーション
     case neutral   // 道場選択: ダークカード
-    case gold      // 模擬試験: ダークカード + 金アクセント
+    case gold      // 総合模試: ダークカード + 金アクセント
     case disabled  // データ読み込み失敗時のプレースホルダー
 }
 

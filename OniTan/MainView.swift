@@ -671,7 +671,7 @@ struct MainView: View {
                         )
                     ) {
                         HStack(spacing: 8) {
-                            Text("次の稽古へ")
+                            Text("次のステージへ")
                                 .font(playFont(15, weight: .bold))
                                 .fontWeight(.bold)
                                 .foregroundColor(OniTanTheme.textPrimary)
@@ -800,7 +800,7 @@ struct MainView: View {
     private func displayTitle(for s: Stage) -> String {
         let sorted = quizData.stages.sorted { $0.stage < $1.stage }
         let num = (sorted.firstIndex(where: { $0.stage == s.stage }) ?? 0) + 1
-        return "稽古 \(num)"
+        return "ステージ \(num)"
     }
 
     private func presentProblemReport(for question: Question) {

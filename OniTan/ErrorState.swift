@@ -53,9 +53,9 @@ enum OniAlert: Identifiable, Equatable {
     var message: String {
         switch self {
         case .quitConfirmation:
-            return "途中で辞めると、この稽古は完了になりません。本当に辞めますか？"
+            return "途中で辞めると、このステージは完了になりません。本当に辞めますか？"
         case .stageAlreadyCleared(let n):
-            return "この稽古はすでに完了しています。番号: \(n)"
+            return "第\(n)ステージはすでに完了しています。"
         case .resetConfirmation:
             return "進行状況を初期化しますか？\n端末内の学習データが削除されます。"
         case .resetFinalConfirmation:

@@ -57,7 +57,7 @@ final class QuizSessionViewModel: ObservableObject {
         if let sessionTitle {
             return sessionTitle
         }
-        return "稽古 \(stage.stage)"
+        return "ステージ \(stage.stage)"
     }
 
     var totalGoal: Int { sessionQuestions.count }
@@ -344,7 +344,7 @@ final class QuizSessionViewModel: ObservableObject {
         case .quick10:   return "ランダム10問 完了！"
         case .exam30:    return "模試完了！"
         case .weakFocus: return "復習完了！"
-        default:         return stageNumber == 0 ? "ランダム10問 完了！" : "稽古 \(stageNumber) 完了！"
+        default:         return stageNumber == 0 ? "ランダム10問 完了！" : "ステージ \(stageNumber) 完了！"
         }
     }
 }

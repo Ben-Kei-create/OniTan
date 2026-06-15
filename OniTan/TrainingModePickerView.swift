@@ -59,7 +59,7 @@ struct TrainingModePickerView: View {
                 return CategoryStageEntry(
                     id: stageNumber,
                     stage: Stage(stage: stageNumber, questions: questions),
-                    title: "Stage \(displayNumber)",
+                    title: "ステージ \(displayNumber)",
                     detail: stageDetail(for: questions)
                 )
             }
@@ -182,7 +182,7 @@ struct TrainingModePickerView: View {
                     .font(.system(size: 11, weight: .bold, design: .rounded))
                     .foregroundColor(OniTanTheme.textSecondary)
 
-                Text("Stage \(clearedStageCount)/\(totalStageCount) クリア")
+                Text("ステージ \(clearedStageCount)/\(totalStageCount) クリア")
                     .font(.system(size: 11, weight: .bold, design: .rounded))
                     .foregroundColor(accentColor)
             }

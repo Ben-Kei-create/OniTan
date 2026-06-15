@@ -10,7 +10,7 @@ struct QuizProblemReportContext: Identifiable {
 
     var stageLabel: String {
         if let stageNumber, stageNumber > 0 {
-            return "Stage \(stageNumber)"
+            return "ステージ \(stageNumber)"
         }
         return sessionTitle
     }
