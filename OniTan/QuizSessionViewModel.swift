@@ -36,6 +36,7 @@ final class QuizSessionViewModel: ObservableObject {
     @Published private(set) var sessionXPGained: Int = 0
     @Published var activeAlert: OniAlert? = nil
     @Published private(set) var examResult: ExamResult? = nil
+    @Published private(set) var previousBestAccuracy: Double? = nil
 
     // MARK: Read-only
 
@@ -297,6 +298,7 @@ final class QuizSessionViewModel: ObservableObject {
                 startedAt: sessionStartTime
             )
             let result = ExamBuilder.score(session: session, answers: sessionAnswers)
+            previousBestAccuracy = examResultRepo?.bestAccuracy(forBlueprintID: blueprintID)
             examResult = result
             examResultRepo?.save(result)
         }

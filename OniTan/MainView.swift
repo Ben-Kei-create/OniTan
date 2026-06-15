@@ -90,7 +90,8 @@ struct MainView: View {
                                 if let result = vm.examResult {
                                     ExamResultView(
                                         result: result,
-                                        blueprint: examBlueprints.first(where: { $0.id == result.blueprintID })
+                                        blueprint: examBlueprints.first(where: { $0.id == result.blueprintID }),
+                                        previousBestAccuracy: vm.previousBestAccuracy
                                     )
                                     .environmentObject(playFontManager)
                                     .transition(.asymmetric(

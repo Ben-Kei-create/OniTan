@@ -88,6 +88,12 @@ struct QuizModeSelectView: View {
                 if weakCount > 0 {
                     Text("苦手 \(weakCount) 問")
                         .foregroundColor(OniTanTheme.accentWeak)
+                } else {
+                    HStack(spacing: 4) {
+                        Image(systemName: "checkmark.seal.fill")
+                        Text("苦手なし・順調です")
+                    }
+                    .foregroundColor(OniTanTheme.accentCorrect)
                 }
             }
             .font(.system(.caption, design: .rounded))

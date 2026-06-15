@@ -295,8 +295,11 @@ struct HomeView: View {
 
             HStack(spacing: 8) {
                 Text("Lv.\(state.level)")
-                    .font(.system(size: 12, weight: .black, design: .rounded))
-                    .foregroundColor(HomeInk.gold)
+                    .font(.system(size: 14, weight: .black, design: .rounded))
+                    .foregroundColor(HomeInk.background)
+                    .padding(.horizontal, 9)
+                    .padding(.vertical, 3)
+                    .background(Capsule().fill(HomeInk.gold))
 
                 HomeInlineProgressBar(progress: state.progress)
 

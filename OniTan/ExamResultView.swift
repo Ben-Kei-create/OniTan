@@ -8,6 +8,7 @@ import SwiftUI
 struct ExamResultView: View {
     let result: ExamResult
     let blueprint: ExamBlueprint?
+    let previousBestAccuracy: Double?
 
     @EnvironmentObject var playFontManager: PlayFontManager
     @State private var showRecommendedTraining = false
@@ -140,10 +141,45 @@ struct ExamResultView: View {
             Text("合格目安: \(formattedPercent(passingAccuracy))")
                 .font(playFont(12, weight: .medium))
                 .foregroundColor(passed ? OniTanTheme.accentWeak : OniTanTheme.accentWrong)
+
+            if let previousBestAccuracy {
+                accuracyDiffBadge(previousBestAccuracy: previousBestAccuracy)
+            }
         }
         .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
         .oniCard()
+    }
+
+    private func accuracyDiffBadge(previousBestAccuracy: Double) -> some View {
+        let diff = result.accuracy - previousBestAccuracy
+        let diffPercent = Int((diff * 100).rounded())
+
+        let (text, color): (String, Color) = {
+            if diff > 0.0001 {
+                return ("自己ベスト更新！ 前回比 +\(diffPercent)%", OniTanTheme.accentWeak)
+            } else if diff < -0.0001 {
+                return ("前回ベスト比 \(diffPercent)%", OniTanTheme.textSecondary)
+            } else {
+                return ("前回ベストと同じ", OniTanTheme.textSecondary)
+            }
+        }()
+
+        return HStack(spacing: 6) {
+            if diff > 0.0001 {
+                Image(systemName: "arrow.up.circle.fill")
+            }
+            Text(text)
+        }
+        .font(playFont(12, weight: .bold))
+        .foregroundColor(color)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 4)
+        .background(
+            Capsule()
+                .fill(color.opacity(0.12))
+                .overlay(Capsule().stroke(color.opacity(0.28), lineWidth: 1))
+        )
     }
 
     // MARK: - Kind Breakdown
