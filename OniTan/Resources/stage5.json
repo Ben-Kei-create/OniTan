@@ -1,0 +1,335 @@
+{
+  "stage": 5,
+  "questions": [
+    {
+      "kanji": "老杉",
+      "choices": [
+        "ろうさん",
+        "ろうすぎ",
+        "こうさん",
+        "おいすぎ"
+      ],
+      "answer": "ろうさん",
+      "explain": "例文: 神木とされる老杉が立つ。\n正解の読み: ろうさん\n意味: 古い杉の木。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "老杉",
+        "sentenceContext": "神木とされる老杉が立つ。"
+      }
+    },
+    {
+      "kanji": "曳航",
+      "choices": [
+        "えいこう",
+        "えいかん",
+        "ようこう",
+        "えいごう"
+      ],
+      "answer": "えいこう",
+      "explain": "例文: 遭難船を救助して曳航する。\n正解の読み: えいこう\n意味: 船が他の船を引いて行くこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "曳航",
+        "sentenceContext": "遭難船を救助して曳航する。"
+      }
+    },
+    {
+      "kanji": "匡正",
+      "choices": [
+        "きょうせい",
+        "おうせい",
+        "きょうしょう",
+        "こうせい"
+      ],
+      "answer": "きょうせい",
+      "explain": "例文: 乱れた生活を匡正する。\n正解の読み: きょうせい\n意味: 欠点などを正しく直すこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "匡正",
+        "sentenceContext": "乱れた生活を匡正する。"
+      }
+    },
+    {
+      "kanji": "爾汝",
+      "choices": [
+        "じじょ",
+        "にじょ",
+        "じにょ",
+        "なんじょ"
+      ],
+      "answer": "じじょ",
+      "explain": "例文: 互いに爾汝の交わりを結ぶ。\n正解の読み: じじょ\n意味: 親しみをもって呼びかけ合う交わり。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "爾汝",
+        "sentenceContext": "互いに爾汝の交わりを結ぶ。"
+      }
+    },
+    {
+      "kanji": "舛錯",
+      "choices": [
+        "せんさく",
+        "せんしゃく",
+        "ぜんさく",
+        "せんそ"
+      ],
+      "answer": "せんさく",
+      "explain": "例文: 舛錯に因り未だ之を遂げず。\n正解の読み: せんさく\n意味: 物事が反対になったり混乱すること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "舛錯",
+        "sentenceContext": "舛錯に因り未だ之を遂げず。"
+      }
+    },
+    {
+      "kanji": "肇国",
+      "choices": [
+        "ちょうこく",
+        "しこく",
+        "ちょうごく",
+        "きこく"
+      ],
+      "answer": "ちょうこく",
+      "explain": "例文: 肇国の精神を受け継ぐ。\n正解の読み: ちょうこく\n意味: 新しい国を建てること。建国。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "肇国",
+        "sentenceContext": "肇国の精神を受け継ぐ。"
+      }
+    },
+    {
+      "kanji": "婁宿",
+      "choices": [
+        "ろうしゅく",
+        "るしゅく",
+        "ろうしゅう",
+        "とうしゅく"
+      ],
+      "answer": "ろうしゅく",
+      "explain": "例文: 婁宿の清朗なる夜に月を眺める。\n正解の読み: ろうしゅく\n意味: 二十八宿の一つ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "婁宿",
+        "sentenceContext": "婁宿の清朗なる夜に月を眺める。"
+      }
+    },
+    {
+      "kanji": "嬰児",
+      "choices": [
+        "えいじ",
+        "えいに",
+        "ようじ",
+        "けいじ"
+      ],
+      "answer": "えいじ",
+      "explain": "例文: 嬰児に産着を着せる。\n正解の読み: えいじ\n意味: 生まれたばかりの赤子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "嬰児",
+        "sentenceContext": "嬰児に産着を着せる。"
+      }
+    },
+    {
+      "kanji": "宮娃",
+      "choices": [
+        "きゅうあい",
+        "きゅうわ",
+        "くあい",
+        "ぐうあい"
+      ],
+      "answer": "きゅうあい",
+      "explain": "例文: 白髪の宮娃が悲しむ。\n正解の読み: きゅうあい\n意味: 宮中に仕える美女。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "宮娃",
+        "sentenceContext": "白髪の宮娃が悲しむ。"
+      }
+    },
+    {
+      "kanji": "残鶯",
+      "choices": [
+        "ざんおう",
+        "ざんのう",
+        "さんおう",
+        "ぜんおう"
+      ],
+      "answer": "ざんおう",
+      "explain": "例文: 夏の山道に残鶯の声が響く。\n正解の読み: ざんおう\n意味: 夏まで居残ったウグイス。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "残鶯",
+        "sentenceContext": "夏の山道に残鶯の声が響く。"
+      }
+    },
+    {
+      "kanji": "砧声",
+      "choices": [
+        "ちんせい",
+        "しんせい",
+        "とうせい",
+        "ちんしょう"
+      ],
+      "answer": "ちんせい",
+      "explain": "例文: 絶え間なく砧声が響く。\n正解の読み: ちんせい\n意味: 砧を打つ音。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "砧声",
+        "sentenceContext": "絶え間なく砧声が響く。"
+      }
+    },
+    {
+      "kanji": "衡量",
+      "choices": [
+        "こうりょう",
+        "こうりゃく",
+        "ごうりょう",
+        "きんりょう"
+      ],
+      "answer": "こうりょう",
+      "explain": "例文: 事の重大性を衡量する。\n正解の読み: こうりょう\n意味: 重さをはかること。物事の重大性を見定めること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "衡量",
+        "sentenceContext": "事の重大性を衡量する。"
+      }
+    },
+    {
+      "kanji": "聯亘",
+      "choices": [
+        "れんこう",
+        "れんせん",
+        "りこう",
+        "れんかん"
+      ],
+      "answer": "れんこう",
+      "explain": "例文: 山々が聯亘している。\n正解の読み: れんこう\n意味: 山々などが連なり広がっていること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "聯亘",
+        "sentenceContext": "山々が聯亘している。"
+      }
+    },
+    {
+      "kanji": "笈",
+      "choices": [
+        "おい",
+        "ふご",
+        "つづら",
+        "かご"
+      ],
+      "answer": "おい",
+      "explain": "例文: 笈を背負って家を出た。\n正解の読み: おい\n意味: 書物などを納めて背負う箱。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "笈",
+        "sentenceContext": "笈を背負って家を出た。"
+      }
+    },
+    {
+      "kanji": "覗う",
+      "choices": [
+        "うかが",
+        "のぞ",
+        "ねら",
+        "すかが"
+      ],
+      "answer": "うかが",
+      "explain": "例文: じっと反撃の機会を覗う。\n正解の読み: うかが\n意味: 隙を見て様子をうかがうこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "覗",
+        "sentenceContext": "じっと反撃の機会を覗う。"
+      }
+    }
+  ]
+}

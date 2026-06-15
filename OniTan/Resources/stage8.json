@@ -1,0 +1,137 @@
+{
+  "stage": 8,
+  "questions": [
+    {
+      "kanji": "肴核",
+      "choices": [
+        "こうかく",
+        "さかなかく",
+        "ようかく",
+        "こうがく"
+      ],
+      "answer": "こうかく",
+      "explain": "例文: 卓上には肴核が並ぶ。\n正解の読み: こうかく\n意味: 酒のつまみ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "肴核",
+        "sentenceContext": "卓上には肴核が並ぶ。"
+      }
+    },
+    {
+      "kanji": "雛僧",
+      "choices": [
+        "すうそう",
+        "ひなそう",
+        "ちゅうそう",
+        "すそう"
+      ],
+      "answer": "すうそう",
+      "explain": "例文: 雛僧の案内で本堂に入る。\n正解の読み: すうそう\n意味: 年若い僧。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "雛僧",
+        "sentenceContext": "雛僧の案内で本堂に入る。"
+      }
+    },
+    {
+      "kanji": "鍾愛",
+      "choices": [
+        "しょうあい",
+        "しゅあい",
+        "じゅあい",
+        "しょうれん"
+      ],
+      "answer": "しょうあい",
+      "explain": "例文: 孫娘をとくに鍾愛した。\n正解の読み: しょうあい\n意味: 非常に大事にすること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鍾愛",
+        "sentenceContext": "孫娘をとくに鍾愛した。"
+      }
+    },
+    {
+      "kanji": "妖姫",
+      "choices": [
+        "ようき",
+        "ようひ",
+        "ようじょ",
+        "えんき"
+      ],
+      "answer": "ようき",
+      "explain": "例文: 魔性の妖姫に心を奪われる。\n正解の読み: ようき\n意味: 妖しい魅力を持つ美女。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "妖姫",
+        "sentenceContext": "魔性の妖姫に心を奪われる。"
+      }
+    },
+    {
+      "kanji": "嚥下",
+      "choices": [
+        "えんか",
+        "いんか",
+        "げんか",
+        "えんが"
+      ],
+      "answer": "えんか",
+      "explain": "例文: 錠剤薬を水で嚥下する。\n正解の読み: えんか\n意味: 飲み下すこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "嚥下",
+        "sentenceContext": "錠剤薬を水で嚥下する。"
+      }
+    },
+    {
+      "kanji": "危殆",
+      "choices": [
+        "きたい",
+        "きたん",
+        "がたい",
+        "ききたい"
+      ],
+      "answer": "きたい",
+      "explain": "例文: 国家財政が危殆に瀕する。\n正解の読み: きたい\n意味: 危険な状態に近づくこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "危殆",
+        "sentenceContext": "国家財政が危殆に瀕する。"
+      }
+    }
+  ]
+}
