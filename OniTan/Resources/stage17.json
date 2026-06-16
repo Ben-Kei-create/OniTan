@@ -1,0 +1,335 @@
+{
+  "stage": 17,
+  "questions": [
+    {
+      "kanji": "負笈",
+      "choices": [
+        "ふきゅう",
+        "ふきつ",
+        "ふがく",
+        "おいきゅう"
+      ],
+      "answer": "ふきゅう",
+      "explain": "例文: 負笈して見聞を広める。\n正解の読み: ふきゅう\n意味: 笈を負って遠方に学びに出ること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "負笈",
+        "sentenceContext": "負笈して見聞を広める。"
+      }
+    },
+    {
+      "kanji": "頸椎",
+      "choices": [
+        "けいつい",
+        "くびつい",
+        "きょうつい",
+        "けいちく"
+      ],
+      "answer": "けいつい",
+      "explain": "例文: 衝突で頸椎を痛めたらしい。\n正解の読み: けいつい\n意味: 首の骨の最上部。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "頸椎",
+        "sentenceContext": "衝突で頸椎を痛めたらしい。"
+      }
+    },
+    {
+      "kanji": "伽羅",
+      "choices": [
+        "きゃら",
+        "がら",
+        "からん",
+        "きょら"
+      ],
+      "answer": "きゃら",
+      "explain": "例文: 伽羅の香りを楽しむ。\n正解の読み: きゃら\n意味: 沈香の一種。黒沈香。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "伽羅",
+        "sentenceContext": "伽羅の香りを楽しむ。"
+      }
+    },
+    {
+      "kanji": "熊胆",
+      "choices": [
+        "ゆうたん",
+        "くまたん",
+        "ゆうい",
+        "きょうたん"
+      ],
+      "answer": "ゆうたん",
+      "explain": "例文: 漢方医が熊胆を処方する。\n正解の読み: ゆうたん\n意味: 熊の胆嚢を干した薬。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "熊胆",
+        "sentenceContext": "漢方医が熊胆を処方する。"
+      }
+    },
+    {
+      "kanji": "俊彦",
+      "choices": [
+        "しゅんげん",
+        "しゅんぴこ",
+        "しゅんけん",
+        "しゅんさい"
+      ],
+      "answer": "しゅんげん",
+      "explain": "例文: 選び抜かれた俊彦たちだ。\n正解の読み: しゅんげん\n意味: すぐれた男子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俊彦",
+        "sentenceContext": "選び抜かれた俊彦たちだ。"
+      }
+    },
+    {
+      "kanji": "叩頭",
+      "choices": [
+        "こうとう",
+        "はくとう",
+        "こうず",
+        "たたきがしら"
+      ],
+      "answer": "こうとう",
+      "explain": "例文: 叩頭して許しを乞う。\n正解の読み: こうとう\n意味: 頭を地面にすりつける礼。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "叩頭",
+        "sentenceContext": "叩頭して許しを乞う。"
+      }
+    },
+    {
+      "kanji": "晦匿",
+      "choices": [
+        "かいとく",
+        "まいとく",
+        "あいとく",
+        "かいにく"
+      ],
+      "answer": "かいとく",
+      "explain": "例文: 晦匿して都を離れる。\n正解の読み: かいとく\n意味: 自分の才知などを隠すこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "晦匿",
+        "sentenceContext": "晦匿して都を離れる。"
+      }
+    },
+    {
+      "kanji": "管窺",
+      "choices": [
+        "かんき",
+        "かんすい",
+        "くだき",
+        "かんうかがい"
+      ],
+      "answer": "かんき",
+      "explain": "例文: 己の管窺を恥じる。\n正解の読み: かんき\n意味: 視野が狭くて見識がないこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "管窺",
+        "sentenceContext": "己の管窺を恥じる。"
+      }
+    },
+    {
+      "kanji": "瑞瑞しい",
+      "choices": [
+        "みずみずしい",
+        "ずいずいしい",
+        "めでめでしい",
+        "たまたましい"
+      ],
+      "answer": "みずみずしい",
+      "explain": "例文: 露地物の野菜が瑞瑞しい。\n正解の読み: みずみずしい\n意味: 若々しく新鮮な。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "瑞",
+        "sentenceContext": "露地物の野菜が瑞瑞しい。"
+      }
+    },
+    {
+      "kanji": "錘",
+      "choices": [
+        "おもり",
+        "つむ",
+        "すい",
+        "かなめ"
+      ],
+      "answer": "おもり",
+      "explain": "例文: 釣り糸の先に錘をつける。\n正解の読み: おもり\n意味: 重さを加えるための道具。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "錘",
+        "sentenceContext": "釣り糸の先に錘をつける。"
+      }
+    },
+    {
+      "kanji": "韮",
+      "choices": [
+        "にら",
+        "せり",
+        "あさつき",
+        "みつば"
+      ],
+      "answer": "にら",
+      "explain": "例文: 韮の葉を食用に供する。\n正解の読み: にら\n意味: ユリ科の多年草。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "韮",
+        "sentenceContext": "韮の葉を食用に供する。"
+      }
+    },
+    {
+      "kanji": "籾",
+      "choices": [
+        "もみ",
+        "ぬか",
+        "わら",
+        "すくも"
+      ],
+      "answer": "もみ",
+      "explain": "例文: 種籾を苗代にまく。\n正解の読み: もみ\n意味: 脱穀していない殻付きの米。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "籾",
+        "sentenceContext": "種籾を苗代にまく。"
+      }
+    },
+    {
+      "kanji": "灸",
+      "choices": [
+        "やいと",
+        "きゅう",
+        "もぐさ",
+        "はり"
+      ],
+      "answer": "やいと",
+      "explain": "例文: 懲らしめに灸をすえる。\n正解の読み: やいと\n意味: もぐさの熱を使う漢方療法。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "灸",
+        "sentenceContext": "懲らしめに灸をすえる。"
+      }
+    },
+    {
+      "kanji": "厨",
+      "choices": [
+        "くりや",
+        "ちゅう",
+        "かしぎ",
+        "いろり"
+      ],
+      "answer": "くりや",
+      "explain": "例文: 食材を厨に運び込む。\n正解の読み: くりや\n意味: 料理を作る場所。台所。厨房。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "厨",
+        "sentenceContext": "食材を厨に運び込む。"
+      }
+    },
+    {
+      "kanji": "凪",
+      "choices": [
+        "なぎ",
+        "うねり",
+        "しお",
+        "さざなみ"
+      ],
+      "answer": "なぎ",
+      "explain": "例文: 風もなく海はべた凪だ。\n正解の読み: なぎ\n意味: 海面が静まった状態。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "凪",
+        "sentenceContext": "風もなく海はべた凪だ。"
+      }
+    }
+  ]
+}
