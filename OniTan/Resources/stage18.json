@@ -242,6 +242,94 @@
         "targetKanji": "而",
         "sentenceContext": "而るにこの失態は何事ぞ。"
       }
+    },
+    {
+      "kanji": "馴化",
+      "choices": [
+        "じゅんか",
+        "じゅんけ",
+        "くんか",
+        "じゅんが"
+      ],
+      "answer": "じゅんか",
+      "explain": "例文: 高山の気圧に馴化する。\n正解の読み: じゅんか\n意味: 生物が環境に順応すること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "馴化",
+        "sentenceContext": "高山の気圧に馴化する。"
+      }
+    },
+    {
+      "kanji": "卯飲",
+      "choices": [
+        "ぼういん",
+        "うのみ",
+        "ぼうのみ",
+        "うういん"
+      ],
+      "answer": "ぼういん",
+      "explain": "例文: 卯飲して朝風呂に入る。\n正解の読み: ぼういん\n意味: 卯の刻（五時〜七時）に飲む酒。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "卯飲",
+        "sentenceContext": "卯飲して朝風呂に入る。"
+      }
+    },
+    {
+      "kanji": "碓声",
+      "choices": [
+        "たいせい",
+        "たいしょう",
+        "かくせい",
+        "ついせい"
+      ],
+      "answer": "たいせい",
+      "explain": "例文: 山村に碓声が響く。\n正解の読み: たいせい\n意味: 碓で穀物をつく音。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "碓声",
+        "sentenceContext": "山村に碓声が響く。"
+      }
+    },
+    {
+      "kanji": "穎哲",
+      "choices": [
+        "えいてつ",
+        "えいさつ",
+        "いんてつ",
+        "がくてつ"
+      ],
+      "answer": "えいてつ",
+      "explain": "例文: 隠れもない穎哲である。\n正解の読み: えいてつ\n意味: 才知にすぐれていること。その人。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "穎哲",
+        "sentenceContext": "隠れもない穎哲である。"
+      }
     }
   ]
 }

@@ -107,6 +107,12 @@
       "file": "stage18.json",
       "title": "例文読み 18",
       "difficulty": 4
+    },
+    {
+      "id": 19,
+      "file": "stage19.json",
+      "title": "例文読み 19",
+      "difficulty": 4
     }
   ]
 }
