@@ -1,0 +1,335 @@
+{
+  "stage": 12,
+  "questions": [
+    {
+      "kanji": "砦柵",
+      "choices": [
+        "さいさく",
+        "とりでさく",
+        "じょうさく",
+        "さいしょう"
+      ],
+      "answer": "さいさく",
+      "explain": "例文: 敵は砦柵を乗り越えて城内へ侵入した。\n正解の読み: さいさく\n意味: 城塞の垣とした木や柱の列。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "砦柵",
+        "sentenceContext": "敵は砦柵を乗り越えて城内へ侵入した。"
+      }
+    },
+    {
+      "kanji": "邑落",
+      "choices": [
+        "ゆうらく",
+        "むらおち",
+        "ゆうがく",
+        "おうらく"
+      ],
+      "answer": "ゆうらく",
+      "explain": "例文: 山間部の邑落に赴く。\n正解の読み: ゆうらく\n意味: 村里。村落。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "邑落",
+        "sentenceContext": "山間部の邑落に赴く。"
+      }
+    },
+    {
+      "kanji": "允可",
+      "choices": [
+        "いんか",
+        "じゅんか",
+        "いんが",
+        "にんか"
+      ],
+      "answer": "いんか",
+      "explain": "例文: 監督官庁より允可を得た。\n正解の読み: いんか\n意味: 聞き届けること。許可。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "允可",
+        "sentenceContext": "監督官庁より允可を得た。"
+      }
+    },
+    {
+      "kanji": "頑確",
+      "choices": [
+        "がんかく",
+        "かんかく",
+        "がんこ",
+        "けんかく"
+      ],
+      "answer": "がんかく",
+      "explain": "例文: 頑確な意志で困難を乗り越えた。\n正解の読み: がんかく\n意味: 信念を曲げない様子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "頑確",
+        "sentenceContext": "頑確な意志で困難を乗り越えた。"
+      }
+    },
+    {
+      "kanji": "坤軸",
+      "choices": [
+        "こんじく",
+        "けんじく",
+        "こうじく",
+        "こんしゅく"
+      ],
+      "answer": "こんじく",
+      "explain": "例文: 坤軸が折れたかと思われた。\n正解の読み: こんじく\n意味: 大地を支える軸。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "坤軸",
+        "sentenceContext": "坤軸が折れたかと思われた。"
+      }
+    },
+    {
+      "kanji": "鳶肩",
+      "choices": [
+        "えんけん",
+        "とびかた",
+        "えんかた",
+        "えんかん"
+      ],
+      "answer": "えんけん",
+      "explain": "例文: 鳶肩の若者が闊歩する。\n正解の読み: えんけん\n意味: トビに似て角立った肩。いかり肩。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鳶肩",
+        "sentenceContext": "鳶肩の若者が闊歩する。"
+      }
+    },
+    {
+      "kanji": "薬匙",
+      "choices": [
+        "やくし",
+        "やくさじ",
+        "くすりさじ",
+        "やくひ"
+      ],
+      "answer": "やくし",
+      "explain": "例文: 粉薬を薬匙で量る。\n正解の読み: やくし\n意味: 薬品の調合などに使うさじ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "薬匙",
+        "sentenceContext": "粉薬を薬匙で量る。"
+      }
+    },
+    {
+      "kanji": "搗穀",
+      "choices": [
+        "とうこく",
+        "とこく",
+        "どうこく",
+        "とうごく"
+      ],
+      "answer": "とうこく",
+      "explain": "例文: 臼で搗穀して精米を行う。\n正解の読み: とうこく\n意味: 臼で穀物を搗くこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "搗穀",
+        "sentenceContext": "臼で搗穀して精米を行う。"
+      }
+    },
+    {
+      "kanji": "外殻",
+      "choices": [
+        "がいかく",
+        "そとから",
+        "がいかん",
+        "がいきゃく"
+      ],
+      "answer": "がいかく",
+      "explain": "例文: 稲の外殻を取り除く作業をする。\n正解の読み: がいかく\n意味: 外の殻。外皮。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "外殻",
+        "sentenceContext": "稲の外殻を取り除く作業をする。"
+      }
+    },
+    {
+      "kanji": "垂簾",
+      "choices": [
+        "すいれん",
+        "すいかん",
+        "たれぬの",
+        "すいれい"
+      ],
+      "answer": "すいれん",
+      "explain": "例文: 貴人は垂簾の政を行う。\n正解の読み: すいれん\n意味: 御簾を垂らして政治を行うこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "垂簾",
+        "sentenceContext": "貴人は垂簾の政を行う。"
+      }
+    },
+    {
+      "kanji": "腔腸",
+      "choices": [
+        "こうちょう",
+        "こうじょう",
+        "くうちょう",
+        "こうとう"
+      ],
+      "answer": "こうちょう",
+      "explain": "例文: クラゲは腔腸動物でもある。\n正解の読み: こうちょう\n意味: クラゲなどの口に続く消化管。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "腔腸",
+        "sentenceContext": "クラゲは腔腸動物でもある。"
+      }
+    },
+    {
+      "kanji": "厨子",
+      "choices": [
+        "ずし",
+        "ちゅうし",
+        "くりや",
+        "しゅうし"
+      ],
+      "answer": "ずし",
+      "explain": "例文: 国宝に指定された厨子だ。\n正解の読み: ずし\n意味: 仏像などを納める仏具。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "厨子",
+        "sentenceContext": "国宝に指定された厨子だ。"
+      }
+    },
+    {
+      "kanji": "砥礪",
+      "choices": [
+        "しれい",
+        "とれい",
+        "しろう",
+        "じれい"
+      ],
+      "answer": "しれい",
+      "explain": "例文: 修養に砥礪いたします。\n正解の読み: しれい\n意味: 努め励むこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "砥礪",
+        "sentenceContext": "修養に砥礪いたします。"
+      }
+    },
+    {
+      "kanji": "粉黛",
+      "choices": [
+        "ふんたい",
+        "こなずみ",
+        "ふんだい",
+        "ふんかい"
+      ],
+      "answer": "ふんたい",
+      "explain": "例文: 丹念に粉黛を施す。\n正解の読み: ふんたい\n意味: 化粧。紅や白粉。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "粉黛",
+        "sentenceContext": "丹念に粉黛を施す。"
+      }
+    },
+    {
+      "kanji": "工廠",
+      "choices": [
+        "こうしょう",
+        "こうじょう",
+        "こうそう",
+        "こうちょう"
+      ],
+      "answer": "こうしょう",
+      "explain": "例文: 工廠の跡地を再利用する。\n正解の読み: こうしょう\n意味: 軍需品を製造する工場。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "工廠",
+        "sentenceContext": "工廠の跡地を再利用する。"
+      }
+    }
+  ]
+}

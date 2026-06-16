@@ -1,0 +1,335 @@
+{
+  "stage": 13,
+  "questions": [
+    {
+      "kanji": "茅茨",
+      "choices": [
+        "ぼうし",
+        "かやや",
+        "もうし",
+        "ぼうじ"
+      ],
+      "answer": "ぼうし",
+      "explain": "例文: 古い茅茨が点在する。\n正解の読み: ぼうし\n意味: かやぶきの質素な家。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "茅茨",
+        "sentenceContext": "古い茅茨が点在する。"
+      }
+    },
+    {
+      "kanji": "紅蓮",
+      "choices": [
+        "ぐれん",
+        "こうれん",
+        "くれい",
+        "ぐれい"
+      ],
+      "answer": "ぐれん",
+      "explain": "例文: 紅蓮の炎が燃え盛る。\n正解の読み: ぐれん\n意味: 燃える炎のたとえ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "紅蓮",
+        "sentenceContext": "紅蓮の炎が燃え盛る。"
+      }
+    },
+    {
+      "kanji": "厨芥",
+      "choices": [
+        "ちゅうかい",
+        "ちゅうがい",
+        "くりやかい",
+        "ちゅうかん"
+      ],
+      "answer": "ちゅうかい",
+      "explain": "例文: 厨芥を集積場へ運ぶ。\n正解の読み: ちゅうかい\n意味: 台所から出るごみ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "厨芥",
+        "sentenceContext": "厨芥を集積場へ運ぶ。"
+      }
+    },
+    {
+      "kanji": "杜漏",
+      "choices": [
+        "ずろう",
+        "とろう",
+        "ずさん",
+        "どろう"
+      ],
+      "answer": "ずろう",
+      "explain": "例文: 杜漏な事務処理にあきれる。\n正解の読み: ずろう\n意味: 手抜かりが多いこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "杜漏",
+        "sentenceContext": "杜漏な事務処理にあきれる。"
+      }
+    },
+    {
+      "kanji": "儲嗣",
+      "choices": [
+        "ちょうし",
+        "ちょし",
+        "もうけし",
+        "ちょうじ"
+      ],
+      "answer": "ちょうし",
+      "explain": "例文: 儲嗣の誕生が期待される。\n正解の読み: ちょうし\n意味: 世継ぎ。世嗣。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "儲嗣",
+        "sentenceContext": "儲嗣の誕生が期待される。"
+      }
+    },
+    {
+      "kanji": "遁辞",
+      "choices": [
+        "とんじ",
+        "とんじょ",
+        "どんじ",
+        "のがれじ"
+      ],
+      "answer": "とんじ",
+      "explain": "例文: 遁辞を弄して責任を逃れた。\n正解の読み: とんじ\n意味: 言い逃れ。逃げ口上。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "遁辞",
+        "sentenceContext": "遁辞を弄して責任を逃れた。"
+      }
+    },
+    {
+      "kanji": "翠嵐",
+      "choices": [
+        "すいらん",
+        "みどりあらし",
+        "すいかん",
+        "みどりらん"
+      ],
+      "answer": "すいらん",
+      "explain": "例文: 山間に翠嵐が漂う。\n正解の読み: すいらん\n意味: 青々とした山の気配。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "翠嵐",
+        "sentenceContext": "山間に翠嵐が漂う。"
+      }
+    },
+    {
+      "kanji": "捺印",
+      "choices": [
+        "なついん",
+        "おういん",
+        "なついし",
+        "のういん"
+      ],
+      "answer": "なついん",
+      "explain": "例文: 書類に捺印して提出した。\n正解の読み: なついん\n意味: 印鑑を押すこと。押印。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "捺印",
+        "sentenceContext": "書類に捺印して提出した。"
+      }
+    },
+    {
+      "kanji": "与望",
+      "choices": [
+        "よぼう",
+        "よもう",
+        "きぼう",
+        "よほう"
+      ],
+      "answer": "よぼう",
+      "explain": "例文: 国の与望を担う政策を進める。\n正解の読み: よぼう\n意味: 世間の人々からの信頼。期待。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "与望",
+        "sentenceContext": "国の与望を担う政策を進める。"
+      }
+    },
+    {
+      "kanji": "允許",
+      "choices": [
+        "いんきょ",
+        "にんきょ",
+        "いんこ",
+        "ゆうきょ"
+      ],
+      "answer": "いんきょ",
+      "explain": "例文: 主君より允許を賜った。\n正解の読み: いんきょ\n意味: 認め許すこと。認可。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "允許",
+        "sentenceContext": "主君より允許を賜った。"
+      }
+    },
+    {
+      "kanji": "荻",
+      "choices": [
+        "おぎ",
+        "はぎ",
+        "よし",
+        "すすき"
+      ],
+      "answer": "おぎ",
+      "explain": "例文: 岸辺に荻が群生する。\n正解の読み: おぎ\n意味: 岸に生えるイネ科の多年草。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "荻",
+        "sentenceContext": "岸辺に荻が群生する。"
+      }
+    },
+    {
+      "kanji": "砕石",
+      "choices": [
+        "さいせき",
+        "さいいし",
+        "くだれき",
+        "さいてき"
+      ],
+      "answer": "さいせき",
+      "explain": "例文: 地震で砕石が道を塞いだ。\n正解の読み: さいせき\n意味: 岩石が細かく砕けたもの。破片。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "砕石",
+        "sentenceContext": "地震で砕石が道を塞いだ。"
+      }
+    },
+    {
+      "kanji": "推挙",
+      "choices": [
+        "すいきょ",
+        "すいきゅう",
+        "すいけ",
+        "おしあげ"
+      ],
+      "answer": "すいきょ",
+      "explain": "例文: 部長に推挙されて驚いた。\n正解の読み: すいきょ\n意味: 人を推薦すること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "推挙",
+        "sentenceContext": "部長に推挙されて驚いた。"
+      }
+    },
+    {
+      "kanji": "奴凧",
+      "choices": [
+        "やっこだこ",
+        "やっこたこ",
+        "ぬだこ",
+        "やっこのたこ"
+      ],
+      "answer": "やっこだこ",
+      "explain": "例文: 正月に奴凧を空に揚げた。\n正解の読み: やっこだこ\n意味: 武家の奴に似せた凧。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "奴凧",
+        "sentenceContext": "正月に奴凧を空に揚げた。"
+      }
+    },
+    {
+      "kanji": "芳しい",
+      "choices": [
+        "かぐわしい",
+        "よしい",
+        "かがわしい",
+        "かおわしい"
+      ],
+      "answer": "かぐわしい",
+      "explain": "例文: 庭から芳しい花の香りが漂う。\n正解の読み: かぐわしい\n意味: 良い香りがすること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み",
+        "準1級"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "芳",
+        "sentenceContext": "庭から芳しい花の香りが漂う。"
+      }
+    }
+  ]
+}

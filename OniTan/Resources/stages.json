@@ -65,6 +65,36 @@
       "file": "stage11.json",
       "title": "例文読み 11",
       "difficulty": 4
+    },
+    {
+      "id": 12,
+      "file": "stage12.json",
+      "title": "例文読み 12",
+      "difficulty": 4
+    },
+    {
+      "id": 13,
+      "file": "stage13.json",
+      "title": "例文読み 13",
+      "difficulty": 4
+    },
+    {
+      "id": 14,
+      "file": "stage14.json",
+      "title": "例文読み 14",
+      "difficulty": 4
+    },
+    {
+      "id": 15,
+      "file": "stage15.json",
+      "title": "例文読み 15",
+      "difficulty": 4
+    },
+    {
+      "id": 16,
+      "file": "stage16.json",
+      "title": "例文読み 16",
+      "difficulty": 4
     }
   ]
 }
