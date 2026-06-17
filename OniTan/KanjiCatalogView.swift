@@ -119,6 +119,7 @@ struct KanjiCatalogView: View {
         .sheet(item: $selectedEntry) { entry in
             KanjiCatalogDetailView(entry: entry)
         }
+        .onAppear { favoriteRepo.syncIfNeeded() }
     }
 
     private var summaryCard: some View {

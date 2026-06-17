@@ -5,18 +5,18 @@ final class FavoriteKanjiRepository: ObservableObject {
 
     private let store: PersistenceStore
     private let key = "favoriteKanji_v1"
+    private var hasSynced = false
 
     convenience init() {
-        self.init(
-            store: UserDefaults.standard,
-            availableKanji: Set(allQuestionsWithCatalog.flatMap(\.catalogKanjiCharacters))
-        )
+        self.init(store: UserDefaults.standard)
     }
 
-    init(store: PersistenceStore, availableKanji: Set<String>) {
+    init(store: PersistenceStore, availableKanji: Set<String>? = nil) {
         self.store = store
         load()
-        syncAvailableKanji(availableKanji)
+        if let availableKanji {
+            syncAvailableKanji(availableKanji)
+        }
     }
 
     var count: Int { favoriteKanji.count }
@@ -33,6 +33,13 @@ final class FavoriteKanjiRepository: ObservableObject {
             favoriteKanji.insert(kanji)
         }
         save()
+    }
+
+    func syncIfNeeded() {
+        guard !hasSynced else { return }
+        hasSynced = true
+        let availableKanji = Set(allQuestionsWithCatalog.flatMap(\.catalogKanjiCharacters))
+        syncAvailableKanji(availableKanji)
     }
 
     func syncAvailableKanji(_ availableKanji: Set<String>) {
