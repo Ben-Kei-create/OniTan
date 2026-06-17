@@ -25,7 +25,10 @@ let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
         ]
         var loadedStages: [Stage] = []
         for manifestFile in manifestFiles {
-            let manifest: StageManifest = try safeLoad(manifestFile)
+            guard let manifest: StageManifest = loadOptional(manifestFile) else {
+                logger.info("Manifest not found (skipped): \(manifestFile, privacy: .public)")
+                continue
+            }
             for entry in manifest.stages {
                 let stage: Stage = try safeLoad(entry.file)
                 let stamped = Stage(
