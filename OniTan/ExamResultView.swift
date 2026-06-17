@@ -112,7 +112,8 @@ struct ExamResultView: View {
                     progress: result.accuracy,
                     lineWidth: 10,
                     size: 120,
-                    gradient: Gradient(colors: [OniTanTheme.accentWeak, Color(hex: "9B7432")])
+                    gradient: Gradient(colors: [OniTanTheme.accentWeak, Color(hex: "9B7432")]),
+                    label: ""
                 )
 
                 // 90% (or blueprint passing line) target marker

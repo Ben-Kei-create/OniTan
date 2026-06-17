@@ -40,12 +40,12 @@ struct ProgressRingView: View {
                 .animation(.easeInOut(duration: 0.6), value: progress)
 
             // Center label
-            if let label {
+            if let label, !label.isEmpty {
                 Text(label)
                     .font(.system(size: size * 0.26, weight: .bold, design: .rounded))
                     .foregroundColor(OniTanTheme.textPrimary)
                     .accessibilityHidden(true)
-            } else {
+            } else if label == nil {
                 Text(progressText)
                     .font(.system(size: size * 0.22, weight: .semibold, design: .rounded))
                     .foregroundColor(OniTanTheme.textSecondary)
