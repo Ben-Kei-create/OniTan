@@ -2,115 +2,115 @@
   "stages": [
     {
       "id": 1,
-      "file": "stage1.json",
+      "file": "reading_stage1.json",
       "title": "例文読み 1",
       "difficulty": 4
     },
     {
       "id": 2,
-      "file": "stage2.json",
+      "file": "reading_stage2.json",
       "title": "例文読み 2",
       "difficulty": 4
     },
     {
       "id": 3,
-      "file": "stage3.json",
+      "file": "reading_stage3.json",
       "title": "例文読み 3",
       "difficulty": 4
     },
     {
       "id": 4,
-      "file": "stage4.json",
+      "file": "reading_stage4.json",
       "title": "例文読み 4",
       "difficulty": 4
     },
     {
       "id": 5,
-      "file": "stage5.json",
+      "file": "reading_stage5.json",
       "title": "例文読み 5",
       "difficulty": 4
     },
     {
       "id": 6,
-      "file": "stage6.json",
+      "file": "reading_stage6.json",
       "title": "例文読み 6",
       "difficulty": 4
     },
     {
       "id": 7,
-      "file": "stage7.json",
+      "file": "reading_stage7.json",
       "title": "例文読み 7",
       "difficulty": 4
     },
     {
       "id": 8,
-      "file": "stage8.json",
+      "file": "reading_stage8.json",
       "title": "例文読み 8",
       "difficulty": 4
     },
     {
       "id": 9,
-      "file": "stage9.json",
+      "file": "reading_stage9.json",
       "title": "例文読み 9",
       "difficulty": 4
     },
     {
       "id": 10,
-      "file": "stage10.json",
+      "file": "reading_stage10.json",
       "title": "例文読み 10",
       "difficulty": 4
     },
     {
       "id": 11,
-      "file": "stage11.json",
+      "file": "reading_stage11.json",
       "title": "例文読み 11",
       "difficulty": 4
     },
     {
       "id": 12,
-      "file": "stage12.json",
+      "file": "reading_stage12.json",
       "title": "例文読み 12",
       "difficulty": 4
     },
     {
       "id": 13,
-      "file": "stage13.json",
+      "file": "reading_stage13.json",
       "title": "例文読み 13",
       "difficulty": 4
     },
     {
       "id": 14,
-      "file": "stage14.json",
+      "file": "reading_stage14.json",
       "title": "例文読み 14",
       "difficulty": 4
     },
     {
       "id": 15,
-      "file": "stage15.json",
+      "file": "reading_stage15.json",
       "title": "例文読み 15",
       "difficulty": 4
     },
     {
       "id": 16,
-      "file": "stage16.json",
+      "file": "reading_stage16.json",
       "title": "例文読み 16",
       "difficulty": 4
     },
     {
       "id": 17,
-      "file": "stage17.json",
+      "file": "reading_stage17.json",
       "title": "例文読み 17",
       "difficulty": 4
     },
     {
       "id": 18,
-      "file": "stage18.json",
+      "file": "reading_stage18.json",
       "title": "例文読み 18",
       "difficulty": 4
     },
     {
       "id": 19,
-      "file": "stage19.json",
+      "file": "reading_stage19.json",
       "title": "例文読み 19",
       "difficulty": 4
     }

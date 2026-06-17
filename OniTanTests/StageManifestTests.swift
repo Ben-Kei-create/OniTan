@@ -7,12 +7,12 @@ final class StageManifestTests: XCTestCase {
 
     func testStageEntry_decoding() throws {
         let json = """
-        { "id": 1, "file": "stage1.json", "title": "準1級 基礎", "difficulty": 1 }
+        { "id": 1, "file": "reading_stage1.json", "title": "準1級 基礎", "difficulty": 1 }
         """.data(using: .utf8)!
 
         let entry = try JSONDecoder().decode(StageEntry.self, from: json)
         XCTAssertEqual(entry.id, 1)
-        XCTAssertEqual(entry.file, "stage1.json")
+        XCTAssertEqual(entry.file, "reading_stage1.json")
         XCTAssertEqual(entry.title, "準1級 基礎")
         XCTAssertEqual(entry.difficulty, 1)
     }
@@ -23,9 +23,9 @@ final class StageManifestTests: XCTestCase {
         let json = """
         {
           "stages": [
-            { "id": 1, "file": "stage1.json", "title": "準1級 基礎", "difficulty": 1 },
-            { "id": 2, "file": "stage2.json", "title": "準1級 標準", "difficulty": 2 },
-            { "id": 3, "file": "stage3.json", "title": "準1級 鬼",   "difficulty": 3 }
+            { "id": 1, "file": "reading_stage1.json", "title": "準1級 基礎", "difficulty": 1 },
+            { "id": 2, "file": "reading_stage2.json", "title": "準1級 標準", "difficulty": 2 },
+            { "id": 3, "file": "reading_stage3.json", "title": "準1級 鬼",   "difficulty": 3 }
           ]
         }
         """.data(using: .utf8)!
@@ -41,8 +41,8 @@ final class StageManifestTests: XCTestCase {
         let json = """
         {
           "stages": [
-            { "id": 3, "file": "stage3.json", "title": "C", "difficulty": 3 },
-            { "id": 1, "file": "stage1.json", "title": "A", "difficulty": 1 }
+            { "id": 3, "file": "reading_stage3.json", "title": "C", "difficulty": 3 },
+            { "id": 1, "file": "reading_stage1.json", "title": "A", "difficulty": 1 }
           ]
         }
         """.data(using: .utf8)!
