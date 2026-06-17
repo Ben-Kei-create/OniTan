@@ -10,18 +10,32 @@ private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "OniTan",
 /// `dataLoadError` carries the diagnostic so the UI can show a graceful error.
 let (quizData, dataLoadError): (QuizData, DataLoadError?) = {
     do {
-        let manifest: StageManifest = try safeLoad("stages.json")
+        let manifestFiles = [
+            "reading_stages.json",
+            "yojijukugo_stages.json",
+            "writing_stages.json",
+            "common_kanji_stages.json",
+            "error_correction_stages.json",
+            "synonym_stages.json",
+            "antonym_stages.json",
+            "proverb_stages.json",
+            "passage_stages.json",
+            "hyogai_reading_stages.json",
+            "compound_reading_kun_stages.json",
+        ]
         var loadedStages: [Stage] = []
-        for entry in manifest.stages {
-            let stage: Stage = try safeLoad(entry.file)
-            // Stamp deterministic IDs: "{stageNumber}-{index}-{kanji}-{answer}"
-            let stamped = Stage(
-                stage: stage.stage,
-                questions: stage.questions.enumerated().map { idx, q in
-                    q.stamped(stageNumber: stage.stage, index: idx)
-                }
-            )
-            loadedStages.append(stamped)
+        for manifestFile in manifestFiles {
+            let manifest: StageManifest = try safeLoad(manifestFile)
+            for entry in manifest.stages {
+                let stage: Stage = try safeLoad(entry.file)
+                let stamped = Stage(
+                    stage: stage.stage,
+                    questions: stage.questions.enumerated().map { idx, q in
+                        q.stamped(stageNumber: stage.stage, index: idx)
+                    }
+                )
+                loadedStages.append(stamped)
+            }
         }
         let reviewQuestions: [Question]? = try? safeLoad("review_questions.json")
         let unusedQuestions: [Question]? = try? safeLoad("unused_questions.json")

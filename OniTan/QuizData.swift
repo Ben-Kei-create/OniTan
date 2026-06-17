@@ -23,12 +23,12 @@ struct Stage: Codable {
 
 // MARK: - Stage Manifest
 
-/// stages.json のトップレベル
+/// *_stages.json のトップレベル
 struct StageManifest: Codable {
     let stages: [StageEntry]
 }
 
-/// stages.json の各エントリ。問題ファイルへの参照と属性を持つ
+/// *_stages.json の各エントリ。問題ファイルへの参照と属性を持つ
 struct StageEntry: Codable {
     let id: Int
     let file: String
