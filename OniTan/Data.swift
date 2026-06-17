@@ -79,7 +79,6 @@ let reviewQuestions: [Question] = quizData.review_questions ?? []
 /// Questions from standalone kind-specific JSON files (yojijukugo, writing, etc.).
 let supplementalQuestions: [Question] = {
     let files = [
-        "kanji_catalog_questions.json",
         "yojijukugo_questions.json",
         "synonym_questions.json",
         "antonym_questions.json",
@@ -96,7 +95,31 @@ let supplementalQuestions: [Question] = {
     return loaded
 }()
 
+/// Kanji catalog: reference-only, not used for quizzes.
+let catalogQuestions: [Question] = {
+    let loaded: [Question] = loadOptional("kanji_catalog_questions.json") ?? []
+    logger.info("Catalog questions loaded: \(loaded.count, privacy: .public)")
+    return loaded
+}()
+
 let allQuestions: [Question] = questions + reviewQuestions + supplementalQuestions
+
+/// All questions + catalog entries, used by KanjiCatalogView.
+let allQuestionsWithCatalog: [Question] = allQuestions + catalogQuestions
+
+/// Warn about quiz kanji missing from the catalog.
+private let _catalogCoverageCheck: Void = {
+    let catalogKanji = Set(catalogQuestions.flatMap(\.catalogKanjiCharacters))
+    var missing: Set<String> = []
+    for q in allQuestions {
+        for ch in q.catalogKanjiCharacters where !catalogKanji.contains(ch) {
+            missing.insert(ch)
+        }
+    }
+    if !missing.isEmpty {
+        logger.warning("漢字カタログに未登録の出題漢字: \(missing.sorted().joined(separator: ", "), privacy: .public)")
+    }
+}()
 
 // MARK: - Safe Loaders
 

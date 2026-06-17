@@ -9,7 +9,7 @@ final class FavoriteKanjiRepository: ObservableObject {
     convenience init() {
         self.init(
             store: UserDefaults.standard,
-            availableKanji: Set(allQuestions.flatMap(\.catalogKanjiCharacters))
+            availableKanji: Set(allQuestionsWithCatalog.flatMap(\.catalogKanjiCharacters))
         )
     }
 

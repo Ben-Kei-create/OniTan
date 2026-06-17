@@ -23,7 +23,7 @@ struct KanjiCatalogView: View {
     private var baseEntries: [KanjiCatalogEntry] {
         var grouped: [String: [Question]] = [:]
 
-        for question in allQuestions {
+        for question in allQuestionsWithCatalog {
             for character in question.catalogKanjiCharacters {
                 grouped[character, default: []].append(question)
             }
