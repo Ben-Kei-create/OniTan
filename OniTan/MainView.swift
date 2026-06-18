@@ -247,12 +247,12 @@ struct MainView: View {
             .padding(.top, scaled(4, by: scale, min: 3))
             .accessibilityHidden(true)
 
-            Spacer(minLength: scaled(4, by: scale, min: 2))
+            Spacer().frame(height: scaled(16, by: scale, min: 10))
 
             // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
 
-            Spacer().frame(height: scaled(8, by: scale, min: 4))
+            Spacer().frame(height: scaled(16, by: scale, min: 10))
 
             // Choice area
             Group {
