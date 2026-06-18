@@ -11,8 +11,29 @@ struct CategoryEntry: Codable, Identifiable {
     let targetAccuracy: Double
     let iconName: String
     let colorHex: String
-    /// Minimum player level required to access this category. `nil` means unlocked from the start.
     let unlockLevel: Int?
+
+    init(
+        id: String,
+        title: String,
+        description: String,
+        questionKinds: [QuestionKind],
+        stageIDs: [Int],
+        targetAccuracy: Double,
+        iconName: String,
+        colorHex: String,
+        unlockLevel: Int? = nil
+    ) {
+        self.id = id
+        self.title = title
+        self.description = description
+        self.questionKinds = questionKinds
+        self.stageIDs = stageIDs
+        self.targetAccuracy = targetAccuracy
+        self.iconName = iconName
+        self.colorHex = colorHex
+        self.unlockLevel = unlockLevel
+    }
 
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
