@@ -1,0 +1,380 @@
+{
+  "stage": 1003,
+  "questions": [
+    {
+      "kanji": "怯儒",
+      "prompt": "文章中の傍線部②「怯儒」の読みは？",
+      "choices": [
+        "きょうだ",
+        "きょうじゅ",
+        "けんだ",
+        "きょうじゅう"
+      ],
+      "answer": "きょうだ",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「怯儒」は「きょうだ」と読む。臆病で気が弱いこと。「怯懦」とも書く。\n出典: こころ（夏目漱石）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "先生はその人の記憶を①呼び起すたびに、必ず「彼は②怯儒だ」と云った。時によると「彼は卑怯だ」とも云った。先生のいう③怯儒という言葉には何か含みがあるようだった。私には、先生が④蔑視しているようにも、また⑤憐れんでいるようにも聞こえた。",
+        "passageTarget": 2,
+        "passageTargetText": "怯儒",
+        "passageSource": "こころ（夏目漱石）"
+      }
+    },
+    {
+      "kanji": "蔑視",
+      "prompt": "文章中の傍線部④「蔑視」の読みは？",
+      "choices": [
+        "べっし",
+        "ばっし",
+        "めっし",
+        "へんし"
+      ],
+      "answer": "べっし",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「蔑視」は「べっし」と読む。さげすんで見ること。\n出典: こころ（夏目漱石）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "先生はその人の記憶を①呼び起すたびに、必ず「彼は②怯儒だ」と云った。時によると「彼は卑怯だ」とも云った。先生のいう③怯儒という言葉には何か含みがあるようだった。私には、先生が④蔑視しているようにも、また⑤憐れんでいるようにも聞こえた。",
+        "passageTarget": 4,
+        "passageTargetText": "蔑視",
+        "passageSource": "こころ（夏目漱石）"
+      }
+    },
+    {
+      "kanji": "憐れんで",
+      "prompt": "文章中の傍線部⑤「憐れんで」の読みは？",
+      "choices": [
+        "あわれんで",
+        "うれいんで",
+        "かなしんで",
+        "おもいやんで"
+      ],
+      "answer": "あわれんで",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「憐れんで」は「あわれんで」と読む。かわいそうに思うこと。\n出典: こころ（夏目漱石）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "先生はその人の記憶を①呼び起すたびに、必ず「彼は②怯儒だ」と云った。時によると「彼は卑怯だ」とも云った。先生のいう③怯儒という言葉には何か含みがあるようだった。私には、先生が④蔑視しているようにも、また⑤憐れんでいるようにも聞こえた。",
+        "passageTarget": 5,
+        "passageTargetText": "憐れんで",
+        "passageSource": "こころ（夏目漱石）"
+      }
+    },
+    {
+      "kanji": "遠島",
+      "prompt": "文章中の傍線部②「遠島」の読みは？",
+      "choices": [
+        "えんとう",
+        "おんとう",
+        "とおしま",
+        "えんじま"
+      ],
+      "answer": "えんとう",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「遠島」は「えんとう」と読む。罪人を離島に流す刑罰。島流し。\n出典: 高瀬舟（森鷗外）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "高瀬舟は京都の高瀬川を上下する小舟である。①徳川時代に京都の罪人が②遠島を申し渡されると、本人の親類が牢屋敷へ呼び出されて、そこで③暇乞いをすることを許された。それから罪人は高瀬舟に乗せられて、④大阪へ廻されることになった。その際、親類の中の一人が高瀬舟に⑤同乗することが出来た。",
+        "passageTarget": 2,
+        "passageTargetText": "遠島",
+        "passageSource": "高瀬舟（森鷗外）"
+      }
+    },
+    {
+      "kanji": "暇乞い",
+      "prompt": "文章中の傍線部③「暇乞い」の読みは？",
+      "choices": [
+        "いとまごい",
+        "ひまごい",
+        "かごい",
+        "きゅうごい"
+      ],
+      "answer": "いとまごい",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「暇乞い」は「いとまごい」と読む。別れの挨拶をすること。\n出典: 高瀬舟（森鷗外）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "高瀬舟は京都の高瀬川を上下する小舟である。①徳川時代に京都の罪人が②遠島を申し渡されると、本人の親類が牢屋敷へ呼び出されて、そこで③暇乞いをすることを許された。それから罪人は高瀬舟に乗せられて、④大阪へ廻されることになった。その際、親類の中の一人が高瀬舟に⑤同乗することが出来た。",
+        "passageTarget": 3,
+        "passageTargetText": "暇乞い",
+        "passageSource": "高瀬舟（森鷗外）"
+      }
+    },
+    {
+      "kanji": "同乗",
+      "prompt": "文章中の傍線部⑤「同乗」の読みは？",
+      "choices": [
+        "どうじょう",
+        "どうのり",
+        "どうしょう",
+        "どうじょ"
+      ],
+      "answer": "どうじょう",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 3,
+      "explain": "「同乗」は「どうじょう」と読む。同じ乗り物に一緒に乗ること。\n出典: 高瀬舟（森鷗外）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "高瀬舟は京都の高瀬川を上下する小舟である。①徳川時代に京都の罪人が②遠島を申し渡されると、本人の親類が牢屋敷へ呼び出されて、そこで③暇乞いをすることを許された。それから罪人は高瀬舟に乗せられて、④大阪へ廻されることになった。その際、親類の中の一人が高瀬舟に⑤同乗することが出来た。",
+        "passageTarget": 5,
+        "passageTargetText": "同乗",
+        "passageSource": "高瀬舟（森鷗外）"
+      }
+    },
+    {
+      "kanji": "不吉",
+      "prompt": "文章中の傍線部①「不吉」の読みは？",
+      "choices": [
+        "ふきつ",
+        "ふきち",
+        "ぶきつ",
+        "ふけつ"
+      ],
+      "answer": "ふきつ",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 3,
+      "explain": "「不吉」は「ふきつ」と読む。縁起が悪いこと。\n出典: 檸檬（梶井基次郎）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "えたいの知れない①不吉な塊が私の心を始終②圧えつけていた。③焦躁と云おうか、④嫌悪と云おうか──酒を飲んだあとに宿酔があるように、酒を毎日飲んでいると⑤宿酔に相当した時期がやって来る。",
+        "passageTarget": 1,
+        "passageTargetText": "不吉",
+        "passageSource": "檸檬（梶井基次郎）"
+      }
+    },
+    {
+      "kanji": "焦躁",
+      "prompt": "文章中の傍線部③「焦躁」の読みは？",
+      "choices": [
+        "しょうそう",
+        "しょうぞう",
+        "じょうそう",
+        "せっそう"
+      ],
+      "answer": "しょうそう",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「焦躁」は「しょうそう」と読む。あせっていらだつこと。\n出典: 檸檬（梶井基次郎）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "えたいの知れない①不吉な塊が私の心を始終②圧えつけていた。③焦躁と云おうか、④嫌悪と云おうか──酒を飲んだあとに宿酔があるように、酒を毎日飲んでいると⑤宿酔に相当した時期がやって来る。",
+        "passageTarget": 3,
+        "passageTargetText": "焦躁",
+        "passageSource": "檸檬（梶井基次郎）"
+      }
+    },
+    {
+      "kanji": "嫌悪",
+      "prompt": "文章中の傍線部④「嫌悪」の読みは？",
+      "choices": [
+        "けんお",
+        "きらお",
+        "けんあく",
+        "きらあく"
+      ],
+      "answer": "けんお",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「嫌悪」は「けんお」と読む。ひどく嫌い憎むこと。\n出典: 檸檬（梶井基次郎）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "えたいの知れない①不吉な塊が私の心を始終②圧えつけていた。③焦躁と云おうか、④嫌悪と云おうか──酒を飲んだあとに宿酔があるように、酒を毎日飲んでいると⑤宿酔に相当した時期がやって来る。",
+        "passageTarget": 4,
+        "passageTargetText": "嫌悪",
+        "passageSource": "檸檬（梶井基次郎）"
+      }
+    },
+    {
+      "kanji": "宿酔",
+      "prompt": "文章中の傍線部⑤「宿酔」の読みは？",
+      "choices": [
+        "ふつかよい",
+        "しゅくすい",
+        "やどよい",
+        "しゅくえい"
+      ],
+      "answer": "ふつかよい",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「宿酔」は「ふつかよい」と読む。飲酒の翌日に残る頭痛や気分の悪さ。\n出典: 檸檬（梶井基次郎）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "えたいの知れない①不吉な塊が私の心を始終②圧えつけていた。③焦躁と云おうか、④嫌悪と云おうか──酒を飲んだあとに宿酔があるように、酒を毎日飲んでいると⑤宿酔に相当した時期がやって来る。",
+        "passageTarget": 5,
+        "passageTargetText": "宿酔",
+        "passageSource": "檸檬（梶井基次郎）"
+      }
+    },
+    {
+      "kanji": "紳士",
+      "prompt": "文章中の傍線部①「紳士」の読みは？",
+      "choices": [
+        "しんし",
+        "じんし",
+        "しんじ",
+        "せんし"
+      ],
+      "answer": "しんし",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 3,
+      "explain": "「紳士」は「しんし」と読む。上品で礼儀正しい男性。\n出典: 注文の多い料理店（宮沢賢治）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "二人の若い①紳士が、すっかり②イギリスの兵隊のかたちをして、③ぴかぴかする鉄砲をかついで、白熊のような犬を二疋つれて、だいぶ山奥の、④木の葉のかさかさしたとこを、こんなことを云いながら、あるいておりました。",
+        "passageTarget": 1,
+        "passageTargetText": "紳士",
+        "passageSource": "注文の多い料理店（宮沢賢治）"
+      }
+    },
+    {
+      "kanji": "賑わしさ",
+      "prompt": "文章中の傍線部③「賑わしさ」の読みは？",
+      "choices": [
+        "にぎわしさ",
+        "しんわしさ",
+        "しわしさ",
+        "じんわしさ"
+      ],
+      "answer": "にぎわしさ",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「賑わしさ」は「にぎわしさ」と読む。にぎやかで活気があること。\n出典: たけくらべ（樋口一葉）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "①大黒屋の②美登利とて、三の酉の③賑わしさに紛れて、④廓の大門を出でし時、あたりの灯に照らされて、その⑤紅の友禅の帯が美しく光りけり。",
+        "passageTarget": 3,
+        "passageTargetText": "賑わしさ",
+        "passageSource": "たけくらべ（樋口一葉）"
+      }
+    },
+    {
+      "kanji": "廓",
+      "prompt": "文章中の傍線部④「廓」の読みは？",
+      "choices": [
+        "くるわ",
+        "かく",
+        "まち",
+        "さと"
+      ],
+      "answer": "くるわ",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「廓」は「くるわ」と読む。遊里。遊女の住む区域。\n出典: たけくらべ（樋口一葉）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "①大黒屋の②美登利とて、三の酉の③賑わしさに紛れて、④廓の大門を出でし時、あたりの灯に照らされて、その⑤紅の友禅の帯が美しく光りけり。",
+        "passageTarget": 4,
+        "passageTargetText": "廓",
+        "passageSource": "たけくらべ（樋口一葉）"
+      }
+    },
+    {
+      "kanji": "紅",
+      "prompt": "文章中の傍線部⑤「紅」の読みは？",
+      "choices": [
+        "くれない",
+        "べに",
+        "こう",
+        "あか"
+      ],
+      "answer": "くれない",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「紅」は「くれない」と読む。鮮やかな赤色。\n出典: たけくらべ（樋口一葉）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "①大黒屋の②美登利とて、三の酉の③賑わしさに紛れて、④廓の大門を出でし時、あたりの灯に照らされて、その⑤紅の友禅の帯が美しく光りけり。",
+        "passageTarget": 5,
+        "passageTargetText": "紅",
+        "passageSource": "たけくらべ（樋口一葉）"
+      }
+    },
+    {
+      "kanji": "美登利",
+      "prompt": "文章中の傍線部②「美登利」の読みは？",
+      "choices": [
+        "みどり",
+        "びとり",
+        "みとり",
+        "びどり"
+      ],
+      "answer": "みどり",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 3,
+      "explain": "「美登利」は「みどり」と読む。『たけくらべ』の主人公の名前。\n出典: たけくらべ（樋口一葉）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "①大黒屋の②美登利とて、三の酉の③賑わしさに紛れて、④廓の大門を出でし時、あたりの灯に照らされて、その⑤紅の友禅の帯が美しく光りけり。",
+        "passageTarget": 2,
+        "passageTargetText": "美登利",
+        "passageSource": "たけくらべ（樋口一葉）"
+      }
+    }
+  ]
+}

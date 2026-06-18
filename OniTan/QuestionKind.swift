@@ -206,6 +206,7 @@ struct QuestionPayload: Codable {
     let passageTarget: Int?          // which numbered blank/underline (1-based)
     let passageTargetText: String?   // the specific text being asked about
     let passageBlankToken: String?   // the token to replace in the passage
+    let passageSource: String?       // citation e.g. "蜘蛛の糸（芥川龍之介）"
 
     // MARK: legacy / deprecated (kept for backward compatibility)
     let kanaPrompt: String?
@@ -248,6 +249,7 @@ struct QuestionPayload: Codable {
         passageTarget: Int? = nil,
         passageTargetText: String? = nil,
         passageBlankToken: String? = nil,
+        passageSource: String? = nil,
         kanaPrompt: String? = nil,
         baseWord: String? = nil,
         okuriganaRule: String? = nil,
@@ -285,6 +287,7 @@ struct QuestionPayload: Codable {
         self.passageTarget = passageTarget
         self.passageTargetText = passageTargetText
         self.passageBlankToken = passageBlankToken
+        self.passageSource = passageSource
         self.kanaPrompt = kanaPrompt
         self.baseWord = baseWord
         self.okuriganaRule = okuriganaRule

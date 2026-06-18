@@ -5,6 +5,24 @@
       "file": "passage_stage1.json",
       "title": "文章題 1",
       "difficulty": 4
+    },
+    {
+      "id": 1002,
+      "file": "passage_stage2.json",
+      "title": "文章題 2",
+      "difficulty": 4
+    },
+    {
+      "id": 1003,
+      "file": "passage_stage3.json",
+      "title": "文章題 3",
+      "difficulty": 4
+    },
+    {
+      "id": 1004,
+      "file": "passage_stage4.json",
+      "title": "文章題 4",
+      "difficulty": 4
     }
   ]
 }

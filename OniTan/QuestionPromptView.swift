@@ -403,8 +403,31 @@ struct QuestionPromptView: View {
     private var sentenceContent: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 8) {
-                // For passage kinds, show the target indicator
-                if let target = question.payload?.passageTarget {
+                // For passage kinds, show source citation and target indicator
+                if question.kind == .passageReading || question.kind == .passageVocabulary {
+                    HStack(spacing: 4) {
+                        if let source = question.payload?.passageSource, !source.isEmpty {
+                            Image(systemName: "book.closed.fill")
+                                .font(.system(size: scaled(10, min: 8)))
+                                .foregroundColor(OniTanTheme.accentWeak)
+                            Text(source)
+                                .font(.system(size: scaled(10, min: 8), weight: .semibold, design: .rounded))
+                                .foregroundColor(OniTanTheme.accentWeak)
+                                .lineLimit(1)
+                        }
+
+                        Spacer()
+
+                        if let target = question.payload?.passageTarget {
+                            Image(systemName: "arrow.down.circle.fill")
+                                .font(.system(size: scaled(11, min: 9)))
+                                .foregroundColor(OniTanTheme.accentPrimary)
+                            Text("第\(target)問")
+                                .font(.system(size: scaled(11, min: 9), weight: .semibold, design: .rounded))
+                                .foregroundColor(OniTanTheme.accentPrimary)
+                        }
+                    }
+                } else if let target = question.payload?.passageTarget {
                     HStack(spacing: 4) {
                         Image(systemName: "arrow.down.circle.fill")
                             .font(.system(size: scaled(11, min: 9)))

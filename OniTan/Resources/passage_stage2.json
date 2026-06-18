@@ -1,0 +1,380 @@
+{
+  "stage": 1002,
+  "questions": [
+    {
+      "kanji": "隴西",
+      "prompt": "文章中の傍線部①「隴西」の読みは？",
+      "choices": [
+        "ろうせい",
+        "りゅうせい",
+        "ろうにし",
+        "りょうせい"
+      ],
+      "answer": "ろうせい",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「隴西」は「ろうせい」と読む。中国甘粛省の地名。\n出典: 山月記（中島敦）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "①隴西の李徴は博学②才穎、天宝の末年、若くして名を虎榜に連ね、ついで③江南尉に補せられたが、性、④狷介、自ら恃むところ頗る厚く、賤吏に甘んずるを⑤潔しとしなかった。",
+        "passageTarget": 1,
+        "passageTargetText": "隴西",
+        "passageSource": "山月記（中島敦）"
+      }
+    },
+    {
+      "kanji": "才穎",
+      "prompt": "文章中の傍線部②「才穎」の読みは？",
+      "choices": [
+        "さいえい",
+        "さいかい",
+        "さいよう",
+        "さいけい"
+      ],
+      "answer": "さいえい",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「才穎」は「さいえい」と読む。才知が鋭く優れていること。\n出典: 山月記（中島敦）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "①隴西の李徴は博学②才穎、天宝の末年、若くして名を虎榜に連ね、ついで③江南尉に補せられたが、性、④狷介、自ら恃むところ頗る厚く、賤吏に甘んずるを⑤潔しとしなかった。",
+        "passageTarget": 2,
+        "passageTargetText": "才穎",
+        "passageSource": "山月記（中島敦）"
+      }
+    },
+    {
+      "kanji": "狷介",
+      "prompt": "文章中の傍線部④「狷介」の読みは？",
+      "choices": [
+        "けんかい",
+        "けんすけ",
+        "きょうかい",
+        "げんかい"
+      ],
+      "answer": "けんかい",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「狷介」は「けんかい」と読む。自分の意志を固く守り妥協しないこと。\n出典: 山月記（中島敦）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "①隴西の李徴は博学②才穎、天宝の末年、若くして名を虎榜に連ね、ついで③江南尉に補せられたが、性、④狷介、自ら恃むところ頗る厚く、賤吏に甘んずるを⑤潔しとしなかった。",
+        "passageTarget": 4,
+        "passageTargetText": "狷介",
+        "passageSource": "山月記（中島敦）"
+      }
+    },
+    {
+      "kanji": "潔しとしなかった",
+      "prompt": "文章中の傍線部⑤「潔しとしなかった」の意味は？",
+      "choices": [
+        "よしとしなかった",
+        "清らかとしなかった",
+        "正しいとしなかった",
+        "爽やかとしなかった"
+      ],
+      "answer": "よしとしなかった",
+      "kind": "passageVocabulary",
+      "tags": [
+        "文章題",
+        "語彙"
+      ],
+      "difficulty": 4,
+      "explain": "「潔しとしなかった」は「よしとしなかった」の意。自分の信条に合わず受け入れられないこと。\n出典: 山月記（中島敦）",
+      "payload": {
+        "type": "passageVocabulary",
+        "passageText": "①隴西の李徴は博学②才穎、天宝の末年、若くして名を虎榜に連ね、ついで③江南尉に補せられたが、性、④狷介、自ら恃むところ頗る厚く、賤吏に甘んずるを⑤潔しとしなかった。",
+        "passageTarget": 5,
+        "passageTargetText": "潔しとしなかった",
+        "passageSource": "山月記（中島敦）"
+      }
+    },
+    {
+      "kanji": "瓦",
+      "prompt": "文章中の傍線部①「瓦に伍する」の「瓦」はここでどう読むか？",
+      "choices": [
+        "かわら",
+        "が",
+        "ぎ",
+        "かわ"
+      ],
+      "answer": "かわら",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「瓦に伍する」の「瓦」は「かわら」と読む。凡庸な人間のたとえ。珠（すぐれた人）と対比。\n出典: 山月記（中島敦）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "己の珠に非ざることを⑥惧れるが故に、敢て刻苦して磨こうともせず、又、己の珠なるべきを半ば信ずるが故に、碌々として①瓦に伍することも出来なかった。己は次第に世と離れ、人と②遠ざかり、③憤悶と④慚恚とによって益々己の内なる⑤臆病な自尊心を飼いふとらせる結果になった。",
+        "passageTarget": 1,
+        "passageTargetText": "瓦",
+        "passageSource": "山月記（中島敦）"
+      }
+    },
+    {
+      "kanji": "憤悶",
+      "prompt": "文章中の傍線部③「憤悶」の読みは？",
+      "choices": [
+        "ふんもん",
+        "いきどおりもん",
+        "ふんぼん",
+        "ふんめん"
+      ],
+      "answer": "ふんもん",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「憤悶」は「ふんもん」と読む。怒りと苦しみで悶えること。\n出典: 山月記（中島敦）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "己の珠に非ざることを⑥惧れるが故に、敢て刻苦して磨こうともせず、又、己の珠なるべきを半ば信ずるが故に、碌々として①瓦に伍することも出来なかった。己は次第に世と離れ、人と②遠ざかり、③憤悶と④慚恚とによって益々己の内なる⑤臆病な自尊心を飼いふとらせる結果になった。",
+        "passageTarget": 3,
+        "passageTargetText": "憤悶",
+        "passageSource": "山月記（中島敦）"
+      }
+    },
+    {
+      "kanji": "慚恚",
+      "prompt": "文章中の傍線部④「慚恚」の読みは？",
+      "choices": [
+        "ざんい",
+        "ざんけい",
+        "さんい",
+        "ざんえ"
+      ],
+      "answer": "ざんい",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「慚恚」は「ざんい」と読む。恥じて怒ること。慚（はじる）と恚（いかる）。\n出典: 山月記（中島敦）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "己の珠に非ざることを⑥惧れるが故に、敢て刻苦して磨こうともせず、又、己の珠なるべきを半ば信ずるが故に、碌々として①瓦に伍することも出来なかった。己は次第に世と離れ、人と②遠ざかり、③憤悶と④慚恚とによって益々己の内なる⑤臆病な自尊心を飼いふとらせる結果になった。",
+        "passageTarget": 4,
+        "passageTargetText": "慚恚",
+        "passageSource": "山月記（中島敦）"
+      }
+    },
+    {
+      "kanji": "激怒",
+      "prompt": "文章中の傍線部①「激怒」の読みは？",
+      "choices": [
+        "げきど",
+        "げきぬ",
+        "きゃくど",
+        "げきおこ"
+      ],
+      "answer": "げきど",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 3,
+      "explain": "「激怒」は「げきど」と読む。はげしく怒ること。\n出典: 走れメロス（太宰治）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "メロスは①激怒した。必ず、かの②邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども③邪悪に対しては、人一倍に敏感であった。",
+        "passageTarget": 1,
+        "passageTargetText": "激怒",
+        "passageSource": "走れメロス（太宰治）"
+      }
+    },
+    {
+      "kanji": "邪智暴虐",
+      "prompt": "文章中の傍線部②「邪智暴虐」の読みは？",
+      "choices": [
+        "じゃちぼうぎゃく",
+        "しゃちぼうぎゃく",
+        "じゃちほうぎゃく",
+        "じゃちぼうきょう"
+      ],
+      "answer": "じゃちぼうぎゃく",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「邪智暴虐」は「じゃちぼうぎゃく」と読む。よこしまな知恵を持ち暴力的で残虐なこと。\n出典: 走れメロス（太宰治）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "メロスは①激怒した。必ず、かの②邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども③邪悪に対しては、人一倍に敏感であった。",
+        "passageTarget": 2,
+        "passageTargetText": "邪智暴虐",
+        "passageSource": "走れメロス（太宰治）"
+      }
+    },
+    {
+      "kanji": "邪悪",
+      "prompt": "文章中の傍線部③「邪悪」の読みは？",
+      "choices": [
+        "じゃあく",
+        "じゃわる",
+        "しゃあく",
+        "じゃにく"
+      ],
+      "answer": "じゃあく",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 3,
+      "explain": "「邪悪」は「じゃあく」と読む。心がよこしまで悪いこと。\n出典: 走れメロス（太宰治）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "メロスは①激怒した。必ず、かの②邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども③邪悪に対しては、人一倍に敏感であった。",
+        "passageTarget": 3,
+        "passageTargetText": "邪悪",
+        "passageSource": "走れメロス（太宰治）"
+      }
+    },
+    {
+      "kanji": "巡邏",
+      "prompt": "文章中の傍線部①「巡邏」の読みは？",
+      "choices": [
+        "じゅんら",
+        "じゅんれい",
+        "じゅんろう",
+        "じゅんるい"
+      ],
+      "answer": "じゅんら",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「巡邏」は「じゅんら」と読む。見回りをして警備すること。\n出典: 走れメロス（太宰治）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "メロスは、単純な男であった。買い物を、背負ったままで、のそのそ王城にはいって行った。たちまち彼は、①巡邏の警吏に②捕縛された。調べられて、メロスの③懐中からは、④短剣が出て来たので、騒ぎが大きくなってしまった。",
+        "passageTarget": 1,
+        "passageTargetText": "巡邏",
+        "passageSource": "走れメロス（太宰治）"
+      }
+    },
+    {
+      "kanji": "捕縛",
+      "prompt": "文章中の傍線部②「捕縛」の読みは？",
+      "choices": [
+        "ほばく",
+        "とばく",
+        "ほぼく",
+        "ほふく"
+      ],
+      "answer": "ほばく",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「捕縛」は「ほばく」と読む。捕らえて縛ること。\n出典: 走れメロス（太宰治）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "メロスは、単純な男であった。買い物を、背負ったままで、のそのそ王城にはいって行った。たちまち彼は、①巡邏の警吏に②捕縛された。調べられて、メロスの③懐中からは、④短剣が出て来たので、騒ぎが大きくなってしまった。",
+        "passageTarget": 2,
+        "passageTargetText": "捕縛",
+        "passageSource": "走れメロス（太宰治）"
+      }
+    },
+    {
+      "kanji": "羈旅",
+      "prompt": "文章中の傍線部③「羈旅」の読みは？",
+      "choices": [
+        "きりょ",
+        "きたび",
+        "きろ",
+        "いりょ"
+      ],
+      "answer": "きりょ",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 5,
+      "explain": "「羈旅」は「きりょ」と読む。旅先に長くとどまること。旅のこと。\n出典: 舞姫（森鷗外）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "余は幼き頃より①厳格なる父の教を受けしかば、学問の道に素より②怠りなく、されど身は③羈旅の空にあれば、人の情けにすがりて生くるのみ。④憂愁の日々を送りつつも、遂に⑤舞姫エリスと出逢えり。",
+        "passageTarget": 3,
+        "passageTargetText": "羈旅",
+        "passageSource": "舞姫（森鷗外）"
+      }
+    },
+    {
+      "kanji": "憂愁",
+      "prompt": "文章中の傍線部④「憂愁」の読みは？",
+      "choices": [
+        "ゆうしゅう",
+        "うしゅう",
+        "ゆうじゅう",
+        "うれいしゅう"
+      ],
+      "answer": "ゆうしゅう",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 4,
+      "explain": "「憂愁」は「ゆうしゅう」と読む。うれいかなしむこと。\n出典: 舞姫（森鷗外）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "余は幼き頃より①厳格なる父の教を受けしかば、学問の道に素より②怠りなく、されど身は③羈旅の空にあれば、人の情けにすがりて生くるのみ。④憂愁の日々を送りつつも、遂に⑤舞姫エリスと出逢えり。",
+        "passageTarget": 4,
+        "passageTargetText": "憂愁",
+        "passageSource": "舞姫（森鷗外）"
+      }
+    },
+    {
+      "kanji": "舞姫",
+      "prompt": "文章中の傍線部⑤「舞姫」の読みは？",
+      "choices": [
+        "まいひめ",
+        "ぶき",
+        "ぶひめ",
+        "まいき"
+      ],
+      "answer": "まいひめ",
+      "kind": "passageReading",
+      "tags": [
+        "文章題",
+        "読み"
+      ],
+      "difficulty": 3,
+      "explain": "「舞姫」は「まいひめ」と読む。踊りを職業とする女性。\n出典: 舞姫（森鷗外）",
+      "payload": {
+        "type": "passageReading",
+        "passageText": "余は幼き頃より①厳格なる父の教を受けしかば、学問の道に素より②怠りなく、されど身は③羈旅の空にあれば、人の情けにすがりて生くるのみ。④憂愁の日々を送りつつも、遂に⑤舞姫エリスと出逢えり。",
+        "passageTarget": 5,
+        "passageTargetText": "舞姫",
+        "passageSource": "舞姫（森鷗外）"
+      }
+    }
+  ]
+}
