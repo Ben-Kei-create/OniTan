@@ -156,15 +156,17 @@ struct QuestionPromptView: View {
 
     private var yojijukugoContent: some View {
         let yoji = question.payload?.yoji ?? question.displayPrompt
-        let blankSize = scaled(80, min: 64)
-        let normalSize = scaled(60, min: 48)
+        let fontSize = scaled(72, min: 56)
 
         return HStack(spacing: 2) {
             ForEach(Array(yoji.enumerated()), id: \.offset) { _, char in
-                let isBlank = String(char) == "□"
                 Text(String(char))
-                    .font(playFontManager.font(size: isBlank ? blankSize : normalSize, weight: .black))
-                    .foregroundColor(isBlank ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
+                    .font(playFontManager.font(size: fontSize, weight: .black))
+                    .foregroundColor(
+                        String(char) == "□"
+                            ? OniTanTheme.accentPrimary
+                            : OniTanTheme.textPrimary
+                    )
                     .shadow(color: .black.opacity(0.3), radius: 3)
             }
         }
@@ -177,30 +179,20 @@ struct QuestionPromptView: View {
 
     private var commonKanjiContent: some View {
         let terms = question.payload?.blankTerms ?? [question.displayPrompt]
-        let blankSize = scaled(52, min: 38)
-        let normalSize = scaled(40, min: 30)
+        let fontSize = scaled(46, min: 32)
 
         return VStack(spacing: scaled(14, min: 10)) {
-            HStack(spacing: scaled(6, min: 4)) {
-                Image(systemName: "square.dashed")
-                    .font(.system(size: scaled(12, min: 10), weight: .bold))
-                    .foregroundColor(OniTanTheme.accentPrimary)
-                    .accessibilityHidden(true)
-
-                Text("□に共通して入る漢字は？")
-                    .font(.system(size: scaled(12, min: 10), weight: .black, design: .rounded))
-                    .foregroundColor(OniTanTheme.accentPrimary)
-            }
-            .opacity(0.85)
-
             HStack(spacing: scaled(14, min: 9)) {
                 ForEach(terms.prefix(4), id: \.self) { term in
                     HStack(spacing: 1) {
                         ForEach(Array(term.enumerated()), id: \.offset) { _, char in
-                            let isBlank = String(char) == "□"
                             Text(String(char))
-                                .font(playFontManager.font(size: isBlank ? blankSize : normalSize, weight: .black))
-                                .foregroundColor(isBlank ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
+                                .font(playFontManager.font(size: fontSize, weight: .black))
+                                .foregroundColor(
+                                    String(char) == "□"
+                                        ? OniTanTheme.accentPrimary
+                                        : OniTanTheme.textPrimary
+                                )
                                 .shadow(color: .black.opacity(0.3), radius: 3)
                         }
                     }
