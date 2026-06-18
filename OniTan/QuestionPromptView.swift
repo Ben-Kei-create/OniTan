@@ -38,14 +38,10 @@ struct QuestionPromptView: View {
 
     private var cardHeight: CGFloat {
         switch question.kind {
-        case .sentenceReading, .hyogaiReading:
-            return scaled(208, min: 168)
         case .passageReading, .passageVocabulary:
-            return scaled(190, min: 152)
-        case .errorCorrection, .proverb:
-            return scaled(150, min: 122)
+            return scaled(210, min: 168)
         default:
-            return scaled(164, min: 132)
+            return scaled(172, min: 140)
         }
     }
 
@@ -120,7 +116,7 @@ struct QuestionPromptView: View {
 
     private var singleWordContent: some View {
         Text(question.displayPrompt)
-            .font(playFontManager.font(size: scaled(108, min: 80), weight: .black))
+            .font(playFontManager.font(size: scaled(96, min: 72), weight: .black))
             .foregroundColor(OniTanTheme.textPrimary)
             .minimumScaleFactor(0.25)
             .lineLimit(2)
@@ -258,7 +254,7 @@ struct QuestionPromptView: View {
     private var contextReadingContent: some View {
         let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
         let target = contextReadingTarget
-        let bodyFont = playFontManager.font(size: scaled(34, min: 27), weight: .bold)
+        let bodyFont = playFontManager.font(size: scaled(44, min: 34), weight: .bold)
         let meaning = question.termMeaning
 
         return VStack(alignment: .leading, spacing: scaled(10, min: 7)) {
@@ -299,7 +295,7 @@ struct QuestionPromptView: View {
                     })
             } else {
                 Text(target)
-                    .font(playFontManager.font(size: scaled(30, min: 23), weight: .black))
+                    .font(playFontManager.font(size: scaled(38, min: 30), weight: .black))
                     .foregroundColor(OniTanTheme.accentWeak)
                     .minimumScaleFactor(0.65)
                     .lineLimit(1)
@@ -339,7 +335,7 @@ struct QuestionPromptView: View {
         result.foregroundColor = OniTanTheme.textPrimary
 
         var targetAttr = AttributedString(String(context[targetRange]))
-        targetAttr.font = playFontManager.font(size: scaled(25, min: 20), weight: .black)
+        targetAttr.font = playFontManager.font(size: scaled(34, min: 28), weight: .black)
         targetAttr.foregroundColor = OniTanTheme.accentWeak
         targetAttr.underlineStyle = .single
         if linkable {
@@ -439,15 +435,42 @@ struct QuestionPromptView: View {
                 }
 
                 Text(question.displayPrompt)
-                    .font(playFontManager.font(size: scaled(19, min: 15), weight: .medium))
+                    .font(playFontManager.font(size: sentenceTextSize, weight: sentenceTextWeight))
                     .foregroundColor(OniTanTheme.textPrimary)
-                    .lineSpacing(6)
+                    .lineSpacing(sentenceLineSpacing)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(scaled(18, min: 12))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var sentenceTextSize: CGFloat {
+        switch question.kind {
+        case .passageReading, .passageVocabulary:
+            return scaled(22, min: 17)
+        default:
+            return scaled(30, min: 24)
+        }
+    }
+
+    private var sentenceTextWeight: Font.Weight {
+        switch question.kind {
+        case .passageReading, .passageVocabulary:
+            return .medium
+        default:
+            return .bold
+        }
+    }
+
+    private var sentenceLineSpacing: CGFloat {
+        switch question.kind {
+        case .passageReading, .passageVocabulary:
+            return 6
+        default:
+            return 8
+        }
     }
 
     // MARK: - Helper
