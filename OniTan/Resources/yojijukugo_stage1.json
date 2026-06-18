@@ -1,0 +1,350 @@
+{
+  "stage": 101,
+  "questions": [
+    {
+      "kanji": "画竜点睛",
+      "prompt": "画竜点□",
+      "choices": [
+        "睛",
+        "晴",
+        "精",
+        "星"
+      ],
+      "answer": "睛",
+      "explain": "意味: 物事の仕上げに最も大切な部分を加えること\n正解: 画竜点睛（がりょうてんせい）\n竜の絵を描いて最後に瞳を入れると天に昇ったという故事から。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "画竜点□",
+        "missingIndex": 3,
+        "meaning": "物事の仕上げに最も大切な部分を加えること"
+      }
+    },
+    {
+      "kanji": "臥薪嘗胆",
+      "prompt": "□薪嘗胆",
+      "choices": [
+        "臥",
+        "伏",
+        "仰",
+        "俯"
+      ],
+      "answer": "臥",
+      "explain": "意味: 目的を達成するために苦労に耐えること\n正解: 臥薪嘗胆（がしんしょうたん）\n薪の上に臥し、苦い胆を嘗めて復讐を誓った故事から。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□薪嘗胆",
+        "missingIndex": 0,
+        "meaning": "目的を達成するために苦労に耐えること"
+      }
+    },
+    {
+      "kanji": "百花繚乱",
+      "prompt": "百花□乱",
+      "choices": [
+        "繚",
+        "燎",
+        "寥",
+        "撩"
+      ],
+      "answer": "繚",
+      "explain": "意味: 多くの花が咲き乱れること。優れた業績が数多く現れること\n正解: 百花繚乱（ひゃっかりょうらん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "百花□乱",
+        "missingIndex": 2,
+        "meaning": "多くの花が咲き乱れること。優れた業績が数多く現れること"
+      }
+    },
+    {
+      "kanji": "荒唐無稽",
+      "prompt": "荒唐無□",
+      "choices": [
+        "稽",
+        "憩",
+        "恵",
+        "刑"
+      ],
+      "answer": "稽",
+      "explain": "意味: 言動にでたらめで根拠がないこと\n正解: 荒唐無稽（こうとうむけい）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "荒唐無□",
+        "missingIndex": 3,
+        "meaning": "言動にでたらめで根拠がないこと"
+      }
+    },
+    {
+      "kanji": "慇懃無礼",
+      "prompt": "□懃無礼",
+      "choices": [
+        "慇",
+        "殷",
+        "隠",
+        "韻"
+      ],
+      "answer": "慇",
+      "explain": "意味: うわべは丁寧だが実は尊大で無礼なこと\n正解: 慇懃無礼（いんぎんぶれい）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□懃無礼",
+        "missingIndex": 0,
+        "meaning": "うわべは丁寧だが実は尊大で無礼なこと"
+      }
+    },
+    {
+      "kanji": "曖昧模糊",
+      "prompt": "□昧模糊",
+      "choices": [
+        "曖",
+        "暖",
+        "媛",
+        "靄"
+      ],
+      "answer": "曖",
+      "explain": "意味: はっきりせずぼんやりしていること\n正解: 曖昧模糊（あいまいもこ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□昧模糊",
+        "missingIndex": 0,
+        "meaning": "はっきりせずぼんやりしていること"
+      }
+    },
+    {
+      "kanji": "傲岸不遜",
+      "prompt": "□岸不遜",
+      "choices": [
+        "傲",
+        "豪",
+        "嗷",
+        "敖"
+      ],
+      "answer": "傲",
+      "explain": "意味: おごり高ぶって人を見下すこと\n正解: 傲岸不遜（ごうがんふそん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□岸不遜",
+        "missingIndex": 0,
+        "meaning": "おごり高ぶって人を見下すこと"
+      }
+    },
+    {
+      "kanji": "風光明媚",
+      "prompt": "風光明□",
+      "choices": [
+        "媚",
+        "眉",
+        "微",
+        "靡"
+      ],
+      "answer": "媚",
+      "explain": "意味: 自然の景色が清らかで美しいこと\n正解: 風光明媚（ふうこうめいび）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "風光明□",
+        "missingIndex": 3,
+        "meaning": "自然の景色が清らかで美しいこと"
+      }
+    },
+    {
+      "kanji": "韋編三絶",
+      "prompt": "□編三絶",
+      "choices": [
+        "韋",
+        "偉",
+        "違",
+        "葦"
+      ],
+      "answer": "韋",
+      "explain": "意味: 何度も繰り返し熱心に読書すること\n正解: 韋編三絶（いへんさんぜつ）\n孔子が易経を繰り返し読み、綴じ紐が三度切れたという故事から。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□編三絶",
+        "missingIndex": 0,
+        "meaning": "何度も繰り返し熱心に読書すること"
+      }
+    },
+    {
+      "kanji": "罵詈雑言",
+      "prompt": "罵□雑言",
+      "choices": [
+        "詈",
+        "璃",
+        "裡",
+        "俚"
+      ],
+      "answer": "詈",
+      "explain": "意味: 口汚い悪口を並べ立てること\n正解: 罵詈雑言（ばりぞうごん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "罵□雑言",
+        "missingIndex": 1,
+        "meaning": "口汚い悪口を並べ立てること"
+      }
+    },
+    {
+      "kanji": "侃侃諤諤",
+      "prompt": "侃侃□諤",
+      "choices": [
+        "諤",
+        "顎",
+        "額",
+        "鰐"
+      ],
+      "answer": "諤",
+      "explain": "意味: 正しいと思うことを堂々と主張し議論すること\n正解: 侃侃諤諤（かんかんがくがく）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "侃侃□諤",
+        "missingIndex": 2,
+        "meaning": "正しいと思うことを堂々と主張し議論すること"
+      }
+    },
+    {
+      "kanji": "紆余曲折",
+      "prompt": "□余曲折",
+      "choices": [
+        "紆",
+        "迂",
+        "宇",
+        "芋"
+      ],
+      "answer": "紆",
+      "explain": "意味: 道や事情が複雑に入り組んでいること\n正解: 紆余曲折（うよきょくせつ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□余曲折",
+        "missingIndex": 0,
+        "meaning": "道や事情が複雑に入り組んでいること"
+      }
+    },
+    {
+      "kanji": "跋扈跳梁",
+      "prompt": "□扈跳梁",
+      "choices": [
+        "跋",
+        "抜",
+        "閥",
+        "鉢"
+      ],
+      "answer": "跋",
+      "explain": "意味: 好き勝手に振る舞いのさばること\n正解: 跋扈跳梁（ばっこちょうりょう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□扈跳梁",
+        "missingIndex": 0,
+        "meaning": "好き勝手に振る舞いのさばること"
+      }
+    },
+    {
+      "kanji": "驕奢淫逸",
+      "prompt": "□奢淫逸",
+      "choices": [
+        "驕",
+        "矯",
+        "橋",
+        "嬌"
+      ],
+      "answer": "驕",
+      "explain": "意味: おごり高ぶりぜいたくにふけること\n正解: 驕奢淫逸（きょうしゃいんいつ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□奢淫逸",
+        "missingIndex": 0,
+        "meaning": "おごり高ぶりぜいたくにふけること"
+      }
+    },
+    {
+      "kanji": "和光同塵",
+      "prompt": "和光同□",
+      "choices": [
+        "塵",
+        "陣",
+        "沈",
+        "鎮"
+      ],
+      "answer": "塵",
+      "explain": "意味: 才知を隠して俗世間に交わること\n正解: 和光同塵（わこうどうじん）\n老子の言葉に由来する。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "和光同□",
+        "missingIndex": 3,
+        "meaning": "才知を隠して俗世間に交わること"
+      }
+    }
+  ]
+}

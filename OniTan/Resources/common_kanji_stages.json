@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 701,
+      "file": "common_kanji_stage1.json",
+      "title": "共通漢字 1",
+      "difficulty": 4
+    }
+  ]
 }

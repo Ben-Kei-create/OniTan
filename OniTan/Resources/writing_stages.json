@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 401,
+      "file": "writing_stage1.json",
+      "title": "書き取り 1",
+      "difficulty": 4
+    }
+  ]
 }

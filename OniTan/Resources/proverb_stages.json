@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 601,
+      "file": "proverb_stage1.json",
+      "title": "故事・ことわざ 1",
+      "difficulty": 4
+    }
+  ]
 }

@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 501,
+      "file": "error_correction_stage1.json",
+      "title": "誤字訂正 1",
+      "difficulty": 4
+    }
+  ]
 }

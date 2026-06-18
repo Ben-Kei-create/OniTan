@@ -1,0 +1,341 @@
+{
+  "stage": 501,
+  "questions": [
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "灸→炙",
+        "灸→久",
+        "灸→旧",
+        "灸→休"
+      ],
+      "answer": "灸→炙",
+      "explain": "膾炙（かいしゃ）＝広く知れ渡ること。「灸」はお灸、「炙」はあぶる意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "名声が世に膾灸する。",
+        "correctedSentence": "名声が世に膾炙する。",
+        "wrongKanji": "灸",
+        "correctKanji": "炙"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "形→稽",
+        "形→刑",
+        "形→型",
+        "形→径"
+      ],
+      "answer": "形→稽",
+      "explain": "荒唐無稽（こうとうむけい）＝でたらめで根拠がないこと。「稽」は考える意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "荒唐無形な言い分だ。",
+        "correctedSentence": "荒唐無稽な言い分だ。",
+        "wrongKanji": "形",
+        "correctKanji": "稽"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "尊→遜",
+        "尊→損",
+        "尊→存",
+        "尊→村"
+      ],
+      "answer": "尊→遜",
+      "explain": "傲岸不遜（ごうがんふそん）＝おごり高ぶること。「遜」はへりくだる意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "傲岸不尊な態度をとる。",
+        "correctedSentence": "傲岸不遜な態度をとる。",
+        "wrongKanji": "尊",
+        "correctKanji": "遜"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "僚→繚",
+        "僚→燎",
+        "僚→寥",
+        "僚→瞭"
+      ],
+      "answer": "僚→繚",
+      "explain": "百花繚乱（ひゃっかりょうらん）。「繚」は纏わりつく意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "百花僚乱の時代である。",
+        "correctedSentence": "百花繚乱の時代である。",
+        "wrongKanji": "僚",
+        "correctKanji": "繚"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "眉→媚",
+        "眉→微",
+        "眉→靡",
+        "眉→備"
+      ],
+      "answer": "眉→媚",
+      "explain": "風光明媚（ふうこうめいび）＝景色が美しいこと。「媚」は美しい意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "風光明眉の地を訪れた。",
+        "correctedSentence": "風光明媚の地を訪れた。",
+        "wrongKanji": "眉",
+        "correctKanji": "媚"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "変→編",
+        "変→偏",
+        "変→遍",
+        "変→篇"
+      ],
+      "answer": "変→編",
+      "explain": "韋編三絶（いへんさんぜつ）。「編」は書物を綴じること。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "韋変三絶の読書家だ。",
+        "correctedSentence": "韋編三絶の読書家だ。",
+        "wrongKanji": "変",
+        "correctKanji": "編"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "屈→曲",
+        "屈→窟",
+        "屈→掘",
+        "屈→屈"
+      ],
+      "answer": "屈→曲",
+      "explain": "紆余曲折（うよきょくせつ）＝事情が複雑に入り組むこと。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "紆余屈折を経て完成した。",
+        "correctedSentence": "紆余曲折を経て完成した。",
+        "wrongKanji": "屈",
+        "correctKanji": "曲"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "歩→捗",
+        "歩→渉",
+        "歩→陟",
+        "歩→涉"
+      ],
+      "answer": "歩→捗",
+      "explain": "進捗（しんちょく）＝はかどること。「捗」は進むの意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "進歩が遅々として進まない。",
+        "correctedSentence": "進捗が遅々として進まない。",
+        "wrongKanji": "歩",
+        "correctKanji": "捗"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "影→洩",
+        "影→曳",
+        "影→泄",
+        "影→鋭"
+      ],
+      "answer": "影→洩",
+      "explain": "漏洩（ろうえい）＝秘密がもれること。「洩」はもれる意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "秘密が漏影した。",
+        "correctedSentence": "秘密が漏洩した。",
+        "wrongKanji": "影",
+        "correctKanji": "洩"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "乱→濫",
+        "乱→覧",
+        "乱→欄",
+        "乱→藍"
+      ],
+      "answer": "乱→濫",
+      "explain": "氾濫（はんらん）。「濫」はあふれるの意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "氾乱する情報に惑わされる。",
+        "correctedSentence": "氾濫する情報に惑わされる。",
+        "wrongKanji": "乱",
+        "correctKanji": "濫"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "等→藤",
+        "等→騰",
+        "等→燈",
+        "等→董"
+      ],
+      "answer": "等→藤",
+      "explain": "葛藤（かっとう）＝もつれ争うこと。「藤」はふじの意。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "長年の葛等が解消された。",
+        "correctedSentence": "長年の葛藤が解消された。",
+        "wrongKanji": "等",
+        "correctKanji": "藤"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "填→塡",
+        "填→典",
+        "填→顛",
+        "填→殿"
+      ],
+      "answer": "填→塡",
+      "explain": "補塡（ほてん）。正字は「塡」。「填」は俗字だが漢検では「塡」が正解。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "不足分を補填する。",
+        "correctedSentence": "不足分を補塡する。",
+        "wrongKanji": "填",
+        "correctKanji": "塡"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "恃→持",
+        "恃→侍",
+        "恃→時",
+        "恃→治"
+      ],
+      "answer": "恃→持",
+      "explain": "矜持（きょうじ）＝誇りを持つこと。「持」が正字。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "彼は矜恃を持って生きている。",
+        "correctedSentence": "彼は矜持を持って生きている。",
+        "wrongKanji": "恃",
+        "correctKanji": "持"
+      }
+    },
+    {
+      "kanji": "誤字訂正",
+      "prompt": "次の文中の誤字を正せ。",
+      "choices": [
+        "婬→淫",
+        "婬→陰",
+        "婬→韻",
+        "婬→飲"
+      ],
+      "answer": "婬→淫",
+      "explain": "驕奢淫逸（きょうしゃいんいつ）。「淫」が正字。",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "驕奢婬逸な生活を送る。",
+        "correctedSentence": "驕奢淫逸な生活を送る。",
+        "wrongKanji": "婬",
+        "correctKanji": "淫"
+      }
+    }
+  ]
+}

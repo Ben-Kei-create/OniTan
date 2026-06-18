@@ -1,0 +1,350 @@
+{
+  "stage": 401,
+  "questions": [
+    {
+      "kanji": "絢爛",
+      "prompt": "「けんらん」を漢字で書くと？",
+      "choices": [
+        "絢爛",
+        "紋爛",
+        "絃爛",
+        "綺爛"
+      ],
+      "answer": "絢爛",
+      "explain": "意味: 華やかで美しいこと\n正解: 絢爛（けんらん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "けんらん",
+        "kanaPrompt": "けんらん",
+        "targetKanji": "絢爛"
+      }
+    },
+    {
+      "kanji": "進捗",
+      "prompt": "「しんちょく」を漢字で書くと？",
+      "choices": [
+        "進捗",
+        "進陟",
+        "進渉",
+        "進歩"
+      ],
+      "answer": "進捗",
+      "explain": "意味: 物事が進みはかどること\n正解: 進捗（しんちょく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しんちょく",
+        "kanaPrompt": "しんちょく",
+        "targetKanji": "進捗"
+      }
+    },
+    {
+      "kanji": "氾濫",
+      "prompt": "「はんらん」を漢字で書くと？",
+      "choices": [
+        "氾濫",
+        "犯濫",
+        "汎濫",
+        "凡濫"
+      ],
+      "answer": "氾濫",
+      "explain": "意味: 水があふれ出ること。物事が出回りすぎること\n正解: 氾濫（はんらん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "はんらん",
+        "kanaPrompt": "はんらん",
+        "targetKanji": "氾濫"
+      }
+    },
+    {
+      "kanji": "漏洩",
+      "prompt": "「ろうえい」を漢字で書くと？",
+      "choices": [
+        "漏洩",
+        "漏泄",
+        "漏曳",
+        "漏鋭"
+      ],
+      "answer": "漏洩",
+      "explain": "意味: 秘密などが外部にもれること\n正解: 漏洩（ろうえい）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ろうえい",
+        "kanaPrompt": "ろうえい",
+        "targetKanji": "漏洩"
+      }
+    },
+    {
+      "kanji": "補塡",
+      "prompt": "「ほてん」を漢字で書くと？",
+      "choices": [
+        "補塡",
+        "補填",
+        "補典",
+        "補顛"
+      ],
+      "answer": "補塡",
+      "explain": "意味: 不足を補い埋めること\n正解: 補塡（ほてん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ほてん",
+        "kanaPrompt": "ほてん",
+        "targetKanji": "補塡"
+      }
+    },
+    {
+      "kanji": "膾炙",
+      "prompt": "「かいしゃ」を漢字で書くと？",
+      "choices": [
+        "膾炙",
+        "膾灸",
+        "鱠炙",
+        "膾赤"
+      ],
+      "answer": "膾炙",
+      "explain": "意味: 広く世間に知れ渡ること\n正解: 膾炙（かいしゃ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かいしゃ",
+        "kanaPrompt": "かいしゃ",
+        "targetKanji": "膾炙"
+      }
+    },
+    {
+      "kanji": "矜持",
+      "prompt": "「きょうじ」を漢字で書くと？",
+      "choices": [
+        "矜持",
+        "矜恃",
+        "衿持",
+        "衿侍"
+      ],
+      "answer": "矜持",
+      "explain": "意味: 自分の能力を信じて持つ誇り\n正解: 矜持（きょうじ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きょうじ",
+        "kanaPrompt": "きょうじ",
+        "targetKanji": "矜持"
+      }
+    },
+    {
+      "kanji": "逡巡",
+      "prompt": "「しゅんじゅん」を漢字で書くと？",
+      "choices": [
+        "逡巡",
+        "遜巡",
+        "逡順",
+        "峻巡"
+      ],
+      "answer": "逡巡",
+      "explain": "意味: 決心がつかず躊躇すること\n正解: 逡巡（しゅんじゅん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しゅんじゅん",
+        "kanaPrompt": "しゅんじゅん",
+        "targetKanji": "逡巡"
+      }
+    },
+    {
+      "kanji": "吝嗇",
+      "prompt": "「りんしょく」を漢字で書くと？",
+      "choices": [
+        "吝嗇",
+        "吝薔",
+        "隣嗇",
+        "悋嗇"
+      ],
+      "answer": "吝嗇",
+      "explain": "意味: 金銭を出し惜しみすること\n正解: 吝嗇（りんしょく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "りんしょく",
+        "kanaPrompt": "りんしょく",
+        "targetKanji": "吝嗇"
+      }
+    },
+    {
+      "kanji": "憔悴",
+      "prompt": "「しょうすい」を漢字で書くと？",
+      "choices": [
+        "憔悴",
+        "焦悴",
+        "憔翠",
+        "樵悴"
+      ],
+      "answer": "憔悴",
+      "explain": "意味: やつれ衰えること\n正解: 憔悴（しょうすい）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しょうすい",
+        "kanaPrompt": "しょうすい",
+        "targetKanji": "憔悴"
+      }
+    },
+    {
+      "kanji": "跋扈",
+      "prompt": "「ばっこ」を漢字で書くと？",
+      "choices": [
+        "跋扈",
+        "抜扈",
+        "跋弧",
+        "跋壺"
+      ],
+      "answer": "跋扈",
+      "explain": "意味: 勝手気ままに振る舞うこと\n正解: 跋扈（ばっこ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ばっこ",
+        "kanaPrompt": "ばっこ",
+        "targetKanji": "跋扈"
+      }
+    },
+    {
+      "kanji": "懊悩",
+      "prompt": "「おうのう」を漢字で書くと？",
+      "choices": [
+        "懊悩",
+        "奥悩",
+        "懊脳",
+        "懊能"
+      ],
+      "answer": "懊悩",
+      "explain": "意味: 思い悩み苦しむこと\n正解: 懊悩（おうのう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "おうのう",
+        "kanaPrompt": "おうのう",
+        "targetKanji": "懊悩"
+      }
+    },
+    {
+      "kanji": "瑕疵",
+      "prompt": "「かし」を漢字で書くと？",
+      "choices": [
+        "瑕疵",
+        "暇疵",
+        "瑕庇",
+        "瑕此"
+      ],
+      "answer": "瑕疵",
+      "explain": "意味: きずや欠点\n正解: 瑕疵（かし）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かし",
+        "kanaPrompt": "かし",
+        "targetKanji": "瑕疵"
+      }
+    },
+    {
+      "kanji": "葛藤",
+      "prompt": "「かっとう」を漢字で書くと？",
+      "choices": [
+        "葛藤",
+        "喝藤",
+        "括藤",
+        "葛等"
+      ],
+      "answer": "葛藤",
+      "explain": "意味: 心の中の対立や争い\n正解: 葛藤（かっとう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かっとう",
+        "kanaPrompt": "かっとう",
+        "targetKanji": "葛藤"
+      }
+    },
+    {
+      "kanji": "驕慢",
+      "prompt": "「きょうまん」を漢字で書くと？",
+      "choices": [
+        "驕慢",
+        "嬌慢",
+        "矯慢",
+        "驕漫"
+      ],
+      "answer": "驕慢",
+      "explain": "意味: おごり高ぶり人を見下すこと\n正解: 驕慢（きょうまん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きょうまん",
+        "kanaPrompt": "きょうまん",
+        "targetKanji": "驕慢"
+      }
+    }
+  ]
+}

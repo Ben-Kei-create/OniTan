@@ -1,0 +1,335 @@
+{
+  "stage": 801,
+  "questions": [
+    {
+      "kanji": "強か",
+      "prompt": "「強か」の読みは？",
+      "choices": [
+        "したたか",
+        "つよか",
+        "したか",
+        "こわか"
+      ],
+      "answer": "したたか",
+      "explain": "「強か」は「したたか」と読む。強い意志を持つ様子。手ごわい",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "強",
+        "sentenceContext": "彼女は強かな交渉人だ。"
+      }
+    },
+    {
+      "kanji": "態と",
+      "prompt": "「態と」の読みは？",
+      "choices": [
+        "わざと",
+        "たいと",
+        "ざまと",
+        "さまと"
+      ],
+      "answer": "わざと",
+      "explain": "「態と」は「わざと」と読む。故意に。意図的に",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "態",
+        "sentenceContext": "態と知らない振りをした。"
+      }
+    },
+    {
+      "kanji": "準える",
+      "prompt": "「準える」の読みは？",
+      "choices": [
+        "なぞらえる",
+        "じゅんえる",
+        "ならえる",
+        "ひとしえる"
+      ],
+      "answer": "なぞらえる",
+      "explain": "「準える」は「なぞらえる」と読む。似たものに当てはめること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "準",
+        "sentenceContext": "古典に準えて解釈する。"
+      }
+    },
+    {
+      "kanji": "労う",
+      "prompt": "「労う」の読みは？",
+      "choices": [
+        "ねぎらう",
+        "ろうう",
+        "つかろう",
+        "いたわう"
+      ],
+      "answer": "ねぎらう",
+      "explain": "「労う」は「ねぎらう」と読む。苦労や骨折りに感謝すること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "労",
+        "sentenceContext": "長年の功績を労う。"
+      }
+    },
+    {
+      "kanji": "設える",
+      "prompt": "「設える」の読みは？",
+      "choices": [
+        "しつらえる",
+        "もうける",
+        "たてる",
+        "そなえる"
+      ],
+      "answer": "しつらえる",
+      "explain": "「設える」は「しつらえる」と読む。整え飾ること。準備すること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "設",
+        "sentenceContext": "客間を美しく設える。"
+      }
+    },
+    {
+      "kanji": "論う",
+      "prompt": "「論う」の読みは？",
+      "choices": [
+        "あげつらう",
+        "ろんう",
+        "とくう",
+        "のべう"
+      ],
+      "answer": "あげつらう",
+      "explain": "「論う」は「あげつらう」と読む。物事の是非を議論すること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "論",
+        "sentenceContext": "他人の過失を論う。"
+      }
+    },
+    {
+      "kanji": "具に",
+      "prompt": "「具に」の読みは？",
+      "choices": [
+        "つぶさに",
+        "ぐに",
+        "そなに",
+        "ともに"
+      ],
+      "answer": "つぶさに",
+      "explain": "「具に」は「つぶさに」と読む。詳しく。細かいところまで",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "具",
+        "sentenceContext": "事情を具に報告する。"
+      }
+    },
+    {
+      "kanji": "戦く",
+      "prompt": "「戦く」の読みは？",
+      "choices": [
+        "おののく",
+        "いくさく",
+        "たたかく",
+        "そよく"
+      ],
+      "answer": "おののく",
+      "explain": "「戦く」は「おののく」と読む。恐怖で震えること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "戦",
+        "sentenceContext": "恐ろしさに戦く。"
+      }
+    },
+    {
+      "kanji": "長ける",
+      "prompt": "「長ける」の読みは？",
+      "choices": [
+        "たける",
+        "おさける",
+        "ながける",
+        "すぐける"
+      ],
+      "answer": "たける",
+      "explain": "「長ける」は「たける」と読む。ある分野に優れること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "長",
+        "sentenceContext": "武芸に長けた人物だ。"
+      }
+    },
+    {
+      "kanji": "集る",
+      "prompt": "「集る」の読みは？",
+      "choices": [
+        "たかる",
+        "あつる",
+        "つどる",
+        "むらがる"
+      ],
+      "answer": "たかる",
+      "explain": "「集る」は「たかる」と読む。群がり寄ること。金品をせびること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "集",
+        "sentenceContext": "虫が灯りに集る。"
+      }
+    },
+    {
+      "kanji": "漸く",
+      "prompt": "「漸く」の読みは？",
+      "choices": [
+        "ようやく",
+        "しばらく",
+        "ぜんく",
+        "ほぼく"
+      ],
+      "answer": "ようやく",
+      "explain": "「漸く」は「ようやく」と読む。やっとのことで。しだいに",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "漸",
+        "sentenceContext": "漸く目的地に着いた。"
+      }
+    },
+    {
+      "kanji": "与る",
+      "prompt": "「与る」の読みは？",
+      "choices": [
+        "あずかる",
+        "あたえる",
+        "くみする",
+        "ともにする"
+      ],
+      "answer": "あずかる",
+      "explain": "「与る」は「あずかる」と読む。関係する。参加する",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "与",
+        "sentenceContext": "国政に与る立場にある。"
+      }
+    },
+    {
+      "kanji": "清い",
+      "prompt": "「清い」の読みは？",
+      "choices": [
+        "すがい",
+        "きよい",
+        "さやい",
+        "あおい"
+      ],
+      "answer": "すがい",
+      "explain": "「清い」は「すがい」と読む。清らかで爽やかな（「すがすがしい」の古語的用法）",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "清",
+        "sentenceContext": "清い風が吹き抜ける。"
+      }
+    },
+    {
+      "kanji": "懐く",
+      "prompt": "「懐く」の読みは？",
+      "choices": [
+        "なつく",
+        "ふところく",
+        "おもく",
+        "いだく"
+      ],
+      "answer": "なつく",
+      "explain": "「懐く」は「なつく」と読む。親しみを持って近づくこと",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "懐",
+        "sentenceContext": "子猫がすぐに懐く。"
+      }
+    },
+    {
+      "kanji": "弁える",
+      "prompt": "「弁える」の読みは？",
+      "choices": [
+        "わきまえる",
+        "べんえる",
+        "つとえる",
+        "さばえる"
+      ],
+      "answer": "わきまえる",
+      "explain": "「弁える」は「わきまえる」と読む。物事の道理を理解すること",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "弁",
+        "sentenceContext": "礼儀を弁える。"
+      }
+    }
+  ]
+}

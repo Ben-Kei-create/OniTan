@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 201,
+      "file": "synonym_stage1.json",
+      "title": "類義語 1",
+      "difficulty": 4
+    }
+  ]
 }

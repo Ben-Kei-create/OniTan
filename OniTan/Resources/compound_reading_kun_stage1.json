@@ -1,0 +1,335 @@
+{
+  "stage": 901,
+  "questions": [
+    {
+      "kanji": "海月",
+      "prompt": "「海月」の読みは？",
+      "choices": [
+        "くらげ",
+        "かいげつ",
+        "うみつき",
+        "くらべ"
+      ],
+      "answer": "くらげ",
+      "explain": "「海月」は熟字訓で「くらげ」と読む。海に生息する透明なゼリー状の生物",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "海月",
+        "targetKanjiInCompound": "海"
+      }
+    },
+    {
+      "kanji": "百足",
+      "prompt": "「百足」の読みは？",
+      "choices": [
+        "むかで",
+        "ひゃくそく",
+        "ももあし",
+        "おおあし"
+      ],
+      "answer": "むかで",
+      "explain": "「百足」は熟字訓で「むかで」と読む。多くの脚を持つ節足動物",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "百足",
+        "targetKanjiInCompound": "百"
+      }
+    },
+    {
+      "kanji": "土竜",
+      "prompt": "「土竜」の読みは？",
+      "choices": [
+        "もぐら",
+        "どりゅう",
+        "つちたつ",
+        "じりゅう"
+      ],
+      "answer": "もぐら",
+      "explain": "「土竜」は熟字訓で「もぐら」と読む。地中に穴を掘って暮らす哺乳類",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "土竜",
+        "targetKanjiInCompound": "土"
+      }
+    },
+    {
+      "kanji": "案山子",
+      "prompt": "「案山子」の読みは？",
+      "choices": [
+        "かかし",
+        "あんざんし",
+        "あんざんこ",
+        "あんやまこ"
+      ],
+      "answer": "かかし",
+      "explain": "「案山子」は熟字訓で「かかし」と読む。田畑に立てて鳥を追い払う人形",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "案山子",
+        "targetKanjiInCompound": "案"
+      }
+    },
+    {
+      "kanji": "蒲公英",
+      "prompt": "「蒲公英」の読みは？",
+      "choices": [
+        "たんぽぽ",
+        "ほこうえい",
+        "かまこうえい",
+        "ぶこうえい"
+      ],
+      "answer": "たんぽぽ",
+      "explain": "「蒲公英」は熟字訓で「たんぽぽ」と読む。春に黄色い花を咲かせるキク科の植物",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "蒲公英",
+        "targetKanjiInCompound": "蒲"
+      }
+    },
+    {
+      "kanji": "向日葵",
+      "prompt": "「向日葵」の読みは？",
+      "choices": [
+        "ひまわり",
+        "こうじつき",
+        "むかいひまわ",
+        "こうにちき"
+      ],
+      "answer": "ひまわり",
+      "explain": "「向日葵」は熟字訓で「ひまわり」と読む。太陽に向かって咲く大輪の花",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "向日葵",
+        "targetKanjiInCompound": "向"
+      }
+    },
+    {
+      "kanji": "海豚",
+      "prompt": "「海豚」の読みは？",
+      "choices": [
+        "いるか",
+        "かいとん",
+        "うみぶた",
+        "うみいの"
+      ],
+      "answer": "いるか",
+      "explain": "「海豚」は熟字訓で「いるか」と読む。海に生息する知能の高い哺乳類",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "海豚",
+        "targetKanjiInCompound": "海"
+      }
+    },
+    {
+      "kanji": "木乃伊",
+      "prompt": "「木乃伊」の読みは？",
+      "choices": [
+        "みいら",
+        "きのい",
+        "もくないい",
+        "このい"
+      ],
+      "answer": "みいら",
+      "explain": "「木乃伊」は熟字訓で「みいら」と読む。乾燥して保存された遺体",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "木乃伊",
+        "targetKanjiInCompound": "木"
+      }
+    },
+    {
+      "kanji": "流鏑馬",
+      "prompt": "「流鏑馬」の読みは？",
+      "choices": [
+        "やぶさめ",
+        "りゅうてきば",
+        "ながれかぶらめ",
+        "るてきめ"
+      ],
+      "answer": "やぶさめ",
+      "explain": "「流鏑馬」は熟字訓で「やぶさめ」と読む。馬上から的を射る武芸",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "流鏑馬",
+        "targetKanjiInCompound": "流"
+      }
+    },
+    {
+      "kanji": "山車",
+      "prompt": "「山車」の読みは？",
+      "choices": [
+        "だし",
+        "さんしゃ",
+        "やまぐるま",
+        "やまくるま"
+      ],
+      "answer": "だし",
+      "explain": "「山車」は熟字訓で「だし」と読む。祭りで引く飾り付けた車",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "山車",
+        "targetKanjiInCompound": "山"
+      }
+    },
+    {
+      "kanji": "神楽",
+      "prompt": "「神楽」の読みは？",
+      "choices": [
+        "かぐら",
+        "しんらく",
+        "かみらく",
+        "じんがく"
+      ],
+      "answer": "かぐら",
+      "explain": "「神楽」は熟字訓で「かぐら」と読む。神前で奏する舞楽",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "神楽",
+        "targetKanjiInCompound": "神"
+      }
+    },
+    {
+      "kanji": "時化",
+      "prompt": "「時化」の読みは？",
+      "choices": [
+        "しけ",
+        "じか",
+        "ときけ",
+        "ときばけ"
+      ],
+      "answer": "しけ",
+      "explain": "「時化」は熟字訓で「しけ」と読む。海が荒れること",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "時化",
+        "targetKanjiInCompound": "時"
+      }
+    },
+    {
+      "kanji": "雪洞",
+      "prompt": "「雪洞」の読みは？",
+      "choices": [
+        "ぼんぼり",
+        "せつどう",
+        "ゆきほら",
+        "ゆきぼら"
+      ],
+      "answer": "ぼんぼり",
+      "explain": "「雪洞」は熟字訓で「ぼんぼり」と読む。紙を張った小さな灯籠",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "雪洞",
+        "targetKanjiInCompound": "雪"
+      }
+    },
+    {
+      "kanji": "海星",
+      "prompt": "「海星」の読みは？",
+      "choices": [
+        "ひとで",
+        "かいせい",
+        "うみぼし",
+        "かいぼし"
+      ],
+      "answer": "ひとで",
+      "explain": "「海星」は熟字訓で「ひとで」と読む。星形をした棘皮動物",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "海星",
+        "targetKanjiInCompound": "海"
+      }
+    },
+    {
+      "kanji": "玉蜀黍",
+      "prompt": "「玉蜀黍」の読みは？",
+      "choices": [
+        "とうもろこし",
+        "ぎょくしょくきび",
+        "たましょくきび",
+        "たまきび"
+      ],
+      "answer": "とうもろこし",
+      "explain": "「玉蜀黍」は熟字訓で「とうもろこし」と読む。イネ科の穀物。コーン",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "玉蜀黍",
+        "targetKanjiInCompound": "玉"
+      }
+    }
+  ]
+}

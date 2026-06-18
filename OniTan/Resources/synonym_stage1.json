@@ -1,0 +1,335 @@
+{
+  "stage": 201,
+  "questions": [
+    {
+      "kanji": "横行",
+      "prompt": "「横行」の類義語は？",
+      "choices": [
+        "跋扈",
+        "闊歩",
+        "専横",
+        "蹂躙"
+      ],
+      "answer": "跋扈",
+      "explain": "意味: 好き勝手に振る舞うこと\n正解: 跋扈（ばっこ）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "横行",
+        "relationWord": "跋扈"
+      }
+    },
+    {
+      "kanji": "倹約",
+      "prompt": "「倹約」の類義語は？",
+      "choices": [
+        "吝嗇",
+        "節約",
+        "質素",
+        "簡素"
+      ],
+      "answer": "吝嗇",
+      "explain": "意味: 金銭を惜しむこと\n正解: 吝嗇（りんしょく）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "倹約",
+        "relationWord": "吝嗇"
+      }
+    },
+    {
+      "kanji": "苦悩",
+      "prompt": "「苦悩」の類義語は？",
+      "choices": [
+        "懊悩",
+        "煩悶",
+        "憂慮",
+        "困惑"
+      ],
+      "answer": "懊悩",
+      "explain": "意味: 思い悩み苦しむこと\n正解: 懊悩（おうのう）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "苦悩",
+        "relationWord": "懊悩"
+      }
+    },
+    {
+      "kanji": "精巧",
+      "prompt": "「精巧」の類義語は？",
+      "choices": [
+        "巧緻",
+        "精密",
+        "緻密",
+        "繊細"
+      ],
+      "answer": "巧緻",
+      "explain": "意味: 細かく巧みなこと\n正解: 巧緻（こうち）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "精巧",
+        "relationWord": "巧緻"
+      }
+    },
+    {
+      "kanji": "疲弊",
+      "prompt": "「疲弊」の類義語は？",
+      "choices": [
+        "憔悴",
+        "疲労",
+        "衰弱",
+        "消耗"
+      ],
+      "answer": "憔悴",
+      "explain": "意味: やつれ衰えること\n正解: 憔悴（しょうすい）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "疲弊",
+        "relationWord": "憔悴"
+      }
+    },
+    {
+      "kanji": "贅沢",
+      "prompt": "「贅沢」の類義語は？",
+      "choices": [
+        "奢侈",
+        "豪奢",
+        "華美",
+        "浪費"
+      ],
+      "answer": "奢侈",
+      "explain": "意味: 分不相応にぜいたくすること\n正解: 奢侈（しゃし）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "贅沢",
+        "relationWord": "奢侈"
+      }
+    },
+    {
+      "kanji": "躊躇",
+      "prompt": "「躊躇」の類義語は？",
+      "choices": [
+        "逡巡",
+        "猶予",
+        "狼狽",
+        "葛藤"
+      ],
+      "answer": "逡巡",
+      "explain": "意味: 決心がつかずぐずぐずすること\n正解: 逡巡（しゅんじゅん）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "躊躇",
+        "relationWord": "逡巡"
+      }
+    },
+    {
+      "kanji": "誇り",
+      "prompt": "「誇り」の類義語は？",
+      "choices": [
+        "矜持",
+        "自負",
+        "威厳",
+        "気概"
+      ],
+      "answer": "矜持",
+      "explain": "意味: 自分の能力を信じて持つ誇り\n正解: 矜持（きょうじ）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "誇り",
+        "relationWord": "矜持"
+      }
+    },
+    {
+      "kanji": "欠点",
+      "prompt": "「欠点」の類義語は？",
+      "choices": [
+        "瑕疵",
+        "欠陥",
+        "短所",
+        "難点"
+      ],
+      "answer": "瑕疵",
+      "explain": "意味: きずや欠陥があること\n正解: 瑕疵（かし）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "欠点",
+        "relationWord": "瑕疵"
+      }
+    },
+    {
+      "kanji": "怠慢",
+      "prompt": "「怠慢」の類義語は？",
+      "choices": [
+        "懶惰",
+        "怠惰",
+        "放漫",
+        "無精"
+      ],
+      "answer": "懶惰",
+      "explain": "意味: なまけて怠ること\n正解: 懶惰（らんだ）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "怠慢",
+        "relationWord": "懶惰"
+      }
+    },
+    {
+      "kanji": "賄賂",
+      "prompt": "「賄賂」の類義語は？",
+      "choices": [
+        "贈賄",
+        "饗応",
+        "供物",
+        "献金"
+      ],
+      "answer": "贈賄",
+      "explain": "意味: 不正に金品を贈ること\n正解: 贈賄（ぞうわい）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "賄賂",
+        "relationWord": "贈賄"
+      }
+    },
+    {
+      "kanji": "達観",
+      "prompt": "「達観」の類義語は？",
+      "choices": [
+        "諦観",
+        "悟達",
+        "観念",
+        "覚悟"
+      ],
+      "answer": "諦観",
+      "explain": "意味: 道理を悟りあきらめること\n正解: 諦観（ていかん）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "達観",
+        "relationWord": "諦観"
+      }
+    },
+    {
+      "kanji": "傲慢",
+      "prompt": "「傲慢」の類義語は？",
+      "choices": [
+        "驕慢",
+        "尊大",
+        "不遜",
+        "横柄"
+      ],
+      "answer": "驕慢",
+      "explain": "意味: おごり高ぶること\n正解: 驕慢（きょうまん）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "傲慢",
+        "relationWord": "驕慢"
+      }
+    },
+    {
+      "kanji": "狡猾",
+      "prompt": "「狡猾」の類義語は？",
+      "choices": [
+        "奸智",
+        "姦計",
+        "詭計",
+        "老獪"
+      ],
+      "answer": "奸智",
+      "explain": "意味: 悪知恵が働くこと\n正解: 奸智（かんち）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "狡猾",
+        "relationWord": "奸智"
+      }
+    },
+    {
+      "kanji": "争い",
+      "prompt": "「争い」の類義語は？",
+      "choices": [
+        "葛藤",
+        "確執",
+        "軋轢",
+        "相克"
+      ],
+      "answer": "葛藤",
+      "explain": "意味: 心の中で対立し悩むこと\n正解: 葛藤（かっとう）",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "争い",
+        "relationWord": "葛藤"
+      }
+    }
+  ]
+}

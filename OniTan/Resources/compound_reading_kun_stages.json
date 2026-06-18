@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 901,
+      "file": "compound_reading_kun_stage1.json",
+      "title": "熟字訓 1",
+      "difficulty": 4
+    }
+  ]
 }

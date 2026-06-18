@@ -1,0 +1,335 @@
+{
+  "stage": 301,
+  "questions": [
+    {
+      "kanji": "謙遜",
+      "prompt": "「謙遜」の対義語は？",
+      "choices": [
+        "傲慢",
+        "尊大",
+        "横柄",
+        "不遜"
+      ],
+      "answer": "傲慢",
+      "explain": "へりくだること⇔おごり高ぶること\n正解: 傲慢（ごうまん）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "謙遜",
+        "relationWord": "傲慢"
+      }
+    },
+    {
+      "kanji": "寡黙",
+      "prompt": "「寡黙」の対義語は？",
+      "choices": [
+        "饒舌",
+        "雄弁",
+        "多弁",
+        "冗舌"
+      ],
+      "answer": "饒舌",
+      "explain": "口数が少ない⇔よくしゃべる\n正解: 饒舌（じょうぜつ）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "寡黙",
+        "relationWord": "饒舌"
+      }
+    },
+    {
+      "kanji": "明瞭",
+      "prompt": "「明瞭」の対義語は？",
+      "choices": [
+        "曖昧",
+        "朦朧",
+        "漠然",
+        "混沌"
+      ],
+      "answer": "曖昧",
+      "explain": "はっきりしている⇔ぼんやりしている\n正解: 曖昧（あいまい）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "明瞭",
+        "relationWord": "曖昧"
+      }
+    },
+    {
+      "kanji": "勇敢",
+      "prompt": "「勇敢」の対義語は？",
+      "choices": [
+        "怯懦",
+        "卑怯",
+        "臆病",
+        "軟弱"
+      ],
+      "answer": "怯懦",
+      "explain": "勇ましい⇔臆病で気が弱い\n正解: 怯懦（きょうだ）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "勇敢",
+        "relationWord": "怯懦"
+      }
+    },
+    {
+      "kanji": "倹約",
+      "prompt": "「倹約」の対義語は？",
+      "choices": [
+        "奢侈",
+        "浪費",
+        "贅沢",
+        "豪奢"
+      ],
+      "answer": "奢侈",
+      "explain": "つつましい⇔ぜいたく\n正解: 奢侈（しゃし）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "倹約",
+        "relationWord": "奢侈"
+      }
+    },
+    {
+      "kanji": "賞賛",
+      "prompt": "「賞賛」の対義語は？",
+      "choices": [
+        "罵倒",
+        "叱責",
+        "誹謗",
+        "非難"
+      ],
+      "answer": "罵倒",
+      "explain": "ほめたたえる⇔ひどくののしる\n正解: 罵倒（ばとう）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "賞賛",
+        "relationWord": "罵倒"
+      }
+    },
+    {
+      "kanji": "敏捷",
+      "prompt": "「敏捷」の対義語は？",
+      "choices": [
+        "緩慢",
+        "遅鈍",
+        "鈍重",
+        "悠長"
+      ],
+      "answer": "緩慢",
+      "explain": "動きが素早い⇔動きがのろい\n正解: 緩慢（かんまん）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "敏捷",
+        "relationWord": "緩慢"
+      }
+    },
+    {
+      "kanji": "清廉",
+      "prompt": "「清廉」の対義語は？",
+      "choices": [
+        "貪欲",
+        "強欲",
+        "我欲",
+        "貪婪"
+      ],
+      "answer": "貪欲",
+      "explain": "心が清い⇔欲深い\n正解: 貪欲（どんよく）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "清廉",
+        "relationWord": "貪欲"
+      }
+    },
+    {
+      "kanji": "安寧",
+      "prompt": "「安寧」の対義語は？",
+      "choices": [
+        "騒擾",
+        "動乱",
+        "混乱",
+        "擾乱"
+      ],
+      "answer": "騒擾",
+      "explain": "穏やかで安らか⇔騒がしく乱れる\n正解: 騒擾（そうじょう）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "安寧",
+        "relationWord": "騒擾"
+      }
+    },
+    {
+      "kanji": "豊穣",
+      "prompt": "「豊穣」の対義語は？",
+      "choices": [
+        "凶荒",
+        "不毛",
+        "荒廃",
+        "枯渇"
+      ],
+      "answer": "凶荒",
+      "explain": "作物が豊かに実る⇔凶作で荒れる\n正解: 凶荒（きょうこう）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "豊穣",
+        "relationWord": "凶荒"
+      }
+    },
+    {
+      "kanji": "精緻",
+      "prompt": "「精緻」の対義語は？",
+      "choices": [
+        "粗雑",
+        "杜撰",
+        "粗暴",
+        "粗略"
+      ],
+      "answer": "粗雑",
+      "explain": "細かく精巧⇔粗くいいかげん\n正解: 粗雑（そざつ）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "精緻",
+        "relationWord": "粗雑"
+      }
+    },
+    {
+      "kanji": "潤沢",
+      "prompt": "「潤沢」の対義語は？",
+      "choices": [
+        "枯渇",
+        "欠乏",
+        "払底",
+        "窮乏"
+      ],
+      "answer": "枯渇",
+      "explain": "豊かにうるおう⇔尽きて涸れる\n正解: 枯渇（こかつ）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "潤沢",
+        "relationWord": "枯渇"
+      }
+    },
+    {
+      "kanji": "陳腐",
+      "prompt": "「陳腐」の対義語は？",
+      "choices": [
+        "斬新",
+        "新鮮",
+        "奇抜",
+        "清新"
+      ],
+      "answer": "斬新",
+      "explain": "古くてつまらない⇔目新しい\n正解: 斬新（ざんしん）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "陳腐",
+        "relationWord": "斬新"
+      }
+    },
+    {
+      "kanji": "簡潔",
+      "prompt": "「簡潔」の対義語は？",
+      "choices": [
+        "冗漫",
+        "冗長",
+        "饒舌",
+        "散漫"
+      ],
+      "answer": "冗漫",
+      "explain": "簡素で要領がよい⇔だらだらと長い\n正解: 冗漫（じょうまん）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "簡潔",
+        "relationWord": "冗漫"
+      }
+    },
+    {
+      "kanji": "栄達",
+      "prompt": "「栄達」の対義語は？",
+      "choices": [
+        "零落",
+        "没落",
+        "凋落",
+        "衰微"
+      ],
+      "answer": "零落",
+      "explain": "出世して栄える⇔落ちぶれる\n正解: 零落（れいらく）",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "栄達",
+        "relationWord": "零落"
+      }
+    }
+  ]
+}

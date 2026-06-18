@@ -1,0 +1,380 @@
+{
+  "stage": 701,
+  "questions": [
+    {
+      "kanji": "□根・□福・□害",
+      "prompt": "□根・□福・□害 に共通する漢字を選べ。",
+      "choices": [
+        "禍",
+        "渦",
+        "過",
+        "鍋"
+      ],
+      "answer": "禍",
+      "explain": "禍根・禍福・禍害に共通する「禍」（わざわい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□根",
+          "□福",
+          "□害"
+        ]
+      }
+    },
+    {
+      "kanji": "□土・□利・□福",
+      "prompt": "□土・□利・□福 に共通する漢字を選べ。",
+      "choices": [
+        "冥",
+        "名",
+        "明",
+        "命"
+      ],
+      "answer": "冥",
+      "explain": "冥土・冥利・冥福に共通する「冥」（あの世・暗い）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□土",
+          "□利",
+          "□福"
+        ]
+      }
+    },
+    {
+      "kanji": "□敬・□怖・□縮",
+      "prompt": "□敬・□怖・□縮 に共通する漢字を選べ。",
+      "choices": [
+        "畏",
+        "委",
+        "威",
+        "偉"
+      ],
+      "answer": "畏",
+      "explain": "畏敬・畏怖・畏縮に共通する「畏」（おそれる）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□敬",
+          "□怖",
+          "□縮"
+        ]
+      }
+    },
+    {
+      "kanji": "□旋・□歌・□戦",
+      "prompt": "□旋・□歌・□戦 に共通する漢字を選べ。",
+      "choices": [
+        "凱",
+        "快",
+        "回",
+        "懐"
+      ],
+      "answer": "凱",
+      "explain": "凱旋・凱歌・凱戦に共通する「凱」（かちどき）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□旋",
+          "□歌",
+          "□戦"
+        ]
+      }
+    },
+    {
+      "kanji": "□潔・□価・□恥",
+      "prompt": "□潔・□価・□恥 に共通する漢字を選べ。",
+      "choices": [
+        "廉",
+        "簾",
+        "兼",
+        "謙"
+      ],
+      "answer": "廉",
+      "explain": "廉潔・廉価・廉恥に共通する「廉」（いさぎよい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□潔",
+          "□価",
+          "□恥"
+        ]
+      }
+    },
+    {
+      "kanji": "□子・□男・□流",
+      "prompt": "□子・□男・□流 に共通する漢字を選べ。",
+      "choices": [
+        "嫡",
+        "適",
+        "摘",
+        "的"
+      ],
+      "answer": "嫡",
+      "explain": "嫡子・嫡男・嫡流に共通する「嫡」（正統の）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□子",
+          "□男",
+          "□流"
+        ]
+      }
+    },
+    {
+      "kanji": "□命・□令・□語",
+      "prompt": "□命・□令・□語 に共通する漢字を選べ。",
+      "choices": [
+        "勅",
+        "直",
+        "勤",
+        "赦"
+      ],
+      "answer": "勅",
+      "explain": "勅命・勅令・勅語に共通する「勅」（天子の命令）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□命",
+          "□令",
+          "□語"
+        ]
+      }
+    },
+    {
+      "kanji": "□索・□議・所□",
+      "prompt": "□索・□議・所□ に共通する漢字を選べ。",
+      "choices": [
+        "詮",
+        "栓",
+        "泉",
+        "銓"
+      ],
+      "answer": "詮",
+      "explain": "詮索・詮議・所詮に共通する「詮」（明らかにする）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□索",
+          "□議",
+          "所□"
+        ]
+      }
+    },
+    {
+      "kanji": "□事・□弔・□祝",
+      "prompt": "□事・□弔・□祝 に共通する漢字を選べ。",
+      "choices": [
+        "慶",
+        "計",
+        "経",
+        "敬"
+      ],
+      "answer": "慶",
+      "explain": "慶事・慶弔・慶祝に共通する「慶」（よろこぶ）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□事",
+          "□弔",
+          "□祝"
+        ]
+      }
+    },
+    {
+      "kanji": "□走・□馳・□放",
+      "prompt": "□走・□馳・□放 に共通する漢字を選べ。",
+      "choices": [
+        "奔",
+        "本",
+        "翻",
+        "犇"
+      ],
+      "answer": "奔",
+      "explain": "奔走・奔馳・奔放に共通する「奔」（はしる）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□走",
+          "□馳",
+          "□放"
+        ]
+      }
+    },
+    {
+      "kanji": "感□・嘆□・憤□",
+      "prompt": "感□・嘆□・憤□ に共通する漢字を選べ。",
+      "choices": [
+        "慨",
+        "概",
+        "該",
+        "蓋"
+      ],
+      "answer": "慨",
+      "explain": "感慨・嘆慨・憤慨に共通する「慨」（なげく）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "感□",
+          "嘆□",
+          "憤□"
+        ]
+      }
+    },
+    {
+      "kanji": "俊□・豪□・英□",
+      "prompt": "俊□・豪□・英□ に共通する漢字を選べ。",
+      "choices": [
+        "傑",
+        "潔",
+        "決",
+        "結"
+      ],
+      "answer": "傑",
+      "explain": "俊傑・豪傑・英傑に共通する「傑」（すぐれた人）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "俊□",
+          "豪□",
+          "英□"
+        ]
+      }
+    },
+    {
+      "kanji": "□淡・□然・□静",
+      "prompt": "□淡・□然・□静 に共通する漢字を選べ。",
+      "choices": [
+        "恬",
+        "添",
+        "甜",
+        "店"
+      ],
+      "answer": "恬",
+      "explain": "恬淡・恬然・恬静に共通する「恬」（やすらか）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□淡",
+          "□然",
+          "□静"
+        ]
+      }
+    },
+    {
+      "kanji": "□年・□月・□日",
+      "prompt": "□年・□月・□日 に共通する漢字を選べ。",
+      "choices": [
+        "閏",
+        "潤",
+        "順",
+        "準"
+      ],
+      "answer": "閏",
+      "explain": "閏年・閏月・閏日に共通する「閏」（うるう）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□年",
+          "□月",
+          "□日"
+        ]
+      }
+    },
+    {
+      "kanji": "□勲・□位・□情",
+      "prompt": "□勲・□位・□情 に共通する漢字を選べ。",
+      "choices": [
+        "叙",
+        "序",
+        "除",
+        "徐"
+      ],
+      "answer": "叙",
+      "explain": "叙勲・叙位・叙情に共通する「叙」（のべる・順序）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□勲",
+          "□位",
+          "□情"
+        ]
+      }
+    }
+  ]
+}

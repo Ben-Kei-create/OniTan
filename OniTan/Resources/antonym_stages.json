@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 301,
+      "file": "antonym_stage1.json",
+      "title": "対義語 1",
+      "difficulty": 4
+    }
+  ]
 }

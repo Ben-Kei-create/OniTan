@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 101,
+      "file": "yojijukugo_stage1.json",
+      "title": "四字熟語 1",
+      "difficulty": 4
+    }
+  ]
 }
