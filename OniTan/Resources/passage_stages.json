@@ -1,3 +1,10 @@
 {
-  "stages": []
+  "stages": [
+    {
+      "id": 1001,
+      "file": "passage_stage1.json",
+      "title": "文章題 1",
+      "difficulty": 4
+    }
+  ]
 }
