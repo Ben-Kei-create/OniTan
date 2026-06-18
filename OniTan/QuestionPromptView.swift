@@ -254,10 +254,10 @@ struct QuestionPromptView: View {
     private var contextReadingContent: some View {
         let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
         let target = contextReadingTarget
-        let bodyFont = playFontManager.font(size: scaled(44, min: 34), weight: .bold)
+        let bodyFont = playFontManager.font(size: scaled(56, min: 44), weight: .bold)
         let meaning = question.termMeaning
 
-        return VStack(alignment: .leading, spacing: scaled(10, min: 7)) {
+        return VStack(alignment: .leading, spacing: scaled(8, min: 5)) {
             HStack(spacing: scaled(6, min: 4)) {
                 Image(systemName: "text.magnifyingglass")
                     .font(.system(size: scaled(12, min: 10), weight: .bold))
@@ -273,13 +273,13 @@ struct QuestionPromptView: View {
 
             if let range = context.range(of: target) {
                 Text(attributedSentence(context: context, targetRange: range, bodyFont: bodyFont, linkable: meaning != nil))
-                    .lineSpacing(7)
+                    .lineSpacing(8)
                     .multilineTextAlignment(.leading)
-                    .minimumScaleFactor(0.75)
-                    .lineLimit(4)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(5)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, scaled(13, min: 10))
-                    .padding(.vertical, scaled(13, min: 10))
+                    .padding(.horizontal, scaled(12, min: 8))
+                    .padding(.vertical, scaled(10, min: 8))
                     .background(
                         RoundedRectangle(cornerRadius: scaled(14, min: 11))
                             .fill(Color.black.opacity(0.14))
@@ -295,21 +295,21 @@ struct QuestionPromptView: View {
                     })
             } else {
                 Text(target)
-                    .font(playFontManager.font(size: scaled(38, min: 30), weight: .black))
+                    .font(playFontManager.font(size: scaled(46, min: 36), weight: .black))
                     .foregroundColor(OniTanTheme.accentWeak)
-                    .minimumScaleFactor(0.65)
+                    .minimumScaleFactor(0.5)
                     .lineLimit(1)
 
                 Text(context)
                     .font(bodyFont)
                     .foregroundColor(OniTanTheme.textPrimary)
-                    .lineSpacing(7)
+                    .lineSpacing(8)
                     .multilineTextAlignment(.leading)
-                    .minimumScaleFactor(0.75)
-                    .lineLimit(4)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(5)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, scaled(13, min: 10))
-                    .padding(.vertical, scaled(13, min: 10))
+                    .padding(.horizontal, scaled(12, min: 8))
+                    .padding(.vertical, scaled(10, min: 8))
                     .background(
                         RoundedRectangle(cornerRadius: scaled(14, min: 11))
                             .fill(Color.black.opacity(0.14))
@@ -321,7 +321,7 @@ struct QuestionPromptView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding(scaled(18, min: 12))
+        .padding(scaled(14, min: 10))
         .sheet(item: $meaningPopoverTerm) { item in
             meaningSheetContent(word: item.word, meaning: item.meaning)
         }
@@ -335,7 +335,7 @@ struct QuestionPromptView: View {
         result.foregroundColor = OniTanTheme.textPrimary
 
         var targetAttr = AttributedString(String(context[targetRange]))
-        targetAttr.font = playFontManager.font(size: scaled(34, min: 28), weight: .black)
+        targetAttr.font = playFontManager.font(size: scaled(46, min: 38), weight: .black)
         targetAttr.foregroundColor = OniTanTheme.accentWeak
         targetAttr.underlineStyle = .single
         if linkable {
