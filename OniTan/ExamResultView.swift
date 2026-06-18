@@ -12,6 +12,7 @@ struct ExamResultView: View {
 
     @EnvironmentObject var playFontManager: PlayFontManager
     @State private var showRecommendedTraining = false
+    @State private var showWrongAnswers = false
 
     private var passingAccuracy: Double { blueprint?.passingAccuracy ?? 0.90 }
 
@@ -48,6 +49,10 @@ struct ExamResultView: View {
 
                 if !sortedKindScores.isEmpty {
                     kindBreakdown
+                }
+
+                if !result.wrongAttempts.isEmpty {
+                    wrongAnswersSection
                 }
 
                 if !weakestThree.isEmpty {
@@ -216,6 +221,111 @@ struct ExamResultView: View {
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .oniCard()
+    }
+
+    // MARK: - Wrong Answers Review
+
+    private var wrongAnswersSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Button {
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    showWrongAnswers.toggle()
+                }
+            } label: {
+                HStack {
+                    Text("間違えた問題 (\(result.wrongAttempts.count)問)")
+                        .font(playFont(14, weight: .bold))
+                        .foregroundColor(OniTanTheme.textPrimary)
+
+                    Spacer()
+
+                    Image(systemName: showWrongAnswers ? "chevron.up" : "chevron.down")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                }
+            }
+            .buttonStyle(.plain)
+
+            if showWrongAnswers {
+                VStack(spacing: 0) {
+                    ForEach(Array(result.wrongAttempts.enumerated()), id: \.element.questionID) { index, attempt in
+                        if index > 0 {
+                            Rectangle()
+                                .fill(OniTanTheme.cardBorder)
+                                .frame(height: 1)
+                                .padding(.horizontal, 4)
+                        }
+                        wrongAnswerRow(attempt: attempt, index: index + 1)
+                    }
+                }
+            }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .oniCard()
+    }
+
+    private func wrongAnswerRow(attempt: QuestionAttempt, index: Int) -> some View {
+        let question = allQuestions.first { $0.id == attempt.questionID }
+
+        return VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top, spacing: 8) {
+                Text("\(index)")
+                    .font(playFont(11, weight: .bold))
+                    .foregroundColor(.white)
+                    .frame(width: 20, height: 20)
+                    .background(Circle().fill(OniTanTheme.accentWrong.opacity(0.82)))
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(attempt.kind.displayName)
+                        .font(playFont(10, weight: .semibold))
+                        .foregroundColor(OniTanTheme.textTertiary)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(
+                            Capsule()
+                                .fill(Color.black.opacity(0.18))
+                                .overlay(Capsule().stroke(OniTanTheme.cardBorder, lineWidth: 1))
+                        )
+
+                    Text(question?.displayPrompt ?? attempt.kanji)
+                        .font(playFont(14, weight: .bold))
+                        .foregroundColor(OniTanTheme.textPrimary)
+                        .lineLimit(3)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    HStack(spacing: 12) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: 12))
+                                .foregroundColor(OniTanTheme.accentWrong)
+                            Text(attempt.userAnswer ?? "未回答")
+                                .font(playFont(13, weight: .medium))
+                                .foregroundColor(OniTanTheme.accentWrong)
+                        }
+
+                        HStack(spacing: 4) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 12))
+                                .foregroundColor(OniTanTheme.accentWeak)
+                            Text(attempt.correctAnswer)
+                                .font(playFont(13, weight: .bold))
+                                .foregroundColor(OniTanTheme.accentWeak)
+                        }
+                    }
+
+                    if let explain = question?.explain, !explain.isEmpty {
+                        Text(explain)
+                            .font(playFont(11, weight: .regular))
+                            .foregroundColor(OniTanTheme.textSecondary)
+                            .lineLimit(4)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, 2)
+                    }
+                }
+            }
+        }
+        .padding(.vertical, 10)
     }
 
     // MARK: - Weak Points

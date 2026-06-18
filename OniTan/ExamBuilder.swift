@@ -89,6 +89,7 @@ struct ExamBuilder {
     ) -> ExamResult {
         var byKind: [String: (total: Int, correct: Int)] = [:]
         var wrongIDs: [String] = []
+        var attempts: [QuestionAttempt] = []
 
         for question in session.questions {
             let selected = answers[question.id]
@@ -98,6 +99,15 @@ struct ExamBuilder {
             entry.total += 1
             if isCorrect { entry.correct += 1 } else { wrongIDs.append(question.id) }
             byKind[key] = entry
+
+            attempts.append(QuestionAttempt(
+                questionID: question.id,
+                kanji: question.kanji,
+                kind: question.kind,
+                userAnswer: selected,
+                correctAnswer: question.answer,
+                isCorrect: isCorrect
+            ))
         }
 
         let kindScores = byKind.mapValues { KindScore(total: $0.total, correct: $0.correct) }
@@ -111,7 +121,8 @@ struct ExamBuilder {
             totalQuestions: totalQ,
             correctCount: totalC,
             byKind: kindScores,
-            wrongQuestionIDs: wrongIDs
+            wrongQuestionIDs: wrongIDs,
+            attempts: attempts
         )
     }
 }

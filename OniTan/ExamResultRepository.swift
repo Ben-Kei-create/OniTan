@@ -8,6 +8,18 @@ struct KindScore: Codable {
     var accuracy: Double { total > 0 ? Double(correct) / Double(total) : 0 }
 }
 
+// MARK: - QuestionAttempt
+
+struct QuestionAttempt: Codable, Identifiable {
+    var id: String { questionID }
+    let questionID: String
+    let kanji: String
+    let kind: QuestionKind
+    let userAnswer: String?
+    let correctAnswer: String
+    let isCorrect: Bool
+}
+
 // MARK: - ExamResult
 
 struct ExamResult: Codable, Identifiable {
@@ -21,6 +33,39 @@ struct ExamResult: Codable, Identifiable {
     /// Key is QuestionKind.rawValue (String) for Codable compatibility.
     let byKind: [String: KindScore]
     let wrongQuestionIDs: [String]
+    let attempts: [QuestionAttempt]
+
+    init(
+        id: UUID,
+        date: Date,
+        blueprintID: String,
+        totalQuestions: Int,
+        correctCount: Int,
+        byKind: [String: KindScore],
+        wrongQuestionIDs: [String],
+        attempts: [QuestionAttempt] = []
+    ) {
+        self.id = id
+        self.date = date
+        self.blueprintID = blueprintID
+        self.totalQuestions = totalQuestions
+        self.correctCount = correctCount
+        self.byKind = byKind
+        self.wrongQuestionIDs = wrongQuestionIDs
+        self.attempts = attempts
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(UUID.self, forKey: .id)
+        date = try c.decode(Date.self, forKey: .date)
+        blueprintID = try c.decode(String.self, forKey: .blueprintID)
+        totalQuestions = try c.decode(Int.self, forKey: .totalQuestions)
+        correctCount = try c.decode(Int.self, forKey: .correctCount)
+        byKind = try c.decode([String: KindScore].self, forKey: .byKind)
+        wrongQuestionIDs = try c.decode([String].self, forKey: .wrongQuestionIDs)
+        attempts = (try? c.decode([QuestionAttempt].self, forKey: .attempts)) ?? []
+    }
 
     func score(for kind: QuestionKind) -> KindScore? {
         byKind[kind.rawValue]
@@ -31,6 +76,10 @@ struct ExamResult: Codable, Identifiable {
             .filter { $0.value.total > 0 }
             .min(by: { $0.value.accuracy < $1.value.accuracy })
             .flatMap { QuestionKind(rawValue: $0.key) }
+    }
+
+    var wrongAttempts: [QuestionAttempt] {
+        attempts.filter { !$0.isCorrect }
     }
 
     var passed: Bool { accuracy >= 0.70 }   // default pass threshold; blueprint may differ
