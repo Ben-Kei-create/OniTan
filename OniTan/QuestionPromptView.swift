@@ -251,10 +251,8 @@ struct QuestionPromptView: View {
     private var contextReadingContent: some View {
         let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
         let target = contextReadingTarget
-        let bodyFont = playFontManager.font(size: scaled(34, min: 28), weight: .medium)
-        let meaning = question.termMeaning
 
-        return VStack(alignment: .leading, spacing: scaled(8, min: 5)) {
+        return VStack(spacing: scaled(10, min: 6)) {
             HStack(spacing: scaled(6, min: 4)) {
                 Image(systemName: "text.magnifyingglass")
                     .font(.system(size: scaled(12, min: 10), weight: .bold))
@@ -268,51 +266,55 @@ struct QuestionPromptView: View {
                 Spacer()
             }
 
+            Text(target)
+                .font(playFontManager.font(size: scaled(72, min: 56), weight: .black))
+                .foregroundColor(OniTanTheme.accentWeak)
+                .minimumScaleFactor(0.4)
+                .lineLimit(1)
+                .shadow(color: .black.opacity(0.3), radius: 4)
+                .frame(maxWidth: .infinity, alignment: .center)
+
             if let range = context.range(of: target) {
-                Text(attributedSentence(context: context, targetRange: range, bodyFont: bodyFont, linkable: meaning != nil))
-                    .lineSpacing(8)
+                Text(attributedSentence(context: context, targetRange: range,
+                        bodyFont: playFontManager.font(size: scaled(22, min: 18), weight: .regular),
+                        linkable: question.termMeaning != nil))
+                    .lineSpacing(5)
                     .multilineTextAlignment(.leading)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(5)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(3)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, scaled(12, min: 8))
-                    .padding(.vertical, scaled(10, min: 8))
+                    .padding(.horizontal, scaled(10, min: 8))
+                    .padding(.vertical, scaled(8, min: 6))
                     .background(
-                        RoundedRectangle(cornerRadius: scaled(14, min: 11))
-                            .fill(Color.black.opacity(0.14))
+                        RoundedRectangle(cornerRadius: scaled(12, min: 9))
+                            .fill(Color.black.opacity(0.12))
                             .overlay(
-                                RoundedRectangle(cornerRadius: scaled(14, min: 11))
-                                    .stroke(OniTanTheme.accentWeak.opacity(0.18), lineWidth: 1)
+                                RoundedRectangle(cornerRadius: scaled(12, min: 9))
+                                    .stroke(OniTanTheme.accentWeak.opacity(0.15), lineWidth: 1)
                             )
                     )
                     .environment(\.openURL, OpenURLAction { url in
-                        guard url.scheme == "onitan-meaning", let meaning else { return .systemAction }
+                        guard url.scheme == "onitan-meaning", let meaning = question.termMeaning else { return .systemAction }
                         meaningPopoverTerm = TermMeaningInfo(word: target, meaning: meaning)
                         return .handled
                     })
             } else {
-                Text(target)
-                    .font(playFontManager.font(size: scaled(54, min: 44), weight: .black))
-                    .foregroundColor(OniTanTheme.accentWeak)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-
                 Text(context)
-                    .font(playFontManager.font(size: scaled(34, min: 28), weight: .medium))
+                    .font(playFontManager.font(size: scaled(22, min: 18), weight: .regular))
                     .foregroundColor(OniTanTheme.textPrimary)
-                    .lineSpacing(8)
+                    .lineSpacing(5)
                     .multilineTextAlignment(.leading)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(5)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(3)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, scaled(12, min: 8))
-                    .padding(.vertical, scaled(10, min: 8))
+                    .padding(.horizontal, scaled(10, min: 8))
+                    .padding(.vertical, scaled(8, min: 6))
                     .background(
-                        RoundedRectangle(cornerRadius: scaled(14, min: 11))
-                            .fill(Color.black.opacity(0.14))
+                        RoundedRectangle(cornerRadius: scaled(12, min: 9))
+                            .fill(Color.black.opacity(0.12))
                             .overlay(
-                                RoundedRectangle(cornerRadius: scaled(14, min: 11))
-                                    .stroke(OniTanTheme.accentWeak.opacity(0.18), lineWidth: 1)
+                                RoundedRectangle(cornerRadius: scaled(12, min: 9))
+                                    .stroke(OniTanTheme.accentWeak.opacity(0.15), lineWidth: 1)
                             )
                     )
             }
@@ -332,7 +334,7 @@ struct QuestionPromptView: View {
         result.foregroundColor = OniTanTheme.textPrimary
 
         var targetAttr = AttributedString(String(context[targetRange]))
-        targetAttr.font = playFontManager.font(size: scaled(54, min: 44), weight: .black)
+        targetAttr.font = playFontManager.font(size: scaled(22, min: 18), weight: .black)
         targetAttr.foregroundColor = OniTanTheme.accentWeak
         targetAttr.underlineStyle = .single
         if linkable {
