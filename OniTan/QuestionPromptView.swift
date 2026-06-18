@@ -156,17 +156,15 @@ struct QuestionPromptView: View {
 
     private var yojijukugoContent: some View {
         let yoji = question.payload?.yoji ?? question.displayPrompt
-        let fontSize = scaled(72, min: 56)
+        let blankSize = scaled(80, min: 64)
+        let normalSize = scaled(60, min: 48)
 
         return HStack(spacing: 2) {
             ForEach(Array(yoji.enumerated()), id: \.offset) { _, char in
+                let isBlank = String(char) == "□"
                 Text(String(char))
-                    .font(playFontManager.font(size: fontSize, weight: .black))
-                    .foregroundColor(
-                        String(char) == "□"
-                            ? OniTanTheme.accentPrimary
-                            : OniTanTheme.textPrimary
-                    )
+                    .font(playFontManager.font(size: isBlank ? blankSize : normalSize, weight: .black))
+                    .foregroundColor(isBlank ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
                     .shadow(color: .black.opacity(0.3), radius: 3)
             }
         }
@@ -179,7 +177,8 @@ struct QuestionPromptView: View {
 
     private var commonKanjiContent: some View {
         let terms = question.payload?.blankTerms ?? [question.displayPrompt]
-        let fontSize = scaled(46, min: 32)
+        let blankSize = scaled(52, min: 38)
+        let normalSize = scaled(40, min: 30)
 
         return VStack(spacing: scaled(14, min: 10)) {
             HStack(spacing: scaled(6, min: 4)) {
@@ -198,13 +197,10 @@ struct QuestionPromptView: View {
                 ForEach(terms.prefix(4), id: \.self) { term in
                     HStack(spacing: 1) {
                         ForEach(Array(term.enumerated()), id: \.offset) { _, char in
+                            let isBlank = String(char) == "□"
                             Text(String(char))
-                                .font(playFontManager.font(size: fontSize, weight: .black))
-                                .foregroundColor(
-                                    String(char) == "□"
-                                        ? OniTanTheme.accentPrimary
-                                        : OniTanTheme.textPrimary
-                                )
+                                .font(playFontManager.font(size: isBlank ? blankSize : normalSize, weight: .black))
+                                .foregroundColor(isBlank ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
                                 .shadow(color: .black.opacity(0.3), radius: 3)
                         }
                     }
@@ -232,14 +228,15 @@ struct QuestionPromptView: View {
     private var compoundReadingKunContent: some View {
         let compound = question.payload?.targetCompound ?? question.displayPrompt
         let targetChar = question.payload?.targetKanjiInCompound
-        let fontSize = scaled(68, min: 52)
+        let targetSize = scaled(80, min: 64)
+        let normalSize = scaled(56, min: 44)
 
         return HStack(spacing: 2) {
             ForEach(Array(compound.enumerated()), id: \.offset) { _, char in
                 let charStr = String(char)
                 let isTarget = targetChar.map { $0 == charStr } ?? false
                 Text(charStr)
-                    .font(playFontManager.font(size: fontSize, weight: .black))
+                    .font(playFontManager.font(size: isTarget ? targetSize : normalSize, weight: .black))
                     .foregroundColor(isTarget ? OniTanTheme.accentPrimary : OniTanTheme.textPrimary)
                     .shadow(color: .black.opacity(0.3), radius: 3)
             }
@@ -254,7 +251,7 @@ struct QuestionPromptView: View {
     private var contextReadingContent: some View {
         let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
         let target = contextReadingTarget
-        let bodyFont = playFontManager.font(size: scaled(56, min: 44), weight: .bold)
+        let bodyFont = playFontManager.font(size: scaled(34, min: 28), weight: .medium)
         let meaning = question.termMeaning
 
         return VStack(alignment: .leading, spacing: scaled(8, min: 5)) {
@@ -295,13 +292,13 @@ struct QuestionPromptView: View {
                     })
             } else {
                 Text(target)
-                    .font(playFontManager.font(size: scaled(46, min: 36), weight: .black))
+                    .font(playFontManager.font(size: scaled(54, min: 44), weight: .black))
                     .foregroundColor(OniTanTheme.accentWeak)
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
 
                 Text(context)
-                    .font(bodyFont)
+                    .font(playFontManager.font(size: scaled(34, min: 28), weight: .medium))
                     .foregroundColor(OniTanTheme.textPrimary)
                     .lineSpacing(8)
                     .multilineTextAlignment(.leading)
@@ -335,7 +332,7 @@ struct QuestionPromptView: View {
         result.foregroundColor = OniTanTheme.textPrimary
 
         var targetAttr = AttributedString(String(context[targetRange]))
-        targetAttr.font = playFontManager.font(size: scaled(46, min: 38), weight: .black)
+        targetAttr.font = playFontManager.font(size: scaled(54, min: 44), weight: .black)
         targetAttr.foregroundColor = OniTanTheme.accentWeak
         targetAttr.underlineStyle = .single
         if linkable {
