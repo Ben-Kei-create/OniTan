@@ -109,7 +109,7 @@ struct QuestionPromptView: View {
                 removal:   .move(edge: .leading).combined(with: .opacity)
             ))
         }
-        .frame(height: cardHeight)
+        .frame(minHeight: cardHeight, maxHeight: .infinity)
     }
 
     // MARK: - Default: Single Word / Compound

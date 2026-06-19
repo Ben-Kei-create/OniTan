@@ -106,7 +106,7 @@ struct MainView: View {
                                         ))
                                 }
                             default:
-                                quizContentView(scale: scale)
+                                quizContentView(scale: scale, containerHeight: proxy.size.height)
                             }
                         }
                         .navigationBarBackButtonHidden(true)
@@ -229,9 +229,22 @@ struct MainView: View {
 
     // MARK: - Quiz Content
 
-    private func quizContentView(scale: CGFloat) -> some View {
-        VStack(spacing: 0) {
-            // Stage number + pass indicator
+    private func quizContentView(scale: CGFloat, containerHeight: CGFloat) -> some View {
+        let topBarHeight: CGFloat = scaled(44, by: scale, min: 38)
+        let headerHeight: CGFloat = scaled(36, by: scale, min: 30)
+        let progressHeight: CGFloat = scaled(14, by: scale, min: 10)
+        let gap: CGFloat = scaled(16, by: scale, min: 10)
+        let fixedTotal = topBarHeight + headerHeight + progressHeight + gap * 2
+        let contentBudget = max(400, containerHeight - fixedTotal)
+        let cardProportion: CGFloat = {
+            switch vm.currentQuestion.kind {
+            case .passageReading, .passageVocabulary: return 0.44
+            default: return 0.38
+            }
+        }()
+        let dynamicCardHeight = contentBudget * cardProportion
+
+        return VStack(spacing: 0) {
             stageHeader(scale: scale)
 
             GeometryReader { proxy in
@@ -247,14 +260,13 @@ struct MainView: View {
             .padding(.top, scaled(4, by: scale, min: 3))
             .accessibilityHidden(true)
 
-            Spacer().frame(height: scaled(16, by: scale, min: 10))
+            Spacer().frame(height: gap)
 
-            // Kanji display — shrinks when showing wrong answer
             kanjiDisplay(scale: scale)
+                .frame(height: dynamicCardHeight)
 
-            Spacer().frame(height: scaled(16, by: scale, min: 10))
+            Spacer().frame(height: gap)
 
-            // Choice area
             Group {
                 switch vm.phase {
                 case .answering:
@@ -275,13 +287,14 @@ struct MainView: View {
                     EmptyView()
                 }
             }
+            .frame(maxHeight: .infinity)
             .transition(.opacity)
             .animation(.easeInOut(duration: 0.22), value: vm.phase)
 
-            Spacer(minLength: scaled(10, by: scale, min: 6))
+            Spacer(minLength: scaled(8, by: scale, min: 4))
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private func stageHeader(scale: CGFloat) -> some View {
@@ -369,7 +382,7 @@ struct MainView: View {
     private func choiceStack(scale: CGFloat) -> some View {
         let shuffled = vm.currentChoices
         let usesMeaningChoices = vm.currentQuestion.kind == .proverb
-        let gridSpacing = scaled(usesMeaningChoices ? 8 : 10, by: scale, min: 6)
+        let gridSpacing = scaled(usesMeaningChoices ? 10 : 12, by: scale, min: 8)
         let columns = usesMeaningChoices
             ? [GridItem(.flexible(), spacing: gridSpacing)]
             : [
@@ -377,7 +390,7 @@ struct MainView: View {
                 GridItem(.flexible(), spacing: gridSpacing)
             ]
 
-        return VStack(alignment: .leading, spacing: scaled(10, by: scale, min: 8)) {
+        return VStack(alignment: .leading, spacing: scaled(12, by: scale, min: 10)) {
             yojijukugoMeaningHint(scale: scale)
 
             choicePromptLabel(scale: scale)
@@ -831,7 +844,7 @@ private struct ChoiceCard: View {
 
     private var isMeaningLayout: Bool { layout == .meaning }
     private var textSize: CGFloat { isMeaningLayout ? max(14, 16 * scale) : max(18, 24 * scale) }
-    private var minHeight: CGFloat { isMeaningLayout ? max(58, 64 * scale) : max(50, 64 * scale) }
+    private var minHeight: CGFloat { isMeaningLayout ? max(64, 72 * scale) : max(60, 72 * scale) }
     private var horizontalPadding: CGFloat { isMeaningLayout ? max(14, 16 * scale) : 0 }
     private var verticalPadding: CGFloat { isMeaningLayout ? max(8, 10 * scale) : 0 }
 
