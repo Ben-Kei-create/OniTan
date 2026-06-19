@@ -115,8 +115,17 @@ struct QuestionPromptView: View {
     // MARK: - Default: Single Word / Compound
 
     private var singleWordContent: some View {
-        Text(question.displayPrompt)
-            .font(playFontManager.font(size: scaled(96, min: 72), weight: .black))
+        let text = question.displayPrompt
+        let fontSize: CGFloat = {
+            switch text.count {
+            case 1: return scaled(130, min: 96)
+            case 2: return scaled(110, min: 82)
+            default: return scaled(96, min: 72)
+            }
+        }()
+
+        return Text(text)
+            .font(playFontManager.font(size: fontSize, weight: .black))
             .foregroundColor(OniTanTheme.textPrimary)
             .minimumScaleFactor(0.25)
             .lineLimit(2)
@@ -130,9 +139,16 @@ struct QuestionPromptView: View {
 
     private var synonymAntonymContent: some View {
         let target = relationTargetWord
+        let fontSize: CGFloat = {
+            switch target.count {
+            case 1: return scaled(110, min: 82)
+            case 2: return scaled(100, min: 74)
+            default: return scaled(88, min: 66)
+            }
+        }()
 
         return Text(target)
-            .font(playFontManager.font(size: scaled(88, min: 66), weight: .black))
+            .font(playFontManager.font(size: fontSize, weight: .black))
             .foregroundColor(OniTanTheme.textPrimary)
             .minimumScaleFactor(0.35)
             .lineLimit(1)
@@ -220,7 +236,7 @@ struct QuestionPromptView: View {
     private var compoundReadingKunContent: some View {
         let compound = question.payload?.targetCompound ?? question.displayPrompt
         let targetChar = question.payload?.targetKanjiInCompound
-        let targetSize = scaled(80, min: 64)
+        let targetSize = scaled(96, min: 72)
         let normalSize = scaled(56, min: 44)
 
         return HStack(spacing: 2) {
@@ -243,6 +259,13 @@ struct QuestionPromptView: View {
     private var contextReadingContent: some View {
         let context = nonEmpty(question.payload?.sentenceContext) ?? question.displayPrompt
         let target = contextReadingTarget
+        let targetFontSize: CGFloat = {
+            switch target.count {
+            case 1: return scaled(96, min: 72)
+            case 2: return scaled(84, min: 64)
+            default: return scaled(72, min: 56)
+            }
+        }()
 
         return VStack(spacing: scaled(10, min: 6)) {
             HStack(spacing: scaled(6, min: 4)) {
@@ -259,7 +282,7 @@ struct QuestionPromptView: View {
             }
 
             Text(target)
-                .font(playFontManager.font(size: scaled(72, min: 56), weight: .black))
+                .font(playFontManager.font(size: targetFontSize, weight: .black))
                 .foregroundColor(OniTanTheme.accentWeak)
                 .minimumScaleFactor(0.4)
                 .lineLimit(1)
@@ -268,7 +291,7 @@ struct QuestionPromptView: View {
 
             if let range = context.range(of: target) {
                 Text(attributedSentence(context: context, targetRange: range,
-                        bodyFont: playFontManager.font(size: scaled(22, min: 18), weight: .regular),
+                        bodyFont: playFontManager.font(size: scaled(26, min: 20), weight: .medium),
                         linkable: question.termMeaning != nil))
                     .lineSpacing(5)
                     .multilineTextAlignment(.leading)
@@ -292,7 +315,7 @@ struct QuestionPromptView: View {
                     })
             } else {
                 Text(context)
-                    .font(playFontManager.font(size: scaled(22, min: 18), weight: .regular))
+                    .font(playFontManager.font(size: scaled(26, min: 20), weight: .medium))
                     .foregroundColor(OniTanTheme.textPrimary)
                     .lineSpacing(5)
                     .multilineTextAlignment(.leading)
@@ -326,7 +349,7 @@ struct QuestionPromptView: View {
         result.foregroundColor = OniTanTheme.textPrimary
 
         var targetAttr = AttributedString(String(context[targetRange]))
-        targetAttr.font = playFontManager.font(size: scaled(22, min: 18), weight: .black)
+        targetAttr.font = playFontManager.font(size: scaled(26, min: 20), weight: .black)
         targetAttr.foregroundColor = OniTanTheme.accentWeak
         targetAttr.underlineStyle = .single
         if linkable {

@@ -378,27 +378,37 @@ struct MainView: View {
     }
 
     private func meaningHintView(_ text: String, scale: CGFloat) -> some View {
-        HStack(alignment: .top, spacing: scaled(8, by: scale, min: 6)) {
-            Image(systemName: "text.book.closed")
-                .font(.system(size: scaled(13, by: scale, min: 11), weight: .semibold))
-                .foregroundColor(OniTanTheme.accentWeak.opacity(0.7))
-                .padding(.top, 2)
+        HStack(alignment: .top, spacing: scaled(9, by: scale, min: 7)) {
+            Image(systemName: "book.closed.fill")
+                .font(.system(size: scaled(13, by: scale, min: 11), weight: .bold))
+                .foregroundColor(OniTanTheme.accentWeak)
+                .frame(width: scaled(22, by: scale, min: 18), height: scaled(22, by: scale, min: 18))
+                .background(OniTanTheme.accentWeak.opacity(0.12))
+                .clipShape(Circle())
+                .accessibilityHidden(true)
 
-            Text(text)
-                .font(playFont(scaled(13, by: scale, min: 11), weight: .regular))
-                .foregroundColor(OniTanTheme.textSecondary)
-                .lineLimit(3)
-                .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: scaled(3, by: scale, min: 2)) {
+                Text("意味")
+                    .font(playFont(scaled(11, by: scale, min: 9), weight: .bold))
+                    .foregroundColor(OniTanTheme.accentWeak)
+
+                Text(text)
+                    .font(playFont(scaled(14, by: scale, min: 12), weight: .medium))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .lineSpacing(3)
+                    .lineLimit(3)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
         .padding(.horizontal, scaled(14, by: scale, min: 10))
         .padding(.vertical, scaled(10, by: scale, min: 8))
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: scaled(12, by: scale, min: 10))
-                .fill(OniTanTheme.cardBackground.opacity(0.5))
+            RoundedRectangle(cornerRadius: scaled(14, by: scale, min: 12))
+                .fill(OniTanTheme.cardBackground.opacity(0.72))
                 .overlay(
-                    RoundedRectangle(cornerRadius: scaled(12, by: scale, min: 10))
-                        .stroke(OniTanTheme.cardBorder.opacity(0.5), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: scaled(14, by: scale, min: 12))
+                        .stroke(OniTanTheme.accentWeak.opacity(0.22), lineWidth: 1)
                 )
         )
     }
