@@ -264,7 +264,13 @@ struct MainView: View {
             kanjiDisplay(scale: scale)
                 .frame(height: dynamicCardHeight)
 
-            Spacer(minLength: scaled(16, by: scale, min: 10))
+            Spacer(minLength: scaled(12, by: scale, min: 8))
+
+            if let hint = meaningHint {
+                meaningHintView(hint, scale: scale)
+            }
+
+            Spacer(minLength: scaled(12, by: scale, min: 8))
 
             Group {
                 switch vm.phase {
@@ -332,6 +338,69 @@ struct MainView: View {
         .animation(.easeInOut(duration: 0.25), value: isShowingWrong)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("quiz_kanji")
+    }
+
+    // MARK: - Meaning Hint
+
+    private var meaningHint: String? {
+        let q = vm.currentQuestion
+        switch q.kind {
+        case .yojijukugo:
+            return nil
+        case .sentenceReading, .hyogaiReading, .compoundReadingKun,
+             .passageReading, .passageVocabulary:
+            return extractMeaning(from: q.explain)
+        case .synonym, .antonym:
+            return extractMeaning(from: q.explain)
+        case .proverb:
+            return extractMeaning(from: q.explain)
+        case .errorCorrection:
+            return nil
+        default:
+            return extractMeaning(from: q.explain)
+        }
+    }
+
+    private func extractMeaning(from explain: String) -> String? {
+        for line in explain.components(separatedBy: "\n") {
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed.hasPrefix("意味:") || trimmed.hasPrefix("意味: ") {
+                let value = trimmed.replacingOccurrences(of: "意味:", with: "")
+                    .trimmingCharacters(in: .whitespaces)
+                if !value.isEmpty { return value }
+            }
+        }
+        if let range = explain.range(of: "と読む。") {
+            let after = String(explain[range.upperBound...]).trimmingCharacters(in: .whitespaces)
+            if !after.isEmpty { return after }
+        }
+        return nil
+    }
+
+    private func meaningHintView(_ text: String, scale: CGFloat) -> some View {
+        HStack(alignment: .top, spacing: scaled(8, by: scale, min: 6)) {
+            Image(systemName: "text.book.closed")
+                .font(.system(size: scaled(13, by: scale, min: 11), weight: .semibold))
+                .foregroundColor(OniTanTheme.accentWeak.opacity(0.7))
+                .padding(.top, 2)
+
+            Text(text)
+                .font(playFont(scaled(13, by: scale, min: 11), weight: .regular))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .lineLimit(3)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(.horizontal, scaled(14, by: scale, min: 10))
+        .padding(.vertical, scaled(10, by: scale, min: 8))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: scaled(12, by: scale, min: 10))
+                .fill(OniTanTheme.cardBackground.opacity(0.5))
+                .overlay(
+                    RoundedRectangle(cornerRadius: scaled(12, by: scale, min: 10))
+                        .stroke(OniTanTheme.cardBorder.opacity(0.5), lineWidth: 1)
+                )
+        )
     }
 
     @ViewBuilder
