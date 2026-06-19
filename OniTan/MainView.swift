@@ -233,13 +233,12 @@ struct MainView: View {
         let topBarHeight: CGFloat = scaled(44, by: scale, min: 38)
         let headerHeight: CGFloat = scaled(36, by: scale, min: 30)
         let progressHeight: CGFloat = scaled(14, by: scale, min: 10)
-        let gap: CGFloat = scaled(16, by: scale, min: 10)
-        let fixedTotal = topBarHeight + headerHeight + progressHeight + gap * 2
+        let fixedTotal = topBarHeight + headerHeight + progressHeight
         let contentBudget = max(400, containerHeight - fixedTotal)
         let cardProportion: CGFloat = {
             switch vm.currentQuestion.kind {
-            case .passageReading, .passageVocabulary: return 0.44
-            default: return 0.38
+            case .passageReading, .passageVocabulary: return 0.40
+            default: return 0.34
             }
         }()
         let dynamicCardHeight = contentBudget * cardProportion
@@ -260,12 +259,12 @@ struct MainView: View {
             .padding(.top, scaled(4, by: scale, min: 3))
             .accessibilityHidden(true)
 
-            Spacer().frame(height: gap)
+            Spacer().frame(height: scaled(12, by: scale, min: 8))
 
             kanjiDisplay(scale: scale)
                 .frame(height: dynamicCardHeight)
 
-            Spacer().frame(height: gap)
+            Spacer(minLength: scaled(16, by: scale, min: 10))
 
             Group {
                 switch vm.phase {
@@ -287,11 +286,10 @@ struct MainView: View {
                     EmptyView()
                 }
             }
-            .frame(maxHeight: .infinity)
             .transition(.opacity)
             .animation(.easeInOut(duration: 0.22), value: vm.phase)
 
-            Spacer(minLength: scaled(8, by: scale, min: 4))
+            Spacer().frame(height: scaled(6, by: scale, min: 4))
         }
         .padding(.horizontal, scaled(20, by: scale, min: 14))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
