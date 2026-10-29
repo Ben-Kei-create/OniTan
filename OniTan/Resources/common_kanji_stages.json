@@ -5,6 +5,30 @@
       "file": "common_kanji_stage1.json",
       "title": "共通漢字 1",
       "difficulty": 4
+    },
+    {
+      "id": 702,
+      "file": "common_kanji_stage2.json",
+      "title": "共通漢字 2",
+      "difficulty": 3
+    },
+    {
+      "id": 703,
+      "file": "common_kanji_stage3.json",
+      "title": "共通漢字 3",
+      "difficulty": 3
+    },
+    {
+      "id": 704,
+      "file": "common_kanji_stage4.json",
+      "title": "共通漢字 4",
+      "difficulty": 3
+    },
+    {
+      "id": 705,
+      "file": "common_kanji_stage5.json",
+      "title": "共通漢字 5",
+      "difficulty": 3
     }
   ]
 }

@@ -1,0 +1,225 @@
+{
+  "stage": 21,
+  "questions": [
+    {
+      "kanji": "涅槃",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "涅槃",
+        "sentenceContext": "涅槃を題材にした仏画を見る。"
+      },
+      "prompt": "例文中の「涅槃」の読みを選べ。",
+      "choices": [
+        "ねばん",
+        "ねぼん",
+        "ねはん",
+        "でんばん"
+      ],
+      "answer": "ねはん",
+      "explain": "例文: 涅槃を題材にした仏画を見る。\n正解の読み: ねはん\n意味: 煩悩を離れた悟りの境地\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005032300"
+    },
+    {
+      "kanji": "諦観",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "諦観",
+        "sentenceContext": "現実を諦観する姿勢を論じる。"
+      },
+      "prompt": "例文中の「諦観」の読みを選べ。",
+      "choices": [
+        "ていけん",
+        "しんかん",
+        "ていがん",
+        "ていかん"
+      ],
+      "answer": "ていかん",
+      "explain": "例文: 現実を諦観する姿勢を論じる。\n正解の読み: ていかん\n意味: 物事の本質を見極めること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004989800"
+    },
+    {
+      "kanji": "慚愧",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "慚愧",
+        "sentenceContext": "自らの不明を慚愧する。"
+      },
+      "prompt": "例文中の「慚愧」の読みを選べ。",
+      "choices": [
+        "ざんき",
+        "ぜんき",
+        "ざんかい",
+        "ざんぎょ"
+      ],
+      "answer": "ざんき",
+      "explain": "例文: 自らの不明を慚愧する。\n正解の読み: ざんき\n意味: 自分の行いを恥じること\n出典: コトバンク https://kotobank.jp/word/%E6%85%9A%E6%84%A7-1541180"
+    },
+    {
+      "kanji": "呵責",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "呵責",
+        "sentenceContext": "良心の呵責に苦しんでいる。"
+      },
+      "prompt": "例文中の「呵責」の読みを選べ。",
+      "choices": [
+        "かちゃく",
+        "かしゃく",
+        "かせき",
+        "がせき"
+      ],
+      "answer": "かしゃく",
+      "explain": "例文: 良心の呵責に苦しんでいる。\n正解の読み: かしゃく\n意味: 厳しく責めること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000657700"
+    },
+    {
+      "kanji": "軋轢",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "軋轢",
+        "sentenceContext": "意見の違いから軋轢が生じた。"
+      },
+      "prompt": "例文中の「軋轢」の読みを選べ。",
+      "choices": [
+        "あつらく",
+        "あつりん",
+        "あつれき",
+        "きしれき"
+      ],
+      "answer": "あつれき",
+      "explain": "例文: 意見の違いから軋轢が生じた。\n正解の読み: あつれき\n意味: 人間関係の不和や摩擦\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000067600"
+    },
+    {
+      "kanji": "齟齬",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "齟齬",
+        "sentenceContext": "両者の説明には齟齬がある。"
+      },
+      "prompt": "例文中の「齟齬」の読みを選べ。",
+      "choices": [
+        "さご",
+        "そこ",
+        "しょご",
+        "そご"
+      ],
+      "answer": "そご",
+      "explain": "例文: 両者の説明には齟齬がある。\n正解の読み: そご\n意味: 食い違って合わないこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004194100"
+    },
+    {
+      "kanji": "忖度",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "忖度",
+        "sentenceContext": "依頼者の意向を忖度した。"
+      },
+      "prompt": "例文中の「忖度」の読みを選べ。",
+      "choices": [
+        "そんたく",
+        "ふど",
+        "そんど",
+        "すんたく"
+      ],
+      "answer": "そんたく",
+      "explain": "例文: 依頼者の意向を忖度した。\n正解の読み: そんたく\n意味: 他人の気持ちを推し量ること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004380200"
+    },
+    {
+      "kanji": "揶揄",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "揶揄",
+        "sentenceContext": "他人の失敗を揶揄してはいけない。"
+      },
+      "prompt": "例文中の「揶揄」の読みを選べ。",
+      "choices": [
+        "やにゅ",
+        "やゆ",
+        "じゃゆ",
+        "やしゅ"
+      ],
+      "answer": "やゆ",
+      "explain": "例文: 他人の失敗を揶揄してはいけない。\n正解の読み: やゆ\n意味: からかうこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006791000"
+    },
+    {
+      "kanji": "邂逅",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "邂逅",
+        "sentenceContext": "旅先で旧友との邂逅を喜んだ。"
+      },
+      "prompt": "例文中の「邂逅」の読みを選べ。",
+      "choices": [
+        "げこう",
+        "かいとう",
+        "かいこう",
+        "かいごう"
+      ],
+      "answer": "かいこう",
+      "explain": "例文: 旅先で旧友との邂逅を喜んだ。\n正解の読み: かいこう\n意味: 思いがけず出会うこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000835800"
+    },
+    {
+      "kanji": "寂寥",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "寂寥",
+        "sentenceContext": "秋の野に寂寥を感じた。"
+      },
+      "prompt": "例文中の「寂寥」の読みを選べ。",
+      "choices": [
+        "じゃくりょう",
+        "せきろう",
+        "じゃくろう",
+        "せきりょう"
+      ],
+      "answer": "せきりょう",
+      "explain": "例文: 秋の野に寂寥を感じた。\n正解の読み: せきりょう\n意味: ひっそりとして寂しいこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003023100"
+    }
+  ]
+}

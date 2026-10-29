@@ -5,6 +5,30 @@
       "file": "antonym_stage1.json",
       "title": "対義語 1",
       "difficulty": 4
+    },
+    {
+      "id": 302,
+      "file": "antonym_stage2.json",
+      "title": "対義語 2",
+      "difficulty": 3
+    },
+    {
+      "id": 303,
+      "file": "antonym_stage3.json",
+      "title": "対義語 3",
+      "difficulty": 3
+    },
+    {
+      "id": 304,
+      "file": "antonym_stage4.json",
+      "title": "対義語 4",
+      "difficulty": 3
+    },
+    {
+      "id": 305,
+      "file": "antonym_stage5.json",
+      "title": "対義語 5",
+      "difficulty": 3
     }
   ]
 }

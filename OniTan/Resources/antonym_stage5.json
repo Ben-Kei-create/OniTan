@@ -1,0 +1,225 @@
+{
+  "stage": 305,
+  "questions": [
+    {
+      "kanji": "顕在",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "顕在",
+        "relationWord": "潜在"
+      },
+      "prompt": "「顕在」の対義語は？",
+      "choices": [
+        "表出",
+        "顕現",
+        "潜在",
+        "露呈"
+      ],
+      "answer": "潜在",
+      "explain": "意味: 表に現れていることと内に隠れていること\n正解: 顕在⇔潜在\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001975000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004100800"
+    },
+    {
+      "kanji": "恒久",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "恒久",
+        "relationWord": "一時"
+      },
+      "prompt": "「恒久」の対義語は？",
+      "choices": [
+        "永続",
+        "永久",
+        "永遠",
+        "一時"
+      ],
+      "answer": "一時",
+      "explain": "意味: 長く変わらず続くこととしばらくの間であること\n正解: 恒久⇔一時\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002211300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000213500"
+    },
+    {
+      "kanji": "必然",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "必然",
+        "relationWord": "偶然"
+      },
+      "prompt": "「必然」の対義語は？",
+      "choices": [
+        "偶然",
+        "不可避",
+        "当然",
+        "必至"
+      ],
+      "answer": "偶然",
+      "explain": "意味: 必ずそうなることと思いがけずそうなること\n正解: 必然⇔偶然\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005904400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001691000"
+    },
+    {
+      "kanji": "普遍",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "普遍",
+        "relationWord": "特殊"
+      },
+      "prompt": "「普遍」の対義語は？",
+      "choices": [
+        "全般",
+        "特殊",
+        "一般",
+        "共通"
+      ],
+      "answer": "特殊",
+      "explain": "意味: 広くすべてに共通することと限られたものだけのこと\n正解: 普遍⇔特殊\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006057800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005299400"
+    },
+    {
+      "kanji": "原則",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "原則",
+        "relationWord": "例外"
+      },
+      "prompt": "「原則」の対義語は？",
+      "choices": [
+        "基準",
+        "定則",
+        "例外",
+        "規範"
+      ],
+      "answer": "例外",
+      "explain": "意味: 基本の決まりとその決まりに当てはまらないもの\n正解: 原則⇔例外\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002000800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007249900"
+    },
+    {
+      "kanji": "実在",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "実在",
+        "relationWord": "架空"
+      },
+      "prompt": "「実在」の対義語は？",
+      "choices": [
+        "現存",
+        "実存",
+        "存在",
+        "架空"
+      ],
+      "answer": "架空",
+      "explain": "意味: 実際に存在することと想像上だけのこと\n正解: 実在⇔架空\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002948000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000667200"
+    },
+    {
+      "kanji": "形式",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "形式",
+        "relationWord": "内容"
+      },
+      "prompt": "「形式」の対義語は？",
+      "choices": [
+        "内容",
+        "様式",
+        "外形",
+        "体裁"
+      ],
+      "answer": "内容",
+      "explain": "意味: 外側の形と内側の実質\n正解: 形式⇔内容\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001756500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005382900"
+    },
+    {
+      "kanji": "質素",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "質素",
+        "relationWord": "華美"
+      },
+      "prompt": "「質素」の対義語は？",
+      "choices": [
+        "地味",
+        "華美",
+        "簡素",
+        "素朴"
+      ],
+      "answer": "華美",
+      "explain": "意味: 飾り気が少ないことと華やかで派手なこと\n正解: 質素⇔華美\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002942200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000685700"
+    },
+    {
+      "kanji": "粗放",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "粗放",
+        "relationWord": "集約"
+      },
+      "prompt": "「粗放」の対義語は？",
+      "choices": [
+        "粗雑",
+        "杜撰",
+        "集約",
+        "粗略"
+      ],
+      "answer": "集約",
+      "explain": "意味: 手間をかけず大まかに行うことと労力等を集中させること\n正解: 粗放⇔集約\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004175500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003139900"
+    },
+    {
+      "kanji": "肥沃",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "肥沃",
+        "relationWord": "瘠薄"
+      },
+      "prompt": "「肥沃」の対義語は？",
+      "choices": [
+        "豊沃",
+        "肥厚",
+        "豊潤",
+        "瘠薄"
+      ],
+      "answer": "瘠薄",
+      "explain": "意味: 土地が肥えていることとやせていること\n正解: 肥沃⇔瘠薄\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005808500\n出典: コトバンク https://kotobank.jp/word/%E7%98%A0%E8%96%84-2838981"
+    }
+  ]
+}

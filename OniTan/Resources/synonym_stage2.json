@@ -1,0 +1,225 @@
+{
+  "stage": 202,
+  "questions": [
+    {
+      "kanji": "沈着",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "沈着",
+        "relationWord": "冷静"
+      },
+      "prompt": "「沈着」の類義語は？",
+      "choices": [
+        "冷静",
+        "狼狽",
+        "激昂",
+        "動揺"
+      ],
+      "answer": "冷静",
+      "explain": "意味: 落ち着いて物事に動じないこと\n正解: 沈着≒冷静\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004862100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007245600"
+    },
+    {
+      "kanji": "寛大",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "寛大",
+        "relationWord": "寛容"
+      },
+      "prompt": "「寛大」の類義語は？",
+      "choices": [
+        "苛酷",
+        "寛容",
+        "狭量",
+        "厳格"
+      ],
+      "answer": "寛容",
+      "explain": "意味: 人の過ちなどを広い心で受け入れること\n正解: 寛大≒寛容\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001094100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001094300"
+    },
+    {
+      "kanji": "堅固",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "堅固",
+        "relationWord": "頑丈"
+      },
+      "prompt": "「堅固」の類義語は？",
+      "choices": [
+        "柔軟",
+        "希薄",
+        "頑丈",
+        "脆弱"
+      ],
+      "answer": "頑丈",
+      "explain": "意味: しっかりして壊れにくいこと\n正解: 堅固≒頑丈\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001935400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001166800"
+    },
+    {
+      "kanji": "静寂",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "静寂",
+        "relationWord": "閑寂"
+      },
+      "prompt": "「静寂」の類義語は？",
+      "choices": [
+        "喧騒",
+        "混雑",
+        "活況",
+        "閑寂"
+      ],
+      "answer": "閑寂",
+      "explain": "意味: 物音がせず静かなこと\n正解: 静寂≒閑寂\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003925400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001090300"
+    },
+    {
+      "kanji": "卓越",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "卓越",
+        "relationWord": "秀逸"
+      },
+      "prompt": "「卓越」の類義語は？",
+      "choices": [
+        "秀逸",
+        "凡庸",
+        "稚拙",
+        "劣悪"
+      ],
+      "answer": "秀逸",
+      "explain": "意味: 他より抜きん出て優れていること\n正解: 卓越≒秀逸\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004527300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003101200"
+    },
+    {
+      "kanji": "洞察",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "洞察",
+        "relationWord": "看破"
+      },
+      "prompt": "「洞察」の類義語は？",
+      "choices": [
+        "混同",
+        "看破",
+        "誤認",
+        "看過"
+      ],
+      "answer": "看破",
+      "explain": "意味: 物事の本質や隠れた事情を見抜くこと\n正解: 洞察≒看破\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005263800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001049800"
+    },
+    {
+      "kanji": "承諾",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "承諾",
+        "relationWord": "快諾"
+      },
+      "prompt": "「承諾」の類義語は？",
+      "choices": [
+        "拒絶",
+        "辞退",
+        "快諾",
+        "固辞"
+      ],
+      "answer": "快諾",
+      "explain": "意味: 依頼などを引き受けること\n正解: 承諾≒快諾\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003362200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000768200"
+    },
+    {
+      "kanji": "敬服",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "敬服",
+        "relationWord": "感服"
+      },
+      "prompt": "「敬服」の類義語は？",
+      "choices": [
+        "軽蔑",
+        "侮辱",
+        "反感",
+        "感服"
+      ],
+      "answer": "感服",
+      "explain": "意味: 相手の優れた点を認めて感心すること\n正解: 敬服≒感服\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001791700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001099300"
+    },
+    {
+      "kanji": "阻害",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "阻害",
+        "relationWord": "妨害"
+      },
+      "prompt": "「阻害」の類義語は？",
+      "choices": [
+        "妨害",
+        "促進",
+        "援助",
+        "奨励"
+      ],
+      "answer": "妨害",
+      "explain": "意味: 物事の進行を妨げること\n正解: 阻害≒妨害\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004158300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006422500"
+    },
+    {
+      "kanji": "発端",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "発端",
+        "relationWord": "端緒"
+      },
+      "prompt": "「発端」の類義語は？",
+      "choices": [
+        "帰結",
+        "端緒",
+        "終局",
+        "結末"
+      ],
+      "answer": "端緒",
+      "explain": "意味: 物事が始まるきっかけ\n正解: 発端≒端緒\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005693000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004619200"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "stage": 402,
+  "questions": [
+    {
+      "kanji": "斡旋",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "あっせん",
+        "kanaPrompt": "あっせん",
+        "targetKanji": "斡旋"
+      },
+      "prompt": "「あっせん」を漢字で書くと？\n意味: 間に入って物事がうまく運ぶよう世話をすること",
+      "choices": [
+        "斡旋",
+        "幹旋",
+        "斡施",
+        "斡旅"
+      ],
+      "answer": "斡旋",
+      "explain": "意味: 間に入って物事がうまく運ぶよう世話をすること\n正解: 斡旋（あっせん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000069000"
+    },
+    {
+      "kanji": "萎縮",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "いしゅく",
+        "kanaPrompt": "いしゅく",
+        "targetKanji": "萎縮"
+      },
+      "prompt": "「いしゅく」を漢字で書くと？\n意味: 縮んで小さくなること。気後れして動けなくなること",
+      "choices": [
+        "威縮",
+        "萎縮",
+        "委縮",
+        "萎宿"
+      ],
+      "answer": "萎縮",
+      "explain": "意味: 縮んで小さくなること。気後れして動けなくなること\n正解: 萎縮（いしゅく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000157100"
+    },
+    {
+      "kanji": "隠蔽",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "いんぺい",
+        "kanaPrompt": "いんぺい",
+        "targetKanji": "隠蔽"
+      },
+      "prompt": "「いんぺい」を漢字で書くと？\n意味: 都合の悪い事実を覆い隠すこと",
+      "choices": [
+        "陰蔽",
+        "隠幣",
+        "隠蔽",
+        "隠弊"
+      ],
+      "answer": "隠蔽",
+      "explain": "意味: 都合の悪い事実を覆い隠すこと\n正解: 隠蔽（いんぺい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000303700"
+    },
+    {
+      "kanji": "迂回",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "うかい",
+        "kanaPrompt": "うかい",
+        "targetKanji": "迂回"
+      },
+      "prompt": "「うかい」を漢字で書くと？\n意味: 遠回りして進むこと",
+      "choices": [
+        "迂海",
+        "宇回",
+        "迂会",
+        "迂回"
+      ],
+      "answer": "迂回",
+      "explain": "意味: 遠回りして進むこと\n正解: 迂回（うかい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000313800"
+    },
+    {
+      "kanji": "婉曲",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "えんきょく",
+        "kanaPrompt": "えんきょく",
+        "targetKanji": "婉曲"
+      },
+      "prompt": "「えんきょく」を漢字で書くと？\n意味: 露骨な表現を避けて遠回しに言うこと",
+      "choices": [
+        "婉曲",
+        "宛曲",
+        "婉局",
+        "蜿曲"
+      ],
+      "answer": "婉曲",
+      "explain": "意味: 露骨な表現を避けて遠回しに言うこと\n正解: 婉曲（えんきょく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000455300"
+    },
+    {
+      "kanji": "謳歌",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "おうか",
+        "kanaPrompt": "おうか",
+        "targetKanji": "謳歌"
+      },
+      "prompt": "「おうか」を漢字で書くと？\n意味: 恵まれた状態を喜び楽しむこと",
+      "choices": [
+        "殴歌",
+        "謳歌",
+        "嘔歌",
+        "謳可"
+      ],
+      "answer": "謳歌",
+      "explain": "意味: 恵まれた状態を喜び楽しむこと\n正解: 謳歌（おうか）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000539100"
+    },
+    {
+      "kanji": "臆測",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "おくそく",
+        "kanaPrompt": "おくそく",
+        "targetKanji": "臆測"
+      },
+      "prompt": "「おくそく」を漢字で書くと？\n意味: 十分な根拠がないまま推し量ること",
+      "choices": [
+        "憶則",
+        "臆側",
+        "臆測",
+        "億測"
+      ],
+      "answer": "臆測",
+      "explain": "意味: 十分な根拠がないまま推し量ること\n正解: 臆測（おくそく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000558600"
+    },
+    {
+      "kanji": "苛烈",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かれつ",
+        "kanaPrompt": "かれつ",
+        "targetKanji": "苛烈"
+      },
+      "prompt": "「かれつ」を漢字で書くと？\n意味: 厳しく激しいこと",
+      "choices": [
+        "荷烈",
+        "苛列",
+        "呵烈",
+        "苛烈"
+      ],
+      "answer": "苛烈",
+      "explain": "意味: 厳しく激しいこと\n正解: 苛烈（かれつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000665700"
+    },
+    {
+      "kanji": "干渉",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かんしょう",
+        "kanaPrompt": "かんしょう",
+        "targetKanji": "干渉"
+      },
+      "prompt": "「かんしょう」を漢字で書くと？\n意味: 他人のことに立ち入って口出しすること",
+      "choices": [
+        "干渉",
+        "干抄",
+        "汗渉",
+        "刊渉"
+      ],
+      "answer": "干渉",
+      "explain": "意味: 他人のことに立ち入って口出しすること\n正解: 干渉（かんしょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001013200"
+    },
+    {
+      "kanji": "陥没",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かんぼつ",
+        "kanaPrompt": "かんぼつ",
+        "targetKanji": "陥没"
+      },
+      "prompt": "「かんぼつ」を漢字で書くと？\n意味: 地面などが落ち込むこと",
+      "choices": [
+        "陥物",
+        "陥没",
+        "陥歿",
+        "陷沫"
+      ],
+      "answer": "陥没",
+      "explain": "意味: 地面などが落ち込むこと\n正解: 陥没（かんぼつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001056000"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "stage": 110,
+  "questions": [
+    {
+      "kanji": "粒粒辛苦",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□粒辛苦",
+        "missingIndex": 0,
+        "meaning": "こつこつと苦労を重ねること"
+      },
+      "prompt": "□粒辛苦",
+      "choices": [
+        "粒",
+        "立",
+        "笠",
+        "泣"
+      ],
+      "answer": "粒",
+      "explain": "意味: こつこつと苦労を重ねること\n正解: 粒粒辛苦（りゅうりゅうしんく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007135300"
+    },
+    {
+      "kanji": "臨機応変",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "臨機応□",
+        "missingIndex": 3,
+        "meaning": "状況に応じて適切に対応を変えること"
+      },
+      "prompt": "臨機応□",
+      "choices": [
+        "遍",
+        "変",
+        "偏",
+        "編"
+      ],
+      "answer": "変",
+      "explain": "意味: 状況に応じて適切に対応を変えること\n正解: 臨機応変（りんきおうへん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007217700"
+    },
+    {
+      "kanji": "老若男女",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "老若男□",
+        "missingIndex": 3,
+        "meaning": "年齢や性別を問わずすべての人"
+      },
+      "prompt": "老若男□",
+      "choices": [
+        "汝",
+        "奴",
+        "女",
+        "如"
+      ],
+      "answer": "女",
+      "explain": "意味: 年齢や性別を問わずすべての人\n正解: 老若男女（ろうにゃくなんにょ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007346200"
+    },
+    {
+      "kanji": "論功行賞",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "論功行□",
+        "missingIndex": 3,
+        "meaning": "功績を評価して褒美を与えること"
+      },
+      "prompt": "論功行□",
+      "choices": [
+        "償",
+        "掌",
+        "常",
+        "賞"
+      ],
+      "answer": "賞",
+      "explain": "意味: 功績を評価して褒美を与えること\n正解: 論功行賞（ろんこうこうしょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007395400"
+    },
+    {
+      "kanji": "和衷協同",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□衷協同",
+        "missingIndex": 0,
+        "meaning": "心を合わせて協力すること"
+      },
+      "prompt": "□衷協同",
+      "choices": [
+        "和",
+        "話",
+        "輪",
+        "我"
+      ],
+      "answer": "和",
+      "explain": "意味: 心を合わせて協力すること\n正解: 和衷協同（わちゅうきょうどう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007404800"
+    },
+    {
+      "kanji": "意気軒昂",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "意気軒□",
+        "missingIndex": 3,
+        "meaning": "気力に満ちて勢いがあること"
+      },
+      "prompt": "意気軒□",
+      "choices": [
+        "抑",
+        "昂",
+        "仰",
+        "迎"
+      ],
+      "answer": "昂",
+      "explain": "意味: 気力に満ちて勢いがあること\n正解: 意気軒昂（いきけんこう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000163400"
+    },
+    {
+      "kanji": "隠忍自重",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "隠忍□重",
+        "missingIndex": 2,
+        "meaning": "感情を抑えて軽率な行動を慎むこと"
+      },
+      "prompt": "隠忍□重",
+      "choices": [
+        "時",
+        "慈",
+        "自",
+        "字"
+      ],
+      "answer": "自",
+      "explain": "意味: 感情を抑えて軽率な行動を慎むこと\n正解: 隠忍自重（いんにんじちょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000303500"
+    },
+    {
+      "kanji": "乾坤一擲",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "乾坤一□",
+        "missingIndex": 3,
+        "meaning": "運命を懸けて大勝負をすること"
+      },
+      "prompt": "乾坤一□",
+      "choices": [
+        "摘",
+        "敵",
+        "滴",
+        "擲"
+      ],
+      "answer": "擲",
+      "explain": "意味: 運命を懸けて大勝負をすること\n正解: 乾坤一擲（けんこんいってき）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001059400"
+    },
+    {
+      "kanji": "捲土重来",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□土重来",
+        "missingIndex": 0,
+        "meaning": "一度敗れた後に勢いを盛り返すこと"
+      },
+      "prompt": "□土重来",
+      "choices": [
+        "捲",
+        "券",
+        "圏",
+        "拳"
+      ],
+      "answer": "捲",
+      "explain": "意味: 一度敗れた後に勢いを盛り返すこと\n正解: 捲土重来（けんどちょうらい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001927000"
+    },
+    {
+      "kanji": "虚心坦懐",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "虚□坦懐",
+        "missingIndex": 1,
+        "meaning": "先入観を持たず素直な心で臨むこと"
+      },
+      "prompt": "虚□坦懐",
+      "choices": [
+        "深",
+        "心",
+        "芯",
+        "信"
+      ],
+      "answer": "心",
+      "explain": "意味: 先入観を持たず素直な心で臨むこと\n正解: 虚心坦懐（きょしんたんかい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001438600"
+    }
+  ]
+}

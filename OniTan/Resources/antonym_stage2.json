@@ -1,0 +1,225 @@
+{
+  "stage": 302,
+  "questions": [
+    {
+      "kanji": "抽象",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "抽象",
+        "relationWord": "具体"
+      },
+      "prompt": "「抽象」の対義語は？",
+      "choices": [
+        "具体",
+        "概念",
+        "観念",
+        "総括"
+      ],
+      "answer": "具体",
+      "explain": "意味: 性質を抜き出すことと個別の形を備えること\n正解: 抽象⇔具体\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004739600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001674900"
+    },
+    {
+      "kanji": "主観",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "主観",
+        "relationWord": "客観"
+      },
+      "prompt": "「主観」の対義語は？",
+      "choices": [
+        "感想",
+        "客観",
+        "自覚",
+        "私見"
+      ],
+      "answer": "客観",
+      "explain": "意味: 自分の立場による見方と対象を離れて見る立場\n正解: 主観⇔客観\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003044200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001351700"
+    },
+    {
+      "kanji": "肯定",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "肯定",
+        "relationWord": "否定"
+      },
+      "prompt": "「肯定」の対義語は？",
+      "choices": [
+        "承認",
+        "是認",
+        "否定",
+        "容認"
+      ],
+      "answer": "否定",
+      "explain": "意味: そうだと認めることとそうでないとすること\n正解: 肯定⇔否定\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002201700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005799000"
+    },
+    {
+      "kanji": "需要",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "需要",
+        "relationWord": "供給"
+      },
+      "prompt": "「需要」の対義語は？",
+      "choices": [
+        "購買",
+        "消費",
+        "欲求",
+        "供給"
+      ],
+      "answer": "供給",
+      "explain": "意味: 求めて買う側と提供して売る側\n正解: 需要⇔供給\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003087800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001491600"
+    },
+    {
+      "kanji": "拡大",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "拡大",
+        "relationWord": "縮小"
+      },
+      "prompt": "「拡大」の対義語は？",
+      "choices": [
+        "縮小",
+        "膨張",
+        "増幅",
+        "伸長"
+      ],
+      "answer": "縮小",
+      "explain": "意味: 大きくすることと小さくすること\n正解: 拡大⇔縮小\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000887500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003208000"
+    },
+    {
+      "kanji": "増加",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "増加",
+        "relationWord": "減少"
+      },
+      "prompt": "「増加」の対義語は？",
+      "choices": [
+        "加算",
+        "減少",
+        "増大",
+        "増殖"
+      ],
+      "answer": "減少",
+      "explain": "意味: 数や量が増えることと減ること\n正解: 増加⇔減少\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004320100\n出典: コトバンク https://kotobank.jp/word/%E6%B8%9B%E5%B0%91-492286"
+    },
+    {
+      "kanji": "獲得",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "獲得",
+        "relationWord": "喪失"
+      },
+      "prompt": "「獲得」の対義語は？",
+      "choices": [
+        "確保",
+        "入手",
+        "喪失",
+        "取得"
+      ],
+      "answer": "喪失",
+      "explain": "意味: 手に入れることと失うこと\n正解: 獲得⇔喪失\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000914900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004252200"
+    },
+    {
+      "kanji": "開放",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "開放",
+        "relationWord": "閉鎖"
+      },
+      "prompt": "「開放」の対義語は？",
+      "choices": [
+        "開封",
+        "公開",
+        "解放",
+        "閉鎖"
+      ],
+      "answer": "閉鎖",
+      "explain": "意味: 開けて自由にすることと閉じること\n正解: 開放⇔閉鎖\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000810400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006215700"
+    },
+    {
+      "kanji": "解禁",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "解禁",
+        "relationWord": "禁止"
+      },
+      "prompt": "「解禁」の対義語は？",
+      "choices": [
+        "禁止",
+        "許可",
+        "認可",
+        "容認"
+      ],
+      "answer": "禁止",
+      "explain": "意味: 禁令を解くことと行為を許さないこと\n正解: 解禁⇔禁止\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000815900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001631000"
+    },
+    {
+      "kanji": "進出",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "進出",
+        "relationWord": "撤退"
+      },
+      "prompt": "「進出」の対義語は？",
+      "choices": [
+        "侵入",
+        "撤退",
+        "進撃",
+        "前進"
+      ],
+      "answer": "撤退",
+      "explain": "意味: 新しい方面へ進むことと引き揚げること\n正解: 進出⇔撤退\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003640100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005029700"
+    }
+  ]
+}

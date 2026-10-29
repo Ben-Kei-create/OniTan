@@ -1,0 +1,225 @@
+{
+  "stage": 205,
+  "questions": [
+    {
+      "kanji": "窮乏",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "窮乏",
+        "relationWord": "困窮"
+      },
+      "prompt": "「窮乏」の類義語は？",
+      "choices": [
+        "裕福",
+        "豊潤",
+        "困窮",
+        "富裕"
+      ],
+      "answer": "困窮",
+      "explain": "意味: 生活に必要なものが足りず苦しむこと\n正解: 窮乏≒困窮\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001415600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002421300"
+    },
+    {
+      "kanji": "軽率",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "軽率",
+        "relationWord": "軽挙"
+      },
+      "prompt": "「軽率」の類義語は？",
+      "choices": [
+        "慎重",
+        "熟慮",
+        "自重",
+        "軽挙"
+      ],
+      "answer": "軽挙",
+      "explain": "意味: 深く考えず軽々しく行動すること\n正解: 軽率≒軽挙\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001797900\n出典: コトバンク https://kotobank.jp/word/%E8%BB%BD%E6%8C%99-488321"
+    },
+    {
+      "kanji": "絶賛",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "絶賛",
+        "relationWord": "激賞"
+      },
+      "prompt": "「絶賛」の類義語は？",
+      "choices": [
+        "激賞",
+        "酷評",
+        "罵倒",
+        "非難"
+      ],
+      "answer": "激賞",
+      "explain": "意味: 非常に高く評価して褒めること\n正解: 絶賛≒激賞\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004020800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001847200"
+    },
+    {
+      "kanji": "清楚",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "清楚",
+        "relationWord": "端麗"
+      },
+      "prompt": "「清楚」の類義語は？",
+      "choices": [
+        "猥雑",
+        "端麗",
+        "醜悪",
+        "粗野"
+      ],
+      "answer": "端麗",
+      "explain": "意味: すっきりとして整い美しいこと\n正解: 清楚≒端麗\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003892100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004620000"
+    },
+    {
+      "kanji": "壮大",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "壮大",
+        "relationWord": "雄大"
+      },
+      "prompt": "「壮大」の類義語は？",
+      "choices": [
+        "狭小",
+        "些少",
+        "雄大",
+        "矮小"
+      ],
+      "answer": "雄大",
+      "explain": "意味: 規模が大きく立派なこと\n正解: 壮大≒雄大\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004204700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006881900"
+    },
+    {
+      "kanji": "僅少",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "僅少",
+        "relationWord": "微少"
+      },
+      "prompt": "「僅少」の類義語は？",
+      "choices": [
+        "多量",
+        "莫大",
+        "多大",
+        "微少"
+      ],
+      "answer": "微少",
+      "explain": "意味: 数量や程度がわずかであること\n正解: 僅少≒微少\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001629200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005879500"
+    },
+    {
+      "kanji": "刹那",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "刹那",
+        "relationWord": "瞬間"
+      },
+      "prompt": "「刹那」の類義語は？",
+      "choices": [
+        "瞬間",
+        "永劫",
+        "永久",
+        "悠久"
+      ],
+      "answer": "瞬間",
+      "explain": "意味: きわめて短い時間\n正解: 刹那≒瞬間\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002595700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003244100"
+    },
+    {
+      "kanji": "畏怖",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "畏怖",
+        "relationWord": "畏敬"
+      },
+      "prompt": "「畏怖」の類義語は？",
+      "choices": [
+        "侮辱",
+        "畏敬",
+        "侮蔑",
+        "軽視"
+      ],
+      "answer": "畏敬",
+      "explain": "意味: おそれ慎む気持ちを抱くこと\n正解: 畏怖≒畏敬\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000141400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007459800"
+    },
+    {
+      "kanji": "懇願",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "懇願",
+        "relationWord": "哀願"
+      },
+      "prompt": "「懇願」の類義語は？",
+      "choices": [
+        "強制",
+        "威圧",
+        "哀願",
+        "命令"
+      ],
+      "answer": "哀願",
+      "explain": "意味: 切実に願い頼むこと\n正解: 懇願≒哀願\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002448000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000015900"
+    },
+    {
+      "kanji": "揶揄",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "揶揄",
+        "relationWord": "嘲弄"
+      },
+      "prompt": "「揶揄」の類義語は？",
+      "choices": [
+        "敬愛",
+        "崇拝",
+        "尊重",
+        "嘲弄"
+      ],
+      "answer": "嘲弄",
+      "explain": "意味: 人をからかいあざけること\n正解: 揶揄≒嘲弄\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006791000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004829300"
+    }
+  ]
+}

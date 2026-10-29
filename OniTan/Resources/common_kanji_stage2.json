@@ -1,0 +1,255 @@
+{
+  "stage": 702,
+  "questions": [
+    {
+      "kanji": "□虚・□遜・□譲",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□虚",
+          "□遜",
+          "□譲"
+        ]
+      },
+      "prompt": "□虚・□遜・□譲 に共通する漢字を選べ。",
+      "choices": [
+        "謙",
+        "嫌",
+        "兼",
+        "廉"
+      ],
+      "answer": "謙",
+      "explain": "正解: 謙\n完成する語: 謙虚・謙遜・謙譲\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001969000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001969300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001969200"
+    },
+    {
+      "kanji": "□重・謹□・□独",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□重",
+          "謹□",
+          "□独"
+        ]
+      },
+      "prompt": "□重・謹□・□独 に共通する漢字を選べ。",
+      "choices": [
+        "填",
+        "慎",
+        "真",
+        "鎮"
+      ],
+      "answer": "慎",
+      "explain": "正解: 慎\n完成する語: 慎重・謹慎・慎独\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003649300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001642100\n出典: コトバンク https://kotobank.jp/word/%E6%85%8E%E7%8B%AC-82354"
+    },
+    {
+      "kanji": "□疑・□古・□柔",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□疑",
+          "□古",
+          "□柔"
+        ]
+      },
+      "prompt": "□疑・□古・□柔 に共通する漢字を選べ。",
+      "choices": [
+        "環",
+        "還",
+        "懐",
+        "壊"
+      ],
+      "answer": "懐",
+      "explain": "正解: 懐\n完成する語: 懐疑・懐古・懐柔\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000828400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000828800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000829000"
+    },
+    {
+      "kanji": "□慮・□愁・□鬱",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□慮",
+          "□愁",
+          "□鬱"
+        ]
+      },
+      "prompt": "□慮・□愁・□鬱 に共通する漢字を選べ。",
+      "choices": [
+        "優",
+        "憑",
+        "愁",
+        "憂"
+      ],
+      "answer": "憂",
+      "explain": "正解: 憂\n完成する語: 憂慮・憂愁・憂鬱\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006889800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006889400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006888800"
+    },
+    {
+      "kanji": "□慨・□怒・義□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□慨",
+          "□怒",
+          "義□"
+        ]
+      },
+      "prompt": "□慨・□怒・義□ に共通する漢字を選べ。",
+      "choices": [
+        "憤",
+        "噴",
+        "墳",
+        "奮"
+      ],
+      "answer": "憤",
+      "explain": "正解: 憤\n完成する語: 憤慨・憤怒・義憤\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006171000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006171500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001308700"
+    },
+    {
+      "kanji": "羞□・□辱・無□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "羞□",
+          "□辱",
+          "無□"
+        ]
+      },
+      "prompt": "羞□・□辱・無□ に共通する漢字を選べ。",
+      "choices": [
+        "聴",
+        "恥",
+        "耽",
+        "聡"
+      ],
+      "answer": "恥",
+      "explain": "正解: 恥\n完成する語: 羞恥・恥辱・無恥\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003126800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004677200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006647400"
+    },
+    {
+      "kanji": "□愛・□悲・□善",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□愛",
+          "□悲",
+          "□善"
+        ]
+      },
+      "prompt": "□愛・□悲・□善 に共通する漢字を選べ。",
+      "choices": [
+        "磁",
+        "茲",
+        "慈",
+        "滋"
+      ],
+      "answer": "慈",
+      "explain": "正解: 慈\n完成する語: 慈愛・慈悲・慈善\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002885500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002886000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002885900"
+    },
+    {
+      "kanji": "□悪・愛□・□む",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□悪",
+          "愛□",
+          "□む"
+        ]
+      },
+      "prompt": "□悪・愛□・□む に共通する漢字を選べ。",
+      "choices": [
+        "増",
+        "僧",
+        "贈",
+        "憎"
+      ],
+      "answer": "憎",
+      "explain": "正解: 憎\n完成する語: 憎悪・愛憎・憎む\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004322500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000022900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004322900"
+    },
+    {
+      "kanji": "後□・□恨・□悟",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "後□",
+          "□恨",
+          "□悟"
+        ]
+      },
+      "prompt": "後□・□恨・□悟 に共通する漢字を選べ。",
+      "choices": [
+        "悔",
+        "海",
+        "侮",
+        "晦"
+      ],
+      "answer": "悔",
+      "explain": "正解: 悔\n完成する語: 後悔・悔恨・悔悟\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002098700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000782900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000782800"
+    },
+    {
+      "kanji": "怠□・□性・□眠",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "怠□",
+          "□性",
+          "□眠"
+        ]
+      },
+      "prompt": "怠□・□性・□眠 に共通する漢字を選べ。",
+      "choices": [
+        "随",
+        "惰",
+        "堕",
+        "情"
+      ],
+      "answer": "惰",
+      "explain": "正解: 惰\n完成する語: 怠惰・惰性・惰眠\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004442100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004419300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004419400"
+    }
+  ]
+}

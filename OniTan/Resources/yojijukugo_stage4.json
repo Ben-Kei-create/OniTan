@@ -1,0 +1,235 @@
+{
+  "stage": 104,
+  "questions": [
+    {
+      "kanji": "空前絶後",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□前絶後",
+        "missingIndex": 0,
+        "meaning": "過去にも例がなく今後もないと思われること"
+      },
+      "prompt": "□前絶後",
+      "choices": [
+        "空",
+        "孔",
+        "控",
+        "公"
+      ],
+      "answer": "空",
+      "explain": "意味: 過去にも例がなく今後もないと思われること\n正解: 空前絶後（くうぜんぜつご）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001685800"
+    },
+    {
+      "kanji": "鶏口牛後",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "鶏口牛□",
+        "missingIndex": 3,
+        "meaning": "大集団の末端より小集団の長になる方がよいということ"
+      },
+      "prompt": "鶏口牛□",
+      "choices": [
+        "侯",
+        "後",
+        "后",
+        "候"
+      ],
+      "answer": "後",
+      "explain": "意味: 大集団の末端より小集団の長になる方がよいということ\n正解: 鶏口牛後（けいこうぎゅうご）\n出典: コトバンク https://kotobank.jp/word/%E9%B6%8F%E5%8F%A3%E7%89%9B%E5%BE%8C-667232"
+    },
+    {
+      "kanji": "厚顔無恥",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "厚顔□恥",
+        "missingIndex": 2,
+        "meaning": "厚かましく恥を知らないこと"
+      },
+      "prompt": "厚顔□恥",
+      "choices": [
+        "武",
+        "務",
+        "無",
+        "舞"
+      ],
+      "answer": "無",
+      "explain": "意味: 厚かましく恥を知らないこと\n正解: 厚顔無恥（こうがんむち）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002205800"
+    },
+    {
+      "kanji": "公明正大",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "公明正□",
+        "missingIndex": 3,
+        "meaning": "私心がなく正しく堂々としていること"
+      },
+      "prompt": "公明正□",
+      "choices": [
+        "太",
+        "代",
+        "台",
+        "大"
+      ],
+      "answer": "大",
+      "explain": "意味: 私心がなく正しく堂々としていること\n正解: 公明正大（こうめいせいだい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002135400"
+    },
+    {
+      "kanji": "孤軍奮闘",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□軍奮闘",
+        "missingIndex": 0,
+        "meaning": "助けを得られず一人で懸命に努力すること"
+      },
+      "prompt": "□軍奮闘",
+      "choices": [
+        "孤",
+        "弧",
+        "狐",
+        "湖"
+      ],
+      "answer": "孤",
+      "explain": "意味: 助けを得られず一人で懸命に努力すること\n正解: 孤軍奮闘（こぐんふんとう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002043600"
+    },
+    {
+      "kanji": "五里霧中",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "五里霧□",
+        "missingIndex": 3,
+        "meaning": "状況がつかめず方針が立たないこと"
+      },
+      "prompt": "五里霧□",
+      "choices": [
+        "沖",
+        "中",
+        "仲",
+        "忠"
+      ],
+      "answer": "中",
+      "explain": "意味: 状況がつかめず方針が立たないこと\n正解: 五里霧中（ごりむちゅう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002086500"
+    },
+    {
+      "kanji": "言語道断",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "言語道□",
+        "missingIndex": 3,
+        "meaning": "言葉にできないほどひどいこと"
+      },
+      "prompt": "言語道□",
+      "choices": [
+        "談",
+        "壇",
+        "断",
+        "段"
+      ],
+      "answer": "断",
+      "explain": "意味: 言葉にできないほどひどいこと\n正解: 言語道断（ごんごどうだん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001994000"
+    },
+    {
+      "kanji": "自画自賛",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "自画自□",
+        "missingIndex": 3,
+        "meaning": "自分で自分のことを褒めること"
+      },
+      "prompt": "自画自□",
+      "choices": [
+        "算",
+        "参",
+        "散",
+        "賛"
+      ],
+      "answer": "賛",
+      "explain": "意味: 自分で自分のことを褒めること\n正解: 自画自賛（じがじさん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002852700"
+    },
+    {
+      "kanji": "自業自得",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□業自得",
+        "missingIndex": 0,
+        "meaning": "自分の行いの結果を自分で受けること"
+      },
+      "prompt": "□業自得",
+      "choices": [
+        "自",
+        "字",
+        "時",
+        "慈"
+      ],
+      "answer": "自",
+      "explain": "意味: 自分の行いの結果を自分で受けること\n正解: 自業自得（じごうじとく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002854600"
+    },
+    {
+      "kanji": "四面楚歌",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "四□楚歌",
+        "missingIndex": 1,
+        "meaning": "周囲が敵ばかりで助けがないこと"
+      },
+      "prompt": "四□楚歌",
+      "choices": [
+        "眠",
+        "面",
+        "綿",
+        "麺"
+      ],
+      "answer": "面",
+      "explain": "意味: 周囲が敵ばかりで助けがないこと\n正解: 四面楚歌（しめんそか）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002720100"
+    }
+  ]
+}

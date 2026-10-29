@@ -1,0 +1,225 @@
+{
+  "stage": 24,
+  "questions": [
+    {
+      "kanji": "鬱蒼",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鬱蒼",
+        "sentenceContext": "鬱蒼とした森を抜ける。"
+      },
+      "prompt": "例文中の「鬱蒼」の読みを選べ。",
+      "choices": [
+        "うっそう",
+        "うつあお",
+        "うっしょう",
+        "ゆうそう"
+      ],
+      "answer": "うっそう",
+      "explain": "例文: 鬱蒼とした森を抜ける。\n正解の読み: うっそう\n意味: 草木が深く茂っているさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000343900"
+    },
+    {
+      "kanji": "燦然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "燦然",
+        "sentenceContext": "勲章が胸に燦然と輝く。"
+      },
+      "prompt": "例文中の「燦然」の読みを選べ。",
+      "choices": [
+        "さんせい",
+        "さんぜん",
+        "さんねん",
+        "ざんぜん"
+      ],
+      "answer": "さんぜん",
+      "explain": "例文: 勲章が胸に燦然と輝く。\n正解の読み: さんぜん\n意味: 明るくきらめくさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002674100"
+    },
+    {
+      "kanji": "毅然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "毅然",
+        "sentenceContext": "不当な要求に毅然として応じる。"
+      },
+      "prompt": "例文中の「毅然」の読みを選べ。",
+      "choices": [
+        "きねん",
+        "ごうぜん",
+        "きぜん",
+        "ぎぜん"
+      ],
+      "answer": "きぜん",
+      "explain": "例文: 不当な要求に毅然として応じる。\n正解の読み: きぜん\n意味: 意志が強く動じないさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001275300"
+    },
+    {
+      "kanji": "凛然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "凛然",
+        "sentenceContext": "凛然とした態度を貫いた。"
+      },
+      "prompt": "例文中の「凛然」の読みを選べ。",
+      "choices": [
+        "りつぜん",
+        "れんぜん",
+        "りんねん",
+        "りんぜん"
+      ],
+      "answer": "りんぜん",
+      "explain": "例文: 凛然とした態度を貫いた。\n正解の読み: りんぜん\n意味: きりっと引き締まっているさま\n出典: コトバンク https://kotobank.jp/word/%E5%87%9C%E7%84%B6-660117"
+    },
+    {
+      "kanji": "泰然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "泰然",
+        "sentenceContext": "彼は泰然として知らせを待った。"
+      },
+      "prompt": "例文中の「泰然」の読みを選べ。",
+      "choices": [
+        "たいぜん",
+        "しんぜん",
+        "たいねん",
+        "はたぜん"
+      ],
+      "answer": "たいぜん",
+      "explain": "例文: 彼は泰然として知らせを待った。\n正解の読み: たいぜん\n意味: 落ち着いて動じないさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004453800"
+    },
+    {
+      "kanji": "粛然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "粛然",
+        "sentenceContext": "一同は粛然と姿勢を正した。"
+      },
+      "prompt": "例文中の「粛然」の読みを選べ。",
+      "choices": [
+        "しゅくねん",
+        "しゅくぜん",
+        "しゅうぜん",
+        "しょうぜん"
+      ],
+      "answer": "しゅくぜん",
+      "explain": "例文: 一同は粛然と姿勢を正した。\n正解の読み: しゅくぜん\n意味: 静かで厳かなさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003204600"
+    },
+    {
+      "kanji": "憮然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "憮然",
+        "sentenceContext": "敗報を聞いて憮然として座り込んだ。"
+      },
+      "prompt": "例文中の「憮然」の読みを選べ。",
+      "choices": [
+        "ぶねん",
+        "ぶせん",
+        "ぶぜん",
+        "むぜん"
+      ],
+      "answer": "ぶぜん",
+      "explain": "例文: 敗報を聞いて憮然として座り込んだ。\n正解の読み: ぶぜん\n意味: 失望してぼんやりしているさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006081100"
+    },
+    {
+      "kanji": "唖然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "唖然",
+        "sentenceContext": "予想外の結果に唖然とした。"
+      },
+      "prompt": "例文中の「唖然」の読みを選べ。",
+      "choices": [
+        "あくぜん",
+        "がぜん",
+        "あねん",
+        "あぜん"
+      ],
+      "answer": "あぜん",
+      "explain": "例文: 予想外の結果に唖然とした。\n正解の読み: あぜん\n意味: 驚きあきれて言葉を失うさま\n出典: コトバンク https://kotobank.jp/word/%E5%94%96%E7%84%B6-425064"
+    },
+    {
+      "kanji": "愕然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "愕然",
+        "sentenceContext": "被害の大きさに愕然とした。"
+      },
+      "prompt": "例文中の「愕然」の読みを選べ。",
+      "choices": [
+        "がくぜん",
+        "かくぜん",
+        "がぜん",
+        "がくねん"
+      ],
+      "answer": "がくぜん",
+      "explain": "例文: 被害の大きさに愕然とした。\n正解の読み: がくぜん\n意味: 非常に驚くさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000929400"
+    },
+    {
+      "kanji": "俄然",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俄然",
+        "sentenceContext": "新事実が判明し俄然注目を集めた。"
+      },
+      "prompt": "例文中の「俄然」の読みを選べ。",
+      "choices": [
+        "がねん",
+        "がぜん",
+        "がんぜん",
+        "にわぜん"
+      ],
+      "answer": "がぜん",
+      "explain": "例文: 新事実が判明し俄然注目を集めた。\n正解の読み: がぜん\n意味: 突然に。急に\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000742900"
+    }
+  ]
+}

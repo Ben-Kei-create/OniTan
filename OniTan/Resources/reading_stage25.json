@@ -1,0 +1,225 @@
+{
+  "stage": 25,
+  "questions": [
+    {
+      "kanji": "峻厳",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "峻厳",
+        "sentenceContext": "峻厳な態度で規律を守らせた。"
+      },
+      "prompt": "例文中の「峻厳」の読みを選べ。",
+      "choices": [
+        "じゅんげん",
+        "しゅんごん",
+        "しゅんげん",
+        "しゅうげん"
+      ],
+      "answer": "しゅんげん",
+      "explain": "例文: 峻厳な態度で規律を守らせた。\n正解の読み: しゅんげん\n意味: きびしくおごそかなこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003235900"
+    },
+    {
+      "kanji": "荘厳",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "荘厳",
+        "sentenceContext": "荘厳な雰囲気の聖堂を訪れた。"
+      },
+      "prompt": "例文中の「荘厳」の読みを選べ。",
+      "choices": [
+        "そうけん",
+        "しょうげん",
+        "そうかん",
+        "そうごん"
+      ],
+      "answer": "そうごん",
+      "explain": "例文: 荘厳な雰囲気の聖堂を訪れた。\n正解の読み: そうごん\n意味: 重々しく立派なこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004229000"
+    },
+    {
+      "kanji": "静謐",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "静謐",
+        "sentenceContext": "夜の庭園は静謐に包まれていた。"
+      },
+      "prompt": "例文中の「静謐」の読みを選べ。",
+      "choices": [
+        "せいひつ",
+        "せいみつ",
+        "じょうひつ",
+        "せいひ"
+      ],
+      "answer": "せいひつ",
+      "explain": "例文: 夜の庭園は静謐に包まれていた。\n正解の読み: せいひつ\n意味: 静かで落ち着いていること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003927200"
+    },
+    {
+      "kanji": "清冽",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "清冽",
+        "sentenceContext": "清冽な湧き水をくむ。"
+      },
+      "prompt": "例文中の「清冽」の読みを選べ。",
+      "choices": [
+        "せいれい",
+        "せいれつ",
+        "せいりつ",
+        "しょうれつ"
+      ],
+      "answer": "せいれつ",
+      "explain": "例文: 清冽な湧き水をくむ。\n正解の読み: せいれつ\n意味: 水などが清く冷たいこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003894400"
+    },
+    {
+      "kanji": "玲瓏",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "玲瓏",
+        "sentenceContext": "玲瓏たる月が空に浮かぶ。"
+      },
+      "prompt": "例文中の「玲瓏」の読みを選べ。",
+      "choices": [
+        "れいりゅう",
+        "れんろう",
+        "れいろう",
+        "りんろう"
+      ],
+      "answer": "れいろう",
+      "explain": "例文: 玲瓏たる月が空に浮かぶ。\n正解の読み: れいろう\n意味: 玉のように美しく澄んでいること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007252600"
+    },
+    {
+      "kanji": "幽玄",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "幽玄",
+        "sentenceContext": "能の幽玄な世界に触れる。"
+      },
+      "prompt": "例文中の「幽玄」の読みを選べ。",
+      "choices": [
+        "ゆうけん",
+        "ゆうかん",
+        "ようげん",
+        "ゆうげん"
+      ],
+      "answer": "ゆうげん",
+      "explain": "例文: 能の幽玄な世界に触れる。\n正解の読み: ゆうげん\n意味: 奥深く趣が尽くせないこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006862300"
+    },
+    {
+      "kanji": "雄渾",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "雄渾",
+        "sentenceContext": "雄渾な筆致で山々を描いた。"
+      },
+      "prompt": "例文中の「雄渾」の読みを選べ。",
+      "choices": [
+        "ゆうこん",
+        "ゆうごん",
+        "おうこん",
+        "ゆうかん"
+      ],
+      "answer": "ゆうこん",
+      "explain": "例文: 雄渾な筆致で山々を描いた。\n正解の読み: ゆうこん\n意味: 力強く規模が大きいこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006881300"
+    },
+    {
+      "kanji": "絢爛",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "絢爛",
+        "sentenceContext": "絢爛たる衣装が目を引く。"
+      },
+      "prompt": "例文中の「絢爛」の読みを選べ。",
+      "choices": [
+        "げんらん",
+        "けんらん",
+        "じゅんらん",
+        "けんれん"
+      ],
+      "answer": "けんらん",
+      "explain": "例文: 絢爛たる衣装が目を引く。\n正解の読み: けんらん\n意味: 華やかで美しいこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001942600"
+    },
+    {
+      "kanji": "豪奢",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "豪奢",
+        "sentenceContext": "豪奢な調度品が並んでいる。"
+      },
+      "prompt": "例文中の「豪奢」の読みを選べ。",
+      "choices": [
+        "こうしゃ",
+        "ごうじゃ",
+        "ごうしゃ",
+        "ごうしょ"
+      ],
+      "answer": "ごうしゃ",
+      "explain": "例文: 豪奢な調度品が並んでいる。\n正解の読み: ごうしゃ\n意味: 非常にぜいたくなこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002356000"
+    },
+    {
+      "kanji": "典雅",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "典雅",
+        "sentenceContext": "典雅な庭の造りに感心した。"
+      },
+      "prompt": "例文中の「典雅」の読みを選べ。",
+      "choices": [
+        "でんが",
+        "てんげ",
+        "てんか",
+        "てんが"
+      ],
+      "answer": "てんが",
+      "explain": "例文: 典雅な庭の造りに感心した。\n正解の読み: てんが\n意味: 整っていて上品なこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005050800"
+    }
+  ]
+}

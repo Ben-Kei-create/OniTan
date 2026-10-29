@@ -1,0 +1,225 @@
+{
+  "stage": 303,
+  "questions": [
+    {
+      "kanji": "建設",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "建設",
+        "relationWord": "破壊"
+      },
+      "prompt": "「建設」の対義語は？",
+      "choices": [
+        "建築",
+        "設営",
+        "破壊",
+        "創設"
+      ],
+      "answer": "破壊",
+      "explain": "意味: 造り上げることと壊すこと\n正解: 建設⇔破壊\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001907500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005532100"
+    },
+    {
+      "kanji": "結合",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "結合",
+        "relationWord": "分離"
+      },
+      "prompt": "「結合」の対義語は？",
+      "choices": [
+        "連結",
+        "接合",
+        "融合",
+        "分離"
+      ],
+      "answer": "分離",
+      "explain": "意味: 結びつくことと切り離されること\n正解: 結合⇔分離\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001872900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006180100"
+    },
+    {
+      "kanji": "統一",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "統一",
+        "relationWord": "分裂"
+      },
+      "prompt": "「統一」の対義語は？",
+      "choices": [
+        "分裂",
+        "統合",
+        "総合",
+        "集約"
+      ],
+      "answer": "分裂",
+      "explain": "意味: 一つにまとめることと分かれること\n正解: 統一⇔分裂\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005213100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006180700"
+    },
+    {
+      "kanji": "協調",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "協調",
+        "relationWord": "対立"
+      },
+      "prompt": "「協調」の対義語は？",
+      "choices": [
+        "調和",
+        "対立",
+        "協力",
+        "協同"
+      ],
+      "answer": "対立",
+      "explain": "意味: 互いに協力することと争い合うこと\n正解: 協調⇔対立\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001494500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004437100"
+    },
+    {
+      "kanji": "集中",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "集中",
+        "relationWord": "分散"
+      },
+      "prompt": "「集中」の対義語は？",
+      "choices": [
+        "結集",
+        "凝集",
+        "分散",
+        "集結"
+      ],
+      "answer": "分散",
+      "explain": "意味: 一か所に集めることと散らすこと\n正解: 集中⇔分散\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003139700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006177300"
+    },
+    {
+      "kanji": "過密",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "過密",
+        "relationWord": "過疎"
+      },
+      "prompt": "「過密」の対義語は？",
+      "choices": [
+        "密集",
+        "稠密",
+        "密接",
+        "過疎"
+      ],
+      "answer": "過疎",
+      "explain": "意味: 集まりすぎていることと少なすぎること\n正解: 過密⇔過疎\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000699600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000698000"
+    },
+    {
+      "kanji": "楽観",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "楽観",
+        "relationWord": "悲観"
+      },
+      "prompt": "「楽観」の対義語は？",
+      "choices": [
+        "悲観",
+        "希望",
+        "期待",
+        "安心"
+      ],
+      "answer": "悲観",
+      "explain": "意味: 先行きをよい方に見ることと悪い方に見ること\n正解: 楽観⇔悲観\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000933500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005833600"
+    },
+    {
+      "kanji": "能動",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "能動",
+        "relationWord": "受動"
+      },
+      "prompt": "「能動」の対義語は？",
+      "choices": [
+        "主体",
+        "受動",
+        "自発",
+        "積極"
+      ],
+      "answer": "受動",
+      "explain": "意味: 自ら働きかけることと他から作用を受けること\n正解: 能動⇔受動\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005499600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003081400"
+    },
+    {
+      "kanji": "積極",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "積極",
+        "relationWord": "消極"
+      },
+      "prompt": "「積極」の対義語は？",
+      "choices": [
+        "自発",
+        "活発",
+        "消極",
+        "意欲"
+      ],
+      "answer": "消極",
+      "explain": "意味: 進んで行うことと自ら進んで行わないこと\n正解: 積極⇔消極\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003978900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003381200"
+    },
+    {
+      "kanji": "硬直",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "硬直",
+        "relationWord": "柔軟"
+      },
+      "prompt": "「硬直」の対義語は？",
+      "choices": [
+        "膠着",
+        "固定",
+        "拘束",
+        "柔軟"
+      ],
+      "answer": "柔軟",
+      "explain": "意味: こわばって融通がきかないことと柔らかくしなやかなこと\n正解: 硬直⇔柔軟\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002279800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003173600"
+    }
+  ]
+}

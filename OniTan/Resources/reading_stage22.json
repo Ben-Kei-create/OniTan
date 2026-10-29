@@ -1,0 +1,225 @@
+{
+  "stage": 22,
+  "questions": [
+    {
+      "kanji": "逍遥",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "逍遥",
+        "sentenceContext": "春の庭園を逍遥する。"
+      },
+      "prompt": "例文中の「逍遥」の読みを選べ。",
+      "choices": [
+        "しょうよう",
+        "しょうゆう",
+        "しゅうよう",
+        "しょうとう"
+      ],
+      "answer": "しょうよう",
+      "explain": "例文: 春の庭園を逍遥する。\n正解の読み: しょうよう\n意味: 気ままに歩き回ること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003404300"
+    },
+    {
+      "kanji": "慫慂",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "慫慂",
+        "sentenceContext": "友人の慫慂を受けて応募した。"
+      },
+      "prompt": "例文中の「慫慂」の読みを選べ。",
+      "choices": [
+        "そうよう",
+        "しょうよう",
+        "じゅうよう",
+        "しょうゆう"
+      ],
+      "answer": "しょうよう",
+      "explain": "例文: 友人の慫慂を受けて応募した。\n正解の読み: しょうよう\n意味: そうするよう勧めること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003444900"
+    },
+    {
+      "kanji": "蹉跌",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蹉跌",
+        "sentenceContext": "計画は思わぬ蹉跌を来した。"
+      },
+      "prompt": "例文中の「蹉跌」の読みを選べ。",
+      "choices": [
+        "さでつ",
+        "しゃてつ",
+        "さてつ",
+        "さしつ"
+      ],
+      "answer": "さてつ",
+      "explain": "例文: 計画は思わぬ蹉跌を来した。\n正解の読み: さてつ\n意味: 物事がうまく進まずつまずくこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002479500"
+    },
+    {
+      "kanji": "桎梏",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "桎梏",
+        "sentenceContext": "古い慣習の桎梏から抜け出す。"
+      },
+      "prompt": "例文中の「桎梏」の読みを選べ。",
+      "choices": [
+        "しつこう",
+        "しっこう",
+        "ちっこく",
+        "しっこく"
+      ],
+      "answer": "しっこく",
+      "explain": "例文: 古い慣習の桎梏から抜け出す。\n正解の読み: しっこく\n意味: 自由を縛るもの\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002927500"
+    },
+    {
+      "kanji": "羈絆",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "羈絆",
+        "sentenceContext": "世俗の羈絆を離れて暮らした。"
+      },
+      "prompt": "例文中の「羈絆」の読みを選べ。",
+      "choices": [
+        "きはん",
+        "きばん",
+        "ぎはん",
+        "きはつ"
+      ],
+      "answer": "きはん",
+      "explain": "例文: 世俗の羈絆を離れて暮らした。\n正解の読み: きはん\n意味: 人を束縛するもの\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001297700"
+    },
+    {
+      "kanji": "狷介",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "狷介",
+        "sentenceContext": "彼は狷介な性格で知られている。"
+      },
+      "prompt": "例文中の「狷介」の読みを選べ。",
+      "choices": [
+        "せんかい",
+        "けんかい",
+        "かんかい",
+        "けんけい"
+      ],
+      "answer": "けんかい",
+      "explain": "例文: 彼は狷介な性格で知られている。\n正解の読み: けんかい\n意味: 自分を守って容易に人と交わらないこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001921400"
+    },
+    {
+      "kanji": "韜晦",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "韜晦",
+        "sentenceContext": "彼は冗談で自分の本心を韜晦した。"
+      },
+      "prompt": "例文中の「韜晦」の読みを選べ。",
+      "choices": [
+        "とうばい",
+        "ちょうかい",
+        "とうかい",
+        "ようかい"
+      ],
+      "answer": "とうかい",
+      "explain": "例文: 彼は冗談で自分の本心を韜晦した。\n正解の読み: とうかい\n意味: 才能や本心などを包み隠すこと\n出典: コトバンク https://kotobank.jp/word/%E9%9F%9C%E6%99%A6-579666"
+    },
+    {
+      "kanji": "炯眼",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "炯眼",
+        "sentenceContext": "人物を見抜く炯眼の持ち主だ。"
+      },
+      "prompt": "例文中の「炯眼」の読みを選べ。",
+      "choices": [
+        "こうがん",
+        "しょうがん",
+        "けいげん",
+        "けいがん"
+      ],
+      "answer": "けいがん",
+      "explain": "例文: 人物を見抜く炯眼の持ち主だ。\n正解の読み: けいがん\n意味: 本質を見抜く鋭い眼力\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001767900"
+    },
+    {
+      "kanji": "爛熟",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "爛熟",
+        "sentenceContext": "爛熟した文化の姿を描く。"
+      },
+      "prompt": "例文中の「爛熟」の読みを選べ。",
+      "choices": [
+        "らんじゅく",
+        "なんじゅく",
+        "らんしゅく",
+        "れんじゅく"
+      ],
+      "answer": "らんじゅく",
+      "explain": "例文: 爛熟した文化の姿を描く。\n正解の読み: らんじゅく\n意味: 十分に熟しきること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007066200"
+    },
+    {
+      "kanji": "嫋々",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "嫋々",
+        "sentenceContext": "笛の音が嫋々と響く。"
+      },
+      "prompt": "例文中の「嫋々」の読みを選べ。",
+      "choices": [
+        "しょうしょう",
+        "じょうじょう",
+        "にょうにょう",
+        "じゃくじゃく"
+      ],
+      "answer": "じょうじょう",
+      "explain": "例文: 笛の音が嫋々と響く。\n正解の読み: じょうじょう\n意味: 細くしなやかなさま。音が長く響くさま\n出典: コトバンク https://kotobank.jp/word/%E5%AB%8B%E3%80%85-3137877"
+    }
+  ]
+}

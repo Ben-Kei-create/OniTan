@@ -1,0 +1,235 @@
+{
+  "stage": 103,
+  "questions": [
+    {
+      "kanji": "因果応報",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "因果応□",
+        "missingIndex": 3,
+        "meaning": "行いのよしあしに応じた報いを受けること"
+      },
+      "prompt": "因果応□",
+      "choices": [
+        "砲",
+        "放",
+        "報",
+        "法"
+      ],
+      "answer": "報",
+      "explain": "意味: 行いのよしあしに応じた報いを受けること\n正解: 因果応報（いんがおうほう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000280200"
+    },
+    {
+      "kanji": "温故知新",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "温故知□",
+        "missingIndex": 3,
+        "meaning": "昔のことを調べて新しい知識や見方を得ること"
+      },
+      "prompt": "温故知□",
+      "choices": [
+        "薪",
+        "親",
+        "進",
+        "新"
+      ],
+      "answer": "新",
+      "explain": "意味: 昔のことを調べて新しい知識や見方を得ること\n正解: 温故知新（おんこちしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000604200"
+    },
+    {
+      "kanji": "換骨奪胎",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□骨奪胎",
+        "missingIndex": 0,
+        "meaning": "先人の作品を工夫して新しい作品に作り替えること"
+      },
+      "prompt": "□骨奪胎",
+      "choices": [
+        "換",
+        "喚",
+        "環",
+        "還"
+      ],
+      "answer": "換",
+      "explain": "意味: 先人の作品を工夫して新しい作品に作り替えること\n正解: 換骨奪胎（かんこつだったい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001077700"
+    },
+    {
+      "kanji": "勧善懲悪",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "勧□懲悪",
+        "missingIndex": 1,
+        "meaning": "善い行いを勧め悪い行いを懲らしめること"
+      },
+      "prompt": "勧□懲悪",
+      "choices": [
+        "繕",
+        "善",
+        "膳",
+        "禅"
+      ],
+      "answer": "善",
+      "explain": "意味: 善い行いを勧め悪い行いを懲らしめること\n正解: 勧善懲悪（かんぜんちょうあく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001092500"
+    },
+    {
+      "kanji": "危機一髪",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "危機一□",
+        "missingIndex": 3,
+        "meaning": "わずかな差で危険に陥りそうな瀬戸際"
+      },
+      "prompt": "危機一□",
+      "choices": [
+        "抜",
+        "伐",
+        "髪",
+        "発"
+      ],
+      "answer": "髪",
+      "explain": "意味: わずかな差で危険に陥りそうな瀬戸際\n正解: 危機一髪（ききいっぱつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001182600"
+    },
+    {
+      "kanji": "起死回生",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "起死回□",
+        "missingIndex": 3,
+        "meaning": "絶望的な状況を立て直すこと"
+      },
+      "prompt": "起死回□",
+      "choices": [
+        "性",
+        "声",
+        "星",
+        "生"
+      ],
+      "answer": "生",
+      "explain": "意味: 絶望的な状況を立て直すこと\n正解: 起死回生（きしかいせい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001226900"
+    },
+    {
+      "kanji": "喜怒哀楽",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□怒哀楽",
+        "missingIndex": 0,
+        "meaning": "喜び・怒り・悲しみ・楽しみという感情"
+      },
+      "prompt": "□怒哀楽",
+      "choices": [
+        "喜",
+        "嬉",
+        "希",
+        "季"
+      ],
+      "answer": "喜",
+      "explain": "意味: 喜び・怒り・悲しみ・楽しみという感情\n正解: 喜怒哀楽（きどあいらく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001247800"
+    },
+    {
+      "kanji": "疑心暗鬼",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "疑□暗鬼",
+        "missingIndex": 1,
+        "meaning": "疑う心から何でも恐ろしく感じること"
+      },
+      "prompt": "疑□暗鬼",
+      "choices": [
+        "深",
+        "心",
+        "芯",
+        "信"
+      ],
+      "answer": "心",
+      "explain": "意味: 疑う心から何でも恐ろしく感じること\n正解: 疑心暗鬼（ぎしんあんき）\n出典: コトバンク https://kotobank.jp/word/%E7%96%91%E5%BF%83%E6%9A%97%E9%AC%BC-473862"
+    },
+    {
+      "kanji": "旧態依然",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "旧態依□",
+        "missingIndex": 3,
+        "meaning": "昔のままで少しも進歩がないこと"
+      },
+      "prompt": "旧態依□",
+      "choices": [
+        "念",
+        "年",
+        "然",
+        "燃"
+      ],
+      "answer": "然",
+      "explain": "意味: 昔のままで少しも進歩がないこと\n正解: 旧態依然（きゅうたいいぜん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001372900"
+    },
+    {
+      "kanji": "玉石混交",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "玉石混□",
+        "missingIndex": 3,
+        "meaning": "優れたものと劣ったものが入り交じっていること"
+      },
+      "prompt": "玉石混□",
+      "choices": [
+        "効",
+        "郊",
+        "校",
+        "交"
+      ],
+      "answer": "交",
+      "explain": "意味: 優れたものと劣ったものが入り交じっていること\n正解: 玉石混交（ぎょくせきこんこう）\n出典: コトバンク https://kotobank.jp/word/%E7%8E%89%E7%9F%B3%E6%B7%B7%E6%B7%86-479413"
+    }
+  ]
+}

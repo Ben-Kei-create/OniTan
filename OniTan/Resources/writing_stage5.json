@@ -1,0 +1,235 @@
+{
+  "stage": 405,
+  "questions": [
+    {
+      "kanji": "焦燥",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しょうそう",
+        "kanaPrompt": "しょうそう",
+        "targetKanji": "焦燥"
+      },
+      "prompt": "「しょうそう」を漢字で書くと？\n意味: いらいらして落ち着かないこと",
+      "choices": [
+        "焦藻",
+        "礁燥",
+        "焦燥",
+        "焦操"
+      ],
+      "answer": "焦燥",
+      "explain": "意味: いらいらして落ち着かないこと\n正解: 焦燥（しょうそう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003415100"
+    },
+    {
+      "kanji": "肖像",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しょうぞう",
+        "kanaPrompt": "しょうぞう",
+        "targetKanji": "肖像"
+      },
+      "prompt": "「しょうぞう」を漢字で書くと？\n意味: 人の姿や顔を描いた絵や彫刻",
+      "choices": [
+        "消像",
+        "肖象",
+        "宵像",
+        "肖像"
+      ],
+      "answer": "肖像",
+      "explain": "意味: 人の姿や顔を描いた絵や彫刻\n正解: 肖像（しょうぞう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003356800"
+    },
+    {
+      "kanji": "醸成",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "じょうせい",
+        "kanaPrompt": "じょうせい",
+        "targetKanji": "醸成"
+      },
+      "prompt": "「じょうせい」を漢字で書くと？\n意味: ある気分や状態が次第に作られること",
+      "choices": [
+        "醸成",
+        "嬢成",
+        "醸政",
+        "譲成"
+      ],
+      "answer": "醸成",
+      "explain": "意味: ある気分や状態が次第に作られること\n正解: 醸成（じょうせい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003532100"
+    },
+    {
+      "kanji": "真摯",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しんし",
+        "kanaPrompt": "しんし",
+        "targetKanji": "真摯"
+      },
+      "prompt": "「しんし」を漢字で書くと？\n意味: まじめでひたむきなこと",
+      "choices": [
+        "真贄",
+        "真摯",
+        "真執",
+        "慎摯"
+      ],
+      "answer": "真摯",
+      "explain": "意味: まじめでひたむきなこと\n正解: 真摯（しんし）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003623300"
+    },
+    {
+      "kanji": "迅速",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "じんそく",
+        "kanaPrompt": "じんそく",
+        "targetKanji": "迅速"
+      },
+      "prompt": "「じんそく」を漢字で書くと？\n意味: 物事の進み方が非常に速いこと",
+      "choices": [
+        "迅束",
+        "尋速",
+        "迅速",
+        "訊速"
+      ],
+      "answer": "迅速",
+      "explain": "意味: 物事の進み方が非常に速いこと\n正解: 迅速（じんそく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003699800"
+    },
+    {
+      "kanji": "推敲",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "すいこう",
+        "kanaPrompt": "すいこう",
+        "targetKanji": "推敲"
+      },
+      "prompt": "「すいこう」を漢字で書くと？\n意味: 文章の表現を何度も練り直すこと",
+      "choices": [
+        "推稿",
+        "椎敲",
+        "推考",
+        "推敲"
+      ],
+      "answer": "推敲",
+      "explain": "意味: 文章の表現を何度も練り直すこと\n正解: 推敲（すいこう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003751300"
+    },
+    {
+      "kanji": "脆弱",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ぜいじゃく",
+        "kanaPrompt": "ぜいじゃく",
+        "targetKanji": "脆弱"
+      },
+      "prompt": "「ぜいじゃく」を漢字で書くと？\n意味: もろく弱いこと",
+      "choices": [
+        "脆弱",
+        "危弱",
+        "脆若",
+        "税弱"
+      ],
+      "answer": "脆弱",
+      "explain": "意味: もろく弱いこと\n正解: 脆弱（ぜいじゃく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003938900"
+    },
+    {
+      "kanji": "精緻",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "せいち",
+        "kanaPrompt": "せいち",
+        "targetKanji": "精緻"
+      },
+      "prompt": "「せいち」を漢字で書くと？\n意味: 細かいところまで行き届いていること",
+      "choices": [
+        "晴緻",
+        "精緻",
+        "精恥",
+        "精稚"
+      ],
+      "answer": "精緻",
+      "explain": "意味: 細かいところまで行き届いていること\n正解: 精緻（せいち）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003919300"
+    },
+    {
+      "kanji": "是正",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ぜせい",
+        "kanaPrompt": "ぜせい",
+        "targetKanji": "是正"
+      },
+      "prompt": "「ぜせい」を漢字で書くと？\n意味: よくない点を改め正すこと",
+      "choices": [
+        "世正",
+        "是性",
+        "是正",
+        "是政"
+      ],
+      "answer": "是正",
+      "explain": "意味: よくない点を改め正すこと\n正解: 是正（ぜせい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003819200"
+    },
+    {
+      "kanji": "漸進",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ぜんしん",
+        "kanaPrompt": "ぜんしん",
+        "targetKanji": "漸進"
+      },
+      "prompt": "「ぜんしん」を漢字で書くと？\n意味: 少しずつ順を追って進むこと",
+      "choices": [
+        "暫進",
+        "漸新",
+        "斬進",
+        "漸進"
+      ],
+      "answer": "漸進",
+      "explain": "意味: 少しずつ順を追って進むこと\n正解: 漸進（ぜんしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004149500"
+    }
+  ]
+}

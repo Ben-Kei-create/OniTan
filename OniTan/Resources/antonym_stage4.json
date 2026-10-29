@@ -1,0 +1,225 @@
+{
+  "stage": 304,
+  "questions": [
+    {
+      "kanji": "鋭敏",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "鋭敏",
+        "relationWord": "鈍感"
+      },
+      "prompt": "「鋭敏」の対義語は？",
+      "choices": [
+        "鈍感",
+        "敏感",
+        "俊敏",
+        "機敏"
+      ],
+      "answer": "鈍感",
+      "explain": "意味: 感覚が鋭いことと鈍いこと\n正解: 鋭敏⇔鈍感\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000401000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005364900"
+    },
+    {
+      "kanji": "慎重",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "慎重",
+        "relationWord": "軽率"
+      },
+      "prompt": "「慎重」の対義語は？",
+      "choices": [
+        "自重",
+        "軽率",
+        "用心",
+        "熟慮"
+      ],
+      "answer": "軽率",
+      "explain": "意味: 注意深いことと考えが浅く軽々しいこと\n正解: 慎重⇔軽率\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003649300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001797900"
+    },
+    {
+      "kanji": "堅実",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "堅実",
+        "relationWord": "浮薄"
+      },
+      "prompt": "「堅実」の対義語は？",
+      "choices": [
+        "確実",
+        "実直",
+        "浮薄",
+        "着実"
+      ],
+      "answer": "浮薄",
+      "explain": "意味: 手堅く確かなことと軽はずみでしっかりしないこと\n正解: 堅実⇔浮薄\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001935700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006046400"
+    },
+    {
+      "kanji": "謹厳",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "謹厳",
+        "relationWord": "放縦"
+      },
+      "prompt": "「謹厳」の対義語は？",
+      "choices": [
+        "厳格",
+        "厳粛",
+        "実直",
+        "放縦"
+      ],
+      "answer": "放縦",
+      "explain": "意味: まじめで慎み深いことと勝手気ままなこと\n正解: 謹厳⇔放縦\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001641700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006357500"
+    },
+    {
+      "kanji": "忠実",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "忠実",
+        "relationWord": "不実"
+      },
+      "prompt": "「忠実」の対義語は？",
+      "choices": [
+        "不実",
+        "誠実",
+        "律儀",
+        "忠誠"
+      ],
+      "answer": "不実",
+      "explain": "意味: 誠実であることと誠意に欠けること\n正解: 忠実⇔不実\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004737600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006003400"
+    },
+    {
+      "kanji": "尊敬",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "尊敬",
+        "relationWord": "軽蔑"
+      },
+      "prompt": "「尊敬」の対義語は？",
+      "choices": [
+        "崇敬",
+        "軽蔑",
+        "敬愛",
+        "敬服"
+      ],
+      "answer": "軽蔑",
+      "explain": "意味: 優れたものとして敬うことと劣るものとしてさげすむこと\n正解: 尊敬⇔軽蔑\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004384400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001799000"
+    },
+    {
+      "kanji": "寛容",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "寛容",
+        "relationWord": "狭量"
+      },
+      "prompt": "「寛容」の対義語は？",
+      "choices": [
+        "温厚",
+        "大度",
+        "狭量",
+        "寛大"
+      ],
+      "answer": "狭量",
+      "explain": "意味: 広い心で受け入れることと心が狭いこと\n正解: 寛容⇔狭量\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001094300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001503400"
+    },
+    {
+      "kanji": "恭順",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "恭順",
+        "relationWord": "反抗"
+      },
+      "prompt": "「恭順」の対義語は？",
+      "choices": [
+        "服従",
+        "従順",
+        "順応",
+        "反抗"
+      ],
+      "answer": "反抗",
+      "explain": "意味: つつしんで従うことと逆らうこと\n正解: 恭順⇔反抗\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001508700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005722600"
+    },
+    {
+      "kanji": "興隆",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "興隆",
+        "relationWord": "衰亡"
+      },
+      "prompt": "「興隆」の対義語は？",
+      "choices": [
+        "衰亡",
+        "隆盛",
+        "繁栄",
+        "勃興"
+      ],
+      "answer": "衰亡",
+      "explain": "意味: 盛んになることと衰えて滅びること\n正解: 興隆⇔衰亡\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002318100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003748500"
+    },
+    {
+      "kanji": "繁栄",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "繁栄",
+        "relationWord": "衰退"
+      },
+      "prompt": "「繁栄」の対義語は？",
+      "choices": [
+        "隆盛",
+        "衰退",
+        "発展",
+        "繁昌"
+      ],
+      "answer": "衰退",
+      "explain": "意味: 栄えることと勢いが弱まること\n正解: 繁栄⇔衰退\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005768600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003748200"
+    }
+  ]
+}

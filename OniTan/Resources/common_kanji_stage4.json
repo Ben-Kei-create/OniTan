@@ -1,0 +1,255 @@
+{
+  "stage": 704,
+  "questions": [
+    {
+      "kanji": "□水・枯□・□望",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□水",
+          "枯□",
+          "□望"
+        ]
+      },
+      "prompt": "□水・枯□・□望 に共通する漢字を選べ。",
+      "choices": [
+        "渇",
+        "喝",
+        "褐",
+        "掲"
+      ],
+      "answer": "渇",
+      "explain": "正解: 渇\n完成する語: 渇水・枯渇・渇望\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000970300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002049900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000970700"
+    },
+    {
+      "kanji": "□沢・湿□・利□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□沢",
+          "湿□",
+          "利□"
+        ]
+      },
+      "prompt": "□沢・湿□・利□ に共通する漢字を選べ。",
+      "choices": [
+        "閑",
+        "潤",
+        "閏",
+        "淵"
+      ],
+      "answer": "潤",
+      "explain": "正解: 潤\n完成する語: 潤沢・湿潤・利潤\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003269200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002934000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007073900"
+    },
+    {
+      "kanji": "□用・□獲・氾□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□用",
+          "□獲",
+          "氾□"
+        ]
+      },
+      "prompt": "□用・□獲・氾□ に共通する漢字を選べ。",
+      "choices": [
+        "藍",
+        "鑑",
+        "濫",
+        "監"
+      ],
+      "answer": "濫",
+      "explain": "正解: 濫\n完成する語: 濫用・濫獲・氾濫\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007058800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007057800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005732500"
+    },
+    {
+      "kanji": "□明・清□・□む",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□明",
+          "清□",
+          "□む"
+        ]
+      },
+      "prompt": "□明・清□・□む に共通する漢字を選べ。",
+      "choices": [
+        "登",
+        "燈",
+        "橙",
+        "澄"
+      ],
+      "answer": "澄",
+      "explain": "正解: 澄\n完成する語: 澄明・清澄・澄む\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004832400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003892800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004832200"
+    },
+    {
+      "kanji": "□流・□泊・□白",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□流",
+          "□泊",
+          "□白"
+        ]
+      },
+      "prompt": "□流・□泊・□白 に共通する漢字を選べ。",
+      "choices": [
+        "漂",
+        "標",
+        "票",
+        "飄"
+      ],
+      "answer": "漂",
+      "explain": "正解: 漂\n完成する語: 漂流・漂泊・漂白\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005944900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005944700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005944600"
+    },
+    {
+      "kanji": "□解・□液・□岩",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□解",
+          "□液",
+          "□岩"
+        ]
+      },
+      "prompt": "□解・□液・□岩 に共通する漢字を選べ。",
+      "choices": [
+        "浴",
+        "溶",
+        "容",
+        "蓉"
+      ],
+      "answer": "溶",
+      "explain": "正解: 溶\n完成する語: 溶解・溶液・溶岩\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006964700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006964600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006964800"
+    },
+    {
+      "kanji": "砂□・□然・広□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "砂□",
+          "□然",
+          "広□"
+        ]
+      },
+      "prompt": "砂□・□然・広□ に共通する漢字を選べ。",
+      "choices": [
+        "幕",
+        "摸",
+        "漠",
+        "莫"
+      ],
+      "answer": "漠",
+      "explain": "正解: 漠\n完成する語: 砂漠・漠然・広漠\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002463900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005651600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002145100"
+    },
+    {
+      "kanji": "□進・□減・□増",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□進",
+          "□減",
+          "□増"
+        ]
+      },
+      "prompt": "□進・□減・□増 に共通する漢字を選べ。",
+      "choices": [
+        "暫",
+        "斬",
+        "慚",
+        "漸"
+      ],
+      "answer": "漸",
+      "explain": "正解: 漸\n完成する語: 漸進・漸減・漸増\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004149500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004149300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004149600"
+    },
+    {
+      "kanji": "□亡・消□・絶□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□亡",
+          "消□",
+          "絶□"
+        ]
+      },
+      "prompt": "□亡・消□・絶□ に共通する漢字を選べ。",
+      "choices": [
+        "滅",
+        "減",
+        "蔑",
+        "戚"
+      ],
+      "answer": "滅",
+      "explain": "正解: 滅\n完成する語: 滅亡・消滅・絶滅\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006703100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003382500\n出典: コトバンク https://kotobank.jp/word/%E7%B5%B6%E6%BB%85-172865"
+    },
+    {
+      "kanji": "□化・洗□・清□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□化",
+          "洗□",
+          "清□"
+        ]
+      },
+      "prompt": "□化・洗□・清□ に共通する漢字を選べ。",
+      "choices": [
+        "瀞",
+        "浄",
+        "争",
+        "静"
+      ],
+      "answer": "浄",
+      "explain": "正解: 浄\n完成する語: 浄化・洗浄・清浄\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003501500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004062900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003891500"
+    }
+  ]
+}

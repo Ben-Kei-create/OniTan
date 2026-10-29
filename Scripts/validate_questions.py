@@ -3,7 +3,7 @@
 validate_questions.py — OniTan question data validator
 
 Usage:
-    python3 Scripts/validate_questions.py [--dir OniTan/Resources] [--strict]
+    python3 Scripts/validate_questions.py [--dir OniTan/Resources] [--strict] [--stages]
 
 Checks:
     - Required fields present and non-empty
@@ -208,10 +208,62 @@ def validate_file(path: Path, legacy: bool = False) -> int:
     return len(data)
 
 
+def validate_stages(resources: Path) -> int:
+    """Validate the manifests and the stage files actually loaded by the app."""
+    stage_ids = set()
+    stage_files = set()
+    total = 0
+    for manifest_path in sorted(resources.glob("*_stages.json")):
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        prompts = set()
+        for entry in manifest["stages"]:
+            stage_id = entry["id"]
+            filename = entry["file"]
+            if stage_id in stage_ids:
+                err(filename, f"duplicate stage ID {stage_id}")
+            if filename in stage_files:
+                err(filename, "stage file referenced more than once")
+            stage_ids.add(stage_id)
+            stage_files.add(filename)
+            path = resources / filename
+            if not path.is_file():
+                err(filename, "manifest references missing file")
+                continue
+            stage = json.loads(path.read_text(encoding="utf-8"))
+            if stage["stage"] != stage_id:
+                err(filename, "stage number does not match manifest ID")
+            if not stage["questions"]:
+                err(filename, "empty stage")
+            for index, q in enumerate(stage["questions"]):
+                tag = f"{filename}#{index}"
+                validate_question(q, tag)
+                if len(set(q["choices"])) != len(q["choices"]):
+                    err(tag, "duplicate choices")
+                signature = (q["kanji"], q["answer"], q.get("payload", {}).get("sentenceContext", ""))
+                if signature in prompts:
+                    err(tag, f"repeated question within genre: {signature}")
+                prompts.add(signature)
+                payload = q.get("payload", {})
+                if q["kind"] == "yojijukugo":
+                    yoji = payload.get("yoji", "")
+                    blank = payload.get("missingIndex", -1)
+                    if (yoji.count("□") != 1 or yoji.find("□") != blank
+                            or yoji.replace("□", q["answer"]) != q["kanji"]):
+                        err(tag, "cloze answer does not reconstruct the idiom")
+                if q["kind"] == "sentenceReading":
+                    target = payload.get("targetKanji", q["kanji"])
+                    if target not in payload.get("sentenceContext", ""):
+                        err(tag, "reading target is missing from sentence")
+            total += len(stage["questions"])
+        print(f"  {manifest_path.name}: {len(manifest['stages'])} stages")
+    return total
+
+
 def main():
     parser = argparse.ArgumentParser(description="Validate OniTan question JSON files")
     parser.add_argument("--dir", default="OniTan/Resources", help="Resources directory")
     parser.add_argument("--strict", action="store_true", help="Exit non-zero on warnings too")
+    parser.add_argument("--stages", action="store_true", help="Also validate all manifest-referenced stages")
     parser.add_argument("files", nargs="*", help="Specific files to validate (default: all *_questions.json)")
     args = parser.parse_args()
 
@@ -234,6 +286,9 @@ def main():
         total += count
 
     print(f"\nTotal: {total} questions across {len(paths)} file(s)")
+    if args.stages:
+        stage_total = validate_stages(resources)
+        print(f"\nMain stages: {stage_total} questions")
 
     if warnings:
         print(f"\n{len(warnings)} warning(s):")

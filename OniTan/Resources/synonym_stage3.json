@@ -1,0 +1,225 @@
+{
+  "stage": 203,
+  "questions": [
+    {
+      "kanji": "衰退",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "衰退",
+        "relationWord": "衰微"
+      },
+      "prompt": "「衰退」の類義語は？",
+      "choices": [
+        "興隆",
+        "繁栄",
+        "衰微",
+        "隆盛"
+      ],
+      "answer": "衰微",
+      "explain": "意味: 勢いが弱まっていくこと\n正解: 衰退≒衰微\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003748200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003748400"
+    },
+    {
+      "kanji": "懇切",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "懇切",
+        "relationWord": "丁寧"
+      },
+      "prompt": "「懇切」の類義語は？",
+      "choices": [
+        "粗略",
+        "横柄",
+        "乱暴",
+        "丁寧"
+      ],
+      "answer": "丁寧",
+      "explain": "意味: 細かなところまで親切に配慮すること\n正解: 懇切≒丁寧\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002448600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004776600"
+    },
+    {
+      "kanji": "周到",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "周到",
+        "relationWord": "綿密"
+      },
+      "prompt": "「周到」の類義語は？",
+      "choices": [
+        "綿密",
+        "杜撰",
+        "粗雑",
+        "疎漏"
+      ],
+      "answer": "綿密",
+      "explain": "意味: 細かい点まで注意が行き届いていること\n正解: 周到≒綿密\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003104100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006713100"
+    },
+    {
+      "kanji": "唐突",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "唐突",
+        "relationWord": "突然"
+      },
+      "prompt": "「唐突」の類義語は？",
+      "choices": [
+        "順次",
+        "突然",
+        "漸次",
+        "徐々"
+      ],
+      "answer": "突然",
+      "explain": "意味: 前触れもなく起こること\n正解: 唐突≒突然\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005178200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005334500"
+    },
+    {
+      "kanji": "漠然",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "漠然",
+        "relationWord": "曖昧"
+      },
+      "prompt": "「漠然」の類義語は？",
+      "choices": [
+        "鮮明",
+        "確然",
+        "曖昧",
+        "明確"
+      ],
+      "answer": "曖昧",
+      "explain": "意味: はっきりせずぼんやりしていること\n正解: 漠然≒曖昧\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005651600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000026900"
+    },
+    {
+      "kanji": "辛抱",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "辛抱",
+        "relationWord": "忍耐"
+      },
+      "prompt": "「辛抱」の類義語は？",
+      "choices": [
+        "放棄",
+        "断念",
+        "逃避",
+        "忍耐"
+      ],
+      "answer": "忍耐",
+      "explain": "意味: 苦しさやつらさに耐えること\n正解: 辛抱≒忍耐\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003596700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005462400"
+    },
+    {
+      "kanji": "警戒",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "警戒",
+        "relationWord": "用心"
+      },
+      "prompt": "「警戒」の類義語は？",
+      "choices": [
+        "用心",
+        "油断",
+        "慢心",
+        "軽率"
+      ],
+      "answer": "用心",
+      "explain": "意味: 危険や失敗がないよう気をつけること\n正解: 警戒≒用心\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001823800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006929400"
+    },
+    {
+      "kanji": "温厚",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "温厚",
+        "relationWord": "温和"
+      },
+      "prompt": "「温厚」の類義語は？",
+      "choices": [
+        "険悪",
+        "温和",
+        "粗暴",
+        "獰猛"
+      ],
+      "answer": "温和",
+      "explain": "意味: 性質がおだやかであること\n正解: 温厚≒温和\n出典: コトバンク https://kotobank.jp/word/%E6%B8%A9%E5%8E%9A-455762\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000606000"
+    },
+    {
+      "kanji": "強靱",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "強靱",
+        "relationWord": "強健"
+      },
+      "prompt": "「強靱」の類義語は？",
+      "choices": [
+        "軟弱",
+        "柔弱",
+        "強健",
+        "虚弱"
+      ],
+      "answer": "強健",
+      "explain": "意味: 強くたくましいこと\n正解: 強靱≒強健\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001517400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001516400"
+    },
+    {
+      "kanji": "不朽",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "不朽",
+        "relationWord": "不滅"
+      },
+      "prompt": "「不朽」の類義語は？",
+      "choices": [
+        "消滅",
+        "滅亡",
+        "腐朽",
+        "不滅"
+      ],
+      "answer": "不滅",
+      "explain": "意味: 長く価値や存在を失わないこと\n正解: 不朽≒不滅\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005999800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006012400"
+    }
+  ]
+}

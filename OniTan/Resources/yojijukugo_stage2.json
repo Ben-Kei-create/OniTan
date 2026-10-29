@@ -1,0 +1,235 @@
+{
+  "stage": 102,
+  "questions": [
+    {
+      "kanji": "一意専心",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□専心",
+        "missingIndex": 1,
+        "meaning": "一つのことだけに心を集中させること"
+      },
+      "prompt": "一□専心",
+      "choices": [
+        "意",
+        "異",
+        "衣",
+        "依"
+      ],
+      "answer": "意",
+      "explain": "意味: 一つのことだけに心を集中させること\n正解: 一意専心（いちいせんしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000210100"
+    },
+    {
+      "kanji": "一念発起",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□発起",
+        "missingIndex": 1,
+        "meaning": "あることを成し遂げようと強く決意すること"
+      },
+      "prompt": "一□発起",
+      "choices": [
+        "燃",
+        "念",
+        "捻",
+        "粘"
+      ],
+      "answer": "念",
+      "explain": "意味: あることを成し遂げようと強く決意すること\n正解: 一念発起（いちねんほっき）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000217600"
+    },
+    {
+      "kanji": "一網打尽",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一網打□",
+        "missingIndex": 3,
+        "meaning": "関係する者を一度に残らず捕らえること"
+      },
+      "prompt": "一網打□",
+      "choices": [
+        "迅",
+        "尋",
+        "尽",
+        "陣"
+      ],
+      "answer": "尽",
+      "explain": "意味: 関係する者を一度に残らず捕らえること\n正解: 一網打尽（いちもうだじん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000219500"
+    },
+    {
+      "kanji": "一刀両断",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一刀両□",
+        "missingIndex": 3,
+        "meaning": "ためらわずきっぱりと決断すること"
+      },
+      "prompt": "一刀両□",
+      "choices": [
+        "段",
+        "談",
+        "壇",
+        "断"
+      ],
+      "answer": "断",
+      "explain": "意味: ためらわずきっぱりと決断すること\n正解: 一刀両断（いっとうりょうだん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000238400"
+    },
+    {
+      "kanji": "一朝一夕",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□一夕",
+        "missingIndex": 1,
+        "meaning": "きわめて短い期間"
+      },
+      "prompt": "一□一夕",
+      "choices": [
+        "朝",
+        "潮",
+        "嘲",
+        "超"
+      ],
+      "answer": "朝",
+      "explain": "意味: きわめて短い期間\n正解: 一朝一夕（いっちょういっせき）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000235800"
+    },
+    {
+      "kanji": "一蓮托生",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□托生",
+        "missingIndex": 1,
+        "meaning": "結果のよしあしにかかわらず運命を共にすること"
+      },
+      "prompt": "一□托生",
+      "choices": [
+        "練",
+        "蓮",
+        "連",
+        "廉"
+      ],
+      "answer": "蓮",
+      "explain": "意味: 結果のよしあしにかかわらず運命を共にすること\n正解: 一蓮托生（いちれんたくしょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000222700"
+    },
+    {
+      "kanji": "一攫千金",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一攫□金",
+        "missingIndex": 2,
+        "meaning": "一度に大きな利益を手に入れること"
+      },
+      "prompt": "一攫□金",
+      "choices": [
+        "遷",
+        "浅",
+        "千",
+        "仙"
+      ],
+      "answer": "千",
+      "explain": "意味: 一度に大きな利益を手に入れること\n正解: 一攫千金（いっかくせんきん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000223900"
+    },
+    {
+      "kanji": "一騎当千",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一騎当□",
+        "missingIndex": 3,
+        "meaning": "一人で千人に匹敵するほど強いこと"
+      },
+      "prompt": "一騎当□",
+      "choices": [
+        "仙",
+        "遷",
+        "浅",
+        "千"
+      ],
+      "answer": "千",
+      "explain": "意味: 一人で千人に匹敵するほど強いこと\n正解: 一騎当千（いっきとうせん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000225600"
+    },
+    {
+      "kanji": "一喜一憂",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□一憂",
+        "missingIndex": 1,
+        "meaning": "状況の変化に応じて喜んだり心配したりすること"
+      },
+      "prompt": "一□一憂",
+      "choices": [
+        "喜",
+        "嬉",
+        "希",
+        "季"
+      ],
+      "answer": "喜",
+      "explain": "意味: 状況の変化に応じて喜んだり心配したりすること\n正解: 一喜一憂（いっきいちゆう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000225200"
+    },
+    {
+      "kanji": "一触即発",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□即発",
+        "missingIndex": 1,
+        "meaning": "少しのきっかけで争いなどが起こりそうな状態"
+      },
+      "prompt": "一□即発",
+      "choices": [
+        "飾",
+        "触",
+        "食",
+        "職"
+      ],
+      "answer": "触",
+      "explain": "意味: 少しのきっかけで争いなどが起こりそうな状態\n正解: 一触即発（いっしょくそくはつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000231300"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "stage": 107,
+  "questions": [
+    {
+      "kanji": "徹頭徹尾",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "徹頭□尾",
+        "missingIndex": 2,
+        "meaning": "初めから終わりまで徹底していること"
+      },
+      "prompt": "徹頭□尾",
+      "choices": [
+        "鉄",
+        "哲",
+        "徹",
+        "撤"
+      ],
+      "answer": "徹",
+      "explain": "意味: 初めから終わりまで徹底していること\n正解: 徹頭徹尾（てっとうてつび）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005028700"
+    },
+    {
+      "kanji": "電光石火",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "電光石□",
+        "missingIndex": 3,
+        "meaning": "動きがきわめて速いこと"
+      },
+      "prompt": "電光石□",
+      "choices": [
+        "化",
+        "花",
+        "華",
+        "火"
+      ],
+      "answer": "火",
+      "explain": "意味: 動きがきわめて速いこと\n正解: 電光石火（でんこうせっか）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005095400"
+    },
+    {
+      "kanji": "天衣無縫",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□衣無縫",
+        "missingIndex": 0,
+        "meaning": "わざとらしさがなく自然で美しいこと"
+      },
+      "prompt": "□衣無縫",
+      "choices": [
+        "天",
+        "転",
+        "展",
+        "典"
+      ],
+      "answer": "天",
+      "explain": "意味: わざとらしさがなく自然で美しいこと\n正解: 天衣無縫（てんいむほう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005036000"
+    },
+    {
+      "kanji": "天真爛漫",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "天真爛□",
+        "missingIndex": 3,
+        "meaning": "飾らず明るく無邪気なこと"
+      },
+      "prompt": "天真爛□",
+      "choices": [
+        "蔓",
+        "漫",
+        "慢",
+        "満"
+      ],
+      "answer": "漫",
+      "explain": "意味: 飾らず明るく無邪気なこと\n正解: 天真爛漫（てんしんらんまん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005041600"
+    },
+    {
+      "kanji": "同工異曲",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "同工□曲",
+        "missingIndex": 2,
+        "meaning": "見かけは異なるが内容や巧みさは似ていること"
+      },
+      "prompt": "同工□曲",
+      "choices": [
+        "移",
+        "違",
+        "異",
+        "偉"
+      ],
+      "answer": "異",
+      "explain": "意味: 見かけは異なるが内容や巧みさは似ていること\n正解: 同工異曲（どうこういきょく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005257600"
+    },
+    {
+      "kanji": "独立独歩",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "独立独□",
+        "missingIndex": 3,
+        "meaning": "他に頼らず自分の信念で進むこと"
+      },
+      "prompt": "独立独□",
+      "choices": [
+        "保",
+        "補",
+        "舗",
+        "歩"
+      ],
+      "answer": "歩",
+      "explain": "意味: 他に頼らず自分の信念で進むこと\n正解: 独立独歩（どくりつどっぽ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005322600"
+    },
+    {
+      "kanji": "内憂外患",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□憂外患",
+        "missingIndex": 0,
+        "meaning": "内部の心配と外部からの災い"
+      },
+      "prompt": "□憂外患",
+      "choices": [
+        "内",
+        "奈",
+        "納",
+        "那"
+      ],
+      "answer": "内",
+      "explain": "意味: 内部の心配と外部からの災い\n正解: 内憂外患（ないゆうがいかん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005382700"
+    },
+    {
+      "kanji": "日進月歩",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "日進月□",
+        "missingIndex": 3,
+        "meaning": "日々絶えず進歩すること"
+      },
+      "prompt": "日進月□",
+      "choices": [
+        "舗",
+        "歩",
+        "保",
+        "補"
+      ],
+      "answer": "歩",
+      "explain": "意味: 日々絶えず進歩すること\n正解: 日進月歩（にっしんげっぽ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005438800"
+    },
+    {
+      "kanji": "勇往邁進",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□往邁進",
+        "missingIndex": 0,
+        "meaning": "恐れずに目標へ向かって突き進むこと"
+      },
+      "prompt": "□往邁進",
+      "choices": [
+        "踊",
+        "甬",
+        "勇",
+        "湧"
+      ],
+      "answer": "勇",
+      "explain": "意味: 恐れずに目標へ向かって突き進むこと\n正解: 勇往邁進（ゆうおうまいしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006857300"
+    },
+    {
+      "kanji": "馬耳東風",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "馬耳東□",
+        "missingIndex": 3,
+        "meaning": "人の意見を聞き流して気に留めないこと"
+      },
+      "prompt": "馬耳東□",
+      "choices": [
+        "楓",
+        "封",
+        "峰",
+        "風"
+      ],
+      "answer": "風",
+      "explain": "意味: 人の意見を聞き流して気に留めないこと\n正解: 馬耳東風（ばじとうふう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005545400"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "stage": 20,
+  "questions": [
+    {
+      "kanji": "躍如",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "躍如",
+        "sentenceContext": "作品に作者の個性が躍如としている。"
+      },
+      "prompt": "例文中の「躍如」の読みを選べ。",
+      "choices": [
+        "やくじょ",
+        "ようじょ",
+        "やくにょ",
+        "てきじょ"
+      ],
+      "answer": "やくじょ",
+      "explain": "例文: 作品に作者の個性が躍如としている。\n正解の読み: やくじょ\n意味: 生き生きと表れているさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006809500"
+    },
+    {
+      "kanji": "斟酌",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "斟酌",
+        "sentenceContext": "相手の事情を斟酌して判断した。"
+      },
+      "prompt": "例文中の「斟酌」の読みを選べ。",
+      "choices": [
+        "しんちょく",
+        "しんしゃく",
+        "かんしゃく",
+        "じんしゃく"
+      ],
+      "answer": "しんしゃく",
+      "explain": "例文: 相手の事情を斟酌して判断した。\n正解の読み: しんしゃく\n意味: 事情や心情をくみ取ること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003650100"
+    },
+    {
+      "kanji": "忸怩",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "忸怩",
+        "sentenceContext": "準備不足を忸怩たる思いで振り返る。"
+      },
+      "prompt": "例文中の「忸怩」の読みを選べ。",
+      "choices": [
+        "じゅくじ",
+        "じくに",
+        "じくじ",
+        "にゅうじ"
+      ],
+      "answer": "じくじ",
+      "explain": "例文: 準備不足を忸怩たる思いで振り返る。\n正解の読み: じくじ\n意味: 深く恥じ入るさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002908100"
+    },
+    {
+      "kanji": "瀟洒",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "瀟洒",
+        "sentenceContext": "丘の上に瀟洒な洋館が建っている。"
+      },
+      "prompt": "例文中の「瀟洒」の読みを選べ。",
+      "choices": [
+        "しょうさい",
+        "しゅくしゃ",
+        "せいしゃ",
+        "しょうしゃ"
+      ],
+      "answer": "しょうしゃ",
+      "explain": "例文: 丘の上に瀟洒な洋館が建っている。\n正解の読み: しょうしゃ\n意味: すっきりしてあか抜けていること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003473200"
+    },
+    {
+      "kanji": "闊達",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "闊達",
+        "sentenceContext": "会議では自由闊達な意見が出た。"
+      },
+      "prompt": "例文中の「闊達」の読みを選べ。",
+      "choices": [
+        "かったつ",
+        "かつだつ",
+        "けったつ",
+        "かんたつ"
+      ],
+      "answer": "かったつ",
+      "explain": "例文: 会議では自由闊達な意見が出た。\n正解の読み: かったつ\n意味: 心が広く小さなことにこだわらないこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000984900"
+    },
+    {
+      "kanji": "慟哭",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "慟哭",
+        "sentenceContext": "悲報を聞いて慟哭した。"
+      },
+      "prompt": "例文中の「慟哭」の読みを選べ。",
+      "choices": [
+        "しょうこく",
+        "どうこく",
+        "とうきゅう",
+        "どうきゅう"
+      ],
+      "answer": "どうこく",
+      "explain": "例文: 悲報を聞いて慟哭した。\n正解の読み: どうこく\n意味: 声を上げて激しく泣くこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005279700"
+    },
+    {
+      "kanji": "憑依",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "憑依",
+        "sentenceContext": "物語には霊が憑依する場面がある。"
+      },
+      "prompt": "例文中の「憑依」の読みを選べ。",
+      "choices": [
+        "ほうい",
+        "ひょうえ",
+        "ひょうい",
+        "ふうい"
+      ],
+      "answer": "ひょうい",
+      "explain": "例文: 物語には霊が憑依する場面がある。\n正解の読み: ひょうい\n意味: 霊などが人に取りつくこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005948300"
+    },
+    {
+      "kanji": "諧謔",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "諧謔",
+        "sentenceContext": "彼の文章には諧謔があふれている。"
+      },
+      "prompt": "例文中の「諧謔」の読みを選べ。",
+      "choices": [
+        "かいがく",
+        "かいりゃく",
+        "かいげき",
+        "かいぎゃく"
+      ],
+      "answer": "かいぎゃく",
+      "explain": "例文: 彼の文章には諧謔があふれている。\n正解の読み: かいぎゃく\n意味: 気の利いた冗談やユーモア\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000832800"
+    },
+    {
+      "kanji": "贖罪",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "贖罪",
+        "sentenceContext": "彼は贖罪のために奉仕を続けた。"
+      },
+      "prompt": "例文中の「贖罪」の読みを選べ。",
+      "choices": [
+        "しょくざい",
+        "ぞくざい",
+        "とくざい",
+        "しゅくざい"
+      ],
+      "answer": "しょくざい",
+      "explain": "例文: 彼は贖罪のために奉仕を続けた。\n正解の読み: しょくざい\n意味: 罪の償いをすること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003561000"
+    },
+    {
+      "kanji": "漣",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "漣",
+        "sentenceContext": "静かな湖面に漣が広がる。"
+      },
+      "prompt": "例文中の「漣」の読みを選べ。",
+      "choices": [
+        "しぶき",
+        "さざなみ",
+        "あらなみ",
+        "うずしお"
+      ],
+      "answer": "さざなみ",
+      "explain": "例文: 静かな湖面に漣が広がる。\n正解の読み: さざなみ\n意味: 水面に立つ細かな波\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007307100"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "stage": 106,
+  "questions": [
+    {
+      "kanji": "前代未聞",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□代未聞",
+        "missingIndex": 0,
+        "meaning": "これまでに聞いたことがないこと"
+      },
+      "prompt": "□代未聞",
+      "choices": [
+        "前",
+        "善",
+        "漸",
+        "全"
+      ],
+      "answer": "前",
+      "explain": "意味: これまでに聞いたことがないこと\n正解: 前代未聞（ぜんだいみもん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004138300"
+    },
+    {
+      "kanji": "千載一遇",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "千載一□",
+        "missingIndex": 3,
+        "meaning": "めったに巡ってこない絶好の機会"
+      },
+      "prompt": "千載一□",
+      "choices": [
+        "愚",
+        "遇",
+        "偶",
+        "寓"
+      ],
+      "answer": "遇",
+      "explain": "意味: めったに巡ってこない絶好の機会\n正解: 千載一遇（せんざいいちぐう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004028000"
+    },
+    {
+      "kanji": "千差万別",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "千差万□",
+        "missingIndex": 3,
+        "meaning": "さまざまな違いがあること"
+      },
+      "prompt": "千差万□",
+      "choices": [
+        "烈",
+        "裂",
+        "別",
+        "列"
+      ],
+      "answer": "別",
+      "explain": "意味: さまざまな違いがあること\n正解: 千差万別（せんさばんべつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004028100"
+    },
+    {
+      "kanji": "戦戦恐恐",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "戦戦恐□",
+        "missingIndex": 3,
+        "meaning": "恐れてびくびくしていること"
+      },
+      "prompt": "戦戦恐□",
+      "choices": [
+        "恭",
+        "供",
+        "共",
+        "恐"
+      ],
+      "answer": "恐",
+      "explain": "意味: 恐れてびくびくしていること\n正解: 戦戦恐恐（せんせんきょうきょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004084800"
+    },
+    {
+      "kanji": "大器晩成",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□器晩成",
+        "missingIndex": 0,
+        "meaning": "大人物は時間をかけて才能を完成させるということ"
+      },
+      "prompt": "□器晩成",
+      "choices": [
+        "大",
+        "太",
+        "代",
+        "台"
+      ],
+      "answer": "大",
+      "explain": "意味: 大人物は時間をかけて才能を完成させるということ\n正解: 大器晩成（たいきばんせい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004486400"
+    },
+    {
+      "kanji": "大同小異",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "大□小異",
+        "missingIndex": 1,
+        "meaning": "小さな違いはあるが大体は同じであること"
+      },
+      "prompt": "大□小異",
+      "choices": [
+        "童",
+        "同",
+        "洞",
+        "胴"
+      ],
+      "answer": "同",
+      "explain": "意味: 小さな違いはあるが大体は同じであること\n正解: 大同小異（だいどうしょうい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004497000"
+    },
+    {
+      "kanji": "大胆不敵",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "大胆□敵",
+        "missingIndex": 2,
+        "meaning": "度胸があって物事を恐れないこと"
+      },
+      "prompt": "大胆□敵",
+      "choices": [
+        "負",
+        "付",
+        "不",
+        "布"
+      ],
+      "answer": "不",
+      "explain": "意味: 度胸があって物事を恐れないこと\n正解: 大胆不敵（だいたんふてき）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004495800"
+    },
+    {
+      "kanji": "単刀直入",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "単刀直□",
+        "missingIndex": 3,
+        "meaning": "前置きをせずすぐ本題に入ること"
+      },
+      "prompt": "単刀直□",
+      "choices": [
+        "人",
+        "刃",
+        "仁",
+        "入"
+      ],
+      "answer": "入",
+      "explain": "意味: 前置きをせずすぐ本題に入ること\n正解: 単刀直入（たんとうちょくにゅう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004593200"
+    },
+    {
+      "kanji": "朝令暮改",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□令暮改",
+        "missingIndex": 0,
+        "meaning": "命令や方針がすぐに変わり一定しないこと"
+      },
+      "prompt": "□令暮改",
+      "choices": [
+        "朝",
+        "潮",
+        "嘲",
+        "超"
+      ],
+      "answer": "朝",
+      "explain": "意味: 命令や方針がすぐに変わり一定しないこと\n正解: 朝令暮改（ちょうれいぼかい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004812800"
+    },
+    {
+      "kanji": "適材適所",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "適材□所",
+        "missingIndex": 2,
+        "meaning": "能力にふさわしい仕事や地位に人を配置すること"
+      },
+      "prompt": "適材□所",
+      "choices": [
+        "敵",
+        "適",
+        "滴",
+        "摘"
+      ],
+      "answer": "適",
+      "explain": "意味: 能力にふさわしい仕事や地位に人を配置すること\n正解: 適材適所（てきざいてきしょ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005007000"
+    }
+  ]
+}

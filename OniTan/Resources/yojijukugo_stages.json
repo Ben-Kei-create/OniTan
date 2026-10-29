@@ -5,6 +5,60 @@
       "file": "yojijukugo_stage1.json",
       "title": "四字熟語 1",
       "difficulty": 4
+    },
+    {
+      "id": 102,
+      "file": "yojijukugo_stage2.json",
+      "title": "四字熟語 2",
+      "difficulty": 4
+    },
+    {
+      "id": 103,
+      "file": "yojijukugo_stage3.json",
+      "title": "四字熟語 3",
+      "difficulty": 4
+    },
+    {
+      "id": 104,
+      "file": "yojijukugo_stage4.json",
+      "title": "四字熟語 4",
+      "difficulty": 4
+    },
+    {
+      "id": 105,
+      "file": "yojijukugo_stage5.json",
+      "title": "四字熟語 5",
+      "difficulty": 4
+    },
+    {
+      "id": 106,
+      "file": "yojijukugo_stage6.json",
+      "title": "四字熟語 6",
+      "difficulty": 4
+    },
+    {
+      "id": 107,
+      "file": "yojijukugo_stage7.json",
+      "title": "四字熟語 7",
+      "difficulty": 4
+    },
+    {
+      "id": 108,
+      "file": "yojijukugo_stage8.json",
+      "title": "四字熟語 8",
+      "difficulty": 4
+    },
+    {
+      "id": 109,
+      "file": "yojijukugo_stage9.json",
+      "title": "四字熟語 9",
+      "difficulty": 4
+    },
+    {
+      "id": 110,
+      "file": "yojijukugo_stage10.json",
+      "title": "四字熟語 10",
+      "difficulty": 4
     }
   ]
 }

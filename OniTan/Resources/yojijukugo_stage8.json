@@ -1,0 +1,235 @@
+{
+  "stage": 108,
+  "questions": [
+    {
+      "kanji": "八面六臂",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□面六臂",
+        "missingIndex": 0,
+        "meaning": "一人で多方面に目覚ましく働くこと"
+      },
+      "prompt": "□面六臂",
+      "choices": [
+        "八",
+        "鉢",
+        "発",
+        "末"
+      ],
+      "answer": "八",
+      "explain": "意味: 一人で多方面に目覚ましく働くこと\n正解: 八面六臂（はちめんろっぴ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005678800"
+    },
+    {
+      "kanji": "半信半疑",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "半信□疑",
+        "missingIndex": 2,
+        "meaning": "半ば信じながら半ば疑っていること"
+      },
+      "prompt": "半信□疑",
+      "choices": [
+        "班",
+        "半",
+        "判",
+        "版"
+      ],
+      "answer": "半",
+      "explain": "意味: 半ば信じながら半ば疑っていること\n正解: 半信半疑（はんしんはんぎ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005729300"
+    },
+    {
+      "kanji": "品行方正",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "品行□正",
+        "missingIndex": 2,
+        "meaning": "行いがきちんとして正しいこと"
+      },
+      "prompt": "品行□正",
+      "choices": [
+        "訪",
+        "坊",
+        "方",
+        "芳"
+      ],
+      "answer": "方",
+      "explain": "意味: 行いがきちんとして正しいこと\n正解: 品行方正（ひんこうほうせい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005974700"
+    },
+    {
+      "kanji": "不言実行",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "不言実□",
+        "missingIndex": 3,
+        "meaning": "あれこれ言わず実際の行動で示すこと"
+      },
+      "prompt": "不言実□",
+      "choices": [
+        "衡",
+        "幸",
+        "向",
+        "行"
+      ],
+      "answer": "行",
+      "explain": "意味: あれこれ言わず実際の行動で示すこと\n正解: 不言実行（ふげんじっこう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006001500"
+    },
+    {
+      "kanji": "不撓不屈",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□撓不屈",
+        "missingIndex": 0,
+        "meaning": "困難に遭っても意志を曲げないこと"
+      },
+      "prompt": "□撓不屈",
+      "choices": [
+        "不",
+        "布",
+        "負",
+        "付"
+      ],
+      "answer": "不",
+      "explain": "意味: 困難に遭っても意志を曲げないこと\n正解: 不撓不屈（ふとうふくつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006009500"
+    },
+    {
+      "kanji": "付和雷同",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "付□雷同",
+        "missingIndex": 1,
+        "meaning": "自分の考えがなく他人に同調すること"
+      },
+      "prompt": "付□雷同",
+      "choices": [
+        "我",
+        "和",
+        "話",
+        "輪"
+      ],
+      "answer": "和",
+      "explain": "意味: 自分の考えがなく他人に同調すること\n正解: 付和雷同（ふわらいどう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006022900"
+    },
+    {
+      "kanji": "粉骨砕身",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "粉骨砕□",
+        "missingIndex": 3,
+        "meaning": "力を尽くして懸命に働くこと"
+      },
+      "prompt": "粉骨砕□",
+      "choices": [
+        "神",
+        "申",
+        "身",
+        "伸"
+      ],
+      "answer": "身",
+      "explain": "意味: 力を尽くして懸命に働くこと\n正解: 粉骨砕身（ふんこつさいしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006163000"
+    },
+    {
+      "kanji": "平身低頭",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "平身低□",
+        "missingIndex": 3,
+        "meaning": "身を低くしてひたすら謝罪や懇願をすること"
+      },
+      "prompt": "平身低□",
+      "choices": [
+        "投",
+        "討",
+        "豆",
+        "頭"
+      ],
+      "answer": "頭",
+      "explain": "意味: 身を低くしてひたすら謝罪や懇願をすること\n正解: 平身低頭（へいしんていとう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006197200"
+    },
+    {
+      "kanji": "本末転倒",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "本末転□",
+        "missingIndex": 3,
+        "meaning": "大切なことと枝葉のことを取り違えること"
+      },
+      "prompt": "本末転□",
+      "choices": [
+        "倒",
+        "到",
+        "刀",
+        "盗"
+      ],
+      "answer": "倒",
+      "explain": "意味: 大切なことと枝葉のことを取り違えること\n正解: 本末転倒（ほんまつてんとう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006510100"
+    },
+    {
+      "kanji": "無我夢中",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "無我□中",
+        "missingIndex": 2,
+        "meaning": "我を忘れるほど何かに熱中すること"
+      },
+      "prompt": "無我□中",
+      "choices": [
+        "務",
+        "夢",
+        "蒙",
+        "霧"
+      ],
+      "answer": "夢",
+      "explain": "意味: 我を忘れるほど何かに熱中すること\n正解: 無我夢中（むがむちゅう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006640500"
+    }
+  ]
+}

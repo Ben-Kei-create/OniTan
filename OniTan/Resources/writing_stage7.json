@@ -1,0 +1,235 @@
+{
+  "stage": 407,
+  "questions": [
+    {
+      "kanji": "辻褄",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "つじつま",
+        "kanaPrompt": "つじつま",
+        "targetKanji": "辻褄"
+      },
+      "prompt": "「つじつま」を漢字で書くと？\n意味: 物事の筋道や前後の一致",
+      "choices": [
+        "辻端",
+        "込褄",
+        "辻褄",
+        "辻妻"
+      ],
+      "answer": "辻褄",
+      "explain": "意味: 物事の筋道や前後の一致\n正解: 辻褄（つじつま）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004912400"
+    },
+    {
+      "kanji": "徹底",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "てってい",
+        "kanaPrompt": "てってい",
+        "targetKanji": "徹底"
+      },
+      "prompt": "「てってい」を漢字で書くと？\n意味: 細部まで行き届かせること",
+      "choices": [
+        "撤底",
+        "徹低",
+        "轍底",
+        "徹底"
+      ],
+      "answer": "徹底",
+      "explain": "意味: 細部まで行き届かせること\n正解: 徹底（てってい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005028600"
+    },
+    {
+      "kanji": "顛末",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "てんまつ",
+        "kanaPrompt": "てんまつ",
+        "targetKanji": "顛末"
+      },
+      "prompt": "「てんまつ」を漢字で書くと？\n意味: 物事の初めから終わりまでの事情",
+      "choices": [
+        "顛末",
+        "顛未",
+        "展末",
+        "填末"
+      ],
+      "answer": "顛末",
+      "explain": "意味: 物事の初めから終わりまでの事情\n正解: 顛末（てんまつ）\n出典: コトバンク https://kotobank.jp/word/%E9%A1%9B%E6%9C%AB-578979"
+    },
+    {
+      "kanji": "陶酔",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "とうすい",
+        "kanaPrompt": "とうすい",
+        "targetKanji": "陶酔"
+      },
+      "prompt": "「とうすい」を漢字で書くと？\n意味: うっとりと心を奪われること",
+      "choices": [
+        "萄酔",
+        "陶酔",
+        "淘酔",
+        "陶粋"
+      ],
+      "answer": "陶酔",
+      "explain": "意味: うっとりと心を奪われること\n正解: 陶酔（とうすい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005196600"
+    },
+    {
+      "kanji": "督促",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "とくそく",
+        "kanaPrompt": "とくそく",
+        "targetKanji": "督促"
+      },
+      "prompt": "「とくそく」を漢字で書くと？\n意味: 早く果たすよう催促すること",
+      "choices": [
+        "篤促",
+        "独促",
+        "督促",
+        "督足"
+      ],
+      "answer": "督促",
+      "explain": "意味: 早く果たすよう催促すること\n正解: 督促（とくそく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005307600"
+    },
+    {
+      "kanji": "頓挫",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "とんざ",
+        "kanaPrompt": "とんざ",
+        "targetKanji": "頓挫"
+      },
+      "prompt": "「とんざ」を漢字で書くと？\n意味: 物事が途中で行き詰まること",
+      "choices": [
+        "屯挫",
+        "頓座",
+        "鈍挫",
+        "頓挫"
+      ],
+      "answer": "頓挫",
+      "explain": "意味: 物事が途中で行き詰まること\n正解: 頓挫（とんざ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005358000"
+    },
+    {
+      "kanji": "捺印",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "なついん",
+        "kanaPrompt": "なついん",
+        "targetKanji": "捺印"
+      },
+      "prompt": "「なついん」を漢字で書くと？\n意味: 印を押すこと",
+      "choices": [
+        "捺印",
+        "奈印",
+        "捺因",
+        "捺陰"
+      ],
+      "answer": "捺印",
+      "explain": "意味: 印を押すこと\n正解: 捺印（なついん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005395900"
+    },
+    {
+      "kanji": "軟膏",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "なんこう",
+        "kanaPrompt": "なんこう",
+        "targetKanji": "軟膏"
+      },
+      "prompt": "「なんこう」を漢字で書くと？\n意味: 皮膚に塗る柔らかい薬",
+      "choices": [
+        "軟稿",
+        "軟膏",
+        "軟高",
+        "難膏"
+      ],
+      "answer": "軟膏",
+      "explain": "意味: 皮膚に塗る柔らかい薬\n正解: 軟膏（なんこう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005411100"
+    },
+    {
+      "kanji": "煩雑",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "はんざつ",
+        "kanaPrompt": "はんざつ",
+        "targetKanji": "煩雑"
+      },
+      "prompt": "「はんざつ」を漢字で書くと？\n意味: こまごまとして複雑なこと",
+      "choices": [
+        "繁札",
+        "煩札",
+        "煩雑",
+        "煩殺"
+      ],
+      "answer": "煩雑",
+      "explain": "意味: こまごまとして複雑なこと\n正解: 煩雑（はんざつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005759500"
+    },
+    {
+      "kanji": "卑屈",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ひくつ",
+        "kanaPrompt": "ひくつ",
+        "targetKanji": "卑屈"
+      },
+      "prompt": "「ひくつ」を漢字で書くと？\n意味: 必要以上にへりくだること",
+      "choices": [
+        "卑掘",
+        "碑屈",
+        "卑窟",
+        "卑屈"
+      ],
+      "answer": "卑屈",
+      "explain": "意味: 必要以上にへりくだること\n正解: 卑屈（ひくつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005814000"
+    }
+  ]
+}

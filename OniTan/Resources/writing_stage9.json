@@ -1,0 +1,235 @@
+{
+  "stage": 409,
+  "questions": [
+    {
+      "kanji": "無垢",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "むく",
+        "kanaPrompt": "むく",
+        "targetKanji": "無垢"
+      },
+      "prompt": "「むく」を漢字で書くと？\n意味: 汚れがなく純粋なこと",
+      "choices": [
+        "無矩",
+        "無句",
+        "無垢",
+        "無苦"
+      ],
+      "answer": "無垢",
+      "explain": "意味: 汚れがなく純粋なこと\n正解: 無垢（むく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006641400"
+    },
+    {
+      "kanji": "明瞭",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "めいりょう",
+        "kanaPrompt": "めいりょう",
+        "targetKanji": "明瞭"
+      },
+      "prompt": "「めいりょう」を漢字で書くと？\n意味: はっきりしていること",
+      "choices": [
+        "明僚",
+        "名瞭",
+        "明療",
+        "明瞭"
+      ],
+      "answer": "明瞭",
+      "explain": "意味: はっきりしていること\n正解: 明瞭（めいりょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006684100"
+    },
+    {
+      "kanji": "模索",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "もさく",
+        "kanaPrompt": "もさく",
+        "targetKanji": "模索"
+      },
+      "prompt": "「もさく」を漢字で書くと？\n意味: 手がかりを探しながら方法を求めること",
+      "choices": [
+        "模索",
+        "摸策",
+        "模策",
+        "莫索"
+      ],
+      "answer": "模索",
+      "explain": "意味: 手がかりを探しながら方法を求めること\n正解: 模索（もさく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006719100"
+    },
+    {
+      "kanji": "揶揄",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "やゆ",
+        "kanaPrompt": "やゆ",
+        "targetKanji": "揶揄"
+      },
+      "prompt": "「やゆ」を漢字で書くと？\n意味: からかうこと",
+      "choices": [
+        "揶愉",
+        "揶揄",
+        "揶輸",
+        "耶揄"
+      ],
+      "answer": "揶揄",
+      "explain": "意味: からかうこと\n正解: 揶揄（やゆ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006791000"
+    },
+    {
+      "kanji": "猶予",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ゆうよ",
+        "kanaPrompt": "ゆうよ",
+        "targetKanji": "猶予"
+      },
+      "prompt": "「ゆうよ」を漢字で書くと？\n意味: 実行までの時間に余裕を持たせること",
+      "choices": [
+        "優予",
+        "猶預",
+        "猶予",
+        "猶余"
+      ],
+      "answer": "猶予",
+      "explain": "意味: 実行までの時間に余裕を持たせること\n正解: 猶予（ゆうよ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006873400"
+    },
+    {
+      "kanji": "誘拐",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ゆうかい",
+        "kanaPrompt": "ゆうかい",
+        "targetKanji": "誘拐"
+      },
+      "prompt": "「ゆうかい」を漢字で書くと？\n意味: 人をだまして連れ去ること",
+      "choices": [
+        "誘怪",
+        "遊拐",
+        "誘介",
+        "誘拐"
+      ],
+      "answer": "誘拐",
+      "explain": "意味: 人をだまして連れ去ること\n正解: 誘拐（ゆうかい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006886900"
+    },
+    {
+      "kanji": "融通",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ゆうずう",
+        "kanaPrompt": "ゆうずう",
+        "targetKanji": "融通"
+      },
+      "prompt": "「ゆうずう」を漢字で書くと？\n意味: その場に応じて適切に処理すること",
+      "choices": [
+        "融通",
+        "融痛",
+        "融合う",
+        "融追"
+      ],
+      "answer": "融通",
+      "explain": "意味: その場に応じて適切に処理すること\n正解: 融通（ゆうずう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006892200"
+    },
+    {
+      "kanji": "抑揚",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "よくよう",
+        "kanaPrompt": "よくよう",
+        "targetKanji": "抑揚"
+      },
+      "prompt": "「よくよう」を漢字で書くと？\n意味: 声の調子などの高低や強弱",
+      "choices": [
+        "抑楊",
+        "抑揚",
+        "抑陽",
+        "浴揚"
+      ],
+      "answer": "抑揚",
+      "explain": "意味: 声の調子などの高低や強弱\n正解: 抑揚（よくよう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006992400"
+    },
+    {
+      "kanji": "羅列",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "られつ",
+        "kanaPrompt": "られつ",
+        "targetKanji": "羅列"
+      },
+      "prompt": "「られつ」を漢字で書くと？\n意味: 同じ種類のものを並べること",
+      "choices": [
+        "裸列",
+        "羅烈",
+        "羅列",
+        "羅裂"
+      ],
+      "answer": "羅列",
+      "explain": "意味: 同じ種類のものを並べること\n正解: 羅列（られつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007018000"
+    },
+    {
+      "kanji": "凌駕",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "りょうが",
+        "kanaPrompt": "りょうが",
+        "targetKanji": "凌駕"
+      },
+      "prompt": "「りょうが」を漢字で書くと？\n意味: 他のものを超えて上に出ること",
+      "choices": [
+        "陵賀",
+        "凌架",
+        "凌賀",
+        "凌駕"
+      ],
+      "answer": "凌駕",
+      "explain": "意味: 他のものを超えて上に出ること\n正解: 凌駕（りょうが）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007161300"
+    }
+  ]
+}

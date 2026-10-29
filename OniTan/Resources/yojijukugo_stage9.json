@@ -1,0 +1,235 @@
+{
+  "stage": 109,
+  "questions": [
+    {
+      "kanji": "明鏡止水",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "明鏡止□",
+        "missingIndex": 3,
+        "meaning": "曇りなく落ち着いた心の状態"
+      },
+      "prompt": "明鏡止□",
+      "choices": [
+        "永",
+        "泳",
+        "水",
+        "氷"
+      ],
+      "answer": "水",
+      "explain": "意味: 曇りなく落ち着いた心の状態\n正解: 明鏡止水（めいきょうしすい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006681200"
+    },
+    {
+      "kanji": "面従腹背",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "面従腹□",
+        "missingIndex": 3,
+        "meaning": "表面では従い内心では逆らうこと"
+      },
+      "prompt": "面従腹□",
+      "choices": [
+        "拝",
+        "杯",
+        "配",
+        "背"
+      ],
+      "answer": "背",
+      "explain": "意味: 表面では従い内心では逆らうこと\n正解: 面従腹背（めんじゅうふくはい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006709200"
+    },
+    {
+      "kanji": "門外不出",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□外不出",
+        "missingIndex": 0,
+        "meaning": "大切なものを外へ出さないこと"
+      },
+      "prompt": "□外不出",
+      "choices": [
+        "門",
+        "問",
+        "聞",
+        "悶"
+      ],
+      "answer": "門",
+      "explain": "意味: 大切なものを外へ出さないこと\n正解: 門外不出（もんがいふしゅつ）\n出典: コトバンク https://kotobank.jp/word/%E9%96%80%E5%A4%96%E4%B8%8D%E5%87%BA-647116"
+    },
+    {
+      "kanji": "優柔不断",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "優□不断",
+        "missingIndex": 1,
+        "meaning": "決断力がなくぐずぐずしていること"
+      },
+      "prompt": "優□不断",
+      "choices": [
+        "儒",
+        "柔",
+        "軟",
+        "需"
+      ],
+      "answer": "柔",
+      "explain": "意味: 決断力がなくぐずぐずしていること\n正解: 優柔不断（ゆうじゅうふだん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006894700"
+    },
+    {
+      "kanji": "油断大敵",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "油断□敵",
+        "missingIndex": 2,
+        "meaning": "気の緩みは大きな失敗のもとだという戒め"
+      },
+      "prompt": "油断□敵",
+      "choices": [
+        "代",
+        "台",
+        "大",
+        "太"
+      ],
+      "answer": "大",
+      "explain": "意味: 気の緩みは大きな失敗のもとだという戒め\n正解: 油断大敵（ゆだんたいてき）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006829600"
+    },
+    {
+      "kanji": "用意周到",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□意周到",
+        "missingIndex": 0,
+        "meaning": "準備が細部まで行き届いていること"
+      },
+      "prompt": "□意周到",
+      "choices": [
+        "庸",
+        "容",
+        "要",
+        "用"
+      ],
+      "answer": "用",
+      "explain": "意味: 準備が細部まで行き届いていること\n正解: 用意周到（よういしゅうとう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006928400"
+    },
+    {
+      "kanji": "羊頭狗肉",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□頭狗肉",
+        "missingIndex": 0,
+        "meaning": "見せかけは立派だが実質が伴わないこと"
+      },
+      "prompt": "□頭狗肉",
+      "choices": [
+        "羊",
+        "洋",
+        "祥",
+        "詳"
+      ],
+      "answer": "羊",
+      "explain": "意味: 見せかけは立派だが実質が伴わないこと\n正解: 羊頭狗肉（ようとうくにく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006932900"
+    },
+    {
+      "kanji": "落花流水",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "落花□水",
+        "missingIndex": 2,
+        "meaning": "男女が互いに思いを寄せ合うこと"
+      },
+      "prompt": "落花□水",
+      "choices": [
+        "硫",
+        "流",
+        "留",
+        "柳"
+      ],
+      "answer": "流",
+      "explain": "意味: 男女が互いに思いを寄せ合うこと\n正解: 落花流水（らっかりゅうすい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007040600"
+    },
+    {
+      "kanji": "離合集散",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "離合集□",
+        "missingIndex": 3,
+        "meaning": "離れたり集まったりすること"
+      },
+      "prompt": "離合集□",
+      "choices": [
+        "傘",
+        "算",
+        "散",
+        "撒"
+      ],
+      "answer": "散",
+      "explain": "意味: 離れたり集まったりすること\n正解: 離合集散（りごうしゅうさん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007096100"
+    },
+    {
+      "kanji": "竜頭蛇尾",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "竜頭蛇□",
+        "missingIndex": 3,
+        "meaning": "初めは勢いがよいが終わりは振るわないこと"
+      },
+      "prompt": "竜頭蛇□",
+      "choices": [
+        "美",
+        "微",
+        "未",
+        "尾"
+      ],
+      "answer": "尾",
+      "explain": "意味: 初めは勢いがよいが終わりは振るわないこと\n正解: 竜頭蛇尾（りゅうとうだび）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007132100"
+    }
+  ]
+}

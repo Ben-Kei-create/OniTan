@@ -5,6 +5,60 @@
       "file": "writing_stage1.json",
       "title": "書き取り 1",
       "difficulty": 4
+    },
+    {
+      "id": 402,
+      "file": "writing_stage2.json",
+      "title": "書き取り 2",
+      "difficulty": 4
+    },
+    {
+      "id": 403,
+      "file": "writing_stage3.json",
+      "title": "書き取り 3",
+      "difficulty": 4
+    },
+    {
+      "id": 404,
+      "file": "writing_stage4.json",
+      "title": "書き取り 4",
+      "difficulty": 4
+    },
+    {
+      "id": 405,
+      "file": "writing_stage5.json",
+      "title": "書き取り 5",
+      "difficulty": 4
+    },
+    {
+      "id": 406,
+      "file": "writing_stage6.json",
+      "title": "書き取り 6",
+      "difficulty": 4
+    },
+    {
+      "id": 407,
+      "file": "writing_stage7.json",
+      "title": "書き取り 7",
+      "difficulty": 4
+    },
+    {
+      "id": 408,
+      "file": "writing_stage8.json",
+      "title": "書き取り 8",
+      "difficulty": 4
+    },
+    {
+      "id": 409,
+      "file": "writing_stage9.json",
+      "title": "書き取り 9",
+      "difficulty": 4
+    },
+    {
+      "id": 410,
+      "file": "writing_stage10.json",
+      "title": "書き取り 10",
+      "difficulty": 4
     }
   ]
 }

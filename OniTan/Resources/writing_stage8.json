@@ -1,0 +1,235 @@
+{
+  "stage": 408,
+  "questions": [
+    {
+      "kanji": "逼迫",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ひっぱく",
+        "kanaPrompt": "ひっぱく",
+        "targetKanji": "逼迫"
+      },
+      "prompt": "「ひっぱく」を漢字で書くと？\n意味: 余裕がなく追い詰められること",
+      "choices": [
+        "逼迫",
+        "逼泊",
+        "副迫",
+        "逼拍"
+      ],
+      "answer": "逼迫",
+      "explain": "意味: 余裕がなく追い詰められること\n正解: 逼迫（ひっぱく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005911200"
+    },
+    {
+      "kanji": "払拭",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ふっしょく",
+        "kanaPrompt": "ふっしょく",
+        "targetKanji": "払拭"
+      },
+      "prompt": "「ふっしょく」を漢字で書くと？\n意味: すっかりぬぐい去ること",
+      "choices": [
+        "払飾",
+        "払拭",
+        "払式",
+        "沸拭"
+      ],
+      "answer": "払拭",
+      "explain": "意味: すっかりぬぐい去ること\n正解: 払拭（ふっしょく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006137400"
+    },
+    {
+      "kanji": "憤慨",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ふんがい",
+        "kanaPrompt": "ふんがい",
+        "targetKanji": "憤慨"
+      },
+      "prompt": "「ふんがい」を漢字で書くと？\n意味: 不正などに怒りを感じること",
+      "choices": [
+        "噴慨",
+        "憤該",
+        "憤慨",
+        "憤概"
+      ],
+      "answer": "憤慨",
+      "explain": "意味: 不正などに怒りを感じること\n正解: 憤慨（ふんがい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006171000"
+    },
+    {
+      "kanji": "閉塞",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "へいそく",
+        "kanaPrompt": "へいそく",
+        "targetKanji": "閉塞"
+      },
+      "prompt": "「へいそく」を漢字で書くと？\n意味: ふさがって通じなくなること",
+      "choices": [
+        "閉足",
+        "弊塞",
+        "閉則",
+        "閉塞"
+      ],
+      "answer": "閉塞",
+      "explain": "意味: ふさがって通じなくなること\n正解: 閉塞（へいそく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006215900"
+    },
+    {
+      "kanji": "偏屈",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "へんくつ",
+        "kanaPrompt": "へんくつ",
+        "targetKanji": "偏屈"
+      },
+      "prompt": "「へんくつ」を漢字で書くと？\n意味: 性質がかたくなで素直でないこと",
+      "choices": [
+        "偏屈",
+        "偏掘",
+        "遍屈",
+        "偏窟"
+      ],
+      "answer": "偏屈",
+      "explain": "意味: 性質がかたくなで素直でないこと\n正解: 偏屈（へんくつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006268600"
+    },
+    {
+      "kanji": "彷徨",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ほうこう",
+        "kanaPrompt": "ほうこう",
+        "targetKanji": "彷徨"
+      },
+      "prompt": "「ほうこう」を漢字で書くと？\n意味: あてもなくさまようこと",
+      "choices": [
+        "芳徨",
+        "彷徨",
+        "傍徨",
+        "彷皇"
+      ],
+      "answer": "彷徨",
+      "explain": "意味: あてもなくさまようこと\n正解: 彷徨（ほうこう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006340100"
+    },
+    {
+      "kanji": "飽和",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ほうわ",
+        "kanaPrompt": "ほうわ",
+        "targetKanji": "飽和"
+      },
+      "prompt": "「ほうわ」を漢字で書くと？\n意味: それ以上受け入れられない状態になること",
+      "choices": [
+        "飽話",
+        "抱和",
+        "飽和",
+        "泡和"
+      ],
+      "answer": "飽和",
+      "explain": "意味: それ以上受け入れられない状態になること\n正解: 飽和（ほうわ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006399200"
+    },
+    {
+      "kanji": "翻弄",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ほんろう",
+        "kanaPrompt": "ほんろう",
+        "targetKanji": "翻弄"
+      },
+      "prompt": "「ほんろう」を漢字で書くと？\n意味: 思うままにもてあそぶこと",
+      "choices": [
+        "翻廊",
+        "翻浪",
+        "反弄",
+        "翻弄"
+      ],
+      "answer": "翻弄",
+      "explain": "意味: 思うままにもてあそぶこと\n正解: 翻弄（ほんろう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006516000"
+    },
+    {
+      "kanji": "邁進",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "まいしん",
+        "kanaPrompt": "まいしん",
+        "targetKanji": "邁進"
+      },
+      "prompt": "「まいしん」を漢字で書くと？\n意味: 目標へ勢いよく突き進むこと",
+      "choices": [
+        "邁進",
+        "遇進",
+        "邁新",
+        "毎進"
+      ],
+      "answer": "邁進",
+      "explain": "意味: 目標へ勢いよく突き進むこと\n正解: 邁進（まいしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006538200"
+    },
+    {
+      "kanji": "魅了",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "みりょう",
+        "kanaPrompt": "みりょう",
+        "targetKanji": "魅了"
+      },
+      "prompt": "「みりょう」を漢字で書くと？\n意味: 人の心を強く引きつけること",
+      "choices": [
+        "魁了",
+        "魅了",
+        "魅料",
+        "魅涼"
+      ],
+      "answer": "魅了",
+      "explain": "意味: 人の心を強く引きつけること\n正解: 魅了（みりょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006602600"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "stage": 404,
+  "questions": [
+    {
+      "kanji": "研鑽",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "けんさん",
+        "kanaPrompt": "けんさん",
+        "targetKanji": "研鑽"
+      },
+      "prompt": "「けんさん」を漢字で書くと？\n意味: 学問や技術を深く研究して磨くこと",
+      "choices": [
+        "研鑽",
+        "研賛",
+        "研讃",
+        "研算"
+      ],
+      "answer": "研鑽",
+      "explain": "意味: 学問や技術を深く研究して磨くこと\n正解: 研鑽（けんさん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001910800"
+    },
+    {
+      "kanji": "巧拙",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "こうせつ",
+        "kanaPrompt": "こうせつ",
+        "targetKanji": "巧拙"
+      },
+      "prompt": "「こうせつ」を漢字で書くと？\n意味: 上手であることと下手であること",
+      "choices": [
+        "功折",
+        "巧拙",
+        "巧摂",
+        "攻拙"
+      ],
+      "answer": "巧拙",
+      "explain": "意味: 上手であることと下手であること\n正解: 巧拙（こうせつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002142600"
+    },
+    {
+      "kanji": "枯渇",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "こかつ",
+        "kanaPrompt": "こかつ",
+        "targetKanji": "枯渇"
+      },
+      "prompt": "「こかつ」を漢字で書くと？\n意味: 水や資源などが尽きること",
+      "choices": [
+        "枯喝",
+        "古渇",
+        "枯渇",
+        "故渇"
+      ],
+      "answer": "枯渇",
+      "explain": "意味: 水や資源などが尽きること\n正解: 枯渇（こかつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002049900"
+    },
+    {
+      "kanji": "誤謬",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ごびゅう",
+        "kanaPrompt": "ごびゅう",
+        "targetKanji": "誤謬"
+      },
+      "prompt": "「ごびゅう」を漢字で書くと？\n意味: 誤り。間違った考えや判断",
+      "choices": [
+        "誤繆",
+        "語謬",
+        "誤膠",
+        "誤謬"
+      ],
+      "answer": "誤謬",
+      "explain": "意味: 誤り。間違った考えや判断\n正解: 誤謬（ごびゅう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002113600"
+    },
+    {
+      "kanji": "困憊",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "こんぱい",
+        "kanaPrompt": "こんぱい",
+        "targetKanji": "困憊"
+      },
+      "prompt": "「こんぱい」を漢字で書くと？\n意味: ひどく疲れ切ること",
+      "choices": [
+        "困憊",
+        "困弊",
+        "困敗",
+        "困排"
+      ],
+      "answer": "困憊",
+      "explain": "意味: ひどく疲れ切ること\n正解: 困憊（こんぱい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002422000"
+    },
+    {
+      "kanji": "挫折",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ざせつ",
+        "kanaPrompt": "ざせつ",
+        "targetKanji": "挫折"
+      },
+      "prompt": "「ざせつ」を漢字で書くと？\n意味: 計画や意欲が途中でくじけること",
+      "choices": [
+        "坐折",
+        "挫折",
+        "座折",
+        "挫析"
+      ],
+      "answer": "挫折",
+      "explain": "意味: 計画や意欲が途中でくじけること\n正解: 挫折（ざせつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002487000"
+    },
+    {
+      "kanji": "示唆",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しさ",
+        "kanaPrompt": "しさ",
+        "targetKanji": "示唆"
+      },
+      "prompt": "「しさ」を漢字で書くと？\n意味: それとなく教え示すこと",
+      "choices": [
+        "指唆",
+        "示峻",
+        "示唆",
+        "示俊"
+      ],
+      "answer": "示唆",
+      "explain": "意味: それとなく教え示すこと\n正解: 示唆（しさ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002842500"
+    },
+    {
+      "kanji": "執拗",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しつよう",
+        "kanaPrompt": "しつよう",
+        "targetKanji": "執拗"
+      },
+      "prompt": "「しつよう」を漢字で書くと？\n意味: しつこくこだわって離れないこと",
+      "choices": [
+        "執幼",
+        "執要",
+        "執抑",
+        "執拗"
+      ],
+      "answer": "執拗",
+      "explain": "意味: しつこくこだわって離れないこと\n正解: 執拗（しつよう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002931400"
+    },
+    {
+      "kanji": "充填",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "じゅうてん",
+        "kanaPrompt": "じゅうてん",
+        "targetKanji": "充填"
+      },
+      "prompt": "「じゅうてん」を漢字で書くと？\n意味: 空いているところに詰めること",
+      "choices": [
+        "充填",
+        "重填",
+        "充展",
+        "充典"
+      ],
+      "answer": "充填",
+      "explain": "意味: 空いているところに詰めること\n正解: 充填（じゅうてん）\n出典: コトバンク https://kotobank.jp/word/%E5%85%85%E5%A1%AB-77237"
+    },
+    {
+      "kanji": "遵守",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "じゅんしゅ",
+        "kanaPrompt": "じゅんしゅ",
+        "targetKanji": "遵守"
+      },
+      "prompt": "「じゅんしゅ」を漢字で書くと？\n意味: 規則や法律に従って守ること",
+      "choices": [
+        "巡守",
+        "遵守",
+        "尊守",
+        "遵取"
+      ],
+      "answer": "遵守",
+      "explain": "意味: 規則や法律に従って守ること\n正解: 遵守（じゅんしゅ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003271100"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "stage": 105,
+  "questions": [
+    {
+      "kanji": "縦横無尽",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "縦横□尽",
+        "missingIndex": 2,
+        "meaning": "思うまま自由自在に活動すること"
+      },
+      "prompt": "縦横□尽",
+      "choices": [
+        "武",
+        "務",
+        "無",
+        "舞"
+      ],
+      "answer": "無",
+      "explain": "意味: 思うまま自由自在に活動すること\n正解: 縦横無尽（じゅうおうむじん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003189800"
+    },
+    {
+      "kanji": "周章狼狽",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "周章狼□",
+        "missingIndex": 3,
+        "meaning": "ひどく慌ててうろたえること"
+      },
+      "prompt": "周章狼□",
+      "choices": [
+        "倍",
+        "培",
+        "陪",
+        "狽"
+      ],
+      "answer": "狽",
+      "explain": "意味: ひどく慌ててうろたえること\n正解: 周章狼狽（しゅうしょうろうばい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003103600"
+    },
+    {
+      "kanji": "取捨選択",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□捨選択",
+        "missingIndex": 0,
+        "meaning": "必要なものを選び不要なものを捨てること"
+      },
+      "prompt": "□捨選択",
+      "choices": [
+        "取",
+        "趣",
+        "主",
+        "守"
+      ],
+      "answer": "取",
+      "explain": "意味: 必要なものを選び不要なものを捨てること\n正解: 取捨選択（しゅしゃせんたく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003054100"
+    },
+    {
+      "kanji": "首尾一貫",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "首□一貫",
+        "missingIndex": 1,
+        "meaning": "初めから終わりまで方針が変わらないこと"
+      },
+      "prompt": "首□一貫",
+      "choices": [
+        "未",
+        "尾",
+        "美",
+        "微"
+      ],
+      "answer": "尾",
+      "explain": "意味: 初めから終わりまで方針が変わらないこと\n正解: 首尾一貫（しゅびいっかん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003060500"
+    },
+    {
+      "kanji": "順風満帆",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "順風満□",
+        "missingIndex": 3,
+        "meaning": "物事が順調に進むこと"
+      },
+      "prompt": "順風満□",
+      "choices": [
+        "汎",
+        "帋",
+        "帆",
+        "凡"
+      ],
+      "answer": "帆",
+      "explain": "意味: 物事が順調に進むこと\n正解: 順風満帆（じゅんぷうまんぱん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003262900"
+    },
+    {
+      "kanji": "針小棒大",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "針小棒□",
+        "missingIndex": 3,
+        "meaning": "小さなことを大げさに言うこと"
+      },
+      "prompt": "針小棒□",
+      "choices": [
+        "太",
+        "代",
+        "台",
+        "大"
+      ],
+      "answer": "大",
+      "explain": "意味: 小さなことを大げさに言うこと\n正解: 針小棒大（しんしょうぼうだい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003631100"
+    },
+    {
+      "kanji": "新陳代謝",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□陳代謝",
+        "missingIndex": 0,
+        "meaning": "古いものが新しいものに入れ替わること"
+      },
+      "prompt": "□陳代謝",
+      "choices": [
+        "新",
+        "薪",
+        "親",
+        "進"
+      ],
+      "answer": "新",
+      "explain": "意味: 古いものが新しいものに入れ替わること\n正解: 新陳代謝（しんちんたいしゃ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003654500"
+    },
+    {
+      "kanji": "泰然自若",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "泰□自若",
+        "missingIndex": 1,
+        "meaning": "落ち着いて何事にも動じないこと"
+      },
+      "prompt": "泰□自若",
+      "choices": [
+        "年",
+        "然",
+        "燃",
+        "念"
+      ],
+      "answer": "然",
+      "explain": "意味: 落ち着いて何事にも動じないこと\n正解: 泰然自若（たいぜんじじゃく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004453900"
+    },
+    {
+      "kanji": "晴耕雨読",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "晴耕雨□",
+        "missingIndex": 3,
+        "meaning": "自然に従って心静かに暮らすこと"
+      },
+      "prompt": "晴耕雨□",
+      "choices": [
+        "毒",
+        "督",
+        "読",
+        "独"
+      ],
+      "answer": "読",
+      "explain": "意味: 自然に従って心静かに暮らすこと\n正解: 晴耕雨読（せいこううどく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003901500"
+    },
+    {
+      "kanji": "切磋琢磨",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "切磋琢□",
+        "missingIndex": 3,
+        "meaning": "互いに励まし合って学問や技芸を磨くこと"
+      },
+      "prompt": "切磋琢□",
+      "choices": [
+        "麻",
+        "魔",
+        "麿",
+        "磨"
+      ],
+      "answer": "磨",
+      "explain": "意味: 互いに励まし合って学問や技芸を磨くこと\n正解: 切磋琢磨（せっさたくま）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003986600"
+    }
+  ]
+}

@@ -5,6 +5,30 @@
       "file": "proverb_stage1.json",
       "title": "故事・ことわざ 1",
       "difficulty": 4
+    },
+    {
+      "id": 602,
+      "file": "proverb_stage2.json",
+      "title": "故事・ことわざ 2",
+      "difficulty": 3
+    },
+    {
+      "id": 603,
+      "file": "proverb_stage3.json",
+      "title": "故事・ことわざ 3",
+      "difficulty": 3
+    },
+    {
+      "id": 604,
+      "file": "proverb_stage4.json",
+      "title": "故事・ことわざ 4",
+      "difficulty": 3
+    },
+    {
+      "id": 605,
+      "file": "proverb_stage5.json",
+      "title": "故事・ことわざ 5",
+      "difficulty": 3
     }
   ]
 }

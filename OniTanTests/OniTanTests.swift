@@ -371,31 +371,30 @@ struct QuizProblemReportBuilderTests {
 @MainActor
 struct ExamRoundProgressionTests {
 
-    @Test func firstRoundIsUnlockedAndSecondRequiresPreviousRoundAt90Percent() {
+    @Test func firstThreeRoundsAreUnlockedWithoutPreviousResults() {
         let repo = ExamResultRepository(store: InMemoryPersistenceStore())
-        let round1 = ExamRound(number: 1)
-        let round2 = ExamRound(number: 2)
-
-        #expect(round1.isUnlocked(using: repo))
-        #expect(!round2.isUnlocked(using: repo))
-
-        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 89, total: 100))
-        #expect(!repo.hasPassed(blueprintID: round1.blueprintID, threshold: ExamRound.passThreshold))
-        #expect(!round2.isUnlocked(using: repo))
-
-        repo.save(Self.result(blueprintID: round1.blueprintID, correct: 90, total: 100))
-        #expect(repo.hasPassed(blueprintID: round1.blueprintID, threshold: ExamRound.passThreshold))
-        #expect(round2.isUnlocked(using: repo))
+        let xpRepo = GamificationRepository(store: InMemoryPersistenceStore())
+        for number in 1...3 {
+            #expect(ExamRound(number: number).isUnlocked(using: repo, xpRepo: xpRepo))
+        }
+        #expect(!ExamRound(number: 4).isUnlocked(using: repo, xpRepo: xpRepo))
     }
 
     @Test func tenthRoundRequiresNinthRoundPass() {
         let repo = ExamResultRepository(store: InMemoryPersistenceStore())
+        let xpStore = InMemoryPersistenceStore()
+        xpStore.set(try! JSONEncoder().encode(GamificationData(totalXP: 100_000)), forKey: "gamification_v2")
+        xpStore.set(try! JSONEncoder().encode(quizContentVersion), forKey: "gamificationContentVersion")
+        let xpRepo = GamificationRepository(store: xpStore)
         let round10 = ExamRound(number: 10)
 
-        #expect(!round10.isUnlocked(using: repo))
+        #expect(!round10.isUnlocked(using: repo, xpRepo: xpRepo))
+
+        repo.save(Self.result(blueprintID: ExamRound.blueprintID(for: 9), correct: 89, total: 100))
+        #expect(!round10.isUnlocked(using: repo, xpRepo: xpRepo))
 
         repo.save(Self.result(blueprintID: ExamRound.blueprintID(for: 9), correct: 9, total: 10))
-        #expect(round10.isUnlocked(using: repo))
+        #expect(round10.isUnlocked(using: repo, xpRepo: xpRepo))
     }
 
     private static func result(blueprintID: String, correct: Int, total: Int) -> ExamResult {

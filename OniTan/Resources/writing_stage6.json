@@ -1,0 +1,235 @@
+{
+  "stage": 406,
+  "questions": [
+    {
+      "kanji": "相殺",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "そうさい",
+        "kanaPrompt": "そうさい",
+        "targetKanji": "相殺"
+      },
+      "prompt": "「そうさい」を漢字で書くと？\n意味: 差し引いて互いの損得をなくすこと",
+      "choices": [
+        "相殺",
+        "想殺",
+        "相裁",
+        "相際"
+      ],
+      "answer": "相殺",
+      "explain": "意味: 差し引いて互いの損得をなくすこと\n正解: 相殺（そうさい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004221700"
+    },
+    {
+      "kanji": "忖度",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "そんたく",
+        "kanaPrompt": "そんたく",
+        "targetKanji": "忖度"
+      },
+      "prompt": "「そんたく」を漢字で書くと？\n意味: 他人の気持ちを推し量ること",
+      "choices": [
+        "存託",
+        "忖度",
+        "村度",
+        "忖宅"
+      ],
+      "answer": "忖度",
+      "explain": "意味: 他人の気持ちを推し量ること\n正解: 忖度（そんたく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004380200"
+    },
+    {
+      "kanji": "堆積",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "たいせき",
+        "kanaPrompt": "たいせき",
+        "targetKanji": "堆積"
+      },
+      "prompt": "「たいせき」を漢字で書くと？\n意味: 幾重にも積み重なること",
+      "choices": [
+        "堆績",
+        "対積",
+        "堆積",
+        "推積"
+      ],
+      "answer": "堆積",
+      "explain": "意味: 幾重にも積み重なること\n正解: 堆積（たいせき）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004455000"
+    },
+    {
+      "kanji": "怠惰",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "たいだ",
+        "kanaPrompt": "たいだ",
+        "targetKanji": "怠惰"
+      },
+      "prompt": "「たいだ」を漢字で書くと？\n意味: なまけてだらしないこと",
+      "choices": [
+        "怠堕",
+        "胎惰",
+        "怠陀",
+        "怠惰"
+      ],
+      "answer": "怠惰",
+      "explain": "意味: なまけてだらしないこと\n正解: 怠惰（たいだ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004442100"
+    },
+    {
+      "kanji": "端緒",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "たんしょ",
+        "kanaPrompt": "たんしょ",
+        "targetKanji": "端緒"
+      },
+      "prompt": "「たんしょ」を漢字で書くと？\n意味: 物事が始まるきっかけ",
+      "choices": [
+        "端緒",
+        "端諸",
+        "短緒",
+        "端署"
+      ],
+      "answer": "端緒",
+      "explain": "意味: 物事が始まるきっかけ\n正解: 端緒（たんしょ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004619200"
+    },
+    {
+      "kanji": "緻密",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ちみつ",
+        "kanaPrompt": "ちみつ",
+        "targetKanji": "緻密"
+      },
+      "prompt": "「ちみつ」を漢字で書くと？\n意味: 細かいところまで注意が行き届いていること",
+      "choices": [
+        "致密",
+        "緻密",
+        "稚密",
+        "緻蜜"
+      ],
+      "answer": "緻密",
+      "explain": "意味: 細かいところまで注意が行き届いていること\n正解: 緻密（ちみつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004693400"
+    },
+    {
+      "kanji": "躊躇",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ちゅうちょ",
+        "kanaPrompt": "ちゅうちょ",
+        "targetKanji": "躊躇"
+      },
+      "prompt": "「ちゅうちょ」を漢字で書くと？\n意味: 決心がつかずためらうこと",
+      "choices": [
+        "躊著",
+        "躊箸",
+        "躊躇",
+        "疇躇"
+      ],
+      "answer": "躊躇",
+      "explain": "意味: 決心がつかずためらうこと\n正解: 躊躇（ちゅうちょ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004761500"
+    },
+    {
+      "kanji": "寵愛",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ちょうあい",
+        "kanaPrompt": "ちょうあい",
+        "targetKanji": "寵愛"
+      },
+      "prompt": "「ちょうあい」を漢字で書くと？\n意味: 特別にかわいがること",
+      "choices": [
+        "籠愛",
+        "竜愛",
+        "寵哀",
+        "寵愛"
+      ],
+      "answer": "寵愛",
+      "explain": "意味: 特別にかわいがること\n正解: 寵愛（ちょうあい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004842600"
+    },
+    {
+      "kanji": "陳述",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ちんじゅつ",
+        "kanaPrompt": "ちんじゅつ",
+        "targetKanji": "陳述"
+      },
+      "prompt": "「ちんじゅつ」を漢字で書くと？\n意味: 意見や事情を口頭で述べること",
+      "choices": [
+        "陳述",
+        "陣述",
+        "陳術",
+        "陳樹"
+      ],
+      "answer": "陳述",
+      "explain": "意味: 意見や事情を口頭で述べること\n正解: 陳述（ちんじゅつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004868900"
+    },
+    {
+      "kanji": "沈黙",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ちんもく",
+        "kanaPrompt": "ちんもく",
+        "targetKanji": "沈黙"
+      },
+      "prompt": "「ちんもく」を漢字で書くと？\n意味: 黙っていること",
+      "choices": [
+        "沈摸",
+        "沈黙",
+        "沈墨",
+        "枕黙"
+      ],
+      "answer": "沈黙",
+      "explain": "意味: 黙っていること\n正解: 沈黙（ちんもく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004863000"
+    }
+  ]
+}

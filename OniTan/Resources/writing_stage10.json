@@ -1,0 +1,235 @@
+{
+  "stage": 410,
+  "questions": [
+    {
+      "kanji": "流暢",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "りゅうちょう",
+        "kanaPrompt": "りゅうちょう",
+        "targetKanji": "流暢"
+      },
+      "prompt": "「りゅうちょう」を漢字で書くと？\n意味: 言葉がすらすらと出てよどみがないこと",
+      "choices": [
+        "流暢",
+        "流腸",
+        "留暢",
+        "流張"
+      ],
+      "answer": "流暢",
+      "explain": "意味: 言葉がすらすらと出てよどみがないこと\n正解: 流暢（りゅうちょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007124200"
+    },
+    {
+      "kanji": "累積",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "るいせき",
+        "kanaPrompt": "るいせき",
+        "targetKanji": "累積"
+      },
+      "prompt": "「るいせき」を漢字で書くと？\n意味: 次々と積み重なること",
+      "choices": [
+        "累責",
+        "累積",
+        "累績",
+        "類積"
+      ],
+      "answer": "累積",
+      "explain": "意味: 次々と積み重なること\n正解: 累積（るいせき）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007230400"
+    },
+    {
+      "kanji": "練磨",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "れんま",
+        "kanaPrompt": "れんま",
+        "targetKanji": "練磨"
+      },
+      "prompt": "「れんま」を漢字で書くと？\n意味: 学問や技芸を鍛えて磨くこと",
+      "choices": [
+        "錬間",
+        "連磨",
+        "練磨",
+        "練麻"
+      ],
+      "answer": "練磨",
+      "explain": "意味: 学問や技芸を鍛えて磨くこと\n正解: 練磨（れんま）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007309400"
+    },
+    {
+      "kanji": "老朽",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ろうきゅう",
+        "kanaPrompt": "ろうきゅう",
+        "targetKanji": "老朽"
+      },
+      "prompt": "「ろうきゅう」を漢字で書くと？\n意味: 古くなって役に立たなくなること",
+      "choices": [
+        "老巧",
+        "労朽",
+        "老休",
+        "老朽"
+      ],
+      "answer": "老朽",
+      "explain": "意味: 古くなって役に立たなくなること\n正解: 老朽（ろうきゅう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007344300"
+    },
+    {
+      "kanji": "賄賂",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "わいろ",
+        "kanaPrompt": "わいろ",
+        "targetKanji": "賄賂"
+      },
+      "prompt": "「わいろ」を漢字で書くと？\n意味: 便宜を得るためひそかに渡す金品",
+      "choices": [
+        "賄賂",
+        "賄路",
+        "賄呂",
+        "賄絡"
+      ],
+      "answer": "賄賂",
+      "explain": "意味: 便宜を得るためひそかに渡す金品\n正解: 賄賂（わいろ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007414800"
+    },
+    {
+      "kanji": "歪曲",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "わいきょく",
+        "kanaPrompt": "わいきょく",
+        "targetKanji": "歪曲"
+      },
+      "prompt": "「わいきょく」を漢字で書くと？\n意味: 事実などをわざとゆがめて伝えること",
+      "choices": [
+        "矮曲",
+        "歪曲",
+        "否曲",
+        "歪局"
+      ],
+      "answer": "歪曲",
+      "explain": "意味: 事実などをわざとゆがめて伝えること\n正解: 歪曲（わいきょく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007410800"
+    },
+    {
+      "kanji": "遺憾",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "いかん",
+        "kanaPrompt": "いかん",
+        "targetKanji": "遺憾"
+      },
+      "prompt": "「いかん」を漢字で書くと？\n意味: 思うようにならず残念に思うこと",
+      "choices": [
+        "違憾",
+        "遺勘",
+        "遺憾",
+        "遺感"
+      ],
+      "answer": "遺憾",
+      "explain": "意味: 思うようにならず残念に思うこと\n正解: 遺憾（いかん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000177300"
+    },
+    {
+      "kanji": "喝采",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かっさい",
+        "kanaPrompt": "かっさい",
+        "targetKanji": "喝采"
+      },
+      "prompt": "「かっさい」を漢字で書くと？\n意味: 声を上げて褒めたたえること",
+      "choices": [
+        "渇采",
+        "喝菜",
+        "喝歳",
+        "喝采"
+      ],
+      "answer": "喝采",
+      "explain": "意味: 声を上げて褒めたたえること\n正解: 喝采（かっさい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000968500"
+    },
+    {
+      "kanji": "寛容",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かんよう",
+        "kanaPrompt": "かんよう",
+        "targetKanji": "寛容"
+      },
+      "prompt": "「かんよう」を漢字で書くと？\n意味: 他人の過ちなどを広い心で受け入れること",
+      "choices": [
+        "寛容",
+        "寛用",
+        "完容",
+        "緩容"
+      ],
+      "answer": "寛容",
+      "explain": "意味: 他人の過ちなどを広い心で受け入れること\n正解: 寛容（かんよう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001094300"
+    },
+    {
+      "kanji": "恣意",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しい",
+        "kanaPrompt": "しい",
+        "targetKanji": "恣意"
+      },
+      "prompt": "「しい」を漢字で書くと？\n意味: 気ままで自分勝手な考え",
+      "choices": [
+        "次意",
+        "恣意",
+        "姿意",
+        "恣衣"
+      ],
+      "answer": "恣意",
+      "explain": "意味: 気ままで自分勝手な考え\n正解: 恣意（しい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002779100"
+    }
+  ]
+}

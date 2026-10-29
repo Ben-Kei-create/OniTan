@@ -1,0 +1,255 @@
+{
+  "stage": 705,
+  "questions": [
+    {
+      "kanji": "□徹・□通・一□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□徹",
+          "□通",
+          "一□"
+        ]
+      },
+      "prompt": "□徹・□通・一□ に共通する漢字を選べ。",
+      "choices": [
+        "責",
+        "實",
+        "貫",
+        "慣"
+      ],
+      "answer": "貫",
+      "explain": "正解: 貫\n完成する語: 貫徹・貫通・一貫\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001067100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001067000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000224700"
+    },
+    {
+      "kanji": "□成・□否・協□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□成",
+          "□否",
+          "協□"
+        ]
+      },
+      "prompt": "□成・□否・協□ に共通する漢字を選べ。",
+      "choices": [
+        "替",
+        "潜",
+        "簪",
+        "賛"
+      ],
+      "answer": "賛",
+      "explain": "正解: 賛\n完成する語: 賛成・賛否・協賛\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002671500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002671900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001494100"
+    },
+    {
+      "kanji": "□献・□納・朝□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□献",
+          "□納",
+          "朝□"
+        ]
+      },
+      "prompt": "□献・□納・朝□ に共通する漢字を選べ。",
+      "choices": [
+        "貢",
+        "項",
+        "頁",
+        "責"
+      ],
+      "answer": "貢",
+      "explain": "正解: 貢\n完成する語: 貢献・貢納・朝貢\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002247200\n出典: コトバンク https://kotobank.jp/word/%E8%B2%A2%E7%B4%8D-497046\n出典: コトバンク https://kotobank.jp/word/%E6%9C%9D%E8%B2%A2-568349"
+    },
+    {
+      "kanji": "□与・□課・月□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□与",
+          "□課",
+          "月□"
+        ]
+      },
+      "prompt": "□与・□課・月□ に共通する漢字を選べ。",
+      "choices": [
+        "斌",
+        "賦",
+        "武",
+        "賊"
+      ],
+      "answer": "賦",
+      "explain": "正解: 賦\n完成する語: 賦与・賦課・月賦\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006068500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006068300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001886100"
+    },
+    {
+      "kanji": "□答・□与・寄□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□答",
+          "□与",
+          "寄□"
+        ]
+      },
+      "prompt": "□答・□与・寄□ に共通する漢字を選べ。",
+      "choices": [
+        "憎",
+        "僧",
+        "贈",
+        "増"
+      ],
+      "answer": "贈",
+      "explain": "正解: 贈\n完成する語: 贈答・贈与・寄贈\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004326600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004326700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001237500"
+    },
+    {
+      "kanji": "□賞・□定・印□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□賞",
+          "□定",
+          "印□"
+        ]
+      },
+      "prompt": "□賞・□定・印□ に共通する漢字を選べ。",
+      "choices": [
+        "監",
+        "艦",
+        "覧",
+        "鑑"
+      ],
+      "answer": "鑑",
+      "explain": "正解: 鑑\n完成する語: 鑑賞・鑑定・印鑑\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001149000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001149100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000277400"
+    },
+    {
+      "kanji": "□錬・□造・□冶",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□錬",
+          "□造",
+          "□冶"
+        ]
+      },
+      "prompt": "□錬・□造・□冶 に共通する漢字を選べ。",
+      "choices": [
+        "鍛",
+        "段",
+        "緞",
+        "断"
+      ],
+      "answer": "鍛",
+      "explain": "正解: 鍛\n完成する語: 鍛錬・鍛造・鍛冶\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004632900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004632800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004632600"
+    },
+    {
+      "kanji": "□造・□型・□物",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□造",
+          "□型",
+          "□物"
+        ]
+      },
+      "prompt": "□造・□型・□物 に共通する漢字を選べ。",
+      "choices": [
+        "祷",
+        "鋳",
+        "寿",
+        "涛"
+      ],
+      "answer": "鋳",
+      "explain": "正解: 鋳\n完成する語: 鋳造・鋳型・鋳物\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004756800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004756300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004756400"
+    },
+    {
+      "kanji": "□国・連□・封□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□国",
+          "連□",
+          "封□"
+        ]
+      },
+      "prompt": "□国・連□・封□ に共通する漢字を選べ。",
+      "choices": [
+        "銭",
+        "錘",
+        "鎖",
+        "錠"
+      ],
+      "answer": "鎖",
+      "explain": "正解: 鎖\n完成する語: 鎖国・連鎖・封鎖\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002480400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007296900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006087200"
+    },
+    {
+      "kanji": "□筆・□毒・□管",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□筆",
+          "□毒",
+          "□管"
+        ]
+      },
+      "prompt": "□筆・□毒・□管 に共通する漢字を選べ。",
+      "choices": [
+        "沿",
+        "船",
+        "鈴",
+        "鉛"
+      ],
+      "answer": "鉛",
+      "explain": "正解: 鉛\n完成する語: 鉛筆・鉛毒・鉛管\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000476700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000476500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000476000"
+    }
+  ]
+}

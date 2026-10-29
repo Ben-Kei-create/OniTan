@@ -1,0 +1,225 @@
+{
+  "stage": 23,
+  "questions": [
+    {
+      "kanji": "滂沱",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "滂沱",
+        "sentenceContext": "感激して滂沱の涙を流した。"
+      },
+      "prompt": "例文中の「滂沱」の読みを選べ。",
+      "choices": [
+        "ぼうたく",
+        "ぼうじゃ",
+        "ぼうだ",
+        "ほうた"
+      ],
+      "answer": "ぼうだ",
+      "explain": "例文: 感激して滂沱の涙を流した。\n正解の読み: ぼうだ\n意味: 雨や涙が激しく流れるさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006393100"
+    },
+    {
+      "kanji": "膠着",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "膠着",
+        "sentenceContext": "交渉は膠着状態に陥った。"
+      },
+      "prompt": "例文中の「膠着」の読みを選べ。",
+      "choices": [
+        "きょうちゃく",
+        "こうじゃく",
+        "ごうちゃく",
+        "こうちゃく"
+      ],
+      "answer": "こうちゃく",
+      "explain": "例文: 交渉は膠着状態に陥った。\n正解の読み: こうちゃく\n意味: くっついて動かないこと。事態が進まないこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002312000"
+    },
+    {
+      "kanji": "顰蹙",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "顰蹙",
+        "sentenceContext": "無責任な発言が顰蹙を買った。"
+      },
+      "prompt": "例文中の「顰蹙」の読みを選べ。",
+      "choices": [
+        "ひんしゅく",
+        "びんしゅく",
+        "ひんせき",
+        "ひんそく"
+      ],
+      "answer": "ひんしゅく",
+      "explain": "例文: 無責任な発言が顰蹙を買った。\n正解の読み: ひんしゅく\n意味: 不快に思って眉をひそめること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005988200"
+    },
+    {
+      "kanji": "醍醐味",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "醍醐味",
+        "sentenceContext": "推理小説の醍醐味を味わう。"
+      },
+      "prompt": "例文中の「醍醐味」の読みを選べ。",
+      "choices": [
+        "だいごあじ",
+        "だいごみ",
+        "ていごみ",
+        "だいこみ"
+      ],
+      "answer": "だいごみ",
+      "explain": "例文: 推理小説の醍醐味を味わう。\n正解の読み: だいごみ\n意味: 物事の本当の面白さ\n出典: コトバンク https://kotobank.jp/word/%E9%86%8D%E9%86%90%E5%91%B3-557005"
+    },
+    {
+      "kanji": "僥倖",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "僥倖",
+        "sentenceContext": "僥倖に頼らず準備を重ねる。"
+      },
+      "prompt": "例文中の「僥倖」の読みを選べ。",
+      "choices": [
+        "じょうこう",
+        "ぎょうこく",
+        "ぎょうこう",
+        "きょうこう"
+      ],
+      "answer": "ぎょうこう",
+      "explain": "例文: 僥倖に頼らず準備を重ねる。\n正解の読み: ぎょうこう\n意味: 思いがけない幸運\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001566700"
+    },
+    {
+      "kanji": "矍鑠",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "矍鑠",
+        "sentenceContext": "祖父は今も矍鑠としている。"
+      },
+      "prompt": "例文中の「矍鑠」の読みを選べ。",
+      "choices": [
+        "かっきん",
+        "かくよう",
+        "きょくしゃく",
+        "かくしゃく"
+      ],
+      "answer": "かくしゃく",
+      "explain": "例文: 祖父は今も矍鑠としている。\n正解の読み: かくしゃく\n意味: 年を取っても元気なさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000920000"
+    },
+    {
+      "kanji": "忌憚",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "忌憚",
+        "sentenceContext": "忌憚のない意見を聞かせてほしい。"
+      },
+      "prompt": "例文中の「忌憚」の読みを選べ。",
+      "choices": [
+        "きたん",
+        "きだん",
+        "いみたん",
+        "きせん"
+      ],
+      "answer": "きたん",
+      "explain": "例文: 忌憚のない意見を聞かせてほしい。\n正解の読み: きたん\n意味: 遠慮して差し控えること\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001198100"
+    },
+    {
+      "kanji": "陰翳",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "陰翳",
+        "sentenceContext": "陰翳に富む作品を鑑賞した。"
+      },
+      "prompt": "例文中の「陰翳」の読みを選べ。",
+      "choices": [
+        "おんえい",
+        "いんえい",
+        "いんかげ",
+        "いんげい"
+      ],
+      "answer": "いんえい",
+      "explain": "例文: 陰翳に富む作品を鑑賞した。\n正解の読み: いんえい\n意味: 光の当たらない暗い部分。味わいの深さ\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000292100"
+    },
+    {
+      "kanji": "颯爽",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "颯爽",
+        "sentenceContext": "彼は颯爽と舞台に登場した。"
+      },
+      "prompt": "例文中の「颯爽」の読みを選べ。",
+      "choices": [
+        "りっそう",
+        "さつさつ",
+        "さっそう",
+        "ふうそう"
+      ],
+      "answer": "さっそう",
+      "explain": "例文: 彼は颯爽と舞台に登場した。\n正解の読み: さっそう\n意味: きりっとして爽やかなさま\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002601700"
+    },
+    {
+      "kanji": "朦朧",
+      "kind": "sentenceReading",
+      "tags": [
+        "読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "朦朧",
+        "sentenceContext": "眠気で意識が朦朧としてきた。"
+      },
+      "prompt": "例文中の「朦朧」の読みを選べ。",
+      "choices": [
+        "ぼうろう",
+        "もうりょう",
+        "もうよう",
+        "もうろう"
+      ],
+      "answer": "もうろう",
+      "explain": "例文: 眠気で意識が朦朧としてきた。\n正解の読み: もうろう\n意味: ぼんやりとはっきりしないこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006736900"
+    }
+  ]
+}

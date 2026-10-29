@@ -5,6 +5,30 @@
       "file": "synonym_stage1.json",
       "title": "類義語 1",
       "difficulty": 4
+    },
+    {
+      "id": 202,
+      "file": "synonym_stage2.json",
+      "title": "類義語 2",
+      "difficulty": 4
+    },
+    {
+      "id": 203,
+      "file": "synonym_stage3.json",
+      "title": "類義語 3",
+      "difficulty": 4
+    },
+    {
+      "id": 204,
+      "file": "synonym_stage4.json",
+      "title": "類義語 4",
+      "difficulty": 4
+    },
+    {
+      "id": 205,
+      "file": "synonym_stage5.json",
+      "title": "類義語 5",
+      "difficulty": 4
     }
   ]
 }

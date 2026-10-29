@@ -1,0 +1,225 @@
+{
+  "stage": 204,
+  "questions": [
+    {
+      "kanji": "是認",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "是認",
+        "relationWord": "肯定"
+      },
+      "prompt": "「是認」の類義語は？",
+      "choices": [
+        "肯定",
+        "否定",
+        "拒否",
+        "否認"
+      ],
+      "answer": "肯定",
+      "explain": "意味: 正しいと認めること\n正解: 是認≒肯定\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003819400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002201700"
+    },
+    {
+      "kanji": "反駁",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "反駁",
+        "relationWord": "論駁"
+      },
+      "prompt": "「反駁」の類義語は？",
+      "choices": [
+        "容認",
+        "論駁",
+        "賛同",
+        "支持"
+      ],
+      "answer": "論駁",
+      "explain": "意味: 相手の主張の誤りを論じて退けること\n正解: 反駁≒論駁\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005724600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007397700"
+    },
+    {
+      "kanji": "追従",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "追従",
+        "relationWord": "迎合"
+      },
+      "prompt": "「追従」の類義語は？",
+      "choices": [
+        "抵抗",
+        "反発",
+        "迎合",
+        "反抗"
+      ],
+      "answer": "迎合",
+      "explain": "意味: 人に気に入られようと調子を合わせること\n正解: 追従≒迎合\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004880500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001831500"
+    },
+    {
+      "kanji": "謙虚",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "謙虚",
+        "relationWord": "謙遜"
+      },
+      "prompt": "「謙虚」の類義語は？",
+      "choices": [
+        "尊大",
+        "不遜",
+        "高慢",
+        "謙遜"
+      ],
+      "answer": "謙遜",
+      "explain": "意味: 自分を控えめにしてへりくだること\n正解: 謙虚≒謙遜\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001969000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001969300"
+    },
+    {
+      "kanji": "憤怒",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "憤怒",
+        "relationWord": "激怒"
+      },
+      "prompt": "「憤怒」の類義語は？",
+      "choices": [
+        "激怒",
+        "歓喜",
+        "安堵",
+        "満悦"
+      ],
+      "answer": "激怒",
+      "explain": "意味: 激しく怒ること\n正解: 憤怒≒激怒\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006171500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001848200"
+    },
+    {
+      "kanji": "悲嘆",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "悲嘆",
+        "relationWord": "悲哀"
+      },
+      "prompt": "「悲嘆」の類義語は？",
+      "choices": [
+        "歓楽",
+        "悲哀",
+        "愉悦",
+        "欣喜"
+      ],
+      "answer": "悲哀",
+      "explain": "意味: 悲しみ嘆くこと\n正解: 悲嘆≒悲哀\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005834700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005833300"
+    },
+    {
+      "kanji": "隠匿",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "隠匿",
+        "relationWord": "隠蔽"
+      },
+      "prompt": "「隠匿」の類義語は？",
+      "choices": [
+        "暴露",
+        "開示",
+        "隠蔽",
+        "公表"
+      ],
+      "answer": "隠蔽",
+      "explain": "意味: 人に知られないよう隠すこと\n正解: 隠匿≒隠蔽\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000303300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000303700"
+    },
+    {
+      "kanji": "懐疑",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "懐疑",
+        "relationWord": "疑念"
+      },
+      "prompt": "「懐疑」の類義語は？",
+      "choices": [
+        "確信",
+        "信頼",
+        "信用",
+        "疑念"
+      ],
+      "answer": "疑念",
+      "explain": "意味: 本当かどうか疑う気持ち\n正解: 懐疑≒疑念\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000828400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001311200"
+    },
+    {
+      "kanji": "遅滞",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "遅滞",
+        "relationWord": "遅延"
+      },
+      "prompt": "「遅滞」の類義語は？",
+      "choices": [
+        "遅延",
+        "即応",
+        "促進",
+        "先行"
+      ],
+      "answer": "遅延",
+      "explain": "意味: 物事が予定より遅れること\n正解: 遅滞≒遅延\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004683200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004682600"
+    },
+    {
+      "kanji": "拮抗",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "拮抗",
+        "relationWord": "伯仲"
+      },
+      "prompt": "「拮抗」の類義語は？",
+      "choices": [
+        "敗退",
+        "伯仲",
+        "圧倒",
+        "屈服"
+      ],
+      "answer": "伯仲",
+      "explain": "意味: 力がほぼ等しく張り合うこと\n正解: 拮抗≒伯仲\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001341300\n出典: コトバンク https://kotobank.jp/word/%E4%BC%AF%E4%BB%B2-600367"
+    }
+  ]
+}

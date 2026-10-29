@@ -1,0 +1,255 @@
+{
+  "stage": 703,
+  "questions": [
+    {
+      "kanji": "□張・□迫・□急",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□張",
+          "□迫",
+          "□急"
+        ]
+      },
+      "prompt": "□張・□迫・□急 に共通する漢字を選べ。",
+      "choices": [
+        "賢",
+        "繁",
+        "緊",
+        "堅"
+      ],
+      "answer": "緊",
+      "explain": "正解: 緊\n完成する語: 緊張・緊迫・緊急\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001636300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001636500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001635800"
+    },
+    {
+      "kanji": "□慢・□和・□急",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□慢",
+          "□和",
+          "□急"
+        ]
+      },
+      "prompt": "□慢・□和・□急 に共通する漢字を選べ。",
+      "choices": [
+        "援",
+        "暖",
+        "媛",
+        "緩"
+      ],
+      "answer": "緩",
+      "explain": "正解: 緩\n完成する語: 緩慢・緩和・緩急\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001117800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001117900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001117300"
+    },
+    {
+      "kanji": "□小・短□・萎□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□小",
+          "短□",
+          "萎□"
+        ]
+      },
+      "prompt": "□小・短□・萎□ に共通する漢字を選べ。",
+      "choices": [
+        "縮",
+        "宿",
+        "練",
+        "緒"
+      ],
+      "answer": "縮",
+      "explain": "正解: 縮\n完成する語: 縮小・短縮・萎縮\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003208000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004611500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000157100"
+    },
+    {
+      "kanji": "束□・捕□・呪□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "束□",
+          "捕□",
+          "呪□"
+        ]
+      },
+      "prompt": "束□・捕□・呪□ に共通する漢字を選べ。",
+      "choices": [
+        "敷",
+        "縛",
+        "博",
+        "薄"
+      ],
+      "answer": "縛",
+      "explain": "正解: 縛\n完成する語: 束縛・捕縛・呪縛\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004334800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006305300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003082900"
+    },
+    {
+      "kanji": "□続・□承・後□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□続",
+          "□承",
+          "後□"
+        ]
+      },
+      "prompt": "□続・□承・後□ に共通する漢字を選べ。",
+      "choices": [
+        "絶",
+        "粛",
+        "継",
+        "断"
+      ],
+      "answer": "継",
+      "explain": "正解: 継\n完成する語: 継続・継承・後継\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001804200\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001804100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002099200"
+    },
+    {
+      "kanji": "修□・営□・□う",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "修□",
+          "営□",
+          "□う"
+        ]
+      },
+      "prompt": "修□・営□・□う に共通する漢字を選べ。",
+      "choices": [
+        "善",
+        "膳",
+        "禅",
+        "繕"
+      ],
+      "answer": "繕",
+      "explain": "正解: 繕\n完成する語: 修繕・営繕・繕う\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003118500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000393900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004152400"
+    },
+    {
+      "kanji": "□失・□争・□糾",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□失",
+          "□争",
+          "□糾"
+        ]
+      },
+      "prompt": "□失・□争・□糾 に共通する漢字を選べ。",
+      "choices": [
+        "紛",
+        "粉",
+        "扮",
+        "雰"
+      ],
+      "answer": "紛",
+      "explain": "正解: 紛\n完成する語: 紛失・紛争・紛糾\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006164800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006165100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006164700"
+    },
+    {
+      "kanji": "□密・精□・細□",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□密",
+          "精□",
+          "細□"
+        ]
+      },
+      "prompt": "□密・精□・細□ に共通する漢字を選べ。",
+      "choices": [
+        "練",
+        "緻",
+        "稚",
+        "窒"
+      ],
+      "answer": "緻",
+      "explain": "正解: 緻\n完成する語: 緻密・精緻・細緻\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004693400\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003919300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002516800"
+    },
+    {
+      "kanji": "□維・□細・□毛",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□維",
+          "□細",
+          "□毛"
+        ]
+      },
+      "prompt": "□維・□細・□毛 に共通する漢字を選べ。",
+      "choices": [
+        "籤",
+        "織",
+        "繊",
+        "殲"
+      ],
+      "answer": "繊",
+      "explain": "正解: 繊\n完成する語: 繊維・繊細・繊毛\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004116000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004116300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004116600"
+    },
+    {
+      "kanji": "□色・濃□・□碧",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 3,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□色",
+          "濃□",
+          "□碧"
+        ]
+      },
+      "prompt": "□色・濃□・□碧 に共通する漢字を選べ。",
+      "choices": [
+        "甘",
+        "紅",
+        "絞",
+        "紺"
+      ],
+      "answer": "紺",
+      "explain": "正解: 紺\n完成する語: 紺色・濃紺・紺碧\n出典: コトバンク https://kotobank.jp/word/%E7%B4%BA%E8%89%B2-192775\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005506900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002439200"
+    }
+  ]
+}

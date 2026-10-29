@@ -1,0 +1,235 @@
+{
+  "stage": 403,
+  "questions": [
+    {
+      "kanji": "貫徹",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かんてつ",
+        "kanaPrompt": "かんてつ",
+        "targetKanji": "貫徹"
+      },
+      "prompt": "「かんてつ」を漢字で書くと？\n意味: 意志や方針を最後まで通すこと",
+      "choices": [
+        "貫撤",
+        "貫轍",
+        "貫徹",
+        "慣徹"
+      ],
+      "answer": "貫徹",
+      "explain": "意味: 意志や方針を最後まで通すこと\n正解: 貫徹（かんてつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001067100"
+    },
+    {
+      "kanji": "忌憚",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きたん",
+        "kanaPrompt": "きたん",
+        "targetKanji": "忌憚"
+      },
+      "prompt": "「きたん」を漢字で書くと？\n意味: 遠慮して差し控えること",
+      "choices": [
+        "忌単",
+        "忌弾",
+        "記憚",
+        "忌憚"
+      ],
+      "answer": "忌憚",
+      "explain": "意味: 遠慮して差し控えること\n正解: 忌憚（きたん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001198100"
+    },
+    {
+      "kanji": "糾弾",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きゅうだん",
+        "kanaPrompt": "きゅうだん",
+        "targetKanji": "糾弾"
+      },
+      "prompt": "「きゅうだん」を漢字で書くと？\n意味: 罪や責任を厳しく問いただすこと",
+      "choices": [
+        "糾弾",
+        "紛弾",
+        "糾壇",
+        "級弾"
+      ],
+      "answer": "糾弾",
+      "explain": "意味: 罪や責任を厳しく問いただすこと\n正解: 糾弾（きゅうだん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001396100"
+    },
+    {
+      "kanji": "享受",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きょうじゅ",
+        "kanaPrompt": "きょうじゅ",
+        "targetKanji": "享受"
+      },
+      "prompt": "「きょうじゅ」を漢字で書くと？\n意味: 利益や楽しみを受け取って味わうこと",
+      "choices": [
+        "京受",
+        "享受",
+        "亨受",
+        "享授"
+      ],
+      "answer": "享受",
+      "explain": "意味: 利益や楽しみを受け取って味わうこと\n正解: 享受（きょうじゅ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001490400"
+    },
+    {
+      "kanji": "矯正",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きょうせい",
+        "kanaPrompt": "きょうせい",
+        "targetKanji": "矯正"
+      },
+      "prompt": "「きょうせい」を漢字で書くと？\n意味: 欠点などを正しく直すこと",
+      "choices": [
+        "橋正",
+        "矯性",
+        "矯正",
+        "嬌正"
+      ],
+      "answer": "矯正",
+      "explain": "意味: 欠点などを正しく直すこと\n正解: 矯正（きょうせい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001546700"
+    },
+    {
+      "kanji": "謹慎",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きんしん",
+        "kanaPrompt": "きんしん",
+        "targetKanji": "謹慎"
+      },
+      "prompt": "「きんしん」を漢字で書くと？\n意味: 言動を慎み一定の行動を控えること",
+      "choices": [
+        "勤慎",
+        "謹真",
+        "僅慎",
+        "謹慎"
+      ],
+      "answer": "謹慎",
+      "explain": "意味: 言動を慎み一定の行動を控えること\n正解: 謹慎（きんしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001642100"
+    },
+    {
+      "kanji": "駆使",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "くし",
+        "kanaPrompt": "くし",
+        "targetKanji": "駆使"
+      },
+      "prompt": "「くし」を漢字で書くと？\n意味: 思いどおりに使いこなすこと",
+      "choices": [
+        "駆使",
+        "駈史",
+        "駆史",
+        "区使"
+      ],
+      "answer": "駆使",
+      "explain": "意味: 思いどおりに使いこなすこと\n正解: 駆使（くし）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001669200"
+    },
+    {
+      "kanji": "屈辱",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "くつじょく",
+        "kanaPrompt": "くつじょく",
+        "targetKanji": "屈辱"
+      },
+      "prompt": "「くつじょく」を漢字で書くと？\n意味: 体面を傷つけられ恥ずかしい思いをすること",
+      "choices": [
+        "屈濁",
+        "屈辱",
+        "掘辱",
+        "屈褥"
+      ],
+      "answer": "屈辱",
+      "explain": "意味: 体面を傷つけられ恥ずかしい思いをすること\n正解: 屈辱（くつじょく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001704100"
+    },
+    {
+      "kanji": "啓発",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "けいはつ",
+        "kanaPrompt": "けいはつ",
+        "targetKanji": "啓発"
+      },
+      "prompt": "「けいはつ」を漢字で書くと？\n意味: 知識を与えて理解や自覚を促すこと",
+      "choices": [
+        "敬発",
+        "啓撥",
+        "啓発",
+        "啓溌"
+      ],
+      "answer": "啓発",
+      "explain": "意味: 知識を与えて理解や自覚を促すこと\n正解: 啓発（けいはつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001777200"
+    },
+    {
+      "kanji": "牽引",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "けんいん",
+        "kanaPrompt": "けんいん",
+        "targetKanji": "牽引"
+      },
+      "prompt": "「けんいん」を漢字で書くと？\n意味: 引っ張ること。先頭に立って導くこと",
+      "choices": [
+        "堅引",
+        "牽因",
+        "賢引",
+        "牽引"
+      ],
+      "answer": "牽引",
+      "explain": "意味: 引っ張ること。先頭に立って導くこと\n正解: 牽引（けんいん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001927900"
+    }
+  ]
+}
