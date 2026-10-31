@@ -1,0 +1,320 @@
+{
+  "stage": 27,
+  "questions": [
+    {
+      "kanji": "淪落",
+      "choices": [
+        "りんかく",
+        "りゅうらく",
+        "りんれつ",
+        "りんらく"
+      ],
+      "answer": "りんらく",
+      "explain": "例文: 栄えた家が淪落するさまを見た。\n正解の読み: りんらく\n意味: 落ちぶれること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "淪落",
+        "sentenceContext": "栄えた家が淪落するさまを見た。"
+      }
+    },
+    {
+      "kanji": "陥穽",
+      "choices": [
+        "かんへい",
+        "かんすい",
+        "かんぜい",
+        "かんせい"
+      ],
+      "answer": "かんせい",
+      "explain": "例文: 巧妙な陥穽に気づかずはまってしまった。\n正解の読み: かんせい\n意味: 落とし穴・策略",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "陥穽",
+        "sentenceContext": "巧妙な陥穽に気づかずはまってしまった。"
+      }
+    },
+    {
+      "kanji": "懺悔",
+      "choices": [
+        "ざんかい",
+        "さんかい",
+        "さんげ",
+        "ざんげ"
+      ],
+      "answer": "さんげ",
+      "explain": "例文: 老僧は毎朝懺悔の勤めを欠かさなかった。\n正解の読み: さんげ\n意味: 仏前で罪を告白し悔いること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "懺悔",
+        "sentenceContext": "老僧は毎朝懺悔の勤めを欠かさなかった。"
+      }
+    },
+    {
+      "kanji": "蛮勇",
+      "choices": [
+        "ばんう",
+        "ばんきょ",
+        "まんゆう",
+        "ばんゆう"
+      ],
+      "answer": "ばんゆう",
+      "explain": "例文: 蛮勇を振るって敵陣に単身乗り込んだ。\n正解の読み: ばんゆう\n意味: 向こう見ずの勇気",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蛮勇",
+        "sentenceContext": "蛮勇を振るって敵陣に単身乗り込んだ。"
+      }
+    },
+    {
+      "kanji": "逼塞",
+      "choices": [
+        "ひっそ",
+        "びっそく",
+        "ひっそく",
+        "ひそく"
+      ],
+      "answer": "ひっそく",
+      "explain": "例文: 失脚した後は逼塞して表に出なかった。\n正解の読み: ひっそく\n意味: 世間から身を退き隠れ住むこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "逼塞",
+        "sentenceContext": "失脚した後は逼塞して表に出なかった。"
+      }
+    },
+    {
+      "kanji": "辣腕",
+      "choices": [
+        "らんわん",
+        "らつわん",
+        "らくわん",
+        "らつかん"
+      ],
+      "answer": "らつわん",
+      "explain": "例文: 辣腕の経営者として業界で名を馳せた。\n正解の読み: らつわん\n意味: 手腕が鋭く物事を処理すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "辣腕",
+        "sentenceContext": "辣腕の経営者として業界で名を馳せた。"
+      }
+    },
+    {
+      "kanji": "翻案",
+      "choices": [
+        "はんあん",
+        "ほんかん",
+        "ほんあん",
+        "ほんあき"
+      ],
+      "answer": "ほんあん",
+      "explain": "例文: 古典を現代風に翻案した舞台作品を見た。\n正解の読み: ほんあん\n意味: 原作をもとに改めて作ること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "翻案",
+        "sentenceContext": "古典を現代風に翻案した舞台作品を見た。"
+      }
+    },
+    {
+      "kanji": "蟠踞",
+      "choices": [
+        "ばんきょ",
+        "まんきょ",
+        "ばんきゅう",
+        "ばんこ"
+      ],
+      "answer": "ばんきょ",
+      "explain": "例文: 山賊が峠に蟠踞して旅人を悩ませた。\n正解の読み: ばんきょ\n意味: 根を張って占拠すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蟠踞",
+        "sentenceContext": "山賊が峠に蟠踞して旅人を悩ませた。"
+      }
+    },
+    {
+      "kanji": "廓清",
+      "choices": [
+        "こくせい",
+        "かくせ",
+        "かつせい",
+        "かくせい"
+      ],
+      "answer": "かくせい",
+      "explain": "例文: 腐敗した組織を廓清する必要がある。\n正解の読み: かくせい\n意味: きれいに一掃すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "廓清",
+        "sentenceContext": "腐敗した組織を廓清する必要がある。"
+      }
+    },
+    {
+      "kanji": "倥傯",
+      "choices": [
+        "くうそう",
+        "こうそう",
+        "こうそ",
+        "こんそう"
+      ],
+      "answer": "こうそう",
+      "explain": "例文: 倥傯の日々が続き疲労が蓄積した。\n正解の読み: こうそう\n意味: 忙しくてゆとりのないさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "倥傯",
+        "sentenceContext": "倥傯の日々が続き疲労が蓄積した。"
+      }
+    },
+    {
+      "kanji": "俊邁",
+      "choices": [
+        "しゅんばい",
+        "じゅんまい",
+        "しゅんまい",
+        "しんまい"
+      ],
+      "answer": "しゅんまい",
+      "explain": "例文: 俊邁な若者に将来を期待した。\n正解の読み: しゅんまい\n意味: 才知が特にすぐれていること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俊邁",
+        "sentenceContext": "俊邁な若者に将来を期待した。"
+      }
+    },
+    {
+      "kanji": "蒲柳",
+      "choices": [
+        "ぼりゅう",
+        "ほうりゅう",
+        "ほうりょう",
+        "ほりゅう"
+      ],
+      "answer": "ほりゅう",
+      "explain": "例文: 蒲柳の質ゆえ幼少より病がちだった。\n正解の読み: ほりゅう\n意味: か弱い体質（蒲柳の質）",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蒲柳",
+        "sentenceContext": "蒲柳の質ゆえ幼少より病がちだった。"
+      }
+    },
+    {
+      "kanji": "謫居",
+      "choices": [
+        "たくきょ",
+        "たっきょ",
+        "てっきょ",
+        "たくきょ"
+      ],
+      "answer": "たっきょ",
+      "explain": "例文: 罪を得て辺境に謫居させられた。\n正解の読み: たっきょ\n意味: 流謫の地に住むこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "謫居",
+        "sentenceContext": "罪を得て辺境に謫居させられた。"
+      }
+    },
+    {
+      "kanji": "鬼哭",
+      "choices": [
+        "きこく",
+        "きこん",
+        "ぎこく",
+        "きなき"
+      ],
+      "answer": "きこく",
+      "explain": "例文: 古戦場を訪れると鬼哭の声が聞こえるという。\n正解の読み: きこく\n意味: 霊魂が泣き叫ぶ声",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鬼哭",
+        "sentenceContext": "古戦場を訪れると鬼哭の声が聞こえるという。"
+      }
+    },
+    {
+      "kanji": "跳梁",
+      "choices": [
+        "ちょうりょう",
+        "ちょうろう",
+        "とうりょう",
+        "じょうりょう"
+      ],
+      "answer": "ちょうりょう",
+      "explain": "例文: 盗賊が跳梁する治安の悪い街だ。\n正解の読み: ちょうりょう\n意味: 飛び跳ねること・のさばること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "跳梁",
+        "sentenceContext": "盗賊が跳梁する治安の悪い街だ。"
+      }
+    }
+  ]
+}

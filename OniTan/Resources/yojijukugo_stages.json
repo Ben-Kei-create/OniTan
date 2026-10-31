@@ -59,6 +59,18 @@
       "file": "yojijukugo_stage10.json",
       "title": "四字熟語 10",
       "difficulty": 4
+    },
+    {
+      "id": 111,
+      "file": "yojijukugo_stage11.json",
+      "title": "四字熟語 11",
+      "difficulty": 4
+    },
+    {
+      "id": 112,
+      "file": "yojijukugo_stage12.json",
+      "title": "四字熟語 12",
+      "difficulty": 4
     }
   ]
 }

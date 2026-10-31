@@ -1,0 +1,350 @@
+{
+  "stage": 11,
+  "questions": [
+    {
+      "kanji": "懸念",
+      "prompt": "「けねん」を漢字で書くと？",
+      "choices": [
+        "懸念",
+        "賢念",
+        "懸年",
+        "険念"
+      ],
+      "answer": "懸念",
+      "explain": "意味: 心配・不安\n正解: 懸念（けねん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "けねん",
+        "kanaPrompt": "けねん",
+        "targetKanji": "懸念"
+      }
+    },
+    {
+      "kanji": "殲滅",
+      "prompt": "「せんめつ」を漢字で書くと？",
+      "choices": [
+        "穿滅",
+        "殲滅",
+        "潜滅",
+        "撰滅"
+      ],
+      "answer": "殲滅",
+      "explain": "意味: 残らず滅ぼすこと\n正解: 殲滅（せんめつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "せんめつ",
+        "kanaPrompt": "せんめつ",
+        "targetKanji": "殲滅"
+      }
+    },
+    {
+      "kanji": "掠奪",
+      "prompt": "「りゃくだつ」を漢字で書くと？",
+      "choices": [
+        "略奪",
+        "奪略",
+        "略脱",
+        "掠奪"
+      ],
+      "answer": "掠奪",
+      "explain": "意味: 奪い取ること\n正解: 掠奪（りゃくだつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "りゃくだつ",
+        "kanaPrompt": "りゃくだつ",
+        "targetKanji": "掠奪"
+      }
+    },
+    {
+      "kanji": "酩酊",
+      "prompt": "「めいてい」を漢字で書くと？",
+      "choices": [
+        "明停",
+        "酩酊",
+        "酩定",
+        "冥停"
+      ],
+      "answer": "酩酊",
+      "explain": "意味: 酒に酔うこと\n正解: 酩酊（めいてい）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "めいてい",
+        "kanaPrompt": "めいてい",
+        "targetKanji": "酩酊"
+      }
+    },
+    {
+      "kanji": "嗚咽",
+      "prompt": "「おえつ」を漢字で書くと？",
+      "choices": [
+        "鳴絶",
+        "嗚咽",
+        "鳴咽",
+        "欧咽"
+      ],
+      "answer": "嗚咽",
+      "explain": "意味: むせび泣くこと\n正解: 嗚咽（おえつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "おえつ",
+        "kanaPrompt": "おえつ",
+        "targetKanji": "嗚咽"
+      }
+    },
+    {
+      "kanji": "頑迷",
+      "prompt": "「がんめい」を漢字で書くと？",
+      "choices": [
+        "頑迷",
+        "顔迷",
+        "巌冥",
+        "頑命"
+      ],
+      "answer": "頑迷",
+      "explain": "意味: かたくなで道理をわきまえないこと\n正解: 頑迷（がんめい）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "がんめい",
+        "kanaPrompt": "がんめい",
+        "targetKanji": "頑迷"
+      }
+    },
+    {
+      "kanji": "撹乱",
+      "prompt": "「かくらん」を漢字で書くと？",
+      "choices": [
+        "覚乱",
+        "拡乱",
+        "角乱",
+        "撹乱"
+      ],
+      "answer": "撹乱",
+      "explain": "意味: かき乱すこと\n正解: 撹乱（かくらん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かくらん",
+        "kanaPrompt": "かくらん",
+        "targetKanji": "撹乱"
+      }
+    },
+    {
+      "kanji": "惹起",
+      "prompt": "「じゃっき」を漢字で書くと？",
+      "choices": [
+        "若起",
+        "惹起",
+        "尺起",
+        "弱起"
+      ],
+      "answer": "惹起",
+      "explain": "意味: ひき起こすこと\n正解: 惹起（じゃっき）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "じゃっき",
+        "kanaPrompt": "じゃっき",
+        "targetKanji": "惹起"
+      }
+    },
+    {
+      "kanji": "恍惚",
+      "prompt": "「こうこつ」を漢字で書くと？",
+      "choices": [
+        "晃惚",
+        "昂惚",
+        "恍惚",
+        "恍骨"
+      ],
+      "answer": "恍惚",
+      "explain": "意味: うっとりすること\n正解: 恍惚（こうこつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "こうこつ",
+        "kanaPrompt": "こうこつ",
+        "targetKanji": "恍惚"
+      }
+    },
+    {
+      "kanji": "羸弱",
+      "prompt": "「るいじゃく」を漢字で書くと？",
+      "choices": [
+        "累弱",
+        "疲弱",
+        "羸弱",
+        "涙弱"
+      ],
+      "answer": "羸弱",
+      "explain": "意味: 体が弱々しいこと\n正解: 羸弱（るいじゃく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "るいじゃく",
+        "kanaPrompt": "るいじゃく",
+        "targetKanji": "羸弱"
+      }
+    },
+    {
+      "kanji": "追悼",
+      "prompt": "「ついとう」を漢字で書くと？",
+      "choices": [
+        "追踏",
+        "追悼",
+        "追等",
+        "追討"
+      ],
+      "answer": "追悼",
+      "explain": "意味: 死者を悼むこと\n正解: 追悼（ついとう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ついとう",
+        "kanaPrompt": "ついとう",
+        "targetKanji": "追悼"
+      }
+    },
+    {
+      "kanji": "侮蔑",
+      "prompt": "「ぶべつ」を漢字で書くと？",
+      "choices": [
+        "武蔑",
+        "不蔑",
+        "侮蔑",
+        "部蔑"
+      ],
+      "answer": "侮蔑",
+      "explain": "意味: 見下し軽蔑すること\n正解: 侮蔑（ぶべつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ぶべつ",
+        "kanaPrompt": "ぶべつ",
+        "targetKanji": "侮蔑"
+      }
+    },
+    {
+      "kanji": "詭弁",
+      "prompt": "「きべん」を漢字で書くと？",
+      "choices": [
+        "軌弁",
+        "規弁",
+        "奇弁",
+        "詭弁"
+      ],
+      "answer": "詭弁",
+      "explain": "意味: 巧みな言い回しでごまかす議論\n正解: 詭弁（きべん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きべん",
+        "kanaPrompt": "きべん",
+        "targetKanji": "詭弁"
+      }
+    },
+    {
+      "kanji": "恫喝",
+      "prompt": "「どうかつ」を漢字で書くと？",
+      "choices": [
+        "恫活",
+        "同喝",
+        "筒喝",
+        "恫喝"
+      ],
+      "answer": "恫喝",
+      "explain": "意味: おどしつけること\n正解: 恫喝（どうかつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "どうかつ",
+        "kanaPrompt": "どうかつ",
+        "targetKanji": "恫喝"
+      }
+    },
+    {
+      "kanji": "紊乱",
+      "prompt": "「びんらん」を漢字で書くと？",
+      "choices": [
+        "文乱",
+        "蚊乱",
+        "紊乱",
+        "紊裂"
+      ],
+      "answer": "紊乱",
+      "explain": "意味: 秩序が乱れること\n正解: 紊乱（びんらん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "びんらん",
+        "kanaPrompt": "びんらん",
+        "targetKanji": "紊乱"
+      }
+    }
+  ]
+}

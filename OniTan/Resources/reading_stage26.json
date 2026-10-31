@@ -1,0 +1,320 @@
+{
+  "stage": 26,
+  "questions": [
+    {
+      "kanji": "鷹揚",
+      "choices": [
+        "よう",
+        "おうよ",
+        "おうよう",
+        "たかよう"
+      ],
+      "answer": "おうよう",
+      "explain": "例文: 鷹揚に構えて動じない姿に感嘆した。\n正解の読み: おうよう\n意味: おっとりとして大きな構えのさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鷹揚",
+        "sentenceContext": "鷹揚に構えて動じない姿に感嘆した。"
+      }
+    },
+    {
+      "kanji": "欺瞞",
+      "choices": [
+        "ぎもん",
+        "きもん",
+        "ぎまん",
+        "ぎばん"
+      ],
+      "answer": "ぎまん",
+      "explain": "例文: 彼の欺瞞に満ちた言葉を信じた自分が恥ずかしい。\n正解の読み: ぎまん\n意味: 人をだますこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "欺瞞",
+        "sentenceContext": "彼の欺瞞に満ちた言葉を信じた自分が恥ずかしい。"
+      }
+    },
+    {
+      "kanji": "刮目",
+      "choices": [
+        "かっもく",
+        "かいもく",
+        "かつもく",
+        "かつど"
+      ],
+      "answer": "かつもく",
+      "explain": "例文: 師の成長ぶりに刮目した。\n正解の読み: かつもく\n意味: 目をこすって注視すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "刮目",
+        "sentenceContext": "師の成長ぶりに刮目した。"
+      }
+    },
+    {
+      "kanji": "勃興",
+      "choices": [
+        "ぼっきょ",
+        "ぽっこう",
+        "ぼっこう",
+        "ぼつこう"
+      ],
+      "answer": "ぼっこう",
+      "explain": "例文: 新興勢力が勃興して旧秩序を揺るがした。\n正解の読み: ぼっこう\n意味: 急に勢いが盛んになること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "勃興",
+        "sentenceContext": "新興勢力が勃興して旧秩序を揺るがした。"
+      }
+    },
+    {
+      "kanji": "淘汰",
+      "choices": [
+        "とうた",
+        "とうだ",
+        "とうだい",
+        "どうた"
+      ],
+      "answer": "とうた",
+      "explain": "例文: 自然の淘汰によって強い種が生き残る。\n正解の読み: とうた\n意味: 不適なものを除き適したものを残すこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "淘汰",
+        "sentenceContext": "自然の淘汰によって強い種が生き残る。"
+      }
+    },
+    {
+      "kanji": "匍匐",
+      "choices": [
+        "ほほく",
+        "ほうふく",
+        "ほふく",
+        "ふくほ"
+      ],
+      "answer": "ほふく",
+      "explain": "例文: 兵士は匍匐前進で敵陣に近づいた。\n正解の読み: ほふく\n意味: 腹ばいになって進むこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "匍匐",
+        "sentenceContext": "兵士は匍匐前進で敵陣に近づいた。"
+      }
+    },
+    {
+      "kanji": "呻吟",
+      "choices": [
+        "しんぎん",
+        "しんきん",
+        "じんぎん",
+        "しんぐ"
+      ],
+      "answer": "しんぎん",
+      "explain": "例文: 傷ついた兵士が呻吟している声が聞こえた。\n正解の読み: しんぎん\n意味: うめき苦しむこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "呻吟",
+        "sentenceContext": "傷ついた兵士が呻吟している声が聞こえた。"
+      }
+    },
+    {
+      "kanji": "咆哮",
+      "choices": [
+        "ほうこう",
+        "ほうご",
+        "ほこう",
+        "ぽうこう"
+      ],
+      "answer": "ほうこう",
+      "explain": "例文: 獅子が草原で咆哮した。\n正解の読み: ほうこう\n意味: 大きな声でほえること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "咆哮",
+        "sentenceContext": "獅子が草原で咆哮した。"
+      }
+    },
+    {
+      "kanji": "帰趨",
+      "choices": [
+        "きすう",
+        "きすい",
+        "きずい",
+        "きそう"
+      ],
+      "answer": "きすう",
+      "explain": "例文: 交渉の帰趨はまだ見えない。\n正解の読み: きすう\n意味: 物事の行き着くところ",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "帰趨",
+        "sentenceContext": "交渉の帰趨はまだ見えない。"
+      }
+    },
+    {
+      "kanji": "沈潜",
+      "choices": [
+        "じんせん",
+        "ちんせん",
+        "ちんぜん",
+        "ちんぜい"
+      ],
+      "answer": "ちんせん",
+      "explain": "例文: 彼は研究に沈潜して十年を過ごした。\n正解の読み: ちんせん\n意味: 一つのことに深く没頭すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "沈潜",
+        "sentenceContext": "彼は研究に沈潜して十年を過ごした。"
+      }
+    },
+    {
+      "kanji": "廉潔",
+      "choices": [
+        "れいけつ",
+        "りんけつ",
+        "れんけつ",
+        "れんきつ"
+      ],
+      "answer": "れんけつ",
+      "explain": "例文: 廉潔な人柄が多くの人に慕われた。\n正解の読み: れんけつ\n意味: 清廉で正直なこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "廉潔",
+        "sentenceContext": "廉潔な人柄が多くの人に慕われた。"
+      }
+    },
+    {
+      "kanji": "俯仰",
+      "choices": [
+        "ふんぎょう",
+        "ふこう",
+        "ふぎょう",
+        "ほぎょう"
+      ],
+      "answer": "ふぎょう",
+      "explain": "例文: 俯仰天地に愧じない生き方を目指す。\n正解の読み: ふぎょう\n意味: うつむいたり仰いだりすること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俯仰",
+        "sentenceContext": "俯仰天地に愧じない生き方を目指す。"
+      }
+    },
+    {
+      "kanji": "幽邃",
+      "choices": [
+        "ようすい",
+        "ゆうずい",
+        "ゆうき",
+        "ゆうすい"
+      ],
+      "answer": "ゆうすい",
+      "explain": "例文: 幽邃な山奥の寺院で修行した。\n正解の読み: ゆうすい\n意味: 奥深く静かなさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "幽邃",
+        "sentenceContext": "幽邃な山奥の寺院で修行した。"
+      }
+    },
+    {
+      "kanji": "渺茫",
+      "choices": [
+        "びょうぼう",
+        "びょうまん",
+        "みょうぼう",
+        "ひょうぼう"
+      ],
+      "answer": "びょうぼう",
+      "explain": "例文: 渺茫たる大海原に船を進めた。\n正解の読み: びょうぼう\n意味: 広大ではるかなさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "渺茫",
+        "sentenceContext": "渺茫たる大海原に船を進めた。"
+      }
+    },
+    {
+      "kanji": "纏綿",
+      "choices": [
+        "てんれん",
+        "てんぜん",
+        "てんばん",
+        "てんめん"
+      ],
+      "answer": "てんめん",
+      "explain": "例文: 纏綿たる思いが胸を去らなかった。\n正解の読み: てんめん\n意味: まつわりついて離れないさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "纏綿",
+        "sentenceContext": "纏綿たる思いが胸を去らなかった。"
+      }
+    }
+  ]
+}

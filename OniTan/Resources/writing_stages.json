@@ -59,6 +59,12 @@
       "file": "writing_stage10.json",
       "title": "書き取り 10",
       "difficulty": 4
+    },
+    {
+      "id": 411,
+      "file": "writing_stage11.json",
+      "title": "書き取り 11",
+      "difficulty": 4
     }
   ]
 }

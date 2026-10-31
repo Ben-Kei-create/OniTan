@@ -1,0 +1,350 @@
+{
+  "stage": 12,
+  "questions": [
+    {
+      "kanji": "前途多難",
+      "prompt": "前途多□",
+      "choices": [
+        "熱",
+        "灘",
+        "難",
+        "捺"
+      ],
+      "answer": "難",
+      "explain": "意味: これからの道のりに困難が多いこと\n正解: 前途多難（ぜんとたなん）\n前途に多くの困難が待ち構えているという意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "前途多□",
+        "missingIndex": 3,
+        "meaning": "これからの道のりに困難が多いこと"
+      }
+    },
+    {
+      "kanji": "一目瞭然",
+      "prompt": "一目□然",
+      "choices": [
+        "燎",
+        "療",
+        "瞭",
+        "遼"
+      ],
+      "answer": "瞭",
+      "explain": "意味: ひと目でよく分かること\n正解: 一目瞭然（いちもくりょうぜん）\nひと目でよく了解できるという意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一目□然",
+        "missingIndex": 2,
+        "meaning": "ひと目でよく分かること"
+      }
+    },
+    {
+      "kanji": "渾然一体",
+      "prompt": "□然一体",
+      "choices": [
+        "紺",
+        "魂",
+        "渾",
+        "恨"
+      ],
+      "answer": "渾",
+      "explain": "意味: いくつかのものが一つに溶け合うこと\n正解: 渾然一体（こんぜんいったい）\n渾然と一つになってとけ合っている意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□然一体",
+        "missingIndex": 0,
+        "meaning": "いくつかのものが一つに溶け合うこと"
+      }
+    },
+    {
+      "kanji": "蛍雪之功",
+      "prompt": "□雪之功",
+      "choices": [
+        "経",
+        "茎",
+        "恵",
+        "蛍"
+      ],
+      "answer": "蛍",
+      "explain": "意味: 苦労して学問にはげむこと\n正解: 蛍雪之功（けいせつのこう）\n蛍の光や雪あかりで読書した苦学の功の意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□雪之功",
+        "missingIndex": 0,
+        "meaning": "苦労して学問にはげむこと"
+      }
+    },
+    {
+      "kanji": "七転八起",
+      "prompt": "七転八□",
+      "choices": [
+        "機",
+        "基",
+        "起",
+        "気"
+      ],
+      "answer": "起",
+      "explain": "意味: 何度倒れても立ち上がること\n正解: 七転八起（しちてんはっき）\n七回転んでも八回起き上がる意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "七転八□",
+        "missingIndex": 3,
+        "meaning": "何度倒れても立ち上がること"
+      }
+    },
+    {
+      "kanji": "信賞必罰",
+      "prompt": "信賞□罰",
+      "choices": [
+        "必",
+        "実",
+        "筆",
+        "日"
+      ],
+      "answer": "必",
+      "explain": "意味: 功あれば必ず賞し、罪あれば必ず罰すること\n正解: 信賞必罰（しんしょうひつばつ）\n賞罰を必ず公正に行うという意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "信賞□罰",
+        "missingIndex": 2,
+        "meaning": "功あれば必ず賞し、罪あれば必ず罰すること"
+      }
+    },
+    {
+      "kanji": "前途洋洋",
+      "prompt": "前途洋□",
+      "choices": [
+        "楊",
+        "瘍",
+        "洋",
+        "揚"
+      ],
+      "answer": "洋",
+      "explain": "意味: 将来に希望が満ちていること\n正解: 前途洋洋（ぜんとようよう）\n前途が大海のように広がっているという意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "前途洋□",
+        "missingIndex": 3,
+        "meaning": "将来に希望が満ちていること"
+      }
+    },
+    {
+      "kanji": "眼光紙背",
+      "prompt": "眼光□背",
+      "choices": [
+        "次",
+        "指",
+        "紙",
+        "氏"
+      ],
+      "answer": "紙",
+      "explain": "意味: 書物の字面だけでなく深意を読み取ること\n正解: 眼光紙背（がんこうしはい）\n目の光が紙の裏まで通るほど深く読む意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "眼光□背",
+        "missingIndex": 2,
+        "meaning": "書物の字面だけでなく深意を読み取ること"
+      }
+    },
+    {
+      "kanji": "八方美人",
+      "prompt": "八方□人",
+      "choices": [
+        "実",
+        "美",
+        "尾",
+        "宝"
+      ],
+      "answer": "美",
+      "explain": "意味: 誰にでも愛想よくふるまう人\n正解: 八方美人（はっぽうびじん）\nあらゆる方向に美しい顔を向ける人の意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "八方□人",
+        "missingIndex": 2,
+        "meaning": "誰にでも愛想よくふるまう人"
+      }
+    },
+    {
+      "kanji": "三位一体",
+      "prompt": "三位一□",
+      "choices": [
+        "待",
+        "体",
+        "対",
+        "帯"
+      ],
+      "answer": "体",
+      "explain": "意味: 三つのものが一つになること\n正解: 三位一体（さんみいったい）\nキリスト教の三位が一体であることから転じて。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "三位一□",
+        "missingIndex": 3,
+        "meaning": "三つのものが一つになること"
+      }
+    },
+    {
+      "kanji": "奇奇怪怪",
+      "prompt": "奇奇□怪",
+      "choices": [
+        "解",
+        "怪",
+        "开",
+        "外"
+      ],
+      "answer": "怪",
+      "explain": "意味: 非常に不思議なこと\n正解: 奇奇怪怪（ききかいかい）\n非常に奇妙で不思議なさまの意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "奇奇□怪",
+        "missingIndex": 2,
+        "meaning": "非常に不思議なこと"
+      }
+    },
+    {
+      "kanji": "門前雀羅",
+      "prompt": "門前雀□",
+      "choices": [
+        "羅",
+        "羅",
+        "螺",
+        "蘿"
+      ],
+      "answer": "羅",
+      "explain": "意味: 訪れる人がなく寂しいこと\n正解: 門前雀羅（もんぜんじゃくら）\n門前に雀を捕る罠が張れるほど人が来ない意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "門前雀□",
+        "missingIndex": 3,
+        "meaning": "訪れる人がなく寂しいこと"
+      }
+    },
+    {
+      "kanji": "天下無双",
+      "prompt": "天下□双",
+      "choices": [
+        "矛",
+        "夢",
+        "無",
+        "霧"
+      ],
+      "answer": "無",
+      "explain": "意味: 世界中で並ぶものがないこと\n正解: 天下無双（てんかむそう）\n天下において並ぶ者がいない意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "天下□双",
+        "missingIndex": 2,
+        "meaning": "世界中で並ぶものがないこと"
+      }
+    },
+    {
+      "kanji": "百尺竿頭",
+      "prompt": "百尺□頭",
+      "choices": [
+        "管",
+        "竿",
+        "閑",
+        "寒"
+      ],
+      "answer": "竿",
+      "explain": "意味: 極限に達してさらに一歩を踏み出すこと\n正解: 百尺竿頭（ひゃくせきかんとう）\n百尺の竿の先端という極限からさらに進む意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "百尺□頭",
+        "missingIndex": 2,
+        "meaning": "極限に達してさらに一歩を踏み出すこと"
+      }
+    },
+    {
+      "kanji": "一望千里",
+      "prompt": "一□千里",
+      "choices": [
+        "亡",
+        "望",
+        "房",
+        "傍"
+      ],
+      "answer": "望",
+      "explain": "意味: 見渡す限りどこまでも広いこと\n正解: 一望千里（いちぼうせんり）\n一目で千里の彼方まで見渡せる広さの意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□千里",
+        "missingIndex": 1,
+        "meaning": "見渡す限りどこまでも広いこと"
+      }
+    }
+  ]
+}

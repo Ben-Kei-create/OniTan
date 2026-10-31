@@ -149,6 +149,24 @@
       "file": "reading_stage25.json",
       "title": "読み 25",
       "difficulty": 4
+    },
+    {
+      "id": 26,
+      "file": "reading_stage26.json",
+      "title": "例文読み 26",
+      "difficulty": 4
+    },
+    {
+      "id": 27,
+      "file": "reading_stage27.json",
+      "title": "例文読み 27",
+      "difficulty": 4
+    },
+    {
+      "id": 28,
+      "file": "reading_stage28.json",
+      "title": "例文読み 28",
+      "difficulty": 4
     }
   ]
 }

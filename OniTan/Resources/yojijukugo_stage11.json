@@ -1,0 +1,350 @@
+{
+  "stage": 11,
+  "questions": [
+    {
+      "kanji": "七転八倒",
+      "prompt": "七転八□",
+      "choices": [
+        "稻",
+        "倣",
+        "稲",
+        "倒"
+      ],
+      "answer": "倒",
+      "explain": "意味: もだえ苦しむこと\n正解: 七転八倒（しちてんばっとう）\n七回転び八回倒れるように激しくもだえる意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "七転八□",
+        "missingIndex": 3,
+        "meaning": "もだえ苦しむこと"
+      }
+    },
+    {
+      "kanji": "悪戦苦闘",
+      "prompt": "悪戦□闘",
+      "choices": [
+        "苦",
+        "救",
+        "串",
+        "苦"
+      ],
+      "answer": "苦",
+      "explain": "意味: 激しく戦い苦しんで闘うこと\n正解: 悪戦苦闘（あくせんくとう）\n厳しい戦いの中で苦しみながら闘う意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "悪戦□闘",
+        "missingIndex": 2,
+        "meaning": "激しく戦い苦しんで闘うこと"
+      }
+    },
+    {
+      "kanji": "天下泰平",
+      "prompt": "天下□平",
+      "choices": [
+        "泰",
+        "帯",
+        "太",
+        "大"
+      ],
+      "answer": "泰",
+      "explain": "意味: 世の中が穏やかで平和なこと\n正解: 天下泰平（てんかたいへい）\n天下が泰平に治まっているさまの意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "天下□平",
+        "missingIndex": 2,
+        "meaning": "世の中が穏やかで平和なこと"
+      }
+    },
+    {
+      "kanji": "一期一会",
+      "prompt": "一□一会",
+      "choices": [
+        "希",
+        "記",
+        "期",
+        "機"
+      ],
+      "answer": "期",
+      "explain": "意味: 一生に一度しかない出会い\n正解: 一期一会（いちごいちえ）\n茶道の言葉。一生に一度の出会いとして誠心誠意もてなす意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一□一会",
+        "missingIndex": 1,
+        "meaning": "一生に一度しかない出会い"
+      }
+    },
+    {
+      "kanji": "四苦八苦",
+      "prompt": "四□八苦",
+      "choices": [
+        "苦",
+        "苔",
+        "句",
+        "区"
+      ],
+      "answer": "苦",
+      "explain": "意味: さまざまに苦しむこと\n正解: 四苦八苦（しくはっく）\n仏教語で生老病死の四苦に加え八種の苦しみの意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "四□八苦",
+        "missingIndex": 1,
+        "meaning": "さまざまに苦しむこと"
+      }
+    },
+    {
+      "kanji": "弱肉強食",
+      "prompt": "弱肉□食",
+      "choices": [
+        "巨",
+        "郷",
+        "強",
+        "狂"
+      ],
+      "answer": "強",
+      "explain": "意味: 弱者が強者に食われること\n正解: 弱肉強食（じゃくにくきょうしょく）\n弱い肉食獣が強い者に食われるという意から。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "弱肉□食",
+        "missingIndex": 2,
+        "meaning": "弱者が強者に食われること"
+      }
+    },
+    {
+      "kanji": "烏合之衆",
+      "prompt": "烏合之□",
+      "choices": [
+        "厨",
+        "衆",
+        "衆",
+        "種"
+      ],
+      "answer": "衆",
+      "explain": "意味: 規律のない集まり\n正解: 烏合之衆（うごうのしゅう）\n烏が鳴き合うだけの規律のない集まりの意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "烏合之□",
+        "missingIndex": 3,
+        "meaning": "規律のない集まり"
+      }
+    },
+    {
+      "kanji": "五臓六腑",
+      "prompt": "五臓六□",
+      "choices": [
+        "侮",
+        "府",
+        "符",
+        "腑"
+      ],
+      "answer": "腑",
+      "explain": "意味: 体の内臓全部\n正解: 五臓六腑（ごぞうろっぷ）\n五種の臓器と六種の腑、つまり体の内臓全部を指す。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "五臓六□",
+        "missingIndex": 3,
+        "meaning": "体の内臓全部"
+      }
+    },
+    {
+      "kanji": "笑止千万",
+      "prompt": "笑□千万",
+      "choices": [
+        "枝",
+        "紙",
+        "子",
+        "止"
+      ],
+      "answer": "止",
+      "explain": "意味: おかしくてたまらないこと\n正解: 笑止千万（しょうしせんばん）\n笑うべきことが千も万もあるほどという意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "笑□千万",
+        "missingIndex": 1,
+        "meaning": "おかしくてたまらないこと"
+      }
+    },
+    {
+      "kanji": "大義名分",
+      "prompt": "大義□分",
+      "choices": [
+        "命",
+        "鳴",
+        "冥",
+        "名"
+      ],
+      "answer": "名",
+      "explain": "意味: 行動の正当な理由・道義上の理由\n正解: 大義名分（たいぎめいぶん）\n大きな義と正当な理由の意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "大義□分",
+        "missingIndex": 2,
+        "meaning": "行動の正当な理由・道義上の理由"
+      }
+    },
+    {
+      "kanji": "一陽来復",
+      "prompt": "一陽□復",
+      "choices": [
+        "来",
+        "礼",
+        "頼",
+        "雷"
+      ],
+      "answer": "来",
+      "explain": "意味: 冬が終わり春が来ること、悪いことが好転すること\n正解: 一陽来復（いちようらいふく）\n陰極まって陽が復帰する、つまり冬至後に春が来る意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一陽□復",
+        "missingIndex": 2,
+        "meaning": "冬が終わり春が来ること、悪いことが好転すること"
+      }
+    },
+    {
+      "kanji": "精神一到",
+      "prompt": "精神一□",
+      "choices": [
+        "透",
+        "到",
+        "倒",
+        "徒"
+      ],
+      "answer": "到",
+      "explain": "意味: 精神を集中すれば何事も成し遂げられること\n正解: 精神一到（せいしんいっとう）\n精神が一点に到達するほど集中する意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "精神一□",
+        "missingIndex": 3,
+        "meaning": "精神を集中すれば何事も成し遂げられること"
+      }
+    },
+    {
+      "kanji": "軽挙妄動",
+      "prompt": "軽挙□動",
+      "choices": [
+        "忘",
+        "妄",
+        "亡",
+        "望"
+      ],
+      "answer": "妄",
+      "explain": "意味: 軽率で向こう見ずな行動\n正解: 軽挙妄動（けいきょもうどう）\n軽はずみに動き妄りに行動する意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "軽挙□動",
+        "missingIndex": 2,
+        "meaning": "軽率で向こう見ずな行動"
+      }
+    },
+    {
+      "kanji": "海千山千",
+      "prompt": "海千□千",
+      "choices": [
+        "散",
+        "山",
+        "参",
+        "三"
+      ],
+      "answer": "山",
+      "explain": "意味: 経験豊富でずる賢いこと\n正解: 海千山千（うみせんやません）\n海に千年、山に千年住んだような経験豊富な者の意。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "海千□千",
+        "missingIndex": 2,
+        "meaning": "経験豊富でずる賢いこと"
+      }
+    },
+    {
+      "kanji": "首鼠両端",
+      "prompt": "首□両端",
+      "choices": [
+        "鼡",
+        "素",
+        "鼠",
+        "塑"
+      ],
+      "answer": "鼠",
+      "explain": "意味: どちらか迷って決断できないこと\n正解: 首鼠両端（しゅそりょうたん）\n穴口から出るか入るか迷うネズミの意から。",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "首□両端",
+        "missingIndex": 1,
+        "meaning": "どちらか迷って決断できないこと"
+      }
+    }
+  ]
+}

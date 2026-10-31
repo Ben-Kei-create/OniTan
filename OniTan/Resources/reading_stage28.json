@@ -1,0 +1,320 @@
+{
+  "stage": 28,
+  "questions": [
+    {
+      "kanji": "勃然",
+      "choices": [
+        "ぼつぜ",
+        "ぼくぜん",
+        "ぽつぜん",
+        "ぼつぜん"
+      ],
+      "answer": "ぼつぜん",
+      "explain": "例文: 侮辱を受けて勃然と怒りがこみあげた。\n正解の読み: ぼつぜん\n意味: 急に激しく感情が動くさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "勃然",
+        "sentenceContext": "侮辱を受けて勃然と怒りがこみあげた。"
+      }
+    },
+    {
+      "kanji": "煩悶",
+      "choices": [
+        "ほんもん",
+        "はんむん",
+        "はんもく",
+        "はんもん"
+      ],
+      "answer": "はんもん",
+      "explain": "例文: どうすべきか煩悶して眠れなかった。\n正解の読み: はんもん\n意味: 悶えて苦しむこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "煩悶",
+        "sentenceContext": "どうすべきか煩悶して眠れなかった。"
+      }
+    },
+    {
+      "kanji": "驚愕",
+      "choices": [
+        "きょうかく",
+        "きょうかっ",
+        "きょうがく",
+        "きょがく"
+      ],
+      "answer": "きょうがく",
+      "explain": "例文: 突然の報に驚愕して言葉を失った。\n正解の読み: きょうがく\n意味: 非常に驚くこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "驚愕",
+        "sentenceContext": "突然の報に驚愕して言葉を失った。"
+      }
+    },
+    {
+      "kanji": "羨望",
+      "choices": [
+        "せんもん",
+        "さんぼう",
+        "せんぼう",
+        "せんもう"
+      ],
+      "answer": "せんぼう",
+      "explain": "例文: 皆の羨望を集める華やかな舞台俳優だ。\n正解の読み: せんぼう\n意味: うらやましく思うこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "羨望",
+        "sentenceContext": "皆の羨望を集める華やかな舞台俳優だ。"
+      }
+    },
+    {
+      "kanji": "捏造",
+      "choices": [
+        "ねつぞう",
+        "でつぞう",
+        "につぞう",
+        "ねっぞう"
+      ],
+      "answer": "ねつぞう",
+      "explain": "例文: 証拠を捏造するのは言語道断だ。\n正解の読み: ねつぞう\n意味: 事実でないことを作り上げること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "捏造",
+        "sentenceContext": "証拠を捏造するのは言語道断だ。"
+      }
+    },
+    {
+      "kanji": "悼惜",
+      "choices": [
+        "とうせき",
+        "どうせき",
+        "たうせき",
+        "とうせき"
+      ],
+      "answer": "とうせき",
+      "explain": "例文: 恩師の訃報に悼惜の念を禁じえない。\n正解の読み: とうせき\n意味: 死を惜しみ悲しむこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "悼惜",
+        "sentenceContext": "恩師の訃報に悼惜の念を禁じえない。"
+      }
+    },
+    {
+      "kanji": "陰鬱",
+      "choices": [
+        "いんうく",
+        "いんやつ",
+        "いんうつ",
+        "おんうつ"
+      ],
+      "answer": "いんうつ",
+      "explain": "例文: 陰鬱な天気が続いて気持ちも沈んだ。\n正解の読み: いんうつ\n意味: 気分が暗くふさぎこむこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "陰鬱",
+        "sentenceContext": "陰鬱な天気が続いて気持ちも沈んだ。"
+      }
+    },
+    {
+      "kanji": "翫弄",
+      "choices": [
+        "がんろう",
+        "ごんろう",
+        "がんれい",
+        "かんろう"
+      ],
+      "answer": "がんろう",
+      "explain": "例文: 権力者が民衆を翫弄するのを許さない。\n正解の読み: がんろう\n意味: もてあそぶこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "翫弄",
+        "sentenceContext": "権力者が民衆を翫弄するのを許さない。"
+      }
+    },
+    {
+      "kanji": "刎頸",
+      "choices": [
+        "ぶんけい",
+        "はんけい",
+        "ふんき",
+        "ふんけい"
+      ],
+      "answer": "ふんけい",
+      "explain": "例文: 刎頸の友を得ることは一生の宝だ。\n正解の読み: ふんけい\n意味: 首を斬ること（刎頸の交わり）",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "刎頸",
+        "sentenceContext": "刎頸の友を得ることは一生の宝だ。"
+      }
+    },
+    {
+      "kanji": "駘蕩",
+      "choices": [
+        "たいどう",
+        "たいとう",
+        "だいとう",
+        "たいたう"
+      ],
+      "answer": "たいとう",
+      "explain": "例文: 春風駘蕩の候、皆さん元気ですか。\n正解の読み: たいとう\n意味: のどかでのんびりしたさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "駘蕩",
+        "sentenceContext": "春風駘蕩の候、皆さん元気ですか。"
+      }
+    },
+    {
+      "kanji": "慷慨",
+      "choices": [
+        "こうかい",
+        "こうがく",
+        "こうがい",
+        "こうが"
+      ],
+      "answer": "こうがい",
+      "explain": "例文: 国の行く末を慷慨して筆をとった。\n正解の読み: こうがい\n意味: 義憤に燃えていきりたつこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "慷慨",
+        "sentenceContext": "国の行く末を慷慨して筆をとった。"
+      }
+    },
+    {
+      "kanji": "蒙昧",
+      "choices": [
+        "もうばい",
+        "もうまい",
+        "もうまん",
+        "もまい"
+      ],
+      "answer": "もうまい",
+      "explain": "例文: 蒙昧な者でも分かるように説明した。\n正解の読み: もうまい\n意味: 知識・教養がないこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蒙昧",
+        "sentenceContext": "蒙昧な者でも分かるように説明した。"
+      }
+    },
+    {
+      "kanji": "杜撰",
+      "choices": [
+        "ずざん",
+        "とさん",
+        "ずさん",
+        "ずさく"
+      ],
+      "answer": "ずさん",
+      "explain": "例文: あの杜撰な管理では事故が起きて当然だ。\n正解の読み: ずさん\n意味: 物事が粗雑で不正確なこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "杜撰",
+        "sentenceContext": "あの杜撰な管理では事故が起きて当然だ。"
+      }
+    },
+    {
+      "kanji": "漸次",
+      "choices": [
+        "じゅんじ",
+        "ぜんつ",
+        "ざんじ",
+        "ぜんじ"
+      ],
+      "answer": "ぜんじ",
+      "explain": "例文: 病状は漸次改善されていった。\n正解の読み: ぜんじ\n意味: だんだんと・次第に",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "漸次",
+        "sentenceContext": "病状は漸次改善されていった。"
+      }
+    },
+    {
+      "kanji": "翡翠",
+      "choices": [
+        "ひすい",
+        "ひじゅい",
+        "ひしゅい",
+        "ひすえ"
+      ],
+      "answer": "ひすい",
+      "explain": "例文: 翡翠の勾玉が淡い緑色に輝いていた。\n正解の読み: ひすい\n意味: 緑色の宝石・カワセミ",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "翡翠",
+        "sentenceContext": "翡翠の勾玉が淡い緑色に輝いていた。"
+      }
+    }
+  ]
+}
