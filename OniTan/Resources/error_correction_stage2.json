@@ -1,0 +1,350 @@
+{
+  "stage": 502,
+  "questions": [
+    {
+      "kanji": "杜選な資料管理を改める必要がある。",
+      "choices": [
+        "選→遷",
+        "選→銓",
+        "選→詮",
+        "選→撰"
+      ],
+      "answer": "選→撰",
+      "explain": "杜撰（ずさん）＝仕事や記述がいいかげんで、誤りや手落ちが多いこと。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005104800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "杜選な資料管理を改める必要がある。",
+        "correctedSentence": "杜撰な資料管理を改める必要がある。",
+        "wrongKanji": "選",
+        "correctKanji": "撰"
+      }
+    },
+    {
+      "kanji": "支出が増え、家計が副迫している。",
+      "choices": [
+        "副→幅",
+        "副→腹",
+        "副→逼",
+        "副→福"
+      ],
+      "answer": "副→逼",
+      "explain": "逼迫（ひっぱく）＝余裕を失って追い詰められ、困った状態になること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005911200",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "支出が増え、家計が副迫している。",
+        "correctedSentence": "支出が増え、家計が逼迫している。",
+        "wrongKanji": "副",
+        "correctKanji": "逼"
+      }
+    },
+    {
+      "kanji": "予期しない質問を受けても浪狽しなかった。",
+      "choices": [
+        "浪→郎",
+        "浪→狼",
+        "浪→朗",
+        "浪→廊"
+      ],
+      "answer": "浪→狼",
+      "explain": "狼狽（ろうばい）＝突然の出来事などに慌てて取り乱すこと。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0007358800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "予期しない質問を受けても浪狽しなかった。",
+        "correctedSentence": "予期しない質問を受けても狼狽しなかった。",
+        "wrongKanji": "浪",
+        "correctKanji": "狼"
+      }
+    },
+    {
+      "kanji": "投手は一塁走者を堅制した。",
+      "choices": [
+        "堅→牽",
+        "堅→懸",
+        "堅→賢",
+        "堅→圏"
+      ],
+      "answer": "堅→牽",
+      "explain": "牽制（けんせい）＝相手の注意を引き、自由な動きを抑えること。野球では盗塁を防ぐための送球をいう。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001928300",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "投手は一塁走者を堅制した。",
+        "correctedSentence": "投手は一塁走者を牽制した。",
+        "wrongKanji": "堅",
+        "correctKanji": "牽"
+      }
+    },
+    {
+      "kanji": "機関車が貨車を牽因して坂を上った。",
+      "choices": [
+        "因→咽",
+        "因→恩",
+        "因→姻",
+        "因→引"
+      ],
+      "answer": "因→引",
+      "explain": "牽引（けんいん）＝物を引っ張って動かしたり、引き寄せたりすること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001927900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "機関車が貨車を牽因して坂を上った。",
+        "correctedSentence": "機関車が貨車を牽引して坂を上った。",
+        "wrongKanji": "因",
+        "correctKanji": "引"
+      }
+    },
+    {
+      "kanji": "落石で道が塞がれたため、山の東側を迂会した。",
+      "choices": [
+        "会→界",
+        "会→塊",
+        "会→回",
+        "会→解"
+      ],
+      "answer": "会→回",
+      "explain": "迂回（うかい）＝直接進まず、別の道を通って遠回りすること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000313800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "落石で道が塞がれたため、山の東側を迂会した。",
+        "correctedSentence": "落石で道が塞がれたため、山の東側を迂回した。",
+        "wrongKanji": "会",
+        "correctKanji": "回"
+      }
+    },
+    {
+      "kanji": "要点が見えない迂園な説明に戸惑った。",
+      "choices": [
+        "園→縁",
+        "園→遠",
+        "園→援",
+        "園→猿"
+      ],
+      "answer": "園→遠",
+      "explain": "迂遠（うえん）＝話し方や方法が回りくどいこと。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000313700",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "要点が見えない迂園な説明に戸惑った。",
+        "correctedSentence": "要点が見えない迂遠な説明に戸惑った。",
+        "wrongKanji": "園",
+        "correctKanji": "遠"
+      }
+    },
+    {
+      "kanji": "確認せずに送信したのは迂括だった。",
+      "choices": [
+        "括→闊",
+        "括→活",
+        "括→滑",
+        "括→割"
+      ],
+      "answer": "括→闊",
+      "explain": "迂闊（うかつ）＝注意が十分でなく、うっかりしていること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000313900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "確認せずに送信したのは迂括だった。",
+        "correctedSentence": "確認せずに送信したのは迂闊だった。",
+        "wrongKanji": "括",
+        "correctKanji": "闊"
+      }
+    },
+    {
+      "kanji": "国際大会で優勝した選手団が概旋した。",
+      "choices": [
+        "概→慨",
+        "概→骸",
+        "概→槐",
+        "概→凱"
+      ],
+      "answer": "概→凱",
+      "explain": "凱旋（がいせん）＝勝利や成功を収めて帰ってくること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000857300",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "国際大会で優勝した選手団が概旋した。",
+        "correctedSentence": "国際大会で優勝した選手団が凱旋した。",
+        "wrongKanji": "概",
+        "correctKanji": "凱"
+      }
+    },
+    {
+      "kanji": "決勝を制したチームの凱加が会場に響いた。",
+      "choices": [
+        "加→嘉",
+        "加→佳",
+        "加→歌",
+        "加→架"
+      ],
+      "answer": "加→歌",
+      "explain": "凱歌（がいか）＝勝利を喜び祝う歌や叫び声。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000857200",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "決勝を制したチームの凱加が会場に響いた。",
+        "correctedSentence": "決勝を制したチームの凱歌が会場に響いた。",
+        "wrongKanji": "加",
+        "correctKanji": "歌"
+      }
+    },
+    {
+      "kanji": "酌熱の砂漠を進むには十分な水が必要だ。",
+      "choices": [
+        "酌→釈",
+        "酌→灼",
+        "酌→杓",
+        "酌→勺"
+      ],
+      "answer": "酌→灼",
+      "explain": "灼熱（しゃくねつ）＝焼けるように非常に熱いこと。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003004900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "酌熱の砂漠を進むには十分な水が必要だ。",
+        "correctedSentence": "灼熱の砂漠を進むには十分な水が必要だ。",
+        "wrongKanji": "酌",
+        "correctKanji": "灼"
+      }
+    },
+    {
+      "kanji": "乾燥した農地に灌概用の水路を整備した。",
+      "choices": [
+        "概→漑",
+        "概→慨",
+        "概→該",
+        "概→骸"
+      ],
+      "answer": "概→漑",
+      "explain": "灌漑（かんがい）＝作物を育てる土地へ人工的に水を引くこと。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001142800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "乾燥した農地に灌概用の水路を整備した。",
+        "correctedSentence": "乾燥した農地に灌漑用の水路を整備した。",
+        "wrongKanji": "概",
+        "correctKanji": "漑"
+      }
+    },
+    {
+      "kanji": "遊歩道の脇には背の低い勧木が茂っている。",
+      "choices": [
+        "勧→観",
+        "勧→歓",
+        "勧→管",
+        "勧→灌"
+      ],
+      "answer": "勧→灌",
+      "explain": "灌木（かんぼく）＝低く育つ木を指す語で、低木の旧称。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001143200",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "遊歩道の脇には背の低い勧木が茂っている。",
+        "correctedSentence": "遊歩道の脇には背の低い灌木が茂っている。",
+        "wrongKanji": "勧",
+        "correctKanji": "灌"
+      }
+    },
+    {
+      "kanji": "細部まで修正し、完壁な仕上がりを目指す。",
+      "choices": [
+        "壁→僻",
+        "壁→碧",
+        "壁→璧",
+        "壁→癖"
+      ],
+      "answer": "壁→璧",
+      "explain": "完璧（かんぺき）＝不足や欠点がなく、すっかり整っていること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001028600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "細部まで修正し、完壁な仕上がりを目指す。",
+        "correctedSentence": "細部まで修正し、完璧な仕上がりを目指す。",
+        "wrongKanji": "壁",
+        "correctKanji": "璧"
+      }
+    },
+    {
+      "kanji": "初戦の敗北を糧に、次の大会で券土重来を期した。",
+      "choices": [
+        "券→検",
+        "券→捲",
+        "券→拳",
+        "券→圏"
+      ],
+      "answer": "券→捲",
+      "explain": "捲土重来（けんどちょうらい）＝一度の敗北や失敗から勢いを取り戻し、再び挑むこと。「巻土重来」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001927000",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "初戦の敗北を糧に、次の大会で券土重来を期した。",
+        "correctedSentence": "初戦の敗北を糧に、次の大会で捲土重来を期した。",
+        "wrongKanji": "券",
+        "correctKanji": "捲"
+      }
+    }
+  ]
+}

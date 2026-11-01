@@ -164,7 +164,7 @@
   },
   {
     "id": "errcor-008",
-    "kanji": "彼は会議でその決定に意義を唱えた。",
+    "kanji": "彼は会議でその決定に意議を唱えた。",
     "choices": [
       "意→異",
       "違→異",
@@ -172,7 +172,7 @@
       "委→異"
     ],
     "answer": "意→異",
-    "explain": "「異議」が正しい。「意義」は物事の価値や意味を表すが、ここでは「反対の意見」を表す「異議」が適切。",
+    "explain": "「異議」（いぎ）は、反対の意見。この文では「意議」の「意」を「異」に直す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000149200",
     "kind": "errorCorrection",
     "tags": [
       "誤字訂正",
@@ -180,7 +180,7 @@
     ],
     "difficulty": 3,
     "payload": {
-      "originalSentence": "彼は会議でその決定に意義を唱えた。",
+      "originalSentence": "彼は会議でその決定に意議を唱えた。",
       "correctedSentence": "彼は会議でその決定に異議を唱えた。",
       "wrongKanji": "意",
       "correctKanji": "異"
@@ -260,7 +260,7 @@
   },
   {
     "id": "errcor-012",
-    "kanji": "学生たちは学長の決定に講義した。",
+    "kanji": "学生たちは学長の決定に講議した。",
     "choices": [
       "講→抗",
       "構→抗",
@@ -268,7 +268,7 @@
       "校→抗"
     ],
     "answer": "講→抗",
-    "explain": "「抗議」が正しい。「講義」は授業を行うことだが、ここでは「反対の意を申し立てる」意味の「抗議」が適切。",
+    "explain": "「抗議」（こうぎ）は、不当な言動などに反対の意思を示すこと。この文では「講議」の「講」を「抗」に直す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002182900",
     "kind": "errorCorrection",
     "tags": [
       "誤字訂正",
@@ -276,7 +276,7 @@
     ],
     "difficulty": 3,
     "payload": {
-      "originalSentence": "学生たちは学長の決定に講義した。",
+      "originalSentence": "学生たちは学長の決定に講議した。",
       "correctedSentence": "学生たちは学長の決定に抗議した。",
       "wrongKanji": "講",
       "correctKanji": "抗"
@@ -308,7 +308,7 @@
   },
   {
     "id": "errcor-014",
-    "kanji": "銀行は本人確認のため身元を紹介した。",
+    "kanji": "銀行は本人確認のため身元を紹会した。",
     "choices": [
       "紹→照",
       "召→照",
@@ -316,7 +316,7 @@
       "証→照"
     ],
     "answer": "紹→照",
-    "explain": "「照会」が正しい。「紹介」は人や物事を引き合わせることだが、ここでは「問い合わせて確認する」意味の「照会」が適切。",
+    "explain": "「照会」（しょうかい）は、事情などを問い合わせること。この文では「紹会」の「紹」を「照」に直す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003428700",
     "kind": "errorCorrection",
     "tags": [
       "誤字訂正",
@@ -324,7 +324,7 @@
     ],
     "difficulty": 4,
     "payload": {
-      "originalSentence": "銀行は本人確認のため身元を紹介した。",
+      "originalSentence": "銀行は本人確認のため身元を紹会した。",
       "correctedSentence": "銀行は本人確認のため身元を照会した。",
       "wrongKanji": "紹",
       "correctKanji": "照"

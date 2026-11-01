@@ -1,0 +1,350 @@
+{
+  "stage": 803,
+  "questions": [
+    {
+      "kanji": "予て",
+      "prompt": "例文中の「予て」の読みは？",
+      "choices": [
+        "かねて",
+        "あえて",
+        "しいて",
+        "はたして"
+      ],
+      "answer": "かねて",
+      "explain": "この例文の「予て」は「かねて」と読む。以前から引き続いていることを示す語。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "予",
+        "sentenceContext": "予て希望していた部署へ異動した。",
+        "targetWord": "予て"
+      }
+    },
+    {
+      "kanji": "悪む",
+      "prompt": "例文中の「悪む」の読みは？",
+      "choices": [
+        "たのむ",
+        "にくむ",
+        "はばむ",
+        "ねたむ"
+      ],
+      "answer": "にくむ",
+      "explain": "この例文の「悪む」は「にくむ」と読む。相手や物事を不快に思い、強く嫌うこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "悪",
+        "sentenceContext": "彼は人を傷つける卑劣な行いを悪む。",
+        "targetWord": "悪む"
+      }
+    },
+    {
+      "kanji": "憾む",
+      "prompt": "例文中の「憾む」の読みは？",
+      "choices": [
+        "はばむ",
+        "からむ",
+        "うらむ",
+        "いどむ"
+      ],
+      "answer": "うらむ",
+      "explain": "この例文の「憾む」は「うらむ」と読む。望みどおりにならなかったことを惜しく思うこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "憾",
+        "sentenceContext": "力量が及ばなかったことを憾む。",
+        "targetWord": "憾む"
+      }
+    },
+    {
+      "kanji": "厳つい",
+      "prompt": "例文中の「厳つい」の読みは？",
+      "choices": [
+        "けわしい",
+        "さわがしい",
+        "おもおもしい",
+        "いかつい"
+      ],
+      "answer": "いかつい",
+      "explain": "この例文の「厳つい」は「いかつい」と読む。外見がごつごつして、強そうに感じられる様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "厳",
+        "sentenceContext": "厳つい顔の門番が扉の前に立っている。",
+        "targetWord": "厳つい"
+      }
+    },
+    {
+      "kanji": "厳しい",
+      "prompt": "例文中の「厳しい」の読みは？",
+      "choices": [
+        "いかめしい",
+        "おびただしい",
+        "あわただしい",
+        "やかましい"
+      ],
+      "answer": "いかめしい",
+      "explain": "この例文の「厳しい」は「いかめしい」と読む。重々しく、近寄り難いほどの威厳がある様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "厳",
+        "sentenceContext": "厳しい門構えに思わず姿勢を正した。",
+        "targetWord": "厳しい"
+      }
+    },
+    {
+      "kanji": "凄い",
+      "prompt": "例文中の「凄い」の読みは？",
+      "choices": [
+        "しぶい",
+        "すごい",
+        "さとい",
+        "たかい"
+      ],
+      "answer": "すごい",
+      "explain": "この例文の「凄い」は「すごい」と読む。程度が並外れていて、驚くほどであること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "凄",
+        "sentenceContext": "選手は凄い速さでゴールへ駆け込んだ。",
+        "targetWord": "凄い"
+      }
+    },
+    {
+      "kanji": "凄まじい",
+      "prompt": "例文中の「凄まじい」の読みは？",
+      "choices": [
+        "すばらしい",
+        "おびただしい",
+        "すさまじい",
+        "やかましい"
+      ],
+      "answer": "すさまじい",
+      "explain": "この例文の「凄まじい」は「すさまじい」と読む。勢いや程度が並外れていて、恐ろしさを感じる様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "凄",
+        "sentenceContext": "凄まじい風で庭の木が大きく揺れた。",
+        "targetWord": "凄まじい"
+      }
+    },
+    {
+      "kanji": "怠い",
+      "prompt": "例文中の「怠い」の読みは？",
+      "choices": [
+        "にぶい",
+        "まずい",
+        "ゆるい",
+        "だるい"
+      ],
+      "answer": "だるい",
+      "explain": "この例文の「怠い」は「だるい」と読む。疲れなどから、体に力が入らず動くのがおっくうな状態。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "怠",
+        "sentenceContext": "長い登山の翌日は脚が怠い。",
+        "targetWord": "怠い"
+      }
+    },
+    {
+      "kanji": "熟",
+      "prompt": "例文中の「熟」の読みは？",
+      "choices": [
+        "つらつら",
+        "しきりに",
+        "つねづね",
+        "おずおず"
+      ],
+      "answer": "つらつら",
+      "explain": "この例文の「熟」は「つらつら」と読む。一つの事について、時間をかけて念入りに考える様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "熟",
+        "sentenceContext": "過ぎた日々を熟思い返す。",
+        "targetWord": "熟"
+      }
+    },
+    {
+      "kanji": "熟れる",
+      "prompt": "例文中の「熟れる」の読みは？",
+      "choices": [
+        "ほどける",
+        "こなれる",
+        "こぼれる",
+        "つかれる"
+      ],
+      "answer": "こなれる",
+      "explain": "この例文の「熟れる」は「こなれる」と読む。ここでは、体内で食べ物の消化が進むこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "熟",
+        "sentenceContext": "少し歩いて、食べ物が熟れるのを待つ。",
+        "targetWord": "熟れる"
+      }
+    },
+    {
+      "kanji": "剰え",
+      "prompt": "例文中の「剰え」の読みは？",
+      "choices": [
+        "かえすがえす",
+        "あたかも",
+        "あまつさえ",
+        "いまさら"
+      ],
+      "answer": "あまつさえ",
+      "explain": "この例文の「剰え」は「あまつさえ」と読む。ある事柄に加えて、さらに別の事柄が重なることを示す。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "剰",
+        "sentenceContext": "財布を忘れ、剰え電車にも乗り遅れた。",
+        "targetWord": "剰え"
+      }
+    },
+    {
+      "kanji": "因む",
+      "prompt": "例文中の「因む」の読みは？",
+      "choices": [
+        "いとなむ",
+        "たのむ",
+        "いどむ",
+        "ちなむ"
+      ],
+      "answer": "ちなむ",
+      "explain": "この例文の「因む」は「ちなむ」と読む。ある物事とつながりを持つこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "因",
+        "sentenceContext": "この行事の名は古い伝説に因む。",
+        "targetWord": "因む"
+      }
+    },
+    {
+      "kanji": "序で",
+      "prompt": "例文中の「序で」の読みは？",
+      "choices": [
+        "ついで",
+        "かつて",
+        "たより",
+        "はずみ"
+      ],
+      "answer": "ついで",
+      "explain": "この例文の「序で」は「ついで」と読む。あることをする機会を利用して、別のことも行う場合を表す。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "序",
+        "sentenceContext": "散歩の序でに郵便局へ寄った。",
+        "targetWord": "序で"
+      }
+    },
+    {
+      "kanji": "寧ろ",
+      "prompt": "例文中の「寧ろ」の読みは？",
+      "choices": [
+        "おぼろ",
+        "むしろ",
+        "うつろ",
+        "ましろ"
+      ],
+      "answer": "むしろ",
+      "explain": "この例文の「寧ろ」は「むしろ」と読む。比べた二つのうち、後に述べる方を選びたい気持ちを表す。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "寧",
+        "sentenceContext": "急ぐよりも寧ろ正確さを優先したい。",
+        "targetWord": "寧ろ"
+      }
+    },
+    {
+      "kanji": "尽く",
+      "prompt": "例文中の「尽く」の読みは？",
+      "choices": [
+        "あまねく",
+        "まったく",
+        "ことごとく",
+        "あえて"
+      ],
+      "answer": "ことごとく",
+      "explain": "この例文の「尽く」は「ことごとく」と読む。例外を残さず、すべてに及ぶ様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "尽",
+        "sentenceContext": "挑戦した課題を尽く解き終えた。",
+        "targetWord": "尽く"
+      }
+    }
+  ]
+}

@@ -9,6 +9,8 @@ struct StageStats: Codable {
     let stageNumber: Int
     var totalAttempts: Int
     var correctAttempts: Int
+    /// Per-answer attribution, including mixed and review sessions.
+    var byKind: [String: KindScore]
     /// Kanji answered incorrectly at least once (not yet mastered).
     var wrongKanji: [String]
     /// Exact question IDs answered incorrectly at least once.
@@ -25,6 +27,7 @@ struct StageStats: Codable {
         self.stageNumber = stageNumber
         self.totalAttempts = 0
         self.correctAttempts = 0
+        self.byKind = [:]
         self.wrongKanji = []
         self.wrongQuestionIDs = []
         self.wrongAnswerLog = []
@@ -34,6 +37,7 @@ struct StageStats: Codable {
         case stageNumber
         case totalAttempts
         case correctAttempts
+        case byKind
         case wrongKanji
         case wrongQuestionIDs
         case wrongAnswerLog
@@ -44,6 +48,7 @@ struct StageStats: Codable {
         stageNumber = try container.decode(Int.self, forKey: .stageNumber)
         totalAttempts = try container.decode(Int.self, forKey: .totalAttempts)
         correctAttempts = try container.decode(Int.self, forKey: .correctAttempts)
+        byKind = try container.decodeIfPresent([String: KindScore].self, forKey: .byKind) ?? [:]
         wrongKanji = try container.decodeIfPresent([String].self, forKey: .wrongKanji) ?? []
         wrongQuestionIDs = try container.decodeIfPresent([String].self, forKey: .wrongQuestionIDs) ?? []
         wrongAnswerLog = try container.decodeIfPresent([WrongAnswerEntry].self, forKey: .wrongAnswerLog) ?? []
@@ -54,6 +59,7 @@ struct StageStats: Codable {
         try container.encode(stageNumber, forKey: .stageNumber)
         try container.encode(totalAttempts, forKey: .totalAttempts)
         try container.encode(correctAttempts, forKey: .correctAttempts)
+        try container.encode(byKind, forKey: .byKind)
         try container.encode(wrongKanji, forKey: .wrongKanji)
         try container.encode(wrongQuestionIDs, forKey: .wrongQuestionIDs)
         try container.encode(wrongAnswerLog, forKey: .wrongAnswerLog)
@@ -127,6 +133,11 @@ final class StudyStatsRepository: ObservableObject {
     ) {
         var stats = stageStats[stageNumber] ?? StageStats(stageNumber: stageNumber)
         stats.totalAttempts += 1
+        if let questionKind {
+            let key = questionKind.rawValue
+            let previous = stats.byKind[key] ?? KindScore(total: 0, correct: 0)
+            stats.byKind[key] = KindScore(total: previous.total + 1, correct: previous.correct + (wasCorrect ? 1 : 0))
+        }
 
         if wasCorrect {
             stats.correctAttempts += 1
@@ -325,5 +336,63 @@ final class StudyStatsRepository: ObservableObject {
     private func saveContentVersion() {
         guard let encoded = try? JSONEncoder().encode(quizContentVersion) else { return }
         store.set(encoded, forKey: contentVersionKey)
+    }
+}
+
+// MARK: - Progress Summary
+
+/// Count-weighted lifetime accuracy. ExamResult totals are not added because
+/// quiz answers (including exams) are already recorded in stageStats.
+struct StudyProgressSummary {
+    let byKind: [QuestionKind: KindScore]
+    let total: Int
+    let correct: Int
+    let unclassifiedTotal: Int
+
+    var accuracy: Double? { total > 0 ? Double(correct) / Double(total) : nil }
+
+    init(stats: [Int: StageStats], stages: [Stage]) {
+        var stageKinds: [Int: Set<QuestionKind>] = [:]
+        for stage in stages where stage.stage > 0 {
+            stageKinds[stage.stage, default: []].formUnion(stage.questions.map(\.kind))
+        }
+        var scores: [QuestionKind: KindScore] = [:]
+        var unclassified = 0
+        var total = 0
+        var correct = 0
+        func add(_ score: KindScore, kind: QuestionKind) {
+            // Consolidate legacy reading into the current reading genre.
+            let resolved = kind == .reading ? QuestionKind.sentenceReading : kind
+            let previous = scores[resolved] ?? KindScore(total: 0, correct: 0)
+            scores[resolved] = KindScore(total: previous.total + score.total, correct: previous.correct + score.correct)
+        }
+        for (number, stat) in stats {
+            total += stat.totalAttempts
+            correct += stat.correctAttempts
+            var attributedTotal = 0
+            var attributedCorrect = 0
+            for (rawKind, score) in stat.byKind {
+                attributedTotal += score.total
+                attributedCorrect += score.correct
+                if let kind = QuestionKind(rawValue: rawKind), kind != .unknown {
+                    add(score, kind: kind)
+                } else {
+                    unclassified += score.total
+                }
+            }
+            let remainder = max(0, stat.totalAttempts - attributedTotal)
+            let remainderCorrect = min(remainder, max(0, stat.correctAttempts - attributedCorrect))
+            if remainder > 0 {
+                if let kinds = stageKinds[number], kinds.count == 1, let kind = kinds.first, kind != .unknown {
+                    add(KindScore(total: remainder, correct: remainderCorrect), kind: kind)
+                } else {
+                    unclassified += remainder
+                }
+            }
+        }
+        self.byKind = scores
+        self.total = total
+        self.correct = correct
+        self.unclassifiedTotal = unclassified
     }
 }

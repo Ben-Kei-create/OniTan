@@ -1,0 +1,350 @@
+{
+  "stage": 505,
+  "questions": [
+    {
+      "kanji": "師は規律を重んじる俊厳な人だった。",
+      "choices": [
+        "俊→駿",
+        "俊→浚",
+        "俊→峻",
+        "俊→竣"
+      ],
+      "answer": "俊→峻",
+      "explain": "峻厳（しゅんげん）＝態度や扱いが非常に厳しく、おごそかであること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003235900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "師は規律を重んじる俊厳な人だった。",
+        "correctedSentence": "師は規律を重んじる峻厳な人だった。",
+        "wrongKanji": "俊",
+        "correctKanji": "峻"
+      }
+    },
+    {
+      "kanji": "研究では事実と推測を峻列しなければならない。",
+      "choices": [
+        "列→劣",
+        "列→別",
+        "列→烈",
+        "列→裂"
+      ],
+      "answer": "列→別",
+      "explain": "峻別（しゅんべつ）＝厳しい基準を設け、はっきり区別すること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003236100",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "研究では事実と推測を峻列しなければならない。",
+        "correctedSentence": "研究では事実と推測を峻別しなければならない。",
+        "wrongKanji": "列",
+        "correctKanji": "別"
+      }
+    },
+    {
+      "kanji": "復旧を急ぐ人々は夙矢働き続けた。",
+      "choices": [
+        "矢→夜",
+        "矢→冶",
+        "矢→野",
+        "矢→也"
+      ],
+      "answer": "矢→夜",
+      "explain": "夙夜（しゅくや）＝朝早くから夜遅くまで。また、常にという意味。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003193600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "復旧を急ぐ人々は夙矢働き続けた。",
+        "correctedSentence": "復旧を急ぐ人々は夙夜働き続けた。",
+        "wrongKanji": "矢",
+        "correctKanji": "夜"
+      }
+    },
+    {
+      "kanji": "幼いころから大人びた見識を示す宿成の人物だった。",
+      "choices": [
+        "宿→粛",
+        "宿→祝",
+        "宿→淑",
+        "宿→夙"
+      ],
+      "answer": "宿→夙",
+      "explain": "夙成（しゅくせい）＝若いうちから才能や人柄が成熟していること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003193400",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "幼いころから大人びた見識を示す宿成の人物だった。",
+        "correctedSentence": "幼いころから大人びた見識を示す夙成の人物だった。",
+        "wrongKanji": "宿",
+        "correctKanji": "夙"
+      }
+    },
+    {
+      "kanji": "名君の高沢が領内の人々に及んだ。",
+      "choices": [
+        "高→藁",
+        "高→豪",
+        "高→膏",
+        "高→稿"
+      ],
+      "answer": "高→膏",
+      "explain": "膏沢（こうたく）＝人々を潤す恩恵。この文では君主から受ける恵みを指す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002306500",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "名君の高沢が領内の人々に及んだ。",
+        "correctedSentence": "名君の膏沢が領内の人々に及んだ。",
+        "wrongKanji": "高",
+        "correctKanji": "膏"
+      }
+    },
+    {
+      "kanji": "昔は患部に稿薬を貼って手当てした。",
+      "choices": [
+        "稿→藁",
+        "稿→膏",
+        "稿→高",
+        "稿→豪"
+      ],
+      "answer": "稿→膏",
+      "explain": "膏薬（こうやく）＝油脂と薬品を練り合わせ、紙や布に塗って使う外用薬。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002306600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "昔は患部に稿薬を貼って手当てした。",
+        "correctedSentence": "昔は患部に膏薬を貼って手当てした。",
+        "wrongKanji": "稿",
+        "correctKanji": "膏"
+      }
+    },
+    {
+      "kanji": "肝臣な点を忘れないよう、手帳に書き留めた。",
+      "choices": [
+        "臣→腎",
+        "臣→唇",
+        "臣→辰",
+        "臣→賢"
+      ],
+      "answer": "臣→腎",
+      "explain": "肝腎（かんじん）＝物事の大切な点や、特に重要であること。「肝心」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0003708300",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "肝臣な点を忘れないよう、手帳に書き留めた。",
+        "correctedSentence": "肝腎な点を忘れないよう、手帳に書き留めた。",
+        "wrongKanji": "臣",
+        "correctKanji": "腎"
+      }
+    },
+    {
+      "kanji": "授業で賢臓の位置と働きを学んだ。",
+      "choices": [
+        "賢→堅",
+        "賢→緊",
+        "賢→臣",
+        "賢→腎"
+      ],
+      "answer": "賢→腎",
+      "explain": "腎臓（じんぞう）＝背骨の左右に一つずつあり、尿をつくって排泄に関わる器官。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003709000",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "授業で賢臓の位置と働きを学んだ。",
+        "correctedSentence": "授業で腎臓の位置と働きを学んだ。",
+        "wrongKanji": "賢",
+        "correctKanji": "腎"
+      }
+    },
+    {
+      "kanji": "気力を失い、府抜けのような日々を過ごした。",
+      "choices": [
+        "府→附",
+        "府→斧",
+        "府→腑",
+        "府→腐"
+      ],
+      "answer": "府→腑",
+      "explain": "腑抜け（ふぬけ）＝意気地がなく、しっかりした気力を失っていることや、その人。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006058800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "気力を失い、府抜けのような日々を過ごした。",
+        "correctedSentence": "気力を失い、腑抜けのような日々を過ごした。",
+        "wrongKanji": "府",
+        "correctKanji": "腑"
+      }
+    },
+    {
+      "kanji": "史料には蘭学者が腐分けに立ち会った記録がある。",
+      "choices": [
+        "腐→符",
+        "腐→腑",
+        "腐→府",
+        "腐→附"
+      ],
+      "answer": "腐→腑",
+      "explain": "腑分け（ふわけ）＝体を切り開いて調べる解剖を指す、江戸時代の医学用語。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006058900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "史料には蘭学者が腐分けに立ち会った記録がある。",
+        "correctedSentence": "史料には蘭学者が腑分けに立ち会った記録がある。",
+        "wrongKanji": "腐",
+        "correctKanji": "腑"
+      }
+    },
+    {
+      "kanji": "調教師は朝早く既舎で馬の様子を確かめた。",
+      "choices": [
+        "既→厩",
+        "既→概",
+        "既→慨",
+        "既→漑"
+      ],
+      "answer": "既→厩",
+      "explain": "厩舎（きゅうしゃ）＝馬を飼育する建物。また、競走馬を育て訓練する所。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001412500",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "調教師は朝早く既舎で馬の様子を確かめた。",
+        "correctedSentence": "調教師は朝早く厩舎で馬の様子を確かめた。",
+        "wrongKanji": "既",
+        "correctKanji": "厩"
+      }
+    },
+    {
+      "kanji": "優勝候補のチームは挑戦者を凱袖一触で退けた。",
+      "choices": [
+        "凱→骸",
+        "凱→概",
+        "凱→慨",
+        "凱→鎧"
+      ],
+      "answer": "凱→鎧",
+      "explain": "鎧袖一触（がいしゅういっしょく）＝相手をたやすく打ち負かすことのたとえ。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000870100",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "優勝候補のチームは挑戦者を凱袖一触で退けた。",
+        "correctedSentence": "優勝候補のチームは挑戦者を鎧袖一触で退けた。",
+        "wrongKanji": "凱",
+        "correctKanji": "鎧"
+      }
+    },
+    {
+      "kanji": "複数の証拠から、その仮説が正しい概然性を検討する。",
+      "choices": [
+        "概→骸",
+        "概→涯",
+        "概→蓋",
+        "概→該"
+      ],
+      "answer": "概→蓋",
+      "explain": "蓋然性（がいぜんせい）＝ある出来事が起こったり、判断が成り立ったりする確かさの度合い。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000863300",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "複数の証拠から、その仮説が正しい概然性を検討する。",
+        "correctedSentence": "複数の証拠から、その仮説が正しい蓋然性を検討する。",
+        "wrongKanji": "概",
+        "correctKanji": "蓋"
+      }
+    },
+    {
+      "kanji": "職人は器の表面に薄い金拍を貼った。",
+      "choices": [
+        "拍→伯",
+        "拍→箔",
+        "拍→泊",
+        "拍→舶"
+      ],
+      "answer": "拍→箔",
+      "explain": "金箔（きんぱく）＝金を非常に薄く延ばしたもの。「箔」は金属の薄片を表す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0005638000",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "職人は器の表面に薄い金拍を貼った。",
+        "correctedSentence": "職人は器の表面に薄い金箔を貼った。",
+        "wrongKanji": "拍",
+        "correctKanji": "箔"
+      }
+    },
+    {
+      "kanji": "難問を解き切った瞬間に研究の醍胡味を感じた。",
+      "choices": [
+        "胡→醐",
+        "胡→湖",
+        "胡→糊",
+        "胡→瑚"
+      ],
+      "answer": "胡→醐",
+      "explain": "醍醐味（だいごみ）＝物事の奥深い面白さや、本当の味わい。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004513300",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "難問を解き切った瞬間に研究の醍胡味を感じた。",
+        "correctedSentence": "難問を解き切った瞬間に研究の醍醐味を感じた。",
+        "wrongKanji": "胡",
+        "correctKanji": "醐"
+      }
+    }
+  ]
+}

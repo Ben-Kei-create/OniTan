@@ -5,6 +5,30 @@
       "file": "error_correction_stage1.json",
       "title": "誤字訂正 1",
       "difficulty": 4
+    },
+    {
+      "id": 502,
+      "file": "error_correction_stage2.json",
+      "title": "誤字訂正 2",
+      "difficulty": 4
+    },
+    {
+      "id": 503,
+      "file": "error_correction_stage3.json",
+      "title": "誤字訂正 3",
+      "difficulty": 4
+    },
+    {
+      "id": 504,
+      "file": "error_correction_stage4.json",
+      "title": "誤字訂正 4",
+      "difficulty": 4
+    },
+    {
+      "id": 505,
+      "file": "error_correction_stage5.json",
+      "title": "誤字訂正 5",
+      "difficulty": 4
     }
   ]
 }

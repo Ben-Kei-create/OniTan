@@ -266,16 +266,16 @@
       }
     },
     {
-      "kanji": "清い",
-      "prompt": "「清い」の読みは？",
+      "kanji": "清か",
+      "prompt": "「清か」の読みは？",
       "choices": [
-        "すがい",
-        "きよい",
-        "さやい",
-        "あおい"
+        "さやか",
+        "きよか",
+        "すがか",
+        "せいか"
       ],
-      "answer": "すがい",
-      "explain": "「清い」は「すがい」と読む。清らかで爽やかな（「すがすがしい」の古語的用法）",
+      "answer": "さやか",
+      "explain": "「清か」は「さやか」と読む。\n意味: 光や音が澄み、くっきり感じられる様子。「清い」の読み「きよい」と区別する。\n出典: 漢字ペディア「清か」 https://www.kanjipedia.jp/kotoba/0003889000",
       "kind": "hyogaiReading",
       "tags": [
         "表外の読み"
@@ -284,7 +284,8 @@
       "payload": {
         "type": "hyogaiReading",
         "targetKanji": "清",
-        "sentenceContext": "清い風が吹き抜ける。"
+        "sentenceContext": "清かな月の光が庭を照らす。",
+        "targetWord": "清か"
       }
     },
     {

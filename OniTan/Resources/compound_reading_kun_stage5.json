@@ -1,0 +1,335 @@
+{
+  "stage": 905,
+  "questions": [
+    {
+      "kanji": "生憎",
+      "prompt": "「生憎」の読みは？",
+      "choices": [
+        "あいにく",
+        "おりよく",
+        "むやみ",
+        "ふいに"
+      ],
+      "answer": "あいにく",
+      "explain": "「生憎」は「あいにく」と読む。期待したようにはいかず、都合が悪いという気持ちを表す言葉。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "生憎",
+        "targetKanjiInCompound": "生"
+      }
+    },
+    {
+      "kanji": "欠伸",
+      "prompt": "「欠伸」の読みは？",
+      "choices": [
+        "くしゃみ",
+        "あくび",
+        "せき",
+        "ためいき"
+      ],
+      "answer": "あくび",
+      "explain": "「欠伸」は「あくび」と読む。眠いときなどに、口を大きく開いて深く息を吸う動作。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "欠伸",
+        "targetKanjiInCompound": "欠"
+      }
+    },
+    {
+      "kanji": "黄昏",
+      "prompt": "「黄昏」の読みは？",
+      "choices": [
+        "あかつき",
+        "しののめ",
+        "たそがれ",
+        "よあけ"
+      ],
+      "answer": "たそがれ",
+      "explain": "「黄昏」は「たそがれ」と読む。日が暮れかけ、辺りが薄暗くなるころをいう。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "黄昏",
+        "targetKanjiInCompound": "黄"
+      }
+    },
+    {
+      "kanji": "東風",
+      "prompt": "「東風」の読みは？",
+      "choices": [
+        "こがらし",
+        "はやて",
+        "つむじかぜ",
+        "こち"
+      ],
+      "answer": "こち",
+      "explain": "「東風」は「こち」と読む。春に東から吹く風を表す伝統的な読み。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "東風",
+        "targetKanjiInCompound": "東"
+      }
+    },
+    {
+      "kanji": "南風",
+      "prompt": "西日本で用いられる、南から吹く風「南風」の読みは？",
+      "choices": [
+        "はえ",
+        "こがらし",
+        "やませ",
+        "つむじかぜ"
+      ],
+      "answer": "はえ",
+      "explain": "「南風」は「はえ」と読む。南から吹く風を表す読み。特に西日本で使われる。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "南風",
+        "targetKanjiInCompound": "南"
+      }
+    },
+    {
+      "kanji": "吹雪",
+      "prompt": "「吹雪」の読みは？",
+      "choices": [
+        "こなゆき",
+        "ふぶき",
+        "あられ",
+        "みぞれ"
+      ],
+      "answer": "ふぶき",
+      "explain": "「吹雪」は「ふぶき」と読む。強い風に雪が吹きつけたり、舞い上がったりすること。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "吹雪",
+        "targetKanjiInCompound": "吹"
+      }
+    },
+    {
+      "kanji": "陽炎",
+      "prompt": "「陽炎」の読みは？",
+      "choices": [
+        "ひばしら",
+        "ひなた",
+        "かげろう",
+        "さざなみ"
+      ],
+      "answer": "かげろう",
+      "explain": "「陽炎」は「かげろう」と読む。熱せられた地面の上で、空気が揺らめいて見える現象。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "陽炎",
+        "targetKanjiInCompound": "陽"
+      }
+    },
+    {
+      "kanji": "不知火",
+      "prompt": "「不知火」の読みは？",
+      "choices": [
+        "たきび",
+        "かがりび",
+        "ほたるび",
+        "しらぬい"
+      ],
+      "answer": "しらぬい",
+      "explain": "「不知火」は「しらぬい」と読む。夜の海上に火が連なったように見える現象。八代海などで知られる。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "不知火",
+        "targetKanjiInCompound": "不"
+      }
+    },
+    {
+      "kanji": "山葵",
+      "prompt": "「山葵」の読みは？",
+      "choices": [
+        "わさび",
+        "やまうど",
+        "せり",
+        "みつば"
+      ],
+      "answer": "わさび",
+      "explain": "「山葵」は「わさび」と読む。沢などで育つ香辛料の植物。太い根茎をすりおろして使う。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "山葵",
+        "targetKanjiInCompound": "山"
+      }
+    },
+    {
+      "kanji": "蕎麦",
+      "prompt": "「蕎麦」の読みは？",
+      "choices": [
+        "からむぎ",
+        "そば",
+        "ひえ",
+        "あわ"
+      ],
+      "answer": "そば",
+      "explain": "「蕎麦」は「そば」と読む。タデ科の作物や、その実からとった粉で作る麺を指す。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "蕎麦",
+        "targetKanjiInCompound": "蕎"
+      }
+    },
+    {
+      "kanji": "心太",
+      "prompt": "「心太」の読みは？",
+      "choices": [
+        "かんてん",
+        "くずもち",
+        "ところてん",
+        "わらびもち"
+      ],
+      "answer": "ところてん",
+      "explain": "「心太」は「ところてん」と読む。海藻の煮汁を固め、細く突き出して食べる食品。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "心太",
+        "targetKanjiInCompound": "心"
+      }
+    },
+    {
+      "kanji": "薯蕷",
+      "prompt": "すりおろした料理「薯蕷」の読みは？",
+      "choices": [
+        "しらあえ",
+        "なめこ",
+        "おから",
+        "とろろ"
+      ],
+      "answer": "とろろ",
+      "explain": "「薯蕷」は「とろろ」と読む。ヤマノイモなどをすりおろして作る料理を指す読み。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "薯蕷",
+        "targetKanjiInCompound": "薯"
+      }
+    },
+    {
+      "kanji": "神輿",
+      "prompt": "「神輿」の読みは？",
+      "choices": [
+        "みこし",
+        "だんじり",
+        "やしろ",
+        "ほこ"
+      ],
+      "answer": "みこし",
+      "explain": "「神輿」は「みこし」と読む。祭りで担いで運ぶ、神霊を迎えるための輿を指す。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "神輿",
+        "targetKanjiInCompound": "神"
+      }
+    },
+    {
+      "kanji": "祝詞",
+      "prompt": "「祝詞」の読みは？",
+      "choices": [
+        "さいもん",
+        "のりと",
+        "おみくじ",
+        "かぐら"
+      ],
+      "answer": "のりと",
+      "explain": "「祝詞」は「のりと」と読む。神事で、神への祈りなどを述べるために読み上げる言葉。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "祝詞",
+        "targetKanjiInCompound": "祝"
+      }
+    },
+    {
+      "kanji": "大和",
+      "prompt": "現在の奈良県にあたる旧国名「大和」の読みは？",
+      "choices": [
+        "やましろ",
+        "むさし",
+        "やまと",
+        "おうみ"
+      ],
+      "answer": "やまと",
+      "explain": "「大和」は「やまと」と読む。現在の奈良県にあたる旧国名。日本を指す古い呼び名としても使う。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "大和",
+        "targetKanjiInCompound": "大"
+      }
+    }
+  ]
+}

@@ -34,6 +34,9 @@ struct HomeView: View {
     @State private var lastShownFreezeID: Int = -1
     @State private var unlockToastMessage: String? = nil
     @State private var unlockToastQueue: [String] = []
+    @State private var reviewKind: QuestionKind? = nil
+    @State private var activeExamReviewStage: Stage?
+    @State private var isExamReviewPresented = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -74,6 +77,17 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
+            .navigationDestination(isPresented: $isExamReviewPresented) {
+                if let stage = activeExamReviewStage {
+                    MainView(
+                        stage: stage, appState: appState, statsRepo: statsRepo,
+                        streakRepo: streakRepo, xpRepo: xpRepo, masteryRepo: masteryRepo,
+                        examResultRepo: examResultRepo, mode: .normal,
+                        clearTitle: "復習完了！", sessionTitle: "模試の弱点復習",
+                        isExamReview: true
+                    )
+                }
+            }
             .overlay(alignment: .top) {
                 if freezeToastVisible {
                     freezeConsumedToast
@@ -218,6 +232,13 @@ struct HomeView: View {
             }
 
             Spacer()
+
+            HomeHeaderIconButton(
+                icon: "chart.bar.fill",
+                accessibilityTitle: "学習進捗",
+                compact: isCompact,
+                destination: StudyProgressView()
+            )
 
             HomeHeaderIconButton(
                 icon: "gearshape.fill",
@@ -368,6 +389,10 @@ struct HomeView: View {
                 .accessibilityIdentifier("home_today_card")
             }
 
+            if !examResultRepo.pendingReviewQuestions(from: allQuestions).isEmpty {
+                examReviewAction(isCompact: isCompact)
+            }
+
             if !weakStage.questions.isEmpty {
                 HomePrimaryActionCard(
                     title: "弱点復習",
@@ -437,6 +462,54 @@ struct HomeView: View {
                     subtitle: "Lv.\(Self.streakChallengeUnlockLevel) で解放されます",
                     icon: "lock.fill"
                 )
+            }
+        }
+    }
+
+    private func examReviewAction(isCompact: Bool) -> some View {
+        let pending = examResultRepo.pendingReviewQuestions(from: allQuestions)
+        let kinds = Set(pending.map(\.kind)).sorted { $0.rawValue < $1.rawValue }
+        // A graduated filter can disappear after returning from a session.
+        let selectedKind = reviewKind.flatMap { kinds.contains($0) ? $0 : nil }
+        let stage = examResultRepo.makeReviewStage(from: allQuestions, kind: selectedKind)
+        let count = pending.filter { selectedKind == nil || $0.kind == selectedKind }.count
+
+        return VStack(spacing: 8) {
+            HStack {
+                Text("模試の弱点復習")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundColor(HomeInk.textSecondary)
+                Spacer()
+                Picker("復習ジャンル", selection: $reviewKind) {
+                    Text("全ジャンル").tag(QuestionKind?.none)
+                    ForEach(kinds, id: \.self) { kind in
+                        Text(kind.displayName).tag(Optional(kind))
+                    }
+                }
+                .pickerStyle(.menu)
+                .tint(HomeInk.gold)
+                .accessibilityIdentifier("exam_review_kind_filter")
+            }
+            if !stage.questions.isEmpty {
+                HomePrimaryActionCard(
+                    title: "復習する (\(count))",
+                    style: .neutral,
+                    isCompact: isCompact,
+                    destination: nil,
+                    subtitle: "直近10回の模試から最大15問・正解で卒業",
+                    icon: "arrow.counterclockwise",
+                    trailingBadge: "\(count)問",
+                    action: {
+                        activeExamReviewStage = stage
+                        isExamReviewPresented = true
+                    }
+                )
+                .accessibilityIdentifier("home_exam_review_card")
+            }
+        }
+        .onChange(of: kinds) { updated in
+            if let reviewKind, !updated.contains(reviewKind) {
+                self.reviewKind = nil
             }
         }
     }
@@ -537,10 +610,14 @@ private struct HomePrimaryActionCard: View {
     var subtitle: String? = nil
     var icon: String? = nil
     var trailingBadge: String? = nil
+    var action: (() -> Void)? = nil
 
     var body: some View {
         Group {
-            if let destination {
+            if let action {
+                Button(action: action) { cardContent }
+                    .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.98))
+            } else if let destination {
                 NavigationLink(destination: destination) { cardContent }
                     .buttonStyle(OniPressScaleButtonStyle(pressedScale: 0.98))
             } else {
@@ -549,7 +626,7 @@ private struct HomePrimaryActionCard: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(subtitle.map { "\(title) \($0)" } ?? title)
-        .accessibilityHint(destination != nil ? "タップして\(title)を開始" : "")
+        .accessibilityHint(destination != nil || action != nil ? "タップして\(title)を開始" : "")
     }
 
     private var cardContent: some View {
@@ -591,7 +668,7 @@ private struct HomePrimaryActionCard: View {
                 )
             }
 
-            if destination != nil {
+            if destination != nil || action != nil {
                 Image(systemName: "chevron.right")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(subtitleColor)

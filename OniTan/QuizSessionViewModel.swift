@@ -44,6 +44,11 @@ final class QuizSessionViewModel: ObservableObject {
     let mode: QuizMode
     let clearTitle: String
     let sessionTitle: String?
+    let isExamReview: Bool
+
+    var reviewedGenreCount: Int {
+        Set(sessionQuestions.filter { clearedKanji.contains($0.id) }.map(\.kind)).count
+    }
 
     /// Whether this is the cross-stage random 10-question session (stageNumber == 0).
     var isToday: Bool { stage.stage == 0 }
@@ -99,7 +104,8 @@ final class QuizSessionViewModel: ObservableObject {
         examBlueprintID: String? = nil,
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
-        sessionTitle: String? = nil
+        sessionTitle: String? = nil,
+        isExamReview: Bool = false
     ) {
         self.stage = stage
         self.appState = appState
@@ -111,6 +117,7 @@ final class QuizSessionViewModel: ObservableObject {
         self.examBlueprintID = examBlueprintID
         self.mode = mode
         self.sessionTitle = sessionTitle
+        self.isExamReview = isExamReview
         self.clearTitle = clearTitle ?? Self.defaultClearTitle(
             for: mode,
             stageNumber: stage.stage,
@@ -120,7 +127,7 @@ final class QuizSessionViewModel: ObservableObject {
         let weakKanji = Set(statsRepo.allWeakKanji(forStage: stage.stage))
         // For today-session (stage 0) the pool is pre-built; don't re-filter by mode
         let resolved: [Question]
-        if stage.stage == 0 {
+        if stage.stage == 0 || isExamReview {
             resolved = stage.questions  // already curated by TodaySessionBuilder
         } else {
             resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)
@@ -160,13 +167,16 @@ final class QuizSessionViewModel: ObservableObject {
         if stage.stage == -3, isCorrect {
             statsRepo.removeFromWeakStock(question: question)
         }
+        if isExamReview, isCorrect {
+            examResultRepo?.graduateReviewQuestion(id: question.id)
+        }
         masteryRepo?.record(question: question, wasCorrect: isCorrect)
         pendingQueue.removeFirst()
 
         if isCorrect {
             lastAnswerResult = .correct
             consecutiveCorrect += 1
-            clearedKanji.insert(question.kanji)
+            clearedKanji.insert(isExamReview ? question.id : question.kanji)
 
             // XP for correct answer
             let xpGained = xpRepo?.addXP(.correctAnswer) ?? 0
@@ -200,7 +210,9 @@ final class QuizSessionViewModel: ObservableObject {
             lastAnswerResult = .wrong
             consecutiveCorrect = 0
 
-            if mode.usesReviewQueue, !reviewQueue.contains(where: { $0.kanji == question.kanji }) {
+            if mode.usesReviewQueue, !reviewQueue.contains(where: {
+                isExamReview ? $0.id == question.id : $0.kanji == question.kanji
+            }) {
                 reviewQueue.append(question)
             } else if !mode.usesReviewQueue {
                 clearedCount += 1
@@ -255,7 +267,7 @@ final class QuizSessionViewModel: ObservableObject {
     func resetGame() {
         let weakKanji = Set(statsRepo.allWeakKanji(forStage: stage.stage))
         let resolved: [Question]
-        if stage.stage == 0 {
+        if stage.stage == 0 || isExamReview {
             resolved = stage.questions
         } else {
             resolved = mode.buildQuestionList(from: stage.questions, weakKanji: weakKanji)

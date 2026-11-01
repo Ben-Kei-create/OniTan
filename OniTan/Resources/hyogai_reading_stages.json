@@ -5,6 +5,30 @@
       "file": "hyogai_reading_stage1.json",
       "title": "表外の読み 1",
       "difficulty": 4
+    },
+    {
+      "id": 802,
+      "file": "hyogai_reading_stage2.json",
+      "title": "表外の読み 2",
+      "difficulty": 4
+    },
+    {
+      "id": 803,
+      "file": "hyogai_reading_stage3.json",
+      "title": "表外の読み 3",
+      "difficulty": 4
+    },
+    {
+      "id": 804,
+      "file": "hyogai_reading_stage4.json",
+      "title": "表外の読み 4",
+      "difficulty": 4
+    },
+    {
+      "id": 805,
+      "file": "hyogai_reading_stage5.json",
+      "title": "表外の読み 5",
+      "difficulty": 4
     }
   ]
 }

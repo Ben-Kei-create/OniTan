@@ -1,0 +1,350 @@
+{
+  "stage": 805,
+  "questions": [
+    {
+      "kanji": "具わる",
+      "prompt": "例文中の「具わる」の読みは？",
+      "choices": [
+        "そなわる",
+        "まじわる",
+        "あじわる",
+        "かたまる"
+      ],
+      "answer": "そなわる",
+      "explain": "この例文の「具わる」は「そなわる」と読む。必要な性質や要素が、欠けずにそろっていること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "具",
+        "sentenceContext": "この器具には二つの機能が具わる。",
+        "targetWord": "具わる"
+      }
+    },
+    {
+      "kanji": "漫りに",
+      "prompt": "例文中の「漫りに」の読みは？",
+      "choices": [
+        "むやみに",
+        "みだりに",
+        "ひそかに",
+        "おおげさに"
+      ],
+      "answer": "みだりに",
+      "explain": "この例文の「漫りに」は「みだりに」と読む。筋道や理由をよく考えず、むやみに行動する様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "漫",
+        "sentenceContext": "他人の持ち物に漫りに触れてはいけない。",
+        "targetWord": "漫りに"
+      }
+    },
+    {
+      "kanji": "漫ろに",
+      "prompt": "例文中の「漫ろに」の読みは？",
+      "choices": [
+        "おぼろに",
+        "うつろに",
+        "そぞろに",
+        "むやみに"
+      ],
+      "answer": "そぞろに",
+      "explain": "この例文の「漫ろに」は「そぞろに」と読む。これといった目的や理由がなく、なんとなくそうなる様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "漫",
+        "sentenceContext": "春の陽気に誘われ、漫ろに歩き出した。",
+        "targetWord": "漫ろに"
+      }
+    },
+    {
+      "kanji": "直向き",
+      "prompt": "例文中の「直向き」の読みは？",
+      "choices": [
+        "すぐむき",
+        "なおむき",
+        "ただむき",
+        "ひたむき"
+      ],
+      "answer": "ひたむき",
+      "explain": "この例文の「直向き」は「ひたむき」と読む。一つの目的へ向けて、心を集中して打ち込む様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "直",
+        "sentenceContext": "夢に向かう直向きな努力が実を結んだ。",
+        "targetWord": "直向き"
+      }
+    },
+    {
+      "kanji": "宛ら",
+      "prompt": "例文中の「宛ら」の読みは？",
+      "choices": [
+        "さながら",
+        "あたら",
+        "みずから",
+        "もっぱら"
+      ],
+      "answer": "さながら",
+      "explain": "この例文の「宛ら」は「さながら」と読む。よく似たものにたとえて、まるでそのようだと表す語。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "宛",
+        "sentenceContext": "花で埋まった丘は宛ら色の海だった。",
+        "targetWord": "宛ら"
+      }
+    },
+    {
+      "kanji": "宛も",
+      "prompt": "例文中の「宛も」の読みは？",
+      "choices": [
+        "おりしも",
+        "あたかも",
+        "いずれも",
+        "かならずしも"
+      ],
+      "answer": "あたかも",
+      "explain": "この例文の「宛も」は「あたかも」と読む。実際とは異なるものに見立てて、まるでそうであるように表す語。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "宛",
+        "sentenceContext": "宛も映画の一場面を見るような景色だ。",
+        "targetWord": "宛も"
+      }
+    },
+    {
+      "kanji": "録す",
+      "prompt": "例文中の「録す」の読みは？",
+      "choices": [
+        "うつす",
+        "のこす",
+        "しるす",
+        "かえす"
+      ],
+      "answer": "しるす",
+      "explain": "この例文の「録す」は「しるす」と読む。事実や出来事を、後に残るよう書き留めること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "録",
+        "sentenceContext": "観測した気温を帳面に録す。",
+        "targetWord": "録す"
+      }
+    },
+    {
+      "kanji": "疾く",
+      "prompt": "例文中の「疾く」の読みは？",
+      "choices": [
+        "つよく",
+        "かたく",
+        "たかく",
+        "とく"
+      ],
+      "answer": "とく",
+      "explain": "この例文の「疾く」は「とく」と読む。行動を早くするよう促す場合などに用いる語。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "疾",
+        "sentenceContext": "危険を知らせるため、使者は疾く出立した。",
+        "targetWord": "疾く"
+      }
+    },
+    {
+      "kanji": "周く",
+      "prompt": "例文中の「周く」の読みは？",
+      "choices": [
+        "あまねく",
+        "ことごとく",
+        "あいにく",
+        "しばらく"
+      ],
+      "answer": "あまねく",
+      "explain": "この例文の「周く」は「あまねく」と読む。限られた一部だけでなく、広い範囲のすべてに及ぶ様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "周",
+        "sentenceContext": "学びの機会を周く行き渡らせたい。",
+        "targetWord": "周く"
+      }
+    },
+    {
+      "kanji": "徒に",
+      "prompt": "例文中の「徒に」の読みは？",
+      "choices": [
+        "うつろに",
+        "いたずらに",
+        "たちまちに",
+        "たかだかに"
+      ],
+      "answer": "いたずらに",
+      "explain": "この例文の「徒に」は「いたずらに」と読む。効果や意味を伴わず、むなしく何かをする様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "徒",
+        "sentenceContext": "結論を出せず、徒に時を費やした。",
+        "targetWord": "徒に"
+      }
+    },
+    {
+      "kanji": "能う",
+      "prompt": "例文中の「能う」の読みは？",
+      "choices": [
+        "かなう",
+        "そう",
+        "あたう",
+        "ねがう"
+      ],
+      "answer": "あたう",
+      "explain": "この例文の「能う」は「あたう」と読む。ある行為を実行できることを表す文語的な言い方。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "能",
+        "sentenceContext": "能う限りの工夫を凝らして作品を仕上げた。",
+        "targetWord": "能う"
+      }
+    },
+    {
+      "kanji": "便",
+      "prompt": "例文中の「便」の読みは？",
+      "choices": [
+        "しるべ",
+        "ゆかり",
+        "きずな",
+        "よすが"
+      ],
+      "answer": "よすが",
+      "explain": "この例文の「便」は「よすが」と読む。頼りとする手掛かりや、心の支えとなるもの。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "便",
+        "sentenceContext": "古い写真だけが、故郷をしのぶ便だった。",
+        "targetWord": "便"
+      }
+    },
+    {
+      "kanji": "頑",
+      "prompt": "例文中の「頑」の読みは？",
+      "choices": [
+        "かたくな",
+        "ひたすら",
+        "いちず",
+        "おろそか"
+      ],
+      "answer": "かたくな",
+      "explain": "この例文の「頑」は「かたくな」と読む。考えや態度を変えようとせず、固く守る様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "頑",
+        "sentenceContext": "彼は頑に交渉の席へ着くことを拒んだ。",
+        "targetWord": "頑"
+      }
+    },
+    {
+      "kanji": "捗る",
+      "prompt": "例文中の「捗る」の読みは？",
+      "choices": [
+        "はばかる",
+        "はかどる",
+        "つかまる",
+        "はやる"
+      ],
+      "answer": "はかどる",
+      "explain": "この例文の「捗る」は「はかどる」と読む。作業や物事が順調に先へ進むこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "捗",
+        "sentenceContext": "道具を整理すると仕事が捗る。",
+        "targetWord": "捗る"
+      }
+    },
+    {
+      "kanji": "実",
+      "prompt": "例文中の「実」の読みは？",
+      "choices": [
+        "ほぞ",
+        "くぎ",
+        "さね",
+        "すじ"
+      ],
+      "answer": "さね",
+      "explain": "この例文の「実」は「さね」と読む。ここでは、板をつなぎ合わせるために側面へ作る細長い突起のこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "実",
+        "sentenceContext": "板の側面に実を作って、隣の板の溝にはめる。",
+        "targetWord": "実"
+      }
+    }
+  ]
+}

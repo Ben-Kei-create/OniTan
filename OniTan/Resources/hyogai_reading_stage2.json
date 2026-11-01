@@ -1,0 +1,350 @@
+{
+  "stage": 802,
+  "questions": [
+    {
+      "kanji": "肯う",
+      "prompt": "例文中の「肯う」の読みは？",
+      "choices": [
+        "うべなう",
+        "うながう",
+        "あがなう",
+        "いざなう"
+      ],
+      "answer": "うべなう",
+      "explain": "この例文の「肯う」は「うべなう」と読む。道理があると考えて、その内容を了承すること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "肯",
+        "sentenceContext": "事情を聞き、相手の説明を肯う。",
+        "targetWord": "肯う"
+      }
+    },
+    {
+      "kanji": "強ち",
+      "prompt": "例文中の「強ち」の読みは？",
+      "choices": [
+        "すなわち",
+        "あながち",
+        "たちまち",
+        "いずれにせよ"
+      ],
+      "answer": "あながち",
+      "explain": "この例文の「強ち」は「あながち」と読む。全面的には言い切れないことを示し、打ち消しの表現と組み合わせる。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "強",
+        "sentenceContext": "彼の予想も強ち間違いではない。",
+        "targetWord": "強ち"
+      }
+    },
+    {
+      "kanji": "拘わる",
+      "prompt": "例文中の「拘わる」の読みは？",
+      "choices": [
+        "まじわる",
+        "そなわる",
+        "かかわる",
+        "くわわる"
+      ],
+      "answer": "かかわる",
+      "explain": "この例文の「拘わる」は「かかわる」と読む。細かな事柄に気を取られ、そこから離れられずにいること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "拘",
+        "sentenceContext": "小さな失敗にいつまでも拘わる。",
+        "targetWord": "拘わる"
+      }
+    },
+    {
+      "kanji": "脅える",
+      "prompt": "例文中の「脅える」の読みは？",
+      "choices": [
+        "こごえる",
+        "ひるがえる",
+        "いとえる",
+        "おびえる"
+      ],
+      "answer": "おびえる",
+      "explain": "この例文の「脅える」は「おびえる」と読む。恐怖や不安のために、落ち着かなくなること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "脅",
+        "sentenceContext": "子犬が雷の音に脅える。",
+        "targetWord": "脅える"
+      }
+    },
+    {
+      "kanji": "挙って",
+      "prompt": "例文中の「挙って」の読みは？",
+      "choices": [
+        "こぞって",
+        "つのって",
+        "くぐって",
+        "ほこって"
+      ],
+      "answer": "こぞって",
+      "explain": "この例文の「挙って」は「こぞって」と読む。全員がまとまって、同じ行動をする様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "挙",
+        "sentenceContext": "町の人々が挙って祭りに参加した。",
+        "targetWord": "挙って"
+      }
+    },
+    {
+      "kanji": "認める",
+      "prompt": "例文中の「認める」の読みは？",
+      "choices": [
+        "ひきとめる",
+        "したためる",
+        "おしとどめる",
+        "たしかめる"
+      ],
+      "answer": "したためる",
+      "explain": "この例文の「認める」は「したためる」と読む。ここでは、思いや内容を文章として書き記すこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "認",
+        "sentenceContext": "故郷の友人へ手紙を認める。",
+        "targetWord": "認める"
+      }
+    },
+    {
+      "kanji": "篤い",
+      "prompt": "例文中の「篤い」の読みは？",
+      "choices": [
+        "もろい",
+        "くどい",
+        "あつい",
+        "ねむい"
+      ],
+      "answer": "あつい",
+      "explain": "この例文の「篤い」は「あつい」と読む。人を思う心や信仰などが深く、真剣であること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "篤",
+        "sentenceContext": "信仰に篤い祖母は毎朝祈りをささげる。",
+        "targetWord": "篤い"
+      }
+    },
+    {
+      "kanji": "惨い",
+      "prompt": "例文中の「惨い」の読みは？",
+      "choices": [
+        "うとい",
+        "くどい",
+        "もろい",
+        "むごい"
+      ],
+      "answer": "むごい",
+      "explain": "この例文の「惨い」は「むごい」と読む。目を背けたくなるほど、情け容赦がなく痛ましい様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "惨",
+        "sentenceContext": "弱い者への惨い仕打ちを見過ごせない。",
+        "targetWord": "惨い"
+      }
+    },
+    {
+      "kanji": "烈しい",
+      "prompt": "例文中の「烈しい」の読みは？",
+      "choices": [
+        "はげしい",
+        "うるわしい",
+        "なつかしい",
+        "あやしい"
+      ],
+      "answer": "はげしい",
+      "explain": "この例文の「烈しい」は「はげしい」と読む。力や勢いが際立って強く、荒々しい様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "烈",
+        "sentenceContext": "烈しい炎が夜空を赤く染めた。",
+        "targetWord": "烈しい"
+      }
+    },
+    {
+      "kanji": "徐に",
+      "prompt": "例文中の「徐に」の読みは？",
+      "choices": [
+        "にわかに",
+        "おもむろに",
+        "むやみに",
+        "おおいに"
+      ],
+      "answer": "おもむろに",
+      "explain": "この例文の「徐に」は「おもむろに」と読む。動作を落ち着いて、ゆっくりと進める様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "徐",
+        "sentenceContext": "話を聞き終えた老人は、徐に立ち上がった。",
+        "targetWord": "徐に"
+      }
+    },
+    {
+      "kanji": "偏に",
+      "prompt": "例文中の「偏に」の読みは？",
+      "choices": [
+        "ひそかに",
+        "おおいに",
+        "ひとえに",
+        "はるかに"
+      ],
+      "answer": "ひとえに",
+      "explain": "この例文の「偏に」は「ひとえに」と読む。ただそのことだけに向かう気持ちを表す。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "偏",
+        "sentenceContext": "今回の成功は偏に皆様の支援のおかげです。",
+        "targetWord": "偏に"
+      }
+    },
+    {
+      "kanji": "凡そ",
+      "prompt": "例文中の「凡そ」の読みは？",
+      "choices": [
+        "いっそ",
+        "こっそり",
+        "たとえ",
+        "およそ"
+      ],
+      "answer": "およそ",
+      "explain": "この例文の「凡そ」は「およそ」と読む。細部を除いて大まかに捉えるときに使う語。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "凡",
+        "sentenceContext": "会場には凡そ百人が集まった。",
+        "targetWord": "凡そ"
+      }
+    },
+    {
+      "kanji": "概ね",
+      "prompt": "例文中の「概ね」の読みは？",
+      "choices": [
+        "おおむね",
+        "おおもと",
+        "かねがね",
+        "おもむき"
+      ],
+      "answer": "おおむね",
+      "explain": "この例文の「概ね」は「おおむね」と読む。細かな違いはあるものの、全体としてそうであること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "概",
+        "sentenceContext": "工事は概ね予定どおりに進んでいる。",
+        "targetWord": "概ね"
+      }
+    },
+    {
+      "kanji": "固より",
+      "prompt": "例文中の「固より」の読みは？",
+      "choices": [
+        "なにより",
+        "もとより",
+        "それより",
+        "だれより"
+      ],
+      "answer": "もとより",
+      "explain": "この例文の「固より」は「もとより」と読む。もともとそうであることや、いうまでもないことを示す。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "固",
+        "sentenceContext": "この計画には固より賛成している。",
+        "targetWord": "固より"
+      }
+    },
+    {
+      "kanji": "予め",
+      "prompt": "例文中の「予め」の読みは？",
+      "choices": [
+        "おしなべて",
+        "ひたすら",
+        "あらかじめ",
+        "かたくなに"
+      ],
+      "answer": "あらかじめ",
+      "explain": "この例文の「予め」は「あらかじめ」と読む。事が起こる前の段階で、前もって何かをしておくこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "予",
+        "sentenceContext": "参加人数を予め主催者に伝える。",
+        "targetWord": "予め"
+      }
+    }
+  ]
+}

@@ -1,0 +1,335 @@
+{
+  "stage": 902,
+  "questions": [
+    {
+      "kanji": "紫陽花",
+      "prompt": "「紫陽花」の読みは？",
+      "choices": [
+        "あじさい",
+        "あさがお",
+        "ひなげし",
+        "やまぶき"
+      ],
+      "answer": "あじさい",
+      "explain": "「紫陽花」は「あじさい」と読む。小さな花が集まり、初夏の庭を青や紫などに彩る低木。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "紫陽花",
+        "targetKanjiInCompound": "紫"
+      }
+    },
+    {
+      "kanji": "木通",
+      "prompt": "「木通」の読みは？",
+      "choices": [
+        "あさつき",
+        "あけび",
+        "あおき",
+        "もくれん"
+      ],
+      "answer": "あけび",
+      "explain": "「木通」は「あけび」と読む。秋に実が割れて、甘い果肉が現れるつる性の植物。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "木通",
+        "targetKanjiInCompound": "木"
+      }
+    },
+    {
+      "kanji": "翌檜",
+      "prompt": "「翌檜」の読みは？",
+      "choices": [
+        "ひのき",
+        "あかまつ",
+        "あすなろ",
+        "しらかば"
+      ],
+      "answer": "あすなろ",
+      "explain": "「翌檜」は「あすなろ」と読む。ヒノキに似た葉を持ち、建築材などにも利用される常緑樹。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "翌檜",
+        "targetKanjiInCompound": "翌"
+      }
+    },
+    {
+      "kanji": "馬酔木",
+      "prompt": "「馬酔木」の読みは？",
+      "choices": [
+        "やまもも",
+        "くちなし",
+        "ゆず",
+        "あせび"
+      ],
+      "answer": "あせび",
+      "explain": "「馬酔木」は「あせび」と読む。白いつぼ形の花を下向きにつける低木。葉や枝には毒がある。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "馬酔木",
+        "targetKanjiInCompound": "馬"
+      }
+    },
+    {
+      "kanji": "銀杏",
+      "prompt": "扇形の葉を持つ木「銀杏」の読みは？",
+      "choices": [
+        "いちょう",
+        "とちのき",
+        "しらかば",
+        "かえで"
+      ],
+      "answer": "いちょう",
+      "explain": "「銀杏」は「いちょう」と読む。扇形の葉が秋に黄色くなる木。食用の種子は「ぎんなん」と呼ぶ。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "銀杏",
+        "targetKanjiInCompound": "銀"
+      }
+    },
+    {
+      "kanji": "無花果",
+      "prompt": "「無花果」の読みは？",
+      "choices": [
+        "なつめ",
+        "いちじく",
+        "あんず",
+        "すもも"
+      ],
+      "answer": "いちじく",
+      "explain": "「無花果」は「いちじく」と読む。袋状の内側に花がつくため、外から花が見えにくい果樹。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "無花果",
+        "targetKanjiInCompound": "無"
+      }
+    },
+    {
+      "kanji": "虎杖",
+      "prompt": "「虎杖」の読みは？",
+      "choices": [
+        "いぬたで",
+        "つくし",
+        "いたどり",
+        "よもぎ"
+      ],
+      "answer": "いたどり",
+      "explain": "「虎杖」は「いたどり」と読む。若い茎に酸味があり、食用にもされる山野の草。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "虎杖",
+        "targetKanjiInCompound": "虎"
+      }
+    },
+    {
+      "kanji": "女郎花",
+      "prompt": "「女郎花」の読みは？",
+      "choices": [
+        "おとこえし",
+        "なでしこ",
+        "ふじばかま",
+        "おみなえし"
+      ],
+      "answer": "おみなえし",
+      "explain": "「女郎花」は「おみなえし」と読む。秋の七草に数えられ、細かな黄色い花を咲かせる多年草。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "女郎花",
+        "targetKanjiInCompound": "女"
+      }
+    },
+    {
+      "kanji": "杜若",
+      "prompt": "「杜若」の読みは？",
+      "choices": [
+        "かきつばた",
+        "やまぶき",
+        "きんせんか",
+        "ほうせんか"
+      ],
+      "answer": "かきつばた",
+      "explain": "「杜若」は「かきつばた」と読む。湿った場所に生え、初夏に紫色などの花を開くアヤメの仲間。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "杜若",
+        "targetKanjiInCompound": "杜"
+      }
+    },
+    {
+      "kanji": "山茶花",
+      "prompt": "「山茶花」の読みは？",
+      "choices": [
+        "やまもも",
+        "さざんか",
+        "やまぼうし",
+        "さざなみ"
+      ],
+      "answer": "さざんか",
+      "explain": "「山茶花」は「さざんか」と読む。冬の庭などで花を咲かせる木。花びらが一枚ずつ散るのが特徴。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "山茶花",
+        "targetKanjiInCompound": "山"
+      }
+    },
+    {
+      "kanji": "百日紅",
+      "prompt": "「百日紅」の読みは？",
+      "choices": [
+        "さるとりいばら",
+        "きょうちくとう",
+        "さるすべり",
+        "ゆきやなぎ"
+      ],
+      "answer": "さるすべり",
+      "explain": "「百日紅」は「さるすべり」と読む。幹の表面がなめらかで、夏の長い期間にわたって花を楽しめる木。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "百日紅",
+        "targetKanjiInCompound": "百"
+      }
+    },
+    {
+      "kanji": "石榴",
+      "prompt": "「石榴」の読みは？",
+      "choices": [
+        "いしぐり",
+        "いちじく",
+        "やまもも",
+        "ざくろ"
+      ],
+      "answer": "ざくろ",
+      "explain": "「石榴」は「ざくろ」と読む。熟すと果皮が割れ、赤い粒状の種子が見える果樹。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "石榴",
+        "targetKanjiInCompound": "石"
+      }
+    },
+    {
+      "kanji": "木槿",
+      "prompt": "「木槿」の読みは？",
+      "choices": [
+        "むくげ",
+        "むくのき",
+        "もくれん",
+        "くすのき"
+      ],
+      "answer": "むくげ",
+      "explain": "「木槿」は「むくげ」と読む。アオイ科の花木を指す。「木」と「槿」をまとめて読む表記。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "木槿",
+        "targetKanjiInCompound": "木"
+      }
+    },
+    {
+      "kanji": "梔子",
+      "prompt": "「梔子」の読みは？",
+      "choices": [
+        "くるみ",
+        "くちなし",
+        "きり",
+        "さかき"
+      ],
+      "answer": "くちなし",
+      "explain": "「梔子」は「くちなし」と読む。香りのよい白い花をつけ、実が染料としても使われる低木。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "梔子",
+        "targetKanjiInCompound": "梔"
+      }
+    },
+    {
+      "kanji": "合歓木",
+      "prompt": "「合歓木」の読みは？",
+      "choices": [
+        "ねじき",
+        "もみのき",
+        "ねむのき",
+        "はなのき"
+      ],
+      "answer": "ねむのき",
+      "explain": "「合歓木」は「ねむのき」と読む。夜に葉を閉じる性質があり、夏に淡紅色の花をつける木。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "合歓木",
+        "targetKanjiInCompound": "合"
+      }
+    }
+  ]
+}

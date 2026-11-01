@@ -91,10 +91,17 @@ struct ExamResult: Codable, Identifiable {
 final class ExamResultRepository: ObservableObject {
 
     @Published private(set) var results: [ExamResult] = []
+    /// Latest wrong exam occurrence graduated by a correct review answer.
+    /// Kept separately so historical exam results and their schema stay intact.
+    @Published private(set) var reviewedMistakes: [String: UUID] = [:]
 
     private let store: PersistenceStore
     private let key = "examResults_v1"
     private let maxStored = 50
+    private let reviewKey = "examReviewedMistakes_v1"
+
+    nonisolated static let reviewExamLimit = 10
+    nonisolated static let reviewQuestionLimit = 15
 
     init() { self.store = UserDefaults.standard; load() }
     init(store: PersistenceStore) { self.store = store; load() }
@@ -137,16 +144,68 @@ final class ExamResultRepository: ObservableObject {
         return bestAccuracy >= threshold
     }
 
+    /// Newest mistakes first, deduplicated by exact question ID. Older saves
+    /// without attempts can still resolve through wrongQuestionIDs.
+    private func latestMistakes(recentExamCount: Int) -> [(String, UUID)] {
+        var seen = Set<String>()
+        var mistakes: [(String, UUID)] = []
+        for result in results.prefix(max(0, recentExamCount)) {
+            let ids = result.wrongAttempts.map(\.questionID) + result.wrongQuestionIDs
+            for id in ids where seen.insert(id).inserted {
+                mistakes.append((id, result.id))
+            }
+        }
+        return mistakes
+    }
+
+    func pendingReviewQuestions(
+        from pool: [Question],
+        recentExamCount: Int = reviewExamLimit,
+        kind: QuestionKind? = nil
+    ) -> [Question] {
+        let questionsByID = Dictionary(pool.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        return latestMistakes(recentExamCount: recentExamCount).compactMap { id, resultID in
+            guard reviewedMistakes[id] != resultID,
+                  let question = questionsByID[id], question.kind.isExamEligible,
+                  kind == nil || question.kind == kind else { return nil }
+            return question
+        }
+    }
+
+    func makeReviewStage(
+        from pool: [Question],
+        recentExamCount: Int = reviewExamLimit,
+        kind: QuestionKind? = nil
+    ) -> Stage {
+        Stage(stage: -4, questions: Array(pendingReviewQuestions(
+            from: pool, recentExamCount: recentExamCount, kind: kind
+        ).prefix(Self.reviewQuestionLimit)))
+    }
+
+    func graduateReviewQuestion(id: String) {
+        guard let occurrence = latestMistakes(recentExamCount: maxStored).first(where: { $0.0 == id }) else { return }
+        reviewedMistakes[id] = occurrence.1
+        if let data = try? JSONEncoder().encode(reviewedMistakes) {
+            store.set(data, forKey: reviewKey)
+        }
+    }
+
     // MARK: - Reset
 
     func reset() {
         results = []
+        reviewedMistakes = [:]
         store.remove(forKey: key)
+        store.remove(forKey: reviewKey)
     }
 
     // MARK: - Private
 
     private func load() {
+        if let data = store.data(forKey: reviewKey),
+           let decoded = try? JSONDecoder().decode([String: UUID].self, from: data) {
+            reviewedMistakes = decoded
+        }
         guard let data = store.data(forKey: key),
               let decoded = try? JSONDecoder().decode([ExamResult].self, from: data)
         else { return }

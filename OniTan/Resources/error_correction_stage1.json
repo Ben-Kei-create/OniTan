@@ -190,11 +190,11 @@
       "choices": [
         "影→洩",
         "影→曳",
-        "影→泄",
+        "影→詠",
         "影→鋭"
       ],
       "answer": "影→洩",
-      "explain": "漏洩（ろうえい）＝秘密がもれること。「洩」はもれる意。",
+      "explain": "漏洩（ろうえい）は、秘密などが外へ漏れること。「漏泄」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007365900",
       "kind": "errorCorrection",
       "tags": [
         "誤字訂正"
@@ -255,15 +255,15 @@
       }
     },
     {
-      "kanji": "不足分を補填する。",
+      "kanji": "不足分を補典する。",
       "choices": [
-        "填→塡",
-        "填→典",
-        "填→顛",
-        "填→殿"
+        "典→塡",
+        "典→顛",
+        "典→殿",
+        "典→展"
       ],
-      "answer": "填→塡",
-      "explain": "補塡（ほてん）。正字は「塡」。「填」は俗字だが漢検では「塡」が正解。",
+      "answer": "典→塡",
+      "explain": "補塡（ほてん）は、不足を補って埋めること。「塡」は埋める意で、「填」とも書く。\n出典: 文化庁 https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/pdf/2016022902_besshi02.pdf",
       "kind": "errorCorrection",
       "tags": [
         "誤字訂正"
@@ -271,22 +271,22 @@
       "difficulty": 4,
       "payload": {
         "type": "errorCorrection",
-        "originalSentence": "不足分を補填する。",
+        "originalSentence": "不足分を補典する。",
         "correctedSentence": "不足分を補塡する。",
-        "wrongKanji": "填",
+        "wrongKanji": "典",
         "correctKanji": "塡"
       }
     },
     {
-      "kanji": "彼は矜恃を持って生きている。",
+      "kanji": "彼は矜時を持って生きている。",
       "choices": [
-        "恃→持",
-        "恃→侍",
-        "恃→時",
-        "恃→治"
+        "時→持",
+        "時→侍",
+        "時→待",
+        "時→治"
       ],
-      "answer": "恃→持",
-      "explain": "矜持（きょうじ）＝誇りを持つこと。「持」が正字。",
+      "answer": "時→持",
+      "explain": "矜持（きょうじ）は、自分の力量などを信じて持つ誇り。「矜恃」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001504800",
       "kind": "errorCorrection",
       "tags": [
         "誤字訂正"
@@ -294,22 +294,22 @@
       "difficulty": 4,
       "payload": {
         "type": "errorCorrection",
-        "originalSentence": "彼は矜恃を持って生きている。",
+        "originalSentence": "彼は矜時を持って生きている。",
         "correctedSentence": "彼は矜持を持って生きている。",
-        "wrongKanji": "恃",
+        "wrongKanji": "時",
         "correctKanji": "持"
       }
     },
     {
-      "kanji": "驕奢婬逸な生活を送る。",
+      "kanji": "驕奢飲逸な生活を送る。",
       "choices": [
-        "婬→淫",
-        "婬→陰",
-        "婬→韻",
-        "婬→飲"
+        "飲→淫",
+        "飲→陰",
+        "飲→韻",
+        "飲→姻"
       ],
-      "answer": "婬→淫",
-      "explain": "驕奢淫逸（きょうしゃいんいつ）。「淫」が正字。",
+      "answer": "飲→淫",
+      "explain": "驕奢淫逸（きょうしゃいんいつ）は、おごり贅沢を尽くし、みだらな楽しみにふけること。「飲」は飲むことを表し、ここでは「淫」に直す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0000287700",
       "kind": "errorCorrection",
       "tags": [
         "誤字訂正"
@@ -317,10 +317,33 @@
       "difficulty": 4,
       "payload": {
         "type": "errorCorrection",
-        "originalSentence": "驕奢婬逸な生活を送る。",
+        "originalSentence": "驕奢飲逸な生活を送る。",
         "correctedSentence": "驕奢淫逸な生活を送る。",
-        "wrongKanji": "婬",
+        "wrongKanji": "飲",
         "correctKanji": "淫"
+      }
+    },
+    {
+      "kanji": "友人が両社の取引を翰旋した。",
+      "choices": [
+        "翰→斡",
+        "翰→幹",
+        "翰→乾",
+        "翰→韓"
+      ],
+      "answer": "翰→斡",
+      "explain": "斡旋（あっせん）＝交渉する双方の間に入り、話がまとまるよう取り持つこと。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000069000",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "友人が両社の取引を翰旋した。",
+        "correctedSentence": "友人が両社の取引を斡旋した。",
+        "wrongKanji": "翰",
+        "correctKanji": "斡"
       }
     }
   ]

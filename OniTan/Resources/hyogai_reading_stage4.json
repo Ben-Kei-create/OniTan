@@ -1,0 +1,350 @@
+{
+  "stage": 804,
+  "questions": [
+    {
+      "kanji": "完うする",
+      "prompt": "例文中の「完うする」の読みは？",
+      "choices": [
+        "まっとうする",
+        "かんりょうする",
+        "かんとうする",
+        "まっとする"
+      ],
+      "answer": "まっとうする",
+      "explain": "この例文の「完うする」は「まっとうする」と読む。任された役目などを、最後まで十分に果たすこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "完",
+        "sentenceContext": "最後まで責任を持って任務を完うする。",
+        "targetWord": "完うする"
+      }
+    },
+    {
+      "kanji": "中たる",
+      "prompt": "例文中の「中たる」の読みは？",
+      "choices": [
+        "いたる",
+        "あたる",
+        "わたる",
+        "かたる"
+      ],
+      "answer": "あたる",
+      "explain": "この例文の「中たる」は「あたる」と読む。ここでは、矢などが狙った場所に命中すること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "中",
+        "sentenceContext": "放った矢が的の中心に中たる。",
+        "targetWord": "中たる"
+      }
+    },
+    {
+      "kanji": "節",
+      "prompt": "例文中の「節」の読みは？",
+      "choices": [
+        "こころざし",
+        "つとめ",
+        "みさお",
+        "わざ"
+      ],
+      "answer": "みさお",
+      "explain": "この例文の「節」は「みさお」と読む。自分が信じる考えや生き方を、固く守り抜くこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "節",
+        "sentenceContext": "誘惑に屈せず、節を守り抜いた。",
+        "targetWord": "節"
+      }
+    },
+    {
+      "kanji": "報せる",
+      "prompt": "例文中の「報せる」の読みは？",
+      "choices": [
+        "あらわせる",
+        "かえらせる",
+        "わたらせる",
+        "しらせる"
+      ],
+      "answer": "しらせる",
+      "explain": "この例文の「報せる」は「しらせる」と読む。相手が知ることができるよう、情報を伝えること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "報",
+        "sentenceContext": "無事の到着を家族に報せる。",
+        "targetWord": "報せる"
+      }
+    },
+    {
+      "kanji": "未だ",
+      "prompt": "例文中の「未だ」の読みは？",
+      "choices": [
+        "いまだ",
+        "いずれ",
+        "かつて",
+        "やがて"
+      ],
+      "answer": "いまだ",
+      "explain": "この例文の「未だ」は「いまだ」と読む。ここでは、ある事柄が現在に至っても実現していないことを示す。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "未",
+        "sentenceContext": "謎の真相は未だ明らかではない。",
+        "targetWord": "未だ"
+      }
+    },
+    {
+      "kanji": "慮る",
+      "prompt": "例文中の「慮る」の読みは？",
+      "choices": [
+        "おもねる",
+        "おもんぱかる",
+        "はかどる",
+        "ためらう"
+      ],
+      "answer": "おもんぱかる",
+      "explain": "この例文の「慮る」は「おもんぱかる」と読む。相手の立場や事情について、深く考えを巡らすこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "慮",
+        "sentenceContext": "相手の心情を慮る姿勢を忘れない。",
+        "targetWord": "慮る"
+      }
+    },
+    {
+      "kanji": "忙しい",
+      "prompt": "例文中の「忙しい」の読みは？",
+      "choices": [
+        "いじらしい",
+        "めざましい",
+        "せわしい",
+        "あわただしい"
+      ],
+      "answer": "せわしい",
+      "explain": "この例文の「忙しい」は「せわしい」と読む。用事などに追われて、気持ちや動きが落ち着かない様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "忙",
+        "sentenceContext": "年の瀬は何かと忙しい。",
+        "targetWord": "忙しい"
+      }
+    },
+    {
+      "kanji": "乾す",
+      "prompt": "例文中の「乾す」の読みは？",
+      "choices": [
+        "こす",
+        "ます",
+        "ふす",
+        "ほす"
+      ],
+      "answer": "ほす",
+      "explain": "この例文の「乾す」は「ほす」と読む。水分を取り除いて、物を乾燥させること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "乾",
+        "sentenceContext": "採れた魚を風に当てて乾す。",
+        "targetWord": "乾す"
+      }
+    },
+    {
+      "kanji": "乾",
+      "prompt": "例文中の「乾」の読みは？",
+      "choices": [
+        "いぬい",
+        "たつみ",
+        "うしとら",
+        "ひつじさる"
+      ],
+      "answer": "いぬい",
+      "explain": "この例文の「乾」は「いぬい」と読む。方角を表す場合は、北と西の間を指す。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "乾",
+        "sentenceContext": "屋敷から見て乾の方角に山がある。",
+        "targetWord": "乾"
+      }
+    },
+    {
+      "kanji": "潔い",
+      "prompt": "例文中の「潔い」の読みは？",
+      "choices": [
+        "あおい",
+        "きよい",
+        "さむい",
+        "うすい"
+      ],
+      "answer": "きよい",
+      "explain": "この例文の「潔い」は「きよい」と読む。ここでは、汚れがなく清らかである様子。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "潔",
+        "sentenceContext": "山あいを潔い水が流れている。",
+        "targetWord": "潔い"
+      }
+    },
+    {
+      "kanji": "喚く",
+      "prompt": "例文中の「喚く」の読みは？",
+      "choices": [
+        "うめく",
+        "あえぐ",
+        "わめく",
+        "つぶやく"
+      ],
+      "answer": "わめく",
+      "explain": "この例文の「喚く」は「わめく」と読む。周囲に響くほどの大声を出すこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "喚",
+        "sentenceContext": "驚いた客が入口で喚く。",
+        "targetWord": "喚く"
+      }
+    },
+    {
+      "kanji": "啓く",
+      "prompt": "例文中の「啓く」の読みは？",
+      "choices": [
+        "まねく",
+        "あばく",
+        "とどく",
+        "ひらく"
+      ],
+      "answer": "ひらく",
+      "explain": "この例文の「啓く」は「ひらく」と読む。知識などを与えて、人の理解を開いていくこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "啓",
+        "sentenceContext": "教師は問いを通して生徒の知を啓く。",
+        "targetWord": "啓く"
+      }
+    },
+    {
+      "kanji": "肯じる",
+      "prompt": "例文中の「肯じる」の読みは？",
+      "choices": [
+        "がえんじる",
+        "がいじる",
+        "がんじる",
+        "こうじる"
+      ],
+      "answer": "がえんじる",
+      "explain": "この例文の「肯じる」は「がえんじる」と読む。提案や主張などを、よいとして受け入れること。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "肯",
+        "sentenceContext": "彼がこの提案を肯じるかどうかを尋ねる。",
+        "targetWord": "肯じる"
+      }
+    },
+    {
+      "kanji": "訪う",
+      "prompt": "例文中の「訪う」の読みは？",
+      "choices": [
+        "まどう",
+        "とう",
+        "いとう",
+        "ねがう"
+      ],
+      "answer": "とう",
+      "explain": "この例文の「訪う」は「とう」と読む。人のもとを訪ねて行くこと。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "訪",
+        "sentenceContext": "休日に山里の旧友を訪う。",
+        "targetWord": "訪う"
+      }
+    },
+    {
+      "kanji": "尋",
+      "prompt": "例文中の「尋」の読みは？",
+      "choices": [
+        "つぼ",
+        "きん",
+        "ひろ",
+        "はい"
+      ],
+      "answer": "ひろ",
+      "explain": "この例文の「尋」は「ひろ」と読む。両腕を広げた幅に由来する長さの単位で、約一・八メートル。",
+      "kind": "hyogaiReading",
+      "tags": [
+        "表外の読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "hyogaiReading",
+        "targetKanji": "尋",
+        "sentenceContext": "船頭は水深を尋で数えた。",
+        "targetWord": "尋"
+      }
+    }
+  ]
+}

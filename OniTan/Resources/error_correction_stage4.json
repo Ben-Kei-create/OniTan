@@ -1,0 +1,350 @@
+{
+  "stage": 504,
+  "questions": [
+    {
+      "kanji": "無名の才能を見いだした監督の彗眼に驚く。",
+      "choices": [
+        "彗→佳",
+        "彗→慧",
+        "彗→桂",
+        "彗→契"
+      ],
+      "answer": "彗→慧",
+      "explain": "慧眼（けいがん）＝表面だけにとらわれず、本質を鋭く見抜く力。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001811300",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "無名の才能を見いだした監督の彗眼に驚く。",
+        "correctedSentence": "無名の才能を見いだした監督の慧眼に驚く。",
+        "wrongKanji": "彗",
+        "correctKanji": "慧"
+      }
+    },
+    {
+      "kanji": "総明な彼女は複雑な説明もすぐに理解した。",
+      "choices": [
+        "総→聡",
+        "総→僧",
+        "総→想",
+        "総→蒼"
+      ],
+      "answer": "総→聡",
+      "explain": "聡明（そうめい）＝頭の働きがよく、物事をよく理解すること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004286100",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "総明な彼女は複雑な説明もすぐに理解した。",
+        "correctedSentence": "聡明な彼女は複雑な説明もすぐに理解した。",
+        "wrongKanji": "総",
+        "correctKanji": "聡"
+      }
+    },
+    {
+      "kanji": "静かな庭は読書に括好の場所だった。",
+      "choices": [
+        "括→活",
+        "括→滑",
+        "括→渇",
+        "括→恰"
+      ],
+      "answer": "括→恰",
+      "explain": "恰好（かっこう）＝この文では、目的にちょうどよく合っていること。「格好」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002212600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "静かな庭は読書に括好の場所だった。",
+        "correctedSentence": "静かな庭は読書に恰好の場所だった。",
+        "wrongKanji": "括",
+        "correctKanji": "恰"
+      }
+    },
+    {
+      "kanji": "井戸から級水する作業を手伝った。",
+      "choices": [
+        "級→扱",
+        "級→笈",
+        "級→汲",
+        "級→及"
+      ],
+      "answer": "級→汲",
+      "explain": "汲水（きゅうすい）＝水をくみ上げること。「汲」は水をくむ意。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0001382800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "井戸から級水する作業を手伝った。",
+        "correctedSentence": "井戸から汲水する作業を手伝った。",
+        "wrongKanji": "級",
+        "correctKanji": "汲"
+      }
+    },
+    {
+      "kanji": "対象となる世帯を漏らさず調べる悉階調査を行う。",
+      "choices": [
+        "階→偕",
+        "階→皆",
+        "階→諧",
+        "階→楷"
+      ],
+      "answer": "階→皆",
+      "explain": "悉皆（しっかい）＝一つも残さず、すべてであること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002932500",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "対象となる世帯を漏らさず調べる悉階調査を行う。",
+        "correctedSentence": "対象となる世帯を漏らさず調べる悉皆調査を行う。",
+        "wrongKanji": "階",
+        "correctKanji": "皆"
+      }
+    },
+    {
+      "kanji": "その場しのぎの故息な対策では根本解決にならない。",
+      "choices": [
+        "故→姑",
+        "故→枯",
+        "故→個",
+        "故→古"
+      ],
+      "answer": "故→姑",
+      "explain": "姑息（こそく）＝目の前を一時的に取り繕うこと。「卑怯」の意味ではない。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002035600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "その場しのぎの故息な対策では根本解決にならない。",
+        "correctedSentence": "その場しのぎの姑息な対策では根本解決にならない。",
+        "wrongKanji": "故",
+        "correctKanji": "姑"
+      }
+    },
+    {
+      "kanji": "都会から離れた癖地にも医療を届けたい。",
+      "choices": [
+        "癖→壁",
+        "癖→璧",
+        "癖→碧",
+        "癖→僻"
+      ],
+      "answer": "癖→僻",
+      "explain": "僻地（へきち）＝都市や中心部から遠く離れた土地。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006234000",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "都会から離れた癖地にも医療を届けたい。",
+        "correctedSentence": "都会から離れた僻地にも医療を届けたい。",
+        "wrongKanji": "癖",
+        "correctKanji": "僻"
+      }
+    },
+    {
+      "kanji": "幅広い資料を読み、自分の壁見を改める。",
+      "choices": [
+        "壁→碧",
+        "壁→癖",
+        "壁→僻",
+        "壁→璧"
+      ],
+      "answer": "壁→僻",
+      "explain": "僻見（へきけん）＝一方に偏った見方や考え方。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006233600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "幅広い資料を読み、自分の壁見を改める。",
+        "correctedSentence": "幅広い資料を読み、自分の僻見を改める。",
+        "wrongKanji": "壁",
+        "correctKanji": "僻"
+      }
+    },
+    {
+      "kanji": "申請者は書類の指定欄に奈印した。",
+      "choices": [
+        "奈→捻",
+        "奈→捺",
+        "奈→納",
+        "奈→那"
+      ],
+      "answer": "奈→捺",
+      "explain": "捺印（なついん）＝印判を押すこと。「捺」は手で押さえる意。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005395900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "申請者は書類の指定欄に奈印した。",
+        "correctedSentence": "申請者は書類の指定欄に捺印した。",
+        "wrongKanji": "奈",
+        "correctKanji": "捺"
+      }
+    },
+    {
+      "kanji": "工房では型紙を使う捺仙の技法を学んだ。",
+      "choices": [
+        "仙→染",
+        "仙→繊",
+        "仙→銭",
+        "仙→践"
+      ],
+      "answer": "仙→染",
+      "explain": "捺染（なっせん）＝染料を混ぜた糊などで布に直接模様を染める方法。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005396000",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "工房では型紙を使う捺仙の技法を学んだ。",
+        "correctedSentence": "工房では型紙を使う捺染の技法を学んだ。",
+        "wrongKanji": "仙",
+        "correctKanji": "染"
+      }
+    },
+    {
+      "kanji": "式典で代表者が記念品を棒呈した。",
+      "choices": [
+        "棒→俸",
+        "棒→峰",
+        "棒→鋒",
+        "棒→捧"
+      ],
+      "answer": "棒→捧",
+      "explain": "捧呈（ほうてい）＝相手を敬い、品物などを差し上げること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006382700",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "式典で代表者が記念品を棒呈した。",
+        "correctedSentence": "式典で代表者が記念品を捧呈した。",
+        "wrongKanji": "棒",
+        "correctKanji": "捧"
+      }
+    },
+    {
+      "kanji": "混乱に乗じた物資の涼奪を厳しく禁じた。",
+      "choices": [
+        "涼→諒",
+        "涼→亮",
+        "涼→掠",
+        "涼→椋"
+      ],
+      "answer": "涼→掠",
+      "explain": "掠奪（りゃくだつ）＝力ずくで物を奪い取ること。「略奪」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0007113900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "混乱に乗じた物資の涼奪を厳しく禁じた。",
+        "correctedSentence": "混乱に乗じた物資の掠奪を厳しく禁じた。",
+        "wrongKanji": "涼",
+        "correctKanji": "掠"
+      }
+    },
+    {
+      "kanji": "旅先で郷土料理をご池走になった。",
+      "choices": [
+        "池→施",
+        "池→馳",
+        "池→地",
+        "池→他"
+      ],
+      "answer": "池→馳",
+      "explain": "馳走（ちそう）＝食事でもてなすこと。また、そのための立派な料理。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004690400",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "旅先で郷土料理をご池走になった。",
+        "correctedSentence": "旅先で郷土料理をご馳走になった。",
+        "wrongKanji": "池",
+        "correctKanji": "馳"
+      }
+    },
+    {
+      "kanji": "門の両脇には石造りの詩子が置かれていた。",
+      "choices": [
+        "詩→獅",
+        "詩→志",
+        "詩→市",
+        "詩→祉"
+      ],
+      "answer": "詩→獅",
+      "explain": "獅子（しし）＝ライオンや、それに似せた想像上の動物。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002814200",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "門の両脇には石造りの詩子が置かれていた。",
+        "correctedSentence": "門の両脇には石造りの獅子が置かれていた。",
+        "wrongKanji": "詩",
+        "correctKanji": "獅"
+      }
+    },
+    {
+      "kanji": "その陶工は独創的な作品によって世界に池名した。",
+      "choices": [
+        "池→地",
+        "池→他",
+        "池→施",
+        "池→馳"
+      ],
+      "answer": "池→馳",
+      "explain": "馳名（ちめい）＝名声が広く伝わること。名をはせること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004690600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "その陶工は独創的な作品によって世界に池名した。",
+        "correctedSentence": "その陶工は独創的な作品によって世界に馳名した。",
+        "wrongKanji": "池",
+        "correctKanji": "馳"
+      }
+    }
+  ]
+}

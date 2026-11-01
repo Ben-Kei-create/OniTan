@@ -5,6 +5,30 @@
       "file": "compound_reading_kun_stage1.json",
       "title": "熟字訓 1",
       "difficulty": 4
+    },
+    {
+      "id": 902,
+      "file": "compound_reading_kun_stage2.json",
+      "title": "熟字訓 2",
+      "difficulty": 4
+    },
+    {
+      "id": 903,
+      "file": "compound_reading_kun_stage3.json",
+      "title": "熟字訓 3",
+      "difficulty": 4
+    },
+    {
+      "id": 904,
+      "file": "compound_reading_kun_stage4.json",
+      "title": "熟字訓 4",
+      "difficulty": 4
+    },
+    {
+      "id": 905,
+      "file": "compound_reading_kun_stage5.json",
+      "title": "熟字訓 5",
+      "difficulty": 4
     }
   ]
 }

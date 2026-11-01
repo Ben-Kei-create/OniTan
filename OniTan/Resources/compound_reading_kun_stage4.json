@@ -1,0 +1,335 @@
+{
+  "stage": 904,
+  "questions": [
+    {
+      "kanji": "灰汁",
+      "prompt": "料理で取り除く「灰汁」の読みは？",
+      "choices": [
+        "あく",
+        "かす",
+        "しぶ",
+        "あぶら"
+      ],
+      "answer": "あく",
+      "explain": "「灰汁」は「あく」と読む。煮物の表面に浮く泡状のものや、植物の渋みなどをいう。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "灰汁",
+        "targetKanjiInCompound": "灰"
+      }
+    },
+    {
+      "kanji": "胡坐",
+      "prompt": "「胡坐」の読みは？",
+      "choices": [
+        "せいざ",
+        "あぐら",
+        "ひざまずき",
+        "うずくまり"
+      ],
+      "answer": "あぐら",
+      "explain": "「胡坐」は「あぐら」と読む。膝を左右に開き、足を組んで床に座る姿勢。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "胡坐",
+        "targetKanjiInCompound": "胡"
+      }
+    },
+    {
+      "kanji": "匕首",
+      "prompt": "「匕首」の読みは？",
+      "choices": [
+        "やり",
+        "ゆみ",
+        "あいくち",
+        "なぎなた"
+      ],
+      "answer": "あいくち",
+      "explain": "「匕首」は「あいくち」と読む。刀身と柄の間につばを設けていない短刀を指す。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "匕首",
+        "targetKanjiInCompound": "匕"
+      }
+    },
+    {
+      "kanji": "四阿",
+      "prompt": "「四阿」の読みは？",
+      "choices": [
+        "よつかど",
+        "やしろ",
+        "ちんじゅ",
+        "あずまや"
+      ],
+      "answer": "あずまや",
+      "explain": "「四阿」は「あずまや」と読む。庭園などに設ける、柱と屋根を中心とした壁のない休憩用の建物。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "四阿",
+        "targetKanjiInCompound": "四"
+      }
+    },
+    {
+      "kanji": "雪踏",
+      "prompt": "「雪踏」の読みは？",
+      "choices": [
+        "せった",
+        "げた",
+        "ぞうり",
+        "たび"
+      ],
+      "answer": "せった",
+      "explain": "「雪踏」は「せった」と読む。草履の底に革を張るなどして作る履物。「雪駄」とも書く。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "雪踏",
+        "targetKanjiInCompound": "雪"
+      }
+    },
+    {
+      "kanji": "草鞋",
+      "prompt": "「草鞋」の読みは？",
+      "choices": [
+        "たび",
+        "わらじ",
+        "ぞうり",
+        "げた"
+      ],
+      "answer": "わらじ",
+      "explain": "「草鞋」は「わらじ」と読む。わらを編み、ひもを足首に結んで履く昔の履物。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "草鞋",
+        "targetKanjiInCompound": "草"
+      }
+    },
+    {
+      "kanji": "松明",
+      "prompt": "「松明」の読みは？",
+      "choices": [
+        "かがりび",
+        "あんどん",
+        "たいまつ",
+        "ちょうちん"
+      ],
+      "answer": "たいまつ",
+      "explain": "「松明」は「たいまつ」と読む。木などを束ね、火をつけて手に持つ照明具。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "松明",
+        "targetKanjiInCompound": "松"
+      }
+    },
+    {
+      "kanji": "足袋",
+      "prompt": "「足袋」の読みは？",
+      "choices": [
+        "きゃはん",
+        "わらじ",
+        "てぶくろ",
+        "たび"
+      ],
+      "answer": "たび",
+      "explain": "「足袋」は「たび」と読む。親指の部分が分かれ、和装のときに足に着ける袋状の衣類。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "足袋",
+        "targetKanjiInCompound": "足"
+      }
+    },
+    {
+      "kanji": "浴衣",
+      "prompt": "「浴衣」の読みは？",
+      "choices": [
+        "ゆかた",
+        "はおり",
+        "ひとえ",
+        "じゅばん"
+      ],
+      "answer": "ゆかた",
+      "explain": "「浴衣」は「ゆかた」と読む。夏や湯上がりなどに着る、裏地のない軽い着物。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "浴衣",
+        "targetKanjiInCompound": "浴"
+      }
+    },
+    {
+      "kanji": "竹刀",
+      "prompt": "「竹刀」の読みは？",
+      "choices": [
+        "ぼくとう",
+        "しない",
+        "やり",
+        "なぎなた"
+      ],
+      "answer": "しない",
+      "explain": "「竹刀」は「しない」と読む。剣道で使う道具。割った竹を束ね、刀の形に整えたもの。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "竹刀",
+        "targetKanjiInCompound": "竹"
+      }
+    },
+    {
+      "kanji": "木綿",
+      "prompt": "衣類の素材となる「木綿」の読みは？",
+      "choices": [
+        "きぬ",
+        "あさ",
+        "もめん",
+        "けおり"
+      ],
+      "answer": "もめん",
+      "explain": "「木綿」は「もめん」と読む。ワタの繊維や、その糸・織物を指す。衣類や寝具に広く用いられる。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "木綿",
+        "targetKanjiInCompound": "木"
+      }
+    },
+    {
+      "kanji": "数珠",
+      "prompt": "「数珠」の読みは？",
+      "choices": [
+        "かんざし",
+        "たまぐし",
+        "おまもり",
+        "じゅず"
+      ],
+      "answer": "じゅず",
+      "explain": "「数珠」は「じゅず」と読む。礼拝などで手に持つ、小さな玉を輪になるようにつないだもの。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "数珠",
+        "targetKanjiInCompound": "数"
+      }
+    },
+    {
+      "kanji": "飛礫",
+      "prompt": "「飛礫」の読みは？",
+      "choices": [
+        "つぶて",
+        "いしだたみ",
+        "いしがき",
+        "とびいし"
+      ],
+      "answer": "つぶて",
+      "explain": "「飛礫」は「つぶて」と読む。手で投げる小さな石、またはその石を投げることを表す。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "飛礫",
+        "targetKanjiInCompound": "飛"
+      }
+    },
+    {
+      "kanji": "熨斗",
+      "prompt": "贈り物に添える「熨斗」の読みは？",
+      "choices": [
+        "のれん",
+        "のし",
+        "ひしゃく",
+        "しめなわ"
+      ],
+      "answer": "のし",
+      "explain": "「熨斗」は「のし」と読む。贈り物に添える飾りなどを指す。「熨斗鮑」に由来する用法がある。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "熨斗",
+        "targetKanjiInCompound": "熨"
+      }
+    },
+    {
+      "kanji": "蚊帳",
+      "prompt": "「蚊帳」の読みは？",
+      "choices": [
+        "かさ",
+        "すだれ",
+        "かや",
+        "のれん"
+      ],
+      "answer": "かや",
+      "explain": "「蚊帳」は「かや」と読む。寝床を囲むようにつり、蚊が中に入るのを防ぐ網状の寝具。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "蚊帳",
+        "targetKanjiInCompound": "蚊"
+      }
+    }
+  ]
+}

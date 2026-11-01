@@ -1,0 +1,350 @@
+{
+  "stage": 503,
+  "questions": [
+    {
+      "kanji": "動物たちを登場させた遇話から教訓を学ぶ。",
+      "choices": [
+        "遇→寓",
+        "遇→偶",
+        "遇→愚",
+        "遇→禺"
+      ],
+      "answer": "遇→寓",
+      "explain": "寓話（ぐうわ）＝動物などに人間らしい役割を持たせ、教えを伝えるたとえ話。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001692600",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "動物たちを登場させた遇話から教訓を学ぶ。",
+        "correctedSentence": "動物たちを登場させた寓話から教訓を学ぶ。",
+        "wrongKanji": "遇",
+        "correctKanji": "寓"
+      }
+    },
+    {
+      "kanji": "この絵には自由を求める寓異が込められている。",
+      "choices": [
+        "異→衣",
+        "異→移",
+        "異→委",
+        "異→意"
+      ],
+      "answer": "異→意",
+      "explain": "寓意（ぐうい）＝別の物事を通して、それとなく示す意味。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001692100",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "この絵には自由を求める寓異が込められている。",
+        "correctedSentence": "この絵には自由を求める寓意が込められている。",
+        "wrongKanji": "異",
+        "correctKanji": "意"
+      }
+    },
+    {
+      "kanji": "旅の作家は港町の小さな家を寓挙とした。",
+      "choices": [
+        "挙→巨",
+        "挙→拒",
+        "挙→居",
+        "挙→拠"
+      ],
+      "answer": "挙→居",
+      "explain": "寓居（ぐうきょ）＝一時的に身を寄せる住まい。また、自分の住まいをへりくだっていう語。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001692200",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "旅の作家は港町の小さな家を寓挙とした。",
+        "correctedSentence": "旅の作家は港町の小さな家を寓居とした。",
+        "wrongKanji": "挙",
+        "correctKanji": "居"
+      }
+    },
+    {
+      "kanji": "思想を統制するために奮書が行われた歴史を学ぶ。",
+      "choices": [
+        "奮→墳",
+        "奮→焚",
+        "奮→噴",
+        "奮→憤"
+      ],
+      "answer": "奮→焚",
+      "explain": "焚書（ふんしょ）＝書物を焼くこと。「焚」は火で焼くことを表す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0006166000",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "思想を統制するために奮書が行われた歴史を学ぶ。",
+        "correctedSentence": "思想を統制するために焚書が行われた歴史を学ぶ。",
+        "wrongKanji": "奮",
+        "correctKanji": "焚"
+      }
+    },
+    {
+      "kanji": "根拠の乏しい噂が世間に軒伝された。",
+      "choices": [
+        "軒→喧",
+        "軒→憲",
+        "軒→献",
+        "軒→懸"
+      ],
+      "answer": "軒→喧",
+      "explain": "喧伝（けんでん）＝世間に向けて騒がしく言い広めること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001932400",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "根拠の乏しい噂が世間に軒伝された。",
+        "correctedSentence": "根拠の乏しい噂が世間に喧伝された。",
+        "wrongKanji": "軒",
+        "correctKanji": "喧"
+      }
+    },
+    {
+      "kanji": "新製品の性能は従来の機種を凌架した。",
+      "choices": [
+        "架→賀",
+        "架→嘉",
+        "架→加",
+        "架→駕"
+      ],
+      "answer": "架→駕",
+      "explain": "凌駕（りょうが）＝他のものを上回り、その上に出ること。「陵駕」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007161300",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "新製品の性能は従来の機種を凌架した。",
+        "correctedSentence": "新製品の性能は従来の機種を凌駕した。",
+        "wrongKanji": "架",
+        "correctKanji": "駕"
+      }
+    },
+    {
+      "kanji": "相手の尊厳を稜辱する言動は許されない。",
+      "choices": [
+        "稜→綾",
+        "稜→僚",
+        "稜→凌",
+        "稜→菱"
+      ],
+      "answer": "稜→凌",
+      "explain": "凌辱（りょうじょく）＝人を侮って恥をかかせること。「陵辱」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007161400",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "相手の尊厳を稜辱する言動は許されない。",
+        "correctedSentence": "相手の尊厳を凌辱する言動は許されない。",
+        "wrongKanji": "稜",
+        "correctKanji": "凌"
+      }
+    },
+    {
+      "kanji": "知らせを聞いた彼の顔は創白になった。",
+      "choices": [
+        "創→槽",
+        "創→蒼",
+        "創→倉",
+        "創→操"
+      ],
+      "answer": "創→蒼",
+      "explain": "蒼白（そうはく）＝血の気が引き、青白くなっていること。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004270900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "知らせを聞いた彼の顔は創白になった。",
+        "correctedSentence": "知らせを聞いた彼の顔は蒼白になった。",
+        "wrongKanji": "創",
+        "correctKanji": "蒼"
+      }
+    },
+    {
+      "kanji": "雨雲が去り、頭上には蒼点が広がった。",
+      "choices": [
+        "点→天",
+        "点→典",
+        "点→展",
+        "点→転"
+      ],
+      "answer": "点→天",
+      "explain": "蒼天（そうてん）＝青く澄んだ空を指す語。春の空をいうこともある。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004270800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "雨雲が去り、頭上には蒼点が広がった。",
+        "correctedSentence": "雨雲が去り、頭上には蒼天が広がった。",
+        "wrongKanji": "点",
+        "correctKanji": "天"
+      }
+    },
+    {
+      "kanji": "肖像画の人物は金髪壁眼の青年だった。",
+      "choices": [
+        "壁→璧",
+        "壁→僻",
+        "壁→癖",
+        "壁→碧"
+      ],
+      "answer": "壁→碧",
+      "explain": "碧眼（へきがん）＝青い色の目をいう。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0006230900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "肖像画の人物は金髪壁眼の青年だった。",
+        "correctedSentence": "肖像画の人物は金髪碧眼の青年だった。",
+        "wrongKanji": "壁",
+        "correctKanji": "碧"
+      }
+    },
+    {
+      "kanji": "白い飛行機雲が碧控を横切った。",
+      "choices": [
+        "控→紅",
+        "控→功",
+        "控→空",
+        "控→孔"
+      ],
+      "answer": "控→空",
+      "explain": "碧空（へきくう）＝青い空。晴れ渡った空を表す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006231800",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "白い飛行機雲が碧控を横切った。",
+        "correctedSentence": "白い飛行機雲が碧空を横切った。",
+        "wrongKanji": "控",
+        "correctKanji": "空"
+      }
+    },
+    {
+      "kanji": "職人は留璃のように青い飾り玉を磨いた。",
+      "choices": [
+        "留→硫",
+        "留→瑠",
+        "留→流",
+        "留→柳"
+      ],
+      "answer": "留→瑠",
+      "explain": "瑠璃（るり）＝美しい青色の宝石や鉱物。また、その青い色をいう。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007224900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "職人は留璃のように青い飾り玉を磨いた。",
+        "correctedSentence": "職人は瑠璃のように青い飾り玉を磨いた。",
+        "wrongKanji": "留",
+        "correctKanji": "瑠"
+      }
+    },
+    {
+      "kanji": "岬の下には紺壁の海が広がっていた。",
+      "choices": [
+        "壁→碧",
+        "壁→璧",
+        "壁→僻",
+        "壁→癖"
+      ],
+      "answer": "壁→碧",
+      "explain": "紺碧（こんぺき）＝濃く深みのある青色。「碧」は青や青緑を表す。\n出典: 漢字ペディア https://www.kanjipedia.jp/kanji/0006230900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "岬の下には紺壁の海が広がっていた。",
+        "correctedSentence": "岬の下には紺碧の海が広がっていた。",
+        "wrongKanji": "壁",
+        "correctKanji": "碧"
+      }
+    },
+    {
+      "kanji": "海岸の博物館で珊湖の骨格を観察した。",
+      "choices": [
+        "湖→胡",
+        "湖→糊",
+        "湖→醐",
+        "湖→瑚"
+      ],
+      "answer": "湖→瑚",
+      "explain": "珊瑚（さんご）＝海にすむサンゴ類の総称。残された骨格は装飾にも使われる。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002650500",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "海岸の博物館で珊湖の骨格を観察した。",
+        "correctedSentence": "海岸の博物館で珊瑚の骨格を観察した。",
+        "wrongKanji": "湖",
+        "correctKanji": "瑚"
+      }
+    },
+    {
+      "kanji": "困難を乗り越えるため、人類の鋭智を集める。",
+      "choices": [
+        "鋭→映",
+        "鋭→衛",
+        "鋭→叡",
+        "鋭→泳"
+      ],
+      "answer": "鋭→叡",
+      "explain": "叡智（えいち）＝物事を深く理解し、見通す優れた知恵。「英知」とも書く。\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000401900",
+      "kind": "errorCorrection",
+      "tags": [
+        "誤字訂正"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "errorCorrection",
+        "originalSentence": "困難を乗り越えるため、人類の鋭智を集める。",
+        "correctedSentence": "困難を乗り越えるため、人類の叡智を集める。",
+        "wrongKanji": "鋭",
+        "correctKanji": "叡"
+      }
+    }
+  ]
+}

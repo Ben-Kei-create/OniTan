@@ -1,0 +1,335 @@
+{
+  "stage": 903,
+  "questions": [
+    {
+      "kanji": "海豹",
+      "prompt": "「海豹」の読みは？",
+      "choices": [
+        "あざらし",
+        "あしか",
+        "せいうち",
+        "らっこ"
+      ],
+      "answer": "あざらし",
+      "explain": "「海豹」は「あざらし」と読む。ひれのような四肢を持つ海の哺乳類。アシカとは別の仲間。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "海豹",
+        "targetKanjiInCompound": "海"
+      }
+    },
+    {
+      "kanji": "海驢",
+      "prompt": "「海驢」の読みは？",
+      "choices": [
+        "あざらし",
+        "あしか",
+        "らっこ",
+        "じゅごん"
+      ],
+      "answer": "あしか",
+      "explain": "「海驢」は「あしか」と読む。海で暮らす哺乳類の一群。群れをつくり、ひれ状の足で泳ぐ。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "海驢",
+        "targetKanjiInCompound": "海"
+      }
+    },
+    {
+      "kanji": "家鴨",
+      "prompt": "「家鴨」の読みは？",
+      "choices": [
+        "やまどり",
+        "がちょう",
+        "あひる",
+        "はくちょう"
+      ],
+      "answer": "あひる",
+      "explain": "「家鴨」は「あひる」と読む。マガモをもとに家禽として飼いならした水鳥。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "家鴨",
+        "targetKanjiInCompound": "家"
+      }
+    },
+    {
+      "kanji": "烏賊",
+      "prompt": "「烏賊」の読みは？",
+      "choices": [
+        "たこ",
+        "からす",
+        "くらげ",
+        "いか"
+      ],
+      "answer": "いか",
+      "explain": "「烏賊」は「いか」と読む。十本の腕や触腕を持ち、墨を出すことで知られる軟体動物。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "烏賊",
+        "targetKanjiInCompound": "烏"
+      }
+    },
+    {
+      "kanji": "蝦蛄",
+      "prompt": "「蝦蛄」の読みは？",
+      "choices": [
+        "しゃこ",
+        "えび",
+        "しゃも",
+        "ざこ"
+      ],
+      "answer": "しゃこ",
+      "explain": "「蝦蛄」は「しゃこ」と読む。海底に穴を掘って暮らし、食材にもなる甲殻類。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "蝦蛄",
+        "targetKanjiInCompound": "蝦"
+      }
+    },
+    {
+      "kanji": "鴛鴦",
+      "prompt": "「鴛鴦」の読みは？",
+      "choices": [
+        "かるがも",
+        "おしどり",
+        "かいつぶり",
+        "おおはくちょう"
+      ],
+      "answer": "おしどり",
+      "explain": "「鴛鴦」は「おしどり」と読む。雄に鮮やかな飾り羽がある水鳥。「おしどり夫婦」という表現にも使う。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "鴛鴦",
+        "targetKanjiInCompound": "鴛"
+      }
+    },
+    {
+      "kanji": "蜻蛉",
+      "prompt": "幼虫をヤゴと呼ぶ昆虫「蜻蛉」の読みは？",
+      "choices": [
+        "せみ",
+        "きりぎりす",
+        "とんぼ",
+        "かまきり"
+      ],
+      "answer": "とんぼ",
+      "explain": "「蜻蛉」は「とんぼ」と読む。大きな複眼と二対の羽を持つ昆虫。この読みでは幼虫を「やご」と呼ぶ。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "蜻蛉",
+        "targetKanjiInCompound": "蜻"
+      }
+    },
+    {
+      "kanji": "飛蝗",
+      "prompt": "「飛蝗」の読みは？",
+      "choices": [
+        "ひぐらし",
+        "かみきりむし",
+        "こおろぎ",
+        "ばった"
+      ],
+      "answer": "ばった",
+      "explain": "「飛蝗」は「ばった」と読む。長い後ろ脚で跳ねる昆虫の仲間を指す表記。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "飛蝗",
+        "targetKanjiInCompound": "飛"
+      }
+    },
+    {
+      "kanji": "蟷螂",
+      "prompt": "「蟷螂」の読みは？",
+      "choices": [
+        "かまきり",
+        "くつわむし",
+        "かぶとむし",
+        "げんごろう"
+      ],
+      "answer": "かまきり",
+      "explain": "「蟷螂」は「かまきり」と読む。鎌のような前脚を使って、ほかの虫を捕らえる昆虫。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "蟷螂",
+        "targetKanjiInCompound": "蟷"
+      }
+    },
+    {
+      "kanji": "鳳蝶",
+      "prompt": "「鳳蝶」の読みは？",
+      "choices": [
+        "おおとり",
+        "あげはちょう",
+        "しじみちょう",
+        "もんしろちょう"
+      ],
+      "answer": "あげはちょう",
+      "explain": "「鳳蝶」は「あげはちょう」と読む。大きな羽を持つアゲハチョウの仲間を表す漢字表記。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "鳳蝶",
+        "targetKanjiInCompound": "鳳"
+      }
+    },
+    {
+      "kanji": "雲雀",
+      "prompt": "「雲雀」の読みは？",
+      "choices": [
+        "すずめ",
+        "つばめ",
+        "ひばり",
+        "うぐいす"
+      ],
+      "answer": "ひばり",
+      "explain": "「雲雀」は「ひばり」と読む。春の野原などで、空高く上がりながらさえずる小鳥。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "雲雀",
+        "targetKanjiInCompound": "雲"
+      }
+    },
+    {
+      "kanji": "啄木鳥",
+      "prompt": "「啄木鳥」の読みは？",
+      "choices": [
+        "うぐいす",
+        "やまがら",
+        "つぐみ",
+        "きつつき"
+      ],
+      "answer": "きつつき",
+      "explain": "「啄木鳥」は「きつつき」と読む。丈夫なくちばしで木の幹をたたき、虫を探して食べる鳥。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "啄木鳥",
+        "targetKanjiInCompound": "啄"
+      }
+    },
+    {
+      "kanji": "信天翁",
+      "prompt": "「信天翁」の読みは？",
+      "choices": [
+        "あほうどり",
+        "こうのとり",
+        "しらさぎ",
+        "うみねこ"
+      ],
+      "answer": "あほうどり",
+      "explain": "「信天翁」は「あほうどり」と読む。翼を大きく広げて海上を飛ぶ大型の海鳥。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "信天翁",
+        "targetKanjiInCompound": "信"
+      }
+    },
+    {
+      "kanji": "百舌",
+      "prompt": "「百舌」の読みは？",
+      "choices": [
+        "ひよどり",
+        "もず",
+        "ほおじろ",
+        "めじろ"
+      ],
+      "answer": "もず",
+      "explain": "「百舌」は「もず」と読む。鋭い声で鳴き、捕らえた獲物を枝などに刺す習性でも知られる鳥。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "百舌",
+        "targetKanjiInCompound": "百"
+      }
+    },
+    {
+      "kanji": "水鶏",
+      "prompt": "「水鶏」の読みは？",
+      "choices": [
+        "やまどり",
+        "うずら",
+        "くいな",
+        "しぎ"
+      ],
+      "answer": "くいな",
+      "explain": "「水鶏」は「くいな」と読む。水辺で暮らすクイナの仲間を表す。種類によって姿や生息地は異なる。",
+      "kind": "compoundReadingKun",
+      "tags": [
+        "熟字訓"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "compoundReadingKun",
+        "targetCompound": "水鶏",
+        "targetKanjiInCompound": "水"
+      }
+    }
+  ]
+}

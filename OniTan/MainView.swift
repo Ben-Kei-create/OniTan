@@ -5,10 +5,13 @@ import StoreKit
 
 struct MainView: View {
     @StateObject private var vm: QuizSessionViewModel
+    @StateObject private var completionPresentation = CompletionPresentationCoordinator()
     @State private var activeReportContext: QuizProblemReportContext?
     @State private var hasPlayedCompletionHaptic = false
+    @State private var isVisible = false
     @Environment(\.dismiss) private var dismiss
     @Environment(\.requestReview) private var requestReview
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var reviewPromptManager: ReviewPromptManager
     @EnvironmentObject var favoriteRepo: FavoriteKanjiRepository
     @EnvironmentObject var playFontManager: PlayFontManager
@@ -21,7 +24,7 @@ struct MainView: View {
     @EnvironmentObject var appNavState: AppNavigationState
     @EnvironmentObject var examResultRepo: ExamResultRepository
 
-    private let appState: AppState
+    @ObservedObject private var appState: AppState
     private let statsRepo: StudyStatsRepository
     private let passedStreakRepo: StreakRepository?
     private let passedXPRepo: GamificationRepository?
@@ -41,6 +44,7 @@ struct MainView: View {
         mode: QuizMode = .normal,
         clearTitle: String? = nil,
         sessionTitle: String? = nil,
+        isExamReview: Bool = false,
         nextStage: Stage? = nil,
         nextStageTitle: String? = nil
     ) {
@@ -62,7 +66,8 @@ struct MainView: View {
             examBlueprintID: examBlueprintID,
             mode: mode,
             clearTitle: clearTitle,
-            sessionTitle: sessionTitle
+            sessionTitle: sessionTitle,
+            isExamReview: isExamReview
         ))
     }
 
@@ -87,7 +92,9 @@ struct MainView: View {
 
                             switch vm.phase {
                             case .stageCleared:
-                                if let result = vm.examResult {
+                                if vm.isExamReview {
+                                    examReviewClearedView
+                                } else if let result = vm.examResult {
                                     ExamResultView(
                                         result: result,
                                         blueprint: examBlueprints.first(where: { $0.id == result.blueprintID }),
@@ -124,12 +131,32 @@ struct MainView: View {
             ProblemReportSheet(context: context)
         }
         .onAppear {
+            isVisible = true
             if !donationManager.hasDonated {
                 interstitialManager.loadIfNeeded(canRequestAds: adConsentManager.canRequestAds)
             }
         }
+        .onDisappear {
+            isVisible = false
+            completionPresentation.cancel()
+        }
         .onChange(of: appNavState.shouldPopToRoot) { should in
-            if should { dismiss() }
+            if should {
+                completionPresentation.cancel()
+                dismiss()
+            }
+        }
+        .onChange(of: scenePhase) { phase in
+            if phase != .active { completionPresentation.cancel() }
+        }
+        .onChange(of: appState.isDailySummaryPresented) { presented in
+            if presented { completionPresentation.cancel() }
+        }
+        .onChange(of: activeReportContext != nil) { presented in
+            if presented { completionPresentation.cancel() }
+        }
+        .onChange(of: vm.activeAlert != nil) { presented in
+            if presented { completionPresentation.cancel() }
         }
         .onChange(of: vm.phase) { phase in
             if case .stageCleared = phase {
@@ -137,24 +164,39 @@ struct MainView: View {
                     hasPlayedCompletionHaptic = true
                     OniTanTheme.hapticSuccess()
                 }
-                if !donationManager.hasDonated {
-                    // Give the user a moment to enjoy the clear celebration (XP/level-up
-                    // animations) before an interstitial ad can interrupt it.
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                        guard !appState.isDailySummaryPresented else { return }
-                        interstitialManager.showIfReady(canRequestAds: adConsentManager.canRequestAds)
-                    }
-                }
-                if reviewPromptManager.sessionCompleted(currentStreak: streakRepo.currentStreak) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                        guard !appState.isDailySummaryPresented else { return }
-                        requestReview()
-                    }
-                }
+                scheduleCompletionPresentation()
             } else {
+                completionPresentation.cancel()
                 hasPlayedCompletionHaptic = false
             }
         }
+    }
+
+    private func scheduleCompletionPresentation() {
+        let reviewEligible = reviewPromptManager.sessionCompleted(currentStreak: streakRepo.currentStreak)
+        guard let presentation = CompletionPresentation.select(
+            reviewEligible: reviewEligible,
+            hasDonated: donationManager.hasDonated
+        ), canPresentCompletionPresentation else { return }
+
+        completionPresentation.schedule(presentation, canPresent: {
+            canPresentCompletionPresentation
+        }, present: { presentation in
+            switch presentation {
+            case .review:
+                reviewPromptManager.markPromptRequested()
+                requestReview()
+            case .advertisement:
+                guard !donationManager.hasDonated else { return }
+                interstitialManager.showIfReady(canRequestAds: adConsentManager.canRequestAds)
+            }
+        })
+    }
+
+    private var canPresentCompletionPresentation: Bool {
+        isVisible && scenePhase == .active && vm.phase == .stageCleared
+            && !appNavState.shouldPopToRoot && !appState.isDailySummaryPresented
+            && activeReportContext == nil && vm.activeAlert == nil
     }
 
     // MARK: - Top Bar
@@ -322,7 +364,7 @@ struct MainView: View {
                 .foregroundColor(OniTanTheme.textSecondary)
         }
         .accessibilityElement()
-        .accessibilityLabel("\(vm.displayTitle) \(vm.clearedCount)問中\(vm.totalGoal)問正解")
+        .accessibilityLabel("\(vm.displayTitle) \(vm.totalGoal)問中\(vm.clearedCount)問正解")
     }
 
     // MARK: - Kanji / Prompt Display
@@ -695,6 +737,40 @@ struct MainView: View {
     }
 
     // MARK: - Stage Cleared
+
+    private var examReviewClearedView: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "checkmark.seal.fill")
+                .font(.system(size: 48))
+                .foregroundStyle(OniTanTheme.goldGradient)
+                .accessibilityHidden(true)
+            Text("復習完了！")
+                .font(playFont(28, weight: .black))
+                .foregroundColor(OniTanTheme.textPrimary)
+            Text("\(vm.reviewedGenreCount)ジャンルの弱点をクリア")
+                .font(playFont(18, weight: .bold))
+                .foregroundColor(OniTanTheme.textPrimary)
+                .multilineTextAlignment(.center)
+            Text("\(vm.totalGoal)問に正解しました。\n正解した問題は復習リストから卒業します。")
+                .font(playFont(14, weight: .semibold))
+                .foregroundColor(OniTanTheme.textSecondary)
+                .multilineTextAlignment(.center)
+            Button {
+                appNavState.popToRoot()
+                dismiss()
+            } label: {
+                Text("ホームへ戻る")
+                    .font(playFont(16, weight: .bold))
+                    .foregroundColor(OniTanTheme.textPrimary)
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(OniTanTheme.primaryGradient)
+                    .cornerRadius(OniTanTheme.radiusButton)
+            }
+        }
+        .padding(24)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityIdentifier("exam_review_complete")
+    }
 
     private var stageClearedView: some View {
         let weakReviewStage = (!vm.isSpecialSession && !statsRepo.weakQuestions(for: vm.stage).isEmpty) ? vm.stage : nil
