@@ -167,6 +167,54 @@
       "file": "reading_stage28.json",
       "title": "例文読み 28",
       "difficulty": 4
+    },
+    {
+      "id": 29,
+      "file": "reading_stage29.json",
+      "title": "例文読み 29",
+      "difficulty": 4
+    },
+    {
+      "id": 30,
+      "file": "reading_stage30.json",
+      "title": "例文読み 30",
+      "difficulty": 4
+    },
+    {
+      "id": 31,
+      "file": "reading_stage31.json",
+      "title": "例文読み 31",
+      "difficulty": 4
+    },
+    {
+      "id": 32,
+      "file": "reading_stage32.json",
+      "title": "例文読み 32",
+      "difficulty": 4
+    },
+    {
+      "id": 33,
+      "file": "reading_stage33.json",
+      "title": "例文読み 33",
+      "difficulty": 4
+    },
+    {
+      "id": 34,
+      "file": "reading_stage34.json",
+      "title": "例文読み 34",
+      "difficulty": 4
+    },
+    {
+      "id": 35,
+      "file": "reading_stage35.json",
+      "title": "例文読み 35",
+      "difficulty": 4
+    },
+    {
+      "id": 36,
+      "file": "reading_stage36.json",
+      "title": "例文読み 36",
+      "difficulty": 4
     }
   ]
 }

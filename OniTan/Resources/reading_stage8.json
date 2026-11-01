@@ -126,6 +126,195 @@
         "targetKanji": "危殆",
         "sentenceContext": "国家財政が危殆に瀕する。"
       }
+    },
+    {
+      "kanji": "剽窃",
+      "choices": [
+        "ひょうせつ",
+        "ひょうつ",
+        "びょうせつ",
+        "ひょうせ"
+      ],
+      "answer": "ひょうせつ",
+      "explain": "例文: 論文の剽窃が発覚して処分された。\n正解の読み: ひょうせつ\n意味: 他人の著作を盗むこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "剽窃",
+        "sentenceContext": "論文の剽窃が発覚して処分された。"
+      }
+    },
+    {
+      "kanji": "鷙鳥",
+      "choices": [
+        "しとり",
+        "ちちょう",
+        "しちょう",
+        "じちょう"
+      ],
+      "answer": "しちょう",
+      "explain": "例文: 鷙鳥が獲物を狙って空を旋回していた。\n正解の読み: しちょう\n意味: 猛禽類",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鷙鳥",
+        "sentenceContext": "鷙鳥が獲物を狙って空を旋回していた。"
+      }
+    },
+    {
+      "kanji": "纈染",
+      "choices": [
+        "けっそめ",
+        "けっぜん",
+        "けつせん",
+        "けっせん"
+      ],
+      "answer": "けっせん",
+      "explain": "例文: 奈良時代の纈染の布が正倉院に残る。\n正解の読み: けっせん\n意味: 布を縛って染める技法",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "纈染",
+        "sentenceContext": "奈良時代の纈染の布が正倉院に残る。"
+      }
+    },
+    {
+      "kanji": "啓蟄",
+      "choices": [
+        "けいちゅ",
+        "けいちつ",
+        "けいちっ",
+        "けいてつ"
+      ],
+      "answer": "けいちつ",
+      "explain": "例文: 啓蟄を過ぎると虫の声が聞こえ始めた。\n正解の読み: けいちつ\n意味: 虫が冬眠から目覚める時節（二十四節気）",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "啓蟄",
+        "sentenceContext": "啓蟄を過ぎると虫の声が聞こえ始めた。"
+      }
+    },
+    {
+      "kanji": "砌",
+      "choices": [
+        "みぎり",
+        "かたわら",
+        "きわ",
+        "ほとり"
+      ],
+      "answer": "みぎり",
+      "explain": "例文: 若き砌には多くを学んだ。\n正解の読み: みぎり\n意味: 折・時節",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "砌",
+        "sentenceContext": "若き砌には多くを学んだ。"
+      }
+    },
+    {
+      "kanji": "鐐",
+      "choices": [
+        "くすり",
+        "かしら",
+        "くさり",
+        "てかせ"
+      ],
+      "answer": "くさり",
+      "explain": "例文: 囚人の足に鐐がはめられていた。\n正解の読み: くさり\n意味: 足かせ・錠",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鐐",
+        "sentenceContext": "囚人の足に鐐がはめられていた。"
+      }
+    },
+    {
+      "kanji": "誹謗",
+      "choices": [
+        "ひぼう",
+        "ひぼ",
+        "ひほう",
+        "ひんぼう"
+      ],
+      "answer": "ひぼう",
+      "explain": "例文: 根拠のない誹謗を受け傷ついた。\n正解の読み: ひぼう\n意味: 悪口を言うこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "誹謗",
+        "sentenceContext": "根拠のない誹謗を受け傷ついた。"
+      }
+    },
+    {
+      "kanji": "罔両",
+      "choices": [
+        "もうよう",
+        "もうりょう",
+        "もうりょ",
+        "こうりょう"
+      ],
+      "answer": "もうりょう",
+      "explain": "例文: 暗い沼に罔両が潜むという伝説がある。\n正解の読み: もうりょう\n意味: もののけ・幽霊",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "罔両",
+        "sentenceContext": "暗い沼に罔両が潜むという伝説がある。"
+      }
+    },
+    {
+      "kanji": "攀じ",
+      "choices": [
+        "へじ",
+        "はじ",
+        "もじ",
+        "よじ"
+      ],
+      "answer": "よじ",
+      "explain": "例文: 崖を攀じ登って頂上に達した。\n正解の読み: よじ\n意味: よじ登ること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "攀じ",
+        "sentenceContext": "崖を攀じ登って頂上に達した。"
+      }
     }
   ]
 }

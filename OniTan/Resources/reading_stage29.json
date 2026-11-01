@@ -1,0 +1,320 @@
+{
+  "stage": 29,
+  "questions": [
+    {
+      "kanji": "慧眼",
+      "choices": [
+        "けいがん",
+        "えがん",
+        "かいがん",
+        "けいげん"
+      ],
+      "answer": "けいがん",
+      "explain": "例文: 批評家の慧眼に舌を巻く。\n正解の読み: けいがん\n意味: 本質を見抜くすぐれた眼力。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "慧眼",
+        "sentenceContext": "批評家の慧眼に舌を巻く。"
+      }
+    },
+    {
+      "kanji": "庚申",
+      "choices": [
+        "こうしん",
+        "こうじん",
+        "きょうしん",
+        "こうさる"
+      ],
+      "answer": "こうしん",
+      "explain": "例文: 古い庚申塚が残っている。\n正解の読み: こうしん\n意味: かのえさる。干支の五十七番目。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "庚申",
+        "sentenceContext": "古い庚申塚が残っている。"
+      }
+    },
+    {
+      "kanji": "豪宕",
+      "choices": [
+        "ごうとう",
+        "ごうたく",
+        "こうとう",
+        "ごうほう"
+      ],
+      "answer": "ごうとう",
+      "explain": "例文: 豪宕な気性は父親譲りだ。\n正解の読み: ごうとう\n意味: 気持ちが大きいこと。豪放。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "豪宕",
+        "sentenceContext": "豪宕な気性は父親譲りだ。"
+      }
+    },
+    {
+      "kanji": "上巳",
+      "choices": [
+        "じょうし",
+        "じょうみ",
+        "しょうし",
+        "じょうじ"
+      ],
+      "answer": "じょうし",
+      "explain": "例文: 上巳の節句を祝う。\n正解の読み: じょうし\n意味: 桃の節句（三月三日）。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "上巳",
+        "sentenceContext": "上巳の節句を祝う。"
+      }
+    },
+    {
+      "kanji": "翠黛",
+      "choices": [
+        "すいたい",
+        "すいたん",
+        "さいたい",
+        "すいぐん"
+      ],
+      "answer": "すいたい",
+      "explain": "例文: 翠黛の風景を描いた絵だ。\n正解の読み: すいたい\n意味: 緑色にかすんで見える山。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "翠黛",
+        "sentenceContext": "翠黛の風景を描いた絵だ。"
+      }
+    },
+    {
+      "kanji": "清穆",
+      "choices": [
+        "せいぼく",
+        "せいもく",
+        "せいぼう",
+        "せいりく"
+      ],
+      "answer": "せいぼく",
+      "explain": "例文: ご清穆の段お慶び申します。\n正解の読み: せいぼく\n意味: 清く和やかなこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "清穆",
+        "sentenceContext": "ご清穆の段お慶び申します。"
+      }
+    },
+    {
+      "kanji": "尖兵",
+      "choices": [
+        "せんぺい",
+        "せんびょう",
+        "せんぺん",
+        "とがへい"
+      ],
+      "answer": "せんぺい",
+      "explain": "例文: 海外進出の尖兵となる。\n正解の読み: せんぺい\n意味: 本隊に先駆ける兵隊。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "尖兵",
+        "sentenceContext": "海外進出の尖兵となる。"
+      }
+    },
+    {
+      "kanji": "俗諺",
+      "choices": [
+        "ぞくげん",
+        "ぞくごん",
+        "ぞくえん",
+        "ぞくがん"
+      ],
+      "answer": "ぞくげん",
+      "explain": "例文: 俗諺を引用して解説する。\n正解の読み: ぞくげん\n意味: 世間で使われていることわざ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俗諺",
+        "sentenceContext": "俗諺を引用して解説する。"
+      }
+    },
+    {
+      "kanji": "樽材",
+      "choices": [
+        "ちょざい",
+        "たるざい",
+        "そんざい",
+        "じゅんざい"
+      ],
+      "answer": "ちょざい",
+      "explain": "例文: 私のごとき樽材でも務まる。\n正解の読み: ちょざい\n意味: 役立たず。自分の謙称。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "樽材",
+        "sentenceContext": "私のごとき樽材でも務まる。"
+      }
+    },
+    {
+      "kanji": "急灘",
+      "choices": [
+        "きゅうだん",
+        "きゅうたん",
+        "きゅうらい",
+        "そくたん"
+      ],
+      "answer": "きゅうだん",
+      "explain": "例文: 船の航行には危険な急灘だ。\n正解の読み: きゅうだん\n意味: 流れの速い浅瀬。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "急灘",
+        "sentenceContext": "船の航行には危険な急灘だ。"
+      }
+    },
+    {
+      "kanji": "欽慕",
+      "choices": [
+        "きんぼ",
+        "きんも",
+        "きんぼう",
+        "ぎんぼ"
+      ],
+      "answer": "きんぼ",
+      "explain": "例文: 欽慕の念を深く抱く。\n正解の読み: きんぼ\n意味: 敬い慕うこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "欽慕",
+        "sentenceContext": "欽慕の念を深く抱く。"
+      }
+    },
+    {
+      "kanji": "汀渚",
+      "choices": [
+        "ていしょ",
+        "ていじょ",
+        "ちょうしょ",
+        "ていさい"
+      ],
+      "answer": "ていしょ",
+      "explain": "例文: 汀渚にたたずみ沖を眺める。\n正解の読み: ていしょ\n意味: 波打ちぎわ。なぎさ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "汀渚",
+        "sentenceContext": "汀渚にたたずみ沖を眺める。"
+      }
+    },
+    {
+      "kanji": "這般",
+      "choices": [
+        "しゃはん",
+        "しゃばん",
+        "ぜんぱん",
+        "げんぱん"
+      ],
+      "answer": "しゃはん",
+      "explain": "例文: 這般の事情で中止となった。\n正解の読み: しゃはん\n意味: このあたりの。このような。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "這般",
+        "sentenceContext": "這般の事情で中止となった。"
+      }
+    },
+    {
+      "kanji": "補綴",
+      "choices": [
+        "ほてつ",
+        "ほせつ",
+        "ふてつ",
+        "ほうてつ"
+      ],
+      "answer": "ほてつ",
+      "explain": "例文: 破れた上着を補綴する。\n正解の読み: ほてつ\n意味: 破れを繕うこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "補綴",
+        "sentenceContext": "破れた上着を補綴する。"
+      }
+    },
+    {
+      "kanji": "枕頭",
+      "choices": [
+        "ちんとう",
+        "しんとう",
+        "ちんず",
+        "まくらとう"
+      ],
+      "answer": "ちんとう",
+      "explain": "例文: 聖書を枕頭に置く。\n正解の読み: ちんとう\n意味: まくらもと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "枕頭",
+        "sentenceContext": "聖書を枕頭に置く。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "stage": 35,
+  "questions": [
+    {
+      "kanji": "禾穀",
+      "choices": [
+        "かこく",
+        "こっか",
+        "わこく",
+        "かりゅう"
+      ],
+      "answer": "かこく",
+      "explain": "例文: 豊かに禾穀を産する土地だ。\n正解の読み: かこく\n意味: 穀物の総称。特に稲のこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "禾穀",
+        "sentenceContext": "豊かに禾穀を産する土地だ。"
+      }
+    },
+    {
+      "kanji": "爪牙",
+      "choices": [
+        "そうが",
+        "そうげ",
+        "つめきば",
+        "つめが"
+      ],
+      "answer": "そうが",
+      "explain": "例文: 凶悪犯の爪牙にかかる。\n正解の読み: そうが\n意味: 攻撃する手段。武器。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "爪牙",
+        "sentenceContext": "凶悪犯の爪牙にかかる。"
+      }
+    },
+    {
+      "kanji": "痩軀",
+      "choices": [
+        "そうく",
+        "そうたい",
+        "やせみ",
+        "ひんく"
+      ],
+      "answer": "そうく",
+      "explain": "例文: 長身痩軀の文学青年。\n正解の読み: そうく\n意味: やせた体つき。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "痩軀",
+        "sentenceContext": "長身痩軀の文学青年。"
+      }
+    },
+    {
+      "kanji": "歌唄",
+      "choices": [
+        "かばい",
+        "かしょう",
+        "かばつ",
+        "おんばい"
+      ],
+      "answer": "かばい",
+      "explain": "例文: 本堂を歌唄の声が満たす。\n正解の読み: かばい\n意味: 仏の御徳を讃えて歌うこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "歌唄",
+        "sentenceContext": "本堂を歌唄の声が満たす。"
+      }
+    },
+    {
+      "kanji": "椿寿",
+      "choices": [
+        "ちんじゅ",
+        "そんじゅ",
+        "ちょうじゅ",
+        "ちんね"
+      ],
+      "answer": "ちんじゅ",
+      "explain": "例文: 祖母の椿寿を祝う。\n正解の読み: ちんじゅ\n意味: 長生き。長寿を祝う語。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "椿寿",
+        "sentenceContext": "祖母の椿寿を祝う。"
+      }
+    },
+    {
+      "kanji": "釣餌",
+      "choices": [
+        "ちょうじ",
+        "つりえ",
+        "ちょうえ",
+        "つりじ"
+      ],
+      "answer": "ちょうじ",
+      "explain": "例文: よく釣れる釣餌を探す。\n正解の読み: ちょうじ\n意味: 釣りに用いる餌。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "釣餌",
+        "sentenceContext": "よく釣れる釣餌を探す。"
+      }
+    },
+    {
+      "kanji": "岡阜",
+      "choices": [
+        "こうふ",
+        "こうりょう",
+        "おかふ",
+        "こうそう"
+      ],
+      "answer": "こうふ",
+      "explain": "例文: 岡阜の頂に社がある。\n正解の読み: こうふ\n意味: 小高い丘。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "岡阜",
+        "sentenceContext": "岡阜の頂に社がある。"
+      }
+    },
+    {
+      "kanji": "暢達",
+      "choices": [
+        "ちょうたつ",
+        "ちょうだつ",
+        "のびたつ",
+        "しょうたつ"
+      ],
+      "answer": "ちょうたつ",
+      "explain": "例文: 暢達な筆致で揮毫する。\n正解の読み: ちょうたつ\n意味: のびのびとした様子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "暢達",
+        "sentenceContext": "暢達な筆致で揮毫する。"
+      }
+    },
+    {
+      "kanji": "藪沢",
+      "choices": [
+        "そうたく",
+        "そうしつ",
+        "やぶさわ",
+        "ぞうたく"
+      ],
+      "answer": "そうたく",
+      "explain": "例文: 行く手を広い藪沢が阻む。\n正解の読み: そうたく\n意味: 草木の生い茂る湿地。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "藪沢",
+        "sentenceContext": "行く手を広い藪沢が阻む。"
+      }
+    },
+    {
+      "kanji": "厩肥",
+      "choices": [
+        "きゅうひ",
+        "うまごえ",
+        "ばふん",
+        "きゅうふ"
+      ],
+      "answer": "きゅうひ",
+      "explain": "例文: 厩肥を使って栽培する。\n正解の読み: きゅうひ\n意味: 家畜の糞尿を利用した肥料。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "厩肥",
+        "sentenceContext": "厩肥を使って栽培する。"
+      }
+    },
+    {
+      "kanji": "耽溺",
+      "choices": [
+        "たんでき",
+        "たんのう",
+        "ねつでき",
+        "たんちゃく"
+      ],
+      "answer": "たんでき",
+      "explain": "例文: 女色に耽溺し人生を誤る。\n正解の読み: たんでき\n意味: 夢中になる。ふける。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "耽溺",
+        "sentenceContext": "女色に耽溺し人生を誤る。"
+      }
+    },
+    {
+      "kanji": "脇息",
+      "choices": [
+        "きょうそく",
+        "わきおき",
+        "わきづえ",
+        "きょうじょく"
+      ],
+      "answer": "きょうそく",
+      "explain": "例文: 座布団の上に脇息を置く。\n正解の読み: きょうそく\n意味: 座る時に用いる肘かけ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "脇息",
+        "sentenceContext": "座布団の上に脇息を置く。"
+      }
+    },
+    {
+      "kanji": "一揖",
+      "choices": [
+        "いちゆう",
+        "いっき",
+        "いちえい",
+        "いちもく"
+      ],
+      "answer": "いちゆう",
+      "explain": "例文: 一揖して会議を中座した。\n正解の読み: いちゆう\n意味: 軽くお辞儀すること。拍手礼。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "一揖",
+        "sentenceContext": "一揖して会議を中座した。"
+      }
+    },
+    {
+      "kanji": "茸茸",
+      "choices": [
+        "じょうじょう",
+        "せいせい",
+        "もうもう",
+        "しんしん"
+      ],
+      "answer": "じょうじょう",
+      "explain": "例文: 雑草が茸茸と生い茂る。\n正解の読み: じょうじょう\n意味: 草が勢いよく生い茂る様子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "茸茸",
+        "sentenceContext": "雑草が茸茸と生い茂る。"
+      }
+    },
+    {
+      "kanji": "老爺",
+      "choices": [
+        "ろうや",
+        "ろうふ",
+        "ろうそう",
+        "こうや"
+      ],
+      "answer": "ろうや",
+      "explain": "例文: 老爺から当時の話を聞く。\n正解の読み: ろうや\n意味: 老人の男性。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "老爺",
+        "sentenceContext": "老爺から当時の話を聞く。"
+      }
+    }
+  ]
+}

@@ -220,6 +220,111 @@
       ],
       "answer": "がぜん",
       "explain": "例文: 新事実が判明し俄然注目を集めた。\n正解の読み: がぜん\n意味: 突然に。急に\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000742900"
+    },
+    {
+      "kanji": "縋る",
+      "choices": [
+        "つかる",
+        "うがる",
+        "すがる",
+        "くがる"
+      ],
+      "answer": "すがる",
+      "explain": "例文: 壁に縋りながらなんとか進んだ。\n正解の読み: すがる\n意味: すがりつくこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "縋る",
+        "sentenceContext": "壁に縋りながらなんとか進んだ。"
+      }
+    },
+    {
+      "kanji": "磔",
+      "choices": [
+        "はりつけ",
+        "はりつ",
+        "みかぎり",
+        "もりつけ"
+      ],
+      "answer": "はりつけ",
+      "explain": "例文: 磔の刑に処されたと史書に記されている。\n正解の読み: はりつけ\n意味: 極刑の一つ",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "磔",
+        "sentenceContext": "磔の刑に処されたと史書に記されている。"
+      }
+    },
+    {
+      "kanji": "聵",
+      "choices": [
+        "つんばう",
+        "つんぼ",
+        "まんぼ",
+        "つんぼ"
+      ],
+      "answer": "つんぼ",
+      "explain": "例文: 難聴を雅語では聵という。\n正解の読み: つんぼ\n意味: 耳が聞こえないこと（古語）",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "聵",
+        "sentenceContext": "難聴を雅語では聵という。"
+      }
+    },
+    {
+      "kanji": "塒",
+      "choices": [
+        "やすみば",
+        "ねどこ",
+        "すみか",
+        "ねぐら"
+      ],
+      "answer": "ねぐら",
+      "explain": "例文: 鷹が塒に帰ってくるのを待った。\n正解の読み: ねぐら\n意味: 鳥や人の寝る場所",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "塒",
+        "sentenceContext": "鷹が塒に帰ってくるのを待った。"
+      }
+    },
+    {
+      "kanji": "燻る",
+      "choices": [
+        "おぼれる",
+        "もぐる",
+        "かすれる",
+        "くすぶる"
+      ],
+      "answer": "くすぶる",
+      "explain": "例文: 炭が燻る中で一夜を過ごした。\n正解の読み: くすぶる\n意味: 不完全燃焼する・くすぶること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "燻る",
+        "sentenceContext": "炭が燻る中で一夜を過ごした。"
+      }
     }
   ]
 }

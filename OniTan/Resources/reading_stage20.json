@@ -220,6 +220,111 @@
       ],
       "answer": "さざなみ",
       "explain": "例文: 静かな湖面に漣が広がる。\n正解の読み: さざなみ\n意味: 水面に立つ細かな波\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007307100"
+    },
+    {
+      "kanji": "宥恕",
+      "choices": [
+        "ゆうじょ",
+        "ゆうじゅ",
+        "ゆじょ",
+        "ゆうよ"
+      ],
+      "answer": "ゆうじょ",
+      "explain": "例文: 今一度の宥恕を願いでた。\n正解の読み: ゆうじょ\n意味: 許すこと・大目に見ること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "宥恕",
+        "sentenceContext": "今一度の宥恕を願いでた。"
+      }
+    },
+    {
+      "kanji": "萌芽",
+      "choices": [
+        "ほうが",
+        "ほうげ",
+        "ほうが",
+        "もうが"
+      ],
+      "answer": "ほうが",
+      "explain": "例文: 近代科学の萌芽がここに見られる。\n正解の読み: ほうが\n意味: 芽生え・始まり",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "萌芽",
+        "sentenceContext": "近代科学の萌芽がここに見られる。"
+      }
+    },
+    {
+      "kanji": "濁世",
+      "choices": [
+        "じょくせい",
+        "じょくせ",
+        "にごりせ",
+        "だくせ"
+      ],
+      "answer": "じょくせ",
+      "explain": "例文: 濁世を嘆く仏典の言葉が胸に刺さる。\n正解の読み: じょくせ\n意味: 汚れた世・末世",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "濁世",
+        "sentenceContext": "濁世を嘆く仏典の言葉が胸に刺さる。"
+      }
+    },
+    {
+      "kanji": "扼腕",
+      "choices": [
+        "やくおん",
+        "やくわん",
+        "えくわん",
+        "やくえん"
+      ],
+      "answer": "やくわん",
+      "explain": "例文: 失敗を知り扼腕した。\n正解の読み: やくわん\n意味: 悔しがって腕をつかむこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "扼腕",
+        "sentenceContext": "失敗を知り扼腕した。"
+      }
+    },
+    {
+      "kanji": "癒着",
+      "choices": [
+        "ゆちゃく",
+        "ゆちゃっ",
+        "ゆちゃ",
+        "ゆきゃく"
+      ],
+      "answer": "ゆちゃく",
+      "explain": "例文: 政財界の癒着が問題になった。\n正解の読み: ゆちゃく\n意味: 傷がくっつくこと・不正な結びつき",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "癒着",
+        "sentenceContext": "政財界の癒着が問題になった。"
+      }
     }
   ]
 }

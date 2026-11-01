@@ -220,6 +220,111 @@
       ],
       "answer": "せきりょう",
       "explain": "例文: 秋の野に寂寥を感じた。\n正解の読み: せきりょう\n意味: ひっそりとして寂しいこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003023100"
+    },
+    {
+      "kanji": "媒酌",
+      "choices": [
+        "ばいしゃっ",
+        "まいしゃく",
+        "ばいさく",
+        "ばいしゃく"
+      ],
+      "answer": "ばいしゃく",
+      "explain": "例文: 昔は親が媒酌を依頼するのが普通だった。\n正解の読み: ばいしゃく\n意味: 仲人を務めること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "媒酌",
+        "sentenceContext": "昔は親が媒酌を依頼するのが普通だった。"
+      }
+    },
+    {
+      "kanji": "懿徳",
+      "choices": [
+        "えとく",
+        "いほく",
+        "いどく",
+        "いとく"
+      ],
+      "answer": "いとく",
+      "explain": "例文: 先王の懿徳を後世に伝えることが臣の務め。\n正解の読み: いとく\n意味: すぐれた徳",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "懿徳",
+        "sentenceContext": "先王の懿徳を後世に伝えることが臣の務め。"
+      }
+    },
+    {
+      "kanji": "牽強",
+      "choices": [
+        "けんきょ",
+        "けんつよ",
+        "けんこ",
+        "けんきょう"
+      ],
+      "answer": "けんきょう",
+      "explain": "例文: 牽強付会な論法で反論を封じた。\n正解の読み: けんきょう\n意味: 強引に理由をつけること（牽強付会）",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "牽強",
+        "sentenceContext": "牽強付会な論法で反論を封じた。"
+      }
+    },
+    {
+      "kanji": "俄か",
+      "choices": [
+        "にわか",
+        "とわか",
+        "なわか",
+        "おかか"
+      ],
+      "answer": "にわか",
+      "explain": "例文: 俄か雨に降られて傘を持っていなかった。\n正解の読み: にわか\n意味: 突然・急に",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俄か",
+        "sentenceContext": "俄か雨に降られて傘を持っていなかった。"
+      }
+    },
+    {
+      "kanji": "嚆矢",
+      "choices": [
+        "たかや",
+        "こうし",
+        "こうや",
+        "こうし"
+      ],
+      "answer": "こうし",
+      "explain": "例文: この発明が現代技術の嚆矢となった。\n正解の読み: こうし\n意味: 矢の始まり・物事の最初",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "嚆矢",
+        "sentenceContext": "この発明が現代技術の嚆矢となった。"
+      }
     }
   ]
 }

@@ -168,6 +168,153 @@
         "targetKanji": "潤目鰮",
         "sentenceContext": "潤目鰮の丸干しが並ぶ。"
       }
+    },
+    {
+      "kanji": "厄介",
+      "choices": [
+        "やっかい",
+        "やつかい",
+        "やくかい",
+        "やっかい"
+      ],
+      "answer": "やっかい",
+      "explain": "例文: 厄介な問題が山積している。\n正解の読み: やっかい\n意味: 面倒なこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "厄介",
+        "sentenceContext": "厄介な問題が山積している。"
+      }
+    },
+    {
+      "kanji": "恢復",
+      "choices": [
+        "かいふっ",
+        "かいふく",
+        "けいふく",
+        "かいほく"
+      ],
+      "answer": "かいふく",
+      "explain": "例文: 病後の恢復を待って旅に出た。\n正解の読み: かいふく\n意味: 回復すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "恢復",
+        "sentenceContext": "病後の恢復を待って旅に出た。"
+      }
+    },
+    {
+      "kanji": "纂修",
+      "choices": [
+        "さんくう",
+        "ざんしゅう",
+        "さんしゅう",
+        "さんしゅ"
+      ],
+      "answer": "さんしゅう",
+      "explain": "例文: 国史の纂修に半生をかけた学者がいた。\n正解の読み: さんしゅう\n意味: 資料を集めて書物を編集すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "纂修",
+        "sentenceContext": "国史の纂修に半生をかけた学者がいた。"
+      }
+    },
+    {
+      "kanji": "沮喪",
+      "choices": [
+        "そそく",
+        "そそう",
+        "じょそう",
+        "そそ"
+      ],
+      "answer": "そそう",
+      "explain": "例文: 敗北を知り沮喪して動けなかった。\n正解の読み: そそう\n意味: 気力を失い落胆すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "沮喪",
+        "sentenceContext": "敗北を知り沮喪して動けなかった。"
+      }
+    },
+    {
+      "kanji": "叢書",
+      "choices": [
+        "そうしょ",
+        "さうしょ",
+        "そうか",
+        "そうじょ"
+      ],
+      "answer": "そうしょ",
+      "explain": "例文: 古典文学の叢書を図書館で借りた。\n正解の読み: そうしょ\n意味: 一連の著作を集めた書物",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "叢書",
+        "sentenceContext": "古典文学の叢書を図書館で借りた。"
+      }
+    },
+    {
+      "kanji": "攣縮",
+      "choices": [
+        "れんしゅく",
+        "れんしゅ",
+        "れんく",
+        "れっしゅく"
+      ],
+      "answer": "れんしゅく",
+      "explain": "例文: 走っていると足が攣縮して倒れた。\n正解の読み: れんしゅく\n意味: 筋肉がけいれんすること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "攣縮",
+        "sentenceContext": "走っていると足が攣縮して倒れた。"
+      }
+    },
+    {
+      "kanji": "濫觴",
+      "choices": [
+        "まんしょう",
+        "らんしょう",
+        "らんしょ",
+        "らんしゅう"
+      ],
+      "answer": "らんしょう",
+      "explain": "例文: 漢字の濫觴は甲骨文字とされる。\n正解の読み: らんしょう\n意味: 物事の起源・始まり",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "濫觴",
+        "sentenceContext": "漢字の濫觴は甲骨文字とされる。"
+      }
     }
   ]
 }

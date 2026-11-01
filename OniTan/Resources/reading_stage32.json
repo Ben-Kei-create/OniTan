@@ -1,0 +1,320 @@
+{
+  "stage": 32,
+  "questions": [
+    {
+      "kanji": "烹炊",
+      "choices": [
+        "ほうすい",
+        "ぼうすい",
+        "きょうすい",
+        "ほうし"
+      ],
+      "answer": "ほうすい",
+      "explain": "例文: 連隊の烹炊所を預かる。\n正解の読み: ほうすい\n意味: 炊事をすること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "烹炊",
+        "sentenceContext": "連隊の烹炊所を預かる。"
+      }
+    },
+    {
+      "kanji": "芝蘭",
+      "choices": [
+        "しらん",
+        "ちらん",
+        "しばらん",
+        "ぜいらん"
+      ],
+      "answer": "しらん",
+      "explain": "例文: 芝蘭の室に入るが如し。\n正解の読み: しらん\n意味: すぐれた人のたとえ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "芝蘭",
+        "sentenceContext": "芝蘭の室に入るが如し。"
+      }
+    },
+    {
+      "kanji": "戊夜",
+      "choices": [
+        "ぼや",
+        "じゅつや",
+        "ごこう",
+        "ぼうや"
+      ],
+      "answer": "ぼや",
+      "explain": "例文: 戊夜に至り空も白み始める。\n正解の読み: ぼや\n意味: 夏の刻。午前四時頃。五更の一つ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "戊夜",
+        "sentenceContext": "戊夜に至り空も白み始める。"
+      }
+    },
+    {
+      "kanji": "斯界",
+      "choices": [
+        "しかい",
+        "せかい",
+        "しがい",
+        "しき"
+      ],
+      "answer": "しかい",
+      "explain": "例文: 斯界を代表する権威者だ。\n正解の読み: しかい\n意味: この分野。この方面。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "斯界",
+        "sentenceContext": "斯界を代表する権威者だ。"
+      }
+    },
+    {
+      "kanji": "病巣",
+      "choices": [
+        "びょうそう",
+        "びょうす",
+        "へいそう",
+        "びょうさく"
+      ],
+      "answer": "びょうそう",
+      "explain": "例文: 内臓の病巣を摘出する。\n正解の読み: びょうそう\n意味: 病んでいる箇所。患部。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "病巣",
+        "sentenceContext": "内臓の病巣を摘出する。"
+      }
+    },
+    {
+      "kanji": "口吻",
+      "choices": [
+        "こうふん",
+        "こうもん",
+        "くちふん",
+        "こうぶん"
+      ],
+      "answer": "こうふん",
+      "explain": "例文: 口吻も激しく言い争う。\n正解の読み: こうふん\n意味: 口ぶり。話し方。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "口吻",
+        "sentenceContext": "口吻も激しく言い争う。"
+      }
+    },
+    {
+      "kanji": "謬見",
+      "choices": [
+        "びゅうけん",
+        "りゅうけん",
+        "ぼうけん",
+        "びょうけん"
+      ],
+      "answer": "びゅうけん",
+      "explain": "例文: 世間の謬見を正す。\n正解の読み: びゅうけん\n意味: まちがった考えや見識。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "謬見",
+        "sentenceContext": "世間の謬見を正す。"
+      }
+    },
+    {
+      "kanji": "後胤",
+      "choices": [
+        "こういん",
+        "ごいん",
+        "こうえい",
+        "こうし"
+      ],
+      "answer": "こういん",
+      "explain": "例文: 皇族の後胤を自称する。\n正解の読み: こういん\n意味: 子孫。後裔。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "後胤",
+        "sentenceContext": "皇族の後胤を自称する。"
+      }
+    },
+    {
+      "kanji": "挽歌",
+      "choices": [
+        "ばんか",
+        "えいか",
+        "ばんが",
+        "めんか"
+      ],
+      "answer": "ばんか",
+      "explain": "例文: 野辺の送りに挽歌が響く。\n正解の読み: ばんか\n意味: 人の死を悼む歌。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "挽歌",
+        "sentenceContext": "野辺の送りに挽歌が響く。"
+      }
+    },
+    {
+      "kanji": "古諺",
+      "choices": [
+        "こげん",
+        "こごん",
+        "ふるげん",
+        "こけん"
+      ],
+      "answer": "こげん",
+      "explain": "例文: この地方に伝わる古諺だ。\n正解の読み: こげん\n意味: 昔からあることわざ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "古諺",
+        "sentenceContext": "この地方に伝わる古諺だ。"
+      }
+    },
+    {
+      "kanji": "乃父",
+      "choices": [
+        "だいふ",
+        "ないふ",
+        "のふ",
+        "だいぶ"
+      ],
+      "answer": "だいふ",
+      "explain": "例文: 乃父についてまいれ。\n正解の読み: だいふ\n意味: 父が子に対し自分をいう語。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "乃父",
+        "sentenceContext": "乃父についてまいれ。"
+      }
+    },
+    {
+      "kanji": "懸吊",
+      "choices": [
+        "けんちょう",
+        "けんつり",
+        "けんよう",
+        "かいちょう"
+      ],
+      "answer": "けんちょう",
+      "explain": "例文: 植木鉢を壁に懸吊する。\n正解の読み: けんちょう\n意味: 物をつるすこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "懸吊",
+        "sentenceContext": "植木鉢を壁に懸吊する。"
+      }
+    },
+    {
+      "kanji": "喧伝",
+      "choices": [
+        "けんでん",
+        "げんでん",
+        "かんでん",
+        "けんてん"
+      ],
+      "answer": "けんでん",
+      "explain": "例文: 世間に大いに喧伝する。\n正解の読み: けんでん\n意味: 広く知らせること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "喧伝",
+        "sentenceContext": "世間に大いに喧伝する。"
+      }
+    },
+    {
+      "kanji": "灘響",
+      "choices": [
+        "だんきょう",
+        "たんきょう",
+        "なだきょう",
+        "だんごう"
+      ],
+      "answer": "だんきょう",
+      "explain": "例文: 旅先の宿で灘響を聞く。\n正解の読み: だんきょう\n意味: 海の音。波音のひびき。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "灘響",
+        "sentenceContext": "旅先の宿で灘響を聞く。"
+      }
+    },
+    {
+      "kanji": "侃直",
+      "choices": [
+        "かんちょく",
+        "がんちょく",
+        "かんじき",
+        "けんちょく"
+      ],
+      "answer": "かんちょく",
+      "explain": "例文: 侃直な態度を貫く。\n正解の読み: かんちょく\n意味: 強く正しいこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "侃直",
+        "sentenceContext": "侃直な態度を貫く。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "stage": 30,
+  "questions": [
+    {
+      "kanji": "繭紬",
+      "choices": [
+        "けんちゅう",
+        "けんじゅう",
+        "まゆちゅう",
+        "さんちゅう"
+      ],
+      "answer": "けんちゅう",
+      "explain": "例文: 上質な繭紬を用いている。\n正解の読み: けんちゅう\n意味: 薄地の絹織物。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "繭紬",
+        "sentenceContext": "上質な繭紬を用いている。"
+      }
+    },
+    {
+      "kanji": "姪孫",
+      "choices": [
+        "てっそん",
+        "てつそん",
+        "ちっそん",
+        "めいそん"
+      ],
+      "answer": "てっそん",
+      "explain": "例文: 姪孫の結婚式に出席する。\n正解の読み: てっそん\n意味: 兄弟姉妹の孫。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "姪孫",
+        "sentenceContext": "姪孫の結婚式に出席する。"
+      }
+    },
+    {
+      "kanji": "孜孜",
+      "choices": [
+        "しし",
+        "じじ",
+        "しじ",
+        "ちち"
+      ],
+      "answer": "しし",
+      "explain": "例文: 孜孜として労働に励む。\n正解の読み: しし\n意味: 熱心に励むこと。せっせと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "孜孜",
+        "sentenceContext": "孜孜として労働に励む。"
+      }
+    },
+    {
+      "kanji": "優渥",
+      "choices": [
+        "ゆうあく",
+        "ゆうおく",
+        "ゆうわく",
+        "ゆうじゃく"
+      ],
+      "answer": "ゆうあく",
+      "explain": "例文: 優渥なる待遇に感謝する。\n正解の読み: ゆうあく\n意味: 手厚いこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "優渥",
+        "sentenceContext": "優渥なる待遇に感謝する。"
+      }
+    },
+    {
+      "kanji": "雫",
+      "choices": [
+        "しずく",
+        "したたり",
+        "しぶき",
+        "あめ"
+      ],
+      "answer": "しずく",
+      "explain": "例文: 雨が雫となり傘から滴る。\n正解の読み: しずく\n意味: 滴り落ちる粒状の液体。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "雫",
+        "sentenceContext": "雨が雫となり傘から滴る。"
+      }
+    },
+    {
+      "kanji": "椡",
+      "choices": [
+        "すぎ",
+        "かし",
+        "くぬぎ",
+        "まき"
+      ],
+      "answer": "すぎ",
+      "explain": "例文: 境内に椡の古木が立つ。\n正解の読み: すぎ\n意味: スギ科の常緑高木。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "椡",
+        "sentenceContext": "境内に椡の古木が立つ。"
+      }
+    },
+    {
+      "kanji": "栂",
+      "choices": [
+        "とが",
+        "もみ",
+        "ひのき",
+        "あすなろ"
+      ],
+      "answer": "とが",
+      "explain": "例文: 建具に栂の木材を使う。\n正解の読み: とが\n意味: マツ科の常緑高木。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "栂",
+        "sentenceContext": "建具に栂の木材を使う。"
+      }
+    },
+    {
+      "kanji": "擢んでた",
+      "choices": [
+        "ぬき",
+        "ひい",
+        "すぐ",
+        "たく"
+      ],
+      "answer": "ぬき",
+      "explain": "例文: 擢んでた記憶力を持つ。\n正解の読み: ぬき\n意味: 擢んでる。ひときわすぐれる。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "擢んでた",
+        "sentenceContext": "擢んでた記憶力を持つ。"
+      }
+    },
+    {
+      "kanji": "凪いで",
+      "choices": [
+        "なぎ",
+        "しけ",
+        "さざ",
+        "うね"
+      ],
+      "answer": "なぎ",
+      "explain": "例文: 海面は鏡の如く凪いでいる。\n正解の読み: なぎ\n意味: 凪ぐ。風や波が静まる。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "凪いで",
+        "sentenceContext": "海面は鏡の如く凪いでいる。"
+      }
+    },
+    {
+      "kanji": "矧ぐ",
+      "choices": [
+        "はぎ",
+        "つな",
+        "はめ",
+        "つぎ"
+      ],
+      "answer": "はぎ",
+      "explain": "例文: 合戦に備えて矢を矧ぐ。\n正解の読み: はぎ\n意味: 矧ぐ。羽をつけて矢にする。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "矧ぐ",
+        "sentenceContext": "合戦に備えて矢を矧ぐ。"
+      }
+    },
+    {
+      "kanji": "噺",
+      "choices": [
+        "はなし",
+        "ものがたり",
+        "はやし",
+        "うわさ"
+      ],
+      "answer": "はなし",
+      "explain": "例文: 短い噺で笑いを誘う。\n正解の読み: はなし\n意味: 人に聞かせる語り物。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "噺",
+        "sentenceContext": "短い噺で笑いを誘う。"
+      }
+    },
+    {
+      "kanji": "尤めず",
+      "choices": [
+        "とが",
+        "せめ",
+        "うらみ",
+        "そし"
+      ],
+      "answer": "とが",
+      "explain": "例文: 天を怨みず、人を尤めず。\n正解の読み: とが\n意味: 尤める。なじる。非難する。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "尤めず",
+        "sentenceContext": "天を怨みず、人を尤めず。"
+      }
+    },
+    {
+      "kanji": "掙めた",
+      "choices": [
+        "かす",
+        "かげ",
+        "よけ",
+        "かわ"
+      ],
+      "answer": "かす",
+      "explain": "例文: 自責の念が胸を掙めた。\n正解の読み: かす\n意味: 掙める（掠める）。よぎる。かする。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "掙めた",
+        "sentenceContext": "自責の念が胸を掙めた。"
+      }
+    },
+    {
+      "kanji": "迺ち",
+      "choices": [
+        "すなわ",
+        "いまだ",
+        "やがて",
+        "ようや"
+      ],
+      "answer": "すなわ",
+      "explain": "例文: 迺ち育ち迺ち繁る。\n正解の読み: すなわ\n意味: 迺ち。そこで。かえって。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "迺ち",
+        "sentenceContext": "迺ち育ち迺ち繁る。"
+      }
+    },
+    {
+      "kanji": "宛ら",
+      "choices": [
+        "さなが",
+        "ことごと",
+        "つぶさ",
+        "おしなべ"
+      ],
+      "answer": "さなが",
+      "explain": "例文: 宛ら夢のような体験だった。\n正解の読み: さなが\n意味: 宛ら。似ている。まるで。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "宛ら",
+        "sentenceContext": "宛ら夢のような体験だった。"
+      }
+    }
+  ]
+}

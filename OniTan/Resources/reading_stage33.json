@@ -1,0 +1,320 @@
+{
+  "stage": 33,
+  "questions": [
+    {
+      "kanji": "蓬髪",
+      "choices": [
+        "ほうはつ",
+        "とうはつ",
+        "らいはつ",
+        "ぼうはつ"
+      ],
+      "answer": "ほうはつ",
+      "explain": "例文: 蓬髪して仏に帰依した。\n正解の読み: ほうはつ\n意味: 髪をそのまま伸ばすこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蓬髪",
+        "sentenceContext": "蓬髪して仏に帰依した。"
+      }
+    },
+    {
+      "kanji": "赫怒",
+      "choices": [
+        "かくど",
+        "せきど",
+        "かくぬ",
+        "げきど"
+      ],
+      "answer": "かくど",
+      "explain": "例文: 髪が逆立つほど赫怒した。\n正解の読み: かくど\n意味: 激しい怒り。憤怒。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "赫怒",
+        "sentenceContext": "髪が逆立つほど赫怒した。"
+      }
+    },
+    {
+      "kanji": "都邑",
+      "choices": [
+        "とゆう",
+        "としゅう",
+        "つゆう",
+        "といく"
+      ],
+      "answer": "とゆう",
+      "explain": "例文: 街道一の都邑として栄えた。\n正解の読み: とゆう\n意味: みやこ。都会。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "都邑",
+        "sentenceContext": "街道一の都邑として栄えた。"
+      }
+    },
+    {
+      "kanji": "馨香",
+      "choices": [
+        "けいこう",
+        "きょうこう",
+        "けいか",
+        "きょうか"
+      ],
+      "answer": "けいこう",
+      "explain": "例文: 芳醇たる馨香に包まれる。\n正解の読み: けいこう\n意味: 良い香り。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "馨香",
+        "sentenceContext": "芳醇たる馨香に包まれる。"
+      }
+    },
+    {
+      "kanji": "魁",
+      "choices": [
+        "さきがけ",
+        "せんく",
+        "せんとう",
+        "まえがけ"
+      ],
+      "answer": "さきがけ",
+      "explain": "例文: 改革運動の魁となる。\n正解の読み: さきがけ\n意味: 全体の先頭に立つこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "魁",
+        "sentenceContext": "改革運動の魁となる。"
+      }
+    },
+    {
+      "kanji": "廓",
+      "choices": [
+        "くるわ",
+        "かく",
+        "くろわ",
+        "ろうかく"
+      ],
+      "answer": "くるわ",
+      "explain": "例文: 華やいだ廓の面影を残す。\n正解の読み: くるわ\n意味: 遊女屋。事業を行った場所。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "廓",
+        "sentenceContext": "華やいだ廓の面影を残す。"
+      }
+    },
+    {
+      "kanji": "誼",
+      "choices": [
+        "よしみ",
+        "えん",
+        "ぎり",
+        "ちかしみ"
+      ],
+      "answer": "よしみ",
+      "explain": "例文: 同郷の誼で仕事を請け負う。\n正解の読み: よしみ\n意味: 親しい間柄。縁故。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "誼",
+        "sentenceContext": "同郷の誼で仕事を請け負う。"
+      }
+    },
+    {
+      "kanji": "姑く",
+      "choices": [
+        "しばらく",
+        "こしばらく",
+        "しまらく",
+        "しょうらく"
+      ],
+      "answer": "しばらく",
+      "explain": "例文: その話は姑く措くとしよう。\n正解の読み: しばらく\n意味: 少しの間。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "姑",
+        "sentenceContext": "その話は姑く措くとしよう。"
+      }
+    },
+    {
+      "kanji": "甑",
+      "choices": [
+        "こしき",
+        "こうしき",
+        "ぞうき",
+        "せいき"
+      ],
+      "answer": "こしき",
+      "explain": "例文: 甑に坐するが如し。\n正解の読み: こしき\n意味: 古代の素焼きの蒸し器。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "甑",
+        "sentenceContext": "甑に坐するが如し。"
+      }
+    },
+    {
+      "kanji": "些か",
+      "choices": [
+        "いささか",
+        "いくらか",
+        "いくつか",
+        "わずらか"
+      ],
+      "answer": "いささか",
+      "explain": "例文: 些か納得し難い点がある。\n正解の読み: いささか\n意味: いくらか。少々。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "些",
+        "sentenceContext": "些か納得し難い点がある。"
+      }
+    },
+    {
+      "kanji": "坐ら",
+      "choices": [
+        "いながら",
+        "すわりながら",
+        "いざりながら",
+        "いたまま"
+      ],
+      "answer": "いながら",
+      "explain": "例文: 坐らにして富を築く。\n正解の読み: いながら\n意味: 座ったまま。労せず。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "坐",
+        "sentenceContext": "坐らにして富を築く。"
+      }
+    },
+    {
+      "kanji": "夙に",
+      "choices": [
+        "つとに",
+        "はやくに",
+        "つねに",
+        "すぐに"
+      ],
+      "answer": "つとに",
+      "explain": "例文: 夙に志を立て、常に励んだ。\n正解の読み: つとに\n意味: ずっと前から。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "夙",
+        "sentenceContext": "夙に志を立て、常に励んだ。"
+      }
+    },
+    {
+      "kanji": "箕",
+      "choices": [
+        "み",
+        "ふご",
+        "もっこ",
+        "こうり"
+      ],
+      "answer": "み",
+      "explain": "例文: 爪で拾って箕でこぼす。\n正解の読み: み\n意味: 穀類からもみを除く農具。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "箕",
+        "sentenceContext": "爪で拾って箕でこぼす。"
+      }
+    },
+    {
+      "kanji": "齲んで",
+      "choices": [
+        "むしばんで",
+        "むしくんで",
+        "しょくして",
+        "しんしょくして"
+      ],
+      "answer": "むしばんで",
+      "explain": "例文: 病魔が齲んでゆく。\n正解の読み: むしばんで\n意味: 少しずつ損なう。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "齲",
+        "sentenceContext": "病魔が齲んでゆく。"
+      }
+    },
+    {
+      "kanji": "頗る",
+      "choices": [
+        "すこぶる",
+        "いたって",
+        "はなはだ",
+        "ことごとく"
+      ],
+      "answer": "すこぶる",
+      "explain": "例文: 万事が頗る順調に進む。\n正解の読み: すこぶる\n意味: たいへん。非常に。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "頗",
+        "sentenceContext": "万事が頗る順調に進む。"
+      }
+    }
+  ]
+}

@@ -294,6 +294,27 @@
         "targetKanji": "権柄",
         "sentenceContext": "権柄を振るって部下を従える。"
       }
+    },
+    {
+      "kanji": "蒼穹",
+      "choices": [
+        "そうきゅう",
+        "さうきゅう",
+        "そうきゅ",
+        "そうく"
+      ],
+      "answer": "そうきゅう",
+      "explain": "例文: 蒼穹に向かって鷹が舞い上がっていった。\n正解の読み: そうきゅう\n意味: 大空",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蒼穹",
+        "sentenceContext": "蒼穹に向かって鷹が舞い上がっていった。"
+      }
     }
   ]
 }

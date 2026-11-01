@@ -1,0 +1,320 @@
+{
+  "stage": 34,
+  "questions": [
+    {
+      "kanji": "誣いた",
+      "choices": [
+        "あざむいた",
+        "あなどった",
+        "さげすんだ",
+        "なめった"
+      ],
+      "answer": "あざむいた",
+      "explain": "例文: 敵ばかりか味方をも誣いた。\n正解の読み: あざむいた\n意味: だます。欺く。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "誣",
+        "sentenceContext": "敵ばかりか味方をも誣いた。"
+      }
+    },
+    {
+      "kanji": "辿る",
+      "choices": [
+        "たどる",
+        "たぐる",
+        "めぐる",
+        "たずさえる"
+      ],
+      "answer": "たどる",
+      "explain": "例文: 渓谷を川沿いに辿る。\n正解の読み: たどる\n意味: 道筋に沿って進む。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "辿",
+        "sentenceContext": "渓谷を川沿いに辿る。"
+      }
+    },
+    {
+      "kanji": "鱈",
+      "choices": [
+        "たら",
+        "かれい",
+        "はも",
+        "さわら"
+      ],
+      "answer": "たら",
+      "explain": "例文: 鱈は鍋料理に適している。\n正解の読み: たら\n意味: 冬に旬の魚。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鱈",
+        "sentenceContext": "鱈は鍋料理に適している。"
+      }
+    },
+    {
+      "kanji": "忽ち",
+      "choices": [
+        "たちまち",
+        "たちまた",
+        "にわかに",
+        "ふいに"
+      ],
+      "answer": "たちまち",
+      "explain": "例文: 難問を忽ち解いてしまった。\n正解の読み: たちまち\n意味: あっという間。すぐ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "忽",
+        "sentenceContext": "難問を忽ち解いてしまった。"
+      }
+    },
+    {
+      "kanji": "之く",
+      "choices": [
+        "ゆく",
+        "いく",
+        "しく",
+        "よく"
+      ],
+      "answer": "ゆく",
+      "explain": "例文: 詩は志の之く所なり。\n正解の読み: ゆく\n意味: 進む。逝く。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "之",
+        "sentenceContext": "詩は志の之く所なり。"
+      }
+    },
+    {
+      "kanji": "俣",
+      "choices": [
+        "また",
+        "わた",
+        "ふた",
+        "えだまた"
+      ],
+      "answer": "また",
+      "explain": "例文: 道が二俣に分かれている。\n正解の読み: また\n意味: 幾つかに分かれること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俣",
+        "sentenceContext": "道が二俣に分かれている。"
+      }
+    },
+    {
+      "kanji": "櫓",
+      "choices": [
+        "やぐら",
+        "ろう",
+        "たかどの",
+        "ろうかく"
+      ],
+      "answer": "やぐら",
+      "explain": "例文: 火の見櫓から町を見渡す。\n正解の読み: やぐら\n意味: 高く組んだ台。高楼。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "櫓",
+        "sentenceContext": "火の見櫓から町を見渡す。"
+      }
+    },
+    {
+      "kanji": "乃公",
+      "choices": [
+        "だいこう",
+        "のうこう",
+        "たいこう",
+        "ないこう"
+      ],
+      "answer": "だいこう",
+      "explain": "例文: 乃公にお任せあれ。\n正解の読み: だいこう\n意味: 俺様。高官。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "乃公",
+        "sentenceContext": "乃公にお任せあれ。"
+      }
+    },
+    {
+      "kanji": "外甥",
+      "choices": [
+        "がいせい",
+        "がいしょう",
+        "がいてつ",
+        "げせい"
+      ],
+      "answer": "がいせい",
+      "explain": "例文: 外甥に財産を贈与する。\n正解の読み: がいせい\n意味: 妻の兄弟姉妹の息子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "外甥",
+        "sentenceContext": "外甥に財産を贈与する。"
+      }
+    },
+    {
+      "kanji": "鉄桶",
+      "choices": [
+        "てっとう",
+        "てつおけ",
+        "てっつう",
+        "てつかめ"
+      ],
+      "answer": "てっとう",
+      "explain": "例文: 鉄桶水を漏らさず。\n正解の読み: てっとう\n意味: 鉄の桶。防備が堅固なたとえ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鉄桶",
+        "sentenceContext": "鉄桶水を漏らさず。"
+      }
+    },
+    {
+      "kanji": "蟹行",
+      "choices": [
+        "かいこう",
+        "かいぎょう",
+        "がいこう",
+        "かいごう"
+      ],
+      "answer": "かいこう",
+      "explain": "例文: 欧文を蟹行文字という。\n正解の読み: かいこう\n意味: 横向きに歩くこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蟹行",
+        "sentenceContext": "欧文を蟹行文字という。"
+      }
+    },
+    {
+      "kanji": "鼎談",
+      "choices": [
+        "ていだん",
+        "かいだん",
+        "ていわ",
+        "さんだん"
+      ],
+      "answer": "ていだん",
+      "explain": "例文: 首脳級の鼎談が実現した。\n正解の読み: ていだん\n意味: 三人が向き合って話すこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鼎談",
+        "sentenceContext": "首脳級の鼎談が実現した。"
+      }
+    },
+    {
+      "kanji": "快哉",
+      "choices": [
+        "かいさい",
+        "かいざい",
+        "かっさい",
+        "かいせい"
+      ],
+      "answer": "かいさい",
+      "explain": "例文: 合格通知に快哉を叫ぶ。\n正解の読み: かいさい\n意味: 胸のすく、愉快なこと。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "快哉",
+        "sentenceContext": "合格通知に快哉を叫ぶ。"
+      }
+    },
+    {
+      "kanji": "鄭声",
+      "choices": [
+        "ていせい",
+        "でいせい",
+        "せいてい",
+        "ていしょう"
+      ],
+      "answer": "ていせい",
+      "explain": "例文: 不快な鄭声を慎み嫌う。\n正解の読み: ていせい\n意味: 下品でみだらな俗曲。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鄭声",
+        "sentenceContext": "不快な鄭声を慎み嫌う。"
+      }
+    },
+    {
+      "kanji": "蟬脱",
+      "choices": [
+        "せんだつ",
+        "ぜんだつ",
+        "せんねつ",
+        "せんとつ"
+      ],
+      "answer": "せんだつ",
+      "explain": "例文: 旧套を蟬脱して達観する。\n正解の読み: せんだつ\n意味: 古い枠組から脱却すること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蟬脱",
+        "sentenceContext": "旧套を蟬脱して達観する。"
+      }
+    }
+  ]
+}

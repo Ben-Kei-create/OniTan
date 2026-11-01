@@ -220,6 +220,111 @@
       ],
       "answer": "じょうじょう",
       "explain": "例文: 笛の音が嫋々と響く。\n正解の読み: じょうじょう\n意味: 細くしなやかなさま。音が長く響くさま\n出典: コトバンク https://kotobank.jp/word/%E5%AB%8B%E3%80%85-3137877"
+    },
+    {
+      "kanji": "熟慮",
+      "choices": [
+        "じゅくりょ",
+        "じゅくりょ",
+        "じゅりょ",
+        "じゅくよ"
+      ],
+      "answer": "じゅくりょ",
+      "explain": "例文: 熟慮の末に転職を決断した。\n正解の読み: じゅくりょ\n意味: 十分に考えること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "熟慮",
+        "sentenceContext": "熟慮の末に転職を決断した。"
+      }
+    },
+    {
+      "kanji": "敷衍",
+      "choices": [
+        "ふえん",
+        "ふえ",
+        "ふかん",
+        "ふはん"
+      ],
+      "answer": "ふえん",
+      "explain": "例文: 先生は例を挙げて概念を敷衍した。\n正解の読み: ふえん\n意味: 詳しく説明すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "敷衍",
+        "sentenceContext": "先生は例を挙げて概念を敷衍した。"
+      }
+    },
+    {
+      "kanji": "宸翰",
+      "choices": [
+        "じんかん",
+        "しんあん",
+        "しんかん",
+        "しんかく"
+      ],
+      "answer": "しんかん",
+      "explain": "例文: 宸翰が博物館に展示されていた。\n正解の読み: しんかん\n意味: 天子の直筆",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "宸翰",
+        "sentenceContext": "宸翰が博物館に展示されていた。"
+      }
+    },
+    {
+      "kanji": "醇正",
+      "choices": [
+        "じゅんせ",
+        "じゅんせい",
+        "じゅんしょう",
+        "じゅせい"
+      ],
+      "answer": "じゅんせい",
+      "explain": "例文: 醇正な日本酒の味わいを楽しんだ。\n正解の読み: じゅんせい\n意味: 純粋で正しいこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "醇正",
+        "sentenceContext": "醇正な日本酒の味わいを楽しんだ。"
+      }
+    },
+    {
+      "kanji": "渾渾",
+      "choices": [
+        "こんこん",
+        "こんこ",
+        "こんこん",
+        "ごんごん"
+      ],
+      "answer": "こんこん",
+      "explain": "例文: 泉から渾渾と清水が湧き出ていた。\n正解の読み: こんこん\n意味: 水が湧き出るさま",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "渾渾",
+        "sentenceContext": "泉から渾渾と清水が湧き出ていた。"
+      }
     }
   ]
 }

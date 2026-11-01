@@ -1,0 +1,320 @@
+{
+  "stage": 36,
+  "questions": [
+    {
+      "kanji": "一瞥",
+      "choices": [
+        "いちべつ",
+        "いちらん",
+        "いちどく",
+        "いちもく"
+      ],
+      "answer": "いちべつ",
+      "explain": "例文: ただの一瞥で理解した。\n正解の読み: いちべつ\n意味: ちらっと見ること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "一瞥",
+        "sentenceContext": "ただの一瞥で理解した。"
+      }
+    },
+    {
+      "kanji": "托鉢",
+      "choices": [
+        "たくはつ",
+        "たくし",
+        "たくぼう",
+        "とくはつ"
+      ],
+      "answer": "たくはつ",
+      "explain": "例文: 托鉢の僧が家々を回る。\n正解の読み: たくはつ\n意味: 僧が家々を回り食を受けること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "托鉢",
+        "sentenceContext": "托鉢の僧が家々を回る。"
+      }
+    },
+    {
+      "kanji": "霊廟",
+      "choices": [
+        "れいびょう",
+        "れいどう",
+        "れいしゃ",
+        "しれいびょう"
+      ],
+      "answer": "れいびょう",
+      "explain": "例文: 山腹に将軍家の霊廟がある。\n正解の読み: れいびょう\n意味: 先祖の霊を祭った所。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "霊廟",
+        "sentenceContext": "山腹に将軍家の霊廟がある。"
+      }
+    },
+    {
+      "kanji": "郁郁",
+      "choices": [
+        "いくいく",
+        "くんくん",
+        "いついつ",
+        "れきれき"
+      ],
+      "answer": "いくいく",
+      "explain": "例文: 郁郁たる梅の花を愛でる。\n正解の読み: いくいく\n意味: 香りの高い様子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "郁郁",
+        "sentenceContext": "郁郁たる梅の花を愛でる。"
+      }
+    },
+    {
+      "kanji": "碩徳",
+      "choices": [
+        "せきとく",
+        "こうとく",
+        "たいとく",
+        "せきだい"
+      ],
+      "answer": "せきとく",
+      "explain": "例文: 碩徳の住職の講話を聴く。\n正解の読み: せきとく\n意味: 徳の高い僧。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "碩徳",
+        "sentenceContext": "碩徳の住職の講話を聴く。"
+      }
+    },
+    {
+      "kanji": "坐に",
+      "choices": [
+        "たちまちに",
+        "ふいに",
+        "にわかに",
+        "いったんに"
+      ],
+      "answer": "たちまちに",
+      "explain": "例文: 坐に亡父のことを思い出す。\n正解の読み: たちまちに\n意味: 同時に。即座に。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "坐",
+        "sentenceContext": "坐に亡父のことを思い出す。"
+      }
+    },
+    {
+      "kanji": "歪",
+      "choices": [
+        "いびつ",
+        "ひずみ",
+        "いがた",
+        "いつわ"
+      ],
+      "answer": "いびつ",
+      "explain": "例文: 紙箱が潰れて歪になる。\n正解の読み: いびつ\n意味: 形が歪んだ様子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "歪",
+        "sentenceContext": "紙箱が潰れて歪になる。"
+      }
+    },
+    {
+      "kanji": "靱やか",
+      "choices": [
+        "しなやか",
+        "なよやか",
+        "なめらか",
+        "たわやか"
+      ],
+      "answer": "しなやか",
+      "explain": "例文: 靱やかな革の手触りがよし。\n正解の読み: しなやか\n意味: なめらかで柔軟。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "靱",
+        "sentenceContext": "靱やかな革の手触りがよし。"
+      }
+    },
+    {
+      "kanji": "鴇色",
+      "choices": [
+        "ときいろ",
+        "さくらいろ",
+        "べにいろ",
+        "すいいろ"
+      ],
+      "answer": "ときいろ",
+      "explain": "例文: 鴇色の和紙を選ぶ。\n正解の読み: ときいろ\n意味: トキの羽根のような淡紅色。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鴇色",
+        "sentenceContext": "鴇色の和紙を選ぶ。"
+      }
+    },
+    {
+      "kanji": "苫屋",
+      "choices": [
+        "とまや",
+        "くさや",
+        "わらや",
+        "ぼうおく"
+      ],
+      "answer": "とまや",
+      "explain": "例文: 畑の一隅に苫屋があった。\n正解の読み: とまや\n意味: 苫で屋根を葺いた粗末な家屋。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "苫屋",
+        "sentenceContext": "畑の一隅に苫屋があった。"
+      }
+    },
+    {
+      "kanji": "八重葎",
+      "choices": [
+        "やえむぐら",
+        "やえざくら",
+        "はいむぐら",
+        "つたかずら"
+      ],
+      "answer": "やえむぐら",
+      "explain": "例文: 庭は荒れ果てて八重葎が繁る。\n正解の読み: やえむぐら\n意味: 雑草が茂る様子。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "八重葎",
+        "sentenceContext": "庭は荒れ果てて八重葎が繁る。"
+      }
+    },
+    {
+      "kanji": "呆気",
+      "choices": [
+        "あっけ",
+        "あっき",
+        "こあっけ",
+        "ひょうき"
+      ],
+      "answer": "あっけ",
+      "explain": "例文: 作戦は呆気なく成功した。\n正解の読み: あっけ\n意味: 拍子抜けするほど簡単。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "呆気",
+        "sentenceContext": "作戦は呆気なく成功した。"
+      }
+    },
+    {
+      "kanji": "儘",
+      "choices": [
+        "まま",
+        "なり",
+        "ごとし",
+        "まにまに"
+      ],
+      "answer": "まま",
+      "explain": "例文: とかくこの世は儘ならぬ。\n正解の読み: まま\n意味: 思う通りにはならない。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "儘",
+        "sentenceContext": "とかくこの世は儘ならぬ。"
+      }
+    },
+    {
+      "kanji": "榊",
+      "choices": [
+        "さかき",
+        "ひさかき",
+        "つばき",
+        "まつ"
+      ],
+      "answer": "さかき",
+      "explain": "例文: 神前に榊を供えて祈る。\n正解の読み: さかき\n意味: 神事に用いる常緑樹。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "榊",
+        "sentenceContext": "神前に榊を供えて祈る。"
+      }
+    },
+    {
+      "kanji": "禦ぐ",
+      "choices": [
+        "ふせぐ",
+        "さえぎる",
+        "まもる",
+        "とどめる"
+      ],
+      "answer": "ふせぐ",
+      "explain": "例文: 堤防の決壊を禦ぐ。\n正解の読み: ふせぐ\n意味: 他からの攻撃を防ぐ。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "禦",
+        "sentenceContext": "堤防の決壊を禦ぐ。"
+      }
+    }
+  ]
+}

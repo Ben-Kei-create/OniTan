@@ -252,6 +252,69 @@
         "targetKanji": "宛",
         "sentenceContext": "宛も夢の中にいるような気分だ。"
       }
+    },
+    {
+      "kanji": "饗宴",
+      "choices": [
+        "きょうえん",
+        "きゅうえん",
+        "きょうえ",
+        "こうえん"
+      ],
+      "answer": "きょうえん",
+      "explain": "例文: 国王の誕生を祝う饗宴が宮殿で開かれた。\n正解の読み: きょうえん\n意味: 盛大な宴会",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "饗宴",
+        "sentenceContext": "国王の誕生を祝う饗宴が宮殿で開かれた。"
+      }
+    },
+    {
+      "kanji": "霹靂",
+      "choices": [
+        "べきれき",
+        "へきれき",
+        "へきれつ",
+        "ひきれき"
+      ],
+      "answer": "へきれき",
+      "explain": "例文: 彼の辞任は晴天の霹靂だった。\n正解の読み: へきれき\n意味: 雷・突然の出来事（青天の霹靂）",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "霹靂",
+        "sentenceContext": "彼の辞任は晴天の霹靂だった。"
+      }
+    },
+    {
+      "kanji": "碩学",
+      "choices": [
+        "じゃくがく",
+        "せきかく",
+        "せきがく",
+        "せきがっ"
+      ],
+      "answer": "せきがく",
+      "explain": "例文: 碩学の先生の薫陶を受けて育った。\n正解の読み: せきがく\n意味: 偉大な学者",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "碩学",
+        "sentenceContext": "碩学の先生の薫陶を受けて育った。"
+      }
     }
   ]
 }

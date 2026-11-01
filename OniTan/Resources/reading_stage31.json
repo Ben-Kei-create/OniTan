@@ -1,0 +1,320 @@
+{
+  "stage": 31,
+  "questions": [
+    {
+      "kanji": "咽ぶ",
+      "choices": [
+        "むせ",
+        "しの",
+        "うめ",
+        "さけ"
+      ],
+      "answer": "むせ",
+      "explain": "例文: 汽笛が咽ぶように鳴った。\n正解の読み: むせ\n意味: 咽ぶ。息を詰まらせて泣く。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "咽ぶ",
+        "sentenceContext": "汽笛が咽ぶように鳴った。"
+      }
+    },
+    {
+      "kanji": "呪い",
+      "choices": [
+        "まじな",
+        "のろ",
+        "たた",
+        "うらな"
+      ],
+      "answer": "まじな",
+      "explain": "例文: 厄除けのお呪いを唱える。\n正解の読み: まじな\n意味: 呪い。霊力に頼む術。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "呪い",
+        "sentenceContext": "厄除けのお呪いを唱える。"
+      }
+    },
+    {
+      "kanji": "遜って",
+      "choices": [
+        "へりくだ",
+        "ゆず",
+        "したが",
+        "つつし"
+      ],
+      "answer": "へりくだ",
+      "explain": "例文: お客様には遜って対応する。\n正解の読み: へりくだ\n意味: 遜る。自分を低くする。謙る。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "遜って",
+        "sentenceContext": "お客様には遜って対応する。"
+      }
+    },
+    {
+      "kanji": "蔑ろ",
+      "choices": [
+        "ないがし",
+        "さげす",
+        "あなど",
+        "いやし"
+      ],
+      "answer": "ないがし",
+      "explain": "例文: 親を蔑ろにしてはいけない。\n正解の読み: ないがし\n意味: 蔑ろ。軽んじること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蔑ろ",
+        "sentenceContext": "親を蔑ろにしてはいけない。"
+      }
+    },
+    {
+      "kanji": "賂い",
+      "choices": [
+        "まいな",
+        "おく",
+        "たまわ",
+        "こば"
+      ],
+      "answer": "まいな",
+      "explain": "例文: 賂いを贈って懐柔する。\n正解の読み: まいな\n意味: 賂い。不正な贈り物。賄賂。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "賂い",
+        "sentenceContext": "賂いを贈って懐柔する。"
+      }
+    },
+    {
+      "kanji": "阿る",
+      "choices": [
+        "おもね",
+        "へつら",
+        "こび",
+        "したが"
+      ],
+      "answer": "おもね",
+      "explain": "例文: 権力に阿るような発言。\n正解の読み: おもね\n意味: 阿る。へつらう。こびる。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "阿る",
+        "sentenceContext": "権力に阿るような発言。"
+      }
+    },
+    {
+      "kanji": "俄",
+      "choices": [
+        "にわか",
+        "たちまち",
+        "とみ",
+        "ふと"
+      ],
+      "answer": "にわか",
+      "explain": "例文: 俄普請の仮設住宅に住む。\n正解の読み: にわか\n意味: 急ごしらえの。一時的な。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "俄",
+        "sentenceContext": "俄普請の仮設住宅に住む。"
+      }
+    },
+    {
+      "kanji": "揖譲",
+      "choices": [
+        "ゆうじょう",
+        "いつじょう",
+        "きょうじょう",
+        "ゆずりあい"
+      ],
+      "answer": "ゆうじょう",
+      "explain": "例文: 中国古来の揖譲の礼をする。\n正解の読み: ゆうじょう\n意味: 相手を尊び謙ること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "揖譲",
+        "sentenceContext": "中国古来の揖譲の礼をする。"
+      }
+    },
+    {
+      "kanji": "壷中",
+      "choices": [
+        "こちゅう",
+        "つぼなか",
+        "こない",
+        "かちゅう"
+      ],
+      "answer": "こちゅう",
+      "explain": "例文: 一夜を壷中の天に遊ぶ。\n正解の読み: こちゅう\n意味: 壷中の天:別世界。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "壷中",
+        "sentenceContext": "一夜を壷中の天に遊ぶ。"
+      }
+    },
+    {
+      "kanji": "鶯遷",
+      "choices": [
+        "おうせん",
+        "えんせん",
+        "おうせき",
+        "ゆうせん"
+      ],
+      "answer": "おうせん",
+      "explain": "例文: 知人の鶯遷を祝賀する。\n正解の読み: おうせん\n意味: 昇進や転居を祝う語。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "鶯遷",
+        "sentenceContext": "知人の鶯遷を祝賀する。"
+      }
+    },
+    {
+      "kanji": "夙夜",
+      "choices": [
+        "しゅくや",
+        "しゅくよ",
+        "せきや",
+        "しゅうや"
+      ],
+      "answer": "しゅくや",
+      "explain": "例文: 夙夜努力を重ねている。\n正解の読み: しゅくや\n意味: 早朝から夜まで。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "夙夜",
+        "sentenceContext": "夙夜努力を重ねている。"
+      }
+    },
+    {
+      "kanji": "卜占",
+      "choices": [
+        "ぼくせん",
+        "とせん",
+        "ぼくぜん",
+        "うらせん"
+      ],
+      "answer": "ぼくせん",
+      "explain": "例文: 卜占にて吉凶を判断する。\n正解の読み: ぼくせん\n意味: 占い。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "卜占",
+        "sentenceContext": "卜占にて吉凶を判断する。"
+      }
+    },
+    {
+      "kanji": "戎馬",
+      "choices": [
+        "じゅうば",
+        "じゅうま",
+        "えびすば",
+        "じゅんば"
+      ],
+      "answer": "じゅうば",
+      "explain": "例文: 戎馬を殺して狐狸を求む。\n正解の読み: じゅうば\n意味: 戦に使う馬。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "戎馬",
+        "sentenceContext": "戎馬を殺して狐狸を求む。"
+      }
+    },
+    {
+      "kanji": "豊頬",
+      "choices": [
+        "ほうきょう",
+        "ほうほお",
+        "ふうきょう",
+        "ぶきょう"
+      ],
+      "answer": "ほうきょう",
+      "explain": "例文: 豊頬の天平美人であった。\n正解の読み: ほうきょう\n意味: ふっくらと肉付きのいい頬。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "豊頬",
+        "sentenceContext": "豊頬の天平美人であった。"
+      }
+    },
+    {
+      "kanji": "蒐集",
+      "choices": [
+        "しゅうしゅう",
+        "きゅうしゅう",
+        "しゅうじゅう",
+        "とうしゅう"
+      ],
+      "answer": "しゅうしゅう",
+      "explain": "例文: 著名な美術品の蒐集家だ。\n正解の読み: しゅうしゅう\n意味: 物を集めること。",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蒐集",
+        "sentenceContext": "著名な美術品の蒐集家だ。"
+      }
+    }
+  ]
+}

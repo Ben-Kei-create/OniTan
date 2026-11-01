@@ -220,6 +220,111 @@
       ],
       "answer": "もうろう",
       "explain": "例文: 眠気で意識が朦朧としてきた。\n正解の読み: もうろう\n意味: ぼんやりとはっきりしないこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006736900"
+    },
+    {
+      "kanji": "嗜虐",
+      "choices": [
+        "しぎゃく",
+        "しぐゃく",
+        "じぎゃく",
+        "しきゃく"
+      ],
+      "answer": "しぎゃく",
+      "explain": "例文: 嗜虐的な支配者が民を苦しめた。\n正解の読み: しぎゃく\n意味: 残酷なことを好むこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "嗜虐",
+        "sentenceContext": "嗜虐的な支配者が民を苦しめた。"
+      }
+    },
+    {
+      "kanji": "誦する",
+      "choices": [
+        "しょうする",
+        "しょうじる",
+        "しょする",
+        "そうする"
+      ],
+      "answer": "しょうする",
+      "explain": "例文: 般若心経を誦する声が響いた。\n正解の読み: しょうする\n意味: 声に出して唱えること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "誦する",
+        "sentenceContext": "般若心経を誦する声が響いた。"
+      }
+    },
+    {
+      "kanji": "謬論",
+      "choices": [
+        "みょうろん",
+        "りゅうろん",
+        "びゅろん",
+        "びゅうろん"
+      ],
+      "answer": "びゅうろん",
+      "explain": "例文: その謬論を看破するのに時間がかかった。\n正解の読み: びゅうろん\n意味: 間違った論",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "謬論",
+        "sentenceContext": "その謬論を看破するのに時間がかかった。"
+      }
+    },
+    {
+      "kanji": "凌遅",
+      "choices": [
+        "りょうじ",
+        "りょうち",
+        "りょうち",
+        "ろうち"
+      ],
+      "answer": "りょうち",
+      "explain": "例文: 歴史書に凌遅刑の記録があった。\n正解の読み: りょうち\n意味: ゆっくり切り刻む刑",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "凌遅",
+        "sentenceContext": "歴史書に凌遅刑の記録があった。"
+      }
+    },
+    {
+      "kanji": "溯源",
+      "choices": [
+        "そがん",
+        "さくげん",
+        "そこん",
+        "そげん"
+      ],
+      "answer": "そげん",
+      "explain": "例文: 文化の溯源を探る研究が盛んだ。\n正解の読み: そげん\n意味: 源をたどること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "溯源",
+        "sentenceContext": "文化の溯源を探る研究が盛んだ。"
+      }
     }
   ]
 }

@@ -220,6 +220,111 @@
       ],
       "answer": "てんが",
       "explain": "例文: 典雅な庭の造りに感心した。\n正解の読み: てんが\n意味: 整っていて上品なこと\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005050800"
+    },
+    {
+      "kanji": "薫陶",
+      "choices": [
+        "くんど",
+        "くんとう",
+        "きんとう",
+        "くうんとう"
+      ],
+      "answer": "くんとう",
+      "explain": "例文: 恩師の薫陶を受けた弟子が多い。\n正解の読み: くんとう\n意味: 徳で人を感化すること",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "薫陶",
+        "sentenceContext": "恩師の薫陶を受けた弟子が多い。"
+      }
+    },
+    {
+      "kanji": "屹立",
+      "choices": [
+        "きつりつ",
+        "きりつ",
+        "きつりつ",
+        "きたりつ"
+      ],
+      "answer": "きつりつ",
+      "explain": "例文: 断崖が海岸に屹立していた。\n正解の読み: きつりつ\n意味: 高くそびえ立つこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "屹立",
+        "sentenceContext": "断崖が海岸に屹立していた。"
+      }
+    },
+    {
+      "kanji": "嗟嘆",
+      "choices": [
+        "ざたん",
+        "さたん",
+        "さかん",
+        "さたか"
+      ],
+      "answer": "さたん",
+      "explain": "例文: 世の不条理に嗟嘆する声が聞こえた。\n正解の読み: さたん\n意味: 嘆き悲しむこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "嗟嘆",
+        "sentenceContext": "世の不条理に嗟嘆する声が聞こえた。"
+      }
+    },
+    {
+      "kanji": "蓮托",
+      "choices": [
+        "りんたく",
+        "れんたく",
+        "れんたつ",
+        "れんたく"
+      ],
+      "answer": "れんたく",
+      "explain": "例文: 一蓮托生の覚悟で挑む。\n正解の読み: れんたく\n意味: 運命を共にすること（一蓮托生）",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "蓮托",
+        "sentenceContext": "一蓮托生の覚悟で挑む。"
+      }
+    },
+    {
+      "kanji": "濯ぐ",
+      "choices": [
+        "すすぐ",
+        "なびく",
+        "にじむ",
+        "そそぐ"
+      ],
+      "answer": "すすぐ",
+      "explain": "例文: 清流で手を濯いで心が落ち着いた。\n正解の読み: すすぐ\n意味: 洗い流すこと",
+      "kind": "sentenceReading",
+      "tags": [
+        "例文読み"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "sentenceReading",
+        "targetKanji": "濯ぐ",
+        "sentenceContext": "清流で手を濯いで心が落ち着いた。"
+      }
     }
   ]
 }
