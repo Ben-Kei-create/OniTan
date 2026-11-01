@@ -230,6 +230,121 @@
       ],
       "answer": "凌駕",
       "explain": "意味: 他のものを超えて上に出ること\n正解: 凌駕（りょうが）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007161300"
+    },
+    {
+      "kanji": "勃興",
+      "prompt": "「ぼっこう」を漢字で書くと？",
+      "choices": [
+        "勃光",
+        "渤興",
+        "勃興",
+        "勁興"
+      ],
+      "answer": "勃興",
+      "explain": "意味: 急に盛んになること\n正解: 勃興（ぼっこう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ぼっこう",
+        "kanaPrompt": "ぼっこう",
+        "targetKanji": "勃興"
+      }
+    },
+    {
+      "kanji": "匍匐",
+      "prompt": "「ほふく」を漢字で書くと？",
+      "choices": [
+        "匍匐",
+        "葡匐",
+        "匍伏",
+        "匐匍"
+      ],
+      "answer": "匍匐",
+      "explain": "意味: 地面に腹ばいになって進むこと\n正解: 匍匐（ほふく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ほふく",
+        "kanaPrompt": "ほふく",
+        "targetKanji": "匍匐"
+      }
+    },
+    {
+      "kanji": "帰趨",
+      "prompt": "「きすう」を漢字で書くと？",
+      "choices": [
+        "帰数",
+        "帰趣",
+        "帰趨",
+        "帰枢"
+      ],
+      "answer": "帰趨",
+      "explain": "意味: 物事が最終的に落ち着く方向\n正解: 帰趨（きすう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きすう",
+        "kanaPrompt": "きすう",
+        "targetKanji": "帰趨"
+      }
+    },
+    {
+      "kanji": "廓清",
+      "prompt": "「かくせい」を漢字で書くと？",
+      "choices": [
+        "郭清",
+        "廊清",
+        "廓清",
+        "廓請"
+      ],
+      "answer": "廓清",
+      "explain": "意味: 悪を一掃して清めること\n正解: 廓清（かくせい）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かくせい",
+        "kanaPrompt": "かくせい",
+        "targetKanji": "廓清"
+      }
+    },
+    {
+      "kanji": "俊邁",
+      "prompt": "「しゅんまい」を漢字で書くと？",
+      "choices": [
+        "駿邁",
+        "俊邁",
+        "俊逡",
+        "峻邁"
+      ],
+      "answer": "俊邁",
+      "explain": "意味: 才知が人より優れていること\n正解: 俊邁（しゅんまい）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しゅんまい",
+        "kanaPrompt": "しゅんまい",
+        "targetKanji": "俊邁"
+      }
     }
   ]
 }

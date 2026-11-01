@@ -230,6 +230,121 @@
       ],
       "answer": "沈黙",
       "explain": "意味: 黙っていること\n正解: 沈黙（ちんもく）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004863000"
+    },
+    {
+      "kanji": "峻拒",
+      "prompt": "「しゅんきょ」を漢字で書くと？",
+      "choices": [
+        "俊拒",
+        "峻距",
+        "駿拒",
+        "峻拒"
+      ],
+      "answer": "峻拒",
+      "explain": "意味: きびしく断ること\n正解: 峻拒（しゅんきょ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しゅんきょ",
+        "kanaPrompt": "しゅんきょ",
+        "targetKanji": "峻拒"
+      }
+    },
+    {
+      "kanji": "嗟嘆",
+      "prompt": "「さたん」を漢字で書くと？",
+      "choices": [
+        "差嘆",
+        "嗟嘆",
+        "嗟歎",
+        "鎖嘆"
+      ],
+      "answer": "嗟嘆",
+      "explain": "意味: 嘆き悲しむこと\n正解: 嗟嘆（さたん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "さたん",
+        "kanaPrompt": "さたん",
+        "targetKanji": "嗟嘆"
+      }
+    },
+    {
+      "kanji": "婉然",
+      "prompt": "「えんぜん」を漢字で書くと？",
+      "choices": [
+        "婉然",
+        "宛然",
+        "媛然",
+        "苑然"
+      ],
+      "answer": "婉然",
+      "explain": "意味: しなやかで美しいさま\n正解: 婉然（えんぜん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "えんぜん",
+        "kanaPrompt": "えんぜん",
+        "targetKanji": "婉然"
+      }
+    },
+    {
+      "kanji": "驥足",
+      "prompt": "「きそく」を漢字で書くと？",
+      "choices": [
+        "騏足",
+        "騎足",
+        "驥促",
+        "驥足"
+      ],
+      "answer": "驥足",
+      "explain": "意味: 非常に優れた才能\n正解: 驥足（きそく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きそく",
+        "kanaPrompt": "きそく",
+        "targetKanji": "驥足"
+      }
+    },
+    {
+      "kanji": "愁嘆",
+      "prompt": "「しゅうたん」を漢字で書くと？",
+      "choices": [
+        "愁嘆",
+        "愁歎",
+        "収嘆",
+        "愁炭"
+      ],
+      "answer": "愁嘆",
+      "explain": "意味: 嘆き悲しむこと\n正解: 愁嘆（しゅうたん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しゅうたん",
+        "kanaPrompt": "しゅうたん",
+        "targetKanji": "愁嘆"
+      }
     }
   ]
 }

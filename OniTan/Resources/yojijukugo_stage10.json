@@ -230,6 +230,121 @@
       ],
       "answer": "心",
       "explain": "意味: 先入観を持たず素直な心で臨むこと\n正解: 虚心坦懐（きょしんたんかい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001438600"
+    },
+    {
+      "kanji": "泰山鳴動",
+      "prompt": "泰□鳴動",
+      "choices": [
+        "散",
+        "山",
+        "三",
+        "参"
+      ],
+      "answer": "山",
+      "explain": "意味: 大騒ぎしたわりに結果は小さいこと\n正解: 泰山鳴動（たいさんめいどう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "泰□鳴動",
+        "missingIndex": 1,
+        "meaning": "大騒ぎしたわりに結果は小さいこと"
+      }
+    },
+    {
+      "kanji": "百折不撓",
+      "prompt": "百□不撓",
+      "choices": [
+        "接",
+        "摂",
+        "節",
+        "折"
+      ],
+      "answer": "折",
+      "explain": "意味: 何度失敗しても挫けない強い意志\n正解: 百折不撓（ひゃくせつふとう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "百□不撓",
+        "missingIndex": 1,
+        "meaning": "何度失敗しても挫けない強い意志"
+      }
+    },
+    {
+      "kanji": "肝胆相照",
+      "prompt": "□胆相照",
+      "choices": [
+        "肝",
+        "桿",
+        "旱",
+        "竿"
+      ],
+      "answer": "肝",
+      "explain": "意味: 心から打ち解けて親しく交わること\n正解: 肝胆相照（かんたんそうしょう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□胆相照",
+        "missingIndex": 0,
+        "meaning": "心から打ち解けて親しく交わること"
+      }
+    },
+    {
+      "kanji": "開物成務",
+      "prompt": "開物□務",
+      "choices": [
+        "盛",
+        "城",
+        "成",
+        "誠"
+      ],
+      "answer": "成",
+      "explain": "意味: 物事の道理を究め事業を成し遂げること\n正解: 開物成務（かいぶつせいむ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "開物□務",
+        "missingIndex": 2,
+        "meaning": "物事の道理を究め事業を成し遂げること"
+      }
+    },
+    {
+      "kanji": "博施済衆",
+      "prompt": "博□済衆",
+      "choices": [
+        "施",
+        "施",
+        "旋",
+        "斉"
+      ],
+      "answer": "施",
+      "explain": "意味: 広く民に恵みを施し人々を救うこと\n正解: 博施済衆（はくしさいしゅう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "博□済衆",
+        "missingIndex": 1,
+        "meaning": "広く民に恵みを施し人々を救うこと"
+      }
     }
   ]
 }

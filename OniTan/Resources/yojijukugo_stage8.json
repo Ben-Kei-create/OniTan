@@ -230,6 +230,121 @@
       ],
       "answer": "夢",
       "explain": "意味: 我を忘れるほど何かに熱中すること\n正解: 無我夢中（むがむちゅう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006640500"
+    },
+    {
+      "kanji": "完全無欠",
+      "prompt": "完全無□",
+      "choices": [
+        "決",
+        "血",
+        "傑",
+        "欠"
+      ],
+      "answer": "欠",
+      "explain": "意味: 全く欠点がないこと\n正解: 完全無欠（かんぜんむけつ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "完全無□",
+        "missingIndex": 3,
+        "meaning": "全く欠点がないこと"
+      }
+    },
+    {
+      "kanji": "多情多感",
+      "prompt": "多情多□",
+      "choices": [
+        "感",
+        "観",
+        "閑",
+        "勘"
+      ],
+      "answer": "感",
+      "explain": "意味: 感じやすく情の細やかなこと\n正解: 多情多感（たじょうたかん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "多情多□",
+        "missingIndex": 3,
+        "meaning": "感じやすく情の細やかなこと"
+      }
+    },
+    {
+      "kanji": "驚天動地",
+      "prompt": "□天動地",
+      "choices": [
+        "矯",
+        "驚",
+        "凝",
+        "強"
+      ],
+      "answer": "驚",
+      "explain": "意味: 世間を大いに驚かせること\n正解: 驚天動地（きょうてんどうち）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□天動地",
+        "missingIndex": 0,
+        "meaning": "世間を大いに驚かせること"
+      }
+    },
+    {
+      "kanji": "悪逆無道",
+      "prompt": "悪逆無□",
+      "choices": [
+        "道",
+        "動",
+        "洞",
+        "胴"
+      ],
+      "answer": "道",
+      "explain": "意味: 人の道に外れた非常に悪いふるまい\n正解: 悪逆無道（あくぎゃくむどう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "悪逆無□",
+        "missingIndex": 3,
+        "meaning": "人の道に外れた非常に悪いふるまい"
+      }
+    },
+    {
+      "kanji": "以毒制毒",
+      "prompt": "以□制毒",
+      "choices": [
+        "読",
+        "独",
+        "督",
+        "毒"
+      ],
+      "answer": "毒",
+      "explain": "意味: 悪を使って悪を制すること\n正解: 以毒制毒（いどくせいどく）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "以□制毒",
+        "missingIndex": 1,
+        "meaning": "悪を使って悪を制すること"
+      }
     }
   ]
 }

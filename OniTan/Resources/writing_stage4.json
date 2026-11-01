@@ -230,6 +230,121 @@
       ],
       "answer": "遵守",
       "explain": "意味: 規則や法律に従って守ること\n正解: 遵守（じゅんしゅ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003271100"
+    },
+    {
+      "kanji": "慙愧",
+      "prompt": "「ざんき」を漢字で書くと？",
+      "choices": [
+        "慙鬼",
+        "慙愧",
+        "惭愧",
+        "懺愧"
+      ],
+      "answer": "慙愧",
+      "explain": "意味: 自分の行為を恥じること\n正解: 慙愧（ざんき）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ざんき",
+        "kanaPrompt": "ざんき",
+        "targetKanji": "慙愧"
+      }
+    },
+    {
+      "kanji": "喧噪",
+      "prompt": "「けんそう」を漢字で書くと？",
+      "choices": [
+        "暄噪",
+        "喧燥",
+        "喧操",
+        "喧噪"
+      ],
+      "answer": "喧噪",
+      "explain": "意味: やかましくさわがしいこと\n正解: 喧噪（けんそう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "けんそう",
+        "kanaPrompt": "けんそう",
+        "targetKanji": "喧噪"
+      }
+    },
+    {
+      "kanji": "叱咤",
+      "prompt": "「しった」を漢字で書くと？",
+      "choices": [
+        "嗔咤",
+        "叱咤",
+        "吒咤",
+        "叱陀"
+      ],
+      "answer": "叱咤",
+      "explain": "意味: 大声で叱りつけること\n正解: 叱咤（しった）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しった",
+        "kanaPrompt": "しった",
+        "targetKanji": "叱咤"
+      }
+    },
+    {
+      "kanji": "懐柔",
+      "prompt": "「かいじゅう」を漢字で書くと？",
+      "choices": [
+        "懐揉",
+        "壊柔",
+        "懐揮",
+        "懐柔"
+      ],
+      "answer": "懐柔",
+      "explain": "意味: うまく手なずけること\n正解: 懐柔（かいじゅう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かいじゅう",
+        "kanaPrompt": "かいじゅう",
+        "targetKanji": "懐柔"
+      }
+    },
+    {
+      "kanji": "蒐集",
+      "prompt": "「しゅうしゅう」を漢字で書くと？",
+      "choices": [
+        "蒐集",
+        "蒐収",
+        "募集",
+        "蒐輯"
+      ],
+      "answer": "蒐集",
+      "explain": "意味: 集めること・コレクション\n正解: 蒐集（しゅうしゅう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しゅうしゅう",
+        "kanaPrompt": "しゅうしゅう",
+        "targetKanji": "蒐集"
+      }
     }
   ]
 }

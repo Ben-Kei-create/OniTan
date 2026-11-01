@@ -230,6 +230,121 @@
       ],
       "answer": "魅了",
       "explain": "意味: 人の心を強く引きつけること\n正解: 魅了（みりょう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006602600"
+    },
+    {
+      "kanji": "辣腕",
+      "prompt": "「らつわん」を漢字で書くと？",
+      "choices": [
+        "束腕",
+        "辛腕",
+        "剌腕",
+        "辣腕"
+      ],
+      "answer": "辣腕",
+      "explain": "意味: 物事を鮮やかに処理する能力\n正解: 辣腕（らつわん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "らつわん",
+        "kanaPrompt": "らつわん",
+        "targetKanji": "辣腕"
+      }
+    },
+    {
+      "kanji": "捏造",
+      "prompt": "「ねつぞう」を漢字で書くと？",
+      "choices": [
+        "捏像",
+        "揑造",
+        "捏造",
+        "泥造"
+      ],
+      "answer": "捏造",
+      "explain": "意味: 事実でないことを作りあげること\n正解: 捏造（ねつぞう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ねつぞう",
+        "kanaPrompt": "ねつぞう",
+        "targetKanji": "捏造"
+      }
+    },
+    {
+      "kanji": "鬼哭",
+      "prompt": "「きこく」を漢字で書くと？",
+      "choices": [
+        "規哭",
+        "鬼壊",
+        "鬼哭",
+        "鬼告"
+      ],
+      "answer": "鬼哭",
+      "explain": "意味: 非業の死を遂げた霊が泣き叫ぶこと\n正解: 鬼哭（きこく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "きこく",
+        "kanaPrompt": "きこく",
+        "targetKanji": "鬼哭"
+      }
+    },
+    {
+      "kanji": "翡翠",
+      "prompt": "「ひすい」を漢字で書くと？",
+      "choices": [
+        "翡碧",
+        "翠翡",
+        "翡翠",
+        "碧翡"
+      ],
+      "answer": "翡翠",
+      "explain": "意味: 緑色の宝石・カワセミ\n正解: 翡翠（ひすい）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ひすい",
+        "kanaPrompt": "ひすい",
+        "targetKanji": "翡翠"
+      }
+    },
+    {
+      "kanji": "謫居",
+      "prompt": "「たっきょ」を漢字で書くと？",
+      "choices": [
+        "謫拠",
+        "謫居",
+        "謫去",
+        "諤居"
+      ],
+      "answer": "謫居",
+      "explain": "意味: 罪により流された地に住むこと\n正解: 謫居（たっきょ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "たっきょ",
+        "kanaPrompt": "たっきょ",
+        "targetKanji": "謫居"
+      }
     }
   ]
 }

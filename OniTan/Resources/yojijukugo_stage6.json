@@ -230,6 +230,121 @@
       ],
       "answer": "適",
       "explain": "意味: 能力にふさわしい仕事や地位に人を配置すること\n正解: 適材適所（てきざいてきしょ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005007000"
+    },
+    {
+      "kanji": "苦心惨憺",
+      "prompt": "苦心□憺",
+      "choices": [
+        "惨",
+        "参",
+        "産",
+        "酸"
+      ],
+      "answer": "惨",
+      "explain": "意味: 非常に苦労して悩み思案すること\n正解: 苦心惨憺（くしんさんたん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "苦心□憺",
+        "missingIndex": 2,
+        "meaning": "非常に苦労して悩み思案すること"
+      }
+    },
+    {
+      "kanji": "清廉潔白",
+      "prompt": "□廉潔白",
+      "choices": [
+        "聖",
+        "清",
+        "静",
+        "精"
+      ],
+      "answer": "清",
+      "explain": "意味: 心が清く正直で私利私欲がないこと\n正解: 清廉潔白（せいれんけっぱく）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□廉潔白",
+        "missingIndex": 0,
+        "meaning": "心が清く正直で私利私欲がないこと"
+      }
+    },
+    {
+      "kanji": "唯唯諾諾",
+      "prompt": "□唯諾諾",
+      "choices": [
+        "唯",
+        "維",
+        "遺",
+        "惟"
+      ],
+      "answer": "唯",
+      "explain": "意味: 他人の言いなりになること\n正解: 唯唯諾諾（いいだくだく）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□唯諾諾",
+        "missingIndex": 0,
+        "meaning": "他人の言いなりになること"
+      }
+    },
+    {
+      "kanji": "刮目相待",
+      "prompt": "□目相待",
+      "choices": [
+        "活",
+        "括",
+        "滑",
+        "刮"
+      ],
+      "answer": "刮",
+      "explain": "意味: 他人の成長に注目して期待すること\n正解: 刮目相待（かつもくそうたい）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□目相待",
+        "missingIndex": 0,
+        "meaning": "他人の成長に注目して期待すること"
+      }
+    },
+    {
+      "kanji": "意気衝天",
+      "prompt": "意気□天",
+      "choices": [
+        "証",
+        "衝",
+        "昇",
+        "誠"
+      ],
+      "answer": "衝",
+      "explain": "意味: 意気込みが非常に盛んなさま\n正解: 意気衝天（いきしょうてん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "意気□天",
+        "missingIndex": 2,
+        "meaning": "意気込みが非常に盛んなさま"
+      }
     }
   ]
 }

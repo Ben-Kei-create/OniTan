@@ -230,6 +230,121 @@
       ],
       "answer": "恣意",
       "explain": "意味: 気ままで自分勝手な考え\n正解: 恣意（しい）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002779100"
+    },
+    {
+      "kanji": "淪落",
+      "prompt": "「りんらく」を漢字で書くと？",
+      "choices": [
+        "論落",
+        "淪落",
+        "淪絡",
+        "輪落"
+      ],
+      "answer": "淪落",
+      "explain": "意味: 落ちぶれること\n正解: 淪落（りんらく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "りんらく",
+        "kanaPrompt": "りんらく",
+        "targetKanji": "淪落"
+      }
+    },
+    {
+      "kanji": "懺悔",
+      "prompt": "「ざんげ」を漢字で書くと？",
+      "choices": [
+        "懺悔",
+        "讒悔",
+        "懺晦",
+        "戦悔"
+      ],
+      "answer": "懺悔",
+      "explain": "意味: 過ちを神・仏・人に告白して許しを請うこと\n正解: 懺悔（ざんげ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ざんげ",
+        "kanaPrompt": "ざんげ",
+        "targetKanji": "懺悔"
+      }
+    },
+    {
+      "kanji": "蟠踞",
+      "prompt": "「ばんきょ」を漢字で書くと？",
+      "choices": [
+        "蟠虚",
+        "盤踞",
+        "蟠踞",
+        "磐踞"
+      ],
+      "answer": "蟠踞",
+      "explain": "意味: 一定の地に勢力を張って居座ること\n正解: 蟠踞（ばんきょ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ばんきょ",
+        "kanaPrompt": "ばんきょ",
+        "targetKanji": "蟠踞"
+      }
+    },
+    {
+      "kanji": "倥傯",
+      "prompt": "「こうそう」を漢字で書くと？",
+      "choices": [
+        "控傯",
+        "空傯",
+        "倥偬",
+        "倥傯"
+      ],
+      "answer": "倥傯",
+      "explain": "意味: 忙しくて落ち着かないさま\n正解: 倥傯（こうそう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "こうそう",
+        "kanaPrompt": "こうそう",
+        "targetKanji": "倥傯"
+      }
+    },
+    {
+      "kanji": "蒲柳",
+      "prompt": "「ほりゅう」を漢字で書くと？",
+      "choices": [
+        "浦柳",
+        "蒲柳",
+        "蒲柳",
+        "蒲留"
+      ],
+      "answer": "蒲柳",
+      "explain": "意味: 体が弱くて病気がちなこと（蒲柳の質）\n正解: 蒲柳（ほりゅう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ほりゅう",
+        "kanaPrompt": "ほりゅう",
+        "targetKanji": "蒲柳"
+      }
     }
   ]
 }

@@ -230,6 +230,121 @@
       ],
       "answer": "漸進",
       "explain": "意味: 少しずつ順を追って進むこと\n正解: 漸進（ぜんしん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004149500"
+    },
+    {
+      "kanji": "剽窃",
+      "prompt": "「ひょうせつ」を漢字で書くと？",
+      "choices": [
+        "豹窃",
+        "剽節",
+        "剽稔",
+        "剽窃"
+      ],
+      "answer": "剽窃",
+      "explain": "意味: 他人の著作を盗むこと\n正解: 剽窃（ひょうせつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ひょうせつ",
+        "kanaPrompt": "ひょうせつ",
+        "targetKanji": "剽窃"
+      }
+    },
+    {
+      "kanji": "呵責",
+      "prompt": "「かしゃく」を漢字で書くと？",
+      "choices": [
+        "訶責",
+        "苛責",
+        "呵責",
+        "河責"
+      ],
+      "answer": "呵責",
+      "explain": "意味: 苦しめ責めること・良心のとがめ\n正解: 呵責（かしゃく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かしゃく",
+        "kanaPrompt": "かしゃく",
+        "targetKanji": "呵責"
+      }
+    },
+    {
+      "kanji": "鬱蒼",
+      "prompt": "「うっそう」を漢字で書くと？",
+      "choices": [
+        "鬱倉",
+        "鬱蒼",
+        "鬱蒼",
+        "欝蒼"
+      ],
+      "answer": "鬱蒼",
+      "explain": "意味: 草木が生い茂って薄暗いさま\n正解: 鬱蒼（うっそう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "うっそう",
+        "kanaPrompt": "うっそう",
+        "targetKanji": "鬱蒼"
+      }
+    },
+    {
+      "kanji": "嗜虐",
+      "prompt": "「しぎゃく」を漢字で書くと？",
+      "choices": [
+        "暗虐",
+        "嗜愕",
+        "嗜謔",
+        "嗜虐"
+      ],
+      "answer": "嗜虐",
+      "explain": "意味: 残虐なことを好むこと\n正解: 嗜虐（しぎゃく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しぎゃく",
+        "kanaPrompt": "しぎゃく",
+        "targetKanji": "嗜虐"
+      }
+    },
+    {
+      "kanji": "隘路",
+      "prompt": "「あいろ」を漢字で書くと？",
+      "choices": [
+        "隣路",
+        "隘路",
+        "陰路",
+        "隘略"
+      ],
+      "answer": "隘路",
+      "explain": "意味: 狭くて通りにくい道・困難な状況\n正解: 隘路（あいろ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "あいろ",
+        "kanaPrompt": "あいろ",
+        "targetKanji": "隘路"
+      }
     }
   ]
 }

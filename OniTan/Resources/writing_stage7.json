@@ -230,6 +230,121 @@
       ],
       "answer": "卑屈",
       "explain": "意味: 必要以上にへりくだること\n正解: 卑屈（ひくつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005814000"
+    },
+    {
+      "kanji": "逼塞",
+      "prompt": "「ひっそく」を漢字で書くと？",
+      "choices": [
+        "逼束",
+        "逼塞",
+        "逼索",
+        "逼速"
+      ],
+      "answer": "逼塞",
+      "explain": "意味: 行き詰まって閉塞すること\n正解: 逼塞（ひっそく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ひっそく",
+        "kanaPrompt": "ひっそく",
+        "targetKanji": "逼塞"
+      }
+    },
+    {
+      "kanji": "澹泊",
+      "prompt": "「たんぱく」を漢字で書くと？",
+      "choices": [
+        "淡泊",
+        "澹迫",
+        "澹泊",
+        "澹白"
+      ],
+      "answer": "澹泊",
+      "explain": "意味: 欲がなくさっぱりしていること\n正解: 澹泊（たんぱく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "たんぱく",
+        "kanaPrompt": "たんぱく",
+        "targetKanji": "澹泊"
+      }
+    },
+    {
+      "kanji": "蛮勇",
+      "prompt": "「ばんゆう」を漢字で書くと？",
+      "choices": [
+        "蛮勇",
+        "万勇",
+        "挽勇",
+        "番勇"
+      ],
+      "answer": "蛮勇",
+      "explain": "意味: 深く考えない向こう見ずな勇気\n正解: 蛮勇（ばんゆう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ばんゆう",
+        "kanaPrompt": "ばんゆう",
+        "targetKanji": "蛮勇"
+      }
+    },
+    {
+      "kanji": "跳梁",
+      "prompt": "「ちょうりょう」を漢字で書くと？",
+      "choices": [
+        "兆梁",
+        "跳良",
+        "眺梁",
+        "跳梁"
+      ],
+      "answer": "跳梁",
+      "explain": "意味: 悪者が自由に振る舞うこと\n正解: 跳梁（ちょうりょう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ちょうりょう",
+        "kanaPrompt": "ちょうりょう",
+        "targetKanji": "跳梁"
+      }
+    },
+    {
+      "kanji": "闊歩",
+      "prompt": "「かっぽ」を漢字で書くと？",
+      "choices": [
+        "割歩",
+        "闊歩",
+        "活歩",
+        "豁歩"
+      ],
+      "answer": "闊歩",
+      "explain": "意味: 大またでいばって歩くこと\n正解: 闊歩（かっぽ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かっぽ",
+        "kanaPrompt": "かっぽ",
+        "targetKanji": "闊歩"
+      }
     }
   ]
 }

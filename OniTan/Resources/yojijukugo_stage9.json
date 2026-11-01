@@ -230,6 +230,121 @@
       ],
       "answer": "尾",
       "explain": "意味: 初めは勢いがよいが終わりは振るわないこと\n正解: 竜頭蛇尾（りゅうとうだび）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0007132100"
+    },
+    {
+      "kanji": "自由奔放",
+      "prompt": "自由□放",
+      "choices": [
+        "噴",
+        "賁",
+        "奔",
+        "奮"
+      ],
+      "answer": "奔",
+      "explain": "意味: 何ものにも縛られず自由に振る舞うさま\n正解: 自由奔放（じゆうほんぽう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "自由□放",
+        "missingIndex": 2,
+        "meaning": "何ものにも縛られず自由に振る舞うさま"
+      }
+    },
+    {
+      "kanji": "十人十色",
+      "prompt": "十□十色",
+      "choices": [
+        "刃",
+        "人",
+        "忍",
+        "仁"
+      ],
+      "answer": "人",
+      "explain": "意味: 人の好みや考えは様々であること\n正解: 十人十色（じゅうにんといろ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "十□十色",
+        "missingIndex": 1,
+        "meaning": "人の好みや考えは様々であること"
+      }
+    },
+    {
+      "kanji": "春風駘蕩",
+      "prompt": "春風□蕩",
+      "choices": [
+        "胎",
+        "怠",
+        "駘",
+        "台"
+      ],
+      "answer": "駘",
+      "explain": "意味: のどかで穏やかなさま\n正解: 春風駘蕩（しゅんぷうたいとう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "春風□蕩",
+        "missingIndex": 2,
+        "meaning": "のどかで穏やかなさま"
+      }
+    },
+    {
+      "kanji": "一片丹心",
+      "prompt": "一片□心",
+      "choices": [
+        "単",
+        "旦",
+        "丹",
+        "但"
+      ],
+      "answer": "丹",
+      "explain": "意味: 一途で誠実な心\n正解: 一片丹心（いっぺんたんしん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一片□心",
+        "missingIndex": 2,
+        "meaning": "一途で誠実な心"
+      }
+    },
+    {
+      "kanji": "絶体絶命",
+      "prompt": "□体絶命",
+      "choices": [
+        "絵",
+        "絶",
+        "絡",
+        "続"
+      ],
+      "answer": "絶",
+      "explain": "意味: 逃げ場のない苦境にあること\n正解: 絶体絶命（ぜったいぜつめい）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□体絶命",
+        "missingIndex": 0,
+        "meaning": "逃げ場のない苦境にあること"
+      }
     }
   ]
 }

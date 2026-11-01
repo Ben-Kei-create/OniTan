@@ -230,6 +230,121 @@
       ],
       "answer": "交",
       "explain": "意味: 優れたものと劣ったものが入り交じっていること\n正解: 玉石混交（ぎょくせきこんこう）\n出典: コトバンク https://kotobank.jp/word/%E7%8E%89%E7%9F%B3%E6%B7%B7%E6%B7%86-479413"
+    },
+    {
+      "kanji": "誇大妄想",
+      "prompt": "誇大□想",
+      "choices": [
+        "盲",
+        "妄",
+        "忘",
+        "望"
+      ],
+      "answer": "妄",
+      "explain": "意味: 自分の実力を実際より大きく思い込むこと\n正解: 誇大妄想（こだいもうそう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "誇大□想",
+        "missingIndex": 2,
+        "meaning": "自分の実力を実際より大きく思い込むこと"
+      }
+    },
+    {
+      "kanji": "波瀾万丈",
+      "prompt": "□瀾万丈",
+      "choices": [
+        "披",
+        "彼",
+        "波",
+        "皮"
+      ],
+      "answer": "波",
+      "explain": "意味: 変化が激しく起伏に富むさま\n正解: 波瀾万丈（はらんばんじょう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□瀾万丈",
+        "missingIndex": 0,
+        "meaning": "変化が激しく起伏に富むさま"
+      }
+    },
+    {
+      "kanji": "悠悠自適",
+      "prompt": "悠悠自□",
+      "choices": [
+        "適",
+        "摘",
+        "敵",
+        "滴"
+      ],
+      "answer": "適",
+      "explain": "意味: のびのびと心の向くままに楽しむこと\n正解: 悠悠自適（ゆうゆうじてき）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "悠悠自□",
+        "missingIndex": 3,
+        "meaning": "のびのびと心の向くままに楽しむこと"
+      }
+    },
+    {
+      "kanji": "外柔内剛",
+      "prompt": "外柔内□",
+      "choices": [
+        "鋼",
+        "豪",
+        "強",
+        "剛"
+      ],
+      "answer": "剛",
+      "explain": "意味: 外見は柔和だが内面は意志が強いこと\n正解: 外柔内剛（がいじゅうないごう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "外柔内□",
+        "missingIndex": 3,
+        "meaning": "外見は柔和だが内面は意志が強いこと"
+      }
+    },
+    {
+      "kanji": "諸行無常",
+      "prompt": "諸□無常",
+      "choices": [
+        "形",
+        "業",
+        "興",
+        "行"
+      ],
+      "answer": "行",
+      "explain": "意味: 世の中のあらゆるものは変化してやまないこと\n正解: 諸行無常（しょぎょうむじょう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "諸□無常",
+        "missingIndex": 1,
+        "meaning": "世の中のあらゆるものは変化してやまないこと"
+      }
     }
   ]
 }

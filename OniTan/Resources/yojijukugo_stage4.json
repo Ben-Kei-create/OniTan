@@ -230,6 +230,121 @@
       ],
       "answer": "面",
       "explain": "意味: 周囲が敵ばかりで助けがないこと\n正解: 四面楚歌（しめんそか）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002720100"
+    },
+    {
+      "kanji": "虎視眈々",
+      "prompt": "虎視□々",
+      "choices": [
+        "淡",
+        "坦",
+        "担",
+        "眈"
+      ],
+      "answer": "眈",
+      "explain": "意味: 虎が獲物を狙うように機会を待つさま\n正解: 虎視眈々（こしたんたん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "虎視□々",
+        "missingIndex": 2,
+        "meaning": "虎が獲物を狙うように機会を待つさま"
+      }
+    },
+    {
+      "kanji": "雲散霧消",
+      "prompt": "□散霧消",
+      "choices": [
+        "雲",
+        "運",
+        "温",
+        "暈"
+      ],
+      "answer": "雲",
+      "explain": "意味: 跡形もなく消えてしまうこと\n正解: 雲散霧消（うんさんむしょう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□散霧消",
+        "missingIndex": 0,
+        "meaning": "跡形もなく消えてしまうこと"
+      }
+    },
+    {
+      "kanji": "難攻不落",
+      "prompt": "難□不落",
+      "choices": [
+        "抗",
+        "攻",
+        "功",
+        "行"
+      ],
+      "answer": "攻",
+      "explain": "意味: 守りが固くて攻め落とせないこと\n正解: 難攻不落（なんこうふらく）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "難□不落",
+        "missingIndex": 1,
+        "meaning": "守りが固くて攻め落とせないこと"
+      }
+    },
+    {
+      "kanji": "以心伝心",
+      "prompt": "以心□心",
+      "choices": [
+        "電",
+        "展",
+        "転",
+        "伝"
+      ],
+      "answer": "伝",
+      "explain": "意味: 言葉を使わずとも気持ちが通じ合うこと\n正解: 以心伝心（いしんでんしん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "以心□心",
+        "missingIndex": 2,
+        "meaning": "言葉を使わずとも気持ちが通じ合うこと"
+      }
+    },
+    {
+      "kanji": "千変万化",
+      "prompt": "千□万化",
+      "choices": [
+        "便",
+        "変",
+        "遍",
+        "弁"
+      ],
+      "answer": "変",
+      "explain": "意味: 様々に変化すること\n正解: 千変万化（せんぺんばんか）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "千□万化",
+        "missingIndex": 1,
+        "meaning": "様々に変化すること"
+      }
     }
   ]
 }

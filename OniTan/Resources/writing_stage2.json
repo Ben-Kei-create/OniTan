@@ -230,6 +230,121 @@
       ],
       "answer": "陥没",
       "explain": "意味: 地面などが落ち込むこと\n正解: 陥没（かんぼつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001056000"
+    },
+    {
+      "kanji": "蹂躙",
+      "prompt": "「じゅうりん」を漢字で書くと？",
+      "choices": [
+        "躊踏",
+        "蹂躰",
+        "蹂躙",
+        "踏躙"
+      ],
+      "answer": "蹂躙",
+      "explain": "意味: 踏みにじること\n正解: 蹂躙（じゅうりん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "じゅうりん",
+        "kanaPrompt": "じゅうりん",
+        "targetKanji": "蹂躙"
+      }
+    },
+    {
+      "kanji": "嗜好",
+      "prompt": "「しこう」を漢字で書くと？",
+      "choices": [
+        "嗜孝",
+        "嗜好",
+        "噌好",
+        "嗜交"
+      ],
+      "answer": "嗜好",
+      "explain": "意味: 好み・趣味\n正解: 嗜好（しこう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しこう",
+        "kanaPrompt": "しこう",
+        "targetKanji": "嗜好"
+      }
+    },
+    {
+      "kanji": "憂鬱",
+      "prompt": "「ゆううつ」を漢字で書くと？",
+      "choices": [
+        "憂欝",
+        "憂鬱",
+        "愁鬱",
+        "悒鬱"
+      ],
+      "answer": "憂鬱",
+      "explain": "意味: 気分が晴れないこと\n正解: 憂鬱（ゆううつ）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ゆううつ",
+        "kanaPrompt": "ゆううつ",
+        "targetKanji": "憂鬱"
+      }
+    },
+    {
+      "kanji": "乖離",
+      "prompt": "「かいり」を漢字で書くと？",
+      "choices": [
+        "乖裡",
+        "乖離",
+        "乗離",
+        "乘離"
+      ],
+      "answer": "乖離",
+      "explain": "意味: 互いに離れ離れになること\n正解: 乖離（かいり）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "かいり",
+        "kanaPrompt": "かいり",
+        "targetKanji": "乖離"
+      }
+    },
+    {
+      "kanji": "齟齬",
+      "prompt": "「そご」を漢字で書くと？",
+      "choices": [
+        "齦齬",
+        "齟語",
+        "鉏齬",
+        "齟齬"
+      ],
+      "answer": "齟齬",
+      "explain": "意味: 食い違い・意見の合わないこと\n正解: 齟齬（そご）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "そご",
+        "kanaPrompt": "そご",
+        "targetKanji": "齟齬"
+      }
     }
   ]
 }

@@ -230,6 +230,121 @@
       ],
       "answer": "触",
       "explain": "意味: 少しのきっかけで争いなどが起こりそうな状態\n正解: 一触即発（いっしょくそくはつ）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000231300"
+    },
+    {
+      "kanji": "言行一致",
+      "prompt": "□行一致",
+      "choices": [
+        "現",
+        "研",
+        "言",
+        "見"
+      ],
+      "answer": "言",
+      "explain": "意味: 言うこととすることが一致していること\n正解: 言行一致（げんこういっち）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□行一致",
+        "missingIndex": 0,
+        "meaning": "言うこととすることが一致していること"
+      }
+    },
+    {
+      "kanji": "博覧強記",
+      "prompt": "博覧□記",
+      "choices": [
+        "豪",
+        "剛",
+        "好",
+        "強"
+      ],
+      "answer": "強",
+      "explain": "意味: 広く本を読み記憶力に優れること\n正解: 博覧強記（はくらんきょうき）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "博覧□記",
+        "missingIndex": 2,
+        "meaning": "広く本を読み記憶力に優れること"
+      }
+    },
+    {
+      "kanji": "勇猛果敢",
+      "prompt": "勇□果敢",
+      "choices": [
+        "盲",
+        "猛",
+        "蒙",
+        "猶"
+      ],
+      "answer": "猛",
+      "explain": "意味: 勇気があって思い切りよく行動すること\n正解: 勇猛果敢（ゆうもうかかん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "勇□果敢",
+        "missingIndex": 1,
+        "meaning": "勇気があって思い切りよく行動すること"
+      }
+    },
+    {
+      "kanji": "森羅万象",
+      "prompt": "森羅□象",
+      "choices": [
+        "千",
+        "方",
+        "万",
+        "半"
+      ],
+      "answer": "万",
+      "explain": "意味: この宇宙に存在するすべての事物・現象\n正解: 森羅万象（しんらばんしょう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "森羅□象",
+        "missingIndex": 2,
+        "meaning": "この宇宙に存在するすべての事物・現象"
+      }
+    },
+    {
+      "kanji": "堅忍不抜",
+      "prompt": "堅□不抜",
+      "choices": [
+        "認",
+        "忍",
+        "仁",
+        "刃"
+      ],
+      "answer": "忍",
+      "explain": "意味: 意志が固く何があってもくじけないこと\n正解: 堅忍不抜（けんにんふばつ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "堅□不抜",
+        "missingIndex": 1,
+        "meaning": "意志が固く何があってもくじけないこと"
+      }
     }
   ]
 }

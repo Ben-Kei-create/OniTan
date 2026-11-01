@@ -230,6 +230,121 @@
       ],
       "answer": "磨",
       "explain": "意味: 互いに励まし合って学問や技芸を磨くこと\n正解: 切磋琢磨（せっさたくま）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003986600"
+    },
+    {
+      "kanji": "玩物喪志",
+      "prompt": "玩物□志",
+      "choices": [
+        "双",
+        "桑",
+        "喪",
+        "葬"
+      ],
+      "answer": "喪",
+      "explain": "意味: つまらないものに心を奪われて本来の目的を失うこと\n正解: 玩物喪志（がんぶつそうし）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "玩物□志",
+        "missingIndex": 2,
+        "meaning": "つまらないものに心を奪われて本来の目的を失うこと"
+      }
+    },
+    {
+      "kanji": "行雲流水",
+      "prompt": "行□流水",
+      "choices": [
+        "雲",
+        "運",
+        "温",
+        "暈"
+      ],
+      "answer": "雲",
+      "explain": "意味: 物事に執着せず自然の成り行きに任せること\n正解: 行雲流水（こううんりゅうすい）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "行□流水",
+        "missingIndex": 1,
+        "meaning": "物事に執着せず自然の成り行きに任せること"
+      }
+    },
+    {
+      "kanji": "権謀術数",
+      "prompt": "□謀術数",
+      "choices": [
+        "健",
+        "権",
+        "検",
+        "拳"
+      ],
+      "answer": "権",
+      "explain": "意味: 相手を思い通りにするための策略\n正解: 権謀術数（けんぼうじゅっすう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "□謀術数",
+        "missingIndex": 0,
+        "meaning": "相手を思い通りにするための策略"
+      }
+    },
+    {
+      "kanji": "一世風靡",
+      "prompt": "一世風□",
+      "choices": [
+        "麻",
+        "磨",
+        "摩",
+        "靡"
+      ],
+      "answer": "靡",
+      "explain": "意味: ある時代全体を席巻すること\n正解: 一世風靡（いっせいふうび）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "一世風□",
+        "missingIndex": 3,
+        "meaning": "ある時代全体を席巻すること"
+      }
+    },
+    {
+      "kanji": "喜色満面",
+      "prompt": "喜色□面",
+      "choices": [
+        "蔓",
+        "満",
+        "漫",
+        "慢"
+      ],
+      "answer": "満",
+      "explain": "意味: 喜びが顔いっぱいに表れているさま\n正解: 喜色満面（きしょくまんめん）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "喜色□面",
+        "missingIndex": 2,
+        "meaning": "喜びが顔いっぱいに表れているさま"
+      }
     }
   ]
 }

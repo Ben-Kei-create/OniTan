@@ -230,6 +230,121 @@
       ],
       "answer": "牽引",
       "explain": "意味: 引っ張ること。先頭に立って導くこと\n正解: 牽引（けんいん）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001927900"
+    },
+    {
+      "kanji": "弛緩",
+      "prompt": "「しかん」を漢字で書くと？",
+      "choices": [
+        "池緩",
+        "弛緩",
+        "弦緩",
+        "弛換"
+      ],
+      "answer": "弛緩",
+      "explain": "意味: 緊張がほぐれて緩むこと\n正解: 弛緩（しかん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しかん",
+        "kanaPrompt": "しかん",
+        "targetKanji": "弛緩"
+      }
+    },
+    {
+      "kanji": "峻厳",
+      "prompt": "「しゅんげん」を漢字で書くと？",
+      "choices": [
+        "峻巌",
+        "駿厳",
+        "俊厳",
+        "峻厳"
+      ],
+      "answer": "峻厳",
+      "explain": "意味: きびしくいかめしいさま\n正解: 峻厳（しゅんげん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しゅんげん",
+        "kanaPrompt": "しゅんげん",
+        "targetKanji": "峻厳"
+      }
+    },
+    {
+      "kanji": "逍遥",
+      "prompt": "「しょうよう」を漢字で書くと？",
+      "choices": [
+        "逍遥",
+        "招遥",
+        "肖遥",
+        "消遥"
+      ],
+      "answer": "逍遥",
+      "explain": "意味: 気ままにそぞろ歩きをすること\n正解: 逍遥（しょうよう）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "しょうよう",
+        "kanaPrompt": "しょうよう",
+        "targetKanji": "逍遥"
+      }
+    },
+    {
+      "kanji": "憐憫",
+      "prompt": "「れんびん」を漢字で書くと？",
+      "choices": [
+        "隣憫",
+        "憐悶",
+        "恋憫",
+        "憐憫"
+      ],
+      "answer": "憐憫",
+      "explain": "意味: かわいそうに思うこと\n正解: 憐憫（れんびん）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "れんびん",
+        "kanaPrompt": "れんびん",
+        "targetKanji": "憐憫"
+      }
+    },
+    {
+      "kanji": "顰蹙",
+      "prompt": "「ひんしゅく」を漢字で書くと？",
+      "choices": [
+        "頻縮",
+        "顰縮",
+        "頻蹙",
+        "顰蹙"
+      ],
+      "answer": "顰蹙",
+      "explain": "意味: 不快に感じて顔をしかめること\n正解: 顰蹙（ひんしゅく）",
+      "kind": "writing",
+      "tags": [
+        "書き取り"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "writing",
+        "kana": "ひんしゅく",
+        "kanaPrompt": "ひんしゅく",
+        "targetKanji": "顰蹙"
+      }
     }
   ]
 }

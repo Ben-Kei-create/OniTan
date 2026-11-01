@@ -230,6 +230,121 @@
       ],
       "answer": "風",
       "explain": "意味: 人の意見を聞き流して気に留めないこと\n正解: 馬耳東風（ばじとうふう）\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005545400"
+    },
+    {
+      "kanji": "烏飛兎走",
+      "prompt": "烏□兎走",
+      "choices": [
+        "非",
+        "飛",
+        "肥",
+        "緋"
+      ],
+      "answer": "飛",
+      "explain": "意味: 月日の流れが速いこと\n正解: 烏飛兎走（うひとそう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "烏□兎走",
+        "missingIndex": 1,
+        "meaning": "月日の流れが速いこと"
+      }
+    },
+    {
+      "kanji": "七難八苦",
+      "prompt": "七□八苦",
+      "choices": [
+        "男",
+        "軟",
+        "難",
+        "灘"
+      ],
+      "answer": "難",
+      "explain": "意味: 数多くの苦しみや困難\n正解: 七難八苦（しちなんはっく）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "七□八苦",
+        "missingIndex": 1,
+        "meaning": "数多くの苦しみや困難"
+      }
+    },
+    {
+      "kanji": "起承転結",
+      "prompt": "起承□結",
+      "choices": [
+        "転",
+        "展",
+        "伝",
+        "点"
+      ],
+      "answer": "転",
+      "explain": "意味: 文章や話の組み立ての型\n正解: 起承転結（きしょうてんけつ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "起承□結",
+        "missingIndex": 2,
+        "meaning": "文章や話の組み立ての型"
+      }
+    },
+    {
+      "kanji": "金科玉条",
+      "prompt": "金□玉条",
+      "choices": [
+        "家",
+        "価",
+        "課",
+        "科"
+      ],
+      "answer": "科",
+      "explain": "意味: 最も大切な法律や規則\n正解: 金科玉条（きんかぎょくじょう）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "金□玉条",
+        "missingIndex": 1,
+        "meaning": "最も大切な法律や規則"
+      }
+    },
+    {
+      "kanji": "有名無実",
+      "prompt": "有□無実",
+      "choices": [
+        "名",
+        "命",
+        "鳴",
+        "明"
+      ],
+      "answer": "名",
+      "explain": "意味: 名前だけで実際は内容が伴わないこと\n正解: 有名無実（ゆうめいむじつ）",
+      "kind": "yojijukugo",
+      "tags": [
+        "四字熟語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "yojijukugo",
+        "yoji": "有□無実",
+        "missingIndex": 1,
+        "meaning": "名前だけで実際は内容が伴わないこと"
+      }
     }
   ]
 }
