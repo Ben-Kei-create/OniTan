@@ -220,6 +220,116 @@
       ],
       "answer": "不滅",
       "explain": "意味: 長く価値や存在を失わないこと\n正解: 不朽≒不滅\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005999800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006012400"
+    },
+    {
+      "kanji": "勇敢",
+      "prompt": "「勇敢」の類義語は？",
+      "choices": [
+        "猛勇",
+        "大胆",
+        "果敢",
+        "豪胆"
+      ],
+      "answer": "果敢",
+      "explain": "意味: 勇気があって怯まないこと\n正解: 果敢",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "勇敢",
+        "relationWord": "果敢"
+      }
+    },
+    {
+      "kanji": "排除",
+      "prompt": "「排除」の類義語は？",
+      "choices": [
+        "駆逐",
+        "一掃",
+        "排斥",
+        "除去"
+      ],
+      "answer": "駆逐",
+      "explain": "意味: 取り除いて退けること\n正解: 駆逐",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "排除",
+        "relationWord": "駆逐"
+      }
+    },
+    {
+      "kanji": "嗜好",
+      "prompt": "「嗜好」の類義語は？",
+      "choices": [
+        "嗜癖",
+        "好尚",
+        "趣向",
+        "愛好"
+      ],
+      "answer": "趣向",
+      "explain": "意味: 特に好んで楽しむこと\n正解: 趣向",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "嗜好",
+        "relationWord": "趣向"
+      }
+    },
+    {
+      "kanji": "哀愁",
+      "prompt": "「哀愁」の類義語は？",
+      "choices": [
+        "悲傷",
+        "悲哀",
+        "憂愁",
+        "愁嘆"
+      ],
+      "answer": "愁嘆",
+      "explain": "意味: 悲しく寂しい気持ち\n正解: 愁嘆",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "哀愁",
+        "relationWord": "愁嘆"
+      }
+    },
+    {
+      "kanji": "繁茂",
+      "prompt": "「繁茂」の類義語は？",
+      "choices": [
+        "繁盛",
+        "繁栄",
+        "群生",
+        "密生"
+      ],
+      "answer": "繁盛",
+      "explain": "意味: 植物などが盛んに茂ること\n正解: 繁盛",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "繁茂",
+        "relationWord": "繁盛"
+      }
     }
   ]
 }

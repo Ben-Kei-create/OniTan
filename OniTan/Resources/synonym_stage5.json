@@ -220,6 +220,116 @@
       ],
       "answer": "嘲弄",
       "explain": "意味: 人をからかいあざけること\n正解: 揶揄≒嘲弄\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0006791000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004829300"
+    },
+    {
+      "kanji": "慙愧",
+      "prompt": "「慙愧」の類義語は？",
+      "choices": [
+        "恥辱",
+        "悔恨",
+        "屈辱",
+        "羞恥"
+      ],
+      "answer": "羞恥",
+      "explain": "意味: 自分の行為を深く恥じること\n正解: 羞恥",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "慙愧",
+        "relationWord": "羞恥"
+      }
+    },
+    {
+      "kanji": "乖離",
+      "prompt": "「乖離」の類義語は？",
+      "choices": [
+        "分裂",
+        "分離",
+        "解離",
+        "離散"
+      ],
+      "answer": "解離",
+      "explain": "意味: 互いに離れること\n正解: 解離",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "乖離",
+        "relationWord": "解離"
+      }
+    },
+    {
+      "kanji": "渇望",
+      "prompt": "「渇望」の類義語は？",
+      "choices": [
+        "欲望",
+        "所望",
+        "切望",
+        "熱望"
+      ],
+      "answer": "熱望",
+      "explain": "意味: 非常に強く望むこと\n正解: 熱望",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "渇望",
+        "relationWord": "熱望"
+      }
+    },
+    {
+      "kanji": "蒐集",
+      "prompt": "「蒐集」の類義語は？",
+      "choices": [
+        "収集",
+        "集積",
+        "採集",
+        "蓄積"
+      ],
+      "answer": "収集",
+      "explain": "意味: 集めること\n正解: 収集",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "蒐集",
+        "relationWord": "収集"
+      }
+    },
+    {
+      "kanji": "驕傲",
+      "prompt": "「驕傲」の類義語は？",
+      "choices": [
+        "傲岸",
+        "高慢",
+        "不遜",
+        "傲慢"
+      ],
+      "answer": "傲慢",
+      "explain": "意味: おごり高ぶること\n正解: 傲慢",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "驕傲",
+        "relationWord": "傲慢"
+      }
     }
   ]
 }

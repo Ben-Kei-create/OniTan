@@ -220,6 +220,116 @@
       ],
       "answer": "柔軟",
       "explain": "意味: こわばって融通がきかないことと柔らかくしなやかなこと\n正解: 硬直⇔柔軟\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002279800\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003173600"
+    },
+    {
+      "kanji": "詳細",
+      "prompt": "「詳細」の対義語は？",
+      "choices": [
+        "梗概",
+        "粗述",
+        "概略",
+        "大略"
+      ],
+      "answer": "概略",
+      "explain": "詳しいこと⇔おおまかなこと\n正解: 概略",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "詳細",
+        "relationWord": "概略"
+      }
+    },
+    {
+      "kanji": "公開",
+      "prompt": "「公開」の対義語は？",
+      "choices": [
+        "秘匿",
+        "封印",
+        "隠蔽",
+        "秘密"
+      ],
+      "answer": "秘匿",
+      "explain": "公にすること⇔隠すこと\n正解: 秘匿",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "公開",
+        "relationWord": "秘匿"
+      }
+    },
+    {
+      "kanji": "快楽",
+      "prompt": "「快楽」の対義語は？",
+      "choices": [
+        "憂苦",
+        "苦悩",
+        "苦痛",
+        "悲嘆"
+      ],
+      "answer": "苦悩",
+      "explain": "喜び⇔苦しみ\n正解: 苦悩",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "快楽",
+        "relationWord": "苦悩"
+      }
+    },
+    {
+      "kanji": "固定",
+      "prompt": "「固定」の対義語は？",
+      "choices": [
+        "動揺",
+        "移動",
+        "流動",
+        "変動"
+      ],
+      "answer": "流動",
+      "explain": "変わらないこと⇔流れ動くこと\n正解: 流動",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "固定",
+        "relationWord": "流動"
+      }
+    },
+    {
+      "kanji": "臆病",
+      "prompt": "「臆病」の対義語は？",
+      "choices": [
+        "大胆",
+        "勇胆",
+        "猛胆",
+        "剛胆"
+      ],
+      "answer": "大胆",
+      "explain": "こわがること⇔怯まないこと\n正解: 大胆",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "臆病",
+        "relationWord": "大胆"
+      }
     }
   ]
 }

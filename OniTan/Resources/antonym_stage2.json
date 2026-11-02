@@ -220,6 +220,116 @@
       ],
       "answer": "撤退",
       "explain": "意味: 新しい方面へ進むことと引き揚げること\n正解: 進出⇔撤退\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003640100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005029700"
+    },
+    {
+      "kanji": "豊富",
+      "prompt": "「豊富」の対義語は？",
+      "choices": [
+        "払底",
+        "枯渇",
+        "欠乏",
+        "不足"
+      ],
+      "answer": "枯渇",
+      "explain": "十分にあること⇔尽きること\n正解: 枯渇",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "豊富",
+        "relationWord": "枯渇"
+      }
+    },
+    {
+      "kanji": "服従",
+      "prompt": "「服従」の対義語は？",
+      "choices": [
+        "拒絶",
+        "反抗",
+        "抵抗",
+        "不服"
+      ],
+      "answer": "反抗",
+      "explain": "従うこと⇔逆らうこと\n正解: 反抗",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "服従",
+        "relationWord": "反抗"
+      }
+    },
+    {
+      "kanji": "統合",
+      "prompt": "「統合」の対義語は？",
+      "choices": [
+        "分散",
+        "分離",
+        "解体",
+        "分裂"
+      ],
+      "answer": "分散",
+      "explain": "まとめること⇔ばらばらになること\n正解: 分散",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "統合",
+        "relationWord": "分散"
+      }
+    },
+    {
+      "kanji": "隆盛",
+      "prompt": "「隆盛」の対義語は？",
+      "choices": [
+        "没落",
+        "衰微",
+        "衰退",
+        "凋落"
+      ],
+      "answer": "凋落",
+      "explain": "栄えること⇔衰えること\n正解: 凋落",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "隆盛",
+        "relationWord": "凋落"
+      }
+    },
+    {
+      "kanji": "冷静",
+      "prompt": "「冷静」の対義語は？",
+      "choices": [
+        "狼狽",
+        "激情",
+        "興奮",
+        "動揺"
+      ],
+      "answer": "激情",
+      "explain": "落ち着き⇔感情が高ぶること\n正解: 激情",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "冷静",
+        "relationWord": "激情"
+      }
     }
   ]
 }

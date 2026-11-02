@@ -250,6 +250,131 @@
       ],
       "answer": "紺",
       "explain": "正解: 紺\n完成する語: 紺色・濃紺・紺碧\n出典: コトバンク https://kotobank.jp/word/%E7%B4%BA%E8%89%B2-192775\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005506900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0002439200"
+    },
+    {
+      "kanji": "□気・□力・□神",
+      "prompt": "□気・□力・□神 に共通する漢字を選べ。",
+      "choices": [
+        "精",
+        "活",
+        "元",
+        "心"
+      ],
+      "answer": "精",
+      "explain": "精気・精力・精神に共通する「精」（せい・くわしい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□気",
+          "□力",
+          "□神"
+        ]
+      }
+    },
+    {
+      "kanji": "□雄・□傑・□才",
+      "prompt": "□雄・□傑・□才 に共通する漢字を選べ。",
+      "choices": [
+        "俊",
+        "秀",
+        "英",
+        "天"
+      ],
+      "answer": "俊",
+      "explain": "俊雄・俊傑・俊才に共通する「俊」（すぐれた）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□雄",
+          "□傑",
+          "□才"
+        ]
+      }
+    },
+    {
+      "kanji": "□弱・□小・□少",
+      "prompt": "□弱・□小・□少 に共通する漢字を選べ。",
+      "choices": [
+        "微",
+        "細",
+        "最",
+        "零"
+      ],
+      "answer": "微",
+      "explain": "微弱・微小・微少に共通する「微」（わずか）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□弱",
+          "□小",
+          "□少"
+        ]
+      }
+    },
+    {
+      "kanji": "□語・□言・□説",
+      "prompt": "□語・□言・□説 に共通する漢字を選べ。",
+      "choices": [
+        "夢",
+        "空",
+        "妄",
+        "虚"
+      ],
+      "answer": "空",
+      "explain": "空語・空言・空説に共通する「空」（でたらめ・むなしい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□語",
+          "□言",
+          "□説"
+        ]
+      }
+    },
+    {
+      "kanji": "□迫・□屈・□乏",
+      "prompt": "□迫・□屈・□乏 に共通する漢字を選べ。",
+      "choices": [
+        "窮",
+        "逼",
+        "苦",
+        "困"
+      ],
+      "answer": "窮",
+      "explain": "窮迫・窮屈・窮乏に共通する「窮」（きわまる）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□迫",
+          "□屈",
+          "□乏"
+        ]
+      }
     }
   ]
 }

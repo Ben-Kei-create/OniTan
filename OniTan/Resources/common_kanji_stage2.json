@@ -250,6 +250,131 @@
       ],
       "answer": "惰",
       "explain": "正解: 惰\n完成する語: 怠惰・惰性・惰眠\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004442100\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004419300\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004419400"
+    },
+    {
+      "kanji": "□感・□知・□験",
+      "prompt": "□感・□知・□験 に共通する漢字を選べ。",
+      "choices": [
+        "超",
+        "魔",
+        "神",
+        "霊"
+      ],
+      "answer": "霊",
+      "explain": "霊感・霊知・霊験に共通する「霊」（れい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□感",
+          "□知",
+          "□験"
+        ]
+      }
+    },
+    {
+      "kanji": "□信・□想・□動",
+      "prompt": "□信・□想・□動 に共通する漢字を選べ。",
+      "choices": [
+        "盲",
+        "独",
+        "妄",
+        "昧"
+      ],
+      "answer": "妄",
+      "explain": "妄信・妄想・妄動に共通する「妄」（みだりに）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□信",
+          "□想",
+          "□動"
+        ]
+      }
+    },
+    {
+      "kanji": "□徳・□義・□愛",
+      "prompt": "□徳・□義・□愛 に共通する漢字を選べ。",
+      "choices": [
+        "博",
+        "仁",
+        "真",
+        "道"
+      ],
+      "answer": "仁",
+      "explain": "仁徳・仁義・仁愛に共通する「仁」（おもいやり）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□徳",
+          "□義",
+          "□愛"
+        ]
+      }
+    },
+    {
+      "kanji": "□好・□向・□尚",
+      "prompt": "□好・□向・□尚 に共通する漢字を選べ。",
+      "choices": [
+        "趣",
+        "志",
+        "意",
+        "嗜"
+      ],
+      "answer": "嗜",
+      "explain": "嗜好・嗜向・嗜尚に共通する「嗜」（このむ）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□好",
+          "□向",
+          "□尚"
+        ]
+      }
+    },
+    {
+      "kanji": "□縮・□退・□微",
+      "prompt": "□縮・□退・□微 に共通する漢字を選べ。",
+      "choices": [
+        "退",
+        "弱",
+        "衰",
+        "滅"
+      ],
+      "answer": "衰",
+      "explain": "衰縮・衰退・衰微に共通する「衰」（おとろえる）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□縮",
+          "□退",
+          "□微"
+        ]
+      }
     }
   ]
 }

@@ -220,6 +220,116 @@
       ],
       "answer": "衰退",
       "explain": "意味: 栄えることと勢いが弱まること\n正解: 繁栄⇔衰退\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005768600\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003748200"
+    },
+    {
+      "kanji": "純粋",
+      "prompt": "「純粋」の対義語は？",
+      "choices": [
+        "不純",
+        "汚濁",
+        "雑然",
+        "混濁"
+      ],
+      "answer": "混濁",
+      "explain": "まじりけなし⇔混じって濁ること\n正解: 混濁",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "純粋",
+        "relationWord": "混濁"
+      }
+    },
+    {
+      "kanji": "軽視",
+      "prompt": "「軽視」の対義語は？",
+      "choices": [
+        "敬重",
+        "重視",
+        "珍重",
+        "尊重"
+      ],
+      "answer": "重視",
+      "explain": "軽く見ること⇔重く見ること\n正解: 重視",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "軽視",
+        "relationWord": "重視"
+      }
+    },
+    {
+      "kanji": "否定",
+      "prompt": "「否定」の対義語は？",
+      "choices": [
+        "是認",
+        "承認",
+        "肯定",
+        "賛成"
+      ],
+      "answer": "肯定",
+      "explain": "否と言うこと⇔よしとすること\n正解: 肯定",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "否定",
+        "relationWord": "肯定"
+      }
+    },
+    {
+      "kanji": "受動",
+      "prompt": "「受動」の対義語は？",
+      "choices": [
+        "主動",
+        "自発",
+        "能動",
+        "積極"
+      ],
+      "answer": "能動",
+      "explain": "他から動かされること⇔自ら動くこと\n正解: 能動",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "受動",
+        "relationWord": "能動"
+      }
+    },
+    {
+      "kanji": "緊張",
+      "prompt": "「緊張」の対義語は？",
+      "choices": [
+        "安堵",
+        "弛緩",
+        "解放",
+        "弛退"
+      ],
+      "answer": "弛緩",
+      "explain": "張り詰めること⇔ゆるむこと\n正解: 弛緩",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "緊張",
+        "relationWord": "弛緩"
+      }
     }
   ]
 }

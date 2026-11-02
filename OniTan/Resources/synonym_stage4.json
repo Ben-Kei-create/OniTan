@@ -220,6 +220,116 @@
       ],
       "answer": "伯仲",
       "explain": "意味: 力がほぼ等しく張り合うこと\n正解: 拮抗≒伯仲\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0001341300\n出典: コトバンク https://kotobank.jp/word/%E4%BC%AF%E4%BB%B2-600367"
+    },
+    {
+      "kanji": "誇大",
+      "prompt": "「誇大」の類義語は？",
+      "choices": [
+        "誇張",
+        "大言",
+        "妄言",
+        "大袈裟"
+      ],
+      "answer": "誇張",
+      "explain": "意味: 実際より大きく言うこと\n正解: 誇張",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "誇大",
+        "relationWord": "誇張"
+      }
+    },
+    {
+      "kanji": "変遷",
+      "prompt": "「変遷」の類義語は？",
+      "choices": [
+        "移行",
+        "推移",
+        "変化",
+        "遷移"
+      ],
+      "answer": "推移",
+      "explain": "意味: 時とともに移り変わること\n正解: 推移",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "変遷",
+        "relationWord": "推移"
+      }
+    },
+    {
+      "kanji": "示唆",
+      "prompt": "「示唆」の類義語は？",
+      "choices": [
+        "教示",
+        "暗示",
+        "助言",
+        "指示"
+      ],
+      "answer": "暗示",
+      "explain": "意味: それとなく知らせること\n正解: 暗示",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "示唆",
+        "relationWord": "暗示"
+      }
+    },
+    {
+      "kanji": "義侠",
+      "prompt": "「義侠」の類義語は？",
+      "choices": [
+        "任侠",
+        "豪侠",
+        "侠気",
+        "義心"
+      ],
+      "answer": "侠気",
+      "explain": "意味: 弱い者を助ける心意気\n正解: 侠気",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "義侠",
+        "relationWord": "侠気"
+      }
+    },
+    {
+      "kanji": "逡巡",
+      "prompt": "「逡巡」の類義語は？",
+      "choices": [
+        "ためらい",
+        "困惑",
+        "迷惑",
+        "躊躇"
+      ],
+      "answer": "躊躇",
+      "explain": "意味: ためらって進めないこと\n正解: 躊躇",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "逡巡",
+        "relationWord": "躊躇"
+      }
     }
   ]
 }

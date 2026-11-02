@@ -250,6 +250,131 @@
       ],
       "answer": "鉛",
       "explain": "正解: 鉛\n完成する語: 鉛筆・鉛毒・鉛管\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000476700\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000476500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0000476000"
+    },
+    {
+      "kanji": "□伐・□力・□功",
+      "prompt": "□伐・□力・□功 に共通する漢字を選べ。",
+      "choices": [
+        "軍",
+        "兵",
+        "戦",
+        "武"
+      ],
+      "answer": "武",
+      "explain": "武伐・武力・武功に共通する「武」（いくさ・武力）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□伐",
+          "□力",
+          "□功"
+        ]
+      }
+    },
+    {
+      "kanji": "□辣・□刻・□酸",
+      "prompt": "□辣・□刻・□酸 に共通する漢字を選べ。",
+      "choices": [
+        "苦",
+        "厳",
+        "激",
+        "辛"
+      ],
+      "answer": "辛",
+      "explain": "辛辣・辛刻・辛酸に共通する「辛」（からい・つらい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□辣",
+          "□刻",
+          "□酸"
+        ]
+      }
+    },
+    {
+      "kanji": "□志・□途・□大",
+      "prompt": "□志・□途・□大 に共通する漢字を選べ。",
+      "choices": [
+        "壮",
+        "強",
+        "雄",
+        "豪"
+      ],
+      "answer": "壮",
+      "explain": "壮志・壮途・壮大に共通する「壮」（さかん・雄々しい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□志",
+          "□途",
+          "□大"
+        ]
+      }
+    },
+    {
+      "kanji": "□欲・□念・□心",
+      "prompt": "□欲・□念・□心 に共通する漢字を選べ。",
+      "choices": [
+        "自",
+        "私",
+        "邪",
+        "無"
+      ],
+      "answer": "私",
+      "explain": "私欲・私念・私心に共通する「私」（ひそか・わたし）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□欲",
+          "□念",
+          "□心"
+        ]
+      }
+    },
+    {
+      "kanji": "□敢・□猛・□力",
+      "prompt": "□敢・□猛・□力 に共通する漢字を選べ。",
+      "choices": [
+        "剛",
+        "猛",
+        "勇",
+        "豪"
+      ],
+      "answer": "勇",
+      "explain": "勇敢・勇猛・勇力に共通する「勇」（いさましい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□敢",
+          "□猛",
+          "□力"
+        ]
+      }
     }
   ]
 }

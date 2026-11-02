@@ -220,6 +220,116 @@
       ],
       "answer": "瘠薄",
       "explain": "意味: 土地が肥えていることとやせていること\n正解: 肥沃⇔瘠薄\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005808500\n出典: コトバンク https://kotobank.jp/word/%E7%98%A0%E8%96%84-2838981"
+    },
+    {
+      "kanji": "悲観",
+      "prompt": "「悲観」の対義語は？",
+      "choices": [
+        "期待",
+        "楽観",
+        "好観",
+        "希望"
+      ],
+      "answer": "楽観",
+      "explain": "悲しく見ること⇔明るく見ること\n正解: 楽観",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "悲観",
+        "relationWord": "楽観"
+      }
+    },
+    {
+      "kanji": "革新",
+      "prompt": "「革新」の対義語は？",
+      "choices": [
+        "守旧",
+        "旧態",
+        "復古",
+        "保守"
+      ],
+      "answer": "保守",
+      "explain": "新しく改めること⇔古いものを守ること\n正解: 保守",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "革新",
+        "relationWord": "保守"
+      }
+    },
+    {
+      "kanji": "縮小",
+      "prompt": "「縮小」の対義語は？",
+      "choices": [
+        "拡充",
+        "拡大",
+        "膨張",
+        "増大"
+      ],
+      "answer": "膨張",
+      "explain": "小さくすること⇔大きくなること\n正解: 膨張",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "縮小",
+        "relationWord": "膨張"
+      }
+    },
+    {
+      "kanji": "上昇",
+      "prompt": "「上昇」の対義語は？",
+      "choices": [
+        "降下",
+        "下落",
+        "低下",
+        "失墜"
+      ],
+      "answer": "下落",
+      "explain": "高くなること⇔低くなること\n正解: 下落",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "上昇",
+        "relationWord": "下落"
+      }
+    },
+    {
+      "kanji": "具体",
+      "prompt": "「具体」の対義語は？",
+      "choices": [
+        "形而上",
+        "虚像",
+        "抽象",
+        "概念"
+      ],
+      "answer": "抽象",
+      "explain": "実際に形があること⇔概念的なこと\n正解: 抽象",
+      "kind": "antonym",
+      "tags": [
+        "対義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "antonym",
+        "targetWord": "具体",
+        "relationWord": "抽象"
+      }
     }
   ]
 }

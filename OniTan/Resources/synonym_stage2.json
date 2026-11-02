@@ -220,6 +220,116 @@
       ],
       "answer": "端緒",
       "explain": "意味: 物事が始まるきっかけ\n正解: 発端≒端緒\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0005693000\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004619200"
+    },
+    {
+      "kanji": "憂慮",
+      "prompt": "「憂慮」の類義語は？",
+      "choices": [
+        "懸念",
+        "不安",
+        "危惧",
+        "煩悶"
+      ],
+      "answer": "懸念",
+      "explain": "意味: 気にかけて心配すること\n正解: 懸念",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "憂慮",
+        "relationWord": "懸念"
+      }
+    },
+    {
+      "kanji": "叱責",
+      "prompt": "「叱責」の類義語は？",
+      "choices": [
+        "罵倒",
+        "非難",
+        "訓戒",
+        "叱咤"
+      ],
+      "answer": "叱咤",
+      "explain": "意味: きびしく叱ること\n正解: 叱咤",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "叱責",
+        "relationWord": "叱咤"
+      }
+    },
+    {
+      "kanji": "奔放",
+      "prompt": "「奔放」の類義語は？",
+      "choices": [
+        "放逸",
+        "放縦",
+        "自在",
+        "奔走"
+      ],
+      "answer": "放縦",
+      "explain": "意味: 束縛なく自由に振る舞うこと\n正解: 放縦",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "奔放",
+        "relationWord": "放縦"
+      }
+    },
+    {
+      "kanji": "名誉",
+      "prompt": "「名誉」の類義語は？",
+      "choices": [
+        "名声",
+        "栄光",
+        "声望",
+        "誉れ"
+      ],
+      "answer": "誉れ",
+      "explain": "意味: 高く評価されること\n正解: 誉れ",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "名誉",
+        "relationWord": "誉れ"
+      }
+    },
+    {
+      "kanji": "頑固",
+      "prompt": "「頑固」の類義語は？",
+      "choices": [
+        "頑迷",
+        "強情",
+        "固執",
+        "意固地"
+      ],
+      "answer": "強情",
+      "explain": "意味: 自分の考えを変えないこと\n正解: 強情",
+      "kind": "synonym",
+      "tags": [
+        "類義語"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "synonym",
+        "targetWord": "頑固",
+        "relationWord": "強情"
+      }
     }
   ]
 }

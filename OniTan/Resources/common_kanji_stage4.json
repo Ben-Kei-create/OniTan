@@ -250,6 +250,131 @@
       ],
       "answer": "浄",
       "explain": "正解: 浄\n完成する語: 浄化・洗浄・清浄\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003501500\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0004062900\n出典: 漢字ペディア https://www.kanjipedia.jp/kotoba/0003891500"
+    },
+    {
+      "kanji": "□断・□行・□立",
+      "prompt": "□断・□行・□立 に共通する漢字を選べ。",
+      "choices": [
+        "専",
+        "独",
+        "単",
+        "孤"
+      ],
+      "answer": "独",
+      "explain": "独断・独行・独立に共通する「独」（ひとり）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□断",
+          "□行",
+          "□立"
+        ]
+      }
+    },
+    {
+      "kanji": "□義・□理・□法",
+      "prompt": "□義・□理・□法 に共通する漢字を選べ。",
+      "choices": [
+        "真",
+        "正",
+        "道",
+        "公"
+      ],
+      "answer": "道",
+      "explain": "道義・道理・道法に共通する「道」（みち・道理）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□義",
+          "□理",
+          "□法"
+        ]
+      }
+    },
+    {
+      "kanji": "□廉・□潔・□節",
+      "prompt": "□廉・□潔・□節 に共通する漢字を選べ。",
+      "choices": [
+        "高",
+        "清",
+        "純",
+        "香"
+      ],
+      "answer": "清",
+      "explain": "清廉・清潔・清節に共通する「清」（きよい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□廉",
+          "□潔",
+          "□節"
+        ]
+      }
+    },
+    {
+      "kanji": "□著・□大・□盛",
+      "prompt": "□著・□大・□盛 に共通する漢字を選べ。",
+      "choices": [
+        "隆",
+        "強",
+        "特",
+        "最"
+      ],
+      "answer": "隆",
+      "explain": "隆著・隆大・隆盛に共通する「隆」（さかん・高い）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□著",
+          "□大",
+          "□盛"
+        ]
+      }
+    },
+    {
+      "kanji": "□快・□胆・□放",
+      "prompt": "□快・□胆・□放 に共通する漢字を選べ。",
+      "choices": [
+        "大",
+        "自",
+        "勇",
+        "豪"
+      ],
+      "answer": "豪",
+      "explain": "豪快・豪胆・豪放に共通する「豪」（すぐれた・たくましい）",
+      "kind": "commonKanji",
+      "tags": [
+        "共通漢字"
+      ],
+      "difficulty": 4,
+      "payload": {
+        "type": "commonKanji",
+        "blankTerms": [
+          "□快",
+          "□胆",
+          "□放"
+        ]
+      }
     }
   ]
 }
