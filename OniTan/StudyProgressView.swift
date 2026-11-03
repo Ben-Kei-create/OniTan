@@ -76,7 +76,7 @@ struct StudyProgressView: View {
     private func kindRow(kind: QuestionKind, score: KindScore?, isLast: Bool) -> some View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
-                Image(systemName: kind.sfSymbol)
+                Image(systemName: kind.systemImage)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(OniTanTheme.accentPrimary)
                     .frame(width: 20)
