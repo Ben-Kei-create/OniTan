@@ -90,6 +90,9 @@ def validate_question(q: dict, tag: str):
     if "" in choices:
         err(tag, "choices contains empty string(s)")
 
+    if len(set(choices)) != len(choices):
+        err(tag, "duplicate choices")
+
     if kind not in VALID_KINDS:
         err(tag, f"unknown kind '{kind}'")
 
@@ -117,14 +120,19 @@ def validate_question(q: dict, tag: str):
         if sentence and token and token not in sentence:
             err(tag, f"blankToken '{token}' not found in sentence")
 
-    elif kind == "errorcorrection":
+    elif kind in ("errorCorrection", "errorcorrection"):
         wrong = payload.get("wrongKanji", "")
         correct = payload.get("correctKanji", "")
-        if wrong and correct and wrong == correct:
-            err(tag, "wrongKanji and correctKanji are identical")
+        if len(wrong) != 1 or len(correct) != 1 or wrong == correct:
+            err(tag, "error correction must replace one distinct character")
         orig = payload.get("originalSentence", "")
-        if orig == "":
-            warn(tag, "errorcorrection payload missing 'originalSentence'")
+        corrected = payload.get("correctedSentence", "")
+        if not orig or not corrected:
+            err(tag, "error correction is missing originalSentence/correctedSentence")
+        elif not wrong or orig.count(wrong) != 1 or orig.replace(wrong, correct, 1) != corrected:
+            err(tag, "one-character correction does not reconstruct correctedSentence")
+        if answer != f"{wrong}→{correct}":
+            err(tag, "answer does not match wrongKanji→correctKanji")
 
     elif kind == "composition":
         st = payload.get("structureType", "")
@@ -237,8 +245,6 @@ def validate_stages(resources: Path) -> int:
             for index, q in enumerate(stage["questions"]):
                 tag = f"{filename}#{index}"
                 validate_question(q, tag)
-                if len(set(q["choices"])) != len(q["choices"]):
-                    err(tag, "duplicate choices")
                 signature = (q["kanji"], q["answer"], q.get("payload", {}).get("sentenceContext", ""))
                 if signature in prompts:
                     err(tag, f"repeated question within genre: {signature}")

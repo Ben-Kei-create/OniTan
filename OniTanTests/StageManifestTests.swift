@@ -6,28 +6,31 @@ final class StageManifestTests: XCTestCase {
     /// Load from the application bundle so a missing Xcode resource also fails.
     func testExpandedStagesAreBundledAndPlayable() throws {
         let targets = [
-            ("reading", 25, QuestionKind.sentenceReading),
-            ("yojijukugo", 10, .yojijukugo),
-            ("writing", 10, .writing),
+            ("reading", 36, QuestionKind.sentenceReading),
+            ("yojijukugo", 12, .yojijukugo),
+            ("writing", 11, .writing),
             ("synonym", 5, .synonym),
             ("antonym", 5, .antonym),
             ("proverb", 5, .proverb),
             ("common_kanji", 5, .commonKanji),
+            ("hyogai_reading", 5, .hyogaiReading),
+            ("compound_reading_kun", 5, .compoundReadingKun),
+            ("error_correction", 5, .errorCorrection),
         ]
         var stageIDs = Set<Int>()
         for (prefix, minimumCount, kind) in targets {
             let manifest: StageManifest = try safeLoad("\(prefix)_stages.json")
             XCTAssertGreaterThanOrEqual(manifest.stages.count, minimumCount, prefix)
             var prompts = Set<String>()
-            let originalCount = prefix == "reading" ? 19 : 1
-            for (index, entry) in manifest.stages.enumerated() {
+            for entry in manifest.stages {
                 XCTAssertTrue(stageIDs.insert(entry.id).inserted, "Duplicate stage ID: \(entry.id)")
                 let stage: Stage = try safeLoad(entry.file)
                 XCTAssertEqual(stage.stage, entry.id, entry.file)
                 XCTAssertFalse(stage.questions.isEmpty, entry.file)
-                if index >= originalCount {
-                    XCTAssertEqual(stage.questions.count, 10, entry.file)
-                }
+                // The first two legacy reading stages retain 20 questions.
+                // All other practice stages now use the 15-question format.
+                let expectedCount = prefix == "reading" && entry.id <= 2 ? 20 : 15
+                XCTAssertEqual(stage.questions.count, expectedCount, entry.file)
                 for question in stage.questions {
                     XCTAssertEqual(question.kind, kind, entry.file)
                     let signature = "\(question.kanji)-\(question.answer)-\(question.payload?.sentenceContext ?? "")"
@@ -41,6 +44,29 @@ final class StageManifestTests: XCTestCase {
         }
         XCTAssertNil(dataLoadError)
         XCTAssertTrue(stageIDs.isSubset(of: Set(quizData.stages.map(\.stage))))
+        XCTAssertEqual(Set(quizData.stages.map(\.stage)).count, quizData.stages.count,
+                       "Stage IDs must also be unique in the app's loaded data")
+    }
+
+    func testErrorCorrectionsReplaceExactlyOneCharacter() {
+        let corrections = allQuestions.filter { $0.kind == .errorCorrection }
+        XCTAssertFalse(corrections.isEmpty)
+        for question in corrections {
+            guard let payload = question.payload,
+                  let original = payload.originalSentence,
+                  let corrected = payload.correctedSentence,
+                  let wrong = payload.wrongKanji,
+                  let correct = payload.correctKanji else {
+                XCTFail("Missing error correction payload: \(question.id)")
+                continue
+            }
+            XCTAssertEqual(wrong.count, 1, question.id)
+            XCTAssertEqual(correct.count, 1, question.id)
+            XCTAssertNotEqual(wrong, correct, question.id)
+            XCTAssertEqual(original.components(separatedBy: wrong).count - 1, 1, question.id)
+            XCTAssertEqual(original.replacingOccurrences(of: wrong, with: correct), corrected, question.id)
+            XCTAssertEqual(question.answer, "\(wrong)→\(correct)", question.id)
+        }
     }
 
     // MARK: - StageEntry

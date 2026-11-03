@@ -399,3 +399,108 @@ final class QuizSessionViewModelTests: XCTestCase {
         QuizSessionViewModel(stage: stage, appState: appState, statsRepo: statsRepo, mode: mode)
     }
 }
+
+@MainActor
+final class CompletionPresentationTests: XCTestCase {
+    func testEligibleReviewAlwaysWinsOverAdvertising() {
+        XCTAssertEqual(CompletionPresentation.select(reviewEligible: true, hasDonated: false), .review)
+        XCTAssertEqual(CompletionPresentation.select(reviewEligible: true, hasDonated: true), .review)
+        XCTAssertEqual(CompletionPresentation.select(reviewEligible: false, hasDonated: false), .advertisement)
+        XCTAssertNil(CompletionPresentation.select(reviewEligible: false, hasDonated: true))
+    }
+
+    func testReviewEligibilityIsOnlyConsumedWhenRequestIsMade() throws {
+        let suiteName = "CompletionPresentationTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let manager = ReviewPromptManager(defaults: defaults)
+
+        for _ in 1..<ReviewPromptManager.sessionThreshold {
+            XCTAssertFalse(manager.sessionCompleted(currentStreak: 0))
+        }
+        XCTAssertTrue(manager.sessionCompleted(currentStreak: 0))
+
+        // A cancelled delay or obstructing modal must leave the next session eligible.
+        let reloaded = ReviewPromptManager(defaults: defaults)
+        XCTAssertTrue(reloaded.sessionCompleted(currentStreak: 0))
+        reloaded.markPromptRequested()
+        XCTAssertFalse(ReviewPromptManager(defaults: defaults).sessionCompleted(currentStreak: 5))
+    }
+
+    func testExistingPromptedFlagStillSuppressesReview() throws {
+        let suiteName = "CompletionPresentationTests.\(UUID().uuidString)"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults.set(true, forKey: "reviewPrompt_hasPrompted")
+        defaults.set(20, forKey: "reviewPrompt_sessionCompleteCount")
+        XCTAssertFalse(ReviewPromptManager(defaults: defaults).sessionCompleted(currentStreak: 5))
+    }
+
+    func testOnlyTheSelectedPresentationIsRequested() async {
+        let coordinator = CompletionPresentationCoordinator()
+        var presented: [CompletionPresentation] = []
+        let task = coordinator.schedule(.review, sleep: { _ in }, canPresent: { true }) {
+            presented.append($0)
+        }
+        await task.value
+        XCTAssertEqual(presented, [.review])
+    }
+
+    func testCancellationWhileWaitingPreventsLatePresentation() async {
+        let coordinator = CompletionPresentationCoordinator()
+        let delayStarted = expectation(description: "Completion delay started")
+        var finishDelay: CheckedContinuation<Void, Never>?
+        var presented: [CompletionPresentation] = []
+        let task = coordinator.schedule(.review, sleep: { _ in
+            // Deliberately ignore cancellation in the sleeper: the coordinator
+            // must still check cancellation after its delay finishes.
+            await withCheckedContinuation { continuation in
+                finishDelay = continuation
+                delayStarted.fulfill()
+            }
+        }, canPresent: { true }) {
+            presented.append($0)
+        }
+        await fulfillment(of: [delayStarted], timeout: 1)
+        coordinator.cancel()
+        finishDelay?.resume()
+        await task.value
+        XCTAssertTrue(presented.isEmpty)
+    }
+
+    func testPresentationRechecksCurrentScreenAndModalStateAfterDelay() async {
+        let coordinator = CompletionPresentationCoordinator()
+        var screenIsAvailable = true
+        var presented: [CompletionPresentation] = []
+        let task = coordinator.schedule(.advertisement, sleep: { _ in
+            screenIsAvailable = false
+        }, canPresent: { screenIsAvailable }) {
+            presented.append($0)
+        }
+        await task.value
+        XCTAssertTrue(presented.isEmpty)
+    }
+
+    func testNewCompletionCancelsThePreviousPendingPresentation() async {
+        let coordinator = CompletionPresentationCoordinator()
+        let delayStarted = expectation(description: "Old completion delay started")
+        var finishOldDelay: CheckedContinuation<Void, Never>?
+        var presented: [CompletionPresentation] = []
+        let oldTask = coordinator.schedule(.advertisement, sleep: { _ in
+            await withCheckedContinuation { continuation in
+                finishOldDelay = continuation
+                delayStarted.fulfill()
+            }
+        }, canPresent: { true }) {
+            presented.append($0)
+        }
+        await fulfillment(of: [delayStarted], timeout: 1)
+        let newTask = coordinator.schedule(.review, sleep: { _ in }, canPresent: { true }) {
+            presented.append($0)
+        }
+        finishOldDelay?.resume()
+        await oldTask.value
+        await newTask.value
+        XCTAssertEqual(presented, [.review])
+    }
+}

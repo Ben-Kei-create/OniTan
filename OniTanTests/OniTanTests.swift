@@ -1106,3 +1106,219 @@ struct QuestionModelTests {
             "unknown kind should produce a warning")
     }
 }
+
+// MARK: - Exam Mistake Review
+
+@MainActor
+struct ExamMistakeReviewTests {
+    private func question(_ id: String, kind: QuestionKind = .synonym, kanji: String? = nil) -> Question {
+        Question(id: id, kanji: kanji ?? id, choices: ["正解", "誤答"], answer: "正解", explain: "解説", kind: kind)
+    }
+
+    private func result(_ questions: [Question], attempts: Bool = true) -> ExamResult {
+        ExamResult(id: UUID(), date: Date(), blueprintID: "test-exam", totalQuestions: questions.count,
+                   correctCount: 0, byKind: [:], wrongQuestionIDs: questions.map(\.id),
+                   attempts: attempts ? questions.map {
+                       QuestionAttempt(questionID: $0.id, kanji: $0.kanji, kind: $0.kind,
+                                       userAnswer: "誤答", correctAnswer: $0.answer, isCorrect: false)
+                   } : [])
+    }
+
+    @Test func recentWindowFilterDeduplicationAndFifteenQuestionLimit() {
+        let repo = ExamResultRepository(store: InMemoryPersistenceStore())
+        let old = question("old")
+        let pool = (0..<20).map { question("q\($0)", kind: $0.isMultiple(of: 2) ? .synonym : .antonym) }
+        repo.save(result([old]))
+        repo.save(result(pool))
+        repo.save(result([pool[0]]))
+        let pending = repo.pendingReviewQuestions(from: pool + [old], recentExamCount: 2)
+        #expect(pending.count == 20)
+        #expect(pending.first?.id == pool[0].id)
+        #expect(Set(pending.map(\.id)).count == 20)
+        #expect(repo.makeReviewStage(from: pool + [old], recentExamCount: 2).questions.count == 15)
+        #expect(repo.makeReviewStage(from: pool, kind: .antonym).questions.count == 10)
+        #expect(repo.pendingReviewQuestions(from: pool, recentExamCount: 0).isEmpty)
+        #expect(repo.pendingReviewQuestions(from: pool, recentExamCount: -1).isEmpty)
+        #expect(repo.pendingReviewQuestions(from: [], recentExamCount: 2).isEmpty)
+    }
+
+    @Test func graduationPersistsWithoutChangingExamAndNewMistakeReopensIt() throws {
+        let store = InMemoryPersistenceStore()
+        let repo = ExamResultRepository(store: store)
+        let q = question("q")
+        repo.save(result([q]))
+        let original = store.data(forKey: "examResults_v1")
+        repo.graduateReviewQuestion(id: q.id)
+        #expect(repo.pendingReviewQuestions(from: [q]).isEmpty)
+        #expect(store.data(forKey: "examResults_v1") == original)
+        let reloaded = ExamResultRepository(store: store)
+        #expect(reloaded.pendingReviewQuestions(from: [q]).isEmpty)
+        reloaded.save(result([q]))
+        #expect(reloaded.pendingReviewQuestions(from: [q]).count == 1)
+        reloaded.reset()
+        #expect(ExamResultRepository(store: store).results.isEmpty)
+        #expect(ExamResultRepository(store: store).reviewedMistakes.isEmpty)
+    }
+
+    @Test func oldResultsWithoutAttemptFieldRemainReviewable() throws {
+        let q = question("legacy")
+        let encoded = try JSONEncoder().encode([result([q])])
+        var json = try #require(JSONSerialization.jsonObject(with: encoded) as? [[String: Any]])
+        json[0].removeValue(forKey: "attempts")
+        let store = InMemoryPersistenceStore()
+        store.set(try JSONSerialization.data(withJSONObject: json), forKey: "examResults_v1")
+        let repo = ExamResultRepository(store: store)
+        #expect(repo.results.count == 1)
+        #expect(repo.results[0].attempts.isEmpty)
+        #expect(repo.makeReviewStage(from: [q]).questions.map(\.id) == [q.id])
+    }
+
+    @Test func correctExamAttemptsDoNotBecomeReviewQuestions() {
+        let q = question("correct")
+        let exam = ExamResult(id: UUID(), date: Date(), blueprintID: "test", totalQuestions: 1,
+                              correctCount: 1, byKind: [:], wrongQuestionIDs: [], attempts: [
+                                QuestionAttempt(questionID: q.id, kanji: q.kanji, kind: q.kind,
+                                                userAnswer: q.answer, correctAnswer: q.answer, isCorrect: true)
+                              ])
+        let repo = ExamResultRepository(store: InMemoryPersistenceStore())
+        repo.save(exam)
+        #expect(repo.pendingReviewQuestions(from: [q]).isEmpty)
+    }
+
+    @Test func reviewRetriesWrongAnswersAndGraduatesExactIDsAcrossKinds() {
+        let repo = ExamResultRepository(store: InMemoryPersistenceStore())
+        let a = question("a", kanji: "同じ語")
+        let b = question("b", kind: .antonym, kanji: "同じ語")
+        repo.save(result([a, b]))
+        let vm = QuizSessionViewModel(stage: repo.makeReviewStage(from: [a, b]),
+            appState: AppState(store: InMemoryPersistenceStore()),
+            statsRepo: StudyStatsRepository(store: InMemoryPersistenceStore()),
+            examResultRepo: repo, mode: .normal, isExamReview: true)
+        #expect(vm.totalGoal == 2)
+        vm.answer(selected: "誤答")
+        #expect(repo.pendingReviewQuestions(from: [a, b]).count == 2)
+        vm.proceed()
+        vm.answer(selected: "正解")
+        #expect(repo.pendingReviewQuestions(from: [a, b]).map(\.id) == [a.id])
+        // Graduation survives abandoning a partially completed session.
+        vm.proceed()
+        #expect(vm.currentQuestion.id == a.id)
+        #expect(vm.passNumber == 2)
+        vm.answer(selected: "正解")
+        vm.proceed()
+        #expect(repo.pendingReviewQuestions(from: [a, b]).isEmpty)
+        #expect(vm.phase == .stageCleared)
+        #expect(vm.reviewedGenreCount == 2)
+        #expect(repo.results.count == 1)
+    }
+
+    @Test func reviewUsesAllFifteenAndOrdinaryTrainingDoesNotGraduateExamMistakes() {
+        let repo = ExamResultRepository(store: InMemoryPersistenceStore())
+        let pool = (0..<20).map { question("q\($0)") }
+        repo.save(result(pool))
+        let appState = AppState(store: InMemoryPersistenceStore())
+        let stats = StudyStatsRepository(store: InMemoryPersistenceStore())
+        let vm = QuizSessionViewModel(stage: repo.makeReviewStage(from: pool), appState: appState,
+            statsRepo: stats, examResultRepo: repo, mode: .normal, isExamReview: true)
+        #expect(vm.totalGoal == 15)
+        for _ in 0..<15 { vm.answer(selected: "正解"); vm.proceed() }
+        #expect(vm.phase == .stageCleared)
+        #expect(repo.pendingReviewQuestions(from: pool).count == 5)
+        let remaining = repo.pendingReviewQuestions(from: pool)
+        let ordinary = QuizSessionViewModel(stage: Stage(stage: 123, questions: remaining),
+            appState: appState, statsRepo: stats, examResultRepo: repo, mode: .normal)
+        ordinary.answer(selected: "正解")
+        #expect(repo.pendingReviewQuestions(from: pool).count == 5)
+        #expect(!appState.clearedStages.contains(-4))
+    }
+}
+
+// MARK: - Study Progress
+
+struct StudyProgressTests {
+    private func stage(_ number: Int, kinds: [QuestionKind]) -> Stage {
+        Stage(stage: number, questions: kinds.enumerated().map {
+            Question(id: "q\($0.offset)", kanji: "語\($0.offset)", choices: ["A", "B"], answer: "A", explain: "", kind: $0.element)
+        })
+    }
+
+    @Test func legacyStageStatsDecodeWithoutGenreCounts() throws {
+        let json = Data("{\"stageNumber\":1,\"totalAttempts\":4,\"correctAttempts\":3}".utf8)
+        let stats = try JSONDecoder().decode(StageStats.self, from: json)
+        #expect(stats.byKind.isEmpty)
+        let summary = StudyProgressSummary(stats: [1: stats], stages: [stage(1, kinds: [.sentenceReading])])
+        #expect(summary.byKind[.sentenceReading]?.total == 4)
+        #expect(summary.byKind[.sentenceReading]?.correct == 3)
+        #expect(summary.unclassifiedTotal == 0)
+    }
+
+    @Test func mixedAnswersPersistExactGenreAttribution() {
+        let store = InMemoryPersistenceStore()
+        let repo = StudyStatsRepository(store: store)
+        repo.record(stageNumber: 0, kanji: "A", questionKind: .synonym, wasCorrect: true)
+        repo.record(stageNumber: 0, kanji: "B", questionKind: .antonym, wasCorrect: false)
+        repo.record(stageNumber: -4, kanji: "C", questionKind: .synonym, wasCorrect: false)
+        let reloaded = StudyStatsRepository(store: store)
+        let summary = StudyProgressSummary(stats: reloaded.stageStats, stages: [])
+        #expect(summary.byKind[.synonym]?.total == 2)
+        #expect(summary.byKind[.synonym]?.correct == 1)
+        #expect(summary.byKind[.antonym]?.total == 1)
+        #expect(summary.byKind[.antonym]?.correct == 0)
+        #expect(summary.total == 3)
+        #expect(summary.correct == 1)
+        #expect(summary.unclassifiedTotal == 0)
+    }
+
+    @Test func oldMixedOrMissingStagesStayUnclassifiedAndNewAnswersAreNotCountedTwice() {
+        var oldMixed = StageStats(stageNumber: 0)
+        oldMixed.totalAttempts = 10
+        oldMixed.correctAttempts = 6
+        oldMixed.byKind = ["synonym": KindScore(total: 2, correct: 1)]
+        var removed = StageStats(stageNumber: 999)
+        removed.totalAttempts = 3
+        removed.correctAttempts = 2
+        let summary = StudyProgressSummary(stats: [0: oldMixed, 999: removed], stages: [])
+        #expect(summary.total == 13)
+        #expect(summary.correct == 8)
+        #expect(summary.unclassifiedTotal == 11)
+        #expect(summary.byKind[.synonym]?.total == 2)
+    }
+
+    @Test func weightedAccuracyAndLegacyRemainderAreCorrect() {
+        var a = StageStats(stageNumber: 1)
+        a.totalAttempts = 10; a.correctAttempts = 9
+        a.byKind = ["sentenceReading": KindScore(total: 2, correct: 1)]
+        var b = StageStats(stageNumber: 2)
+        b.totalAttempts = 2; b.correctAttempts = 0
+        let summary = StudyProgressSummary(stats: [1: a, 2: b], stages: [
+            stage(1, kinds: [.sentenceReading]), stage(2, kinds: [.reading])
+        ])
+        #expect(summary.byKind[.sentenceReading]?.total == 12)
+        #expect(summary.byKind[.sentenceReading]?.correct == 9)
+        #expect(summary.accuracy == 0.75)
+        #expect(summary.unclassifiedTotal == 0)
+        #expect(summary.byKind[.reading] == nil)
+    }
+
+    @Test func emptyAndUnknownGenresDoNotLookLikeZeroPercentStudiedGenres() {
+        let empty = StudyProgressSummary(stats: [:], stages: [])
+        #expect(empty.accuracy == nil)
+        #expect(empty.byKind.isEmpty)
+        var future = StageStats(stageNumber: 0)
+        future.totalAttempts = 2; future.correctAttempts = 1
+        future.byKind = ["futureKind": KindScore(total: 2, correct: 1)]
+        let summary = StudyProgressSummary(stats: [0: future], stages: [])
+        #expect(summary.unclassifiedTotal == 2)
+        #expect(summary.accuracy == 0.5)
+    }
+
+    @Test func resetClearsGenreCountsAlongWithExistingStats() {
+        let store = InMemoryPersistenceStore()
+        let repo = StudyStatsRepository(store: store)
+        repo.record(stageNumber: 1, kanji: "A", questionKind: .writing, wasCorrect: true)
+        repo.reset()
+        let summary = StudyProgressSummary(stats: StudyStatsRepository(store: store).stageStats, stages: [])
+        #expect(summary.total == 0)
+        #expect(summary.byKind.isEmpty)
+    }
+}
